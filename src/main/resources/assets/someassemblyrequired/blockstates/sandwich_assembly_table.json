@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "someassemblyrequired:block/sandwich_assembly_table",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "someassemblyrequired:block/sandwich_assembly_table",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "someassemblyrequired:block/sandwich_assembly_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "someassemblyrequired:block/sandwich_assembly_table",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "itemGroup.someassemblyrequired": "Some Assembly Required",
+
+  "block.someassemblyrequired.sandwich_assembly_table": "Sandwich Assembly Table",
+  "block.someassemblyrequired.sandwich": "Sandwich",
+
+  "item.someassemblyrequired.sandwich_assembly_table": "Sandwich Assembly Table",
+  "item.someassemblyrequired.sandwich": "Sandwich",
+  "item.someassemblyrequired.snadwich": "Sandwich?",
+  "item.someassemblyrequired.spread": "Spread",
+  "item.someassemblyrequired.bread_slice": "Bread Slice",
+  "item.someassemblyrequired.toasted_bread_slice": "Toasted Bread Slice",
+
+  "spreadtype.someassemblyrequired.water_bottle": "Water",
+  "spreadtype.someassemblyrequired.mushroom_stew": "Mushroom Stew",
+  "spreadtype.someassemblyrequired.rabbit_stew": "Rabbit Stew",
+  "spreadtype.someassemblyrequired.beetroot_soup": "Beetroot Soup",
+  "spreadtype.someassemblyrequired.honey_bottle": "Honey",
+  "spreadtype.someassemblyrequired.suspicious_stew": "Suspicious Stew",
+
+  "message.someassemblyrequired.top_bread": "Missing top bread slice!",
+  "message.someassemblyrequired.bottom_bread": "Missing bottom bread slice!",
+  "message.someassemblyrequired.full_sandwich": "You cannot add any more items!"
+}

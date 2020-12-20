@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[35,)"
+license="MIT"
+# TODO issueTrackerURL="http://my.issue.tracker/"
+
+[[mods]]
+modId="someassemblyrequired"
+version="1.16.4-1.0.0"
+displayName="Some Assembly Required"
+# TODO displayURL="http://example.com/"
+# TODO logoFile="examplemod.png" #optional
+authors="ochotonida"
+description='''
+Design your own sandwiches!
+'''
+
+[[dependencies.examplemod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[35,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.examplemod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.4,1.17)"
+    ordering="NONE"
+    side="BOTH"
