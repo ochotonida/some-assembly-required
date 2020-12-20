@@ -1,29 +1,30 @@
-modLoader="javafml"
-loaderVersion="[35,)"
-license="MIT"
-# TODO issueTrackerURL="http://my.issue.tracker/"
+modLoader = "javafml"
+loaderVersion = "[34,)"
+license = "MIT"
+issueTrackerURL = "https://github.com/ochotonida/some-assembly-required/issues"
 
 [[mods]]
-modId="someassemblyrequired"
-version="1.16.4-1.0.0"
-displayName="Some Assembly Required"
-# TODO displayURL="http://example.com/"
-# TODO logoFile="examplemod.png" #optional
-authors="ochotonida"
-description='''
+modId = "someassemblyrequired"
+version = "1.16.4-1.0.0"
+displayName = "Some Assembly Required"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/some-assembly-required"
+# TODO logoFile="examplemod.png"
+authors = "ochotonida"
+credits = "Based on the fabric mod Sandwichable by FoundationGames"
+description = '''
 Design your own sandwiches!
 '''
 
-[[dependencies.examplemod]]
+[[dependencies.someassemblyrequired]]
     modId="forge"
-    mandatory=true
-    versionRange="[35,)"
-    ordering="NONE"
+mandatory = true
+versionRange = "[34,)"
+ordering = "NONE"
     side="BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.someassemblyrequired]]
     modId="minecraft"
-    mandatory=true
-    versionRange="[1.16.4,1.17)"
-    ordering="NONE"
+mandatory = true
+versionRange = "[1.16.3,1.17)"
+ordering = "NONE"
     side="BOTH"

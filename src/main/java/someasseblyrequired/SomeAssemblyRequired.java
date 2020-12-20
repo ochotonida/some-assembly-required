@@ -12,16 +12,14 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import someasseblyrequired.common.item.spreadtype.SpreadType;
 import someasseblyrequired.common.init.Blocks;
 import someasseblyrequired.common.init.Items;
 import someasseblyrequired.common.init.SpreadTypes;
 import someasseblyrequired.common.init.TileEntityTypes;
+import someasseblyrequired.common.item.spreadtype.SpreadType;
 
 @Mod(SomeAssemblyRequired.MODID)
 public class SomeAssemblyRequired {
-
-    // TODO: test server
 
     public static final String MODID = "someassemblyrequired";
 
