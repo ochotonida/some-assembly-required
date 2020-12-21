@@ -93,7 +93,7 @@ public class SandwichItem extends BlockItem {
         if (sandwich.size() >= 3) {
             ItemStack ingredient = sandwich.get(1);
             if (sandwich.size() % 2 != 0
-                    && sandwich.stream().allMatch(sandwichComponent -> sandwich.indexOf(sandwichComponent) % 2 == 0 ? Tags.BREADS.contains(sandwichComponent.getItem()) : ingredient.equals(sandwichComponent, false))
+                    && sandwich.stream().allMatch(sandwichComponent -> sandwich.indexOf(sandwichComponent) % 2 == 0 ? Tags.BREADS.contains(sandwichComponent.getItem()) : ItemStack.areItemStacksEqual(ingredient, sandwichComponent))
                     && (ingredient.getItem() == Items.TOASTED_BREAD_SLICE || !Tags.BREADS.contains(ingredient.getItem()))) {
                 String quantifier;
                 switch (sandwich.size() / 2) {
@@ -123,15 +123,17 @@ public class SandwichItem extends BlockItem {
                 if (ingredient.getItem() == Items.TOASTED_BREAD_SLICE) {
                     displayName = new TranslationTextComponent("item.someassemblyrequired.sandwich.toast");
                 } else {
-                    ItemStack spread = ItemStack.read(ingredient.getOrCreateChildTag("Ingredient"));
-                    if (spread.getItem() == net.minecraft.item.Items.POTION) {
-                        Potion potion = PotionUtils.getPotionFromItem(spread);
+                    if (ingredient.getTag() != null && ingredient.getTag().contains("Ingredient")) {
+                        ItemStack spread = ItemStack.read(ingredient.getOrCreateChildTag("Ingredient"));
+                        if (spread.getItem() == net.minecraft.item.Items.POTION) {
+                            Potion potion = PotionUtils.getPotionFromItem(spread);
 
-                        if (potion == Potions.WATER && sandwich.size() == 3) {
-                            return new TranslationTextComponent("item.someassemblyrequired.soggy_sandwich");
-                        }
-                        if (potion.getEffects().size() == 1) {
-                            return new TranslationTextComponent("item.someassemblyrequired." + quantifier + "_potion_sandwich", potion.getEffects().get(0).getPotion().getDisplayName());
+                            if (potion == Potions.WATER && sandwich.size() == 3) {
+                                return new TranslationTextComponent("item.someassemblyrequired.soggy_sandwich");
+                            }
+                            if (potion.getEffects().size() == 1) {
+                                return new TranslationTextComponent("item.someassemblyrequired." + quantifier + "_potion_sandwich", potion.getEffects().get(0).getPotion().getDisplayName());
+                            }
                         }
                     }
                     displayName = ingredient.getDisplayName();
