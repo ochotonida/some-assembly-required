@@ -26,7 +26,7 @@ public class SandwichTileEntity extends TileEntity {
     }
 
     protected IItemHandler createIngredientHandler() {
-        return new ItemStackHandler(16) {
+        return new ItemStackHandler() {
 
             @Override
             public int getSlotLimit(int slot) {

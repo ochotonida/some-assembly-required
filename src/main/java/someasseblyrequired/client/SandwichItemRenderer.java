@@ -22,10 +22,16 @@ public class SandwichItemRenderer extends ItemStackTileEntityRenderer {
             matrixStack.translate(0.5, 0.5 + 1 / 32D, 0.5);
 
             int size;
-            for (size = 0; size < handler.getSlots() && !handler.getStackInSlot(size).isEmpty(); size++);
+            for (size = 0; size < handler.getSlots() && !handler.getStackInSlot(size).isEmpty(); size++) ;
+
+            if (transformType == ItemCameraTransforms.TransformType.GUI) {
+                if (size > 16) {
+                    matrixStack.scale(16F / size, 16F / size, 16F / size);
+                }
+            }
 
             if (transformType.isFirstPerson() || transformType == ItemCameraTransforms.TransformType.GUI) {
-                matrixStack.translate(0, - size / 32D, 0);
+                matrixStack.translate(0, -size / 32D, 0);
             }
 
             matrixStack.rotate(Vector3f.XP.rotationDegrees(90));

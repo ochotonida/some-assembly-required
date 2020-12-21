@@ -1,14 +1,18 @@
 {
   "itemGroup.someassemblyrequired": "Some Assembly Required",
+
   "block.someassemblyrequired.sandwich_assembly_table": "Sandwich Assembly Table",
   "block.someassemblyrequired.sandwich": "Sandwich",
+
   "item.someassemblyrequired.sandwich_assembly_table": "Sandwich Assembly Table",
   "item.someassemblyrequired.spread": "Spread",
   "item.someassemblyrequired.bread_slice": "Bread Slice",
   "item.someassemblyrequired.toasted_bread_slice": "Toasted Bread Slice",
+
   "item.someassemblyrequired.sandwich": "Sandwich",
   "item.someassemblyrequired.snadwich": "Sandwich... ?",
   "item.someassemblyrequired.soggy_sandwich": "Soggy Sandwich",
+  "item.someassemblyrequired.sandwich.toast": "Toast",
   "item.someassemblyrequired.double_decker_sandwich": "Double Decker Sandwich",
   "item.someassemblyrequired.single_sandwich": "%s Sandwich",
   "item.someassemblyrequired.double_sandwich": "Double Decker %s Sandwich",
@@ -24,13 +28,19 @@
   "item.someassemblyrequired.quintuple_potion_sandwich": "Quintuple Sandwich of %s",
   "item.someassemblyrequired.sextuple_potion_sandwich": "Sextuple Sandwich of %s",
   "item.someassemblyrequired.septuple_potion_sandwich": "Septuple Sandwich of %s",
-  "item.someassemblyrequired.sandwich.toast": "Toast",
+
+  "item.someassemblyrequired.sandwich.tooltip.ellipsis": "...",
+  "item.someassemblyrequired.spread.tooltip": "Where did you get this?",
+  "item.someassemblyrequired.bread_slice.tooltip": "A sliced bread food item. Much more hunger-efficient than a loaf of bread and can be eaten faster",
+  "item.someassemblyrequired.toasted_bread_slice.tooltip": "A toasted slice of bread. Restores more hunger than a bread slice",
+
   "spreadtype.someassemblyrequired.water_bottle": "Water",
   "spreadtype.someassemblyrequired.mushroom_stew": "Mushroom Stew",
   "spreadtype.someassemblyrequired.rabbit_stew": "Rabbit Stew",
   "spreadtype.someassemblyrequired.beetroot_soup": "Beetroot Soup",
   "spreadtype.someassemblyrequired.honey_bottle": "Honey",
   "spreadtype.someassemblyrequired.suspicious_stew": "Suspicious Stew",
+
   "message.someassemblyrequired.top_bread": "Missing top bread slice!",
   "message.someassemblyrequired.bottom_bread": "Missing bottom bread slice!",
   "message.someassemblyrequired.full_sandwich": "You cannot add any more items!"

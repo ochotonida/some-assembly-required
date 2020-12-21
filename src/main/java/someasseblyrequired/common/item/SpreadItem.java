@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import someasseblyrequired.common.init.SpreadTypes;
 import someasseblyrequired.common.item.spreadtype.SpreadType;
 
-public class SpreadItem extends Item {
+public class SpreadItem extends TooltippedItem {
 
     public SpreadItem(Properties properties) {
         super(properties);

@@ -9,6 +9,7 @@ import someasseblyrequired.SomeAssemblyRequired;
 import someasseblyrequired.client.SandwichItemRenderer;
 import someasseblyrequired.common.item.SandwichItem;
 import someasseblyrequired.common.item.SpreadItem;
+import someasseblyrequired.common.item.TooltippedItem;
 
 @ObjectHolder(SomeAssemblyRequired.MODID)
 public class Items {
@@ -30,8 +31,8 @@ public class Items {
 
                 new SpreadItem(new Item.Properties()).setRegistryName(SomeAssemblyRequired.MODID, "spread"),
 
-                new Item(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(2).saturation(0.5F).build())).setRegistryName(SomeAssemblyRequired.MODID, "bread_slice"),
-                new Item(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(3).saturation(0.6F).build())).setRegistryName(SomeAssemblyRequired.MODID, "toasted_bread_slice")
+                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(2).saturation(0.5F).fastToEat().build())).setRegistryName(SomeAssemblyRequired.MODID, "bread_slice"),
+                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(3).saturation(0.6F).fastToEat().build())).setRegistryName(SomeAssemblyRequired.MODID, "toasted_bread_slice")
         );
     }
 }

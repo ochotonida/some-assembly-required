@@ -177,6 +177,10 @@ public class SandwichItem extends BlockItem {
         super.addInformation(stack, world, tooltip, flag);
         stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
+                if (slot > 8) {
+                    tooltip.add(new TranslationTextComponent("item.someassemblyrequired.sandwich.tooltip.ellipsis").mergeStyle(TextFormatting.GRAY));
+                    return;
+                }
                 tooltip.add(handler.getStackInSlot(slot).getDisplayName().copyRaw().mergeStyle(TextFormatting.GRAY));
             }
         });
