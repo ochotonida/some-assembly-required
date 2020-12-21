@@ -1,15 +1,13 @@
 package someasseblyrequired.common.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameters;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -22,12 +20,12 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
 import someasseblyrequired.common.block.tileentity.SandwichTileEntity;
 import someasseblyrequired.common.init.Items;
 import someasseblyrequired.common.init.TileEntityTypes;
 
-import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SandwichBlock extends HorizontalBlock {
 
@@ -49,6 +47,9 @@ public class SandwichBlock extends HorizontalBlock {
 
     @SuppressWarnings("deprecation")
     public BlockState updatePostPlacement(BlockState blockState, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
+        if (facing == Direction.DOWN && !this.isValidPosition(blockState, world, currentPos)) {
+            return Blocks.AIR.getDefaultState();
+        }
         if (blockState.get(BlockStateProperties.WATERLOGGED)) {
             world.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
@@ -84,15 +85,16 @@ public class SandwichBlock extends HorizontalBlock {
     }
 
     @Override
-    public void harvestBlock(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity tileEntity, ItemStack stack) {
-        super.harvestBlock(world, player, pos, state, tileEntity, stack);
-        if (tileEntity instanceof SandwichTileEntity && !player.isCreative() && tileEntity.getWorld() != null) {
+    @SuppressWarnings("deprecation")
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> drops = new ArrayList<>(super.getDrops(state, builder));
+        TileEntity tileEntity = builder.get(LootParameters.BLOCK_ENTITY);
+        if (tileEntity instanceof SandwichTileEntity) {
             ItemStack sandwich = new ItemStack(Items.SANDWICH);
             sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", tileEntity.write(new CompoundNBT()).getCompound("Ingredients"));
-            ItemEntity sandwichEntity = new ItemEntity(tileEntity.getWorld(), pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, sandwich);
-            sandwichEntity.setDefaultPickupDelay();
-            tileEntity.getWorld().addEntity(sandwichEntity);
+            drops.add(sandwich);
         }
+        return drops;
     }
 
     @Override
