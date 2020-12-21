@@ -9,10 +9,10 @@
       "item": "minecraft:smooth_stone"
     },
     "B": {
-      "tag": "minecraft:planks"
+      "item": "minecraft:crimson_planks"
     }
   },
   "result": {
-    "item": "someassemblyrequired:sandwich_assembly_table"
+    "item": "someassemblyrequired:crimson_sandwich_assembly_table"
   }
 }

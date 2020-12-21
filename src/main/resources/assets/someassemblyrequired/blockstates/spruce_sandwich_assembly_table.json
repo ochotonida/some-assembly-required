@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "someassemblyrequired:block/spruce_sandwich_assembly_table",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "someassemblyrequired:block/spruce_sandwich_assembly_table",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "someassemblyrequired:block/spruce_sandwich_assembly_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "someassemblyrequired:block/spruce_sandwich_assembly_table",
+      "y": 270
+    }
+  }
+}

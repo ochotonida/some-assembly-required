@@ -11,21 +11,26 @@ import someasseblyrequired.common.item.SandwichItem;
 import someasseblyrequired.common.item.SpreadItem;
 import someasseblyrequired.common.item.TooltippedItem;
 
+import static net.minecraft.item.Items.AIR;
+
 @ObjectHolder(SomeAssemblyRequired.MODID)
 public class Items {
 
-    @ObjectHolder("sandwich")
-    public static Item SANDWICH;
-    @ObjectHolder("spread")
-    public static Item SPREAD;
-    @ObjectHolder("bread_slice")
-    public static Item BREAD_SLICE;
-    @ObjectHolder("toasted_bread_slice")
-    public static Item TOASTED_BREAD_SLICE;
+    public static final Item SANDWICH = AIR;
+    public static final Item SPREAD = AIR;
+    public static final Item BREAD_SLICE = AIR;
+    public static final Item TOASTED_BREAD_SLICE = AIR;
 
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
-                new BlockItem(Blocks.SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "sandwich_assembly_table"),
+                new BlockItem(Blocks.OAK_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "oak_sandwich_assembly_table"),
+                new BlockItem(Blocks.SPRUCE_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "spruce_sandwich_assembly_table"),
+                new BlockItem(Blocks.BIRCH_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "birch_sandwich_assembly_table"),
+                new BlockItem(Blocks.JUNGLE_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "jungle_sandwich_assembly_table"),
+                new BlockItem(Blocks.ACACIA_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "acacia_sandwich_assembly_table"),
+                new BlockItem(Blocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "dark_oak_sandwich_assembly_table"),
+                new BlockItem(Blocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "crimson_sandwich_assembly_table"),
+                new BlockItem(Blocks.WARPED_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "warped_sandwich_assembly_table"),
 
                 new SandwichItem(Blocks.SANDWICH, new Item.Properties().maxStackSize(8).food(new Food.Builder().setAlwaysEdible().build()).setISTER(() -> SandwichItemRenderer::new)).setRegistryName(SomeAssemblyRequired.MODID, "sandwich"),
 

@@ -24,7 +24,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import someasseblyrequired.common.block.tileentity.SandwichTileEntity;
-import someasseblyrequired.common.init.Blocks;
 import someasseblyrequired.common.init.Items;
 import someasseblyrequired.common.init.TileEntityTypes;
 
@@ -65,7 +64,7 @@ public class SandwichBlock extends HorizontalBlock {
     @Override
     @SuppressWarnings("deprecation")
     public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
-        return !world.getBlockState(pos.down()).getBlock().equals(Blocks.SANDWICH_ASSEMBLY_TABLE) && hasEnoughSolidSide(world, pos.down(), Direction.UP);
+        return !(world.getBlockState(pos.down()).getBlock() instanceof SandwichAssemblyTableBlock) && hasEnoughSolidSide(world, pos.down(), Direction.UP);
     }
 
     @Override

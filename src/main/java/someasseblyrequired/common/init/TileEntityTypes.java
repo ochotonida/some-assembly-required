@@ -21,7 +21,16 @@ public class TileEntityTypes {
     public static void register(IForgeRegistry<TileEntityType<?>> registry) {
         // noinspection ConstantConditions
         registry.registerAll(
-                TileEntityType.Builder.create(SandwichAssemblyTableTileEntity::new, Blocks.SANDWICH_ASSEMBLY_TABLE).build(null).setRegistryName(SomeAssemblyRequired.MODID, "sandwich_assembly_table"),
+                TileEntityType.Builder.create(SandwichAssemblyTableTileEntity::new,
+                        Blocks.ACACIA_SANDWICH_ASSEMBLY_TABLE,
+                        Blocks.BIRCH_SANDWICH_ASSEMBLY_TABLE,
+                        Blocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE,
+                        Blocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE,
+                        Blocks.JUNGLE_SANDWICH_ASSEMBLY_TABLE,
+                        Blocks.OAK_SANDWICH_ASSEMBLY_TABLE,
+                        Blocks.SPRUCE_SANDWICH_ASSEMBLY_TABLE,
+                        Blocks.WARPED_SANDWICH_ASSEMBLY_TABLE
+                ).build(null).setRegistryName(SomeAssemblyRequired.MODID, "sandwich_assembly_table"),
                 TileEntityType.Builder.create(() -> new SandwichTileEntity(SANDWICH), Blocks.SANDWICH).build(null).setRegistryName(SomeAssemblyRequired.MODID, "sandwich")
         );
     }

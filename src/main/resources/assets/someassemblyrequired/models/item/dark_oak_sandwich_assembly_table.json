@@ -1,0 +1,22 @@
+{
+  "parent": "someassemblyrequired:block/dark_oak_sandwich_assembly_table",
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
+    }
+  }
+}

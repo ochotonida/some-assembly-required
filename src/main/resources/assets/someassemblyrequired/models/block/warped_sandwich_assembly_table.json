@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "someassemblyrequired:block/warped_sandwich_assembly_table_side",
+    "up": "someassemblyrequired:block/sandwich_assembly_table_top",
+    "north": "someassemblyrequired:block/warped_sandwich_assembly_table_side",
+    "south": "someassemblyrequired:block/warped_sandwich_assembly_table_front",
+    "east": "someassemblyrequired:block/warped_sandwich_assembly_table_side",
+    "west": "someassemblyrequired:block/warped_sandwich_assembly_table_side",
+    "down": "minecraft:block/warped_planks"
+  }
+}

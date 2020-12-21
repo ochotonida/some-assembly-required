@@ -14,11 +14,11 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
-import someasseblyrequired.common.item.spreadtype.SpreadType;
 import someasseblyrequired.common.init.Items;
 import someasseblyrequired.common.init.SpreadTypes;
 import someasseblyrequired.common.init.Tags;
 import someasseblyrequired.common.init.TileEntityTypes;
+import someasseblyrequired.common.item.spreadtype.SpreadType;
 
 import javax.annotation.Nullable;
 
@@ -75,7 +75,7 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
             ingredientHandler.ifPresent(handler -> {
                 for (int slot = 0; slot < handler.getSlots(); slot++) {
                     ItemStack ingredient = handler.getStackInSlot(slot);
-                    if (ingredient.getItem() != Items.SPREAD) {
+                    if (!ingredient.isEmpty() && ingredient.getItem() != Items.SPREAD) {
                         ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ingredient);
                         world.addEntity(item);
                     }

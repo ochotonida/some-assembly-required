@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "someassemblyrequired:sandwich_assembly_table"
+          "name": "someassemblyrequired:oak_sandwich_assembly_table"
         }
       ],
       "conditions": [

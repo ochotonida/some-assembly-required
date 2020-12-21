@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "someassemblyrequired:block/acacia_sandwich_assembly_table_side",
+    "up": "someassemblyrequired:block/sandwich_assembly_table_top",
+    "north": "someassemblyrequired:block/acacia_sandwich_assembly_table_side",
+    "south": "someassemblyrequired:block/acacia_sandwich_assembly_table_front",
+    "east": "someassemblyrequired:block/acacia_sandwich_assembly_table_side",
+    "west": "someassemblyrequired:block/acacia_sandwich_assembly_table_side",
+    "down": "minecraft:block/acacia_planks"
+  }
+}

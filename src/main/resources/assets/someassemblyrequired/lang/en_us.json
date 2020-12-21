@@ -1,7 +1,14 @@
 {
   "itemGroup.someassemblyrequired": "Some Assembly Required",
 
-  "block.someassemblyrequired.sandwich_assembly_table": "Sandwich Assembly Table",
+  "block.someassemblyrequired.acacia_sandwich_assembly_table": "Acacia Sandwich Assembly Table",
+  "block.someassemblyrequired.birch_sandwich_assembly_table": "Birch Sandwich Assembly Table",
+  "block.someassemblyrequired.crimson_sandwich_assembly_table": "Crimson Sandwich Assembly Table",
+  "block.someassemblyrequired.dark_oak_sandwich_assembly_table": "Dark Oak Sandwich Assembly Table",
+  "block.someassemblyrequired.jungle_sandwich_assembly_table": "Jungle Sandwich Assembly Table",
+  "block.someassemblyrequired.oak_sandwich_assembly_table": "Oak Sandwich Assembly Table",
+  "block.someassemblyrequired.spruce_sandwich_assembly_table": "Spruce Sandwich Assembly Table",
+  "block.someassemblyrequired.warped_sandwich_assembly_table": "Warped Sandwich Assembly Table",
   "block.someassemblyrequired.sandwich": "Sandwich",
 
   "item.someassemblyrequired.sandwich_assembly_table": "Sandwich Assembly Table",
@@ -31,7 +38,7 @@
 
   "item.someassemblyrequired.sandwich.tooltip.ellipsis": "...",
   "item.someassemblyrequired.spread.tooltip": "Where did you get this?",
-  "item.someassemblyrequired.bread_slice.tooltip": "A sliced bread food item. Much more hunger-efficient than a loaf of bread and can be eaten faster",
+  "item.someassemblyrequired.bread_slice.tooltip": "A slice of bread. Much more hunger-efficient than a loaf of bread and can be eaten faster",
   "item.someassemblyrequired.toasted_bread_slice.tooltip": "A toasted slice of bread. Restores more hunger than a bread slice",
 
   "spreadtype.someassemblyrequired.water_bottle": "Water",

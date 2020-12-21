@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "someassemblyrequired:block/jungle_sandwich_assembly_table_side",
+    "up": "someassemblyrequired:block/sandwich_assembly_table_top",
+    "north": "someassemblyrequired:block/jungle_sandwich_assembly_table_side",
+    "south": "someassemblyrequired:block/jungle_sandwich_assembly_table_front",
+    "east": "someassemblyrequired:block/jungle_sandwich_assembly_table_side",
+    "west": "someassemblyrequired:block/jungle_sandwich_assembly_table_side",
+    "down": "minecraft:block/jungle_planks"
+  }
+}

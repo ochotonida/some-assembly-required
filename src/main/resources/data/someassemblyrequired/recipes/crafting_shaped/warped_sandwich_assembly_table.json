@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA",
+    "BB"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:smooth_stone"
+    },
+    "B": {
+      "item": "minecraft:warped_planks"
+    }
+  },
+  "result": {
+    "item": "someassemblyrequired:warped_sandwich_assembly_table"
+  }
+}
