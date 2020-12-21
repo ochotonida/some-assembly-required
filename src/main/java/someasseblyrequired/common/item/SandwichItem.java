@@ -10,9 +10,9 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
-
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -23,9 +23,13 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
+import someasseblyrequired.common.init.Items;
+import someasseblyrequired.common.init.SpreadTypes;
 import someasseblyrequired.common.init.Tags;
+import someasseblyrequired.common.item.spreadtype.SpreadType;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SandwichItem extends BlockItem {
@@ -75,6 +79,75 @@ public class SandwichItem extends BlockItem {
                 return LazyOptional.empty();
             }
         };
+    }
+
+    @Override
+    public ITextComponent getDisplayName(ItemStack stack) {
+        IItemHandler handler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);
+        List<ItemStack> sandwich = new ArrayList<>();
+        for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
+            sandwich.add(handler.getStackInSlot(slot));
+        }
+
+        if (sandwich.size() >= 3) {
+            ItemStack ingredient = sandwich.get(1);
+            if (sandwich.size() % 2 != 0
+                    && sandwich.stream().allMatch(sandwichComponent -> sandwich.indexOf(sandwichComponent) % 2 == 0 ? Tags.BREADS.contains(sandwichComponent.getItem()) : ingredient.equals(sandwichComponent, false))
+                    && (ingredient.getItem() == Items.TOASTED_BREAD_SLICE || !Tags.BREADS.contains(ingredient.getItem()))) {
+                String quantifier;
+                switch (sandwich.size() / 2) {
+                    case 1:
+                        quantifier = "single";
+                        break;
+                    case 2:
+                        quantifier = "double";
+                        break;
+                    case 3:
+                        quantifier = "triple";
+                        break;
+                    case 4:
+                        quantifier = "quadruple";
+                        break;
+                    case 5:
+                        quantifier = "quintuple";
+                        break;
+                    case 6:
+                        quantifier = "sextuple";
+                        break;
+                    default:
+                        quantifier = "septuple";
+                }
+                ITextComponent displayName;
+                if (ingredient.getItem() == Items.TOASTED_BREAD_SLICE) {
+                    displayName = new TranslationTextComponent("item.someassemblyrequired.sandwich.toast");
+                } else {
+                    SpreadType spreadType = SpreadTypes.findSpreadType(ingredient.getItem());
+                    if (spreadType != null) {
+                        displayName = spreadType.getDisplayName(ingredient);
+                    } else {
+                        displayName = ingredient.getDisplayName();
+                    }
+                }
+                return new TranslationTextComponent("item.someassemblyrequired." + quantifier + "_sandwich", displayName);
+            }
+        }
+
+        int breadAmount = 0;
+        for (ItemStack ingredient : sandwich) {
+            if (Tags.BREADS.contains(ingredient.getItem())) {
+                breadAmount++;
+            }
+        }
+
+        if (breadAmount == sandwich.size()) {
+            return new TranslationTextComponent("item.someassemblyrequired.snadwich");
+        }
+
+        if (breadAmount == 3) {
+            return new TranslationTextComponent("item.someassemblyrequired.double_decker_sandwich");
+        }
+
+        return super.getDisplayName(stack);
     }
 
     @Override

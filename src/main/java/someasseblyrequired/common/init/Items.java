@@ -19,6 +19,8 @@ public class Items {
     public static Item SPREAD;
     @ObjectHolder("bread_slice")
     public static Item BREAD_SLICE;
+    @ObjectHolder("toasted_bread_slice")
+    public static Item TOASTED_BREAD_SLICE;
 
     public static void register(IForgeRegistry<Item> registry) {
         registry.registerAll(
