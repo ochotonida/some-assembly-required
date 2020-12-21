@@ -9,6 +9,9 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
 import net.minecraft.util.Direction;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -24,9 +27,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import someasseblyrequired.common.init.Items;
-import someasseblyrequired.common.init.SpreadTypes;
 import someasseblyrequired.common.init.Tags;
-import someasseblyrequired.common.item.spreadtype.SpreadType;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -117,16 +118,23 @@ public class SandwichItem extends BlockItem {
                     default:
                         quantifier = "septuple";
                 }
+
                 ITextComponent displayName;
                 if (ingredient.getItem() == Items.TOASTED_BREAD_SLICE) {
                     displayName = new TranslationTextComponent("item.someassemblyrequired.sandwich.toast");
                 } else {
-                    SpreadType spreadType = SpreadTypes.findSpreadType(ingredient.getItem());
-                    if (spreadType != null) {
-                        displayName = spreadType.getDisplayName(ingredient);
-                    } else {
-                        displayName = ingredient.getDisplayName();
+                    ItemStack spread = ItemStack.read(ingredient.getOrCreateChildTag("Ingredient"));
+                    if (spread.getItem() == net.minecraft.item.Items.POTION) {
+                        Potion potion = PotionUtils.getPotionFromItem(spread);
+
+                        if (potion == Potions.WATER && sandwich.size() == 3) {
+                            return new TranslationTextComponent("item.someassemblyrequired.soggy_sandwich");
+                        }
+                        if (potion.getEffects().size() == 1) {
+                            return new TranslationTextComponent("item.someassemblyrequired." + quantifier + "_potion_sandwich", potion.getEffects().get(0).getPotion().getDisplayName());
+                        }
                     }
+                    displayName = ingredient.getDisplayName();
                 }
                 return new TranslationTextComponent("item.someassemblyrequired." + quantifier + "_sandwich", displayName);
             }
