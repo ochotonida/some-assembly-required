@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:stripped_crimson_stem"
+    }
+  },
+  "result": {
+    "item": "someassemblyrequired:crimson_cutting_board"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:stripped_jungle_log"
+    }
+  },
+  "result": {
+    "item": "someassemblyrequired:jungle_cutting_board"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:stripped_warped_stem"
+    }
+  },
+  "result": {
+    "item": "someassemblyrequired:warped_cutting_board"
+  }
+}

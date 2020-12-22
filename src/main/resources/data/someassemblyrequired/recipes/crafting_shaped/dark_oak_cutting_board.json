@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:stripped_dark_oak_log"
+    }
+  },
+  "result": {
+    "item": "someassemblyrequired:dark_oak_cutting_board"
+  }
+}
