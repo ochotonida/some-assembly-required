@@ -30,7 +30,7 @@ public class SandwichItemRenderer extends ItemStackTileEntityRenderer {
                 }
             }
 
-            if (transformType.isFirstPerson() || transformType == ItemCameraTransforms.TransformType.GUI) {
+            if (transformType.isFirstPerson() || transformType == ItemCameraTransforms.TransformType.GUI || transformType == ItemCameraTransforms.TransformType.FIXED) {
                 matrixStack.translate(0, -size / 32D, 0);
             }
 

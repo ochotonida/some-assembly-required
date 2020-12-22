@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -12,10 +13,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import someasseblyrequired.common.init.Blocks;
-import someasseblyrequired.common.init.Items;
-import someasseblyrequired.common.init.SpreadTypes;
-import someasseblyrequired.common.init.TileEntityTypes;
+import someasseblyrequired.common.init.*;
 import someasseblyrequired.common.item.spreadtype.SpreadType;
 
 @Mod(SomeAssemblyRequired.MODID)
@@ -63,6 +61,11 @@ public class SomeAssemblyRequired {
         @SubscribeEvent
         public static void registerTileEntityTypes(RegistryEvent.Register<TileEntityType<?>> event) {
             TileEntityTypes.register(event.getRegistry());
+        }
+
+        @SubscribeEvent
+        public static void registerRecipeSerializers(RegistryEvent.Register<IRecipeSerializer<?>> event) {
+            RecipeTypes.register(event.getRegistry());
         }
     }
 

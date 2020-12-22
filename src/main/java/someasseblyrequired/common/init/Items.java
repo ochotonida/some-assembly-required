@@ -31,9 +31,18 @@ public class Items {
                 new BlockItem(Blocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "dark_oak_sandwich_assembly_table"),
                 new BlockItem(Blocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "crimson_sandwich_assembly_table"),
                 new BlockItem(Blocks.WARPED_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "warped_sandwich_assembly_table"),
+                new BlockItem(Blocks.OAK_CUTTING_BOARD, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "oak_cutting_board"),
+                new BlockItem(Blocks.SPRUCE_CUTTING_BOARD, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "spruce_cutting_board"),
+                new BlockItem(Blocks.BIRCH_CUTTING_BOARD, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "birch_cutting_board"),
+                new BlockItem(Blocks.JUNGLE_CUTTING_BOARD, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "jungle_cutting_board"),
+                new BlockItem(Blocks.ACACIA_CUTTING_BOARD, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "acacia_cutting_board"),
+                new BlockItem(Blocks.DARK_OAK_CUTTING_BOARD, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "dark_oak_cutting_board"),
+                new BlockItem(Blocks.CRIMSON_CUTTING_BOARD, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "crimson_cutting_board"),
+                new BlockItem(Blocks.WARPED_CUTTING_BOARD, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "warped_cutting_board"),
 
                 new SandwichItem(Blocks.SANDWICH, new Item.Properties().maxStackSize(8).food(new Food.Builder().setAlwaysEdible().build()).setISTER(() -> SandwichItemRenderer::new)).setRegistryName(SomeAssemblyRequired.MODID, "sandwich"),
 
+                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "kitchen_knife"),
                 new SpreadItem(new Item.Properties()).setRegistryName(SomeAssemblyRequired.MODID, "spread"),
 
                 new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(2).saturation(0.5F).fastToEat().build())).setRegistryName(SomeAssemblyRequired.MODID, "bread_slice"),
