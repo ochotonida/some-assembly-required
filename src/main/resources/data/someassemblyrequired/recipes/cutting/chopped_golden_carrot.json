@@ -1,0 +1,12 @@
+{
+  "type": "someassemblyrequired:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:golden_carrot"
+    }
+  ],
+  "result": {
+    "item": "someassemblyrequired:chopped_golden_carrot",
+    "count": 2
+  }
+}

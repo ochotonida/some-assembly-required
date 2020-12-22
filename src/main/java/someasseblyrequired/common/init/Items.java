@@ -3,6 +3,8 @@ package someasseblyrequired.common.init;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 import someasseblyrequired.SomeAssemblyRequired;
@@ -46,7 +48,14 @@ public class Items {
                 new SpreadItem(new Item.Properties()).setRegistryName(SomeAssemblyRequired.MODID, "spread"),
 
                 new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(2).saturation(0.5F).fastToEat().build())).setRegistryName(SomeAssemblyRequired.MODID, "bread_slice"),
-                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(3).saturation(0.6F).fastToEat().build())).setRegistryName(SomeAssemblyRequired.MODID, "toasted_bread_slice")
+                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(3).saturation(0.6F).fastToEat().build())).setRegistryName(SomeAssemblyRequired.MODID, "toasted_bread_slice"),
+                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(2).saturation(0.5F).fastToEat().build())).setRegistryName(SomeAssemblyRequired.MODID, "apple_slices"),
+                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(3).saturation(0.7F).fastToEat().setAlwaysEdible().effect(() -> new EffectInstance(Effects.REGENERATION, 50, 1), 1).effect(() -> new EffectInstance(Effects.ABSORPTION, 1200, 0), 1).build())).setRegistryName(SomeAssemblyRequired.MODID, "golden_apple_slices"),
+                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(4).saturation(0.8F).fastToEat().setAlwaysEdible().effect(() -> new EffectInstance(Effects.REGENERATION, 200, 1), 1).effect(() -> new EffectInstance(Effects.RESISTANCE, 3000, 0), 1).effect(() -> new EffectInstance(Effects.FIRE_RESISTANCE, 3000, 0), 1).effect(() -> new EffectInstance(Effects.ABSORPTION, 1200, 3), 1).build()), true).setRegistryName(SomeAssemblyRequired.MODID, "enchanted_golden_apple_slices"),
+                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(2).saturation(0.5F).fastToEat().build())).setRegistryName(SomeAssemblyRequired.MODID, "chopped_carrot"),
+                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(3).saturation(0.8F).fastToEat().build())).setRegistryName(SomeAssemblyRequired.MODID, "chopped_golden_carrot"),
+                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(3).saturation(0.6F).fastToEat().build())).setRegistryName(SomeAssemblyRequired.MODID, "chopped_beetroot")
+
         );
     }
 }

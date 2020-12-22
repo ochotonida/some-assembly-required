@@ -13,13 +13,25 @@ import java.util.List;
 
 public class TooltippedItem extends Item {
 
+    private final boolean hasEffect;
+
     public TooltippedItem(Properties properties) {
+        this(properties, false);
+    }
+
+    public TooltippedItem(Properties properties, boolean hasEffect) {
         super(properties);
+        this.hasEffect = hasEffect;
     }
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.addInformation(stack, world, tooltip, flag);
         tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip").mergeStyle(TextFormatting.GRAY));
+    }
+
+    @Override
+    public boolean hasEffect(ItemStack stack) {
+        return hasEffect || super.hasEffect(stack);
     }
 }
