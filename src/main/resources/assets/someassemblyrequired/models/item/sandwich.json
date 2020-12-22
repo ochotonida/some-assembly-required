@@ -1,7 +1,7 @@
 {
   "parent": "builtin/entity",
   "textures": {
-    "particle": "item/bread"
+    "particle": "someassemblyrequired:item/bread_slice"
   },
   "display": {
     "gui": {
