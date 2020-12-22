@@ -13,7 +13,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.EmptyHandler;
 import someasseblyrequired.common.init.Items;
 import someasseblyrequired.common.init.SpreadTypes;
 import someasseblyrequired.common.init.Tags;
@@ -24,7 +23,8 @@ import javax.annotation.Nullable;
 
 public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
 
-    private final LazyOptional<SandwichHandler> sandwichHandler = LazyOptional.of(this::createSandwichHandler);
+    private final SandwichHandler sandwichInventory = createSandwichHandler();
+    private final LazyOptional<SandwichHandler> sandwichHandler = LazyOptional.of(() -> sandwichInventory);
 
     public SandwichAssemblyTableTileEntity() {
         super(TileEntityTypes.SANDWICH_ASSEMBLY_TABLE);
@@ -35,7 +35,7 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
     }
 
     @Override
-    protected IItemHandler createIngredientHandler() {
+    protected ItemStackHandler createIngredientHandler() {
         return new IngredientHandler(this, 16);
     }
 
@@ -48,87 +48,78 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
     }
 
     private void clearIngredients() {
-        ingredientHandler.ifPresent(handler -> {
-            for (int slot = handler.getSlots() - 1; slot >= 0; slot--) {
-                handler.extractItem(slot, 1, false);
-            }
-        });
+        for (int slot = inventory.getSlots() - 1; slot >= 0; slot--) {
+            inventory.extractItem(slot, 1, false);
+        }
     }
 
     public void removeTopIngredient(PlayerEntity player) {
-        ingredientHandler.ifPresent(handler -> {
-            int slot = ((IngredientHandler) handler).getFirstEmptySlot() - 1;
-            if (slot >= 0) {
-                ItemStack ingredient = handler.extractItem(slot, 1, false);
-                if (ingredient.getItem() != Items.SPREAD) {
-                    if (world != null && !player.isCreative()) {
-                        ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, ingredient);
-                        world.addEntity(item);
-                    }
+        int slot = getAmountOfIngredients() - 1;
+        if (slot >= 0) {
+            ItemStack ingredient = inventory.extractItem(slot, 1, false);
+            if (ingredient.getItem() != Items.SPREAD) {
+                if (world != null && !player.isCreative()) {
+                    ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, ingredient);
+                    world.addEntity(item);
                 }
             }
-        });
+        }
     }
 
     public void dropIngredients() {
         if (world != null) {
-            ingredientHandler.ifPresent(handler -> {
-                for (int slot = 0; slot < handler.getSlots(); slot++) {
-                    ItemStack ingredient = handler.getStackInSlot(slot);
-                    if (!ingredient.isEmpty() && ingredient.getItem() != Items.SPREAD) {
-                        ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ingredient);
-                        world.addEntity(item);
-                    }
+            for (int slot = 0; slot < inventory.getSlots(); slot++) {
+                ItemStack ingredient = inventory.getStackInSlot(slot);
+                if (!ingredient.isEmpty() && ingredient.getItem() != Items.SPREAD) {
+                    ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ingredient);
+                    world.addEntity(item);
                 }
-            });
+            }
         }
         clearIngredients();
     }
 
     public void buildSandwich(PlayerEntity player) {
         if (world != null) {
-            ingredientHandler.ifPresent(handler -> {
-                int nextEmptySlot = ((IngredientHandler) handler).getFirstEmptySlot();
+            int nextEmptySlot = getAmountOfIngredients();
 
-                if (nextEmptySlot == 0) {
-                    player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
-                } else if (!Tags.BREADS.contains(handler.getStackInSlot(nextEmptySlot - 1).getItem())) {
-                    player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.top_bread"), true);
-                } else {
-                    ItemStack sandwich = new ItemStack(Items.SANDWICH);
-                    sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", write(new CompoundNBT()).getCompound("Ingredients"));
-                    ItemEntity sandwichEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, sandwich);
-                    sandwichEntity.setDefaultPickupDelay();
-                    world.addEntity(sandwichEntity);
-                    clearIngredients();
-                }
-            });
+            if (nextEmptySlot == 0) {
+                player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
+            } else if (!Tags.BREADS.contains(inventory.getStackInSlot(nextEmptySlot - 1).getItem())) {
+                player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.top_bread"), true);
+            } else {
+                ItemStack sandwich = new ItemStack(Items.SANDWICH);
+                sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", write(new CompoundNBT()).getCompound("Ingredients"));
+                ItemEntity sandwichEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, sandwich);
+                sandwichEntity.setDefaultPickupDelay();
+                world.addEntity(sandwichEntity);
+                clearIngredients();
+            }
         }
     }
 
     public boolean addIngredient(PlayerEntity player, Hand hand) {
         ItemStack ingredient = player.getHeldItem(hand).copy();
         ingredient.setCount(1);
-        IItemHandler handler = ingredientHandler.orElse(EmptyHandler.INSTANCE);
-        if (handler instanceof IngredientHandler) {
-            int nextEmptySlot = ((IngredientHandler) handler).getFirstEmptySlot();
-            if (handler.isItemValid(nextEmptySlot, ingredient)) {
-                ((IngredientHandler) handler).insertItem(ingredient, player, hand);
-                if (!player.isCreative()) {
-                    player.getHeldItem(hand).shrink(1);
-                }
-            } else if (ingredient.isFood() || ingredient.getItem() == Items.SPREAD || SpreadTypes.hasSpreadType(ingredient.getItem())) {
-                if (nextEmptySlot == 0 && !Tags.BREADS.contains(ingredient.getItem())) {
-                    player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
-                } else if (nextEmptySlot >= handler.getSlots()) {
-                    player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.full_sandwich"), true);
-                } else {
-                    return false;
-                }
+
+        int nextEmptySlot = getAmountOfIngredients();
+        if (inventory.isItemValid(nextEmptySlot, ingredient)) {
+            ((IngredientHandler) inventory).insertItem(ingredient, player, hand);
+            if (!player.isCreative()) {
+                player.getHeldItem(hand).shrink(1);
+            }
+        } else if (ingredient.isFood() || ingredient.getItem() == Items.SPREAD || SpreadTypes.hasSpreadType(ingredient.getItem())) {
+            if (nextEmptySlot == 0 && !Tags.BREADS.contains(ingredient.getItem())) {
+                player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
+            } else if (nextEmptySlot >= inventory.getSlots()) {
+                player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.full_sandwich"), true);
             } else {
                 return false;
             }
+        } else {
+            return false;
         }
+
         return true;
     }
 
@@ -145,7 +136,7 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
     @Override
     protected void onContentsChanged() {
         super.onContentsChanged();
-        sandwichHandler.ifPresent(SandwichHandler::update);
+        sandwichInventory.update();
     }
 
     private static class SandwichHandler implements IItemHandler {
@@ -159,16 +150,14 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
         }
 
         public void update() {
-            tileEntity.ingredientHandler.ifPresent(handler -> {
-                int nextEmptySlot = ((IngredientHandler) handler).getFirstEmptySlot();
+            int nextEmptySlot = tileEntity.getAmountOfIngredients();
 
-                if (nextEmptySlot < 2 || !Tags.BREADS.contains(handler.getStackInSlot(nextEmptySlot - 1).getItem())) {
-                    sandwich = ItemStack.EMPTY;
-                } else {
-                    sandwich = new ItemStack(Items.SANDWICH);
-                    tileEntity.write(sandwich.getOrCreateChildTag("BlockEntityTag"));
-                }
-            });
+            if (nextEmptySlot < 2 || !Tags.BREADS.contains(tileEntity.inventory.getStackInSlot(nextEmptySlot - 1).getItem())) {
+                sandwich = ItemStack.EMPTY;
+            } else {
+                sandwich = new ItemStack(Items.SANDWICH);
+                tileEntity.write(sandwich.getOrCreateChildTag("BlockEntityTag"));
+            }
         }
 
         protected void validateSlotIndex(int slot) {
@@ -230,15 +219,6 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
             this.tileEntity = tileEntity;
         }
 
-        public int getFirstEmptySlot() {
-            for (int slot = 0; slot < getSlots(); slot++) {
-                if (getStackInSlot(slot).isEmpty()) {
-                    return slot;
-                }
-            }
-            return getSlots();
-        }
-
         @Override
         public int getSlotLimit(int slot) {
             return 1;
@@ -256,7 +236,7 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
             if (stack.getItem() == Items.SANDWICH) {
-                return getFirstEmptySlot() == 0;
+                return getStackInSlot(0).isEmpty();
             }
 
             return (slot == 0 || !getStackInSlot(slot - 1).isEmpty())

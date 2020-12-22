@@ -9,7 +9,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -19,13 +18,14 @@ import javax.annotation.Nullable;
 
 public class SandwichTileEntity extends TileEntity {
 
-    protected final LazyOptional<IItemHandler> ingredientHandler = LazyOptional.of(this::createIngredientHandler);
+    protected final ItemStackHandler inventory = createIngredientHandler();
+    private final LazyOptional<IItemHandler> ingredientHandler = LazyOptional.of(() -> inventory);
 
     public SandwichTileEntity(TileEntityType<? extends SandwichTileEntity> tileEntityType) {
         super(tileEntityType);
     }
 
-    protected IItemHandler createIngredientHandler() {
+    protected ItemStackHandler createIngredientHandler() {
         return new ItemStackHandler() {
 
             @Override
@@ -43,6 +43,16 @@ public class SandwichTileEntity extends TileEntity {
                 return ItemStack.EMPTY;
             }
         };
+    }
+
+    public ItemStackHandler getInventory() {
+        return inventory;
+    }
+
+    protected int getAmountOfIngredients() {
+        int size;
+        for (size = 0; size < inventory.getSlots() && !inventory.getStackInSlot(size).isEmpty(); size++) ;
+        return size;
     }
 
     @Override
@@ -64,15 +74,13 @@ public class SandwichTileEntity extends TileEntity {
 
     @Override
     public void read(BlockState state, CompoundNBT compoundNBT) {
-        // noinspection unchecked
-        ingredientHandler.ifPresent(handler -> ((INBTSerializable<CompoundNBT>) handler).deserializeNBT(compoundNBT.getCompound("Ingredients")));
+        inventory.deserializeNBT(compoundNBT.getCompound("Ingredients"));
         super.read(state, compoundNBT);
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compoundNBT) {
-        // noinspection unchecked
-        ingredientHandler.ifPresent(handler -> compoundNBT.put("Ingredients", ((INBTSerializable<CompoundNBT>) handler).serializeNBT()));
+        compoundNBT.put("Ingredients", inventory.serializeNBT());
         return super.write(compoundNBT);
     }
 
