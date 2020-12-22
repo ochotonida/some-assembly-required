@@ -31,6 +31,12 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
         return true;
     }
 
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return TileEntityTypes.SANDWICH_ASSEMBLY_TABLE.create();
+    }
+
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(BlockStateProperties.HORIZONTAL_FACING);
     }
@@ -38,11 +44,6 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return getDefaultState().with(BlockStateProperties.HORIZONTAL_FACING, context.getPlacementHorizontalFacing());
-    }
-
-    @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return TileEntityTypes.SANDWICH_ASSEMBLY_TABLE.create();
     }
 
     @Override
@@ -72,6 +73,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
             TileEntity tileEntity = world.getTileEntity(pos);
             if (tileEntity instanceof SandwichAssemblyTableTileEntity) {
                 ((SandwichAssemblyTableTileEntity) tileEntity).dropIngredients();
+                world.updateComparatorOutputLevel(pos, this);
             }
             super.onReplaced(state, world, pos, newState, isMoving);
         }

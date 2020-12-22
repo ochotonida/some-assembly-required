@@ -143,8 +143,8 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
     }
 
     @Override
-    protected void sync() {
-        super.sync();
+    protected void onContentsChanged() {
+        super.onContentsChanged();
         sandwichHandler.ifPresent(SandwichHandler::update);
     }
 
@@ -319,7 +319,7 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
         @Override
         protected void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
-            tileEntity.sync();
+            tileEntity.onContentsChanged();
         }
     }
 }

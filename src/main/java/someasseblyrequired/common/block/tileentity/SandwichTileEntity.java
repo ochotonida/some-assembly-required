@@ -53,7 +53,7 @@ public class SandwichTileEntity extends TileEntity {
         return super.getCapability(capability, side);
     }
 
-    protected void sync() {
+    protected void onContentsChanged() {
         if (world == null || world.isRemote) {
             return;
         }
