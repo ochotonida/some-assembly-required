@@ -40,6 +40,53 @@ public class SandwichItem extends BlockItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        super.addInformation(stack, world, tooltip, flag);
+        stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+            int size;
+            for (size = 0; size < handler.getSlots() && !handler.getStackInSlot(size).isEmpty(); size++) ;
+
+            for (int slot = 0; slot < size; slot++) {
+                // only show 8 ingredients (or 9, if there are exactly 9 ingredients)
+                if (slot >= 8 && size >= 10) {
+                    tooltip.add(new TranslationTextComponent("item.someassemblyrequired.sandwich.tooltip.truncate_info", size - 8).mergeStyle(TextFormatting.GRAY));
+                    return;
+                }
+                tooltip.add(handler.getStackInSlot(slot).getDisplayName().copyRaw().mergeStyle(TextFormatting.GRAY));
+            }
+        });
+    }
+
+    @Override
+    protected boolean placeBlock(BlockItemUseContext context, BlockState state) {
+        if (context.getPlayer() != null && context.getPlayer().isSneaking()) {
+            return super.placeBlock(context, state);
+        }
+        return false;
+    }
+
+    @Override
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity entity) {
+        stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
+            for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
+                ItemStack ingredient = handler.getStackInSlot(slot);
+                ItemStack finishStack = ingredient.getItem().onItemUseFinish(ingredient, world, entity);
+                if (entity instanceof PlayerEntity) {
+                    PlayerEntity player = (PlayerEntity) entity;
+                    if (player.getCooldownTracker().hasCooldown(ingredient.getItem())) {
+                        player.getCooldownTracker().setCooldown(this, 20);
+                    }
+                    if (!player.isCreative() && !finishStack.isEmpty()) {
+                        player.addItemStackToInventory(finishStack);
+                    }
+                }
+            }
+        });
+        return super.onItemUseFinish(stack, world, entity);
+    }
+
+    @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT compoundNBT) {
         return new ICapabilityProvider() {
 
@@ -158,59 +205,5 @@ public class SandwichItem extends BlockItem {
         }
 
         return super.getDisplayName(stack);
-    }
-
-    @Override
-    public String getTranslationKey(ItemStack stack) {
-        IItemHandler handler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);
-        for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
-            if (!Tags.BREADS.contains(handler.getStackInSlot(slot).getItem())) {
-                return super.getTranslationKey(stack);
-            }
-        }
-        return "item.someassemblyrequired.snadwich";
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        super.addInformation(stack, world, tooltip, flag);
-        stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
-                if (slot > 8) {
-                    tooltip.add(new TranslationTextComponent("item.someassemblyrequired.sandwich.tooltip.ellipsis").mergeStyle(TextFormatting.GRAY));
-                    return;
-                }
-                tooltip.add(handler.getStackInSlot(slot).getDisplayName().copyRaw().mergeStyle(TextFormatting.GRAY));
-            }
-        });
-    }
-
-    @Override
-    protected boolean placeBlock(BlockItemUseContext context, BlockState state) {
-        if (context.getPlayer() != null && context.getPlayer().isSneaking()) {
-            return super.placeBlock(context, state);
-        }
-        return false;
-    }
-
-    @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity entity) {
-        stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
-                ItemStack ingredient = handler.getStackInSlot(slot);
-                ItemStack finishStack = ingredient.getItem().onItemUseFinish(ingredient, world, entity);
-                if (entity instanceof PlayerEntity) {
-                    PlayerEntity player = (PlayerEntity) entity;
-                    if (player.getCooldownTracker().hasCooldown(ingredient.getItem())) {
-                        player.getCooldownTracker().setCooldown(this, 20);
-                    }
-                    if (!player.isCreative() && !finishStack.isEmpty()) {
-                        player.addItemStackToInventory(finishStack);
-                    }
-                }
-            }
-        });
-        return super.onItemUseFinish(stack, world, entity);
     }
 }

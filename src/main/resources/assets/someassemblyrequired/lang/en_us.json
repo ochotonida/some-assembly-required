@@ -52,7 +52,7 @@
   "item.someassemblyrequired.sextuple_potion_sandwich": "Sextuple Sandwich of %s",
   "item.someassemblyrequired.septuple_potion_sandwich": "Septuple Sandwich of %s",
 
-  "item.someassemblyrequired.sandwich.tooltip.ellipsis": "...",
+  "item.someassemblyrequired.sandwich.tooltip.truncate_info": "(%s additional ingredients)",
   "item.someassemblyrequired.kitchen_knife.tooltip": "Used to cut ingredients on the cutting board",
   "item.someassemblyrequired.spread.tooltip": "Where did you get this?",
   "item.someassemblyrequired.bread_slice.tooltip": "Much more hunger-efficient than a loaf of bread and can be eaten faster",

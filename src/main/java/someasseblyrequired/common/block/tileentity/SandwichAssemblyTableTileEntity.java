@@ -12,7 +12,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.ItemStackHandler;
+import someasseblyrequired.common.block.SandwichBlock;
 import someasseblyrequired.common.init.Items;
 import someasseblyrequired.common.init.SpreadTypes;
 import someasseblyrequired.common.init.Tags;
@@ -21,22 +21,13 @@ import someasseblyrequired.common.item.spreadtype.SpreadType;
 
 import javax.annotation.Nullable;
 
-public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
+public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
 
-    private final SandwichHandler sandwichInventory = createSandwichHandler();
-    private final LazyOptional<SandwichHandler> sandwichHandler = LazyOptional.of(() -> sandwichInventory);
+    private final SandwichItemHandler sandwichInventory = createSandwichItemHandler();
+    private final LazyOptional<SandwichItemHandler> sandwichHandler = LazyOptional.of(() -> sandwichInventory);
 
     public SandwichAssemblyTableTileEntity() {
         super(TileEntityTypes.SANDWICH_ASSEMBLY_TABLE);
-    }
-
-    private SandwichHandler createSandwichHandler() {
-        return new SandwichHandler(this);
-    }
-
-    @Override
-    protected ItemStackHandler createIngredientHandler() {
-        return new IngredientHandler(this, 16);
     }
 
     @Override
@@ -48,15 +39,15 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
     }
 
     private void clearIngredients() {
-        for (int slot = inventory.getSlots() - 1; slot >= 0; slot--) {
-            inventory.extractItem(slot, 1, false);
+        for (int slot = getInventory().getSlots() - 1; slot >= 0; slot--) {
+            getInventory().extractItem(slot, 1, false);
         }
     }
 
     public void removeTopIngredient(PlayerEntity player) {
-        int slot = getAmountOfIngredients() - 1;
+        int slot = getAmountOfItems() - 1;
         if (slot >= 0) {
-            ItemStack ingredient = inventory.extractItem(slot, 1, false);
+            ItemStack ingredient = getInventory().extractItem(slot, 1, false);
             if (ingredient.getItem() != Items.SPREAD) {
                 if (world != null && !player.isCreative()) {
                     ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, ingredient);
@@ -68,8 +59,8 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
 
     public void dropIngredients() {
         if (world != null) {
-            for (int slot = 0; slot < inventory.getSlots(); slot++) {
-                ItemStack ingredient = inventory.getStackInSlot(slot);
+            for (int slot = 0; slot < getInventory().getSlots(); slot++) {
+                ItemStack ingredient = getInventory().getStackInSlot(slot);
                 if (!ingredient.isEmpty() && ingredient.getItem() != Items.SPREAD) {
                     ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, ingredient);
                     world.addEntity(item);
@@ -81,16 +72,14 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
 
     public void buildSandwich(PlayerEntity player) {
         if (world != null) {
-            int nextEmptySlot = getAmountOfIngredients();
+            int nextEmptySlot = getAmountOfItems();
 
             if (nextEmptySlot == 0) {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
-            } else if (!Tags.BREADS.contains(inventory.getStackInSlot(nextEmptySlot - 1).getItem())) {
+            } else if (!Tags.BREADS.contains(getInventory().getStackInSlot(nextEmptySlot - 1).getItem())) {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.top_bread"), true);
             } else {
-                ItemStack sandwich = new ItemStack(Items.SANDWICH);
-                sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", write(new CompoundNBT()).getCompound("Ingredients"));
-                ItemEntity sandwichEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, sandwich);
+                ItemEntity sandwichEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, SandwichBlock.createSandwich(this));
                 sandwichEntity.setDefaultPickupDelay();
                 world.addEntity(sandwichEntity);
                 clearIngredients();
@@ -102,16 +91,16 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
         ItemStack ingredient = player.getHeldItem(hand).copy();
         ingredient.setCount(1);
 
-        int nextEmptySlot = getAmountOfIngredients();
-        if (inventory.isItemValid(nextEmptySlot, ingredient)) {
-            ((IngredientHandler) inventory).insertItem(ingredient, player, hand);
+        int nextEmptySlot = getAmountOfItems();
+        if (getInventory().isItemValid(nextEmptySlot, ingredient)) {
+            ((IngredientHandler) getInventory()).insertItem(ingredient, player, hand);
             if (!player.isCreative()) {
                 player.getHeldItem(hand).shrink(1);
             }
         } else if (ingredient.isFood() || ingredient.getItem() == Items.SPREAD || SpreadTypes.hasSpreadType(ingredient.getItem())) {
             if (nextEmptySlot == 0 && !Tags.BREADS.contains(ingredient.getItem())) {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
-            } else if (nextEmptySlot >= inventory.getSlots()) {
+            } else if (nextEmptySlot >= getInventory().getSlots()) {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.full_sandwich"), true);
             } else {
                 return false;
@@ -139,24 +128,27 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
         sandwichInventory.update();
     }
 
-    private static class SandwichHandler implements IItemHandler {
+    private SandwichItemHandler createSandwichItemHandler() {
+        return new SandwichItemHandler();
+    }
 
-        private final SandwichAssemblyTableTileEntity tileEntity;
+    @Override
+    protected TileEntityItemHandler createItemHandler(int size, boolean canExtract) {
+        return new IngredientHandler(16);
+    }
+
+    private class SandwichItemHandler implements IItemHandler {
 
         private ItemStack sandwich = ItemStack.EMPTY;
 
-        private SandwichHandler(SandwichAssemblyTableTileEntity tileEntity) {
-            this.tileEntity = tileEntity;
-        }
-
         public void update() {
-            int nextEmptySlot = tileEntity.getAmountOfIngredients();
+            int nextEmptySlot = SandwichAssemblyTableTileEntity.this.getAmountOfItems();
 
-            if (nextEmptySlot < 2 || !Tags.BREADS.contains(tileEntity.inventory.getStackInSlot(nextEmptySlot - 1).getItem())) {
+            if (nextEmptySlot < 2 || !Tags.BREADS.contains(SandwichAssemblyTableTileEntity.this.getInventory().getStackInSlot(nextEmptySlot - 1).getItem())) {
                 sandwich = ItemStack.EMPTY;
             } else {
                 sandwich = new ItemStack(Items.SANDWICH);
-                tileEntity.write(sandwich.getOrCreateChildTag("BlockEntityTag"));
+                SandwichAssemblyTableTileEntity.this.write(sandwich.getOrCreateChildTag("BlockEntityTag"));
             }
         }
 
@@ -192,7 +184,7 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
             ItemStack result = sandwich;
 
             if (!simulate) {
-                tileEntity.clearIngredients();
+                SandwichAssemblyTableTileEntity.this.clearIngredients();
             }
 
             return result;
@@ -210,13 +202,10 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
         }
     }
 
-    private static class IngredientHandler extends ItemStackHandler {
+    private class IngredientHandler extends TileEntityItemHandler {
 
-        private final SandwichAssemblyTableTileEntity tileEntity;
-
-        private IngredientHandler(SandwichAssemblyTableTileEntity tileEntity, int size) {
-            super(size);
-            this.tileEntity = tileEntity;
+        private IngredientHandler(int size) {
+            super(size, true);
         }
 
         @Override
@@ -287,19 +276,13 @@ public class SandwichAssemblyTableTileEntity extends SandwichTileEntity {
             SpreadType spreadType = SpreadTypes.findSpreadType(stack.getItem());
             ItemStack ingredient = spreadType == null ? stack : createSpread(spreadType, stack);
 
-            if (!simulate && spreadType != null && tileEntity.getWorld() != null && spreadType.hasContainer(ingredient)) {
-                ItemEntity sandwichEntity = new ItemEntity(tileEntity.getWorld(), tileEntity.pos.getX() + 0.5, tileEntity.pos.getY() + 1.2, tileEntity.pos.getZ() + 0.5, new ItemStack(spreadType.getContainer(ingredient)));
+            if (!simulate && spreadType != null && SandwichAssemblyTableTileEntity.this.getWorld() != null && spreadType.hasContainer(ingredient)) {
+                ItemEntity sandwichEntity = new ItemEntity(SandwichAssemblyTableTileEntity.this.getWorld(), SandwichAssemblyTableTileEntity.this.pos.getX() + 0.5, SandwichAssemblyTableTileEntity.this.pos.getY() + 1.2, SandwichAssemblyTableTileEntity.this.pos.getZ() + 0.5, new ItemStack(spreadType.getContainer(ingredient)));
                 sandwichEntity.setDefaultPickupDelay();
-                tileEntity.getWorld().addEntity(sandwichEntity);
+                SandwichAssemblyTableTileEntity.this.getWorld().addEntity(sandwichEntity);
             }
 
             return ItemHandlerHelper.copyStackWithSize(stack, super.insertItem(slot, ingredient, simulate).getCount());
-        }
-
-        @Override
-        protected void onContentsChanged(int slot) {
-            super.onContentsChanged(slot);
-            tileEntity.onContentsChanged();
         }
     }
 }

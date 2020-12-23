@@ -8,9 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -53,6 +51,7 @@ public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
                 if (!result.isEmpty()) {
                     ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, result);
                     world.addEntity(item);
+                    world.playSound(player, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, SoundEvents.BLOCK_PUMPKIN_CARVE, SoundCategory.BLOCKS, 0.7F, 0.8F);
                     return ActionResultType.SUCCESS;
                 }
             } else if (heldStack.isEmpty() && hand == Hand.MAIN_HAND) {

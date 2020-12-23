@@ -15,7 +15,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
-import someasseblyrequired.common.block.tileentity.SandwichTileEntity;
+import someasseblyrequired.common.block.tileentity.ItemHandlerTileEntity;
 import someasseblyrequired.common.init.Items;
 import someasseblyrequired.common.init.TileEntityTypes;
 
@@ -51,28 +51,26 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock {
         return TileEntityTypes.SANDWICH.create();
     }
 
+    public static ItemStack createSandwich(TileEntity sandwichTileEntity) {
+        if (sandwichTileEntity instanceof ItemHandlerTileEntity) {
+            ItemStack sandwich = new ItemStack(Items.SANDWICH);
+            sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", sandwichTileEntity.write(new CompoundNBT()).getCompound("Ingredients"));
+            return sandwich;
+        }
+        return ItemStack.EMPTY;
+    }
+
     @Override
     @SuppressWarnings("deprecation")
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
         List<ItemStack> drops = new ArrayList<>(super.getDrops(state, builder));
-        TileEntity tileEntity = builder.get(LootParameters.BLOCK_ENTITY);
-        if (tileEntity instanceof SandwichTileEntity) {
-            ItemStack sandwich = new ItemStack(Items.SANDWICH);
-            sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", tileEntity.write(new CompoundNBT()).getCompound("Ingredients"));
-            drops.add(sandwich);
-        }
+        drops.add(createSandwich(builder.get(LootParameters.BLOCK_ENTITY)));
         return drops;
     }
 
     @Override
     public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if (tileEntity instanceof SandwichTileEntity && tileEntity.getWorld() != null) {
-            ItemStack sandwich = new ItemStack(Items.SANDWICH);
-            sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", tileEntity.write(new CompoundNBT()).getCompound("Ingredients"));
-            return sandwich;
-        }
-        return ItemStack.EMPTY;
+        return createSandwich(world.getTileEntity(pos));
     }
 
     @Override

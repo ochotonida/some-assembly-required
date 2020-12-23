@@ -11,17 +11,17 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import someasseblyrequired.common.block.tileentity.SandwichTileEntity;
+import someasseblyrequired.common.block.tileentity.ItemHandlerTileEntity;
 
 @OnlyIn(Dist.CLIENT)
-public class SandwichBlockRenderer extends TileEntityRenderer<SandwichTileEntity> {
+public class SandwichBlockRenderer extends TileEntityRenderer<ItemHandlerTileEntity> {
 
     public SandwichBlockRenderer(TileEntityRendererDispatcher rendererDispatcher) {
         super(rendererDispatcher);
     }
 
     @Override
-    public void render(SandwichTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
+    public void render(ItemHandlerTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
         matrixStack.push();
         matrixStack.translate(0.5, 1 / 64D, 0.5);
         matrixStack.scale(0.5F, 0.5F, 0.5F);

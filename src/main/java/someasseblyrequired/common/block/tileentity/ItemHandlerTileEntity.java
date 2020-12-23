@@ -11,45 +11,34 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
 
-public class SandwichTileEntity extends TileEntity {
+public class ItemHandlerTileEntity extends TileEntity {
 
-    protected final ItemStackHandler inventory = createIngredientHandler();
-    private final LazyOptional<IItemHandler> ingredientHandler = LazyOptional.of(() -> inventory);
+    private final ItemStackHandler inventory;
+    private final LazyOptional<ItemStackHandler> itemHandler;
 
-    public SandwichTileEntity(TileEntityType<? extends SandwichTileEntity> tileEntityType) {
-        super(tileEntityType);
+    public ItemHandlerTileEntity(TileEntityType<? extends ItemHandlerTileEntity> tileEntityType) {
+        this(tileEntityType, 0);
     }
 
-    protected ItemStackHandler createIngredientHandler() {
-        return new ItemStackHandler() {
+    public ItemHandlerTileEntity(TileEntityType<? extends ItemHandlerTileEntity> tileEntityType, int size) {
+        this(tileEntityType, size, true);
+    }
 
-            @Override
-            public int getSlotLimit(int slot) {
-                return 1;
-            }
-
-            @Override
-            public boolean isItemValid(int slot, ItemStack stack) {
-                return false;
-            }
-
-            @Override
-            public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                return ItemStack.EMPTY;
-            }
-        };
+    public ItemHandlerTileEntity(TileEntityType<? extends ItemHandlerTileEntity> tileEntityType, int size, boolean canExtract) {
+        super(tileEntityType);
+        inventory = createItemHandler(size, canExtract);
+        itemHandler = LazyOptional.of(() -> inventory);
     }
 
     public ItemStackHandler getInventory() {
         return inventory;
     }
 
-    protected int getAmountOfIngredients() {
+    protected int getAmountOfItems() {
         int size;
         for (size = 0; size < inventory.getSlots() && !inventory.getStackInSlot(size).isEmpty(); size++) ;
         return size;
@@ -58,7 +47,7 @@ public class SandwichTileEntity extends TileEntity {
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction side) {
         if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return ingredientHandler.cast();
+            return itemHandler.cast();
         }
         return super.getCapability(capability, side);
     }
@@ -103,6 +92,40 @@ public class SandwichTileEntity extends TileEntity {
     public void onDataPacket(NetworkManager networkManager, SUpdateTileEntityPacket packet) {
         if (world != null) {
             read(world.getBlockState(pos), packet.getNbtCompound());
+        }
+    }
+
+    protected TileEntityItemHandler createItemHandler(int size, boolean canExtract) {
+        return new TileEntityItemHandler(size, canExtract);
+    }
+
+    protected class TileEntityItemHandler extends ItemStackHandler {
+
+        private final boolean canExtract;
+
+        protected TileEntityItemHandler(int size, boolean canExtract) {
+            super(size);
+            this.canExtract = canExtract;
+        }
+
+        @Override
+        protected void onContentsChanged(int slot) {
+            ItemHandlerTileEntity.this.onContentsChanged();
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 1;
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return canExtract;
+        }
+
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return canExtract ? super.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         }
     }
 }

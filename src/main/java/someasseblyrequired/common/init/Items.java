@@ -33,6 +33,7 @@ public class Items {
                 new BlockItem(Blocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "dark_oak_sandwich_assembly_table"),
                 new BlockItem(Blocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "crimson_sandwich_assembly_table"),
                 new BlockItem(Blocks.WARPED_SANDWICH_ASSEMBLY_TABLE, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "warped_sandwich_assembly_table"),
+
                 new BlockItem(Blocks.OAK_CUTTING_BOARD, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "oak_cutting_board"),
                 new BlockItem(Blocks.SPRUCE_CUTTING_BOARD, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "spruce_cutting_board"),
                 new BlockItem(Blocks.BIRCH_CUTTING_BOARD, new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "birch_cutting_board"),

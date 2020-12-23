@@ -9,8 +9,9 @@ import someasseblyrequired.client.CuttingBoardRenderer;
 import someasseblyrequired.client.SandwichAssemblyTableBlockRenderer;
 import someasseblyrequired.client.SandwichBlockRenderer;
 import someasseblyrequired.common.block.tileentity.CuttingBoardTileEntity;
+import someasseblyrequired.common.block.tileentity.ItemHandlerTileEntity;
 import someasseblyrequired.common.block.tileentity.SandwichAssemblyTableTileEntity;
-import someasseblyrequired.common.block.tileentity.SandwichTileEntity;
+import someasseblyrequired.common.block.tileentity.ToasterTileEntity;
 
 @ObjectHolder(SomeAssemblyRequired.MODID)
 public class TileEntityTypes {
@@ -18,7 +19,7 @@ public class TileEntityTypes {
     @ObjectHolder("sandwich_assembly_table")
     public static TileEntityType<SandwichAssemblyTableTileEntity> SANDWICH_ASSEMBLY_TABLE;
     @ObjectHolder("sandwich")
-    public static TileEntityType<SandwichTileEntity> SANDWICH;
+    public static TileEntityType<ItemHandlerTileEntity> SANDWICH;
     @ObjectHolder("cutting_board")
     public static TileEntityType<CuttingBoardTileEntity> CUTTING_BOARD;
 
@@ -45,7 +46,7 @@ public class TileEntityTypes {
                         Blocks.SPRUCE_CUTTING_BOARD,
                         Blocks.WARPED_CUTTING_BOARD
                 ).build(null).setRegistryName(SomeAssemblyRequired.MODID, "cutting_board"),
-                TileEntityType.Builder.create(() -> new SandwichTileEntity(SANDWICH), Blocks.SANDWICH).build(null).setRegistryName(SomeAssemblyRequired.MODID, "sandwich")
+                TileEntityType.Builder.create(() -> new ItemHandlerTileEntity(SANDWICH, 0, false), Blocks.SANDWICH).build(null).setRegistryName(SomeAssemblyRequired.MODID, "sandwich")
         );
     }
 

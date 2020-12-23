@@ -1,41 +1,7 @@
 {
-  "parent": "block/thin_block",
+  "parent": "someassemblyrequired:block/cutting_board",
   "textures": {
     "texture": "block/stripped_dark_oak_log",
     "particle": "block/stripped_dark_oak_log"
-  },
-  "elements": [
-    {
-      "from": [
-        1,
-        0,
-        2
-      ],
-      "to": [
-        15,
-        1,
-        14
-      ],
-      "faces": {
-        "north": {
-          "texture": "#texture"
-        },
-        "east": {
-          "texture": "#texture"
-        },
-        "south": {
-          "texture": "#texture"
-        },
-        "west": {
-          "texture": "#texture"
-        },
-        "up": {
-          "texture": "#texture"
-        },
-        "down": {
-          "texture": "#texture"
-        }
-      }
-    }
-  ]
+  }
 }
