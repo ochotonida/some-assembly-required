@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " AB",
+    " B ",
+    "C  "
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:nuggets/iron"
+    },
+    "B": {
+      "tag": "forge:ingots/iron"
+    },
+    "C": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "someassemblyrequired:kitchen_knife"
+  }
+}
