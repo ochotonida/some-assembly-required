@@ -9,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
@@ -29,7 +30,7 @@ public class CuttingBoardTileEntity extends TileEntity {
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction side) {
-        if (side == null || side == Direction.DOWN) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && (side == null || side == Direction.DOWN)) {
             return ingredientHandler.cast();
         }
         return super.getCapability(capability, side);
