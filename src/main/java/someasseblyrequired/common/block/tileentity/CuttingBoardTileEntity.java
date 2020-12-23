@@ -15,7 +15,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import someasseblyrequired.common.init.RecipeTypes;
 import someasseblyrequired.common.init.TileEntityTypes;
-import someasseblyrequired.common.recipe.CuttingBoardRecipe;
+import someasseblyrequired.common.recipe.CuttingRecipe;
 
 import javax.annotation.Nullable;
 
@@ -58,7 +58,7 @@ public class CuttingBoardTileEntity extends TileEntity {
 
     public ItemStack cutIngredient() {
         if (world != null) {
-            CuttingBoardRecipe recipe = world.getRecipeManager().getRecipe(RecipeTypes.CUTTING, new RecipeWrapper(inventory), world).orElse(null);
+            CuttingRecipe recipe = world.getRecipeManager().getRecipe(RecipeTypes.CUTTING, new RecipeWrapper(inventory), world).orElse(null);
             if (recipe != null) {
                 inventory.extractItem(0, 1, false);
                 return recipe.getRecipeOutput().copy();

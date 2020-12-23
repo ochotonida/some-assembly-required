@@ -1,6 +1,8 @@
 {
   "itemGroup.someassemblyrequired": "Some Assembly Required",
 
+  "recipecategory.someassemblyrequired.cutting": "Cutting",
+
   "block.someassemblyrequired.acacia_sandwich_assembly_table": "Acacia Sandwich Assembly Table",
   "block.someassemblyrequired.birch_sandwich_assembly_table": "Birch Sandwich Assembly Table",
   "block.someassemblyrequired.crimson_sandwich_assembly_table": "Crimson Sandwich Assembly Table",
