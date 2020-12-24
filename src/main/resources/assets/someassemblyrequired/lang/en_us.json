@@ -31,6 +31,7 @@
   "item.someassemblyrequired.chopped_carrot": "Chopped Carrot",
   "item.someassemblyrequired.chopped_golden_carrot": "Chopped Golden Carrot",
   "item.someassemblyrequired.chopped_beetroot": "Chopped Beetroot",
+  "item.someassemblyrequired.mayonnaise_bottle": "Mayonnaise Bottle",
 
   "item.someassemblyrequired.sandwich": "Sandwich",
   "item.someassemblyrequired.snadwich": "Sandwich... ?",
@@ -70,6 +71,7 @@
   "spreadtype.someassemblyrequired.beetroot_soup": "Beetroot Soup",
   "spreadtype.someassemblyrequired.honey_bottle": "Honey",
   "spreadtype.someassemblyrequired.suspicious_stew": "Suspicious Stew",
+  "spreadtype.someassemblyrequired.mayonnaise": "Mayonnaise",
 
   "message.someassemblyrequired.top_bread": "Missing top bread slice!",
   "message.someassemblyrequired.bottom_bread": "Missing bottom bread slice!",
