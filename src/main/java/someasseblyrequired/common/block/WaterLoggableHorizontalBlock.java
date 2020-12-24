@@ -13,7 +13,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
-
+/**
+ * A water loggable block that has a horizontal facing direction and can only be placed on a solid block
+ */
 public class WaterLoggableHorizontalBlock extends WaterLoggableBlock {
 
     public WaterLoggableHorizontalBlock(Properties properties) {

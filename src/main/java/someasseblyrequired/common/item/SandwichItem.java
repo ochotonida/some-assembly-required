@@ -87,34 +87,88 @@ public class SandwichItem extends BlockItem {
     }
 
     @Override
+    public ITextComponent getDisplayName(ItemStack stack) {
+        IItemHandler handler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);
+        List<ItemStack> ingredients = new ArrayList<>();
+        for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
+            ingredients.add(handler.getStackInSlot(slot));
+        }
+
+        if (ingredients.size() >= 3) {
+            ItemStack ingredient = ingredients.get(1);
+            if (ingredients.size() % 2 != 0
+                    && ingredients.stream().allMatch(sandwichComponent -> ingredients.indexOf(sandwichComponent) % 2 == 0 ? Tags.BREADS.contains(sandwichComponent.getItem()) : ItemStack.areItemStacksEqual(ingredient, sandwichComponent))
+                    && (ingredient.getItem() == Items.TOASTED_BREAD_SLICE || !Tags.BREADS.contains(ingredient.getItem()))) {
+
+                if (ingredient.getTag() != null && ingredient.getTag().contains("Ingredient")) {
+                    ItemStack spreadItem = ItemStack.read(ingredient.getOrCreateChildTag("Ingredient"));
+                    if (spreadItem.getItem() == net.minecraft.item.Items.POTION) {
+                        Potion potion = PotionUtils.getPotionFromItem(spreadItem);
+                        if (potion == Potions.WATER && ingredients.size() == 3) {
+                            return new TranslationTextComponent("item.someassemblyrequired.soggy_sandwich");
+                        } else if (potion.getEffects().size() == 1) {
+                            return new TranslationTextComponent("item.someassemblyrequired." + getQuantifier(ingredients.size() / 2) + "_potion_sandwich", potion.getEffects().get(0).getPotion().getDisplayName());
+                        }
+                    }
+                }
+
+                return new TranslationTextComponent("item.someassemblyrequired." + getQuantifier(ingredients.size() / 2) + "_sandwich", getIngredientDisplayName(ingredient));
+            }
+        }
+
+        int breadAmount = 0;
+        for (ItemStack ingredient : ingredients) {
+            if (Tags.BREADS.contains(ingredient.getItem())) {
+                breadAmount++;
+            }
+        }
+
+        if (breadAmount == ingredients.size()) {
+            return new TranslationTextComponent("item.someassemblyrequired.snadwich");
+        }
+
+        if (breadAmount == 3) {
+            return new TranslationTextComponent("item.someassemblyrequired.double_decker_sandwich");
+        }
+
+        return super.getDisplayName(stack);
+    }
+
+    private String getQuantifier(int number) {
+        switch (number) {
+            case 1:
+                return "single";
+            case 2:
+                return "double";
+            case 3:
+                return "triple";
+            case 4:
+                return "quadruple";
+            case 5:
+                return "quintuple";
+            case 6:
+                return "sextuple";
+            default:
+                return "very_large";
+        }
+    }
+
+    private ITextComponent getIngredientDisplayName(ItemStack ingredient) {
+        if (ingredient.getItem() == Items.TOASTED_BREAD_SLICE) {
+            return new TranslationTextComponent("item.someassemblyrequired.sandwich.toast");
+        } else {
+            return ingredient.getDisplayName();
+        }
+    }
+
+    @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT compoundNBT) {
         return new ICapabilityProvider() {
 
             private final LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
 
             private IItemHandler createHandler() {
-                ItemStackHandler handler = new ItemStackHandler() {
-
-                    @Override
-                    public int getSlotLimit(int slot) {
-                        return 1;
-                    }
-
-                    @Override
-                    public boolean isItemValid(int slot, ItemStack stack) {
-                        return false;
-                    }
-
-                    @Override
-                    public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                        return ItemStack.EMPTY;
-                    }
-
-                    @Override
-                    protected void onContentsChanged(int slot) {
-                        stack.getOrCreateChildTag("BlockEntityTag").put("Ingredients", serializeNBT());
-                    }
-                };
+                ItemStackHandler handler = new IngredientItemHandler(stack);
                 handler.deserializeNBT(stack.getOrCreateChildTag("BlockEntityTag").getCompound("Ingredients"));
                 return handler;
             }
@@ -129,81 +183,33 @@ public class SandwichItem extends BlockItem {
         };
     }
 
-    @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
-        IItemHandler handler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);
-        List<ItemStack> sandwich = new ArrayList<>();
-        for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
-            sandwich.add(handler.getStackInSlot(slot));
+    private static class IngredientItemHandler extends ItemStackHandler {
+
+        private final ItemStack sandwichItem;
+
+        private IngredientItemHandler(ItemStack sandwichItem) {
+            super(0);
+            this.sandwichItem = sandwichItem;
         }
 
-        if (sandwich.size() >= 3) {
-            ItemStack ingredient = sandwich.get(1);
-            if (sandwich.size() % 2 != 0
-                    && sandwich.stream().allMatch(sandwichComponent -> sandwich.indexOf(sandwichComponent) % 2 == 0 ? Tags.BREADS.contains(sandwichComponent.getItem()) : ItemStack.areItemStacksEqual(ingredient, sandwichComponent))
-                    && (ingredient.getItem() == Items.TOASTED_BREAD_SLICE || !Tags.BREADS.contains(ingredient.getItem()))) {
-                String quantifier;
-                switch (sandwich.size() / 2) {
-                    case 1:
-                        quantifier = "single";
-                        break;
-                    case 2:
-                        quantifier = "double";
-                        break;
-                    case 3:
-                        quantifier = "triple";
-                        break;
-                    case 4:
-                        quantifier = "quadruple";
-                        break;
-                    case 5:
-                        quantifier = "quintuple";
-                        break;
-                    case 6:
-                        quantifier = "sextuple";
-                        break;
-                    default:
-                        quantifier = "septuple";
-                }
-
-                ITextComponent displayName;
-                if (ingredient.getItem() == Items.TOASTED_BREAD_SLICE) {
-                    displayName = new TranslationTextComponent("item.someassemblyrequired.sandwich.toast");
-                } else {
-                    if (ingredient.getTag() != null && ingredient.getTag().contains("Ingredient")) {
-                        ItemStack spread = ItemStack.read(ingredient.getOrCreateChildTag("Ingredient"));
-                        if (spread.getItem() == net.minecraft.item.Items.POTION) {
-                            Potion potion = PotionUtils.getPotionFromItem(spread);
-
-                            if (potion == Potions.WATER && sandwich.size() == 3) {
-                                return new TranslationTextComponent("item.someassemblyrequired.soggy_sandwich");
-                            }
-                            if (potion.getEffects().size() == 1) {
-                                return new TranslationTextComponent("item.someassemblyrequired." + quantifier + "_potion_sandwich", potion.getEffects().get(0).getPotion().getDisplayName());
-                            }
-                        }
-                    }
-                    displayName = ingredient.getDisplayName();
-                }
-                return new TranslationTextComponent("item.someassemblyrequired." + quantifier + "_sandwich", displayName);
-            }
+        @Override
+        public int getSlotLimit(int slot) {
+            return 1;
         }
 
-        int breadAmount = 0;
-        for (ItemStack ingredient : sandwich) {
-            if (Tags.BREADS.contains(ingredient.getItem())) {
-                breadAmount++;
-            }
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return false;
         }
 
-        if (breadAmount == sandwich.size()) {
-            return new TranslationTextComponent("item.someassemblyrequired.snadwich");
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return ItemStack.EMPTY;
         }
 
-        if (breadAmount == 3) {
-            return new TranslationTextComponent("item.someassemblyrequired.double_decker_sandwich");
+        @Override
+        protected void onContentsChanged(int slot) {
+            sandwichItem.getOrCreateChildTag("BlockEntityTag").put("Ingredients", serializeNBT());
         }
-
-        return super.getDisplayName(stack);
     }
 }

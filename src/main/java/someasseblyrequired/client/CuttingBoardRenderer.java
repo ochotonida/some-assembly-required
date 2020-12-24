@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.vector.Vector3f;
 import someasseblyrequired.common.block.tileentity.CuttingBoardTileEntity;
+import someasseblyrequired.common.init.Items;
 
 public class CuttingBoardRenderer extends TileEntityRenderer<CuttingBoardTileEntity> {
 
@@ -25,17 +26,34 @@ public class CuttingBoardRenderer extends TileEntityRenderer<CuttingBoardTileEnt
 
             matrixStack.translate(0.5, 1 / 16D, 0.5);
 
-            matrixStack.scale(0.5F, 0.5F, 0.5F);
-
             if (tileEntity.getWorld() != null) {
                 matrixStack.rotate(Vector3f.YP.rotationDegrees(-tileEntity.getWorld().getBlockState(tileEntity.getPos()).get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle()));
             }
 
-            matrixStack.translate(0, 1.001 / 32, 0);
-            matrixStack.rotate(Vector3f.XP.rotationDegrees(90));
+            boolean isBlock = Minecraft.getInstance().getItemRenderer().getItemModelWithOverrides(ingredient, tileEntity.getWorld(), null).isGui3d();
+            boolean isSandwich = ingredient.getItem() == Items.SANDWICH;
+            boolean isKnife = tileEntity.hasKnife();
+            ItemCameraTransforms.TransformType transformType = ItemCameraTransforms.TransformType.FIXED;
 
-            Minecraft.getInstance().getItemRenderer().renderItem(ingredient, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
+            if (isSandwich || !isBlock) {
+                if (isSandwich) {
+                    transformType = ItemCameraTransforms.TransformType.GROUND;
+                } else {
+                    matrixStack.scale(0.5F, 0.5F, 0.5F);
+                    if (isKnife) {
+                        matrixStack.translate(0, 4.999 / 16, 0);
+                        matrixStack.rotate(Vector3f.XP.rotationDegrees(180));
+                    } else {
+                        matrixStack.translate(0, 0.501 / 16, 0);
+                        matrixStack.rotate(Vector3f.XP.rotationDegrees(90));
+                    }
+                }
+            } else {
+                matrixStack.translate(0, 3.001 / 16, 0);
+                matrixStack.scale(0.75F, 0.75F, 0.75F);
+            }
 
+            Minecraft.getInstance().getItemRenderer().renderItem(ingredient, transformType, combinedLight, combinedOverlay, matrixStack, buffer);
             matrixStack.pop();
         }
     }

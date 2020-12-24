@@ -29,8 +29,7 @@ public class SandwichBlockRenderer extends TileEntityRenderer<ItemHandlerTileEnt
             matrixStack.rotate(Vector3f.YP.rotationDegrees(-tileEntity.getWorld().getBlockState(tileEntity.getPos()).get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle()));
         }
         matrixStack.rotate(Vector3f.XP.rotationDegrees(90));
-        for (int slot = 0; slot < tileEntity.getInventory().getSlots(); slot++) {
-            ItemStack ingredient = tileEntity.getInventory().getStackInSlot(slot);
+        for (ItemStack ingredient : tileEntity.getItems()) {
             Minecraft.getInstance().getItemRenderer().renderItem(ingredient, ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
             matrixStack.translate(0, 0, -1 / 16D - 0.001);
         }

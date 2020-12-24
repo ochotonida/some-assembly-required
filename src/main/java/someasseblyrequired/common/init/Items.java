@@ -47,7 +47,7 @@ public class Items {
 
                 new SandwichItem(Blocks.SANDWICH, new Item.Properties().maxStackSize(8).food(new Food.Builder().setAlwaysEdible().build()).setISTER(() -> SandwichItemRenderer::new)).setRegistryName(SomeAssemblyRequired.MODID, "sandwich"),
 
-                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "kitchen_knife"),
+                new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).maxStackSize(1)).setRegistryName(SomeAssemblyRequired.MODID, "kitchen_knife"),
                 new SpreadItem(new Item.Properties()).setRegistryName(SomeAssemblyRequired.MODID, "spread"),
 
                 new TooltippedItem(new Item.Properties().group(SomeAssemblyRequired.CREATIVE_TAB).food(new Food.Builder().hunger(2).saturation(0.5F).fastToEat().build())).setRegistryName(SomeAssemblyRequired.MODID, "bread_slice"),

@@ -6,6 +6,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
+import someasseblyrequired.common.block.CuttingBoardBlock;
 import someasseblyrequired.common.init.RecipeTypes;
 import someasseblyrequired.common.init.TileEntityTypes;
 import someasseblyrequired.common.recipe.CuttingRecipe;
@@ -14,12 +15,16 @@ import javax.annotation.Nullable;
 
 public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
 
+    private boolean hasKnife;
+
     public CuttingBoardTileEntity() {
         super(TileEntityTypes.CUTTING_BOARD, 1);
     }
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction side) {
+        // for items, only allow inserting/extracting from the bottom
+        // return super.getCapability for any other capability
         if (side == null || side == Direction.DOWN || capability != CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return super.getCapability(capability, side);
         }
@@ -42,6 +47,10 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
         return !getIngredient().isEmpty();
     }
 
+    public boolean hasKnife() {
+        return hasKnife;
+    }
+
     public ItemStack removeIngredient() {
         return getInventory().extractItem(0, 1, false);
     }
@@ -55,5 +64,10 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
             }
         }
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    protected void onContentsUpdated() {
+        hasKnife = CuttingBoardBlock.isKnife(getIngredient());
     }
 }

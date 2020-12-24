@@ -8,6 +8,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -15,14 +16,13 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
 
+/**
+ * A tile entity that contains items which should be synced to clients
+ */
 public class ItemHandlerTileEntity extends TileEntity {
 
-    private final ItemStackHandler inventory;
-    private final LazyOptional<ItemStackHandler> itemHandler;
-
-    public ItemHandlerTileEntity(TileEntityType<? extends ItemHandlerTileEntity> tileEntityType) {
-        this(tileEntityType, 0);
-    }
+    private final TileEntityItemHandler inventory;
+    private final LazyOptional<TileEntityItemHandler> itemHandler;
 
     public ItemHandlerTileEntity(TileEntityType<? extends ItemHandlerTileEntity> tileEntityType, int size) {
         this(tileEntityType, size, true);
@@ -34,11 +34,18 @@ public class ItemHandlerTileEntity extends TileEntity {
         itemHandler = LazyOptional.of(() -> inventory);
     }
 
-    public ItemStackHandler getInventory() {
+    protected TileEntityItemHandler getInventory() {
         return inventory;
     }
 
-    protected int getAmountOfItems() {
+    /**
+     * @return all non-empty items contained by this tile entity
+     */
+    public NonNullList<ItemStack> getItems() {
+        return inventory.getItems();
+    }
+
+    public int getAmountOfItems() {
         int size;
         for (size = 0; size < inventory.getSlots() && !inventory.getStackInSlot(size).isEmpty(); size++) ;
         return size;
@@ -52,13 +59,25 @@ public class ItemHandlerTileEntity extends TileEntity {
         return super.getCapability(capability, side);
     }
 
-    protected void onContentsChanged() {
-        if (world == null || world.isRemote) {
-            return;
+    /**
+     * Called when the contents of the tile entity are loaded or changed
+     */
+    protected void onContentsUpdated() {
+    }
+
+    private void onContentsChanged() {
+        if (world != null && !world.isRemote) {
+            BlockState state = world.getBlockState(pos);
+            // cause a block update to sync the change to clients
+            world.notifyBlockUpdate(pos, state, state, 2);
+            // make sure the tile entity gets saved to disk
+            markDirty();
         }
-        BlockState state = world.getBlockState(pos);
-        world.notifyBlockUpdate(pos, state, state, 2);
-        markDirty();
+        onContentsUpdated();
+    }
+
+    private void onContentsLoaded() {
+        onContentsUpdated();
     }
 
     @Override
@@ -73,21 +92,25 @@ public class ItemHandlerTileEntity extends TileEntity {
         return super.write(compoundNBT);
     }
 
+    // sync on chunk load
     @Override
     public CompoundNBT getUpdateTag() {
         return write(super.getUpdateTag());
     }
 
+    // sync on chunk load
     @Override
     public void handleUpdateTag(BlockState state, CompoundNBT tag) {
         read(state, tag);
     }
 
+    // sync on block update
     @Override
     public SUpdateTileEntityPacket getUpdatePacket() {
         return new SUpdateTileEntityPacket(getPos(), -1, write(new CompoundNBT()));
     }
 
+    // sync on block update
     @Override
     public void onDataPacket(NetworkManager networkManager, SUpdateTileEntityPacket packet) {
         if (world != null) {
@@ -101,16 +124,38 @@ public class ItemHandlerTileEntity extends TileEntity {
 
     protected class TileEntityItemHandler extends ItemStackHandler {
 
-        private final boolean canExtract;
+        /**
+         * Whether the items in this item handler can be modified using {@link #extractItem(int, int, boolean)} or {@link #insertItem(int, ItemStack, boolean)}
+         */
+        private final boolean canModify;
 
-        protected TileEntityItemHandler(int size, boolean canExtract) {
+        protected TileEntityItemHandler(int size, boolean canModify) {
             super(size);
-            this.canExtract = canExtract;
+            this.canModify = canModify;
+        }
+
+        /**
+         * @return all non-empty items in this item handler
+         */
+        public NonNullList<ItemStack> getItems() {
+            NonNullList<ItemStack> result = NonNullList.create();
+            for (int slot = 0; slot < inventory.getSlots(); slot++) {
+                ItemStack stack = inventory.getStackInSlot(slot);
+                if (!stack.isEmpty()) {
+                    result.add(stack);
+                }
+            }
+            return result;
         }
 
         @Override
         protected void onContentsChanged(int slot) {
             ItemHandlerTileEntity.this.onContentsChanged();
+        }
+
+        @Override
+        protected void onLoad() {
+            ItemHandlerTileEntity.this.onContentsLoaded();
         }
 
         @Override
@@ -120,12 +165,12 @@ public class ItemHandlerTileEntity extends TileEntity {
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return canExtract;
+            return canModify;
         }
 
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return canExtract ? super.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+            return canModify ? super.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         }
     }
 }

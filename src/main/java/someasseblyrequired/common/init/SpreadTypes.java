@@ -17,13 +17,11 @@ public class SpreadTypes {
     public static IForgeRegistry<SpreadType> SPREAD_TYPE_REGISTRY;
 
     public static void createRegistry() {
-        SPREAD_TYPE_REGISTRY = new RegistryBuilder<SpreadType>().setType(SpreadType.class).setName(new ResourceLocation(SomeAssemblyRequired.MODID, "spread_type")).setDefaultKey(new ResourceLocation(SomeAssemblyRequired.MODID, "potion")).onValidate((registry, registryManager, i, location, spreadType0) -> {
-            registry.forEach((spreadType1) -> {
-                if (spreadType0 != spreadType1 && spreadType0.getIngredient() == spreadType1.getIngredient()) {
-                    throw new IllegalStateException(String.format("Multiple spreadtypes registered for item %s: %s, %s", spreadType0.getIngredient().getRegistryName(), spreadType0.getRegistryName(), spreadType1.getRegistryName()));
-                }
-            });
-        }).create();
+        SPREAD_TYPE_REGISTRY = new RegistryBuilder<SpreadType>().setType(SpreadType.class).setName(new ResourceLocation(SomeAssemblyRequired.MODID, "spread_type")).setDefaultKey(new ResourceLocation(SomeAssemblyRequired.MODID, "potion")).onValidate((registry, registryManager, i, location, spreadType0) -> registry.forEach((spreadType1) -> {
+            if (spreadType0 != spreadType1 && spreadType0.getIngredient() == spreadType1.getIngredient()) {
+                throw new IllegalStateException(String.format("Multiple spreadtypes registered for item %s: %s, %s", spreadType0.getIngredient().getRegistryName(), spreadType0.getRegistryName(), spreadType1.getRegistryName()));
+            }
+        })).create();
     }
 
     @Nullable

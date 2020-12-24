@@ -45,6 +45,7 @@
   "item.someassemblyrequired.quintuple_sandwich": "Quintuple %s Sandwich",
   "item.someassemblyrequired.sextuple_sandwich": "Sextuple %s Sandwich",
   "item.someassemblyrequired.septuple_sandwich": "Septuple %s Sandwich",
+  "item.someassemblyrequired.very_large_sandwich": "Unobtainable %s Sandwich",
   "item.someassemblyrequired.single_potion_sandwich": "Sandwich of %s",
   "item.someassemblyrequired.double_potion_sandwich": "Double Decker Sandwich of %s",
   "item.someassemblyrequired.triple_potion_sandwich": "Triple Sandwich of %s",
@@ -52,6 +53,7 @@
   "item.someassemblyrequired.quintuple_potion_sandwich": "Quintuple Sandwich of %s",
   "item.someassemblyrequired.sextuple_potion_sandwich": "Sextuple Sandwich of %s",
   "item.someassemblyrequired.septuple_potion_sandwich": "Septuple Sandwich of %s",
+  "item.someassemblyrequired.very_large_potion_sandwich": "Unobtainable Sandwich of %s",
 
   "item.someassemblyrequired.sandwich.tooltip.truncate_info": "(%s additional ingredients)",
   "item.someassemblyrequired.kitchen_knife.tooltip": "Used to cut ingredients on the cutting board",

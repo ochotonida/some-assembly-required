@@ -3,8 +3,10 @@ package someasseblyrequired.common.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
@@ -12,13 +14,18 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import someasseblyrequired.common.block.tileentity.SandwichAssemblyTableTileEntity;
+import someasseblyrequired.common.init.Items;
+import someasseblyrequired.common.init.SpreadTypes;
+import someasseblyrequired.common.init.Tags;
 import someasseblyrequired.common.init.TileEntityTypes;
+import someasseblyrequired.common.item.spreadtype.SpreadType;
 
 public class SandwichAssemblyTableBlock extends HorizontalBlock {
 
@@ -53,14 +60,60 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
         if (!(tileEntity instanceof SandwichAssemblyTableTileEntity)) {
             return ActionResultType.PASS;
         }
-        SandwichAssemblyTableTileEntity sandwichStationTileEntity = (SandwichAssemblyTableTileEntity) tileEntity;
+        SandwichAssemblyTableTileEntity sandwichTable = (SandwichAssemblyTableTileEntity) tileEntity;
 
+        // TODO: sneak right-clicking bypasses onBlockActivated when not using an empty hand
         if (player.isSneaking()) {
-            sandwichStationTileEntity.buildSandwich(player);
+            // a sandwich must contain at least one ingredient
+            if (sandwichTable.getAmountOfItems() == 0) {
+                player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
+                // a sandwich must have bread as the top and bottom ingredient
+            } else if (!sandwichTable.hasBreadAsTopIngredient()) {
+                player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.top_bread"), true);
+            } else {
+                ItemEntity sandwichEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, SandwichBlock.createSandwich(tileEntity));
+                sandwichEntity.setDefaultPickupDelay();
+                world.addEntity(sandwichEntity);
+                sandwichTable.removeIngredients();
+            }
+            // remove the top ingredient if the player is not holding anything
         } else if (player.getHeldItem(Hand.OFF_HAND).isEmpty() && player.getHeldItem(Hand.MAIN_HAND).isEmpty()) {
-            sandwichStationTileEntity.removeTopIngredient(player);
-        } else if (!sandwichStationTileEntity.addIngredient(player, hand)) {
-            return ActionResultType.FAIL;
+            ItemStack ingredient = sandwichTable.removeTopIngredient();
+            if (!player.isCreative() && !ingredient.isEmpty()) {
+                ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, ingredient);
+                world.addEntity(item);
+            }
+            // try to add the player's held item
+        } else {
+            ItemStack heldItem = player.getHeldItem(hand);
+            // try to add the ingredient
+            if (sandwichTable.addIngredient(heldItem)) {
+                if (!player.isCreative()) {
+                    // decrease the player's held item by one if the ingredient successfully got added
+                    player.getHeldItem(hand).shrink(1);
+
+                    // add the container item of the spreadtype to the player's inventory if applicable
+                    SpreadType spreadType = SpreadTypes.findSpreadType(heldItem.getItem());
+                    if (spreadType != null && spreadType.hasContainer(heldItem)) {
+                        ItemStack container = new ItemStack(spreadType.getContainer(heldItem), 1);
+                        if (player.getHeldItem(hand).isEmpty()) {
+                            player.setHeldItem(hand, container);
+                        } else {
+                            player.addItemStackToInventory(container);
+                        }
+                    }
+                }
+            } else if (heldItem.isFood() || heldItem.getItem() == Items.SPREAD || SpreadTypes.hasSpreadType(heldItem.getItem())) {
+                if (sandwichTable.getAmountOfItems() == 0 && !Tags.BREADS.contains(heldItem.getItem())) {
+                    player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
+                } else if (sandwichTable.getAmountOfItems() == sandwichTable.getInventorySize()) {
+                    player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.full_sandwich"), true);
+                } else {
+                    return ActionResultType.FAIL;
+                }
+            } else {
+                return ActionResultType.FAIL;
+            }
         }
 
         return ActionResultType.SUCCESS;
@@ -69,10 +122,15 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
     @Override
     @SuppressWarnings("deprecation")
     public void onReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving) {
+        // drop all contained items and update the comparator output if the block is removed
         if (!newState.isIn(state.getBlock())) {
             TileEntity tileEntity = world.getTileEntity(pos);
             if (tileEntity instanceof SandwichAssemblyTableTileEntity) {
-                ((SandwichAssemblyTableTileEntity) tileEntity).dropIngredients();
+                for (ItemStack ingredient : ((SandwichAssemblyTableTileEntity) tileEntity).removeIngredients()) {
+                    ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, ingredient);
+                    world.addEntity(item);
+                }
+
                 world.updateComparatorOutputLevel(pos, this);
             }
             super.onReplaced(state, world, pos, newState, isMoving);
@@ -88,6 +146,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
     @Override
     @SuppressWarnings("deprecation")
     public int getComparatorInputOverride(BlockState blockState, World world, BlockPos pos) {
+        // comparator input = max(15, <items on assembly table>)
         TileEntity tileEntity = world.getTileEntity(pos);
         if (tileEntity != null) {
             IItemHandler handler = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);

@@ -13,6 +13,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import someasseblyrequired.common.init.*;
 import someasseblyrequired.common.item.spreadtype.SpreadType;
 
@@ -32,6 +33,11 @@ public class SomeAssemblyRequired {
     @SuppressWarnings("unused")
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
+
+        @SubscribeEvent
+        public static void onCommonSetup(FMLCommonSetupEvent event) {
+            RecipeTypes.registerBrewingRecipes();
+        }
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
