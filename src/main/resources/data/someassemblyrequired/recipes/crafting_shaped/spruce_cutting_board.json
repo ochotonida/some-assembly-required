@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:stripped_spruce_log"
+    }
+  },
+  "result": {
+    "item": "someassemblyrequired:spruce_cutting_board"
+  }
+}
