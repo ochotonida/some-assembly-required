@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "minecraft:bread"
+    "#forge:bread_slices/wheat"
   ]
 }
