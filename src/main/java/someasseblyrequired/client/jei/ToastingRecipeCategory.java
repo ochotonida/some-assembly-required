@@ -1,8 +1,10 @@
 package someasseblyrequired.client.jei;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
@@ -26,12 +28,15 @@ public class ToastingRecipeCategory implements IRecipeCategory<IRecipe> {
     public static final ResourceLocation ID = new ResourceLocation(SomeAssemblyRequired.MODID, "toasting");
 
     private final IDrawable background;
+    private final IDrawable arrow;
     private final IDrawable icon;
     private final String title;
 
     public ToastingRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createDrawable(new ResourceLocation(SomeAssemblyRequired.MODID, "textures/gui/toasting_recipe.png"), 0, 0, 111, 41);
+        ResourceLocation texture = new ResourceLocation(SomeAssemblyRequired.MODID, "textures/gui/toasting_recipe.png");
+        background = guiHelper.createDrawable(texture, 0, 0, 111, 41);
         icon = guiHelper.createDrawableIngredient(new ItemStack(Blocks.REDSTONE_TOASTER));
+        arrow = guiHelper.drawableBuilder(texture, 111, 0, 22, 16).buildAnimated(240, IDrawableAnimated.StartDirection.LEFT, false);
         title = I18n.format("recipecategory." + SomeAssemblyRequired.MODID + ".toasting");
     }
 
@@ -77,5 +82,10 @@ public class ToastingRecipeCategory implements IRecipeCategory<IRecipe> {
 
         stacks.init(2, true, 79, 7);
         stacks.set(2, recipe.getRecipeOutput());
+    }
+
+    @Override
+    public void draw(IRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
+        arrow.draw(matrixStack, 44, 12);
     }
 }
