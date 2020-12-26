@@ -50,7 +50,7 @@ public class SandwichItem extends BlockItem {
             for (int slot = 0; slot < size; slot++) {
                 // only show 8 ingredients (or 9, if there are exactly 9 ingredients)
                 if (slot >= 8 && size >= 10) {
-                    tooltip.add(new TranslationTextComponent("item.someassemblyrequired.sandwich.tooltip.truncate_info", size - 8).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add(new TranslationTextComponent("item.someassemblyrequired.sandwich.tooltip.truncate_info", size - 8).mergeStyle(TextFormatting.GRAY).mergeStyle(TextFormatting.ITALIC));
                     return;
                 }
                 tooltip.add(handler.getStackInSlot(slot).getDisplayName().copyRaw().mergeStyle(TextFormatting.GRAY));

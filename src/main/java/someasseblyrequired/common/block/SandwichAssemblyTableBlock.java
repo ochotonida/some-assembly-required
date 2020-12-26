@@ -72,9 +72,8 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.top_bread"), true);
             } else {
                 ItemEntity sandwichEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, SandwichBlock.createSandwich(tileEntity));
-                sandwichEntity.setDefaultPickupDelay();
                 world.addEntity(sandwichEntity);
-                sandwichTable.removeIngredients();
+                sandwichTable.removeItems();
             }
             // remove the top ingredient if the player is not holding anything
         } else if (player.getHeldItem(Hand.OFF_HAND).isEmpty() && player.getHeldItem(Hand.MAIN_HAND).isEmpty()) {
@@ -126,7 +125,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
         if (!newState.isIn(state.getBlock())) {
             TileEntity tileEntity = world.getTileEntity(pos);
             if (tileEntity instanceof SandwichAssemblyTableTileEntity) {
-                for (ItemStack ingredient : ((SandwichAssemblyTableTileEntity) tileEntity).removeIngredients()) {
+                for (ItemStack ingredient : ((SandwichAssemblyTableTileEntity) tileEntity).removeItems()) {
                     ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, ingredient);
                     world.addEntity(item);
                 }

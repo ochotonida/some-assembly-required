@@ -50,23 +50,6 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
         return super.getCapability(capability, side);
     }
 
-    /**
-     * Removes all ingredients
-     *
-     * @return the ingredients previously contained by this tile entity not including spreads
-     */
-    public NonNullList<ItemStack> removeIngredients() {
-        NonNullList<ItemStack> result = NonNullList.create();
-        for (int slot = getInventory().getSlots() - 1; slot >= 0; slot--) {
-            ItemStack ingredient = getInventory().extractItem(slot, 1, false);
-            // result can be empty, spreads don't drop as items
-            if (!ingredient.isEmpty()) {
-                result.add(ingredient);
-            }
-        }
-        return result;
-    }
-
     public ItemStack removeTopIngredient() {
         if (getAmountOfItems() > 0) {
             return getInventory().extractItem(getAmountOfItems() - 1, 1, false);
@@ -113,8 +96,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
     }
 
     @Override
-    protected TileEntityItemHandler createItemHandler(int size, boolean canExtract) {
-        assert canExtract;
+    protected TileEntityItemHandler createItemHandler(int size) {
         return new IngredientHandler(size);
     }
 
@@ -170,7 +152,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             ItemStack result = sandwich;
 
             if (!simulate) {
-                removeIngredients();
+                removeItems();
             }
 
             return result;
@@ -193,12 +175,23 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
     private class IngredientHandler extends TileEntityItemHandler {
 
         private IngredientHandler(int size) {
-            super(size, true);
+            super(size);
         }
 
         @Override
         public int getSlotLimit(int slot) {
             return 1;
+        }
+
+        @Override
+        public NonNullList<ItemStack> removeItems() {
+            NonNullList<ItemStack> result = NonNullList.create();
+            for (ItemStack ingredient : super.removeItems()) {
+                if (ingredient.getItem() != Items.SPREAD) {
+                    result.add(ingredient);
+                }
+            }
+            return result;
         }
 
         @Override
