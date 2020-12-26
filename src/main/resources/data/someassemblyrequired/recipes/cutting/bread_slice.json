@@ -1,10 +1,8 @@
 {
   "type": "someassemblyrequired:cutting",
-  "ingredients": [
-    {
-      "item": "minecraft:bread"
-    }
-  ],
+  "ingredient": {
+    "item": "minecraft:bread"
+  },
   "result": {
     "item": "someassemblyrequired:bread_slice",
     "count": 4

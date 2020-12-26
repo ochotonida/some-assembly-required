@@ -9,7 +9,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import someasseblyrequired.common.block.CuttingBoardBlock;
 import someasseblyrequired.common.init.RecipeTypes;
 import someasseblyrequired.common.init.TileEntityTypes;
-import someasseblyrequired.common.recipe.CuttingRecipe;
+import someasseblyrequired.common.recipe.ConversionRecipe;
 
 import javax.annotation.Nullable;
 
@@ -57,7 +57,7 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
 
     public ItemStack cutIngredient() {
         if (world != null) {
-            CuttingRecipe recipe = world.getRecipeManager().getRecipe(RecipeTypes.CUTTING, new RecipeWrapper(getInventory()), world).orElse(null);
+            ConversionRecipe recipe = world.getRecipeManager().getRecipe(RecipeTypes.CUTTING, new RecipeWrapper(getInventory()), world).orElse(null);
             if (recipe != null) {
                 getInventory().extractItem(0, 1, false);
                 return recipe.getRecipeOutput().copy();

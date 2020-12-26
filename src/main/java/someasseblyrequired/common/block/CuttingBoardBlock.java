@@ -66,7 +66,11 @@ public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
         if (ingredient.getItem() instanceof BlockItem) {
             Block block = ((BlockItem) ingredient.getItem()).getBlock();
             SoundType soundType = block.getSoundType(block.getDefaultState(), world, pos, player);
-            world.playSound(player, pos, soundType.getPlaceSound(), SoundCategory.BLOCKS, (soundType.getVolume() + 1) / 2, soundType.getPitch() * 0.8F);
+            world.playSound(player, pos, soundType.getPlaceSound(), SoundCategory.BLOCKS, 0.5F * (soundType.getVolume() + 1) / 2, soundType.getPitch() * 0.8F);
+        } else if (isKnife(ingredient)) {
+            world.playSound(player, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 0.5F, 0.8F);
+        } else {
+            world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.2F, 0.8F);
         }
 
         boolean hasAddedIngredient = cuttingBoard.addIngredient(player.isCreative() ? ingredient.copy() : ingredient);
@@ -90,16 +94,15 @@ public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
 
     private boolean removeIngredient(CuttingBoardTileEntity cuttingBoard, World world, BlockPos pos, PlayerEntity player) {
         ItemStack ingredient = cuttingBoard.removeIngredient();
-        if (ingredient.isEmpty()) {
-            return false;
+        if (!ingredient.isEmpty()) {
+            if (!player.isCreative()) {
+                ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, ingredient);
+                item.setDefaultPickupDelay();
+                world.addEntity(item);
+            }
+            return true;
         }
-
-        if (!player.isCreative()) {
-            ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, ingredient);
-            world.addEntity(item);
-        }
-
-        return true;
+        return false;
     }
 
     @Override

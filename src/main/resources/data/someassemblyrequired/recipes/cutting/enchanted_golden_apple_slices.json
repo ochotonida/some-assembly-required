@@ -1,10 +1,8 @@
 {
   "type": "someassemblyrequired:cutting",
-  "ingredients": [
-    {
-      "item": "minecraft:enchanted_golden_apple"
-    }
-  ],
+  "ingredient": {
+    "item": "minecraft:enchanted_golden_apple"
+  },
   "result": {
     "item": "someassemblyrequired:enchanted_golden_apple_slices",
     "count": 2

@@ -1,10 +1,8 @@
 {
   "type": "someassemblyrequired:cutting",
-  "ingredients": [
-    {
-      "item": "minecraft:golden_apple"
-    }
-  ],
+  "ingredient": {
+    "item": "minecraft:golden_apple"
+  },
   "result": {
     "item": "someassemblyrequired:golden_apple_slices",
     "count": 2

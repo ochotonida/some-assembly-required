@@ -1,10 +1,8 @@
 {
   "type": "someassemblyrequired:cutting",
-  "ingredients": [
-    {
-      "item": "minecraft:pumpkin"
-    }
-  ],
+  "ingredient": {
+    "item": "minecraft:pumpkin"
+  },
   "result": {
     "item": "minecraft:carved_pumpkin"
   }
