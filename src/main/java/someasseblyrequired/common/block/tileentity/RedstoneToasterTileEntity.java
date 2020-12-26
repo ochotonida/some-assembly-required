@@ -188,6 +188,10 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
         }
 
         toastingProgress = TOASTING_TIME;
+        if (smokeParticlesProgress > 0) {
+            smokeParticlesProgress = TOASTING_TIME + SMOKE_PARTICLES_TIME;
+        }
+
         return true;
     }
 
@@ -265,8 +269,8 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
             }
         }
 
-        if (toastingProgress == TOASTING_TIME / 2) {
-            smokeParticlesProgress = TOASTING_TIME / 2 + SMOKE_PARTICLES_TIME;
+        if (toastingProgress == TOASTING_TIME / 3) {
+            smokeParticlesProgress = TOASTING_TIME / 3 + SMOKE_PARTICLES_TIME;
         }
 
         if (smokeParticlesProgress > 0) {

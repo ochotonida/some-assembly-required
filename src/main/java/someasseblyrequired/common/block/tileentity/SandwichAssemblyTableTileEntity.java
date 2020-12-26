@@ -35,8 +35,8 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
         CompoundNBT spreadNBT = new CompoundNBT();
         spreadNBT.putInt("Color", spreadType.getColor(ingredient));
         spreadNBT.putBoolean("HasEffect", ingredient.hasEffect());
-        spreadNBT.put("Ingredient", ingredient.write(new CompoundNBT()));
-        ItemStack spread = new ItemStack(Items.SPREAD, ingredient.getCount());
+        spreadNBT.put("Ingredient", ingredient.copy().split(1).write(new CompoundNBT()));
+        ItemStack spread = new ItemStack(Items.SPREAD);
         spread.setTag(spreadNBT);
         return spread;
     }
@@ -75,7 +75,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
      */
     public boolean addIngredient(ItemStack stack) {
         SpreadType spreadType = SpreadTypes.findSpreadType(stack.getItem());
-        ItemStack ingredient = spreadType == null ? stack : createSpreadItem(spreadType, stack);
+        ItemStack ingredient = spreadType == null ? stack.copy() : createSpreadItem(spreadType, stack);
 
         int nextEmptySlot = getAmountOfItems();
         if (nextEmptySlot >= getInventorySize() || !getInventory().isItemValid(nextEmptySlot, ingredient)) {

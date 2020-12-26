@@ -88,11 +88,11 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
             // try to add the ingredient
             if (sandwichTable.addIngredient(heldItem)) {
                 if (!player.isCreative()) {
+                    SpreadType spreadType = SpreadTypes.findSpreadType(heldItem.getItem());
                     // decrease the player's held item by one if the ingredient successfully got added
                     player.getHeldItem(hand).shrink(1);
 
                     // add the container item of the spreadtype to the player's inventory if applicable
-                    SpreadType spreadType = SpreadTypes.findSpreadType(heldItem.getItem());
                     if (spreadType != null && spreadType.hasContainer(heldItem)) {
                         ItemStack container = new ItemStack(spreadType.getContainer(heldItem), 1);
                         if (player.getHeldItem(hand).isEmpty()) {
