@@ -1,7 +1,10 @@
 package someasseblyrequired.common.init;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.*;
+import net.minecraft.item.Food;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.NonNullList;
@@ -46,9 +49,9 @@ public class Items {
         }
     };
 
-    private static Item createItem(Block block) {
+    private static Item createItem(Block block, String tooltipTranslationKey) {
         //noinspection ConstantConditions
-        return new BlockItem(block, new Item.Properties().group(CREATIVE_TAB)).setRegistryName(block.getRegistryName());
+        return new TooltippedBlockItem(block, new Item.Properties().group(CREATIVE_TAB), tooltipTranslationKey).setRegistryName(block.getRegistryName());
     }
 
     public static void register(IForgeRegistry<Item> registry) {
@@ -63,17 +66,17 @@ public class Items {
                 createItem(Blocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE, "sandwich_assembly_table"),
                 createItem(Blocks.WARPED_SANDWICH_ASSEMBLY_TABLE, "sandwich_assembly_table"),
 
-                createItem(Blocks.OAK_CUTTING_BOARD),
-                createItem(Blocks.SPRUCE_CUTTING_BOARD),
-                createItem(Blocks.BIRCH_CUTTING_BOARD),
-                createItem(Blocks.JUNGLE_CUTTING_BOARD),
-                createItem(Blocks.ACACIA_CUTTING_BOARD),
-                createItem(Blocks.DARK_OAK_CUTTING_BOARD),
-                createItem(Blocks.CRIMSON_CUTTING_BOARD),
-                createItem(Blocks.WARPED_CUTTING_BOARD),
+                createItem(Blocks.OAK_CUTTING_BOARD, "cutting_board"),
+                createItem(Blocks.SPRUCE_CUTTING_BOARD, "cutting_board"),
+                createItem(Blocks.BIRCH_CUTTING_BOARD, "cutting_board"),
+                createItem(Blocks.JUNGLE_CUTTING_BOARD, "cutting_board"),
+                createItem(Blocks.ACACIA_CUTTING_BOARD, "cutting_board"),
+                createItem(Blocks.DARK_OAK_CUTTING_BOARD, "cutting_board"),
+                createItem(Blocks.CRIMSON_CUTTING_BOARD, "cutting_board"),
+                createItem(Blocks.WARPED_CUTTING_BOARD, "cutting_board"),
 
-                new BlockItem(Blocks.REDSTONE_TOASTER, new Item.Properties().group(CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "redstone_toaster"),
-                new BlockItem(Blocks.STICKY_REDSTONE_TOASTER, new Item.Properties().group(CREATIVE_TAB)).setRegistryName(SomeAssemblyRequired.MODID, "sticky_redstone_toaster"),
+                createItem(Blocks.REDSTONE_TOASTER, "redstone_toaster"),
+                createItem(Blocks.STICKY_REDSTONE_TOASTER, "redstone_toaster"),
 
                 new SandwichItem(Blocks.SANDWICH, new Item.Properties().maxStackSize(8).food(new Food.Builder().setAlwaysEdible().build()).setISTER(() -> SandwichItemRenderer::new)).setRegistryName(SomeAssemblyRequired.MODID, "sandwich"),
 

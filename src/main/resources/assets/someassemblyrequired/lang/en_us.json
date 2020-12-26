@@ -24,6 +24,10 @@
   "block.someassemblyrequired.sticky_redstone_toaster": "Sticky Redstone Toaster",
   "block.someassemblyrequired.sandwich": "Sandwich",
 
+  "block.someassemblyrequired.sandwich_assembly_table.tooltip": "Can be used to make sandwiches by placing items on top. Sneak-right click with an empty hand to build your sandwich",
+  "block.someassemblyrequired.cutting_board.tooltip": "A block used to cut or chop food items",
+  "block.someassemblyrequired.redstone_toaster.tooltip": "A block used to toast food, does not require a fuel source. It is recommended one does not try to toast metal, or submerge the toaster in water",
+
   "item.someassemblyrequired.kitchen_knife": "Kitchen Knife",
   "item.someassemblyrequired.spread": "Spread",
   "item.someassemblyrequired.bread_slice": "Bread Slice",
