@@ -1,0 +1,10 @@
+{
+  "type": "someassemblyrequired:cutting",
+  "ingredient": {
+    "item": "minecraft:porkchop"
+  },
+  "result": {
+    "item": "someassemblyrequired:pork_cuts",
+    "count": 3
+  }
+}

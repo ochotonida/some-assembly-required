@@ -1,0 +1,9 @@
+{
+  "type": "someassemblyrequired:toasting",
+  "ingredient": {
+    "item": "minecraft:warped_fungus"
+  },
+  "result": {
+    "item": "someassemblyrequired:toasted_warped_fungus"
+  }
+}

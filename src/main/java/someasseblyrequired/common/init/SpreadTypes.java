@@ -46,7 +46,8 @@ public class SpreadTypes {
                 new SimpleSpreadType(Items.BEETROOT_SOUP, Items.BOWL, 0x8C0023).setRegistryName(SomeAssemblyRequired.MODID, "beetroot_soup"),
                 new SimpleSpreadType(Items.HONEY_BOTTLE, Items.GLASS_BOTTLE, 0xF08A1D).setRegistryName(SomeAssemblyRequired.MODID, "honey_bottle"),
                 new SimpleSpreadType(Items.SUSPICIOUS_STEW, Items.BOWL, 0xC3C45E).setRegistryName(SomeAssemblyRequired.MODID, "suspicious_stew"),
-                new SimpleSpreadType(someasseblyrequired.common.init.Items.MAYONNAISE_BOTTLE, Items.GLASS_BOTTLE, 0xD9C98C).setRegistryName(SomeAssemblyRequired.MODID, "mayonnaise")
+                new SimpleSpreadType(someasseblyrequired.common.init.Items.MAYONNAISE_BOTTLE, Items.GLASS_BOTTLE, 0xD9C98C).setRegistryName(SomeAssemblyRequired.MODID, "mayonnaise"),
+                new SimpleSpreadType(someasseblyrequired.common.init.Items.SWEET_BERRY_JAM_BOTTLE, Items.GLASS_BOTTLE, 0xf40020).setRegistryName("sweet_berry_jam")
         );
     }
 }

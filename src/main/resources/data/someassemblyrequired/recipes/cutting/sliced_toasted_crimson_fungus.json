@@ -1,0 +1,10 @@
+{
+  "type": "someassemblyrequired:cutting",
+  "ingredient": {
+    "item": "someassemblyrequired:toasted_crimson_fungus"
+  },
+  "result": {
+    "item": "someassemblyrequired:sliced_toasted_crimson_fungus",
+    "count": 2
+  }
+}
