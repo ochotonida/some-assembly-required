@@ -1,0 +1,9 @@
+{
+  "type": "someassemblyrequired:toasting",
+  "ingredient": {
+    "item": "someassemblyrequired:charred_food"
+  },
+  "result": {
+    "item": "minecraft:charcoal"
+  }
+}

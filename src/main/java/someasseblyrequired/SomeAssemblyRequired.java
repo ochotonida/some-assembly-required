@@ -22,14 +22,6 @@ public class SomeAssemblyRequired {
 
     public static final String MODID = "someassemblyrequired";
 
-    public static final ItemGroup CREATIVE_TAB = new ItemGroup(MODID) {
-        @Override
-        @OnlyIn(Dist.CLIENT)
-        public ItemStack createIcon() {
-            return new ItemStack(Items.BREAD_SLICE);
-        }
-    };
-
     @SuppressWarnings("unused")
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {

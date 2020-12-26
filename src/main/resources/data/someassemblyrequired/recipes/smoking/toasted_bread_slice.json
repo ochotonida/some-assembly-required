@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:smoking",
+  "type": "minecraft:campfire_cooking",
   "ingredient": {
-    "item": "someassemblyrequired:bread_slice"
+    "item": "minecraft:cooked_beef"
   },
-  "result": "someassemblyrequired:toasted_bread_slice",
+  "result": "someassemblyrequired:charred_food",
   "experience": 0.35,
   "cookingtime": 100
 }

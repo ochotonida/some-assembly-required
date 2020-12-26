@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "someassemblyrequired:bread_slice"
-  },
-  "result": "someassemblyrequired:toasted_bread_slice",
-  "experience": 0.35,
-  "cookingtime": 200
-}

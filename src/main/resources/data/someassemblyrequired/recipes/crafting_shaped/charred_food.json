@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "someassemblyrequired:charred_morsel"
+    }
+  },
+  "result": {
+    "item": "someassemblyrequired:charred_food"
+  }
+}

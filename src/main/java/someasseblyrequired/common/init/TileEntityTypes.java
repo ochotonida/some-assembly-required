@@ -6,12 +6,13 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 import someasseblyrequired.SomeAssemblyRequired;
 import someasseblyrequired.client.CuttingBoardRenderer;
+import someasseblyrequired.client.RedstoneToasterRenderer;
 import someasseblyrequired.client.SandwichAssemblyTableBlockRenderer;
 import someasseblyrequired.client.SandwichBlockRenderer;
 import someasseblyrequired.common.block.tileentity.CuttingBoardTileEntity;
 import someasseblyrequired.common.block.tileentity.ItemHandlerTileEntity;
+import someasseblyrequired.common.block.tileentity.RedstoneToasterTileEntity;
 import someasseblyrequired.common.block.tileentity.SandwichAssemblyTableTileEntity;
-import someasseblyrequired.common.block.tileentity.ToasterTileEntity;
 
 @ObjectHolder(SomeAssemblyRequired.MODID)
 public class TileEntityTypes {
@@ -22,6 +23,8 @@ public class TileEntityTypes {
     public static TileEntityType<ItemHandlerTileEntity> SANDWICH;
     @ObjectHolder("cutting_board")
     public static TileEntityType<CuttingBoardTileEntity> CUTTING_BOARD;
+    @ObjectHolder("redstone_toaster")
+    public static TileEntityType<RedstoneToasterTileEntity> REDSTONE_TOASTER;
 
     public static void register(IForgeRegistry<TileEntityType<?>> registry) {
         // noinspection ConstantConditions
@@ -46,6 +49,7 @@ public class TileEntityTypes {
                         Blocks.SPRUCE_CUTTING_BOARD,
                         Blocks.WARPED_CUTTING_BOARD
                 ).build(null).setRegistryName(SomeAssemblyRequired.MODID, "cutting_board"),
+                TileEntityType.Builder.create(RedstoneToasterTileEntity::new, Blocks.STICKY_REDSTONE_TOASTER, Blocks.REDSTONE_TOASTER).build(null).setRegistryName(SomeAssemblyRequired.MODID, "redstone_toaster"),
                 TileEntityType.Builder.create(() -> new ItemHandlerTileEntity(SANDWICH, 0, false), Blocks.SANDWICH).build(null).setRegistryName(SomeAssemblyRequired.MODID, "sandwich")
         );
     }
@@ -54,5 +58,6 @@ public class TileEntityTypes {
         ClientRegistry.bindTileEntityRenderer(TileEntityTypes.SANDWICH_ASSEMBLY_TABLE, SandwichAssemblyTableBlockRenderer::new);
         ClientRegistry.bindTileEntityRenderer(TileEntityTypes.CUTTING_BOARD, CuttingBoardRenderer::new);
         ClientRegistry.bindTileEntityRenderer(TileEntityTypes.SANDWICH, SandwichBlockRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TileEntityTypes.REDSTONE_TOASTER, RedstoneToasterRenderer::new);
     }
 }

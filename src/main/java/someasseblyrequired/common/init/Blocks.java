@@ -10,6 +10,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 import someasseblyrequired.SomeAssemblyRequired;
 import someasseblyrequired.common.block.CuttingBoardBlock;
+import someasseblyrequired.common.block.RedstoneToasterBlock;
 import someasseblyrequired.common.block.SandwichAssemblyTableBlock;
 import someasseblyrequired.common.block.SandwichBlock;
 
@@ -35,6 +36,8 @@ public class Blocks {
     public static final Block OAK_CUTTING_BOARD = AIR;
     public static final Block SPRUCE_CUTTING_BOARD = AIR;
     public static final Block WARPED_CUTTING_BOARD = AIR;
+    public static final Block REDSTONE_TOASTER = AIR;
+    public static final Block STICKY_REDSTONE_TOASTER = AIR;
 
 
     public static void register(IForgeRegistry<Block> registry) {
@@ -56,6 +59,9 @@ public class Blocks {
                 new CuttingBoardBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(2).sound(SoundType.WOOD)).setRegistryName(new ResourceLocation(SomeAssemblyRequired.MODID, "dark_oak_cutting_board")),
                 new CuttingBoardBlock(AbstractBlock.Properties.create(Material.NETHER_WOOD).hardnessAndResistance(2).sound(SoundType.HYPHAE)).setRegistryName(new ResourceLocation(SomeAssemblyRequired.MODID, "crimson_cutting_board")),
                 new CuttingBoardBlock(AbstractBlock.Properties.create(Material.NETHER_WOOD).hardnessAndResistance(2).sound(SoundType.HYPHAE)).setRegistryName(new ResourceLocation(SomeAssemblyRequired.MODID, "warped_cutting_board")),
+
+                new RedstoneToasterBlock(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(3.5F), true).setRegistryName(SomeAssemblyRequired.MODID, "redstone_toaster"),
+                new RedstoneToasterBlock(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(3.5F), false).setRegistryName(SomeAssemblyRequired.MODID, "sticky_redstone_toaster"),
 
                 new SandwichBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS, MaterialColor.WOOD).hardnessAndResistance(0.5F).doesNotBlockMovement().setOpaque((state, world, pos) -> false).sound(SoundType.CLOTH).sound(SoundType.CLOTH)).setRegistryName(new ResourceLocation(SomeAssemblyRequired.MODID, "sandwich"))
         );

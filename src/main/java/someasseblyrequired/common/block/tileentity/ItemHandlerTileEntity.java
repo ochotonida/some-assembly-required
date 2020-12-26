@@ -17,20 +17,22 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nullable;
 
 /**
- * A tile entity that contains items which should be synced to clients
+ * A tile entity that contains items which should be synced to clients with a max stack size of 1
  */
 public class ItemHandlerTileEntity extends TileEntity {
 
     private final TileEntityItemHandler inventory;
     private final LazyOptional<TileEntityItemHandler> itemHandler;
+    private final boolean canModifyItems;
 
     public ItemHandlerTileEntity(TileEntityType<? extends ItemHandlerTileEntity> tileEntityType, int size) {
         this(tileEntityType, size, true);
     }
 
-    public ItemHandlerTileEntity(TileEntityType<? extends ItemHandlerTileEntity> tileEntityType, int size, boolean canExtract) {
+    public ItemHandlerTileEntity(TileEntityType<? extends ItemHandlerTileEntity> tileEntityType, int size, boolean canModifyItems) {
         super(tileEntityType);
-        inventory = createItemHandler(size, canExtract);
+        this.canModifyItems = canModifyItems;
+        inventory = createItemHandler(size);
         itemHandler = LazyOptional.of(() -> inventory);
     }
 
@@ -43,6 +45,15 @@ public class ItemHandlerTileEntity extends TileEntity {
      */
     public NonNullList<ItemStack> getItems() {
         return inventory.getItems();
+    }
+
+    /**
+     * Removes all items contained by this tile entity
+     *
+     * @return the subset of the removed items that should be given back to the player in some way
+     */
+    public NonNullList<ItemStack> removeItems() {
+        return inventory.removeItems();
     }
 
     public int getAmountOfItems() {
@@ -118,20 +129,21 @@ public class ItemHandlerTileEntity extends TileEntity {
         }
     }
 
-    protected TileEntityItemHandler createItemHandler(int size, boolean canExtract) {
-        return new TileEntityItemHandler(size, canExtract);
+    protected TileEntityItemHandler createItemHandler(int size) {
+        return new TileEntityItemHandler(size);
+    }
+
+    /**
+     * Whether the items in this item handler can be modified using {@link TileEntityItemHandler::extractItem(int, int, boolean)} or {@link TileEntityItemHandler::insertItem(int, ItemStack, boolean)}
+     */
+    protected boolean canModifyItems() {
+        return canModifyItems;
     }
 
     protected class TileEntityItemHandler extends ItemStackHandler {
 
-        /**
-         * Whether the items in this item handler can be modified using {@link #extractItem(int, int, boolean)} or {@link #insertItem(int, ItemStack, boolean)}
-         */
-        private final boolean canModify;
-
-        protected TileEntityItemHandler(int size, boolean canModify) {
+        protected TileEntityItemHandler(int size) {
             super(size);
-            this.canModify = canModify;
         }
 
         /**
@@ -144,6 +156,19 @@ public class ItemHandlerTileEntity extends TileEntity {
                 if (!stack.isEmpty()) {
                     result.add(stack);
                 }
+            }
+            return result;
+        }
+
+        /**
+         * Removes all items contained by this tile entity
+         *
+         * @return the subset of the removed items that should be given back to the player in some way
+         */
+        public NonNullList<ItemStack> removeItems() {
+            NonNullList<ItemStack> result = getItems();
+            for (int slot = 0; slot < inventory.getSlots(); slot++) {
+                setStackInSlot(slot, ItemStack.EMPTY);
             }
             return result;
         }
@@ -165,12 +190,12 @@ public class ItemHandlerTileEntity extends TileEntity {
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return canModify;
+            return canModifyItems();
         }
 
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            return canModify ? super.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+            return canModifyItems() ? super.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         }
     }
 }
