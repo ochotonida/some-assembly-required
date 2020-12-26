@@ -76,7 +76,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
     }
 
     /**
-     * Insert 1 unit of the specified stack in the toaster, does not modify the specified stack
+     * Insert 1 unit of the specified stack in the toaster
      *
      * @return whether the ingredient successfully got added
      */
@@ -91,48 +91,65 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
         } else {
             slot = 1;
         }
-        return stack.getCount() != getInventory().insertItem(slot, stack, false).getCount();
+
+        if (stack.getCount() != getInventory().insertItem(slot, stack.copy(), false).getCount()) {
+            stack.shrink(1);
+            return true;
+        }
+        return false;
     }
 
     public ItemStack getItem(int slot) {
         return getInventory().getStackInSlot(slot);
     }
 
-    private void processItems() {
+    private boolean hasToastingResult(ItemStack ingredient) {
+        return !getToastingResult(ingredient).isEmpty();
+    }
+
+    private ItemStack getToastingResult(ItemStack ingredient) {
+        if (ingredient.isEmpty() || ingredient.getItem() == Items.CHARRED_MORSEL || world == null) {
+            return ItemStack.EMPTY;
+        }
+
+        IInventory ingredientWrapper = new Inventory(ingredient);
+
+        Optional<? extends IRecipe<IInventory>> toastingRecipe = world.getRecipeManager().getRecipe(RecipeTypes.TOASTING, ingredientWrapper, world);
+
+        IRecipe<IInventory> recipe = null;
+        if (toastingRecipe.isPresent()) {
+            recipe = toastingRecipe.get();
+        } else {
+            Optional<? extends IRecipe<IInventory>> smokingRecipe = world.getRecipeManager().getRecipe(IRecipeType.SMOKING, ingredientWrapper, world);
+            if (smokingRecipe.isPresent()) {
+                recipe = smokingRecipe.get();
+            }
+        }
+
+        if (recipe == null) {
+            if (ingredient.getItem().isFood()) {
+                if (Tags.SMALL_FOODS.contains(ingredient.getItem())) {
+                    return new ItemStack(Items.CHARRED_MORSEL);
+                } else {
+                    return new ItemStack(Items.CHARRED_FOOD);
+                }
+            } else {
+                return ItemStack.EMPTY;
+            }
+        } else {
+            return recipe.getCraftingResult(ingredientWrapper);
+        }
+    }
+
+    private void toastItems() {
         if (world == null) {
             return;
         }
 
         for (int slot = 0; slot < getInventory().getSlots(); slot++) {
-            ItemStack ingredient = getInventory().getStackInSlot(slot);
-            if (ingredient.isEmpty() || ingredient.getItem() == Items.CHARRED_MORSEL) {
-                continue;
-            }
-
-            IInventory ingredientWrapper = new Inventory(ingredient);
-
-            Optional<? extends IRecipe<IInventory>> toastingRecipe = world.getRecipeManager().getRecipe(RecipeTypes.TOASTING, ingredientWrapper, world);
-
-            IRecipe<IInventory> recipe = null;
-            if (toastingRecipe.isPresent()) {
-                recipe = toastingRecipe.get();
-            } else {
-                Optional<? extends IRecipe<IInventory>> smokingRecipe = world.getRecipeManager().getRecipe(IRecipeType.SMOKING, ingredientWrapper, world);
-                if (smokingRecipe.isPresent()) {
-                    recipe = smokingRecipe.get();
-                }
-            }
-
-            if (recipe == null) {
-                if (ingredient.getItem().isFood()) {
-                    if (Tags.SMALL_FOODS.contains(ingredient.getItem())) {
-                        getInventory().setStackInSlot(slot, new ItemStack(Items.CHARRED_MORSEL));
-                    } else {
-                        getInventory().setStackInSlot(slot, new ItemStack(Items.CHARRED_FOOD));
-                    }
-                }
-            } else {
-                getInventory().setStackInSlot(slot, recipe.getCraftingResult(ingredientWrapper));
+            ItemStack result = getToastingResult(getInventory().getStackInSlot(slot));
+            if (!result.isEmpty()) {
+                getInventory().setStackInSlot(slot, result);
             }
         }
     }
@@ -163,7 +180,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
     }
 
     private void stopToasting() {
-        processItems();
+        toastItems();
 
         playerToasting = null;
 
@@ -253,7 +270,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
 
             @Override
             public boolean isItemValid(int slot, ItemStack stack) {
-                return super.isItemValid(slot, stack) && (stack.getItem().isFood() || !(stack.getItem() instanceof BlockItem));
+                return super.isItemValid(slot, stack) && (stack.getItem().isFood() || !(stack.getItem() instanceof BlockItem) || hasToastingResult(stack));
             }
         };
     }

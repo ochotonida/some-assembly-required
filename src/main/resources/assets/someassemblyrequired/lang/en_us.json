@@ -75,7 +75,7 @@
   "item.someassemblyrequired.chopped_beetroot.tooltip": "More hunger-efficient than a whole beetroot and can be eaten faster",
   "item.someassemblyrequired.mayonnaise_bottle.tooltip": "Can be spread on sandwiches",
   "item.someassemblyrequired.charred_food.tooltip": "Perhaps toasting it again will help?",
-  "item.someassemblyrequired.charred_morsel.tooltip": "",
+  "item.someassemblyrequired.charred_morsel.tooltip": "Bite-sized charcoal!",
 
   "spreadtype.someassemblyrequired.water_bottle": "Water",
   "spreadtype.someassemblyrequired.mushroom_stew": "Mushroom Stew",
