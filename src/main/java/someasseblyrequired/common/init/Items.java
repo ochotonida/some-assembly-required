@@ -84,14 +84,15 @@ public class Items {
                 new DrinkableBottleItem(new Item.Properties().group(CREATIVE_TAB).containerItem(net.minecraft.item.Items.GLASS_BOTTLE).maxStackSize(16).food(Foods.MAYONNAISE), SoundEvents.ITEM_HONEY_BOTTLE_DRINK).setRegistryName(SomeAssemblyRequired.MODID, "mayonnaise_bottle"),
 
                 new TooltippedItem(new Item.Properties().group(CREATIVE_TAB).food(Foods.CHARRED_MORSEL)).setRegistryName(SomeAssemblyRequired.MODID, "charred_morsel"),
-                new TooltippedItem(new Item.Properties().group(CREATIVE_TAB).food(Foods.CHARRED_FOOD)).setRegistryName(SomeAssemblyRequired.MODID, "charred_food")
-
+                new TooltippedItem(new Item.Properties().group(CREATIVE_TAB).food(Foods.CHARRED_FOOD)).setRegistryName(SomeAssemblyRequired.MODID, "charred_food"),
+                new Item(new Item.Properties().group(CREATIVE_TAB).food(Foods.CHARRED_MEAT)).setRegistryName(SomeAssemblyRequired.MODID, "charred_beef")
         );
     }
 
     public static class Foods {
-        public static Food CHARRED_FOOD = new Food.Builder().hunger(1).saturation(0.1F).build();
-        public static Food CHARRED_MORSEL = new Food.Builder().hunger(1).saturation(0).build();
+        public static Food CHARRED_FOOD = new Food.Builder().hunger(1).saturation(0.1F).effect(() -> new EffectInstance(Effects.NAUSEA, 100, 0), 0.4F).build();
+        public static Food CHARRED_MORSEL = new Food.Builder().hunger(1).saturation(0).effect(() -> new EffectInstance(Effects.NAUSEA, 100, 0), 0.2F).build();
+        public static Food CHARRED_MEAT = new Food.Builder().hunger(1).saturation(0.1F).effect(() -> new EffectInstance(Effects.NAUSEA, 100, 0), 0.4F).meat().build();
         public static Food BREAD_SLICE = new Food.Builder().hunger(2).saturation(0.5F).fastToEat().build();
         public static Food TOASTED_BREAD_SLICE = new Food.Builder().hunger(3).saturation(0.6F).fastToEat().build();
         public static Food APPLE_SLICES = new Food.Builder().hunger(2).saturation(0.5F).fastToEat().build();

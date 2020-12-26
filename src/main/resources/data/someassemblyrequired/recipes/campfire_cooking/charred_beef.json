@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:cooked_beef"
   },
-  "result": "someassemblyrequired:charred_food",
+  "result": "someassemblyrequired:charred_beef",
   "experience": 0.35,
-  "cookingtime": 100
+  "cookingtime": 600
 }
