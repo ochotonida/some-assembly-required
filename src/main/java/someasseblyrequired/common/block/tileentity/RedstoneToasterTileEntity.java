@@ -11,8 +11,10 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.Explosion;
@@ -65,8 +67,15 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
     public void explode() {
         if (world != null && !world.isRemote()) {
             PlayerEntity player = playerToasting == null ? null : world.getPlayerByUuid(playerToasting);
+            NonNullList<ItemStack> items = removeItems();
             world.removeBlock(pos, true);
             world.createExplosion(player, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2.2F, true, Explosion.Mode.DESTROY);
+            for (ItemStack stack : items) {
+                ItemEntity entity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
+                entity.setDefaultPickupDelay();
+                entity.setMotion(entity.getMotion().scale(2.5));
+                world.addEntity(entity);
+            }
         }
     }
 
@@ -156,6 +165,9 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
 
     public boolean startToasting(PlayerEntity entity) {
         playerToasting = entity.getUniqueID();
+        if (world != null && world.getBlockState(pos).get(BlockStateProperties.WATERLOGGED)) {
+            explode();
+        }
         return startToasting();
     }
 

@@ -114,7 +114,7 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock {
             world.setBlockState(pos, state.with(BlockStateProperties.POWERED, false), 4);
         }
 
-        if (pos.equals(fromPos) && world.getBlockState(pos).get(BlockStateProperties.WATERLOGGED)) {
+        if (world.getBlockState(pos).get(BlockStateProperties.WATERLOGGED)) {
             TileEntity tileEntity = world.getTileEntity(pos);
             if (tileEntity instanceof RedstoneToasterTileEntity && ((RedstoneToasterTileEntity) tileEntity).isToasting()) {
                 ((RedstoneToasterTileEntity) tileEntity).explode();
