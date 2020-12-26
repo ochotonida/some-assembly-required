@@ -10,6 +10,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.wrapper.EmptyHandler;
 import someasseblyrequired.common.init.Items;
 import someasseblyrequired.common.init.SpreadTypes;
 import someasseblyrequired.common.init.Tags;
@@ -207,13 +208,22 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            if (stack.getItem() == Items.SANDWICH) {
-                return getStackInSlot(0).isEmpty(); // TODO: allow sandwiches to be stacked on top of one another
+            if (slot != 0 && getStackInSlot(slot - 1).isEmpty() // the previous slot must have an item
+                    || slot >= getSlots() || !getStackInSlot(slot).isEmpty()) { // the specified slot must be empty
+                return false;
             }
 
-            return (slot == 0 || !getStackInSlot(slot - 1).isEmpty()) // the previous slot must have an item
-                    && slot < getSlots() && getStackInSlot(slot).isEmpty() // the slot must be empty
-                    && (stack.isFood() || stack.getItem() == Items.SPREAD || SpreadTypes.hasSpreadType(stack.getItem())) // the item must be edible
+            if (stack.getItem() == Items.SANDWICH) {
+                IItemHandler itemHandler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);
+
+                int sandwichSize;
+                for (sandwichSize = 0; sandwichSize < itemHandler.getSlots() && !itemHandler.getStackInSlot(sandwichSize).isEmpty(); sandwichSize++)
+                    ;
+
+                return sandwichSize > 0 && sandwichSize <= getSlots() - getAmountOfItems();
+            }
+
+            return (stack.isFood() || stack.getItem() == Items.SPREAD || SpreadTypes.hasSpreadType(stack.getItem())) // the item must be edible
                     && (slot > 0 || Tags.BREADS.contains(stack.getItem())); // the first item must be bread
         }
 
@@ -231,9 +241,10 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
 
             // copy the sandwich's ingredients
             if (stack.getItem() == Items.SANDWICH) {
-                stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(sandwichHandler -> {
-                    for (int sandwichSlot = 0; sandwichSlot < sandwichHandler.getSlots(); sandwichSlot++) {
-                        setStackInSlot(sandwichSlot, sandwichHandler.getStackInSlot(sandwichSlot));
+                stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(sandwichItemHandler -> {
+                    int slotOffset = getAmountOfItems();
+                    for (int sandwichSlot = 0; sandwichSlot < sandwichItemHandler.getSlots() && !sandwichItemHandler.getStackInSlot(sandwichSlot).isEmpty(); sandwichSlot++) {
+                        setStackInSlot(slotOffset + sandwichSlot, sandwichItemHandler.getStackInSlot(sandwichSlot));
                     }
                 });
                 return ItemHandlerHelper.copyStackWithSize(stack, stack.getCount() - 1);
