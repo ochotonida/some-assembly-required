@@ -26,7 +26,7 @@ public class CuttingBoardRenderer extends TileEntityRenderer<CuttingBoardTileEnt
 
             matrixStack.translate(0.5, 1 / 16D, 0.5);
 
-            if (tileEntity.getWorld() != null) {
+            if (tileEntity.getWorld() != null && tileEntity.getWorld().getBlockState(tileEntity.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
                 matrixStack.rotate(Vector3f.YP.rotationDegrees(-tileEntity.getWorld().getBlockState(tileEntity.getPos()).get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle()));
             }
 

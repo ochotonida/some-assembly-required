@@ -22,7 +22,7 @@ public class RedstoneToasterRenderer extends TileEntityRenderer<RedstoneToasterT
         matrixStack.translate(0.5, 0.5, 0.5);
         matrixStack.scale(0.5F, 0.5F, 0.5F);
 
-        if (tileEntity.getWorld() != null) {
+        if (tileEntity.getWorld() != null && tileEntity.getWorld().getBlockState(tileEntity.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
             matrixStack.rotate(Vector3f.YP.rotationDegrees(90 - tileEntity.getWorld().getBlockState(tileEntity.getPos()).get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle()));
         }
 

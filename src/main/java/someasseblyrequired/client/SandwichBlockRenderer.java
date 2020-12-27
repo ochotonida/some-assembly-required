@@ -25,7 +25,7 @@ public class SandwichBlockRenderer extends TileEntityRenderer<ItemHandlerTileEnt
         matrixStack.push();
         matrixStack.translate(0.5, 1 / 64D, 0.5);
         matrixStack.scale(0.5F, 0.5F, 0.5F);
-        if (tileEntity.getWorld() != null) {
+        if (tileEntity.getWorld() != null && tileEntity.getWorld().getBlockState(tileEntity.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
             matrixStack.rotate(Vector3f.YP.rotationDegrees(-tileEntity.getWorld().getBlockState(tileEntity.getPos()).get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle()));
         }
         matrixStack.rotate(Vector3f.XP.rotationDegrees(90));
