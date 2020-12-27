@@ -5,7 +5,7 @@ issueTrackerURL = "https://github.com/ochotonida/some-assembly-required/issues"
 
 [[mods]]
 modId = "someassemblyrequired"
-version = "1.16.4-1.2.0"
+version = "1.16.4-1.2.1"
 displayName = "Some Assembly Required"
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/some-assembly-required"
 logoFile = "logo.png"
