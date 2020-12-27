@@ -1,0 +1,8 @@
+{
+  "item": "someassemblyrequired:mayonnaise_bottle",
+  "container": "minecraft:glass_bottle",
+  "displayname": {
+    "translate": "spreadtype.someassemblyrequired.mayonnaise_bottle"
+  },
+  "color": 14272908
+}

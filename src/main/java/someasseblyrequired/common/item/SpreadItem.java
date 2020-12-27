@@ -5,8 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import someasseblyrequired.common.init.SpreadTypes;
 import someasseblyrequired.common.item.spreadtype.SpreadType;
+import someasseblyrequired.common.item.spreadtype.SpreadTypeManager;
 
 public class SpreadItem extends TooltippedItem {
 
@@ -18,12 +18,9 @@ public class SpreadItem extends TooltippedItem {
     public ITextComponent getDisplayName(ItemStack stack) {
         ItemStack ingredient = ItemStack.read(stack.getOrCreateChildTag("Ingredient"));
         if (!ingredient.isEmpty()) {
-            SpreadType spreadType = SpreadTypes.findSpreadType(ingredient.getItem());
+            SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(ingredient.getItem());
             if (spreadType != null) {
-                ITextComponent name = spreadType.getDisplayName(ingredient);
-                if (name != null) {
-                    return name;
-                }
+                return spreadType.getDisplayName(ingredient);
             }
             return ingredient.getDisplayName();
         }
@@ -36,7 +33,7 @@ public class SpreadItem extends TooltippedItem {
 
         ItemStack ingredient = ItemStack.read(stack.getOrCreateChildTag("Ingredient"));
         if (!ingredient.isEmpty()) {
-            SpreadType spreadType = SpreadTypes.findSpreadType(ingredient.getItem());
+            SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(ingredient.getItem());
             if (spreadType != null) {
                 Item containerItem = spreadType.getContainer(stack);
                 ItemStack result = ingredient.onItemUseFinish(world, entity);

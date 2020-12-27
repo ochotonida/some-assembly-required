@@ -3,13 +3,10 @@ package someasseblyrequired.common.item.spreadtype;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.registries.ForgeRegistryEntry;
-import someasseblyrequired.common.init.SpreadTypes;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
@@ -35,6 +32,6 @@ public abstract class SpreadType extends ForgeRegistryEntry<SpreadType> {
         return getContainer(stack) != Items.AIR;
     }
 
-    @Nullable
+    @Nonnull
     public abstract ITextComponent getDisplayName(ItemStack stack);
 }

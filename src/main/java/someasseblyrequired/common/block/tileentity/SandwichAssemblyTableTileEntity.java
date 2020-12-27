@@ -12,10 +12,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import someasseblyrequired.common.init.Items;
-import someasseblyrequired.common.init.SpreadTypes;
 import someasseblyrequired.common.init.Tags;
 import someasseblyrequired.common.init.TileEntityTypes;
 import someasseblyrequired.common.item.spreadtype.SpreadType;
+import someasseblyrequired.common.item.spreadtype.SpreadTypeManager;
 
 import javax.annotation.Nullable;
 
@@ -75,7 +75,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
      * @return whether the ingredient successfully got added
      */
     public boolean addIngredient(ItemStack stack) {
-        SpreadType spreadType = SpreadTypes.findSpreadType(stack.getItem());
+        SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(stack.getItem());
         ItemStack ingredient = spreadType == null ? stack.copy() : createSpreadItem(spreadType, stack);
 
         int nextEmptySlot = getAmountOfItems();
@@ -223,7 +223,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
                 return sandwichSize > 0 && sandwichSize <= getSlots() - getAmountOfItems();
             }
 
-            return (stack.isFood() || stack.getItem() == Items.SPREAD || SpreadTypes.hasSpreadType(stack.getItem())) // the item must be edible
+            return (stack.isFood() || stack.getItem() == Items.SPREAD || SpreadTypeManager.INSTANCE.hasSpreadType(stack.getItem())) // the item must be edible
                     && (slot > 0 || Tags.BREADS.contains(stack.getItem())); // the first item must be bread
         }
 
@@ -251,7 +251,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             }
 
             // convert ingredients to spreads when possible
-            SpreadType spreadType = SpreadTypes.findSpreadType(stack.getItem());
+            SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(stack.getItem());
             ItemStack ingredient = spreadType == null ? stack.copy() : createSpreadItem(spreadType, stack);
 
             // spawn the spread's container as an item

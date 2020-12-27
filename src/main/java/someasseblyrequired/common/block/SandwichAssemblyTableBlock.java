@@ -22,10 +22,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import someasseblyrequired.common.block.tileentity.SandwichAssemblyTableTileEntity;
 import someasseblyrequired.common.init.Items;
-import someasseblyrequired.common.init.SpreadTypes;
 import someasseblyrequired.common.init.Tags;
 import someasseblyrequired.common.init.TileEntityTypes;
 import someasseblyrequired.common.item.spreadtype.SpreadType;
+import someasseblyrequired.common.item.spreadtype.SpreadTypeManager;
 
 public class SandwichAssemblyTableBlock extends HorizontalBlock {
 
@@ -88,7 +88,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
             // try to add the ingredient
             if (sandwichTable.addIngredient(heldItem)) {
                 if (!player.isCreative()) {
-                    SpreadType spreadType = SpreadTypes.findSpreadType(heldItem.getItem());
+                    SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(heldItem.getItem());
                     // decrease the player's held item by one if the ingredient successfully got added
                     player.getHeldItem(hand).shrink(1);
 
@@ -102,7 +102,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
                         }
                     }
                 }
-            } else if (heldItem.isFood() || heldItem.getItem() == Items.SPREAD || SpreadTypes.hasSpreadType(heldItem.getItem())) {
+            } else if (heldItem.isFood() || heldItem.getItem() == Items.SPREAD || SpreadTypeManager.INSTANCE.hasSpreadType(heldItem.getItem())) {
                 if (sandwichTable.getAmountOfItems() == 0 && !Tags.BREADS.contains(heldItem.getItem())) {
                     player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
                 } else if (sandwichTable.getAmountOfItems() == sandwichTable.getInventorySize()) {

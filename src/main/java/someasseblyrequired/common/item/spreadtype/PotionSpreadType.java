@@ -29,6 +29,6 @@ public class PotionSpreadType extends SpreadType {
         if (PotionUtils.getPotionFromItem(stack) == Potions.WATER) {
             return new TranslationTextComponent("spreadtype.someassemblyrequired.water_bottle");
         }
-        return null;
+        return stack.getDisplayName();
     }
 }

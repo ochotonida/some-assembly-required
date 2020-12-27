@@ -1,0 +1,8 @@
+{
+  "item": "minecraft:suspicious_stew",
+  "container": "minecraft:bowl",
+  "displayname": {
+    "translate": "item.minecraft.suspicious_stew"
+  },
+  "color": 12829790
+}
