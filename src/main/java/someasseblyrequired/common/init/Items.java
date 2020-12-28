@@ -53,6 +53,11 @@ public class Items {
         return new TooltippedBlockItem(block, new Item.Properties().group(CREATIVE_TAB), tooltipTranslationKey).setRegistryName(block.getRegistryName());
     }
 
+    private static Item createItem(Block block) {
+        //noinspection ConstantConditions
+        return new TooltippedBlockItem(block, new Item.Properties().group(CREATIVE_TAB)).setRegistryName(block.getRegistryName());
+    }
+
     public static void register(IForgeRegistry<Item> registry) {
 
         registry.registerAll(
@@ -74,8 +79,8 @@ public class Items {
                 createItem(Blocks.CRIMSON_CUTTING_BOARD, "cutting_board"),
                 createItem(Blocks.WARPED_CUTTING_BOARD, "cutting_board"),
 
-                createItem(Blocks.REDSTONE_TOASTER, "redstone_toaster"),
-                createItem(Blocks.STICKY_REDSTONE_TOASTER, "redstone_toaster"),
+                createItem(Blocks.REDSTONE_TOASTER),
+                createItem(Blocks.STICKY_REDSTONE_TOASTER),
 
                 new SandwichItem(Blocks.SANDWICH, new Item.Properties().maxStackSize(8).food(new Food.Builder().setAlwaysEdible().build()).setISTER(() -> SandwichItemRenderer::new)).setRegistryName(SomeAssemblyRequired.MODID, "sandwich"),
 
