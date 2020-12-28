@@ -47,9 +47,9 @@ public class SandwichItem extends BlockItem {
             int size;
             for (size = 0; size < handler.getSlots() && !handler.getStackInSlot(size).isEmpty(); size++) ;
 
-            for (int slot = 0; slot < size; slot++) {
+            for (int slot = size - 1; slot >= 0; slot--) {
                 // only show 8 ingredients (or 9, if there are exactly 9 ingredients)
-                if (slot >= 8 && size >= 10) {
+                if (slot < size - 8 && size >= 10) {
                     tooltip.add(new TranslationTextComponent("item.someassemblyrequired.sandwich.tooltip.truncate_info", size - 8).mergeStyle(TextFormatting.GRAY).mergeStyle(TextFormatting.ITALIC));
                     return;
                 }
@@ -148,6 +148,8 @@ public class SandwichItem extends BlockItem {
                 return "quintuple";
             case 6:
                 return "sextuple";
+            case 7:
+                return "septuple";
             default:
                 return "very_large";
         }
