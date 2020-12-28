@@ -30,7 +30,6 @@ public class Items {
     public static final Item TOASTED_BREAD_SLICE = AIR;
     public static final Item MAYONNAISE_BOTTLE = AIR;
     public static final Item CHARRED_FOOD = AIR;
-    public static final Item SWEET_BERRY_JAM_BOTTLE = AIR;
 
     private static final ItemGroup CREATIVE_TAB = new ItemGroup(SomeAssemblyRequired.MODID) {
 

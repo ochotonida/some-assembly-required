@@ -32,11 +32,21 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
         super(TileEntityTypes.SANDWICH_ASSEMBLY_TABLE, 16);
     }
 
-    private static ItemStack createSpreadItem(SpreadType spreadType, ItemStack ingredient) {
+    private ItemStack createSpreadItem(SpreadType spreadType, ItemStack ingredient) {
         CompoundNBT spreadNBT = new CompoundNBT();
         spreadNBT.putInt("Color", spreadType.getColor(ingredient));
         spreadNBT.putBoolean("HasEffect", ingredient.hasEffect());
         spreadNBT.put("Ingredient", ingredient.copy().split(1).write(new CompoundNBT()));
+
+        for (ItemStack stack : getItems()) {
+            if (Tags.BREAD.contains(stack.getItem())) {
+                if (Tags.BREAD_LOAVES.contains(stack.getItem())) {
+                    spreadNBT.putBoolean("IsOnLoaf", true);
+                }
+                break;
+            }
+        }
+
         ItemStack spread = new ItemStack(Items.SPREAD);
         spread.setTag(spreadNBT);
         return spread;
@@ -60,7 +70,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
 
     public boolean hasBreadAsTopIngredient() {
         if (getAmountOfItems() > 0) {
-            return Tags.BREADS.contains(getInventory().getStackInSlot(getAmountOfItems() - 1).getItem());
+            return Tags.BREAD.contains(getInventory().getStackInSlot(getAmountOfItems() - 1).getItem());
         }
         return false;
     }
@@ -113,7 +123,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             int nextEmptySlot = getAmountOfItems();
 
             // there must be at least 1 item and the top item must be bread
-            if (nextEmptySlot < 2 || !Tags.BREADS.contains(getInventory().getStackInSlot(nextEmptySlot - 1).getItem())) {
+            if (nextEmptySlot < 2 || !Tags.BREAD.contains(getInventory().getStackInSlot(nextEmptySlot - 1).getItem())) {
                 sandwich = ItemStack.EMPTY;
             } else {
                 sandwich = new ItemStack(Items.SANDWICH);
@@ -224,7 +234,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             }
 
             return (stack.isFood() || stack.getItem() == Items.SPREAD || SpreadTypeManager.INSTANCE.hasSpreadType(stack.getItem())) // the item must be edible
-                    && (slot > 0 || Tags.BREADS.contains(stack.getItem())); // the first item must be bread
+                    && (slot > 0 || Tags.BREAD.contains(stack.getItem())); // the first item must be bread
         }
 
         @Override

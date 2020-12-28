@@ -97,8 +97,8 @@ public class SandwichItem extends BlockItem {
         if (ingredients.size() >= 3) {
             ItemStack ingredient = ingredients.get(1);
             if (ingredients.size() % 2 != 0
-                    && ingredients.stream().allMatch(sandwichComponent -> ingredients.indexOf(sandwichComponent) % 2 == 0 ? Tags.BREADS.contains(sandwichComponent.getItem()) : ItemStack.areItemStacksEqual(ingredient, sandwichComponent))
-                    && (ingredient.getItem() == Items.TOASTED_BREAD_SLICE || !Tags.BREADS.contains(ingredient.getItem()))) {
+                    && ingredients.stream().allMatch(sandwichComponent -> ingredients.indexOf(sandwichComponent) % 2 == 0 ? Tags.BREAD.contains(sandwichComponent.getItem()) : ItemStack.areItemStacksEqual(ingredient, sandwichComponent))
+                    && (ingredient.getItem() == Items.TOASTED_BREAD_SLICE || !Tags.BREAD.contains(ingredient.getItem()))) {
 
                 if (ingredient.getTag() != null && ingredient.getTag().contains("Ingredient")) {
                     ItemStack spreadItem = ItemStack.read(ingredient.getOrCreateChildTag("Ingredient"));
@@ -118,7 +118,7 @@ public class SandwichItem extends BlockItem {
 
         int breadAmount = 0;
         for (ItemStack ingredient : ingredients) {
-            if (Tags.BREADS.contains(ingredient.getItem())) {
+            if (Tags.BREAD.contains(ingredient.getItem())) {
                 breadAmount++;
             }
         }

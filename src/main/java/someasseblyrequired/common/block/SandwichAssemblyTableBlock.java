@@ -103,7 +103,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
                     }
                 }
             } else if (heldItem.isFood() || heldItem.getItem() == Items.SPREAD || SpreadTypeManager.INSTANCE.hasSpreadType(heldItem.getItem())) {
-                if (sandwichTable.getAmountOfItems() == 0 && !Tags.BREADS.contains(heldItem.getItem())) {
+                if (sandwichTable.getAmountOfItems() == 0 && !Tags.BREAD.contains(heldItem.getItem())) {
                     player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
                 } else if (sandwichTable.getAmountOfItems() == sandwichTable.getInventorySize()) {
                     player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.full_sandwich"), true);
