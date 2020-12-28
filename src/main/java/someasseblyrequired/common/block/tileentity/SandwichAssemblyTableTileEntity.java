@@ -18,6 +18,7 @@ import someasseblyrequired.common.item.spreadtype.SpreadType;
 import someasseblyrequired.common.item.spreadtype.SpreadTypeManager;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
 
@@ -38,9 +39,10 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
         spreadNBT.putBoolean("HasEffect", ingredient.hasEffect());
         spreadNBT.put("Ingredient", ingredient.copy().split(1).write(new CompoundNBT()));
 
-        for (ItemStack stack : getItems()) {
-            if (Tags.BREAD.contains(stack.getItem())) {
-                if (Tags.BREAD_LOAVES.contains(stack.getItem())) {
+        List<ItemStack> ingredients = getItems();
+        for (int slot = ingredients.size() - 1; slot >= 0; slot--) {
+            if (Tags.BREAD.contains(ingredients.get(slot).getItem())) {
+                if (Tags.BREAD_LOAVES.contains(ingredients.get(slot).getItem())) {
                     spreadNBT.putBoolean("IsOnLoaf", true);
                 }
                 break;

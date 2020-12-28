@@ -96,13 +96,10 @@
   "item.someassemblyrequired.charred_morsel.tooltip": "Bite-sized charcoal!",
 
   "spreadtype.someassemblyrequired.water_bottle": "Water",
-  "spreadtype.someassemblyrequired.mushroom_stew": "Mushroom Stew",
-  "spreadtype.someassemblyrequired.rabbit_stew": "Rabbit Stew",
-  "spreadtype.someassemblyrequired.beetroot_soup": "Beetroot Soup",
   "spreadtype.someassemblyrequired.honey_bottle": "Honey",
-  "spreadtype.someassemblyrequired.suspicious_stew": "Suspicious Stew",
-  "spreadtype.someassemblyrequired.mayonnaise": "Mayonnaise",
-  "spreadtype.someassemblyrequired.sweet_berry_jam": "Sweet Berry Jam",
+  "spreadtype.someassemblyrequired.milk_bucket": "Milk",
+  "spreadtype.someassemblyrequired.mayonnaise_bottle": "Mayonnaise",
+  "spreadtype.someassemblyrequired.sweet_berry_jam_bottle": "Sweet Berry Jam",
 
   "message.someassemblyrequired.top_bread": "Missing top bread slice!",
   "message.someassemblyrequired.bottom_bread": "Missing bottom bread slice!",
