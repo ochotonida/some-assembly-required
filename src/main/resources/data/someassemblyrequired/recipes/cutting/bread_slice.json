@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:bread"
   },
+  "tool": {
+    "tag": "forge:tools/knives"
+  },
   "result": {
     "item": "someassemblyrequired:bread_slice",
     "count": 4

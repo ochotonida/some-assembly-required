@@ -9,9 +9,11 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import someasseblyrequired.common.block.CuttingBoardBlock;
 import someasseblyrequired.common.init.RecipeTypes;
 import someasseblyrequired.common.init.TileEntityTypes;
-import someasseblyrequired.common.recipe.ConversionRecipe;
+import someasseblyrequired.common.recipe.CuttingRecipe;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
 
 public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
 
@@ -55,15 +57,15 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
         return getInventory().extractItem(0, 1, false);
     }
 
-    public ItemStack cutIngredient() {
+    public List<ItemStack> cutIngredient(ItemStack tool) {
         if (world != null) {
-            ConversionRecipe recipe = world.getRecipeManager().getRecipe(RecipeTypes.CUTTING, new RecipeWrapper(getInventory()), world).orElse(null);
-            if (recipe != null) {
+            CuttingRecipe recipe = world.getRecipeManager().getRecipe(RecipeTypes.CUTTING, new RecipeWrapper(getInventory()), world).orElse(null);
+            if (recipe != null && recipe.getTool().test(tool)) {
                 getInventory().extractItem(0, 1, false);
-                return recipe.getRecipeOutput().copy();
+                return recipe.getRecipeOutputs();
             }
         }
-        return ItemStack.EMPTY;
+        return Collections.emptyList();
     }
 
     @Override

@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:golden_apple"
   },
+  "tool": {
+    "tag": "forge:tools/knives"
+  },
   "result": {
     "item": "someassemblyrequired:golden_apple_slices",
     "count": 2

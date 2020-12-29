@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:apple"
   },
+  "tool": {
+    "tag": "forge:tools/knives"
+  },
   "result": {
     "item": "someassemblyrequired:apple_slices",
     "count": 2

@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "someassemblyrequired:toasted_crimson_fungus"
   },
+  "tool": {
+    "tag": "forge:tools/knives"
+  },
   "result": {
     "item": "someassemblyrequired:sliced_toasted_crimson_fungus",
     "count": 2

@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:melon"
   },
+  "tool": {
+    "tag": "forge:tools/knives"
+  },
   "result": {
     "item": "minecraft:melon_slice",
     "count": 9

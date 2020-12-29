@@ -21,6 +21,8 @@ import someasseblyrequired.common.block.tileentity.CuttingBoardTileEntity;
 import someasseblyrequired.common.init.Tags;
 import someasseblyrequired.common.init.TileEntityTypes;
 
+import java.util.List;
+
 public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
 
     private static final VoxelShape SHAPE_NORTH_SOUTH = Block.makeCuboidShape(1, 0, 2, 15, 1, 14);
@@ -46,19 +48,17 @@ public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
         ItemStack heldItem = player.getHeldItem(hand);
 
         if (!cuttingBoard.hasIngredient() && !heldItem.isEmpty()) {
-            return addIngredient(heldItem, cuttingBoard, world, pos, player) ? ActionResultType.SUCCESS : ActionResultType.PASS;
-        } else if (isKnife(heldItem)) {
-            return cutIngredient(cuttingBoard, world, pos, player) ? ActionResultType.SUCCESS : ActionResultType.PASS;
+            return addIngredient(heldItem, cuttingBoard, world, pos, player, hand) ? ActionResultType.SUCCESS : ActionResultType.PASS;
         } else if (heldItem.isEmpty() && hand == Hand.MAIN_HAND) {
             return removeIngredient(cuttingBoard, world, pos, player) ? ActionResultType.SUCCESS : ActionResultType.PASS;
+        } else {
+            return cutIngredient(heldItem, cuttingBoard, world, pos, player) ? ActionResultType.SUCCESS : ActionResultType.PASS;
         }
-
-        return ActionResultType.PASS;
     }
 
-    private boolean addIngredient(ItemStack ingredient, CuttingBoardTileEntity cuttingBoard, World world, BlockPos pos, PlayerEntity player) {
-        if (isKnife(ingredient) && ingredient != player.getHeldItem(Hand.OFF_HAND) && !player.getHeldItem(Hand.OFF_HAND).isEmpty()) {
-            // add off hand ingredients to cutting board first before adding the knife
+    private boolean addIngredient(ItemStack ingredient, CuttingBoardTileEntity cuttingBoard, World world, BlockPos pos, PlayerEntity player, Hand hand) {
+        if (!player.getHeldItem(Hand.OFF_HAND).isEmpty() && hand.equals(Hand.MAIN_HAND) && !(player.getHeldItem(hand).getItem() instanceof BlockItem)) {
+            // prefer off-hand placement of items
             return false;
         }
 
@@ -79,14 +79,18 @@ public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
         return true;
     }
 
-    private boolean cutIngredient(CuttingBoardTileEntity cuttingBoard, World world, BlockPos pos, PlayerEntity player) {
-        ItemStack result = cuttingBoard.cutIngredient();
-        if (result.isEmpty()) {
+    private boolean cutIngredient(ItemStack tool, CuttingBoardTileEntity cuttingBoard, World world, BlockPos pos, PlayerEntity player) {
+        List<ItemStack> results = cuttingBoard.cutIngredient(tool);
+        if (results.isEmpty()) {
             return false;
         }
 
-        ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, result);
-        world.addEntity(item);
+        for (ItemStack result : results) {
+            ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, result);
+            item.setPickupDelay(5);
+            world.addEntity(item);
+        }
+
         world.playSound(player, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, SoundEvents.BLOCK_PUMPKIN_CARVE, SoundCategory.BLOCKS, 0.7F, 0.8F);
 
         return true;
@@ -97,7 +101,7 @@ public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
         if (!ingredient.isEmpty()) {
             if (!player.isCreative()) {
                 ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, ingredient);
-                item.setDefaultPickupDelay();
+                item.setPickupDelay(5);
                 world.addEntity(item);
             }
             return true;

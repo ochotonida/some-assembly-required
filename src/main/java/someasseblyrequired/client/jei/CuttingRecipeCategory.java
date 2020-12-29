@@ -13,7 +13,6 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import someasseblyrequired.SomeAssemblyRequired;
 import someasseblyrequired.common.init.Blocks;
-import someasseblyrequired.common.init.Tags;
 import someasseblyrequired.common.recipe.CuttingRecipe;
 
 import java.util.Arrays;
@@ -23,14 +22,12 @@ public class CuttingRecipeCategory implements IRecipeCategory<CuttingRecipe> {
 
     public static final ResourceLocation ID = new ResourceLocation(SomeAssemblyRequired.MODID, "cutting");
 
-    private static final Ingredient KNIFE = Ingredient.fromTag(Tags.KNIVES);
-
     private final IDrawable background;
     private final IDrawable icon;
     private final String title;
 
     public CuttingRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createDrawable(new ResourceLocation(SomeAssemblyRequired.MODID, "textures/gui/cutting_recipe.png"), 0, 0, 95, 39);
+        background = guiHelper.createDrawable(new ResourceLocation(SomeAssemblyRequired.MODID, "textures/gui/cutting_recipe.png"), 0, 0, 110, 39);
         icon = guiHelper.createDrawableIngredient(new ItemStack(Blocks.OAK_CUTTING_BOARD));
         title = I18n.format("recipecategory." + SomeAssemblyRequired.MODID + ".cutting");
     }
@@ -63,22 +60,33 @@ public class CuttingRecipeCategory implements IRecipeCategory<CuttingRecipe> {
     @Override
     public void setIngredients(CuttingRecipe recipe, IIngredients ingredients) {
         List<Ingredient> list = recipe.getIngredients();
-        list.add(KNIFE);
+        list.add(recipe.getTool());
         ingredients.setInputIngredients(list);
-        ingredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
+        ingredients.setOutputs(VanillaTypes.ITEM, recipe.getRecipeOutputs());
     }
 
     @Override
     public void setRecipe(IRecipeLayout layout, CuttingRecipe recipe, IIngredients ingredients) {
         IGuiItemStackGroup stacks = layout.getItemStacks();
 
-        stacks.init(0, true, 12, 9);
-        stacks.set(0, Arrays.asList(recipe.getIngredients().get(0).getMatchingStacks()));
+        int index = 0;
 
-        stacks.init(1, true, 49, 9);
-        stacks.set(1, Arrays.asList(KNIFE.getMatchingStacks()));
+        stacks.init(index, true, 12, 9);
+        stacks.set(index++, Arrays.asList(recipe.getIngredients().get(0).getMatchingStacks()));
 
-        stacks.init(2, true, 75, 11);
-        stacks.set(2, recipe.getRecipeOutput());
+        stacks.init(index, true, 49, 9);
+        stacks.set(index++, Arrays.asList(recipe.getTool().getMatchingStacks()));
+
+        List<ItemStack> results = recipe.getRecipeOutputs();
+        int y = 9 - (results.size() > 2 ? 9 : 0);
+        int x = 80 - (results.size() > 1 ? 9 : 0);
+
+        for (int i = 0; i < results.size(); i++) {
+            stacks.init(index + i, true, x + i % 2 * 18, y);
+            stacks.set(index + i, results.get(i));
+            if (i % 2 == 1) {
+                y += 18;
+            }
+        }
     }
 }

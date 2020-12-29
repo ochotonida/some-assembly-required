@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:porkchop"
   },
+  "tool": {
+    "tag": "forge:tools/knives"
+  },
   "result": {
     "item": "someassemblyrequired:pork_cuts",
     "count": 3

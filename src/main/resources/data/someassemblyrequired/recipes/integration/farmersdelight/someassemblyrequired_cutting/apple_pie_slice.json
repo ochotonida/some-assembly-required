@@ -1,0 +1,19 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "someassemblyrequired:cutting",
+  "ingredient": {
+    "item": "farmersdelight:apple_pie"
+  },
+  "tool": {
+    "tag": "forge:tools/knives"
+  },
+  "result": {
+    "item": "farmersdelight:apple_pie_slice",
+    "count": 4
+  }
+}

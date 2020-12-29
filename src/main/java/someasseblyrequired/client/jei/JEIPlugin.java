@@ -40,6 +40,7 @@ public class JEIPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         registration.addRecipes(findRecipes(RecipeTypes.CUTTING), CuttingRecipeCategory.ID);
         registration.addRecipes(findRecipes(RecipeTypes.TOASTING), ToastingRecipeCategory.ID);
+        // recipes with more than one possible result have an empty output, ignore these (for JEI only)
         registration.addRecipes(findRecipes(IRecipeType.SMOKING).stream().filter((recipe) -> !recipe.getRecipeOutput().isEmpty()).collect(Collectors.toList()), ToastingRecipeCategory.ID);
     }
 }

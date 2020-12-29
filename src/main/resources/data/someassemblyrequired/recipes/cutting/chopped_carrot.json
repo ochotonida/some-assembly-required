@@ -3,6 +3,9 @@
   "ingredient": {
     "item": "minecraft:carrot"
   },
+  "tool": {
+    "tag": "forge:tools/knives"
+  },
   "result": {
     "item": "someassemblyrequired:chopped_carrot",
     "count": 2
