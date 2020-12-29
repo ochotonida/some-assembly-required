@@ -9,12 +9,15 @@ import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TranslationTextComponent;
 import someasseblyrequired.SomeAssemblyRequired;
 import someasseblyrequired.common.init.Blocks;
 
@@ -87,5 +90,10 @@ public class ToastingRecipeCategory implements IRecipeCategory<IRecipe> {
     @Override
     public void draw(IRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
         arrow.draw(matrixStack, 44, 12);
+
+        TranslationTextComponent timeString = new TranslationTextComponent("gui.jei.category.smelting.time.seconds", 12);
+        FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
+        int stringWidth = fontRenderer.getStringPropertyWidth(timeString);
+        fontRenderer.func_243248_b(matrixStack, timeString, background.getWidth() - stringWidth - 8, 33, 0xFF808080);
     }
 }
