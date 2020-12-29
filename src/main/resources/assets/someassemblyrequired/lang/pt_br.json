@@ -4,6 +4,10 @@
   "recipecategory.someassemblyrequired.cutting": "Corte",
   "recipecategory.someassemblyrequired.toasting": "Torrar",
 
+  "message.someassemblyrequired.top_bread": "Fatia de pão superior ausente! ",
+  "message.someassemblyrequired.bottom_bread": "Fatia de pão inferior ausente!",
+  "message.someassemblyrequired.full_sandwich": "Você não pode adicionar mais itens!",
+
   "block.someassemblyrequired.acacia_sandwich_assembly_table": "Mesa de Montagem de Sanduíche de Acácia",
   "block.someassemblyrequired.birch_sandwich_assembly_table": "Mesa de Montagem de Sanduíche de Bétula",
   "block.someassemblyrequired.crimson_sandwich_assembly_table": "Mesa de Montagem de Sanduíche Carmesim",
@@ -12,14 +16,14 @@
   "block.someassemblyrequired.oak_sandwich_assembly_table": "Mesa de Montagem de Sanduíche de Carvalho",
   "block.someassemblyrequired.spruce_sandwich_assembly_table": "Mesa de Montagem de Sanduíche de Pinheiro",
   "block.someassemblyrequired.warped_sandwich_assembly_table": "Mesa de Montagem de Sanduíche Retorcida",
-  "block.someassemblyrequired.acacia_cutting_board": "Tábua de Cortar de Acácia"
-  "block.someassemblyrequired.birch_cutting_board": "Tábua de Cortar de Bétula"
-  "block.someassemblyrequired.crimson_cutting_board": "Tábua de Cortar Carmesim"
-  "block.someassemblyrequired.dark_oak_cutting_board": "Tábua de Cortar de Carvalho Escuro"
-  "block.someassemblyrequired.jungle_cutting_board": "Tábua de Cortar da Selva"
-  "block.someassemblyrequired.oak_cutting_board": "Tábua de Cortar de Carvalho"
-  "block.someassemblyrequired.spruce_cutting_board": "Tábua de Cortar de Pinheiro"
-  "block.someassemblyrequired.warped_cutting_board": "Tábua de Cortar Retorcida"
+  "block.someassemblyrequired.acacia_cutting_board": "Tábua de Cortar de Acácia",
+  "block.someassemblyrequired.birch_cutting_board": "Tábua de Cortar de Bétula",
+  "block.someassemblyrequired.crimson_cutting_board": "Tábua de Cortar Carmesim",
+  "block.someassemblyrequired.dark_oak_cutting_board": "Tábua de Cortar de Carvalho Escuro",
+  "block.someassemblyrequired.jungle_cutting_board": "Tábua de Cortar da Selva",
+  "block.someassemblyrequired.oak_cutting_board": "Tábua de Cortar de Carvalho",
+  "block.someassemblyrequired.spruce_cutting_board": "Tábua de Cortar de Pinheiro",
+  "block.someassemblyrequired.warped_cutting_board": "Tábua de Cortar Retorcida",
   "block.someassemblyrequired.redstone_toaster": "Torradeira Redstone",
   "block.someassemblyrequired.sticky_redstone_toaster": "Torradeira Redstone Pegajosa",
   "block.someassemblyrequired.sandwich": "Sanduíche",
@@ -102,7 +106,5 @@
   "spreadtype.someassemblyrequired.mayonnaise_bottle": "Maionese",
   "spreadtype.someassemblyrequired.sweet_berry_jam_bottle": "Geléia de Bagas Doces",
 
-  "message.someassemblyrequired.top_bread": "Fatia de pão superior ausente! ",
-  "message.someassemblyrequired.bottom_bread": "Fatia de pão inferior ausente!",
-  "message.someassemblyrequired.full_sandwich": "Você não pode adicionar mais itens!"
+  "spreadtype.someassemblyrequired.farmersdelight.milk_bottle": "Leite"
 }

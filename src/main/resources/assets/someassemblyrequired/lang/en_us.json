@@ -4,6 +4,10 @@
   "recipecategory.someassemblyrequired.cutting": "Cutting",
   "recipecategory.someassemblyrequired.toasting": "Toasting",
 
+  "message.someassemblyrequired.top_bread": "Missing top bread slice!",
+  "message.someassemblyrequired.bottom_bread": "Missing bottom bread slice!",
+  "message.someassemblyrequired.full_sandwich": "You cannot add any more items!",
+
   "block.someassemblyrequired.acacia_sandwich_assembly_table": "Acacia Sandwich Assembly Table",
   "block.someassemblyrequired.birch_sandwich_assembly_table": "Birch Sandwich Assembly Table",
   "block.someassemblyrequired.crimson_sandwich_assembly_table": "Crimson Sandwich Assembly Table",
@@ -102,7 +106,5 @@
   "spreadtype.someassemblyrequired.mayonnaise_bottle": "Mayonnaise",
   "spreadtype.someassemblyrequired.sweet_berry_jam_bottle": "Sweet Berry Jam",
 
-  "message.someassemblyrequired.top_bread": "Missing top bread slice!",
-  "message.someassemblyrequired.bottom_bread": "Missing bottom bread slice!",
-  "message.someassemblyrequired.full_sandwich": "You cannot add any more items!"
+  "spreadtype.someassemblyrequired.farmersdelight.milk_bottle": "Milk"
 }

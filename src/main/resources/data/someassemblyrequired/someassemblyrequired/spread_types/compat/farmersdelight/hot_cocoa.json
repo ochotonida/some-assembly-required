@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "item": "farmersdelight:hot_cocoa",
+  "container": "minecraft:glass_bottle",
+  "displayname": {
+    "translate": "item.farmersdelight.hot_cocoa"
+  },
+  "color": 9393723
+}

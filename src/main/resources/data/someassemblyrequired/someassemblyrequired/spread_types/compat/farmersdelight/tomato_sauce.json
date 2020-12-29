@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "item": "farmersdelight:tomato_sauce",
+  "container": "minecraft:bowl",
+  "displayname": {
+    "translate": "item.farmersdelight.tomato_sauce"
+  },
+  "color": 12596255
+}

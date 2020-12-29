@@ -8,7 +8,7 @@
   "type": "farmersdelight:cutting",
   "ingredients": [
     {
-      "item": "minecraft:pork"
+      "item": "minecraft:porkchop"
     }
   ],
   "tool": {

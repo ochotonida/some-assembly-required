@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "item": "farmersdelight:beef_stew",
+  "container": "minecraft:bowl",
+  "displayname": {
+    "translate": "item.farmersdelight.beef_stew"
+  },
+  "color": 8736312
+}
