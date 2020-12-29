@@ -85,7 +85,7 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock {
         if (!ingredient.isEmpty()) {
             if (!player.isCreative()) {
                 ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.75, pos.getZ() + 0.5, ingredient);
-                item.setDefaultPickupDelay();
+                item.setPickupDelay(5);
                 world.addEntity(item);
             }
             return true;

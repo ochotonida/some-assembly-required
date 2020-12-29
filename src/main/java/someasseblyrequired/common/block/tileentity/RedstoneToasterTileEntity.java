@@ -286,7 +286,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
 
             @Override
             public boolean isItemValid(int slot, ItemStack stack) {
-                return super.isItemValid(slot, stack) && (stack.getItem().isFood() || !(stack.getItem() instanceof BlockItem) || hasToastingResult(stack));
+                return super.isItemValid(slot, stack) && stack.getItem() != Items.SANDWICH && (stack.getItem().isFood() || !(stack.getItem() instanceof BlockItem) || hasToastingResult(stack));
             }
         };
     }

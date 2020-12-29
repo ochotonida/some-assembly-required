@@ -71,8 +71,9 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
             } else if (!sandwichTable.hasBreadAsTopIngredient()) {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.top_bread"), true);
             } else {
-                ItemEntity sandwichEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, SandwichBlock.createSandwich(tileEntity));
-                world.addEntity(sandwichEntity);
+                ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, SandwichBlock.createSandwich(tileEntity));
+                item.setPickupDelay(5);
+                world.addEntity(item);
                 sandwichTable.removeItems();
             }
             // remove the top ingredient if the player is not holding anything
@@ -80,6 +81,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
             ItemStack ingredient = sandwichTable.removeTopIngredient();
             if (!player.isCreative() && !ingredient.isEmpty()) {
                 ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, ingredient);
+                item.setPickupDelay(5);
                 world.addEntity(item);
             }
             // try to add the player's held item

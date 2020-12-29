@@ -268,9 +268,9 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
 
             // spawn the spread's container as an item
             if (!simulate && spreadType != null && SandwichAssemblyTableTileEntity.this.getWorld() != null && spreadType.hasContainer(ingredient)) {
-                ItemEntity sandwichEntity = new ItemEntity(SandwichAssemblyTableTileEntity.this.getWorld(), SandwichAssemblyTableTileEntity.this.pos.getX() + 0.5, SandwichAssemblyTableTileEntity.this.pos.getY() + 1.2, SandwichAssemblyTableTileEntity.this.pos.getZ() + 0.5, new ItemStack(spreadType.getContainer(ingredient)));
-                sandwichEntity.setDefaultPickupDelay();
-                SandwichAssemblyTableTileEntity.this.getWorld().addEntity(sandwichEntity);
+                ItemEntity item = new ItemEntity(SandwichAssemblyTableTileEntity.this.getWorld(), SandwichAssemblyTableTileEntity.this.pos.getX() + 0.5, SandwichAssemblyTableTileEntity.this.pos.getY() + 1.2, SandwichAssemblyTableTileEntity.this.pos.getZ() + 0.5, new ItemStack(spreadType.getContainer(ingredient)));
+                item.setPickupDelay(5);
+                SandwichAssemblyTableTileEntity.this.getWorld().addEntity(item);
             }
 
             return ItemHandlerHelper.copyStackWithSize(stack, super.insertItem(slot, ingredient, simulate).getCount());
