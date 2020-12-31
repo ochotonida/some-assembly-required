@@ -30,6 +30,16 @@ public class Items {
     public static final Item TOASTED_BREAD_SLICE = AIR;
     public static final Item MAYONNAISE_BOTTLE = AIR;
     public static final Item CHARRED_FOOD = AIR;
+    public static final Item APPLE_SLICES = AIR;
+    public static final Item GOLDEN_APPLE_SLICES = AIR;
+    public static final Item ENCHANTED_GOLDEN_APPLE_SLICES = AIR;
+    public static final Item CHOPPED_CARROT = AIR;
+    public static final Item CHOPPED_GOLDEN_CARROT = AIR;
+    public static final Item CHOPPED_BEETROOT = AIR;
+    public static final Item PORK_CUTS = AIR;
+    public static final Item BACON_STRIPS = AIR;
+    public static final Item SLICED_TOASTED_CRIMSON_FUNGUS = AIR;
+    public static final Item SLICED_TOASTED_WARPED_FUNGUS = AIR;
 
     private static final ItemGroup CREATIVE_TAB = new ItemGroup(SomeAssemblyRequired.MODID) {
 

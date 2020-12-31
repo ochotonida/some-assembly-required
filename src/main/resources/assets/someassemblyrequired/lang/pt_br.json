@@ -28,11 +28,6 @@
   "block.someassemblyrequired.sticky_redstone_toaster": "Torradeira Redstone Pegajosa",
   "block.someassemblyrequired.sandwich": "Sanduíche",
 
-  "block.someassemblyrequired.sandwich_assembly_table.tooltip": "Pode ser usado para fazer sanduíches, colocando os itens em cima. Esquerarse + Clique com o botão direito com a mão vazia para fazer seu sanduíche",
-  "block.someassemblyrequired.cutting_board.tooltip": "Um bloco usado para cortar ou picar alimentos",
-  "block.someassemblyrequired.redstone_toaster.tooltip": "O Torradeira Redstone™ pode ser usada para torrar pão e outros itens alimentares. Não requer nenhum combustível. Recomenda-se não tentar torrar metal ou submergir a torradeira em água",
-  "block.someassemblyrequired.sticky_redstone_toaster.tooltip": "Uma variante um pouco menos violenta da Torradeira Redstone™",
-
   "item.someassemblyrequired.kitchen_knife": "Faca de Cozinha",
   "item.someassemblyrequired.spread": "Pasta Para Espalhar Sobre o Pão",
   "item.someassemblyrequired.bread_slice": "Fatia de Pão",
@@ -58,24 +53,31 @@
   "item.someassemblyrequired.sandwich": "Sanduíche",
   "item.someassemblyrequired.snadwich": "Sanduíche... ?",
   "item.someassemblyrequired.soggy_sandwich": "Sanduíche Empapado",
-  "item.someassemblyrequired.sandwich.toast": "Terrada",
-  "item.someassemblyrequired.double_decker_sandwich": "Sanduíche %s de Dois Andares",
-  "item.someassemblyrequired.single_sandwich": "Sanduíche de %s",
-  "item.someassemblyrequired.double_sandwich": "Sanduíche Duplo de %s",
-  "item.someassemblyrequired.triple_sandwich": "Sanduíche Triplo de %s",
-  "item.someassemblyrequired.quadruple_sandwich": "Sanduíche Quadruplo de %s",
-  "item.someassemblyrequired.quintuple_sandwich": "Sanduíche Quíntuplo de %s",
-  "item.someassemblyrequired.sextuple_sandwich": "Sanduíche Sêxtuplo de %s",
-  "item.someassemblyrequired.septuple_sandwich": "Sanduíche Séptuplo de %s",
-  "item.someassemblyrequired.very_large_sandwich": "Sanduíche Muito Grande %s",
-  "item.someassemblyrequired.single_potion_sandwich": "Sanduíche de %s",
-  "item.someassemblyrequired.double_potion_sandwich": "Sanduíche de %s de Dois Andares",
-  "item.someassemblyrequired.triple_potion_sandwich": "Sanduíche Triplo de %s",
-  "item.someassemblyrequired.quadruple_potion_sandwich": "Sanduíche Quadruplo de %s",
-  "item.someassemblyrequired.quintuple_potion_sandwich": "Sanduíche Quíntuplo de %s",
-  "item.someassemblyrequired.sextuple_potion_sandwich": "Sanduíche Sêxtuplo de %s",
-  "item.someassemblyrequired.septuple_potion_sandwich": "Sanduíche Séptuplo de %s",
-  "item.someassemblyrequired.very_large_potion_sandwich": "Sanduíche Muito Grande de %s",
+  "item.someassemblyrequired.single_ingredient_sandwich": "Sanduíche de %s",
+  "item.someassemblyrequired.potion_sandwich": "Sanduíche de %s",
+  "item.someassemblyrequired.double_decker_sandwich": "Sanduíche de Dois Andares",
+  "item.someassemblyrequired.double_stacked_sandwich": "Sanduíche Duplo de %s",
+  "item.someassemblyrequired.triple_stacked_sandwich": "Sanduíche Triplo de %s",
+  "item.someassemblyrequired.quadruple_stacked_sandwich": "Sanduíche Quadruplo de %s",
+  "item.someassemblyrequired.quintuple_stacked_sandwich": "Sanduíche Quíntuplo de %s",
+  "item.someassemblyrequired.sextuple_stacked_sandwich": "Sanduíche Sêxtuplo de %s",
+  "item.someassemblyrequired.septuple_stacked_sandwich": "Sanduíche Séptuplo de %s",
+  "item.someassemblyrequired.very_large_stacked_sandwich": "Sanduíche Muito Grande %s",
+
+  "ingredient.someassemblyrequired.toasted_bread_slice": "Terrada",
+
+  "spreadtype.someassemblyrequired.water_bottle": "Água",
+  "spreadtype.someassemblyrequired.honey_bottle": "Mel",
+  "spreadtype.someassemblyrequired.milk_bucket": "Leite",
+  "spreadtype.someassemblyrequired.mayonnaise_bottle": "Maionese",
+  "spreadtype.someassemblyrequired.sweet_berry_jam_bottle": "Geléia de Bagas Doces",
+
+  "spreadtype.someassemblyrequired.farmersdelight.milk_bottle": "Leite",
+
+  "block.someassemblyrequired.sandwich_assembly_table.tooltip": "Pode ser usado para fazer sanduíches, colocando os itens em cima. Esquerarse + Clique com o botão direito com a mão vazia para fazer seu sanduíche",
+  "block.someassemblyrequired.cutting_board.tooltip": "Um bloco usado para cortar ou picar alimentos",
+  "block.someassemblyrequired.redstone_toaster.tooltip": "O Torradeira Redstone™ pode ser usada para torrar pão e outros itens alimentares. Não requer nenhum combustível. Recomenda-se não tentar torrar metal ou submergir a torradeira em água",
+  "block.someassemblyrequired.sticky_redstone_toaster.tooltip": "Uma variante um pouco menos violenta da Torradeira Redstone™",
 
   "item.someassemblyrequired.sandwich.tooltip.truncate_info": "(%s ingredientes adicionais)",
   "item.someassemblyrequired.kitchen_knife.tooltip": "Usado para cortar ingredientes na tábua de corte",
@@ -98,13 +100,5 @@
   "item.someassemblyrequired.sliced_toasted_crimson_fungus.tooltip": "Mais eficiente em termos de fome do que um fungo carmesim torrado inteiro e pode ser comida mais rápido",
   "item.someassemblyrequired.sliced_toasted_warped_fungus.tooltip": "Mais eficiente em termos de fome do que um fungo distorcido torrado inteiro e pode ser comida mais rápido",
   "item.someassemblyrequired.charred_food.tooltip": "Talvez torrar novamente ajude? ",
-  "item.someassemblyrequired.charred_morsel.tooltip": "Carvão do tamanho de uma mordida!",
-
-  "spreadtype.someassemblyrequired.water_bottle": "Água",
-  "spreadtype.someassemblyrequired.honey_bottle": "Mel",
-  "spreadtype.someassemblyrequired.milk_bucket": "Leite",
-  "spreadtype.someassemblyrequired.mayonnaise_bottle": "Maionese",
-  "spreadtype.someassemblyrequired.sweet_berry_jam_bottle": "Geléia de Bagas Doces",
-
-  "spreadtype.someassemblyrequired.farmersdelight.milk_bottle": "Leite"
+  "item.someassemblyrequired.charred_morsel.tooltip": "Carvão do tamanho de uma mordida!"
 }
