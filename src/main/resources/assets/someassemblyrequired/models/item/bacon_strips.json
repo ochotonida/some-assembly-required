@@ -2,5 +2,13 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "someassemblyrequired:item/bacon_strips"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "someassemblyrequired:on_sandwich": 1
+      },
+      "model": "someassemblyrequired:item/bacon_strips_on_sandwich"
+    }
+  ]
 }

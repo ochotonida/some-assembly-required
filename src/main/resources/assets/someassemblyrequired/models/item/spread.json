@@ -6,7 +6,7 @@
   "overrides": [
     {
       "predicate": {
-        "someassemblyrequired:is_on_loaf": 1
+        "someassemblyrequired:on_loaf": 1
       },
       "model": "someassemblyrequired:item/loaf_spread"
     }

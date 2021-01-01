@@ -201,6 +201,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             NonNullList<ItemStack> result = NonNullList.create();
             for (ItemStack ingredient : super.removeItems()) {
                 if (ingredient.getItem() != Items.SPREAD) {
+                    ingredient.removeChildTag("IsOnSandwich");
                     result.add(ingredient);
                 }
             }
@@ -213,9 +214,16 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             if (slot < getSlots() - 1 && !getStackInSlot(slot + 1).isEmpty()) {
                 return ItemStack.EMPTY;
             }
+
             ItemStack result = super.extractItem(slot, amount, simulate);
             // spreads cannot be obtained as items
-            return result.getItem() == Items.SPREAD ? ItemStack.EMPTY : result;
+            if (result.getItem() == Items.SPREAD) {
+                return ItemStack.EMPTY;
+            }
+
+            result.removeChildTag("IsOnSandwich");
+
+            return result;
         }
 
         @Override
@@ -265,6 +273,8 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             // convert ingredients to spreads when possible
             SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(stack.getItem());
             ItemStack ingredient = spreadType == null ? stack.copy() : createSpreadItem(spreadType, stack);
+
+            ingredient.getOrCreateTag().putBoolean("IsOnSandwich", true);
 
             // spawn the spread's container as an item
             if (!simulate && spreadType != null && SandwichAssemblyTableTileEntity.this.getWorld() != null && spreadType.hasContainer(ingredient)) {

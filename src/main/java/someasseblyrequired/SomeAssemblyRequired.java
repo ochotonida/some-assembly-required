@@ -45,7 +45,10 @@ public class SomeAssemblyRequired {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(TileEntityTypes::addRenderers);
-            ItemModelsProperties.registerProperty(Items.SPREAD, new ResourceLocation(SomeAssemblyRequired.MODID, "is_on_loaf"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().contains("IsOnLoaf") && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
+            ItemModelsProperties.registerProperty(Items.SPREAD, new ResourceLocation(SomeAssemblyRequired.MODID, "on_loaf"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
+            for (Item item : new Item[]{Items.APPLE_SLICES, Items.GOLDEN_APPLE_SLICES, Items.ENCHANTED_GOLDEN_APPLE_SLICES, Items.CHOPPED_CARROT, Items.CHOPPED_GOLDEN_CARROT, Items.CHOPPED_BEETROOT, Items.PORK_CUTS, Items.BACON_STRIPS, Items.SLICED_TOASTED_CRIMSON_FUNGUS, Items.SLICED_TOASTED_WARPED_FUNGUS}) {
+                ItemModelsProperties.registerProperty(item, new ResourceLocation(SomeAssemblyRequired.MODID, "on_sandwich"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnSandwich") ? 1 : 0);
+            }
         }
 
         @SubscribeEvent

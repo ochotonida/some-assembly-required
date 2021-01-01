@@ -2,5 +2,13 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "someassemblyrequired:item/chopped_carrot"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "someassemblyrequired:on_sandwich": 1
+      },
+      "model": "someassemblyrequired:item/chopped_carrot_on_sandwich"
+    }
+  ]
 }

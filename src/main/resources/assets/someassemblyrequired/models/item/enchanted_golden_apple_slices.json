@@ -1,6 +1,11 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "someassemblyrequired:item/golden_apple_slices"
-  }
+  "parent": "someassemblyrequired:item/golden_apple_slices",
+  "overrides": [
+    {
+      "predicate": {
+        "someassemblyrequired:on_sandwich": 1
+      },
+      "model": "someassemblyrequired:item/golden_apple_slices_on_sandwich"
+    }
+  ]
 }
