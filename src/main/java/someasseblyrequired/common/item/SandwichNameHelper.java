@@ -41,7 +41,7 @@ public class SandwichNameHelper {
         }
 
         // two ingredients
-        if (ingredients.size() == 4 && ingredients.get(1).getItem() != ingredients.get(2).getItem()) {
+        if (ingredients.size() == 4 && (ingredients.get(1).getItem() != ingredients.get(2).getItem() || ingredients.get(1).getItem() == Items.SPREAD && !ItemStack.areItemStacksEqual(ingredients.get(1), ingredients.get(2)))) {
             return new TranslationTextComponent("item.someassemblyrequired.double_ingredient_sandwich", getIngredientDisplayName(ingredients.get(1)), getIngredientDisplayName(ingredients.get(2)));
         }
 
@@ -83,9 +83,11 @@ public class SandwichNameHelper {
             int index;
             for (index = 2; index < ingredients.size(); index++) {
                 ItemStack ingredient = ingredients.get(index);
-                if (index % 2 == 0 && !Tags.BREAD.contains(ingredient.getItem())) {
-                    break;
-                } else if ((Tags.BREAD.contains(ingredient.getItem()) && ingredient.getItem() != Items.TOASTED_BREAD_SLICE) || ItemStack.areItemStacksEqual(ingredient, ingredients.get(1))) {
+                if (index % 2 == 0) {
+                    if ((!Tags.BREAD.contains(ingredient.getItem()) || ingredient.getItem() == ingredients.get(1).getItem())) {
+                        break;
+                    }
+                } else if ((Tags.BREAD.contains(ingredient.getItem()) && ingredient.getItem() != Items.TOASTED_BREAD_SLICE) || !ItemStack.areItemStacksEqual(ingredient, ingredients.get(1))) {
                     break;
                 }
             }
