@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#forge:bread_slices",
-    "#forge:bread"
+    "#forge:bread",
+    "#forge:tortillas"
   ]
 }
