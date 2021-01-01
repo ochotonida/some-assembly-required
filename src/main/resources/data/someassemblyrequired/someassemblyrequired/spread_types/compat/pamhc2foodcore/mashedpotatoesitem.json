@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodcore"
+    }
+  ],
+  "item": "pamhc2foodcore:mashedpotatoesitem",
+  "displayname": {
+    "translate": "item.pamhc2foodcore.mashedpotatoesitem"
+  },
+  "color": 14995856
+}

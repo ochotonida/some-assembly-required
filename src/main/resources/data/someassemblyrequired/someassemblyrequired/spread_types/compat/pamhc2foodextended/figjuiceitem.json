@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:figjuiceitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.figjuiceitem"
+  },
+  "color": 13210854
+}

@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:lemonlimesodaitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.lemonlimesodaitem"
+  },
+  "color": 6128167
+}

@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:pomegranatejellyitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.pomegranatejellyitem"
+  },
+  "color": 11157825
+}

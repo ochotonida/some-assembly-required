@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:cactusfruityogurtitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.cactusfruityogurtitem"
+  },
+  "color": 16266839
+}

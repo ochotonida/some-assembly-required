@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:cactusfruitsmoothieitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.cactusfruitsmoothieitem"
+  },
+  "color": 16266839
+}

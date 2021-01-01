@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:breadfruityogurtitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.breadfruityogurtitem"
+  },
+  "color": 8501339
+}

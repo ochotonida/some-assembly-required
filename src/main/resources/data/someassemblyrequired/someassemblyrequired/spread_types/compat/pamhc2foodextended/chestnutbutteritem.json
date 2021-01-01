@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:chestnutbutteritem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.chestnutbutteritem"
+  },
+  "color": 11505246
+}

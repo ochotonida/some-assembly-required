@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:cashewbutteritem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.cashewbutteritem"
+  },
+  "color": 14793302
+}

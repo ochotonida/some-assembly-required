@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodcore"
+    }
+  ],
+  "item": "pamhc2foodcore:hotchocolateitem",
+  "displayname": {
+    "translate": "item.pamhc2foodcore.hotchocolateitem"
+  },
+  "color": 7756829
+}

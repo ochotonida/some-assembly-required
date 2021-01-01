@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:raspberryyogurtitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.raspberryyogurtitem"
+  },
+  "color": 12402259
+}

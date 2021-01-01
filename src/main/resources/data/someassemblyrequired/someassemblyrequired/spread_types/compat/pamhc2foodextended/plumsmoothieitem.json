@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:plumsmoothieitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.plumsmoothieitem"
+  },
+  "color": 13329876
+}

@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:rootbeerfloatitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.rootbeerfloatitem"
+  },
+  "color": 10319934
+}

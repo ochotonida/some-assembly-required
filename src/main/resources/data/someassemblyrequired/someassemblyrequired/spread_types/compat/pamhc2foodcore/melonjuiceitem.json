@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodcore"
+    }
+  ],
+  "item": "pamhc2foodcore:melonjuiceitem",
+  "displayname": {
+    "translate": "item.pamhc2foodcore.melonjuiceitem"
+  },
+  "color": 13848130
+}

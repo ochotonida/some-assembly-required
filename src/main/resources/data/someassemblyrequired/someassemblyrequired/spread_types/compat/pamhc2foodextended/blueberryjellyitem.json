@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:blueberryjellyitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.blueberryjellyitem"
+  },
+  "color": 2969737
+}

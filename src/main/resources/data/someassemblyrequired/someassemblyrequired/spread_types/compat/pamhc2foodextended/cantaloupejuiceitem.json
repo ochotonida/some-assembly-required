@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:cantaloupejuiceitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.cantaloupejuiceitem"
+  },
+  "color": 10845498
+}

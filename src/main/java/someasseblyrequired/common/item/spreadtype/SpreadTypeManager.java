@@ -34,7 +34,7 @@ public class SpreadTypeManager extends JsonReloadListener {
     private Map<ResourceLocation, SimpleSpreadType> spreadTypes = Collections.emptyMap();
     private Map<Item, SpreadType> spreadTypeLookup = Collections.emptyMap();
 
-    public SpreadTypeManager() {
+    private SpreadTypeManager() {
         super(new Gson(), SomeAssemblyRequired.MODID + "/spread_types");
         MinecraftForge.EVENT_BUS.addListener(this::onPlayerLoggedIn);
     }
@@ -60,7 +60,7 @@ public class SpreadTypeManager extends JsonReloadListener {
                 SomeAssemblyRequired.LOGGER.error("Parsing error loading custom spread type {}: {}", resourceLocation, exception.getMessage());
             }
         });
-        SomeAssemblyRequired.LOGGER.debug("Loaded {} spread types", spreadTypes.size());
+        SomeAssemblyRequired.LOGGER.info("Loaded {} spread types", spreadTypes.size());
 
         boolean isServer = true;
         try {

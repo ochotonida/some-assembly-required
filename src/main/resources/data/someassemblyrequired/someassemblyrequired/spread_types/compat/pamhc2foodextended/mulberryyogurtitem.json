@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:mulberryyogurtitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.mulberryyogurtitem"
+  },
+  "color": 9451312
+}

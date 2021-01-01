@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:pearjellyitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.pearjellyitem"
+  },
+  "color": 12110688
+}

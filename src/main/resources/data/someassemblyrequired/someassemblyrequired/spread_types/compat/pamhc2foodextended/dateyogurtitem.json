@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:dateyogurtitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.dateyogurtitem"
+  },
+  "color": 12213630
+}

@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:guavayogurtitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.guavayogurtitem"
+  },
+  "color": 7714887
+}

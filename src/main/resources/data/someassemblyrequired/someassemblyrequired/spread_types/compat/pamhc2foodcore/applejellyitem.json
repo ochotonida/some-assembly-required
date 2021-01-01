@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodcore"
+    }
+  ],
+  "item": "pamhc2foodcore:applejellyitem",
+  "displayname": {
+    "translate": "item.pamhc2foodcore.applejellyitem"
+  },
+  "color": 11838786
+}

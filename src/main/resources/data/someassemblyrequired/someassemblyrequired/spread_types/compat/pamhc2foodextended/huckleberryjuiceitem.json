@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:huckleberryjuiceitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.huckleberryjuiceitem"
+  },
+  "color": 4599401
+}

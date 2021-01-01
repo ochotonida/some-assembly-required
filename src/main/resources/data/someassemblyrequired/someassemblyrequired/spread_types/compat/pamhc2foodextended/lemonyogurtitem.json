@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:lemonyogurtitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.lemonyogurtitem"
+  },
+  "color": 15848534
+}

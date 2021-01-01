@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:lemonjellyitem",
+  "displayname": {
+    "translate": "item.pamhc2foodextended.lemonjellyitem"
+  },
+  "color": 15848534
+}

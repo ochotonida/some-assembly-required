@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodcore"
+    }
+  ],
+  "item": "pamhc2foodcore:potatosoupitem",
+  "displayname": {
+    "translate": "item.pamhc2foodcore.potatosoupitem"
+  },
+  "color": 15389078
+}

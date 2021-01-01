@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodcore"
+    }
+  ],
+  "item": "pamhc2foodcore:sweetberryjuiceitem",
+  "displayname": {
+    "translate": "item.pamhc2foodcore.sweetberryjuiceitem"
+  },
+  "color": 10815232
+}
