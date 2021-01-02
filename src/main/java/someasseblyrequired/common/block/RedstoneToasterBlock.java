@@ -10,10 +10,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -74,6 +71,7 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock {
             return toaster.startToasting(player) ? ActionResultType.SUCCESS : ActionResultType.PASS;
         } else {
             if (!heldItem.isEmpty() && toaster.addItem(player.isCreative() ? heldItem.copy() : heldItem)) {
+                world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.2F, 0.8F);
                 return ActionResultType.SUCCESS;
             }
             return removeIngredient(toaster, world, pos, player) ? ActionResultType.SUCCESS : ActionResultType.PASS;
@@ -88,6 +86,7 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock {
                 item.setPickupDelay(5);
                 world.addEntity(item);
             }
+            world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.2F, 1F);
             return true;
         }
         return false;

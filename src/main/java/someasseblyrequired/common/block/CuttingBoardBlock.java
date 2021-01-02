@@ -104,6 +104,7 @@ public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
                 item.setPickupDelay(5);
                 world.addEntity(item);
             }
+            world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.2F, 1F);
             return true;
         }
         return false;

@@ -30,7 +30,7 @@ public class SandwichNameHelper {
         int breadAmount = (int) ingredients.stream().filter(ingredient -> Tags.BREAD.contains(ingredient.getItem())).count();
 
         // full bread sandwich
-        if (breadAmount == ingredients.size() && ingredients.get(1).getItem() != Items.TOASTED_BREAD_SLICE) {
+        if (breadAmount == ingredients.size() && (ingredients.size() != 3 || ingredients.get(1).getItem() != Items.TOASTED_BREAD_SLICE)) {
             return new TranslationTextComponent("item.someassemblyrequired.snadwich");
         }
 

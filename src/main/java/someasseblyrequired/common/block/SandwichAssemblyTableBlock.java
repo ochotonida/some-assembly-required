@@ -12,6 +12,8 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -62,7 +64,6 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
         }
         SandwichAssemblyTableTileEntity sandwichTable = (SandwichAssemblyTableTileEntity) tileEntity;
 
-        // TODO: sneak right-clicking bypasses onBlockActivated when not using an empty hand
         if (player.isSneaking()) {
             // a sandwich must contain at least one ingredient
             if (sandwichTable.getAmountOfItems() == 0) {
@@ -71,6 +72,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
             } else if (!sandwichTable.hasBreadAsTopIngredient()) {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.top_bread"), true);
             } else {
+                world.playSound(player, pos, SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.BLOCKS, 0.5F, 1.4F);
                 ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, SandwichBlock.createSandwich(tileEntity));
                 item.setPickupDelay(5);
                 world.addEntity(item);
@@ -78,46 +80,61 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
             }
             // remove the top ingredient if the player is not holding anything
         } else if (player.getHeldItem(Hand.OFF_HAND).isEmpty() && player.getHeldItem(Hand.MAIN_HAND).isEmpty()) {
-            ItemStack ingredient = sandwichTable.removeTopIngredient();
-            if (!player.isCreative() && !ingredient.isEmpty()) {
-                ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, ingredient);
-                item.setPickupDelay(5);
-                world.addEntity(item);
+            if (sandwichTable.getAmountOfItems() > 0) {
+                ItemStack ingredient = sandwichTable.removeTopIngredient();
+                if (!ingredient.isEmpty()) {
+                    if (!player.isCreative()) {
+                        ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, ingredient);
+                        item.setPickupDelay(5);
+                        world.addEntity(item);
+                    }
+                    world.playSound(player, pos, SoundEvents.BLOCK_WOOL_PLACE, SoundCategory.BLOCKS, 0.3F, 1.6F);
+                } else {
+                    world.playSound(player, pos, SoundEvents.BLOCK_HONEY_BLOCK_BREAK, SoundCategory.BLOCKS, 0.3F, 1.6F);
+                }
             }
-            // try to add the player's held item
-        } else {
-            ItemStack heldItem = player.getHeldItem(hand);
-            // try to add the ingredient
-            if (sandwichTable.addIngredient(heldItem)) {
-                if (!player.isCreative()) {
-                    SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(heldItem.getItem());
-                    // decrease the player's held item by one if the ingredient successfully got added
-                    player.getHeldItem(hand).shrink(1);
+        } else if (!addIngredient(sandwichTable, world, pos, player, hand)) {
+            return ActionResultType.FAIL;
+        }
+        return ActionResultType.SUCCESS;
+    }
 
-                    // add the container item of the spreadtype to the player's inventory if applicable
-                    if (spreadType != null && spreadType.hasContainer(heldItem)) {
-                        ItemStack container = new ItemStack(spreadType.getContainer(heldItem), 1);
-                        if (player.getHeldItem(hand).isEmpty()) {
-                            player.setHeldItem(hand, container);
-                        } else {
-                            player.addItemStackToInventory(container);
-                        }
+    private boolean addIngredient(SandwichAssemblyTableTileEntity sandwichTable, World world, BlockPos pos, PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getHeldItem(hand);
+        // try to add the ingredient
+        if (sandwichTable.addIngredient(heldItem)) {
+            SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(heldItem.getItem());
+            if (spreadType == null) {
+                world.playSound(player, pos, SoundEvents.BLOCK_WOOL_PLACE, SoundCategory.BLOCKS, 0.3F, 1.3F);
+            } else {
+                world.playSound(player, pos, SoundEvents.BLOCK_HONEY_BLOCK_PLACE, SoundCategory.BLOCKS, 0.3F, 1.3F);
+            }
+            if (!player.isCreative()) {
+                // decrease the player's held item by one if the ingredient successfully got added
+                player.getHeldItem(hand).shrink(1);
+
+                // add the container item of the spreadtype to the player's inventory if applicable
+                if (spreadType != null && spreadType.hasContainer(heldItem)) {
+                    ItemStack container = new ItemStack(spreadType.getContainer(heldItem), 1);
+                    if (player.getHeldItem(hand).isEmpty()) {
+                        player.setHeldItem(hand, container);
+                    } else {
+                        player.addItemStackToInventory(container);
                     }
                 }
-            } else if (heldItem.isFood() || heldItem.getItem() == Items.SPREAD || SpreadTypeManager.INSTANCE.hasSpreadType(heldItem.getItem())) {
-                if (sandwichTable.getAmountOfItems() == 0 && !Tags.BREAD.contains(heldItem.getItem())) {
-                    player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
-                } else if (sandwichTable.getAmountOfItems() == sandwichTable.getInventorySize()) {
-                    player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.full_sandwich"), true);
-                } else {
-                    return ActionResultType.FAIL;
-                }
-            } else {
-                return ActionResultType.FAIL;
             }
+        } else if (heldItem.isFood() || heldItem.getItem() == Items.SPREAD || SpreadTypeManager.INSTANCE.hasSpreadType(heldItem.getItem())) {
+            if (sandwichTable.getAmountOfItems() == 0 && !Tags.BREAD.contains(heldItem.getItem())) {
+                player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
+            } else if (sandwichTable.getAmountOfItems() == sandwichTable.getInventorySize()) {
+                player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.full_sandwich"), true);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
-
-        return ActionResultType.SUCCESS;
+        return true;
     }
 
     @Override

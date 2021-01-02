@@ -57,9 +57,13 @@ public class ItemHandlerTileEntity extends TileEntity {
     }
 
     public int getAmountOfItems() {
-        int size;
-        for (size = 0; size < inventory.getSlots() && !inventory.getStackInSlot(size).isEmpty(); size++) ;
-        return size;
+        int result = 0;
+        for (int i = 0; i < inventory.getSlots(); i++) {
+            if (!inventory.getStackInSlot(i).isEmpty()) {
+                result++;
+            }
+        }
+        return result;
     }
 
     @Override
