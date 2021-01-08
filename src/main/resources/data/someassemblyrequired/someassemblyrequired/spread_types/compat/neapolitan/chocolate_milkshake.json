@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "neapolitan"
+    }
+  ],
+  "item": "neapolitan:chocolate_milkshake",
+  "displayname": {
+    "translate": "item.neapolitan.chocolate_milkshake"
+  },
+  "color": 12220514
+}

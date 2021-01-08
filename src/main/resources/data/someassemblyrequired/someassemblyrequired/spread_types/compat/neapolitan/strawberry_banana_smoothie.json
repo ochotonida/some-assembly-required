@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "neapolitan"
+    }
+  ],
+  "item": "neapolitan:strawberry_banana_smoothie",
+  "displayname": {
+    "translate": "item.neapolitan.strawberry_banana_smoothie"
+  },
+  "color": 16772010
+}

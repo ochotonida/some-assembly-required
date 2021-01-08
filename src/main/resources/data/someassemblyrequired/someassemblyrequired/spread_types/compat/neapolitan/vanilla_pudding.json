@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "neapolitan"
+    }
+  ],
+  "item": "neapolitan:vanilla_pudding",
+  "displayname": {
+    "translate": "item.neapolitan.vanilla_pudding"
+  },
+  "color": 16772010
+}

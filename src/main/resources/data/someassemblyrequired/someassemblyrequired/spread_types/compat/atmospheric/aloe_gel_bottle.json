@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "atmospheric"
+    }
+  ],
+  "item": "atmospheric:aloe_gel_bottle",
+  "container": "minecraft:glass_bottle",
+  "displayname": {
+    "translate": "spreadtype.someassemblyrequired.atmospheric.aloe_gel_bottle"
+  },
+  "color": 7988294
+}

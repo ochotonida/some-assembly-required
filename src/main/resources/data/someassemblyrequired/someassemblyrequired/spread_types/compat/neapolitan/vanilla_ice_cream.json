@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "neapolitan"
+    }
+  ],
+  "item": "neapolitan:vanilla_ice_cream",
+  "container": "minecraft:bowl",
+  "displayname": {
+    "translate": "item.neapolitan.vanilla_ice_cream"
+  },
+  "color": 16773580
+}

@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "atmospheric"
+    }
+  ],
+  "item": "atmospheric:yucca_juice",
+  "container": "minecraft:glass_bottle",
+  "displayname": {
+    "translate": "item.atmospheric.yucca_juice"
+  },
+  "color": 4104237
+}

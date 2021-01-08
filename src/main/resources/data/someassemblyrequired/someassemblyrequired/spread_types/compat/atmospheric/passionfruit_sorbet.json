@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "atmospheric"
+    }
+  ],
+  "item": "atmospheric:passionfruit_sorbet",
+  "container": "minecraft:bowl",
+  "displayname": {
+    "translate": "item.atmospheric.passionfruit_sorbet"
+  },
+  "color": 16764525
+}
