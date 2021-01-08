@@ -23,14 +23,7 @@ public class TileEntityTypes {
     public static RegistryObject<TileEntityType<?>> SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
             "sandwich_assembly_table",
             () -> TileEntityType.Builder.create(SandwichAssemblyTableTileEntity::new,
-                    Blocks.ACACIA_SANDWICH_ASSEMBLY_TABLE.get(),
-                    Blocks.BIRCH_SANDWICH_ASSEMBLY_TABLE.get(),
-                    Blocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get(),
-                    Blocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE.get(),
-                    Blocks.JUNGLE_SANDWICH_ASSEMBLY_TABLE.get(),
-                    Blocks.OAK_SANDWICH_ASSEMBLY_TABLE.get(),
-                    Blocks.SPRUCE_SANDWICH_ASSEMBLY_TABLE.get(),
-                    Blocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get()
+                    Blocks.getSandwichAssemblyTables()
             ).build(null)
     );
 
@@ -44,22 +37,14 @@ public class TileEntityTypes {
     public static RegistryObject<TileEntityType<?>> CUTTING_BOARD = REGISTRY.register(
             "cutting_board",
             () -> TileEntityType.Builder.create(CuttingBoardTileEntity::new,
-                    Blocks.ACACIA_CUTTING_BOARD.get(),
-                    Blocks.BIRCH_CUTTING_BOARD.get(),
-                    Blocks.CRIMSON_CUTTING_BOARD.get(),
-                    Blocks.DARK_OAK_CUTTING_BOARD.get(),
-                    Blocks.JUNGLE_CUTTING_BOARD.get(),
-                    Blocks.OAK_CUTTING_BOARD.get(),
-                    Blocks.SPRUCE_CUTTING_BOARD.get(),
-                    Blocks.WARPED_CUTTING_BOARD.get()
+                    Blocks.getCuttingBoards()
             ).build(null)
     );
 
     public static RegistryObject<TileEntityType<?>> REDSTONE_TOASTER = REGISTRY.register(
             "redstone_toaster",
             () -> TileEntityType.Builder.create(RedstoneToasterTileEntity::new,
-                    Blocks.STICKY_REDSTONE_TOASTER.get(),
-                    Blocks.REDSTONE_TOASTER.get()
+                    Blocks.getToasters()
             ).build(null)
     );
 

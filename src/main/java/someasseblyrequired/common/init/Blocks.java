@@ -123,6 +123,39 @@ public class Blocks {
             () -> createToaster(false)
     );
 
+    public static Block[] getSandwichAssemblyTables() {
+        return new Block[]{
+                Blocks.OAK_SANDWICH_ASSEMBLY_TABLE.get(),
+                Blocks.SPRUCE_SANDWICH_ASSEMBLY_TABLE.get(),
+                Blocks.BIRCH_SANDWICH_ASSEMBLY_TABLE.get(),
+                Blocks.JUNGLE_SANDWICH_ASSEMBLY_TABLE.get(),
+                Blocks.ACACIA_SANDWICH_ASSEMBLY_TABLE.get(),
+                Blocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE.get(),
+                Blocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get(),
+                Blocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get()
+        };
+    }
+
+    public static Block[] getCuttingBoards() {
+        return new Block[]{
+                Blocks.OAK_CUTTING_BOARD.get(),
+                Blocks.SPRUCE_CUTTING_BOARD.get(),
+                Blocks.BIRCH_CUTTING_BOARD.get(),
+                Blocks.JUNGLE_CUTTING_BOARD.get(),
+                Blocks.ACACIA_CUTTING_BOARD.get(),
+                Blocks.DARK_OAK_CUTTING_BOARD.get(),
+                Blocks.CRIMSON_CUTTING_BOARD.get(),
+                Blocks.WARPED_CUTTING_BOARD.get()
+        };
+    }
+
+    public static Block[] getToasters() {
+        return new Block[]{
+                Blocks.REDSTONE_TOASTER.get(),
+                Blocks.STICKY_REDSTONE_TOASTER.get()
+        };
+    }
+
     private static Block createSandwichAssemblyTable(Material material) {
         return new SandwichAssemblyTableBlock(
                 AbstractBlock.Properties.create(material, MaterialColor.STONE)
