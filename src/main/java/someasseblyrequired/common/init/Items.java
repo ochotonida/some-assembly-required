@@ -5,8 +5,6 @@ import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
@@ -39,7 +37,8 @@ public class Items {
     public static final Item PORK_CUTS = AIR;
     public static final Item BACON_STRIPS = AIR;
     public static final Item SLICED_TOASTED_CRIMSON_FUNGUS = AIR;
-    public static final Item SLICED_TOASTED_WARPED_FUNGUS = AIR;
+    public static final Item SLICED_TOASTED_WARPED_FUNGUS = AIR; // TODO deferredregistry
+    public static final Item TOMATO_SLICES = null;
 
     private static final ItemGroup CREATIVE_TAB = new ItemGroup(SomeAssemblyRequired.MODID) {
 
@@ -112,6 +111,8 @@ public class Items {
                 new TooltippedItem(new Item.Properties().group(CREATIVE_TAB).food(Foods.TOASTED_WARPED_FUNGUS)).setRegistryName(SomeAssemblyRequired.MODID, "toasted_warped_fungus"),
                 new TooltippedItem(new Item.Properties().group(CREATIVE_TAB).food(Foods.SLICED_TOASTED_CRIMSON_FUNGUS)).setRegistryName(SomeAssemblyRequired.MODID, "sliced_toasted_crimson_fungus"),
                 new TooltippedItem(new Item.Properties().group(CREATIVE_TAB).food(Foods.SLICED_TOASTED_WARPED_FUNGUS)).setRegistryName(SomeAssemblyRequired.MODID, "sliced_toasted_warped_fungus"),
+                new TooltippedItem(new Item.Properties().group(CREATIVE_TAB).food(Foods.TOMATO)).setRegistryName(SomeAssemblyRequired.MODID, "tomato"),
+                new TooltippedItem(new Item.Properties().group(CREATIVE_TAB).food(Foods.TOMATO_SLICES)).setRegistryName(SomeAssemblyRequired.MODID, "tomato_slices"),
 
                 new DrinkableBottleItem(new Item.Properties().group(CREATIVE_TAB).containerItem(net.minecraft.item.Items.GLASS_BOTTLE).maxStackSize(16).food(Foods.MAYONNAISE), SoundEvents.ITEM_HONEY_BOTTLE_DRINK).setRegistryName(SomeAssemblyRequired.MODID, "mayonnaise_bottle"),
                 new DrinkableBottleItem(new Item.Properties().group(CREATIVE_TAB).containerItem(net.minecraft.item.Items.GLASS_BOTTLE).maxStackSize(16).food(Foods.SWEET_BERRY_JAM), SoundEvents.ITEM_HONEY_BOTTLE_DRINK).setRegistryName(SomeAssemblyRequired.MODID, "sweet_berry_jam_bottle"),
@@ -121,24 +122,4 @@ public class Items {
         );
     }
 
-    public static class Foods {
-        public static final Food CHARRED_FOOD = new Food.Builder().hunger(1).saturation(0.1F).effect(() -> new EffectInstance(Effects.NAUSEA, 100, 0), 0.4F).build();
-        public static final Food CHARRED_MORSEL = new Food.Builder().hunger(1).saturation(0).effect(() -> new EffectInstance(Effects.NAUSEA, 100, 0), 0.2F).build();
-        public static final Food BREAD_SLICE = new Food.Builder().hunger(2).saturation(0.5F).fastToEat().build();
-        public static final Food TOASTED_BREAD_SLICE = new Food.Builder().hunger(3).saturation(0.6F).fastToEat().build();
-        public static final Food APPLE_SLICES = new Food.Builder().hunger(2).saturation(0.5F).fastToEat().build();
-        public static final Food GOLDEN_APPLE_SLICES = new Food.Builder().hunger(3).saturation(0.7F).fastToEat().setAlwaysEdible().effect(() -> new EffectInstance(Effects.REGENERATION, 50, 1), 1).effect(() -> new EffectInstance(Effects.ABSORPTION, 1200, 0), 1).build();
-        public static final Food ENCHANTED_GOLDEN_APPLE_SLICES = new Food.Builder().hunger(4).saturation(0.8F).fastToEat().setAlwaysEdible().effect(() -> new EffectInstance(Effects.REGENERATION, 200, 1), 1).effect(() -> new EffectInstance(Effects.RESISTANCE, 3000, 0), 1).effect(() -> new EffectInstance(Effects.FIRE_RESISTANCE, 3000, 0), 1).effect(() -> new EffectInstance(Effects.ABSORPTION, 1200, 3), 1).build();
-        public static final Food CHOPPED_CARROT = new Food.Builder().hunger(2).saturation(0.5F).fastToEat().build();
-        public static final Food CHOPPED_GOLDEN_CARROT = new Food.Builder().hunger(3).saturation(0.8F).fastToEat().build();
-        public static final Food CHOPPED_BEETROOT = new Food.Builder().hunger(3).saturation(0.6F).fastToEat().build();
-        public static final Food MAYONNAISE = new Food.Builder().hunger(3).saturation(0.1F).build();
-        public static final Food SWEET_BERRY_JAM = new Food.Builder().hunger(5).saturation(0.5F).build();
-        public static final Food PORK_CUTS = new Food.Builder().hunger(2).saturation(0.3F).meat().build();
-        public static final Food BACON_STRIPS = new Food.Builder().hunger(4).saturation(0.7F).meat().build();
-        public static final Food TOASTED_CRIMSON_FUNGUS = (new Food.Builder()).hunger(4).saturation(0.5F).build();
-        public static final Food SLICED_TOASTED_CRIMSON_FUNGUS = (new Food.Builder()).hunger(2).saturation(0.6F).fastToEat().build();
-        public static final Food TOASTED_WARPED_FUNGUS = (new Food.Builder()).hunger(5).saturation(0.4F).build();
-        public static final Food SLICED_TOASTED_WARPED_FUNGUS = (new Food.Builder()).hunger(3).saturation(0.5F).fastToEat().build();
-    }
 }

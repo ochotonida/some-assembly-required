@@ -47,8 +47,10 @@
   "item.someassemblyrequired.sliced_toasted_warped_fungus": "Sliced Toasted Warped Fungus",
   "item.someassemblyrequired.mayonnaise_bottle": "Mayonnaise Bottle",
   "item.someassemblyrequired.sweet_berry_jam_bottle": "Sweet Berry Jam Bottle",
-  "item.someassemblyrequired.charred_morsel": "Charred Morsel",
   "item.someassemblyrequired.charred_food": "Charred Food",
+  "item.someassemblyrequired.charred_morsel": "Charred Morsel",
+  "item.someassemblyrequired.tomato": "Tomato",
+  "item.someassemblyrequired.tomato_slices": "Tomato Slices",
 
   "item.someassemblyrequired.sandwich": "Sandwich",
   "item.someassemblyrequired.snadwich": "Sandwich... ?",
@@ -76,6 +78,7 @@
   "ingredient.someassemblyrequired.bacon_strips": "Bacon",
   "ingredient.someassemblyrequired.sliced_toasted_crimson_fungus": "Crimson Fungus",
   "ingredient.someassemblyrequired.sliced_toasted_warped_fungus": "Warped Fungus",
+  "ingredient.someassemblyrequired.tomato_slices": "Tomato",
 
   "spreadtype.someassemblyrequired.water_bottle": "Water",
   "spreadtype.someassemblyrequired.honey_bottle": "Honey",
@@ -111,5 +114,7 @@
   "item.someassemblyrequired.sliced_toasted_crimson_fungus.tooltip": "More hunger-efficient than a whole toasted crimson fungus and can be eaten faster",
   "item.someassemblyrequired.sliced_toasted_warped_fungus.tooltip": "More hunger-efficient than a whole toasted warped fungus and can be eaten faster",
   "item.someassemblyrequired.charred_food.tooltip": "Perhaps toasting it again will help?",
-  "item.someassemblyrequired.charred_morsel.tooltip": "Bite-sized charcoal!"
+  "item.someassemblyrequired.charred_morsel.tooltip": "Bite-sized charcoal!",
+  "item.someassemblyrequired.tomato.tooltip": "A vegetable that can be sliced",
+  "item.someassemblyrequired.tomato_slices.tooltip": "More hunger-efficient than a whole tomato fungus and can be eaten faster"
 }

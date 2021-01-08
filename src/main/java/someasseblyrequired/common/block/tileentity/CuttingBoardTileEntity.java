@@ -2,11 +2,13 @@ package someasseblyrequired.common.block.tileentity;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import someasseblyrequired.common.block.CuttingBoardBlock;
+import someasseblyrequired.common.init.Items;
 import someasseblyrequired.common.init.RecipeTypes;
 import someasseblyrequired.common.init.TileEntityTypes;
 import someasseblyrequired.common.recipe.CuttingRecipe;
@@ -71,5 +73,43 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
     @Override
     protected void onContentsUpdated() {
         hasKnife = CuttingBoardBlock.isKnife(getIngredient());
+    }
+
+    @Override
+    protected TileEntityItemHandler createItemHandler(int size) {
+        return new IngredientHandler(size);
+    }
+
+    private class IngredientHandler extends TileEntityItemHandler {
+
+        protected IngredientHandler(int size) {
+            super(size);
+        }
+
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            ItemStack result = super.extractItem(slot, amount, simulate);
+            result.removeChildTag("IsOnSandwich");
+            return result;
+        }
+
+        @Override
+        public NonNullList<ItemStack> removeItems() {
+            NonNullList<ItemStack> result = NonNullList.create();
+            for (ItemStack ingredient : super.removeItems()) {
+                if (ingredient.getItem() != Items.SPREAD) {
+                    ingredient.removeChildTag("IsOnSandwich");
+                    result.add(ingredient);
+                }
+            }
+            return result;
+        }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+            ItemStack ingredient = stack.copy();
+            ingredient.getOrCreateTag().putBoolean("IsOnSandwich", true);
+            return super.insertItem(slot, ingredient, simulate);
+        }
     }
 }
