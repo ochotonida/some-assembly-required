@@ -34,8 +34,8 @@ public class ToastingRecipe extends SingleIngredientRecipe {
     }
 
     @Override
-    public IRecipeSerializer<ToastingRecipe> getSerializer() {
-        return RecipeTypes.TOASTING_SERIALIZER;
+    public IRecipeSerializer<?> getSerializer() {
+        return RecipeTypes.TOASTING_SERIALIZER.get();
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ToastingRecipe> {

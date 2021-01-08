@@ -30,7 +30,7 @@ public class SandwichNameHelper {
         int breadAmount = (int) ingredients.stream().filter(ingredient -> Tags.BREAD.contains(ingredient.getItem())).count();
 
         // full bread sandwich
-        if (breadAmount == ingredients.size() && (ingredients.size() != 3 || ingredients.get(1).getItem() != Items.TOASTED_BREAD_SLICE)) {
+        if (breadAmount == ingredients.size() && (ingredients.size() != 3 || ingredients.get(1).getItem() != Items.TOASTED_BREAD_SLICE.get())) {
             return new TranslationTextComponent("item.someassemblyrequired.snadwich");
         }
 
@@ -41,7 +41,7 @@ public class SandwichNameHelper {
         }
 
         // two ingredients
-        if (ingredients.size() == 4 && (ingredients.get(1).getItem() != ingredients.get(2).getItem() || ingredients.get(1).getItem() == Items.SPREAD && !ItemStack.areItemStacksEqual(ingredients.get(1), ingredients.get(2)))) {
+        if (ingredients.size() == 4 && (ingredients.get(1).getItem() != ingredients.get(2).getItem() || ingredients.get(1).getItem() == Items.SPREAD.get() && !ItemStack.areItemStacksEqual(ingredients.get(1), ingredients.get(2)))) {
             return new TranslationTextComponent("item.someassemblyrequired.double_ingredient_sandwich", getIngredientDisplayName(ingredients.get(1)), getIngredientDisplayName(ingredients.get(2)));
         }
 
@@ -63,7 +63,7 @@ public class SandwichNameHelper {
         if (ingredients.size() != 3) {
             return null;
         }
-        if (ingredients.get(1).getItem() == Items.SPREAD && ingredients.get(1).getOrCreateTag().contains("Ingredient")) {
+        if (ingredients.get(1).getItem() == Items.SPREAD.get() && ingredients.get(1).getOrCreateTag().contains("Ingredient")) {
             ItemStack spreadItem = ItemStack.read(ingredients.get(1).getOrCreateChildTag("Ingredient"));
             if (spreadItem.getItem() == net.minecraft.item.Items.POTION) {
                 Potion potion = PotionUtils.getPotionFromItem(spreadItem);
@@ -87,7 +87,7 @@ public class SandwichNameHelper {
                     if ((!Tags.BREAD.contains(ingredient.getItem()) || ingredient.getItem() == ingredients.get(1).getItem())) {
                         break;
                     }
-                } else if ((Tags.BREAD.contains(ingredient.getItem()) && ingredient.getItem() != Items.TOASTED_BREAD_SLICE) || !ItemStack.areItemStacksEqual(ingredient, ingredients.get(1))) {
+                } else if ((Tags.BREAD.contains(ingredient.getItem()) && ingredient.getItem() != Items.TOASTED_BREAD_SLICE.get()) || !ItemStack.areItemStacksEqual(ingredient, ingredients.get(1))) {
                     break;
                 }
             }
@@ -119,17 +119,17 @@ public class SandwichNameHelper {
 
     private static ITextComponent getIngredientDisplayName(ItemStack ingredient) {
         if (ingredient.hasDisplayName() || !Arrays.asList(
-                Items.TOASTED_BREAD_SLICE,
-                Items.APPLE_SLICES,
-                Items.GOLDEN_APPLE_SLICES,
-                Items.ENCHANTED_GOLDEN_APPLE_SLICES,
-                Items.CHOPPED_CARROT,
-                Items.CHOPPED_GOLDEN_CARROT,
-                Items.CHOPPED_BEETROOT,
-                Items.PORK_CUTS,
-                Items.BACON_STRIPS,
-                Items.SLICED_TOASTED_CRIMSON_FUNGUS,
-                Items.SLICED_TOASTED_WARPED_FUNGUS
+                Items.TOASTED_BREAD_SLICE.get(),
+                Items.APPLE_SLICES.get(),
+                Items.GOLDEN_APPLE_SLICES.get(),
+                Items.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
+                Items.CHOPPED_CARROT.get(),
+                Items.CHOPPED_GOLDEN_CARROT.get(),
+                Items.CHOPPED_BEETROOT.get(),
+                Items.PORK_CUTS.get(),
+                Items.BACON_STRIPS.get(),
+                Items.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
+                Items.SLICED_TOASTED_WARPED_FUNGUS.get()
         ).contains(ingredient.getItem())) {
             return ingredient.getDisplayName();
         }

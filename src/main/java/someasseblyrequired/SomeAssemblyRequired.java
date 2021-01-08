@@ -1,19 +1,17 @@
 package someasseblyrequired;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import someasseblyrequired.common.init.Blocks;
@@ -30,9 +28,17 @@ public class SomeAssemblyRequired {
 
     public static final Logger LOGGER = LogManager.getLogger();
 
+    public SomeAssemblyRequired() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        Items.REGISTRY.register(modEventBus);
+        Blocks.REGISTRY.register(modEventBus);
+        RecipeTypes.REGISTRY.register(modEventBus);
+        TileEntityTypes.REGISTRY.register(modEventBus);
+    }
+
     @SuppressWarnings("unused")
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
+    public static class ModEvents {
 
         @SubscribeEvent
         public static void onCommonSetup(FMLCommonSetupEvent event) {
@@ -45,30 +51,22 @@ public class SomeAssemblyRequired {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(TileEntityTypes::addRenderers);
-            ItemModelsProperties.registerProperty(Items.SPREAD, new ResourceLocation(SomeAssemblyRequired.MODID, "on_loaf"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
-            for (Item item : new Item[]{Items.APPLE_SLICES, Items.GOLDEN_APPLE_SLICES, Items.ENCHANTED_GOLDEN_APPLE_SLICES, Items.CHOPPED_CARROT, Items.CHOPPED_GOLDEN_CARROT, Items.CHOPPED_BEETROOT, Items.PORK_CUTS, Items.BACON_STRIPS, Items.SLICED_TOASTED_CRIMSON_FUNGUS, Items.SLICED_TOASTED_WARPED_FUNGUS}) {
+            ItemModelsProperties.registerProperty(Items.SPREAD.get(), new ResourceLocation(SomeAssemblyRequired.MODID, "on_loaf"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
+            for (Item item : new Item[]{
+                    Items.APPLE_SLICES.get(),
+                    Items.GOLDEN_APPLE_SLICES.get(),
+                    Items.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
+                    Items.CHOPPED_CARROT.get(),
+                    Items.CHOPPED_GOLDEN_CARROT.get(),
+                    Items.CHOPPED_BEETROOT.get(),
+                    Items.PORK_CUTS.get(),
+                    Items.BACON_STRIPS.get(),
+                    Items.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
+                    Items.SLICED_TOASTED_WARPED_FUNGUS.get(),
+                    Items.TOMATO_SLICES.get()
+            }) {
                 ItemModelsProperties.registerProperty(item, new ResourceLocation(SomeAssemblyRequired.MODID, "on_sandwich"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnSandwich") ? 1 : 0);
             }
-        }
-
-        @SubscribeEvent
-        public static void registerItems(RegistryEvent.Register<Item> event) {
-            Items.register(event.getRegistry());
-        }
-
-        @SubscribeEvent
-        public static void registerBlocks(RegistryEvent.Register<Block> event) {
-            Blocks.register(event.getRegistry());
-        }
-
-        @SubscribeEvent
-        public static void registerTileEntityTypes(RegistryEvent.Register<TileEntityType<?>> event) {
-            TileEntityTypes.register(event.getRegistry());
-        }
-
-        @SubscribeEvent
-        public static void registerRecipeSerializers(RegistryEvent.Register<IRecipeSerializer<?>> event) {
-            RecipeTypes.register(event.getRegistry());
         }
     }
 
@@ -78,7 +76,7 @@ public class SomeAssemblyRequired {
 
         @SubscribeEvent
         public static void registerColorHandlers(ColorHandlerEvent.Item event) {
-            event.getItemColors().register((itemStack, tintIndex) -> tintIndex == 0 && itemStack.getOrCreateTag().getInt("Color") != 0 ? itemStack.getOrCreateTag().getInt("Color") : 0xFF00FF, Items.SPREAD);
+            event.getItemColors().register((itemStack, tintIndex) -> tintIndex == 0 && itemStack.getOrCreateTag().getInt("Color") != 0 ? itemStack.getOrCreateTag().getInt("Color") : 0xFF00FF, Items.SPREAD.get());
         }
     }
 

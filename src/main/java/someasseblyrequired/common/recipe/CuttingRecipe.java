@@ -51,7 +51,7 @@ public class CuttingRecipe extends SingleIngredientRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return RecipeTypes.CUTTING_SERIALIZER;
+        return RecipeTypes.CUTTING_SERIALIZER.get();
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<CuttingRecipe> {

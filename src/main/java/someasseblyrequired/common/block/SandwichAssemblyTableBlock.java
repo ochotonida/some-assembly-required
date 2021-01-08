@@ -42,7 +42,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return TileEntityTypes.SANDWICH_ASSEMBLY_TABLE.create();
+        return TileEntityTypes.SANDWICH_ASSEMBLY_TABLE.get().create();
     }
 
     @Override
@@ -123,7 +123,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
                     }
                 }
             }
-        } else if (heldItem.isFood() || heldItem.getItem() == Items.SPREAD || SpreadTypeManager.INSTANCE.hasSpreadType(heldItem.getItem())) {
+        } else if (heldItem.isFood() || heldItem.getItem() == Items.SPREAD.get() || SpreadTypeManager.INSTANCE.hasSpreadType(heldItem.getItem())) {
             if (sandwichTable.getAmountOfItems() == 0 && !Tags.BREAD.contains(heldItem.getItem())) {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
             } else if (sandwichTable.getAmountOfItems() == sandwichTable.getInventorySize()) {

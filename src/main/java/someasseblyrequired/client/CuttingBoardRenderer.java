@@ -31,7 +31,7 @@ public class CuttingBoardRenderer extends TileEntityRenderer<CuttingBoardTileEnt
             }
 
             boolean isBlock = Minecraft.getInstance().getItemRenderer().getItemModelWithOverrides(ingredient, tileEntity.getWorld(), null).isGui3d();
-            boolean isSandwich = ingredient.getItem() == Items.SANDWICH;
+            boolean isSandwich = ingredient.getItem() == Items.SANDWICH.get();
             boolean isKnife = tileEntity.hasKnife();
             ItemCameraTransforms.TransformType transformType = ItemCameraTransforms.TransformType.FIXED;
 

@@ -128,9 +128,9 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock {
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        RedstoneToasterTileEntity tileEntity = TileEntityTypes.REDSTONE_TOASTER.create();
-        if (tileEntity != null) {
-            tileEntity.setAutoEject(isEjectionToaster);
+        TileEntity tileEntity = TileEntityTypes.REDSTONE_TOASTER.get().create();
+        if (tileEntity instanceof RedstoneToasterTileEntity) {
+            ((RedstoneToasterTileEntity) tileEntity).setAutoEject(isEjectionToaster);
         }
         return tileEntity;
     }

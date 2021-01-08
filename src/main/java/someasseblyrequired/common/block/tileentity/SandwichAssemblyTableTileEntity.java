@@ -3,6 +3,7 @@ package someasseblyrequired.common.block.tileentity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
@@ -30,7 +31,8 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
     private final LazyOptional<SandwichItemHandler> sandwichItemHandler = LazyOptional.of(() -> sandwichInventory);
 
     public SandwichAssemblyTableTileEntity() {
-        super(TileEntityTypes.SANDWICH_ASSEMBLY_TABLE, 16);
+        // noinspection unchecked
+        super((TileEntityType<SandwichAssemblyTableTileEntity>) TileEntityTypes.SANDWICH_ASSEMBLY_TABLE.get(), 16);
     }
 
     private ItemStack createSpreadItem(SpreadType spreadType, ItemStack ingredient) {
@@ -49,7 +51,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             }
         }
 
-        ItemStack spread = new ItemStack(Items.SPREAD);
+        ItemStack spread = new ItemStack(Items.SPREAD.get());
         spread.setTag(spreadNBT);
         return spread;
     }
@@ -128,7 +130,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             if (nextEmptySlot < 2 || !Tags.BREAD.contains(getInventory().getStackInSlot(nextEmptySlot - 1).getItem())) {
                 sandwich = ItemStack.EMPTY;
             } else {
-                sandwich = new ItemStack(Items.SANDWICH);
+                sandwich = new ItemStack(Items.SANDWICH.get());
                 write(sandwich.getOrCreateChildTag("BlockEntityTag"));
             }
         }
@@ -200,7 +202,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
         public NonNullList<ItemStack> removeItems() {
             NonNullList<ItemStack> result = NonNullList.create();
             for (ItemStack ingredient : super.removeItems()) {
-                if (ingredient.getItem() != Items.SPREAD) {
+                if (ingredient.getItem() != Items.SPREAD.get()) {
                     ingredient.removeChildTag("IsOnSandwich");
                     result.add(ingredient);
                 }
@@ -217,7 +219,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
 
             ItemStack result = super.extractItem(slot, amount, simulate);
             // spreads cannot be obtained as items
-            if (result.getItem() == Items.SPREAD) {
+            if (result.getItem() == Items.SPREAD.get()) {
                 return ItemStack.EMPTY;
             }
 
@@ -233,7 +235,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
                 return false;
             }
 
-            if (stack.getItem() == Items.SANDWICH) {
+            if (stack.getItem() == Items.SANDWICH.get()) {
                 IItemHandler itemHandler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);
 
                 int sandwichSize;
@@ -243,7 +245,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
                 return sandwichSize > 0 && sandwichSize <= getSlots() - getAmountOfItems();
             }
 
-            return (stack.isFood() || stack.getItem() == Items.SPREAD || SpreadTypeManager.INSTANCE.hasSpreadType(stack.getItem())) // the item must be edible
+            return (stack.isFood() || stack.getItem() == Items.SPREAD.get() || SpreadTypeManager.INSTANCE.hasSpreadType(stack.getItem())) // the item must be edible
                     && (slot > 0 || Tags.BREAD.contains(stack.getItem())); // the first item must be bread
         }
 
@@ -260,7 +262,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             validateSlotIndex(slot);
 
             // copy the sandwich's ingredients
-            if (stack.getItem() == Items.SANDWICH) {
+            if (stack.getItem() == Items.SANDWICH.get()) {
                 stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(sandwichItemHandler -> {
                     int slotOffset = getAmountOfItems();
                     for (int sandwichSlot = 0; sandwichSlot < sandwichItemHandler.getSlots() && !sandwichItemHandler.getStackInSlot(sandwichSlot).isEmpty(); sandwichSlot++) {

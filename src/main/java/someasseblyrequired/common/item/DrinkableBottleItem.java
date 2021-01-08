@@ -9,7 +9,7 @@ import net.minecraft.item.UseAction;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-public class DrinkableBottleItem extends TooltippedItem {
+public class DrinkableBottleItem extends Item {
 
     private final SoundEvent drinkSound;
 

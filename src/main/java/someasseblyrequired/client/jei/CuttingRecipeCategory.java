@@ -28,7 +28,7 @@ public class CuttingRecipeCategory implements IRecipeCategory<CuttingRecipe> {
 
     public CuttingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(new ResourceLocation(SomeAssemblyRequired.MODID, "textures/gui/cutting_recipe.png"), 0, 0, 110, 39);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(Blocks.OAK_CUTTING_BOARD));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(Blocks.OAK_CUTTING_BOARD.get()));
         title = I18n.format("recipecategory." + SomeAssemblyRequired.MODID + ".cutting");
     }
 

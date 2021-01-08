@@ -41,16 +41,16 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(Blocks.OAK_CUTTING_BOARD), CuttingRecipeCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(Blocks.SPRUCE_CUTTING_BOARD), CuttingRecipeCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(Blocks.BIRCH_CUTTING_BOARD), CuttingRecipeCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(Blocks.JUNGLE_CUTTING_BOARD), CuttingRecipeCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(Blocks.ACACIA_CUTTING_BOARD), CuttingRecipeCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(Blocks.DARK_OAK_CUTTING_BOARD), CuttingRecipeCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(Blocks.CRIMSON_CUTTING_BOARD), CuttingRecipeCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(Blocks.WARPED_CUTTING_BOARD), CuttingRecipeCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(Blocks.REDSTONE_TOASTER), ToastingRecipeCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(Blocks.STICKY_REDSTONE_TOASTER), ToastingRecipeCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(Blocks.OAK_CUTTING_BOARD.get()), CuttingRecipeCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(Blocks.SPRUCE_CUTTING_BOARD.get()), CuttingRecipeCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(Blocks.BIRCH_CUTTING_BOARD.get()), CuttingRecipeCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(Blocks.JUNGLE_CUTTING_BOARD.get()), CuttingRecipeCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(Blocks.ACACIA_CUTTING_BOARD.get()), CuttingRecipeCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(Blocks.DARK_OAK_CUTTING_BOARD.get()), CuttingRecipeCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(Blocks.CRIMSON_CUTTING_BOARD.get()), CuttingRecipeCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(Blocks.WARPED_CUTTING_BOARD.get()), CuttingRecipeCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(Blocks.REDSTONE_TOASTER.get()), ToastingRecipeCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(Blocks.STICKY_REDSTONE_TOASTER.get()), ToastingRecipeCategory.ID);
     }
 
     @Override

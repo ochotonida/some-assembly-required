@@ -1,6 +1,7 @@
 package someasseblyrequired.common.block.tileentity;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
@@ -8,7 +9,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import someasseblyrequired.common.block.CuttingBoardBlock;
-import someasseblyrequired.common.init.Items;
 import someasseblyrequired.common.init.RecipeTypes;
 import someasseblyrequired.common.init.TileEntityTypes;
 import someasseblyrequired.common.recipe.CuttingRecipe;
@@ -22,7 +22,8 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
     private boolean hasKnife;
 
     public CuttingBoardTileEntity() {
-        super(TileEntityTypes.CUTTING_BOARD, 1);
+        // noinspection unchecked
+        super((TileEntityType<CuttingBoardTileEntity>) TileEntityTypes.CUTTING_BOARD.get(), 1);
     }
 
     @Override
@@ -97,10 +98,8 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
         public NonNullList<ItemStack> removeItems() {
             NonNullList<ItemStack> result = NonNullList.create();
             for (ItemStack ingredient : super.removeItems()) {
-                if (ingredient.getItem() != Items.SPREAD) {
-                    ingredient.removeChildTag("IsOnSandwich");
-                    result.add(ingredient);
-                }
+                ingredient.removeChildTag("IsOnSandwich");
+                result.add(ingredient);
             }
             return result;
         }

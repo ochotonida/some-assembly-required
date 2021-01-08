@@ -6,6 +6,10 @@ import net.minecraft.potion.Effects;
 
 public class Foods {
 
+    public static final Food SANDWICH = new Food.Builder()
+            .setAlwaysEdible()
+            .build();
+
     public static final Food CHARRED_FOOD = new Food.Builder()
             .hunger(1)
             .saturation(0.1F)

@@ -13,6 +13,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
@@ -43,7 +44,8 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
     private UUID playerToasting;
 
     public RedstoneToasterTileEntity() {
-        super(TileEntityTypes.REDSTONE_TOASTER, 2);
+        // noinspection unchecked
+        super((TileEntityType<RedstoneToasterTileEntity>) TileEntityTypes.REDSTONE_TOASTER.get(), 2);
     }
 
     public void setAutoEject(boolean isEjectionToaster) {
@@ -117,7 +119,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
     }
 
     private ItemStack getToastingResult(ItemStack ingredient) {
-        if (ingredient.isEmpty() || ingredient.getItem() == Items.CHARRED_MORSEL || world == null) {
+        if (ingredient.isEmpty() || ingredient.getItem() == Items.CHARRED_MORSEL.get() || world == null) {
             return ItemStack.EMPTY;
         }
 
@@ -138,9 +140,9 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
         if (recipe == null) {
             if (ingredient.getItem().isFood()) {
                 if (Tags.SMALL_FOODS.contains(ingredient.getItem())) {
-                    return new ItemStack(Items.CHARRED_MORSEL);
+                    return new ItemStack(Items.CHARRED_MORSEL.get());
                 } else {
-                    return new ItemStack(Items.CHARRED_FOOD);
+                    return new ItemStack(Items.CHARRED_FOOD.get());
                 }
             } else {
                 return ItemStack.EMPTY;
@@ -286,7 +288,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
 
             @Override
             public boolean isItemValid(int slot, ItemStack stack) {
-                return super.isItemValid(slot, stack) && stack.getItem() != Items.SANDWICH && (stack.getItem().isFood() || !(stack.getItem() instanceof BlockItem) || hasToastingResult(stack));
+                return super.isItemValid(slot, stack) && stack.getItem() != Items.SANDWICH.get() && (stack.getItem().isFood() || !(stack.getItem() instanceof BlockItem) || hasToastingResult(stack));
             }
         };
     }

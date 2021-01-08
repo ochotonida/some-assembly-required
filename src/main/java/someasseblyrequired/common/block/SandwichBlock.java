@@ -46,19 +46,19 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock {
         return true;
     }
 
-    @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return TileEntityTypes.SANDWICH.create();
-    }
-
     public static ItemStack createSandwich(TileEntity tileEntity) {
         if (!(tileEntity instanceof ItemHandlerTileEntity)) {
             return ItemStack.EMPTY;
         }
 
-        ItemStack sandwich = new ItemStack(Items.SANDWICH);
+        ItemStack sandwich = new ItemStack(Items.SANDWICH.get());
         sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", tileEntity.write(new CompoundNBT()).getCompound("Ingredients"));
         return sandwich;
+    }
+
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return TileEntityTypes.SANDWICH.get().create();
     }
 
     @Override

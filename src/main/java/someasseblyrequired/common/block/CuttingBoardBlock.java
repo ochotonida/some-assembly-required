@@ -117,7 +117,7 @@ public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return TileEntityTypes.CUTTING_BOARD.create();
+        return TileEntityTypes.CUTTING_BOARD.get().create();
     }
 
     @Override

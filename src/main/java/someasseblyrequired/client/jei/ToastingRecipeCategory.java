@@ -38,7 +38,7 @@ public class ToastingRecipeCategory implements IRecipeCategory<IRecipe> {
     public ToastingRecipeCategory(IGuiHelper guiHelper) {
         ResourceLocation texture = new ResourceLocation(SomeAssemblyRequired.MODID, "textures/gui/toasting_recipe.png");
         background = guiHelper.createDrawable(texture, 0, 0, 111, 41);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(Blocks.REDSTONE_TOASTER));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(Blocks.REDSTONE_TOASTER.get()));
         arrow = guiHelper.drawableBuilder(texture, 111, 0, 22, 16).buildAnimated(240, IDrawableAnimated.StartDirection.LEFT, false);
         title = I18n.format("recipecategory." + SomeAssemblyRequired.MODID + ".toasting");
     }
