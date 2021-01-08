@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:mac_and_cheese",
+  "container": "minecraft:bowl",
+  "displayname": {
+    "translate": "item.simplefarming.mac_and_cheese"
+  },
+  "color": 16766208
+}

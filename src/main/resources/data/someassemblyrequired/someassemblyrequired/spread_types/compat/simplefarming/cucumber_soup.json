@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:cucumber_soup",
+  "container": "minecraft:bowl",
+  "displayname": {
+    "translate": "item.simplefarming.cucumber_soup"
+  },
+  "color": 8626795
+}

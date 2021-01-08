@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:tiswin",
+  "container": "minecraft:glass_bottle",
+  "displayname": {
+    "translate": "item.simplefarming.tiswin"
+  },
+  "color": 12929820
+}

@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:cauim",
+  "container": "minecraft:glass_bottle",
+  "displayname": {
+    "translate": "item.simplefarming.cauim"
+  },
+  "color": 13022803
+}

@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:chicken_noodle_soup",
+  "container": "minecraft:bowl",
+  "displayname": {
+    "translate": "item.simplefarming.chicken_noodle_soup"
+  },
+  "color": 12754223
+}

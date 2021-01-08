@@ -87,6 +87,8 @@
   "spreadtype.someassemblyrequired.sweet_berry_jam_bottle": "Sweet Berry Jam",
 
   "spreadtype.someassemblyrequired.farmersdelight.milk_bottle": "Milk",
+  "spreadtype.someassemblyrequired.atmospheric.aloe_gel_bottle": "Aloe Gel",
+  "spreadtype.someassemblyrequired.neapolitan.milk_bottle": "Milk",
 
   "block.someassemblyrequired.sandwich_assembly_table.tooltip": "Can be used to make sandwiches by placing items on top. Sneak-right click with an empty hand to build your sandwich",
   "block.someassemblyrequired.cutting_board.tooltip": "A block used to cut or chop food items",

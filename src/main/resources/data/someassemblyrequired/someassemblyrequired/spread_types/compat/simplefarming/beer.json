@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:beer",
+  "container": "minecraft:glass_bottle",
+  "displayname": {
+    "translate": "item.simplefarming.beer"
+  },
+  "color": 14134634
+}

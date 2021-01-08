@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:ice_cream_sundae",
+  "displayname": {
+    "translate": "item.simplefarming.ice_cream_sundae"
+  },
+  "color": 16755883
+}
