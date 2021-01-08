@@ -90,7 +90,7 @@
   "spreadtype.someassemblyrequired.atmospheric.aloe_gel_bottle": "Aloe Gel",
   "spreadtype.someassemblyrequired.neapolitan.milk_bottle": "Milk",
 
-  "block.someassemblyrequired.sandwich_assembly_table.description": "Sandwiches can be made using this block by placing items on top. Sneak-right click with an empty hand to build your sandwich",
+  "block.someassemblyrequired.sandwich_assembly_table.description": "Sandwiches can be made using this block. Up to 16 ingredients can be placed on top, starting and ending with a bread slice. Sneak-right click with an empty hand to build your sandwich",
   "block.someassemblyrequired.cutting_board.description": "A block used to cut or chop food items",
   "block.someassemblyrequired.redstone_toaster.description": "The Redstone Toaster™ can be used to toast bread and other food items. It does not require any fuel. It is recommended one does not try to toast metal, or submerge the toaster in water",
   "block.someassemblyrequired.sticky_redstone_toaster.description": "A slightly less violent variant of the Redstone Toaster™",
@@ -98,7 +98,7 @@
   "item.someassemblyrequired.sandwich.tooltip.truncate_info": "(%s additional ingredients)",
 
   "item.someassemblyrequired.kitchen_knife.description": "A tool used to cut ingredients on the cutting board",
-  "item.someassemblyrequired.bread_slice.description": "Much more hunger-efficient than a loaf of bread and can be eaten faster",
+  "item.someassemblyrequired.bread_slice.description": "An ingredient essential for sandwiches. Much more hunger-efficient than a loaf of bread and can be eaten faster",
   "item.someassemblyrequired.toasted_bread_slice.description": "A toasted slice of bread. Restores more hunger than a regular bread slice",
   "item.someassemblyrequired.charred_bread_slice.description": "Not quite as tasty as regular bread",
   "item.someassemblyrequired.apple_slices.description": "A sliced food item which is more hunger-efficient than a whole apple and can be eaten faster",
