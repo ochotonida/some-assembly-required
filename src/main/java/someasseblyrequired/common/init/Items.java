@@ -169,6 +169,17 @@ public class Items {
             )
     );
 
+    public static final RegistryObject<Item> KETCHUP_BOTTLE = REGISTRY.register(
+            "ketchup_bottle",
+            () -> new DrinkableBottleItem(
+                    new Item.Properties()
+                            .group(CREATIVE_TAB)
+                            .containerItem(net.minecraft.item.Items.GLASS_BOTTLE)
+                            .maxStackSize(16)
+                            .food(Foods.KETCHUP)
+            )
+    );
+
     public static final RegistryObject<Item> SWEET_BERRY_JAM_BOTTLE = REGISTRY.register(
             "sweet_berry_jam_bottle",
             () -> new DrinkableBottleItem(

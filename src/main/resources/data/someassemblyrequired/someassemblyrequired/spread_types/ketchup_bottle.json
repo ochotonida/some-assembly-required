@@ -1,0 +1,8 @@
+{
+  "item": "someassemblyrequired:ketchup_bottle",
+  "container": "minecraft:glass_bottle",
+  "displayname": {
+    "translate": "spreadtype.someassemblyrequired.ketchup_bottle"
+  },
+  "color": 9505024
+}

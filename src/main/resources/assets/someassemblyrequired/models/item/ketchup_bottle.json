@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "someassemblyrequired:item/mayonnaise_bottle"
+    "layer0": "someassemblyrequired:item/ketchup_bottle"
   }
 }

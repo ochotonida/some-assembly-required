@@ -51,6 +51,7 @@
   "item.someassemblyrequired.charred_morsel": "Charred Morsel",
   "item.someassemblyrequired.tomato": "Tomato",
   "item.someassemblyrequired.tomato_slices": "Tomato Slices",
+  "item.someassemblyrequired.ketchup_bottle": "Ketchup Bottle",
 
   "item.someassemblyrequired.sandwich": "Sandwich",
   "item.someassemblyrequired.snadwich": "Sandwich... ?",
@@ -84,6 +85,7 @@
   "spreadtype.someassemblyrequired.honey_bottle": "Honey",
   "spreadtype.someassemblyrequired.milk_bucket": "Milk",
   "spreadtype.someassemblyrequired.mayonnaise_bottle": "Mayonnaise",
+  "spreadtype.someassemblyrequired.ketchup_bottle": "Ketchup",
   "spreadtype.someassemblyrequired.sweet_berry_jam_bottle": "Sweet Berry Jam",
 
   "spreadtype.someassemblyrequired.farmersdelight.milk_bottle": "Milk",
@@ -117,5 +119,6 @@
   "item.someassemblyrequired.sliced_toasted_warped_fungus.description": "A sliced food item which is more hunger-efficient than a whole toasted warped fungus and can be eaten faster",
   "item.someassemblyrequired.charred_food.description": "Perhaps toasting it again will help?",
   "item.someassemblyrequired.tomato.description": "A vegetable that can be sliced or used to make ketchup",
-  "item.someassemblyrequired.tomato_slices.description": "A sliced food item which is more hunger-efficient than a whole tomato and can be eaten faster"
+  "item.someassemblyrequired.tomato_slices.description": "A sliced food item which is more hunger-efficient than a whole tomato and can be eaten faster",
+  "item.someassemblyrequired.ketchup_bottle.description": "A bottle of ketchup. can be spread on a sandwich"
 }

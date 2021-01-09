@@ -3,9 +3,9 @@ package someasseblyrequired.common.init;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.Potions;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -34,6 +34,19 @@ public class RecipeTypes {
     );
 
     public static void registerBrewingRecipes() {
-        BrewingRecipeRegistry.addRecipe(new PotionToItemStackBrewingRecipe(Potions.THICK, Ingredient.fromItems(net.minecraft.item.Items.EGG), new ItemStack(Items.MAYONNAISE_BOTTLE.get())));
+        BrewingRecipeRegistry.addRecipe(
+                new PotionToItemStackBrewingRecipe(
+                        Potions.THICK,
+                        Tags.Items.EGGS,
+                        new ItemStack(Items.MAYONNAISE_BOTTLE.get())
+                )
+        );
+        BrewingRecipeRegistry.addRecipe(
+                new PotionToItemStackBrewingRecipe(
+                        Potions.THICK,
+                        someasseblyrequired.common.init.Tags.TOMATOES,
+                        new ItemStack(Items.KETCHUP_BOTTLE.get())
+                )
+        );
     }
 }

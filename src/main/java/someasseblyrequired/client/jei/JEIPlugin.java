@@ -89,6 +89,7 @@ public class JEIPlugin implements IModPlugin {
                 Items.TOMATO.get(),
                 Items.TOMATO_SLICES.get(),
                 Items.MAYONNAISE_BOTTLE.get(),
+                Items.KETCHUP_BOTTLE.get(),
                 Items.SWEET_BERRY_JAM_BOTTLE.get()
         }) {
             registration.addIngredientInfo(new ItemStack(item), VanillaTypes.ITEM, item.asItem().getTranslationKey() + ".description");

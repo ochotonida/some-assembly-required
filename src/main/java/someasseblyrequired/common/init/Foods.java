@@ -80,6 +80,11 @@ public class Foods {
             .saturation(0.1F)
             .build();
 
+    public static final Food KETCHUP = new Food.Builder()
+            .hunger(2)
+            .saturation(0.2F)
+            .build();
+
     public static final Food SWEET_BERRY_JAM = new Food.Builder()
             .hunger(5)
             .saturation(0.5F)
