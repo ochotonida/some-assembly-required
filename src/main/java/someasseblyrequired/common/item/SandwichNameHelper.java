@@ -5,7 +5,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -21,12 +21,16 @@ import java.util.List;
 public class SandwichNameHelper {
 
     @Nullable
-    public static ITextComponent getSandwichDisplayName(ItemStack stack) {
+    public static IFormattableTextComponent getSandwichDisplayName(ItemStack stack) {
         IItemHandler handler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);
         List<ItemStack> ingredients = new ArrayList<>();
         for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
             ingredients.add(handler.getStackInSlot(slot));
         }
+        return getSandwichDisplayName(ingredients);
+    }
+
+    public static IFormattableTextComponent getSandwichDisplayName(List<ItemStack> ingredients) {
         int breadAmount = (int) ingredients.stream().filter(ingredient -> Tags.BREAD.contains(ingredient.getItem())).count();
 
         // full bread sandwich
@@ -35,7 +39,7 @@ public class SandwichNameHelper {
         }
 
         // sandwich with a single non-bread ingredient
-        ITextComponent result = getSingleIngredientName(ingredients);
+        IFormattableTextComponent result = getSingleIngredientName(ingredients);
         if (result != null) {
             return result;
         }
@@ -59,7 +63,7 @@ public class SandwichNameHelper {
     }
 
     @Nullable
-    private static ITextComponent getSingleIngredientName(List<ItemStack> ingredients) {
+    private static IFormattableTextComponent getSingleIngredientName(List<ItemStack> ingredients) {
         if (ingredients.size() != 3) {
             return null;
         }
@@ -78,7 +82,7 @@ public class SandwichNameHelper {
     }
 
     @Nullable
-    private static ITextComponent getStackedSandwichName(List<ItemStack> ingredients) {
+    private static IFormattableTextComponent getStackedSandwichName(List<ItemStack> ingredients) {
         if (ingredients.size() >= 5 && ingredients.size() % 2 != 0) {
             int index;
             for (index = 2; index < ingredients.size(); index++) {
@@ -117,7 +121,7 @@ public class SandwichNameHelper {
         }
     }
 
-    private static ITextComponent getIngredientDisplayName(ItemStack ingredient) {
+    private static IFormattableTextComponent getIngredientDisplayName(ItemStack ingredient) {
         if (ingredient.hasDisplayName() || !Arrays.asList(
                 Items.TOASTED_BREAD_SLICE.get(),
                 Items.APPLE_SLICES.get(),
@@ -129,9 +133,10 @@ public class SandwichNameHelper {
                 Items.PORK_CUTS.get(),
                 Items.BACON_STRIPS.get(),
                 Items.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
-                Items.SLICED_TOASTED_WARPED_FUNGUS.get()
+                Items.SLICED_TOASTED_WARPED_FUNGUS.get(),
+                Items.TOMATO_SLICES.get()
         ).contains(ingredient.getItem())) {
-            return ingredient.getDisplayName();
+            return ingredient.getDisplayName().copyRaw();
         }
         ResourceLocation registryName = ingredient.getItem().getRegistryName();
         // noinspection ConstantConditions
