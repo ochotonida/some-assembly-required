@@ -89,7 +89,12 @@ public class Items {
 
     public static final RegistryObject<Item> GOLDEN_APPLE_SLICES = REGISTRY.register(
             "golden_apple_slices",
-            () -> createFoodItem(Foods.GOLDEN_APPLE_SLICES)
+            () -> new Item(
+                    new Item.Properties()
+                            .group(CREATIVE_TAB)
+                            .food(Foods.GOLDEN_APPLE_SLICES)
+                            .rarity(Rarity.RARE)
+            )
     );
 
     public static final RegistryObject<Item> ENCHANTED_GOLDEN_APPLE_SLICES = REGISTRY.register(
@@ -98,6 +103,7 @@ public class Items {
                     new Item.Properties()
                             .group(CREATIVE_TAB)
                             .food(Foods.ENCHANTED_GOLDEN_APPLE_SLICES)
+                            .rarity(Rarity.EPIC)
             )
     );
 
