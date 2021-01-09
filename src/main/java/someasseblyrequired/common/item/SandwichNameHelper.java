@@ -33,6 +33,14 @@ public class SandwichNameHelper {
     public static IFormattableTextComponent getSandwichDisplayName(List<ItemStack> ingredients) {
         int breadAmount = (int) ingredients.stream().filter(ingredient -> Tags.BREAD.contains(ingredient.getItem())).count();
 
+        // BLT
+        if (ingredients.size() == 5 && breadAmount == 2
+                && ingredients.stream().anyMatch(stack -> stack.getItem() == Items.BACON_STRIPS.get())
+                && ingredients.stream().anyMatch(stack -> stack.getItem() == Items.TOMATO_SLICES.get() || Tags.TOMATOES.contains(stack.getItem()))
+                && ingredients.stream().anyMatch(stack -> Tags.LETTUCE.contains(stack.getItem()))) {
+            return new TranslationTextComponent("item.someassemblyrequired.blt_sandwich");
+        }
+
         // full bread sandwich
         if (breadAmount == ingredients.size() && (ingredients.size() != 3 || ingredients.get(1).getItem() != Items.TOASTED_BREAD_SLICE.get())) {
             return new TranslationTextComponent("item.someassemblyrequired.snadwich");
