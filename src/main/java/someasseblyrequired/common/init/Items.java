@@ -21,6 +21,29 @@ import someasseblyrequired.common.item.SpreadItem;
 public class Items {
 
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, SomeAssemblyRequired.MODID);
+
+    private static final ItemGroup CREATIVE_TAB = new ItemGroup(SomeAssemblyRequired.MODID) {
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public ItemStack createIcon() {
+            NonNullList<ItemStack> ingredients = NonNullList.create();
+            for (Item item : new Item[]{
+                    BREAD_SLICE.get(),
+                    LETTUCE_LEAF.get(),
+                    BACON_STRIPS.get(),
+                    TOMATO_SLICES.get(),
+                    BREAD_SLICE.get()
+            }) {
+                ItemStack ingredient = new ItemStack(item);
+                ingredient.getOrCreateTag().putBoolean("IsOnSandwich", true);
+                ingredients.add(ingredient);
+            }
+            ItemStack sandwich = new ItemStack(SANDWICH.get());
+            sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", new ItemStackHandler(ingredients).serializeNBT());
+            return sandwich;
+        }
+    };
+
     // misc items
     public static final RegistryObject<Item> SANDWICH = REGISTRY.register(
             "sandwich",
@@ -36,18 +59,7 @@ public class Items {
             "spread",
             () -> new SpreadItem(new Item.Properties())
     );
-    private static final ItemGroup CREATIVE_TAB = new ItemGroup(SomeAssemblyRequired.MODID) {
-        @Override
-        @OnlyIn(Dist.CLIENT)
-        public ItemStack createIcon() {
-            ItemStack bread = new ItemStack(TOASTED_BREAD_SLICE.get());
-            ItemStack spread = new ItemStack(Items.SPREAD.get());
-            spread.getOrCreateTag().putInt("Color", 0xF08A1D);
-            ItemStack sandwich = new ItemStack(SANDWICH.get());
-            sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", new ItemStackHandler(NonNullList.from(ItemStack.EMPTY, bread, spread, bread)).serializeNBT());
-            return sandwich;
-        }
-    };
+
     public static final RegistryObject<Item> KITCHEN_KNIFE = REGISTRY.register(
             "kitchen_knife",
             () -> new Item(
@@ -56,6 +68,7 @@ public class Items {
                             .maxStackSize(1)
             )
     );
+
     // foods
     public static final RegistryObject<Item> BREAD_SLICE = REGISTRY.register(
             "bread_slice",
@@ -160,6 +173,16 @@ public class Items {
     public static final RegistryObject<Item> TOMATO_SLICES = REGISTRY.register(
             "tomato_slices",
             () -> createFoodItem(Foods.TOMATO_SLICES)
+    );
+
+    public static final RegistryObject<Item> LETTUCE_HEAD = REGISTRY.register(
+            "lettuce_head",
+            () -> createFoodItem(Foods.LETTUCE_HEAD)
+    );
+
+    public static final RegistryObject<Item> LETTUCE_LEAF = REGISTRY.register(
+            "lettuce_leaf",
+            () -> createFoodItem(Foods.LETTUCE_LEAF)
     );
 
     // spreadables

@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "someassemblyrequired:item/lettuce_leaf"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "someassemblyrequired:on_sandwich": 1
+      },
+      "model": "someassemblyrequired:item/lettuce_leaf_on_sandwich"
+    }
+  ]
+}

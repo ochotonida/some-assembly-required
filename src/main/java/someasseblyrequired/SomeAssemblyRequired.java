@@ -63,7 +63,8 @@ public class SomeAssemblyRequired {
                     Items.BACON_STRIPS.get(),
                     Items.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
                     Items.SLICED_TOASTED_WARPED_FUNGUS.get(),
-                    Items.TOMATO_SLICES.get()
+                    Items.TOMATO_SLICES.get(),
+                    Items.LETTUCE_LEAF.get()
             }) {
                 ItemModelsProperties.registerProperty(item, new ResourceLocation(SomeAssemblyRequired.MODID, "on_sandwich"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnSandwich") ? 1 : 0);
             }

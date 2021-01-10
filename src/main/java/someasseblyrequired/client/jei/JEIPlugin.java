@@ -88,6 +88,8 @@ public class JEIPlugin implements IModPlugin {
                 Items.SLICED_TOASTED_WARPED_FUNGUS.get(),
                 Items.TOMATO.get(),
                 Items.TOMATO_SLICES.get(),
+                Items.LETTUCE_HEAD.get(),
+                Items.LETTUCE_LEAF.get(),
                 Items.MAYONNAISE_BOTTLE.get(),
                 Items.KETCHUP_BOTTLE.get(),
                 Items.SWEET_BERRY_JAM_BOTTLE.get()

@@ -52,9 +52,12 @@
   "item.someassemblyrequired.tomato": "Tomato",
   "item.someassemblyrequired.tomato_slices": "Tomato Slices",
   "item.someassemblyrequired.ketchup_bottle": "Ketchup Bottle",
+  "item.someassemblyrequired.lettuce_head": "Lettuce Head",
+  "item.someassemblyrequired.lettuce_leaf": "Lettuce Leaf",
 
   "item.someassemblyrequired.sandwich": "Sandwich",
   "item.someassemblyrequired.snadwich": "Sandwich... ?",
+  "item.someassemblyrequired.blt_sandwich": "BLT",
   "item.someassemblyrequired.soggy_sandwich": "Soggy Sandwich",
   "item.someassemblyrequired.single_ingredient_sandwich": "%s Sandwich",
   "item.someassemblyrequired.double_ingredient_sandwich": "%s & %s Sandwich",
@@ -80,6 +83,7 @@
   "ingredient.someassemblyrequired.sliced_toasted_crimson_fungus": "Crimson Fungus",
   "ingredient.someassemblyrequired.sliced_toasted_warped_fungus": "Warped Fungus",
   "ingredient.someassemblyrequired.tomato_slices": "Tomato",
+  "ingredient.someassemblyrequired.lettuce_leaf": "Lettuce",
 
   "spreadtype.someassemblyrequired.water_bottle": "Water",
   "spreadtype.someassemblyrequired.honey_bottle": "Honey",
@@ -120,5 +124,7 @@
   "item.someassemblyrequired.charred_food.description": "Perhaps toasting it again will help?",
   "item.someassemblyrequired.tomato.description": "A vegetable that can be sliced or used to make ketchup",
   "item.someassemblyrequired.tomato_slices.description": "A sliced food item which is more hunger-efficient than a whole tomato and can be eaten faster",
-  "item.someassemblyrequired.ketchup_bottle.description": "A bottle of ketchup. can be spread on a sandwich"
+  "item.someassemblyrequired.ketchup_bottle.description": "A bottle of ketchup. can be spread on a sandwich",
+  "item.someassemblyrequired.lettuce_head.description": "A head of lettuce. Can be cut into leaves",
+  "item.someassemblyrequired.lettuce_leaf.description": "A leaf of lettuce. More hunger-efficient than a whole head of lettuce"
 }

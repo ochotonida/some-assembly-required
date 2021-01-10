@@ -134,4 +134,14 @@ public class Foods {
             .saturation(0.6F)
             .fastToEat()
             .build();
+
+    public static final Food LETTUCE_HEAD = new Food.Builder()
+            .hunger(5)
+            .saturation(0.2F)
+            .build();
+
+    public static final Food LETTUCE_LEAF = new Food.Builder()
+            .hunger(3)
+            .saturation(0.4F)
+            .build();
 }
