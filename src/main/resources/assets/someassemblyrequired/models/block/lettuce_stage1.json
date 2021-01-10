@@ -1,0 +1,254 @@
+{
+  "ambientocclusion": false,
+  "texture_size": [
+    32,
+    32
+  ],
+  "textures": {
+    "texture": "someassemblyrequired:block/lettuce_stage1",
+    "particle": "someassemblyrequired:item/lettuce_head"
+  },
+  "elements": [
+    {
+      "name": "head",
+      "from": [
+        7,
+        -1,
+        7
+      ],
+      "to": [
+        9,
+        1,
+        9
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          -1,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            8,
+            2,
+            9
+          ],
+          "texture": "#texture"
+        },
+        "east": {
+          "uv": [
+            1,
+            8,
+            2,
+            9
+          ],
+          "texture": "#texture"
+        },
+        "south": {
+          "uv": [
+            1,
+            8,
+            2,
+            9
+          ],
+          "texture": "#texture"
+        },
+        "west": {
+          "uv": [
+            1,
+            8,
+            2,
+            9
+          ],
+          "texture": "#texture"
+        },
+        "up": {
+          "uv": [
+            0,
+            8,
+            1,
+            9
+          ],
+          "texture": "#texture"
+        }
+      }
+    },
+    {
+      "name": "leaf_north",
+      "shade": false,
+      "from": [
+        0,
+        -1,
+        7
+      ],
+      "to": [
+        16,
+        7,
+        7
+      ],
+      "rotation": {
+        "angle": -45,
+        "axis": "x",
+        "origin": [
+          8,
+          -1,
+          7
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            4,
+            8,
+            8
+          ],
+          "texture": "#texture"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            8,
+            4
+          ],
+          "texture": "#texture"
+        }
+      }
+    },
+    {
+      "name": "leaf_east",
+      "shade": false,
+      "from": [
+        9,
+        -1,
+        0
+      ],
+      "to": [
+        9,
+        7,
+        16
+      ],
+      "rotation": {
+        "angle": -45,
+        "axis": "z",
+        "origin": [
+          9,
+          -1,
+          8
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            0,
+            4,
+            8,
+            8
+          ],
+          "texture": "#texture"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            8,
+            4
+          ],
+          "texture": "#texture"
+        }
+      }
+    },
+    {
+      "name": "leaf_south",
+      "shade": false,
+      "from": [
+        0,
+        -1,
+        9
+      ],
+      "to": [
+        16,
+        7,
+        9
+      ],
+      "rotation": {
+        "angle": 45,
+        "axis": "x",
+        "origin": [
+          8,
+          -1,
+          9
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            8,
+            4
+          ],
+          "texture": "#texture"
+        },
+        "south": {
+          "uv": [
+            0,
+            4,
+            8,
+            8
+          ],
+          "texture": "#texture"
+        }
+      }
+    },
+    {
+      "name": "leaf_west",
+      "shade": false,
+      "from": [
+        7,
+        -1,
+        0
+      ],
+      "to": [
+        7,
+        7,
+        16
+      ],
+      "rotation": {
+        "angle": 45,
+        "axis": "z",
+        "origin": [
+          7,
+          -1,
+          8
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            0,
+            0,
+            8,
+            4
+          ],
+          "texture": "#texture"
+        },
+        "west": {
+          "uv": [
+            0,
+            4,
+            8,
+            8
+          ],
+          "texture": "#texture"
+        }
+      }
+    }
+  ]
+}

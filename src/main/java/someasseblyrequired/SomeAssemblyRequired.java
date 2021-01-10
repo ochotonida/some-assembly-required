@@ -1,5 +1,7 @@
 package someasseblyrequired;
 
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
@@ -47,6 +49,11 @@ public class SomeAssemblyRequired {
                 RecipeTypes.registerBrewingRecipes();
             });
         }
+    }
+
+    @SuppressWarnings("unused")
+    @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class ClientEvents {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
@@ -68,12 +75,9 @@ public class SomeAssemblyRequired {
             }) {
                 ItemModelsProperties.registerProperty(item, new ResourceLocation(SomeAssemblyRequired.MODID, "on_sandwich"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnSandwich") ? 1 : 0);
             }
-        }
-    }
 
-    @SuppressWarnings("unused")
-    @Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class ClientEvents {
+            RenderTypeLookup.setRenderLayer(Blocks.LETTUCE.get(), RenderType.getCutout());
+        }
 
         @SubscribeEvent
         public static void registerColorHandlers(ColorHandlerEvent.Item event) {

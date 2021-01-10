@@ -142,7 +142,8 @@ public class SandwichNameHelper {
                 Items.BACON_STRIPS.get(),
                 Items.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
                 Items.SLICED_TOASTED_WARPED_FUNGUS.get(),
-                Items.TOMATO_SLICES.get()
+                Items.TOMATO_SLICES.get(),
+                Items.LETTUCE_LEAF
         ).contains(ingredient.getItem())) {
             return ingredient.getDisplayName().copyRaw();
         }

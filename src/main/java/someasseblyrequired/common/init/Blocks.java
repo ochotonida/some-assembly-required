@@ -9,10 +9,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import someasseblyrequired.SomeAssemblyRequired;
-import someasseblyrequired.common.block.CuttingBoardBlock;
-import someasseblyrequired.common.block.RedstoneToasterBlock;
-import someasseblyrequired.common.block.SandwichAssemblyTableBlock;
-import someasseblyrequired.common.block.SandwichBlock;
+import someasseblyrequired.common.block.*;
 
 public class Blocks {
 
@@ -22,7 +19,8 @@ public class Blocks {
     public static final RegistryObject<Block> SANDWICH = REGISTRY.register(
             "sandwich",
             () -> new SandwichBlock(
-                    AbstractBlock.Properties.create(Material.MISCELLANEOUS, MaterialColor.WOOD)
+                    AbstractBlock.Properties
+                            .create(Material.MISCELLANEOUS, MaterialColor.WOOD)
                             .hardnessAndResistance(0.5F)
                             .doesNotBlockMovement()
                             .setOpaque((state, world, pos) -> false)
@@ -123,6 +121,17 @@ public class Blocks {
             () -> createToaster(false)
     );
 
+    // crops
+    public static final RegistryObject<Block> LETTUCE = REGISTRY.register(
+            "lettuce",
+            () -> new LettuceBlock(AbstractBlock.Properties
+                    .create(Material.PLANTS)
+                    .doesNotBlockMovement()
+                    .tickRandomly()
+                    .sound(SoundType.CROP)
+                    .hardnessAndResistance(0.2F))
+    );
+
     public static Block[] getSandwichAssemblyTables() {
         return new Block[]{
                 Blocks.OAK_SANDWICH_ASSEMBLY_TABLE.get(),
@@ -158,7 +167,8 @@ public class Blocks {
 
     private static Block createSandwichAssemblyTable(Material material) {
         return new SandwichAssemblyTableBlock(
-                AbstractBlock.Properties.create(material, MaterialColor.STONE)
+                AbstractBlock.Properties
+                        .create(material, MaterialColor.STONE)
                         .hardnessAndResistance(2.5F)
                         .sound(SoundType.WOOD)
         );
@@ -166,13 +176,18 @@ public class Blocks {
 
     private static Block createCuttingBoard(Material material, MaterialColor color, SoundType soundType) {
         return new CuttingBoardBlock(
-                AbstractBlock.Properties.create(material, color)
+                AbstractBlock.Properties
+                        .create(material, color)
                         .hardnessAndResistance(2)
                         .sound(soundType)
         );
     }
 
     private static Block createToaster(boolean isEjectionToaster) {
-        return new RedstoneToasterBlock(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(3.5F), isEjectionToaster);
+        return new RedstoneToasterBlock(AbstractBlock.Properties
+                .create(Material.ROCK)
+                .setRequiresTool()
+                .hardnessAndResistance(3.5F),
+                isEjectionToaster);
     }
 }
