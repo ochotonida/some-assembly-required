@@ -1,0 +1,66 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "someassemblyrequired:lettuce_head",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "someassemblyrequired:lettuce",
+                  "properties": {
+                    "age": "3"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "someassemblyrequired:lettuce_seeds"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "someassemblyrequired:lettuce_seeds",
+          "functions": [
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:binomial_with_bonus_count",
+              "parameters": {
+                "extra": 3,
+                "probability": 0.5714286
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "someassemblyrequired:lettuce",
+          "properties": {
+            "age": "3"
+          }
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ]
+}

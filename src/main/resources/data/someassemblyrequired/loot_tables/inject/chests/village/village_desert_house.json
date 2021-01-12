@@ -1,0 +1,29 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 1,
+      "entries": [
+        {
+          "weight": 6,
+          "type": "item",
+          "name": "someassemblyrequired:tomato",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 6,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "weight": 12,
+          "type": "empty"
+        }
+      ]
+    }
+  ]
+}

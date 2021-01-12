@@ -27,6 +27,7 @@
   "block.someassemblyrequired.redstone_toaster": "Redstone Toaster",
   "block.someassemblyrequired.sticky_redstone_toaster": "Sticky Redstone Toaster",
   "block.someassemblyrequired.sandwich": "Sandwich",
+  "block.someassemblyrequired.lettuce": "Lettuce",
 
   "item.someassemblyrequired.kitchen_knife": "Kitchen Knife",
   "item.someassemblyrequired.spread": "Spread",
@@ -54,6 +55,7 @@
   "item.someassemblyrequired.ketchup_bottle": "Ketchup Bottle",
   "item.someassemblyrequired.lettuce_head": "Lettuce Head",
   "item.someassemblyrequired.lettuce_leaf": "Lettuce Leaf",
+  "item.someassemblyrequired.lettuce_seeds": "Lettuce Seeds",
 
   "item.someassemblyrequired.sandwich": "Sandwich",
   "item.someassemblyrequired.snadwich": "Sandwich... ?",

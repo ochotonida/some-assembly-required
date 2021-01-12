@@ -124,12 +124,7 @@ public class Blocks {
     // crops
     public static final RegistryObject<Block> LETTUCE = REGISTRY.register(
             "lettuce",
-            () -> new LettuceBlock(AbstractBlock.Properties
-                    .create(Material.PLANTS)
-                    .doesNotBlockMovement()
-                    .tickRandomly()
-                    .sound(SoundType.CROP)
-                    .hardnessAndResistance(0.2F))
+            () -> new LettuceBlock(AbstractBlock.Properties.from(net.minecraft.block.Blocks.WHEAT))
     );
 
     public static Block[] getSandwichAssemblyTables() {

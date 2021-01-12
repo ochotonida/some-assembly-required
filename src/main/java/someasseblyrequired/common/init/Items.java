@@ -44,6 +44,99 @@ public class Items {
         }
     };
 
+    // sandwich assembly tables
+    public static final RegistryObject<Item> OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
+            "oak_sandwich_assembly_table",
+            () -> createBlockItem(Blocks.OAK_SANDWICH_ASSEMBLY_TABLE.get())
+    );
+
+    public static final RegistryObject<Item> SPRUCE_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
+            "spruce_sandwich_assembly_table",
+            () -> createBlockItem(Blocks.SPRUCE_SANDWICH_ASSEMBLY_TABLE.get())
+    );
+
+    public static final RegistryObject<Item> BIRCH_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
+            "birch_sandwich_assembly_table",
+            () -> createBlockItem(Blocks.BIRCH_SANDWICH_ASSEMBLY_TABLE.get())
+    );
+
+    public static final RegistryObject<Item> JUNGLE_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
+            "jungle_sandwich_assembly_table",
+            () -> createBlockItem(Blocks.JUNGLE_SANDWICH_ASSEMBLY_TABLE.get())
+    );
+
+    public static final RegistryObject<Item> ACACIA_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
+            "acacia_sandwich_assembly_table",
+            () -> createBlockItem(Blocks.ACACIA_SANDWICH_ASSEMBLY_TABLE.get())
+    );
+
+    public static final RegistryObject<Item> DARK_OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
+            "dark_oak_sandwich_assembly_table",
+            () -> createBlockItem(Blocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE.get())
+    );
+
+    public static final RegistryObject<Item> CRIMSON_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
+            "crimson_sandwich_assembly_table",
+            () -> createBlockItem(Blocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get())
+    );
+
+    public static final RegistryObject<Item> WARPED_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
+            "warped_sandwich_assembly_table",
+            () -> createBlockItem(Blocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get())
+    );
+
+    // cutting boards
+    public static final RegistryObject<Item> OAK_CUTTING_BOARD = REGISTRY.register(
+            "oak_cutting_board",
+            () -> createBlockItem(Blocks.OAK_CUTTING_BOARD.get())
+    );
+
+    public static final RegistryObject<Item> SPRUCE_CUTTING_BOARD = REGISTRY.register(
+            "spruce_cutting_board",
+            () -> createBlockItem(Blocks.SPRUCE_CUTTING_BOARD.get())
+    );
+
+    public static final RegistryObject<Item> BIRCH_CUTTING_BOARD = REGISTRY.register(
+            "birch_cutting_board",
+            () -> createBlockItem(Blocks.BIRCH_CUTTING_BOARD.get())
+    );
+
+    public static final RegistryObject<Item> JUNGLE_CUTTING_BOARD = REGISTRY.register(
+            "jungle_cutting_board",
+            () -> createBlockItem(Blocks.JUNGLE_CUTTING_BOARD.get())
+    );
+
+    public static final RegistryObject<Item> ACACIA_CUTTING_BOARD = REGISTRY.register(
+            "acacia_cutting_board",
+            () -> createBlockItem(Blocks.ACACIA_CUTTING_BOARD.get())
+    );
+
+    public static final RegistryObject<Item> DARK_OAK_CUTTING_BOARD = REGISTRY.register(
+            "dark_oak_cutting_board",
+            () -> createBlockItem(Blocks.DARK_OAK_CUTTING_BOARD.get())
+    );
+
+    public static final RegistryObject<Item> CRIMSON_CUTTING_BOARD = REGISTRY.register(
+            "crimson_cutting_board",
+            () -> createBlockItem(Blocks.CRIMSON_CUTTING_BOARD.get())
+    );
+
+    public static final RegistryObject<Item> WARPED_CUTTING_BOARD = REGISTRY.register(
+            "warped_cutting_board",
+            () -> createBlockItem(Blocks.WARPED_CUTTING_BOARD.get())
+    );
+
+    // toasters
+    public static final RegistryObject<Item> REDSTONE_TOASTER = REGISTRY.register(
+            "redstone_toaster",
+            () -> createBlockItem(Blocks.REDSTONE_TOASTER.get())
+    );
+
+    public static final RegistryObject<Item> STICKY_REDSTONE_TOASTER = REGISTRY.register(
+            "sticky_redstone_toaster",
+            () -> createBlockItem(Blocks.STICKY_REDSTONE_TOASTER.get())
+    );
+
     // misc items
     public static final RegistryObject<Item> SANDWICH = REGISTRY.register(
             "sandwich",
@@ -220,97 +313,10 @@ public class Items {
             )
     );
 
-    // sandwich assembly tables
-    public static final RegistryObject<Item> OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "oak_sandwich_assembly_table",
-            () -> createBlockItem(Blocks.OAK_SANDWICH_ASSEMBLY_TABLE.get())
-    );
-
-    public static final RegistryObject<Item> SPRUCE_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "spruce_sandwich_assembly_table",
-            () -> createBlockItem(Blocks.SPRUCE_SANDWICH_ASSEMBLY_TABLE.get())
-    );
-
-    public static final RegistryObject<Item> BIRCH_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "birch_sandwich_assembly_table",
-            () -> createBlockItem(Blocks.BIRCH_SANDWICH_ASSEMBLY_TABLE.get())
-    );
-
-    public static final RegistryObject<Item> JUNGLE_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "jungle_sandwich_assembly_table",
-            () -> createBlockItem(Blocks.JUNGLE_SANDWICH_ASSEMBLY_TABLE.get())
-    );
-
-    public static final RegistryObject<Item> ACACIA_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "acacia_sandwich_assembly_table",
-            () -> createBlockItem(Blocks.ACACIA_SANDWICH_ASSEMBLY_TABLE.get())
-    );
-
-    public static final RegistryObject<Item> DARK_OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "dark_oak_sandwich_assembly_table",
-            () -> createBlockItem(Blocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE.get())
-    );
-
-    public static final RegistryObject<Item> CRIMSON_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "crimson_sandwich_assembly_table",
-            () -> createBlockItem(Blocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get())
-    );
-
-    public static final RegistryObject<Item> WARPED_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "warped_sandwich_assembly_table",
-            () -> createBlockItem(Blocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get())
-    );
-
-    // cutting boards
-    public static final RegistryObject<Item> OAK_CUTTING_BOARD = REGISTRY.register(
-            "oak_cutting_board",
-            () -> createBlockItem(Blocks.OAK_CUTTING_BOARD.get())
-    );
-
-    public static final RegistryObject<Item> SPRUCE_CUTTING_BOARD = REGISTRY.register(
-            "spruce_cutting_board",
-            () -> createBlockItem(Blocks.SPRUCE_CUTTING_BOARD.get())
-    );
-
-    public static final RegistryObject<Item> BIRCH_CUTTING_BOARD = REGISTRY.register(
-            "birch_cutting_board",
-            () -> createBlockItem(Blocks.BIRCH_CUTTING_BOARD.get())
-    );
-
-    public static final RegistryObject<Item> JUNGLE_CUTTING_BOARD = REGISTRY.register(
-            "jungle_cutting_board",
-            () -> createBlockItem(Blocks.JUNGLE_CUTTING_BOARD.get())
-    );
-
-    public static final RegistryObject<Item> ACACIA_CUTTING_BOARD = REGISTRY.register(
-            "acacia_cutting_board",
-            () -> createBlockItem(Blocks.ACACIA_CUTTING_BOARD.get())
-    );
-
-    public static final RegistryObject<Item> DARK_OAK_CUTTING_BOARD = REGISTRY.register(
-            "dark_oak_cutting_board",
-            () -> createBlockItem(Blocks.DARK_OAK_CUTTING_BOARD.get())
-    );
-
-    public static final RegistryObject<Item> CRIMSON_CUTTING_BOARD = REGISTRY.register(
-            "crimson_cutting_board",
-            () -> createBlockItem(Blocks.CRIMSON_CUTTING_BOARD.get())
-    );
-
-    public static final RegistryObject<Item> WARPED_CUTTING_BOARD = REGISTRY.register(
-            "warped_cutting_board",
-            () -> createBlockItem(Blocks.WARPED_CUTTING_BOARD.get())
-    );
-
-    // toasters
-    public static final RegistryObject<Item> REDSTONE_TOASTER = REGISTRY.register(
-            "redstone_toaster",
-            () -> createBlockItem(Blocks.REDSTONE_TOASTER.get())
-    );
-
-    public static final RegistryObject<Item> STICKY_REDSTONE_TOASTER = REGISTRY.register(
-            "sticky_redstone_toaster",
-            () -> createBlockItem(Blocks.STICKY_REDSTONE_TOASTER.get())
+    // seeds
+    public static final RegistryObject<Item> LETTUCE_SEEDS = REGISTRY.register(
+            "lettuce_seeds",
+            () -> new BlockNamedItem(Blocks.LETTUCE.get(), new Item.Properties().group(CREATIVE_TAB))
     );
 
     private static Item createBlockItem(Block block) {
