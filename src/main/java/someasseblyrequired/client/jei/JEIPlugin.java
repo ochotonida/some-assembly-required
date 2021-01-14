@@ -61,10 +61,10 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipes(findRecipes(IRecipeType.SMOKING).stream().filter((recipe) -> !recipe.getRecipeOutput().isEmpty()).collect(Collectors.toList()), ToastingRecipeCategory.ID);
 
         for (Block cuttingBoard : Blocks.getCuttingBoards()) {
-            registration.addIngredientInfo(new ItemStack(cuttingBoard), VanillaTypes.ITEM, "block.someassemblyrequired.cutting_board.description");
+            registration.addIngredientInfo(new ItemStack(cuttingBoard), VanillaTypes.ITEM, "description.someassemblyrequired.cutting_board");
         }
         for (Block assemblyTable : Blocks.getSandwichAssemblyTables()) {
-            registration.addIngredientInfo(new ItemStack(assemblyTable), VanillaTypes.ITEM, "block.someassemblyrequired.sandwich_assembly_table.description");
+            registration.addIngredientInfo(new ItemStack(assemblyTable), VanillaTypes.ITEM, "description.someassemblyrequired.sandwich_assembly_table");
         }
         for (IItemProvider item : new IItemProvider[]{
                 Blocks.REDSTONE_TOASTER.get(),
@@ -94,7 +94,8 @@ public class JEIPlugin implements IModPlugin {
                 Items.KETCHUP_BOTTLE.get(),
                 Items.SWEET_BERRY_JAM_BOTTLE.get()
         }) {
-            registration.addIngredientInfo(new ItemStack(item), VanillaTypes.ITEM, item.asItem().getTranslationKey() + ".description");
+            // noinspection ConstantConditions
+            registration.addIngredientInfo(new ItemStack(item), VanillaTypes.ITEM, String.format("description.someassemblyrequired.%s", item.asItem().getRegistryName().getPath()));
         }
     }
 }

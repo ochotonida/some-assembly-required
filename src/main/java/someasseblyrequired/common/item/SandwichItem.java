@@ -22,6 +22,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import someasseblyrequired.common.util.SandwichNameHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -43,7 +44,7 @@ public class SandwichItem extends BlockItem {
             for (int slot = size - 1; slot >= 0; slot--) {
                 // only show 8 ingredients (or 9, if there are exactly 9 ingredients)
                 if (slot < size - 8 && size >= 10) {
-                    tooltip.add(new TranslationTextComponent("item.someassemblyrequired.sandwich.tooltip.truncate_info", size - 8).mergeStyle(TextFormatting.GRAY).mergeStyle(TextFormatting.ITALIC));
+                    tooltip.add(new TranslationTextComponent("tooltip.someassemblyrequired.truncate_info", size - 8).mergeStyle(TextFormatting.GRAY).mergeStyle(TextFormatting.ITALIC));
                     return;
                 }
                 tooltip.add(handler.getStackInSlot(slot).getDisplayName().copyRaw().mergeStyle(TextFormatting.GRAY));
@@ -81,11 +82,10 @@ public class SandwichItem extends BlockItem {
 
     @Override
     public ITextComponent getDisplayName(ItemStack stack) {
-        ITextComponent displayName = SandwichNameHelper.getSandwichDisplayName(stack);
-        if (displayName != null) {
-            return displayName;
+        if (stack.hasDisplayName()) {
+            return super.getDisplayName(stack);
         }
-        return super.getDisplayName(stack);
+        return SandwichNameHelper.getSandwichDisplayName(stack);
     }
 
     @Override
