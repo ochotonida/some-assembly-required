@@ -15,7 +15,7 @@ apply plugin: 'maven-publish'
 
 version = '1.16.4-1.2.4'
 group = 'someassemblyrequired'
-archivesBaseName = 'somesssemblyrequired'
+archivesBaseName = 'someassemblyrequired'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
@@ -69,12 +69,12 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "somesssemblyrequired",
-            "Specification-Vendor": "somesssemblyrequired",
+            "Specification-Title": "someassemblyrequired",
+            "Specification-Vendor": "someassemblyrequired",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"somesssemblyrequired",
+            "Implementation-Vendor" :"someassemblyrequired",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
