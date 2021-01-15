@@ -10,11 +10,11 @@
           "name": "someassemblyrequired:tomato",
           "functions": [
             {
-              "function": "minecraft:set_count",
+              "function": "set_count",
               "count": {
                 "min": 2,
                 "max": 6,
-                "type": "minecraft:uniform"
+                "type": "uniform"
               }
             }
           ]

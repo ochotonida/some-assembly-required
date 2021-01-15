@@ -1,12 +1,9 @@
 {
-  "parent": "block/cube",
+  "parent": "someassemblyrequired:block/sandwich_assembly_table",
   "textures": {
-    "particle": "someassemblyrequired:block/oak_sandwich_assembly_table_side",
-    "up": "someassemblyrequired:block/sandwich_assembly_table_top",
-    "north": "someassemblyrequired:block/oak_sandwich_assembly_table_side",
-    "south": "someassemblyrequired:block/oak_sandwich_assembly_table_front",
-    "east": "someassemblyrequired:block/oak_sandwich_assembly_table_side",
-    "west": "someassemblyrequired:block/oak_sandwich_assembly_table_side",
-    "down": "minecraft:block/oak_planks"
+    "front": "someassemblyrequired:block/oak_sandwich_assembly_table_front",
+    "side": "someassemblyrequired:block/oak_sandwich_assembly_table_side",
+    "top": "someassemblyrequired:block/sandwich_assembly_table_top",
+    "bottom": "minecraft:block/oak_planks"
   }
 }

@@ -1,11 +1,11 @@
 {
-  "type": "minecraft:block",
+  "type": "block",
   "pools": [
     {
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
+          "type": "item",
           "name": "someassemblyrequired:tomato_seeds"
         }
       ],
@@ -13,7 +13,7 @@
         {
           "condition": "inverted",
           "term": {
-            "condition": "minecraft:block_state_property",
+            "condition": "block_state_property",
             "block": "someassemblyrequired:tomatoes",
             "properties": {
               "age": "5"
@@ -26,13 +26,13 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
+          "type": "item",
           "name": "someassemblyrequired:tomato"
         }
       ],
       "conditions": [
         {
-          "condition": "minecraft:block_state_property",
+          "condition": "block_state_property",
           "block": "someassemblyrequired:tomatoes",
           "properties": {
             "age": "5"
@@ -44,13 +44,13 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
+          "type": "item",
           "name": "someassemblyrequired:tomato",
           "functions": [
             {
-              "function": "minecraft:apply_bonus",
+              "function": "apply_bonus",
               "enchantment": "minecraft:fortune",
-              "formula": "minecraft:binomial_with_bonus_count",
+              "formula": "binomial_with_bonus_count",
               "parameters": {
                 "extra": 3,
                 "probability": 0.5714286
@@ -61,7 +61,7 @@
       ],
       "conditions": [
         {
-          "condition": "minecraft:block_state_property",
+          "condition": "block_state_property",
           "block": "someassemblyrequired:tomatoes",
           "properties": {
             "age": "5"
@@ -72,7 +72,7 @@
   ],
   "functions": [
     {
-      "function": "minecraft:explosion_decay"
+      "function": "explosion_decay"
     }
   ]
 }
