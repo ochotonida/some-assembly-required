@@ -1,0 +1,6 @@
+{
+  "parent": "someassemblyrequired:block/tomatoes",
+  "textures": {
+    "crop": "someassemblyrequired:block/tomatoes_stage2"
+  }
+}

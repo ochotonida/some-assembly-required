@@ -127,6 +127,11 @@ public class Blocks {
             () -> new LettuceBlock(AbstractBlock.Properties.from(net.minecraft.block.Blocks.WHEAT))
     );
 
+    public static final RegistryObject<Block> TOMATOES = REGISTRY.register(
+            "tomatoes",
+            () -> new TomatoBlock(AbstractBlock.Properties.from(net.minecraft.block.Blocks.WHEAT))
+    );
+
     public static Block[] getSandwichAssemblyTables() {
         return new Block[]{
                 Blocks.OAK_SANDWICH_ASSEMBLY_TABLE.get(),

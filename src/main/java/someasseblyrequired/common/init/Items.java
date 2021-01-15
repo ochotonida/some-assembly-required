@@ -319,6 +319,11 @@ public class Items {
             () -> new BlockNamedItem(Blocks.LETTUCE.get(), new Item.Properties().group(CREATIVE_TAB))
     );
 
+    public static final RegistryObject<Item> TOMATO_SEEDS = REGISTRY.register(
+            "tomato_seeds",
+            () -> new BlockNamedItem(Blocks.TOMATOES.get(), new Item.Properties().group(CREATIVE_TAB))
+    );
+
     private static Item createBlockItem(Block block) {
         return new BlockItem(block, new Item.Properties().group(CREATIVE_TAB));
     }

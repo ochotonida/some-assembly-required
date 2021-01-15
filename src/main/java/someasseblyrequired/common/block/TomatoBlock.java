@@ -14,37 +14,39 @@ import net.minecraft.world.IBlockReader;
 import someasseblyrequired.common.init.Blocks;
 import someasseblyrequired.common.init.Items;
 
-public class LettuceBlock extends CropsBlock {
+public class TomatoBlock extends CropsBlock {
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.makeCuboidShape(5, -1, 5, 11, 3, 11),
-            Block.makeCuboidShape(3, -1, 3, 13, 4, 13),
-            Block.makeCuboidShape(1, -1, 1, 15, 6, 15),
-            Block.makeCuboidShape(0, -1, 0, 16, 8, 16)
+            Block.makeCuboidShape(4, -1, 4, 12, 14, 12),
+            Block.makeCuboidShape(4, -1, 4, 12, 14, 12),
+            Block.makeCuboidShape(3, -1, 3, 13, 14, 13),
+            Block.makeCuboidShape(3, -1, 3, 13, 14, 13),
+            Block.makeCuboidShape(2, -1, 2, 14, 14, 14),
+            Block.makeCuboidShape(2, -1, 2, 14, 14, 14)
     };
 
-    public LettuceBlock(Properties builder) {
+    public TomatoBlock(Properties builder) {
         super(builder);
     }
 
     @Override
     public BlockState getPlant(IBlockReader world, BlockPos pos) {
-        return Blocks.LETTUCE.get().getDefaultState();
+        return Blocks.TOMATOES.get().getDefaultState();
     }
 
     @Override
     protected IItemProvider getSeedsItem() {
-        return Items.LETTUCE_SEEDS.get();
+        return Items.TOMATO_SEEDS.get();
     }
 
     @Override
     public int getMaxAge() {
-        return 3;
+        return 5;
     }
 
     @Override
     public IntegerProperty getAgeProperty() {
-        return BlockStateProperties.AGE_0_3;
+        return BlockStateProperties.AGE_0_5;
     }
 
     @Override

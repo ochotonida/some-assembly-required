@@ -77,6 +77,7 @@ public class SomeAssemblyRequired {
             }
 
             RenderTypeLookup.setRenderLayer(Blocks.LETTUCE.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(Blocks.TOMATOES.get(), RenderType.getCutout());
         }
 
         @SubscribeEvent
