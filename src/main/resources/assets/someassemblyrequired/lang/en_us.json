@@ -4,6 +4,13 @@
   "recipecategory.someassemblyrequired.cutting": "Cutting",
   "recipecategory.someassemblyrequired.toasting": "Toasting",
 
+  "advancement.someassemblyrequired.obtain_bread_slice.title": "A Matter of Loaf and Bread",
+  "advancement.someassemblyrequired.obtain_bread_slice.description": "Cut a loaf of bread into slices using the Cutting Board and a Kitchen Knife",
+  "advancement.someassemblyrequired.obtain_toasted_bread_slice.title": "The Greatest Thing since...",
+  "advancement.someassemblyrequired.obtain_toasted_bread_slice.description": "Toast a slice of bread using the Redstone Toaster™",
+  "advancement.someassemblyrequired.obtain_sandwich.title": "Beginner Breadsmithing",
+  "advancement.someassemblyrequired.obtain_sandwich.description": "Create a Sandwich using the Sandwich Assembly Table",
+
   "message.someassemblyrequired.top_bread": "Missing top bread slice!",
   "message.someassemblyrequired.bottom_bread": "Missing bottom bread slice!",
   "message.someassemblyrequired.full_sandwich": "You cannot add any more items!",

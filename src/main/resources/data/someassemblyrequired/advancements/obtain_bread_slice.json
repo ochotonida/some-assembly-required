@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:husbandry/plant_seed",
+  "display": {
+    "icon": {
+      "item": "someassemblyrequired:kitchen_knife"
+    },
+    "title": {
+      "translate": "advancement.someassemblyrequired.obtain_bread_slice.title"
+    },
+    "description": {
+      "translate": "advancement.someassemblyrequired.obtain_bread_slice.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_bread_slice": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:bread_slices"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtain_bread_slice"
+    ]
+  ]
+}

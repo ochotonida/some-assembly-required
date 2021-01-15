@@ -1,0 +1,36 @@
+{
+  "parent": "someassemblyrequired:obtain_bread_slice",
+  "display": {
+    "icon": {
+      "item": "someassemblyrequired:sandwich",
+      "nbt": "{BlockEntityTag: {Ingredients: {Size: 3, Items: [{Slot: 0, Count: 1b, id: \"someassemblyrequired:bread_slice\"}, {Slot: 1, Count: 1b, id: \"someassemblyrequired:spread\", tag: {Color: 15990816}}, {Slot: 2, Count: 1b, id: \"someassemblyrequired:bread_slice\"}]}}}"
+    },
+    "title": {
+      "translate": "advancement.someassemblyrequired.obtain_sandwich.title"
+    },
+    "description": {
+      "translate": "advancement.someassemblyrequired.obtain_sandwich.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_sandwich": {
+      "trigger": "inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "someassemblyrequired:sandwich"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtain_sandwich"
+    ]
+  ]
+}
