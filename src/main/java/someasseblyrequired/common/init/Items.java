@@ -1,6 +1,7 @@
 package someasseblyrequired.common.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.item.*;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundEvents;
@@ -330,5 +331,31 @@ public class Items {
 
     private static Item createFoodItem(Food food) {
         return new Item(new Item.Properties().group(CREATIVE_TAB).food(food));
+    }
+
+    private static Item createSpreadItem(Food food) {
+        return new DrinkableBottleItem(new Item.Properties().group(CREATIVE_TAB).containerItem(net.minecraft.item.Items.GLASS_BOTTLE).maxStackSize(16).food(food), SoundEvents.ITEM_HONEY_BOTTLE_DRINK);
+    }
+
+    public static void registerCompostables() {
+        ComposterBlock.CHANCES.put(BREAD_SLICE.get(), 0.3F);
+        ComposterBlock.CHANCES.put(TOASTED_BREAD_SLICE.get(), 0.3F);
+        ComposterBlock.CHANCES.put(CHARRED_BREAD_SLICE.get(), 0.3F);
+        ComposterBlock.CHANCES.put(CHARRED_FOOD.get(), 0.3F);
+        ComposterBlock.CHANCES.put(CHARRED_MORSEL.get(), 0.3F);
+        ComposterBlock.CHANCES.put(APPLE_SLICES.get(), 0.3F);
+        ComposterBlock.CHANCES.put(CHOPPED_CARROT.get(), 0.3F);
+        ComposterBlock.CHANCES.put(CHOPPED_BEETROOT.get(), 0.3F);
+        ComposterBlock.CHANCES.put(SLICED_TOASTED_CRIMSON_FUNGUS.get(), 0.3F);
+        ComposterBlock.CHANCES.put(SLICED_TOASTED_CRIMSON_FUNGUS.get(), 0.3F);
+        ComposterBlock.CHANCES.put(LETTUCE_SEEDS.get(), 0.3F);
+        ComposterBlock.CHANCES.put(LETTUCE_LEAF.get(), 0.3F);
+        ComposterBlock.CHANCES.put(TOMATO_SEEDS.get(), 0.3F);
+        ComposterBlock.CHANCES.put(TOMATO_SLICES.get(), 0.3F);
+
+        ComposterBlock.CHANCES.put(TOASTED_CRIMSON_FUNGUS.get(), 0.65F);
+        ComposterBlock.CHANCES.put(TOASTED_WARPED_FUNGUS.get(), 0.65F);
+        ComposterBlock.CHANCES.put(LETTUCE_HEAD.get(), 0.65F);
+        ComposterBlock.CHANCES.put(TOMATO.get(), 0.65F);
     }
 }

@@ -47,6 +47,7 @@ public class SomeAssemblyRequired {
             event.enqueueWork(() -> {
                 NetworkHandler.register();
                 RecipeTypes.registerBrewingRecipes();
+                Items.registerCompostables();
             });
         }
     }
