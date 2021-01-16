@@ -5,8 +5,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
@@ -23,6 +26,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import someassemblyrequired.common.block.tileentity.SandwichAssemblyTableTileEntity;
+import someassemblyrequired.common.init.AdvancementTriggers;
 import someassemblyrequired.common.init.Items;
 import someassemblyrequired.common.init.Tags;
 import someassemblyrequired.common.init.TileEntityTypes;
@@ -100,22 +104,28 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
     }
 
     private boolean addIngredient(SandwichAssemblyTableTileEntity sandwichTable, World world, BlockPos pos, PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getHeldItem(hand);
+        ItemStack heldStack = player.getHeldItem(hand);
         // try to add the ingredient
-        if (sandwichTable.addIngredient(heldItem)) {
-            SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(heldItem.getItem());
+        if (sandwichTable.addIngredient(heldStack)) {
+            SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(heldStack.getItem());
+
             if (spreadType == null) {
                 world.playSound(player, pos, SoundEvents.BLOCK_WOOL_PLACE, SoundCategory.BLOCKS, 0.3F, 1.3F);
             } else {
                 world.playSound(player, pos, SoundEvents.BLOCK_HONEY_BLOCK_PLACE, SoundCategory.BLOCKS, 0.3F, 1.3F);
+
+                if (player instanceof ServerPlayerEntity && heldStack.getItem() == net.minecraft.item.Items.POTION && PotionUtils.getPotionFromItem(heldStack) != Potions.WATER) {
+                    AdvancementTriggers.ADD_POTION_TO_SANDWICH.trigger((ServerPlayerEntity) player, heldStack);
+                }
             }
+
             if (!player.isCreative()) {
                 // decrease the player's held item by one if the ingredient successfully got added
                 player.getHeldItem(hand).shrink(1);
 
-                // add the container item of the spreadtype to the player's inventory if applicable
-                if (spreadType != null && spreadType.hasContainer(heldItem)) {
-                    ItemStack container = new ItemStack(spreadType.getContainer(heldItem), 1);
+                if (spreadType != null && spreadType.hasContainer(heldStack)) {
+                    // add the container item of the spreadtype to the player's inventory
+                    ItemStack container = new ItemStack(spreadType.getContainer(heldStack), 1);
                     if (player.getHeldItem(hand).isEmpty()) {
                         player.setHeldItem(hand, container);
                     } else {
@@ -123,8 +133,8 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
                     }
                 }
             }
-        } else if (heldItem.isFood() || heldItem.getItem() == Items.SPREAD.get() || SpreadTypeManager.INSTANCE.hasSpreadType(heldItem.getItem())) {
-            if (sandwichTable.getAmountOfItems() == 0 && !Tags.BREAD.contains(heldItem.getItem())) {
+        } else if (heldStack.isFood() || heldStack.getItem() == Items.SPREAD.get() || SpreadTypeManager.INSTANCE.hasSpreadType(heldStack.getItem())) {
+            if (sandwichTable.getAmountOfItems() == 0 && !Tags.BREAD.contains(heldStack.getItem())) {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
             } else if (sandwichTable.getAmountOfItems() == sandwichTable.getInventorySize()) {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.full_sandwich"), true);

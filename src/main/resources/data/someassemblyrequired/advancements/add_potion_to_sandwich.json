@@ -1,0 +1,29 @@
+{
+  "parent": "someassemblyrequired:obtain_sandwich",
+  "display": {
+    "icon": {
+      "item": "someassemblyrequired:sandwich",
+      "nbt": "{BlockEntityTag: {Ingredients: {Size: 3, Items: [{Slot: 0, Count: 1b, id: \"someassemblyrequired:bread_slice\"}, {Slot: 1, Count: 1b, id: \"someassemblyrequired:spread\", tag: {Color: 16262179, HasEffect: true}}, {Slot: 2, Count: 1b, id: \"someassemblyrequired:bread_slice\"}]}}}"
+    },
+    "title": {
+      "translate": "advancement.someassemblyrequired.add_potion_to_sandwich.title"
+    },
+    "description": {
+      "translate": "advancement.someassemblyrequired.add_potion_to_sandwich.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "add_potion_to_sandwich": {
+      "trigger": "someassemblyrequired:add_potion_to_sandwich"
+    }
+  },
+  "requirements": [
+    [
+      "add_potion_to_sandwich"
+    ]
+  ]
+}

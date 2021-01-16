@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -22,6 +23,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import someassemblyrequired.common.init.AdvancementTriggers;
+import someassemblyrequired.common.util.SandwichIngredientHelper;
 import someassemblyrequired.common.util.SandwichNameHelper;
 
 import javax.annotation.Nullable;
@@ -62,21 +65,29 @@ public class SandwichItem extends BlockItem {
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity entity) {
-        stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
-                ItemStack ingredient = handler.getStackInSlot(slot);
-                ItemStack finishStack = ingredient.getItem().onItemUseFinish(ingredient, world, entity);
-                if (entity instanceof PlayerEntity) {
-                    PlayerEntity player = (PlayerEntity) entity;
-                    if (player.getCooldownTracker().hasCooldown(ingredient.getItem())) {
-                        player.getCooldownTracker().setCooldown(this, 20);
-                    }
-                    if (!player.isCreative() && !finishStack.isEmpty()) {
-                        player.addItemStackToInventory(finishStack);
-                    }
+        List<ItemStack> ingredients = SandwichIngredientHelper.getIngredients(stack);
+
+        if (entity instanceof ServerPlayerEntity) {
+            if (SandwichIngredientHelper.isDoubleDeckerSandwich(ingredients)) {
+                AdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
+            } else if (SandwichIngredientHelper.isBLT(SandwichIngredientHelper.getUniqueIngredientsExcludingBread(ingredients))) {
+                AdvancementTriggers.CONSUME_BLT_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
+            }
+        }
+
+        for (ItemStack ingredient : ingredients) {
+            ItemStack finishStack = ingredient.getItem().onItemUseFinish(ingredient, world, entity);
+            if (entity instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity) entity;
+                if (player.getCooldownTracker().hasCooldown(ingredient.getItem())) {
+                    player.getCooldownTracker().setCooldown(this, 20);
+                }
+                if (!player.isCreative() && !finishStack.isEmpty()) {
+                    player.addItemStackToInventory(finishStack);
                 }
             }
-        });
+        }
+
         return super.onItemUseFinish(stack, world, entity);
     }
 

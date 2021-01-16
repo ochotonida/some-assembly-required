@@ -47,6 +47,6 @@ public class SpreadItem extends Item {
 
     @Override
     public boolean hasEffect(ItemStack stack) {
-        return stack.getOrCreateTag().getBoolean("HasEffect");
+        return super.hasEffect(stack) || stack.getOrCreateTag().getBoolean("HasEffect");
     }
 }

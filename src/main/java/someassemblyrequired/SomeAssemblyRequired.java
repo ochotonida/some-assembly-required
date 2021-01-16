@@ -16,10 +16,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import someassemblyrequired.common.init.Blocks;
-import someassemblyrequired.common.init.Items;
-import someassemblyrequired.common.init.RecipeTypes;
-import someassemblyrequired.common.init.TileEntityTypes;
+import someassemblyrequired.common.init.*;
 import someassemblyrequired.common.item.spreadtype.SpreadTypeManager;
 import someassemblyrequired.common.network.NetworkHandler;
 
@@ -36,6 +33,7 @@ public class SomeAssemblyRequired {
         Blocks.REGISTRY.register(modEventBus);
         RecipeTypes.REGISTRY.register(modEventBus);
         TileEntityTypes.REGISTRY.register(modEventBus);
+        AdvancementTriggers.register();
     }
 
     @SuppressWarnings("unused")

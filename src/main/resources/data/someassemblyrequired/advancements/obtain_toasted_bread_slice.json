@@ -2,7 +2,7 @@
   "parent": "someassemblyrequired:obtain_bread_slice",
   "display": {
     "icon": {
-      "item": "someassemblyrequired:toasted_bread_slice"
+      "item": "someassemblyrequired:redstone_toaster"
     },
     "title": {
       "translate": "advancement.someassemblyrequired.obtain_toasted_bread_slice.title"

@@ -48,26 +48,10 @@ public class SandwichNameHelper {
             return getBreadSandwichName(ingredients);
         }
 
-        boolean isDoubleDeckerSandwich = false;
-        // double decker sandwiches
-        if (amountOfBread == 3 && ingredients.size() >= 5) {
-            if (!Tags.BREAD.contains(ingredients.get(1).getItem()) && !Tags.BREAD.contains(ingredients.get(ingredients.size() - 2).getItem())) {
-                isDoubleDeckerSandwich = true;
-            }
-        }
-
-        List<ItemStack> uniqueIngredients = new ArrayList<>();
-        for (ItemStack ingredient : ingredients) {
-            if (!Tags.BREAD.contains(ingredient.getItem()) && uniqueIngredients.stream().noneMatch(stack -> ItemStack.areItemStacksEqual(ingredient, stack))) {
-                uniqueIngredients.add(ingredient);
-            }
-        }
+        List<ItemStack> uniqueIngredients = SandwichIngredientHelper.getUniqueIngredientsExcludingBread(ingredients);
 
         // BLT
-        if (uniqueIngredients.size() == 3
-                && uniqueIngredients.stream().anyMatch(stack -> stack.getItem() == Items.BACON_STRIPS.get())
-                && uniqueIngredients.stream().anyMatch(stack -> stack.getItem() == Items.TOMATO_SLICES.get() || Tags.TOMATOES.contains(stack.getItem()))
-                && uniqueIngredients.stream().anyMatch(stack -> Tags.LETTUCE.contains(stack.getItem()))) {
+        if (SandwichIngredientHelper.isBLT(uniqueIngredients)) {
             return new TranslationTextComponent("item.someassemblyrequired.blt_sandwich");
         }
 
@@ -86,14 +70,14 @@ public class SandwichNameHelper {
 
         if (uniqueIngredients.size() > 0 && uniqueIngredients.size() <= 3) {
             ITextComponent ingredientList = listIngredients(uniqueIngredients);
-            if (isDoubleDeckerSandwich) {
+            if (SandwichIngredientHelper.isDoubleDeckerSandwich(ingredients)) {
                 return new TranslationTextComponent("item.someassemblyrequired.double_decker_ingredients_sandwich", ingredientList);
             } else {
                 return new TranslationTextComponent("item.someassemblyrequired.ingredients_sandwich", ingredientList);
             }
         }
 
-        if (isDoubleDeckerSandwich) {
+        if (SandwichIngredientHelper.isDoubleDeckerSandwich(ingredients)) {
             return new TranslationTextComponent("item.someassemblyrequired.double_decker_sandwich");
         } else {
             return new TranslationTextComponent("item.someassemblyrequired.sandwich");
