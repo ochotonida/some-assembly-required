@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "aquaculture"
+    }
+  ],
+  "item": "aquaculture:turtle_soup",
+  "container": "minecraft:bowl",
+  "displayname": {
+    "translate": "item.aquaculture.turtle_soup"
+  },
+  "color": 10719085
+}

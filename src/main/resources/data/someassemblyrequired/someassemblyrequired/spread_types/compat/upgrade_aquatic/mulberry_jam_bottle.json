@@ -1,0 +1,14 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "upgrade_aquatic"
+    }
+  ],
+  "item": "upgrade_aquatic:mulberry_jam_bottle",
+  "container": "minecraft:glass_bottle",
+  "displayname": {
+    "translate": "item.upgrade_aquatic.mulberry_jam_bottle"
+  },
+  "color": 15355727
+}
