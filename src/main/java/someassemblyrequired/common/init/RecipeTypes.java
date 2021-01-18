@@ -41,12 +41,5 @@ public class RecipeTypes {
                         new ItemStack(Items.MAYONNAISE_BOTTLE.get())
                 )
         );
-        BrewingRecipeRegistry.addRecipe(
-                new PotionToItemStackBrewingRecipe(
-                        Potions.THICK,
-                        Ingredient.fromItems(Items.TOMATO.get()),
-                        new ItemStack(Items.KETCHUP_BOTTLE.get())
-                )
-        );
     }
 }
