@@ -23,6 +23,9 @@ import someassemblyrequired.common.network.NetworkHandler;
 @Mod(SomeAssemblyRequired.MODID)
 public class SomeAssemblyRequired {
 
+    // porkchop stand-in tag?
+    // farmers dependency
+
     public static final String MODID = "someassemblyrequired";
 
     public static final Logger LOGGER = LogManager.getLogger();
