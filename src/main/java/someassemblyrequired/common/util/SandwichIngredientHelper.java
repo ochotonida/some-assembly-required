@@ -48,7 +48,7 @@ public class SandwichIngredientHelper {
 
     public static boolean isBLT(List<ItemStack> uniqueIngredients) {
         return uniqueIngredients.size() == 3
-                && uniqueIngredients.stream().anyMatch(stack -> stack.getItem() == Items.BACON_STRIPS.get())
+                && uniqueIngredients.stream().anyMatch(stack -> Tags.BACON.contains(stack.getItem()))
                 && uniqueIngredients.stream().anyMatch(stack -> stack.getItem() == Items.TOMATO_SLICES.get() || Tags.TOMATOES.contains(stack.getItem()))
                 && uniqueIngredients.stream().anyMatch(stack -> Tags.LETTUCE.contains(stack.getItem()));
     }

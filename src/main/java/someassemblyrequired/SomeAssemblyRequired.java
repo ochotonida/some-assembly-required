@@ -23,8 +23,8 @@ import someassemblyrequired.common.network.NetworkHandler;
 @Mod(SomeAssemblyRequired.MODID)
 public class SomeAssemblyRequired {
 
-    // porkchop stand-in tag?
-    // farmers dependency
+    // TODO
+    // - add botany pots support
 
     public static final String MODID = "someassemblyrequired";
 

@@ -60,8 +60,8 @@ public class Items {
     public static final RegistryObject<Item> JUNGLE_CUTTING_BOARD = REGISTRY.register("jungle_cutting_board", () -> createFuelBlockItem(Blocks.JUNGLE_CUTTING_BOARD.get()));
     public static final RegistryObject<Item> ACACIA_CUTTING_BOARD = REGISTRY.register("acacia_cutting_board", () -> createFuelBlockItem(Blocks.ACACIA_CUTTING_BOARD.get()));
     public static final RegistryObject<Item> DARK_OAK_CUTTING_BOARD = REGISTRY.register("dark_oak_cutting_board", () -> createFuelBlockItem(Blocks.DARK_OAK_CUTTING_BOARD.get()));
-    public static final RegistryObject<Item> CRIMSON_CUTTING_BOARD = REGISTRY.register("crimson_cutting_board", () -> createFuelBlockItem(Blocks.CRIMSON_CUTTING_BOARD.get()));
-    public static final RegistryObject<Item> WARPED_CUTTING_BOARD = REGISTRY.register("warped_cutting_board", () -> createFuelBlockItem(Blocks.WARPED_CUTTING_BOARD.get()));
+    public static final RegistryObject<Item> CRIMSON_CUTTING_BOARD = REGISTRY.register("crimson_cutting_board", () -> createBlockItem(Blocks.CRIMSON_CUTTING_BOARD.get()));
+    public static final RegistryObject<Item> WARPED_CUTTING_BOARD = REGISTRY.register("warped_cutting_board", () -> createBlockItem(Blocks.WARPED_CUTTING_BOARD.get()));
 
     // toasters
     public static final RegistryObject<Item> REDSTONE_TOASTER = REGISTRY.register("redstone_toaster", () -> createBlockItem(Blocks.REDSTONE_TOASTER.get()));

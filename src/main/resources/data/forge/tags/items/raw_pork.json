@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:raw_porkchop",
+    "someassemblyrequired:pork_cuts"
+  ]
+}
