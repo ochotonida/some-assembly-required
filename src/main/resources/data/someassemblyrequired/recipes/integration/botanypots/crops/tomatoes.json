@@ -1,0 +1,32 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "botanypots"
+    }
+  ],
+  "type": "botanypots:crop",
+  "seed": {
+    "item": "someassemblyrequired:tomato_seeds"
+  },
+  "categories": [
+    "dirt"
+  ],
+  "growthTicks": 1200,
+  "display": {
+    "block": "someassemblyrequired:tomatoes",
+    "properties": {
+      "age": 5
+    }
+  },
+  "results": [
+    {
+      "chance": 0.75,
+      "output": {
+        "item": "someassemblyrequired:tomato"
+      },
+      "minRolls": 1,
+      "maxRolls": 2
+    }
+  ]
+}
