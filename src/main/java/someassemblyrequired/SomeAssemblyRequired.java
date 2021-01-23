@@ -23,9 +23,6 @@ import someassemblyrequired.common.network.NetworkHandler;
 @Mod(SomeAssemblyRequired.MODID)
 public class SomeAssemblyRequired {
 
-    // TODO
-    // - add botany pots support
-
     public static final String MODID = "someassemblyrequired";
 
     public static final Logger LOGGER = LogManager.getLogger();
