@@ -9,7 +9,7 @@ import someassemblyrequired.SomeAssemblyRequired;
 
 public class Tags {
 
-    public static final ITag.INamedTag<Item> BACON = ItemTags.createOptional(new ResourceLocation(ForgeVersion.MOD_ID, "bacon"));
+    public static final ITag.INamedTag<Item> BACON = ItemTags.createOptional(new ResourceLocation(ForgeVersion.MOD_ID, "cooked_bacon"));
     public static final ITag.INamedTag<Item> BREAD_LOAVES = ItemTags.createOptional(new ResourceLocation(ForgeVersion.MOD_ID, "bread"));
     public static final ITag.INamedTag<Item> KNIVES = ItemTags.createOptional(new ResourceLocation(ForgeVersion.MOD_ID, "tools/knives"));
     public static final ITag.INamedTag<Item> LETTUCE = ItemTags.createOptional(new ResourceLocation(ForgeVersion.MOD_ID, "crops/lettuce"));
