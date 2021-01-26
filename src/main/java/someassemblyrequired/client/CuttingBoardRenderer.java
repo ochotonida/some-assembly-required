@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.vector.Vector3f;
 import someassemblyrequired.common.block.tileentity.CuttingBoardTileEntity;
-import someassemblyrequired.common.init.Items;
+import someassemblyrequired.common.init.ModItems;
 
 public class CuttingBoardRenderer extends TileEntityRenderer<CuttingBoardTileEntity> {
 
@@ -31,7 +31,7 @@ public class CuttingBoardRenderer extends TileEntityRenderer<CuttingBoardTileEnt
             }
 
             boolean isBlock = Minecraft.getInstance().getItemRenderer().getItemModelWithOverrides(ingredient, tileEntity.getWorld(), null).isGui3d();
-            boolean isSandwich = ingredient.getItem() == Items.SANDWICH.get();
+            boolean isSandwich = ingredient.getItem() == ModItems.SANDWICH.get();
             boolean isKnife = tileEntity.hasKnife();
             ItemCameraTransforms.TransformType transformType = ItemCameraTransforms.TransformType.FIXED;
 

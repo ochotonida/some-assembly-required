@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:bread",
+    "#forge:bread_slices",
+    "#forge:tortillas"
+  ]
+}

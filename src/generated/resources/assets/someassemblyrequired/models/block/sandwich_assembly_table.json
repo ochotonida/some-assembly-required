@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "#bottom",
+    "up": "someassemblyrequired:block/sandwich_assembly_table_top",
+    "north": "#side",
+    "south": "#front",
+    "east": "#side",
+    "west": "#side",
+    "particle": "#side"
+  }
+}

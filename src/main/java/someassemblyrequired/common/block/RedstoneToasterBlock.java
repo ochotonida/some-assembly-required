@@ -20,7 +20,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import someassemblyrequired.common.block.tileentity.RedstoneToasterTileEntity;
-import someassemblyrequired.common.init.TileEntityTypes;
+import someassemblyrequired.common.init.ModTileEntityTypes;
 
 import java.util.Random;
 
@@ -128,7 +128,7 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock {
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        TileEntity tileEntity = TileEntityTypes.REDSTONE_TOASTER.get().create();
+        TileEntity tileEntity = ModTileEntityTypes.REDSTONE_TOASTER.get().create();
         if (tileEntity instanceof RedstoneToasterTileEntity) {
             ((RedstoneToasterTileEntity) tileEntity).setAutoEject(isEjectionToaster);
         }

@@ -3,11 +3,11 @@ package someassemblyrequired.common.loot;
 import net.minecraft.loot.LootEntry;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.TableLootEntry;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.util.Util;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,7 +48,6 @@ public class LootInjectHandler {
     }
 
     private static LootEntry.Builder<?> getInjectEntry(String name) {
-        ResourceLocation table = new ResourceLocation(SomeAssemblyRequired.MODID, "inject/" + name);
-        return TableLootEntry.builder(table).weight(1);
+        return TableLootEntry.builder(Util.prefix("inject/" + name)).weight(1);
     }
 }

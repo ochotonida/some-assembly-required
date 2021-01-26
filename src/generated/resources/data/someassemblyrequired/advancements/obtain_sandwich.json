@@ -1,0 +1,36 @@
+{
+  "parent": "someassemblyrequired:obtain_bread_slice",
+  "display": {
+    "icon": {
+      "item": "someassemblyrequired:sandwich",
+      "nbt": "{BlockEntityTag:{Ingredients:{Size:3,Items:[{Slot:0,id:\"someassemblyrequired:bread_slice\",Count:1b,tag:{IsOnSandwich:1b}},{Slot:1,id:\"someassemblyrequired:lettuce_leaf\",Count:1b,tag:{IsOnSandwich:1b}},{Slot:2,id:\"someassemblyrequired:bread_slice\",Count:1b,tag:{IsOnSandwich:1b}}]}}}"
+    },
+    "title": {
+      "translate": "advancement.someassemblyrequired.obtain_sandwich.title"
+    },
+    "description": {
+      "translate": "advancement.someassemblyrequired.obtain_sandwich.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_sandwich": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "someassemblyrequired:sandwich"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtain_sandwich"
+    ]
+  ]
+}

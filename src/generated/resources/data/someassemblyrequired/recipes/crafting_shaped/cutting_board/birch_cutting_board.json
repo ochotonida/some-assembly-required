@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:stripped_birch_log"
+    }
+  },
+  "result": {
+    "item": "someassemblyrequired:birch_cutting_board"
+  }
+}

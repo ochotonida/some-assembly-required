@@ -12,23 +12,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.Blocks;
+import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.recipe.CuttingRecipe;
+import someassemblyrequired.common.util.Util;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class CuttingRecipeCategory implements IRecipeCategory<CuttingRecipe> {
 
-    public static final ResourceLocation ID = new ResourceLocation(SomeAssemblyRequired.MODID, "cutting");
+    public static final ResourceLocation ID = Util.prefix("cutting");
 
     private final IDrawable background;
     private final IDrawable icon;
     private final String title;
 
     public CuttingRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createDrawable(new ResourceLocation(SomeAssemblyRequired.MODID, "textures/gui/cutting_recipe.png"), 0, 0, 110, 39);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(Blocks.OAK_CUTTING_BOARD.get()));
+        background = guiHelper.createDrawable(Util.prefix("textures/gui/cutting_recipe.png"), 0, 0, 110, 39);
+        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.OAK_CUTTING_BOARD.get()));
         title = I18n.format("recipecategory." + SomeAssemblyRequired.MODID + ".cutting");
     }
 

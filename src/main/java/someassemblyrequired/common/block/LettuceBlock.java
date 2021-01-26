@@ -11,8 +11,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import someassemblyrequired.common.init.Blocks;
-import someassemblyrequired.common.init.Items;
+import someassemblyrequired.common.init.ModBlocks;
+import someassemblyrequired.common.init.ModItems;
 
 public class LettuceBlock extends CropsBlock {
 
@@ -29,12 +29,12 @@ public class LettuceBlock extends CropsBlock {
 
     @Override
     public BlockState getPlant(IBlockReader world, BlockPos pos) {
-        return Blocks.LETTUCE.get().getDefaultState();
+        return ModBlocks.LETTUCE.get().getDefaultState();
     }
 
     @Override
     protected IItemProvider getSeedsItem() {
-        return Items.LETTUCE_SEEDS.get();
+        return ModItems.LETTUCE_SEEDS.get();
     }
 
     @Override

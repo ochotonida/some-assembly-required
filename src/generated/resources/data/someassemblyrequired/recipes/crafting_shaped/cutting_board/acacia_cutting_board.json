@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:stripped_acacia_log"
+    }
+  },
+  "result": {
+    "item": "someassemblyrequired:acacia_cutting_board"
+  }
+}

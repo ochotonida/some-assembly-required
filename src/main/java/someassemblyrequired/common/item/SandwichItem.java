@@ -8,9 +8,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -23,7 +25,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import someassemblyrequired.common.init.AdvancementTriggers;
+import someassemblyrequired.common.init.ModAdvancements;
+import someassemblyrequired.common.util.SandwichBuilder;
 import someassemblyrequired.common.util.SandwichIngredientHelper;
 import someassemblyrequired.common.util.SandwichNameHelper;
 
@@ -56,6 +59,13 @@ public class SandwichItem extends BlockItem {
     }
 
     @Override
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        if (isInGroup(group)) {
+            items.add(SandwichBuilder.blt());
+        }
+    }
+
+    @Override
     protected boolean placeBlock(BlockItemUseContext context, BlockState state) {
         if (context.getPlayer() != null && context.getPlayer().isSneaking()) {
             return super.placeBlock(context, state);
@@ -69,9 +79,9 @@ public class SandwichItem extends BlockItem {
 
         if (entity instanceof ServerPlayerEntity) {
             if (SandwichIngredientHelper.isDoubleDeckerSandwich(ingredients)) {
-                AdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
+                ModAdvancements.CONSUME_DOUBLE_DECKER_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
             } else if (SandwichIngredientHelper.isBLT(SandwichIngredientHelper.getUniqueIngredientsExcludingBread(ingredients))) {
-                AdvancementTriggers.CONSUME_BLT_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
+                ModAdvancements.CONSUME_BLT_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
             }
         }
 

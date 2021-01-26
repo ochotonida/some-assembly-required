@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.state.StateContainer;
@@ -26,10 +27,10 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import someassemblyrequired.common.block.tileentity.SandwichAssemblyTableTileEntity;
-import someassemblyrequired.common.init.AdvancementTriggers;
-import someassemblyrequired.common.init.Items;
-import someassemblyrequired.common.init.Tags;
-import someassemblyrequired.common.init.TileEntityTypes;
+import someassemblyrequired.common.init.ModAdvancements;
+import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModTags;
+import someassemblyrequired.common.init.ModTileEntityTypes;
 import someassemblyrequired.common.item.spreadtype.SpreadType;
 import someassemblyrequired.common.item.spreadtype.SpreadTypeManager;
 
@@ -46,7 +47,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return TileEntityTypes.SANDWICH_ASSEMBLY_TABLE.get().create();
+        return ModTileEntityTypes.SANDWICH_ASSEMBLY_TABLE.get().create();
     }
 
     @Override
@@ -114,8 +115,8 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
             } else {
                 world.playSound(player, pos, SoundEvents.BLOCK_HONEY_BLOCK_PLACE, SoundCategory.BLOCKS, 0.3F, 1.3F);
 
-                if (player instanceof ServerPlayerEntity && heldStack.getItem() == net.minecraft.item.Items.POTION && PotionUtils.getPotionFromItem(heldStack) != Potions.WATER) {
-                    AdvancementTriggers.ADD_POTION_TO_SANDWICH.trigger((ServerPlayerEntity) player, heldStack);
+                if (player instanceof ServerPlayerEntity && heldStack.getItem() == Items.POTION && PotionUtils.getPotionFromItem(heldStack) != Potions.WATER) {
+                    ModAdvancements.ADD_POTION_TO_SANDWICH.trigger((ServerPlayerEntity) player, heldStack);
                 }
             }
 
@@ -133,8 +134,8 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
                     }
                 }
             }
-        } else if (heldStack.isFood() || heldStack.getItem() == Items.SPREAD.get() || SpreadTypeManager.INSTANCE.hasSpreadType(heldStack.getItem())) {
-            if (sandwichTable.getAmountOfItems() == 0 && !Tags.BREAD.contains(heldStack.getItem())) {
+        } else if (heldStack.isFood() || heldStack.getItem() == ModItems.SPREAD.get() || SpreadTypeManager.INSTANCE.hasSpreadType(heldStack.getItem())) {
+            if (sandwichTable.getAmountOfItems() == 0 && !ModTags.SANDWICH_BREADS.contains(heldStack.getItem())) {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.bottom_bread"), true);
             } else if (sandwichTable.getAmountOfItems() == sandwichTable.getInventorySize()) {
                 player.sendStatusMessage(new TranslationTextComponent("message.someassemblyrequired.full_sandwich"), true);

@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,toasting=false": {
+      "model": "someassemblyrequired:block/idle_redstone_toaster"
+    },
+    "facing=south,toasting=false": {
+      "model": "someassemblyrequired:block/idle_redstone_toaster",
+      "y": 180
+    },
+    "facing=west,toasting=false": {
+      "model": "someassemblyrequired:block/idle_redstone_toaster",
+      "y": 270
+    },
+    "facing=east,toasting=false": {
+      "model": "someassemblyrequired:block/idle_redstone_toaster",
+      "y": 90
+    },
+    "facing=north,toasting=true": {
+      "model": "someassemblyrequired:block/toasting_redstone_toaster"
+    },
+    "facing=south,toasting=true": {
+      "model": "someassemblyrequired:block/toasting_redstone_toaster",
+      "y": 180
+    },
+    "facing=west,toasting=true": {
+      "model": "someassemblyrequired:block/toasting_redstone_toaster",
+      "y": 270
+    },
+    "facing=east,toasting=true": {
+      "model": "someassemblyrequired:block/toasting_redstone_toaster",
+      "y": 90
+    }
+  }
+}

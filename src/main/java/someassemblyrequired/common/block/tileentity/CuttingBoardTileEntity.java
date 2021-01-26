@@ -9,8 +9,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import someassemblyrequired.common.block.CuttingBoardBlock;
-import someassemblyrequired.common.init.RecipeTypes;
-import someassemblyrequired.common.init.TileEntityTypes;
+import someassemblyrequired.common.init.ModRecipeTypes;
+import someassemblyrequired.common.init.ModTileEntityTypes;
 import someassemblyrequired.common.recipe.CuttingRecipe;
 
 import javax.annotation.Nullable;
@@ -23,7 +23,7 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
 
     public CuttingBoardTileEntity() {
         // noinspection unchecked
-        super((TileEntityType<CuttingBoardTileEntity>) TileEntityTypes.CUTTING_BOARD.get(), 1);
+        super((TileEntityType<CuttingBoardTileEntity>) ModTileEntityTypes.CUTTING_BOARD.get(), 1);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
 
     public List<ItemStack> cutIngredient(ItemStack tool) {
         if (world != null) {
-            CuttingRecipe recipe = world.getRecipeManager().getRecipe(RecipeTypes.CUTTING, new RecipeWrapper(getInventory()), world).orElse(null);
+            CuttingRecipe recipe = world.getRecipeManager().getRecipe(ModRecipeTypes.CUTTING, new RecipeWrapper(getInventory()), world).orElse(null);
             if (recipe != null && recipe.getTool().test(tool)) {
                 getInventory().extractItem(0, 1, false);
                 return recipe.getRecipeOutputs();

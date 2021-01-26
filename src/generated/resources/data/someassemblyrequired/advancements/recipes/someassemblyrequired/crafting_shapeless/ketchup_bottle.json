@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "someassemblyrequired:crafting_shapeless/ketchup_bottle"
+    ]
+  },
+  "criteria": {
+    "has_tomato": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:crops/tomato"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "someassemblyrequired:crafting_shapeless/ketchup_bottle"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tomato",
+      "has_the_recipe"
+    ]
+  ]
+}

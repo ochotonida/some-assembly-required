@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:carrot",
+    "someassemblyrequired:chopped_carrot"
+  ]
+}

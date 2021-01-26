@@ -1,9 +1,0 @@
-{
-  "parent": "someassemblyrequired:block/sandwich_assembly_table",
-  "textures": {
-    "front": "someassemblyrequired:block/spruce_sandwich_assembly_table_front",
-    "side": "someassemblyrequired:block/spruce_sandwich_assembly_table_side",
-    "top": "someassemblyrequired:block/sandwich_assembly_table_top",
-    "bottom": "minecraft:block/spruce_planks"
-  }
-}

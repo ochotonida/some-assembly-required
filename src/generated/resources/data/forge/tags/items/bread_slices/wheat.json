@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "someassemblyrequired:bread_slice",
+    "someassemblyrequired:toasted_warped_fungus",
+    "someassemblyrequired:charred_bread_slice"
+  ]
+}

@@ -11,8 +11,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import someassemblyrequired.common.init.Blocks;
-import someassemblyrequired.common.init.Items;
+import someassemblyrequired.common.init.ModBlocks;
+import someassemblyrequired.common.init.ModItems;
 
 public class TomatoBlock extends CropsBlock {
 
@@ -31,12 +31,12 @@ public class TomatoBlock extends CropsBlock {
 
     @Override
     public BlockState getPlant(IBlockReader world, BlockPos pos) {
-        return Blocks.TOMATOES.get().getDefaultState();
+        return ModBlocks.TOMATOES.get().getDefaultState();
     }
 
     @Override
     protected IItemProvider getSeedsItem() {
-        return Items.TOMATO_SEEDS.get();
+        return ModItems.TOMATO_SEEDS.get();
     }
 
     @Override

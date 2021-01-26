@@ -12,7 +12,7 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
-import someassemblyrequired.common.init.RecipeTypes;
+import someassemblyrequired.common.init.ModRecipeTypes;
 
 import javax.annotation.Nullable;
 
@@ -22,7 +22,7 @@ public class CuttingRecipe extends SingleIngredientRecipe {
     private final NonNullList<ItemStack> results;
 
     public CuttingRecipe(ResourceLocation id, String group, Ingredient input, Ingredient tool, NonNullList<ItemStack> results) {
-        super(RecipeTypes.CUTTING, id, group, input);
+        super(ModRecipeTypes.CUTTING, id, group, input);
         this.tool = tool;
         this.results = results;
     }
@@ -51,7 +51,7 @@ public class CuttingRecipe extends SingleIngredientRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return RecipeTypes.CUTTING_SERIALIZER.get();
+        return ModRecipeTypes.CUTTING_SERIALIZER.get();
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<CuttingRecipe> {

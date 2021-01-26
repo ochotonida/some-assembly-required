@@ -27,6 +27,10 @@ public class ItemTrigger extends AbstractCriterionTrigger<ItemTrigger.Instance> 
         return new Instance(entityPredicate, ItemPredicate.deserialize(json.get("item")));
     }
 
+    public Instance instance() {
+        return new Instance(EntityPredicate.AndPredicate.ANY_AND, ItemPredicate.ANY);
+    }
+
     public void trigger(ServerPlayerEntity player, ItemStack item) {
         this.triggerListeners(player, (instance) -> instance.test(item));
     }

@@ -18,8 +18,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import someassemblyrequired.common.block.tileentity.CuttingBoardTileEntity;
-import someassemblyrequired.common.init.Tags;
-import someassemblyrequired.common.init.TileEntityTypes;
+import someassemblyrequired.common.init.ModTags;
+import someassemblyrequired.common.init.ModTileEntityTypes;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
     }
 
     public static boolean isKnife(ItemStack stack) {
-        return Tags.KNIVES.contains(stack.getItem()) || stack.getItem() instanceof SwordItem;
+        return ModTags.TOOLS_KNIVES.contains(stack.getItem()) || stack.getItem() instanceof SwordItem;
     }
 
     @Override
@@ -117,7 +117,7 @@ public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return TileEntityTypes.CUTTING_BOARD.get().create();
+        return ModTileEntityTypes.CUTTING_BOARD.get().create();
     }
 
     @Override

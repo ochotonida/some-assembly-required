@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "someassemblyrequired:item/sliced_toasted_warped_fungus"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "someassemblyrequired:on_sandwich": 1.0
+      },
+      "model": "someassemblyrequired:item/sliced_toasted_warped_fungus_on_sandwich"
+    }
+  ]
+}

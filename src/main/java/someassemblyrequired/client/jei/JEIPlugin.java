@@ -13,10 +13,10 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.Blocks;
-import someassemblyrequired.common.init.Items;
-import someassemblyrequired.common.init.RecipeTypes;
+import someassemblyrequired.common.init.ModBlocks;
+import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModRecipeTypes;
+import someassemblyrequired.common.util.Util;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unused")
 public class JEIPlugin implements IModPlugin {
 
-    private final ResourceLocation id = new ResourceLocation(SomeAssemblyRequired.MODID, "main");
+    private static final ResourceLocation ID = Util.prefix("main");
 
     private static List<IRecipe<?>> findRecipes(IRecipeType<?> recipeType) {
         // noinspection ConstantConditions
@@ -34,7 +34,7 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public ResourceLocation getPluginUid() {
-        return id;
+        return ID;
     }
 
     @Override
@@ -45,54 +45,54 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        for (Block cuttingBoard : Blocks.getCuttingBoards()) {
+        for (Block cuttingBoard : ModBlocks.getCuttingBoards()) {
             registration.addRecipeCatalyst(new ItemStack(cuttingBoard), CuttingRecipeCategory.ID);
         }
-        for (Block toaster : Blocks.getToasters()) {
+        for (Block toaster : ModBlocks.getToasters()) {
             registration.addRecipeCatalyst(new ItemStack(toaster), ToastingRecipeCategory.ID);
         }
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        registration.addRecipes(findRecipes(RecipeTypes.CUTTING), CuttingRecipeCategory.ID);
-        registration.addRecipes(findRecipes(RecipeTypes.TOASTING), ToastingRecipeCategory.ID);
+        registration.addRecipes(findRecipes(ModRecipeTypes.CUTTING), CuttingRecipeCategory.ID);
+        registration.addRecipes(findRecipes(ModRecipeTypes.TOASTING), ToastingRecipeCategory.ID);
         // recipes with more than one possible result have an empty output, ignore these (for JEI only)
         registration.addRecipes(findRecipes(IRecipeType.SMOKING).stream().filter((recipe) -> !recipe.getRecipeOutput().isEmpty()).collect(Collectors.toList()), ToastingRecipeCategory.ID);
 
-        for (Block cuttingBoard : Blocks.getCuttingBoards()) {
+        for (Block cuttingBoard : ModBlocks.getCuttingBoards()) {
             registration.addIngredientInfo(new ItemStack(cuttingBoard), VanillaTypes.ITEM, "description.someassemblyrequired.cutting_board");
         }
-        for (Block assemblyTable : Blocks.getSandwichAssemblyTables()) {
+        for (Block assemblyTable : ModBlocks.getSandwichAssemblyTables()) {
             registration.addIngredientInfo(new ItemStack(assemblyTable), VanillaTypes.ITEM, "description.someassemblyrequired.sandwich_assembly_table");
         }
         for (IItemProvider item : new IItemProvider[]{
-                Blocks.REDSTONE_TOASTER.get(),
-                Blocks.STICKY_REDSTONE_TOASTER.get(),
-                Items.KITCHEN_KNIFE.get(),
-                Items.BREAD_SLICE.get(),
-                Items.TOASTED_BREAD_SLICE.get(),
-                Items.CHARRED_BREAD_SLICE.get(),
-                Items.CHARRED_FOOD.get(),
-                Items.APPLE_SLICES.get(),
-                Items.GOLDEN_APPLE_SLICES.get(),
-                Items.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
-                Items.CHOPPED_CARROT.get(),
-                Items.CHOPPED_GOLDEN_CARROT.get(),
-                Items.CHOPPED_BEETROOT.get(),
-                Items.PORK_CUTS.get(),
-                Items.BACON_STRIPS.get(),
-                Items.TOASTED_CRIMSON_FUNGUS.get(),
-                Items.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
-                Items.TOASTED_WARPED_FUNGUS.get(),
-                Items.SLICED_TOASTED_WARPED_FUNGUS.get(),
-                Items.TOMATO.get(),
-                Items.TOMATO_SLICES.get(),
-                Items.LETTUCE_HEAD.get(),
-                Items.LETTUCE_LEAF.get(),
-                Items.MAYONNAISE_BOTTLE.get(),
-                Items.KETCHUP_BOTTLE.get(),
-                Items.SWEET_BERRY_JAM_BOTTLE.get()
+                ModBlocks.REDSTONE_TOASTER.get(),
+                ModBlocks.STICKY_REDSTONE_TOASTER.get(),
+                ModItems.KITCHEN_KNIFE.get(),
+                ModItems.BREAD_SLICE.get(),
+                ModItems.TOASTED_BREAD_SLICE.get(),
+                ModItems.CHARRED_BREAD_SLICE.get(),
+                ModItems.CHARRED_FOOD.get(),
+                ModItems.APPLE_SLICES.get(),
+                ModItems.GOLDEN_APPLE_SLICES.get(),
+                ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
+                ModItems.CHOPPED_CARROT.get(),
+                ModItems.CHOPPED_GOLDEN_CARROT.get(),
+                ModItems.CHOPPED_BEETROOT.get(),
+                ModItems.PORK_CUTS.get(),
+                ModItems.BACON_STRIPS.get(),
+                ModItems.TOASTED_CRIMSON_FUNGUS.get(),
+                ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
+                ModItems.TOASTED_WARPED_FUNGUS.get(),
+                ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
+                ModItems.TOMATO.get(),
+                ModItems.TOMATO_SLICES.get(),
+                ModItems.LETTUCE_HEAD.get(),
+                ModItems.LETTUCE_LEAF.get(),
+                ModItems.MAYONNAISE_BOTTLE.get(),
+                ModItems.KETCHUP_BOTTLE.get(),
+                ModItems.SWEET_BERRY_JAM_BOTTLE.get()
         }) {
             // noinspection ConstantConditions
             registration.addIngredientInfo(new ItemStack(item), VanillaTypes.ITEM, String.format("description.someassemblyrequired.%s", item.asItem().getRegistryName().getPath()));

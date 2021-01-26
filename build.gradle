@@ -25,10 +25,8 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-
             property 'forge.logging.markers', ''
             property 'forge.logging.console.level', 'debug'
-
             mods {
                 someassemblyrequired {
                     source sourceSets.main
@@ -38,10 +36,21 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-
             property 'forge.logging.markers', ''
             property 'forge.logging.console.level', 'debug'
+            mods {
+                someassemblyrequired {
+                    source sourceSets.main
+                }
+            }
+        }
 
+        data {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', ''
+            property 'forge.logging.console.level', 'debug'
+            args '--mod', 'someassemblyrequired', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            environment 'target', 'fmluserdevdata'
             mods {
                 someassemblyrequired {
                     source sourceSets.main
@@ -49,6 +58,10 @@ minecraft {
             }
         }
     }
+}
+
+sourceSets {
+    main.resources.srcDirs += 'src/generated/resources'
 }
 
 repositories {

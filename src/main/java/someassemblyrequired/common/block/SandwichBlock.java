@@ -16,8 +16,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import someassemblyrequired.common.block.tileentity.ItemHandlerTileEntity;
-import someassemblyrequired.common.init.Items;
-import someassemblyrequired.common.init.TileEntityTypes;
+import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModTileEntityTypes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,14 +51,14 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock {
             return ItemStack.EMPTY;
         }
 
-        ItemStack sandwich = new ItemStack(Items.SANDWICH.get());
+        ItemStack sandwich = new ItemStack(ModItems.SANDWICH.get());
         sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", tileEntity.write(new CompoundNBT()).getCompound("Ingredients"));
         return sandwich;
     }
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return TileEntityTypes.SANDWICH.get().create();
+        return ModTileEntityTypes.SANDWICH.get().create();
     }
 
     @Override

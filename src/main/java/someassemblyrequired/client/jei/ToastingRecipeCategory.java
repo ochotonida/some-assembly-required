@@ -19,7 +19,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.Blocks;
+import someassemblyrequired.common.init.ModBlocks;
+import someassemblyrequired.common.util.Util;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +29,7 @@ import java.util.List;
 @SuppressWarnings("rawtypes")
 public class ToastingRecipeCategory implements IRecipeCategory<IRecipe> {
 
-    public static final ResourceLocation ID = new ResourceLocation(SomeAssemblyRequired.MODID, "toasting");
+    public static final ResourceLocation ID = Util.prefix("toasting");
 
     private final IDrawable background;
     private final IDrawable arrow;
@@ -36,9 +37,9 @@ public class ToastingRecipeCategory implements IRecipeCategory<IRecipe> {
     private final String title;
 
     public ToastingRecipeCategory(IGuiHelper guiHelper) {
-        ResourceLocation texture = new ResourceLocation(SomeAssemblyRequired.MODID, "textures/gui/toasting_recipe.png");
+        ResourceLocation texture = Util.prefix("textures/gui/toasting_recipe.png");
         background = guiHelper.createDrawable(texture, 0, 0, 111, 41);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(Blocks.REDSTONE_TOASTER.get()));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.REDSTONE_TOASTER.get()));
         arrow = guiHelper.drawableBuilder(texture, 111, 0, 22, 16).buildAnimated(240, IDrawableAnimated.StartDirection.LEFT, false);
         title = I18n.format("recipecategory." + SomeAssemblyRequired.MODID + ".toasting");
     }

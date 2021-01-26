@@ -2,6 +2,7 @@ package someassemblyrequired.common.util;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
@@ -10,8 +11,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
-import someassemblyrequired.common.init.Items;
-import someassemblyrequired.common.init.Tags;
+import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModTags;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,19 +20,19 @@ import java.util.stream.Collectors;
 public class SandwichNameHelper {
 
     private static final Set<Item> INGREDIENT_NAME_OVERRIDES = new HashSet<>(Arrays.asList(
-            Items.TOASTED_BREAD_SLICE.get(),
-            Items.APPLE_SLICES.get(),
-            Items.GOLDEN_APPLE_SLICES.get(),
-            Items.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
-            Items.CHOPPED_CARROT.get(),
-            Items.CHOPPED_GOLDEN_CARROT.get(),
-            Items.CHOPPED_BEETROOT.get(),
-            Items.PORK_CUTS.get(),
-            Items.BACON_STRIPS.get(),
-            Items.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
-            Items.SLICED_TOASTED_WARPED_FUNGUS.get(),
-            Items.TOMATO_SLICES.get(),
-            Items.LETTUCE_LEAF.get()
+            ModItems.TOASTED_BREAD_SLICE.get(),
+            ModItems.APPLE_SLICES.get(),
+            ModItems.GOLDEN_APPLE_SLICES.get(),
+            ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
+            ModItems.CHOPPED_CARROT.get(),
+            ModItems.CHOPPED_GOLDEN_CARROT.get(),
+            ModItems.CHOPPED_BEETROOT.get(),
+            ModItems.PORK_CUTS.get(),
+            ModItems.BACON_STRIPS.get(),
+            ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
+            ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
+            ModItems.TOMATO_SLICES.get(),
+            ModItems.LETTUCE_LEAF.get()
     ));
 
     public static ITextComponent getSandwichDisplayName(ItemStack sandwich) {
@@ -56,9 +57,9 @@ public class SandwichNameHelper {
         }
 
         // potion sandwich
-        if (uniqueIngredients.size() == 1 && uniqueIngredients.get(0).getItem() == Items.SPREAD.get() && uniqueIngredients.get(0).getOrCreateTag().contains("Ingredient")) {
+        if (uniqueIngredients.size() == 1 && uniqueIngredients.get(0).getItem() == ModItems.SPREAD.get() && uniqueIngredients.get(0).getOrCreateTag().contains("Ingredient")) {
             ItemStack spreadItem = ItemStack.read(uniqueIngredients.get(0).getOrCreateChildTag("Ingredient"));
-            if (spreadItem.getItem() == net.minecraft.item.Items.POTION) {
+            if (spreadItem.getItem() == Items.POTION) {
                 Potion potion = PotionUtils.getPotionFromItem(spreadItem);
                 if (potion == Potions.WATER) {
                     return new TranslationTextComponent("item.someassemblyrequired.soggy_sandwich");
@@ -87,7 +88,7 @@ public class SandwichNameHelper {
     private static int getAmountOfBread(List<ItemStack> ingredients) {
         int result = 0;
         for (ItemStack ingredient : ingredients) {
-            if (Tags.BREAD.contains(ingredient.getItem())) {
+            if (ModTags.SANDWICH_BREADS.contains(ingredient.getItem())) {
                 result++;
             }
         }
@@ -96,9 +97,9 @@ public class SandwichNameHelper {
 
     private static ITextComponent getBreadSandwichName(List<ItemStack> ingredients) {
         if ((ingredients.size() == 3)
-                && ingredients.get(0).getItem() != Items.TOASTED_BREAD_SLICE.get()
-                && ingredients.get(1).getItem() == Items.TOASTED_BREAD_SLICE.get()
-                && ingredients.get(2).getItem() != Items.TOASTED_BREAD_SLICE.get()) {
+                && ingredients.get(0).getItem() != ModItems.TOASTED_BREAD_SLICE.get()
+                && ingredients.get(1).getItem() == ModItems.TOASTED_BREAD_SLICE.get()
+                && ingredients.get(2).getItem() != ModItems.TOASTED_BREAD_SLICE.get()) {
             return new TranslationTextComponent("item.someassemblyrequired.ingredients_sandwich", getIngredientDisplayName(ingredients.get(1)));
         }
         return new TranslationTextComponent("item.someassemblyrequired.bread_sandwich");

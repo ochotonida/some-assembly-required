@@ -1,0 +1,44 @@
+{
+  "pools": [
+    {
+      "name": "main",
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 6,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 4.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "someassemblyrequired:lettuce_head"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 6,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 4.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "someassemblyrequired:lettuce_seeds"
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 12
+        }
+      ]
+    }
+  ]
+}

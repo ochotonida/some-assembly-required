@@ -23,10 +23,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import someassemblyrequired.common.block.RedstoneToasterBlock;
-import someassemblyrequired.common.init.Items;
-import someassemblyrequired.common.init.RecipeTypes;
-import someassemblyrequired.common.init.Tags;
-import someassemblyrequired.common.init.TileEntityTypes;
+import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModRecipeTypes;
+import someassemblyrequired.common.init.ModTags;
+import someassemblyrequired.common.init.ModTileEntityTypes;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -45,7 +45,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
 
     public RedstoneToasterTileEntity() {
         // noinspection unchecked
-        super((TileEntityType<RedstoneToasterTileEntity>) TileEntityTypes.REDSTONE_TOASTER.get(), 2);
+        super((TileEntityType<RedstoneToasterTileEntity>) ModTileEntityTypes.REDSTONE_TOASTER.get(), 2);
     }
 
     public void setAutoEject(boolean isEjectionToaster) {
@@ -63,7 +63,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
     }
 
     private boolean hasMetalInside() {
-        return getItems().stream().anyMatch(stack -> Tags.TOASTER_METALS.contains(stack.getItem()));
+        return getItems().stream().anyMatch(stack -> ModTags.TOASTER_METALS.contains(stack.getItem()));
     }
 
     public void explode() {
@@ -119,13 +119,13 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
     }
 
     private ItemStack getToastingResult(ItemStack ingredient) {
-        if (ingredient.isEmpty() || ingredient.getItem() == Items.CHARRED_MORSEL.get() || world == null) {
+        if (ingredient.isEmpty() || ingredient.getItem() == ModItems.CHARRED_MORSEL.get() || world == null) {
             return ItemStack.EMPTY;
         }
 
         IInventory ingredientWrapper = new Inventory(ingredient);
 
-        Optional<? extends IRecipe<IInventory>> toastingRecipe = world.getRecipeManager().getRecipe(RecipeTypes.TOASTING, ingredientWrapper, world);
+        Optional<? extends IRecipe<IInventory>> toastingRecipe = world.getRecipeManager().getRecipe(ModRecipeTypes.TOASTING, ingredientWrapper, world);
 
         IRecipe<IInventory> recipe = null;
         if (toastingRecipe.isPresent()) {
@@ -139,10 +139,10 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
 
         if (recipe == null) {
             if (ingredient.getItem().isFood()) {
-                if (Tags.SMALL_FOODS.contains(ingredient.getItem())) {
-                    return new ItemStack(Items.CHARRED_MORSEL.get());
+                if (ModTags.SMALL_FOODS.contains(ingredient.getItem())) {
+                    return new ItemStack(ModItems.CHARRED_MORSEL.get());
                 } else {
-                    return new ItemStack(Items.CHARRED_FOOD.get());
+                    return new ItemStack(ModItems.CHARRED_FOOD.get());
                 }
             } else {
                 return ItemStack.EMPTY;
@@ -288,7 +288,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
 
             @Override
             public boolean isItemValid(int slot, ItemStack stack) {
-                return super.isItemValid(slot, stack) && stack.getItem() != Items.SANDWICH.get() && (stack.getItem().isFood() || !(stack.getItem() instanceof BlockItem) || hasToastingResult(stack));
+                return super.isItemValid(slot, stack) && stack.getItem() != ModItems.SANDWICH.get() && (stack.getItem().isFood() || !(stack.getItem() instanceof BlockItem) || hasToastingResult(stack));
             }
         };
     }

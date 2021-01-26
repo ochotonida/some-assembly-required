@@ -10,7 +10,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
-import someassemblyrequired.common.init.RecipeTypes;
+import someassemblyrequired.common.init.ModRecipeTypes;
 
 import javax.annotation.Nullable;
 
@@ -19,7 +19,7 @@ public class ToastingRecipe extends SingleIngredientRecipe {
     private final ItemStack result;
 
     public ToastingRecipe(ResourceLocation id, String group, Ingredient input, ItemStack result) {
-        super(RecipeTypes.TOASTING, id, group, input);
+        super(ModRecipeTypes.TOASTING, id, group, input);
         this.result = result;
     }
 
@@ -35,7 +35,7 @@ public class ToastingRecipe extends SingleIngredientRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return RecipeTypes.TOASTING_SERIALIZER.get();
+        return ModRecipeTypes.TOASTING_SERIALIZER.get();
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ToastingRecipe> {

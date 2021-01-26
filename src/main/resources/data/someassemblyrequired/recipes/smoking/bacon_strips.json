@@ -1,9 +1,0 @@
-{
-  "type": "smoking",
-  "ingredient": {
-    "item": "someassemblyrequired:pork_cuts"
-  },
-  "result": "someassemblyrequired:bacon_strips",
-  "experience": 0.25,
-  "cookingtime": 100
-}

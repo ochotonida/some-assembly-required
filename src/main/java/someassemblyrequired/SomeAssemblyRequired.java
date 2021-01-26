@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.event.AddReloadListenerEvent;
@@ -14,11 +14,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import someassemblyrequired.common.init.*;
 import someassemblyrequired.common.item.spreadtype.SpreadTypeManager;
 import someassemblyrequired.common.network.NetworkHandler;
+import someassemblyrequired.common.util.Util;
 
 @Mod(SomeAssemblyRequired.MODID)
 public class SomeAssemblyRequired {
@@ -29,11 +31,11 @@ public class SomeAssemblyRequired {
 
     public SomeAssemblyRequired() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        Items.REGISTRY.register(modEventBus);
-        Blocks.REGISTRY.register(modEventBus);
-        RecipeTypes.REGISTRY.register(modEventBus);
-        TileEntityTypes.REGISTRY.register(modEventBus);
-        AdvancementTriggers.register();
+        ModItems.REGISTRY.register(modEventBus);
+        ModBlocks.REGISTRY.register(modEventBus);
+        ModRecipeTypes.REGISTRY.register(modEventBus);
+        ModTileEntityTypes.REGISTRY.register(modEventBus);
+        ModAdvancements.register();
     }
 
     @SuppressWarnings("unused")
@@ -44,8 +46,8 @@ public class SomeAssemblyRequired {
         public static void onCommonSetup(FMLCommonSetupEvent event) {
             event.enqueueWork(() -> {
                 NetworkHandler.register();
-                RecipeTypes.registerBrewingRecipes();
-                Items.registerCompostables();
+                ModRecipeTypes.registerBrewingRecipes();
+                ModItems.registerCompostables();
             });
         }
     }
@@ -56,32 +58,27 @@ public class SomeAssemblyRequired {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            event.enqueueWork(TileEntityTypes::addRenderers);
-            ItemModelsProperties.registerProperty(Items.SPREAD.get(), new ResourceLocation(SomeAssemblyRequired.MODID, "on_loaf"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
-            for (Item item : new Item[]{
-                    Items.APPLE_SLICES.get(),
-                    Items.GOLDEN_APPLE_SLICES.get(),
-                    Items.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
-                    Items.CHOPPED_CARROT.get(),
-                    Items.CHOPPED_GOLDEN_CARROT.get(),
-                    Items.CHOPPED_BEETROOT.get(),
-                    Items.PORK_CUTS.get(),
-                    Items.BACON_STRIPS.get(),
-                    Items.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
-                    Items.SLICED_TOASTED_WARPED_FUNGUS.get(),
-                    Items.TOMATO_SLICES.get(),
-                    Items.LETTUCE_LEAF.get()
-            }) {
-                ItemModelsProperties.registerProperty(item, new ResourceLocation(SomeAssemblyRequired.MODID, "on_sandwich"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnSandwich") ? 1 : 0);
-            }
+            event.enqueueWork(ModTileEntityTypes::addRenderers);
 
-            RenderTypeLookup.setRenderLayer(Blocks.LETTUCE.get(), RenderType.getCutout());
-            RenderTypeLookup.setRenderLayer(Blocks.TOMATOES.get(), RenderType.getCutout());
+            ItemModelsProperties.registerProperty(ModItems.SPREAD.get(), Util.prefix("on_loaf"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
+
+            ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.getRegistryName() != null && SomeAssemblyRequired.MODID.equals(item.getRegistryName().getNamespace())).filter(Item::isFood).forEach(item ->
+                    ItemModelsProperties.registerProperty(item, Util.prefix("on_sandwich"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnSandwich") ? 1 : 0)
+            );
+
+            RenderTypeLookup.setRenderLayer(ModBlocks.LETTUCE.get(), RenderType.getCutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.TOMATOES.get(), RenderType.getCutout());
         }
 
         @SubscribeEvent
         public static void registerColorHandlers(ColorHandlerEvent.Item event) {
-            event.getItemColors().register((itemStack, tintIndex) -> tintIndex == 0 && itemStack.getOrCreateTag().getInt("Color") != 0 ? itemStack.getOrCreateTag().getInt("Color") : 0xFF00FF, Items.SPREAD.get());
+            event.getItemColors().register((itemStack, tintIndex) -> {
+                CompoundNBT tag = itemStack.getTag();
+                if (tag != null && tintIndex == 0 && tag.getInt("Color") != 0) {
+                    return tag.getInt("Color");
+                }
+                return 0xFF00FF;
+            }, ModItems.SPREAD.get());
         }
     }
 

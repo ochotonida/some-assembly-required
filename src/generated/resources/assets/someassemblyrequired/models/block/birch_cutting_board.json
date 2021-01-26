@@ -1,0 +1,6 @@
+{
+  "parent": "someassemblyrequired:block/cutting_board",
+  "textures": {
+    "texture": "minecraft:block/stripped_birch_log"
+  }
+}
