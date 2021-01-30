@@ -35,7 +35,7 @@ public class SomeAssemblyRequired {
         ModBlocks.REGISTRY.register(modEventBus);
         ModRecipeTypes.REGISTRY.register(modEventBus);
         ModTileEntityTypes.REGISTRY.register(modEventBus);
-        ModAdvancements.register();
+        ModAdvancementTriggers.register();
     }
 
     @SuppressWarnings("unused")
@@ -58,16 +58,17 @@ public class SomeAssemblyRequired {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            event.enqueueWork(ModTileEntityTypes::addRenderers);
+            event.enqueueWork(() -> {
+                ModTileEntityTypes.addRenderers();
+                ItemModelsProperties.registerProperty(ModItems.SPREAD.get(), Util.prefix("on_loaf"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
 
-            ItemModelsProperties.registerProperty(ModItems.SPREAD.get(), Util.prefix("on_loaf"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
+                ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.getRegistryName() != null && SomeAssemblyRequired.MODID.equals(item.getRegistryName().getNamespace())).filter(Item::isFood).forEach(item ->
+                        ItemModelsProperties.registerProperty(item, Util.prefix("on_sandwich"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnSandwich") ? 1 : 0)
+                );
 
-            ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.getRegistryName() != null && SomeAssemblyRequired.MODID.equals(item.getRegistryName().getNamespace())).filter(Item::isFood).forEach(item ->
-                    ItemModelsProperties.registerProperty(item, Util.prefix("on_sandwich"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnSandwich") ? 1 : 0)
-            );
-
-            RenderTypeLookup.setRenderLayer(ModBlocks.LETTUCE.get(), RenderType.getCutout());
-            RenderTypeLookup.setRenderLayer(ModBlocks.TOMATOES.get(), RenderType.getCutout());
+                RenderTypeLookup.setRenderLayer(ModBlocks.LETTUCE.get(), RenderType.getCutout());
+                RenderTypeLookup.setRenderLayer(ModBlocks.TOMATOES.get(), RenderType.getCutout());
+            });
         }
 
         @SubscribeEvent

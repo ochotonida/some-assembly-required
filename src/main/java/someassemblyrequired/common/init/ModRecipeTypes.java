@@ -24,15 +24,8 @@ public class ModRecipeTypes {
     public static final IRecipeType<CuttingRecipe> CUTTING = IRecipeType.register(Util.prefix("cutting").toString());
     public static final IRecipeType<SingleIngredientRecipe> TOASTING = IRecipeType.register(Util.prefix("toasting").toString());
 
-    public static final RegistryObject<IRecipeSerializer<?>> CUTTING_SERIALIZER = REGISTRY.register(
-            "cutting",
-            CuttingRecipe.Serializer::new
-    );
-
-    public static final RegistryObject<IRecipeSerializer<?>> TOASTING_SERIALIZER = REGISTRY.register(
-            "toasting",
-            ToastingRecipe.Serializer::new
-    );
+    public static final RegistryObject<IRecipeSerializer<?>> CUTTING_SERIALIZER = REGISTRY.register("cutting", CuttingRecipe.Serializer::new);
+    public static final RegistryObject<IRecipeSerializer<?>> TOASTING_SERIALIZER = REGISTRY.register("toasting", ToastingRecipe.Serializer::new);
 
     public static void registerBrewingRecipes() {
         BrewingRecipeRegistry.addRecipe(

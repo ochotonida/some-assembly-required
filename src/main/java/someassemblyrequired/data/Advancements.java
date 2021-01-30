@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.ModAdvancements;
+import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
@@ -78,7 +78,7 @@ public class Advancements extends AdvancementProvider {
                 }
             });
 
-            Advancement obtainBreadSlice = registerSimple(
+            Advancement obtainBreadSlice = addAdvancement(
                     consumer,
                     root,
                     new ItemStack(ModItems.KITCHEN_KNIFE.get()),
@@ -87,7 +87,7 @@ public class Advancements extends AdvancementProvider {
                     false
             );
 
-            Advancement obtainSandwich = registerSimple(
+            Advancement obtainSandwich = addAdvancement(
                     consumer,
                     obtainBreadSlice,
                     SandwichBuilder.create()
@@ -98,7 +98,7 @@ public class Advancements extends AdvancementProvider {
                     false
             );
 
-            registerSimple(
+            addAdvancement(
                     consumer,
                     obtainBreadSlice,
                     new ItemStack(ModBlocks.REDSTONE_TOASTER.get()),
@@ -107,27 +107,27 @@ public class Advancements extends AdvancementProvider {
                     false
             );
 
-            registerSimple(
+            addAdvancement(
                     consumer,
                     obtainSandwich,
                     SandwichBuilder.create()
                             .addFakeSpread(16262179)
                             .build(),
-                    ModAdvancements.ADD_POTION_TO_SANDWICH.instance(),
+                    ModAdvancementTriggers.ADD_POTION_TO_SANDWICH.instance(),
                     "add_potion_to_sandwich",
                     true
             );
 
-            registerSimple(
+            addAdvancement(
                     consumer,
                     obtainSandwich,
                     SandwichBuilder.blt(),
-                    ModAdvancements.CONSUME_BLT_SANDWICH.instance(),
+                    ModAdvancementTriggers.CONSUME_BLT_SANDWICH.instance(),
                     "consume_blt_sandwich",
                     true
             );
 
-            registerSimple(
+            addAdvancement(
                     consumer,
                     obtainSandwich,
                     SandwichBuilder.create()
@@ -135,13 +135,13 @@ public class Advancements extends AdvancementProvider {
                             .addBread()
                             .add(ModItems.CHOPPED_BEETROOT.get())
                             .build(),
-                    ModAdvancements.CONSUME_DOUBLE_DECKER_SANDWICH.instance(),
+                    ModAdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.instance(),
                     "consume_double_decker_sandwich",
                     true
             );
         }
 
-        private static Advancement registerSimple(Consumer<Advancement> consumer, Advancement parent, ItemStack display, CriterionInstance criterion, String name, boolean hidden) {
+        private static Advancement addAdvancement(Consumer<Advancement> consumer, Advancement parent, ItemStack display, CriterionInstance criterion, String name, boolean hidden) {
             return Advancement.Builder.builder().withParent(parent).withDisplay(display,
                     new TranslationTextComponent("advancement." + SomeAssemblyRequired.MODID + "." + name + ".title"),
                     new TranslationTextComponent("advancement." + SomeAssemblyRequired.MODID + "." + name + ".description"),

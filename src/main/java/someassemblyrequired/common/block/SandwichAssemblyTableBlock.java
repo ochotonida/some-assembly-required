@@ -27,7 +27,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import someassemblyrequired.common.block.tileentity.SandwichAssemblyTableTileEntity;
-import someassemblyrequired.common.init.ModAdvancements;
+import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 import someassemblyrequired.common.init.ModTileEntityTypes;
@@ -116,7 +116,7 @@ public class SandwichAssemblyTableBlock extends HorizontalBlock {
                 world.playSound(player, pos, SoundEvents.BLOCK_HONEY_BLOCK_PLACE, SoundCategory.BLOCKS, 0.3F, 1.3F);
 
                 if (player instanceof ServerPlayerEntity && heldStack.getItem() == Items.POTION && PotionUtils.getPotionFromItem(heldStack) != Potions.WATER) {
-                    ModAdvancements.ADD_POTION_TO_SANDWICH.trigger((ServerPlayerEntity) player, heldStack);
+                    ModAdvancementTriggers.ADD_POTION_TO_SANDWICH.trigger((ServerPlayerEntity) player, heldStack);
                 }
             }
 

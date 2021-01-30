@@ -25,7 +25,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import someassemblyrequired.common.init.ModAdvancements;
+import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.util.SandwichBuilder;
 import someassemblyrequired.common.util.SandwichIngredientHelper;
 import someassemblyrequired.common.util.SandwichNameHelper;
@@ -79,9 +79,9 @@ public class SandwichItem extends BlockItem {
 
         if (entity instanceof ServerPlayerEntity) {
             if (SandwichIngredientHelper.isDoubleDeckerSandwich(ingredients)) {
-                ModAdvancements.CONSUME_DOUBLE_DECKER_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
+                ModAdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
             } else if (SandwichIngredientHelper.isBLT(SandwichIngredientHelper.getUniqueIngredientsExcludingBread(ingredients))) {
-                ModAdvancements.CONSUME_BLT_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
+                ModAdvancementTriggers.CONSUME_BLT_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
             }
         }
 
