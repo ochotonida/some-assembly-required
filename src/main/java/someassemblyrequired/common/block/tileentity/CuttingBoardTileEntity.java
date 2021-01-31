@@ -11,7 +11,6 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import someassemblyrequired.common.block.CuttingBoardBlock;
 import someassemblyrequired.common.init.ModRecipeTypes;
 import someassemblyrequired.common.init.ModTileEntityTypes;
-import someassemblyrequired.common.recipe.CuttingRecipe;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -60,15 +59,17 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
         return getInventory().extractItem(0, 1, false);
     }
 
-    public List<ItemStack> cutIngredient(ItemStack tool) {
-        if (world != null) {
-            CuttingRecipe recipe = world.getRecipeManager().getRecipe(ModRecipeTypes.CUTTING, new RecipeWrapper(getInventory()), world).orElse(null);
-            if (recipe != null && recipe.getTool().test(tool)) {
-                getInventory().extractItem(0, 1, false);
-                return recipe.getRecipeOutputs();
-            }
+    public List<ItemStack> processIngredient(ItemStack tool) {
+        if (world == null) {
+            return Collections.emptyList();
         }
-        return Collections.emptyList();
+
+        return world.getRecipeManager()
+                .getRecipes(ModRecipeTypes.CUTTING, new RecipeWrapper(getInventory()), world).stream()
+                .filter(cuttingRecipe -> cuttingRecipe.getTool().test(tool))
+                .map(recipe -> (List<ItemStack>) recipe.getRecipeOutputs())
+                .peek(list -> removeIngredient())
+                .findFirst().orElse(Collections.emptyList());
     }
 
     @Override

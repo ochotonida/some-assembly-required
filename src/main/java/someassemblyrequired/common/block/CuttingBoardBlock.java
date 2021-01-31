@@ -80,7 +80,7 @@ public class CuttingBoardBlock extends WaterLoggableHorizontalBlock {
     }
 
     private boolean cutIngredient(ItemStack tool, CuttingBoardTileEntity cuttingBoard, World world, BlockPos pos, PlayerEntity player) {
-        List<ItemStack> results = cuttingBoard.cutIngredient(tool);
+        List<ItemStack> results = cuttingBoard.processIngredient(tool);
         if (results.isEmpty()) {
             return false;
         }
