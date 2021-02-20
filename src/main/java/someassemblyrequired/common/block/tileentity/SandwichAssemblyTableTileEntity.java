@@ -1,6 +1,7 @@
 package someassemblyrequired.common.block.tileentity;
 
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
@@ -13,10 +14,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModRecipeTypes;
 import someassemblyrequired.common.init.ModTags;
 import someassemblyrequired.common.init.ModTileEntityTypes;
-import someassemblyrequired.common.item.spreadtype.SpreadType;
-import someassemblyrequired.common.item.spreadtype.SpreadTypeManager;
+import someassemblyrequired.common.recipe.SpreadType;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -35,27 +36,6 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
         super((TileEntityType<SandwichAssemblyTableTileEntity>) ModTileEntityTypes.SANDWICH_ASSEMBLY_TABLE.get(), 16);
     }
 
-    private ItemStack createSpreadItem(SpreadType spreadType, ItemStack ingredient) {
-        CompoundNBT spreadNBT = new CompoundNBT();
-        spreadNBT.putInt("Color", spreadType.getColor(ingredient));
-        spreadNBT.putBoolean("HasEffect", ingredient.hasEffect());
-        spreadNBT.put("Ingredient", ingredient.copy().split(1).write(new CompoundNBT()));
-
-        List<ItemStack> ingredients = getItems();
-        for (int slot = ingredients.size() - 1; slot >= 0; slot--) {
-            if (ModTags.SANDWICH_BREADS.contains(ingredients.get(slot).getItem())) {
-                if (ModTags.BREAD.contains(ingredients.get(slot).getItem())) {
-                    spreadNBT.putBoolean("IsOnLoaf", true);
-                }
-                break;
-            }
-        }
-
-        ItemStack spread = new ItemStack(ModItems.SPREAD.get());
-        spread.setTag(spreadNBT);
-        return spread;
-    }
-
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction side) {
         // completed sandwiches are extracted from the top or bottom
@@ -67,16 +47,23 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
 
     public ItemStack removeTopIngredient() {
         if (getAmountOfItems() > 0) {
-            return getInventory().extractItem(getAmountOfItems() - 1, 1, false);
+            ItemStack topIngredient = getInventory().getStackInSlot(getAmountOfItems() - 1);
+            ItemStack result = getInventory().extractItem(getAmountOfItems() - 1, 1, false);
+            return result.isEmpty() ? topIngredient : result;
         }
         return ItemStack.EMPTY;
     }
 
     public boolean hasBreadAsTopIngredient() {
         if (getAmountOfItems() > 0) {
-            return ModTags.SANDWICH_BREADS.contains(getInventory().getStackInSlot(getAmountOfItems() - 1).getItem());
+            return ModTags.isBread(getInventory().getStackInSlot(getAmountOfItems() - 1).getItem());
         }
         return false;
+    }
+
+    @Override
+    public IngredientHandler getInventory() {
+        return (IngredientHandler) super.getInventory();
     }
 
     public int getInventorySize() {
@@ -84,19 +71,14 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
     }
 
     /**
-     * Try to add an ingredient to the sandwich table, converting it into a spread when possible. Does not modify the specified itemStack
+     * Try to add an ingredient to the sandwich table. Does not modify the specified itemStack
      *
      * @return whether the ingredient successfully got added
      */
     public boolean addIngredient(ItemStack stack) {
-        SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(stack.getItem());
-        ItemStack ingredient = spreadType == null ? stack.copy() : createSpreadItem(spreadType, stack);
+        ItemStack ingredient = stack.copy();
 
-        int nextEmptySlot = getAmountOfItems();
-        if (nextEmptySlot >= getInventorySize() || !getInventory().isItemValid(nextEmptySlot, ingredient)) {
-            return false;
-        }
-        int count = getInventory().insertItem(nextEmptySlot, ingredient, false).getCount();
+        int count = getInventory().insertItem(stack, false).getCount();
         return count != ingredient.getCount();
     }
 
@@ -127,7 +109,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             int nextEmptySlot = getAmountOfItems();
 
             // there must be at least 1 item and the top item must be bread
-            if (nextEmptySlot < 2 || !ModTags.SANDWICH_BREADS.contains(getInventory().getStackInSlot(nextEmptySlot - 1).getItem())) {
+            if (nextEmptySlot < 2 || !ModTags.isBread(getInventory().getStackInSlot(nextEmptySlot - 1).getItem())) {
                 sandwich = ItemStack.EMPTY;
             } else {
                 sandwich = new ItemStack(ModItems.SANDWICH.get());
@@ -202,10 +184,9 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
         public NonNullList<ItemStack> removeItems() {
             NonNullList<ItemStack> result = NonNullList.create();
             for (ItemStack ingredient : super.removeItems()) {
-                if (ingredient.getItem() != ModItems.SPREAD.get()) {
-                    ingredient.removeChildTag("IsOnSandwich");
-                    result.add(ingredient);
-                }
+                ingredient.removeChildTag("IsOnSandwich");
+                ingredient.removeChildTag("IsOnLoaf");
+                result.add(ingredient);
             }
             return result;
         }
@@ -218,12 +199,13 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             }
 
             ItemStack result = super.extractItem(slot, amount, simulate);
-            // spreads cannot be obtained as items
-            if (result.getItem() == ModItems.SPREAD.get()) {
+            // spreads cannot be obtained as items when removed
+            if (world != null && world.getRecipeManager().getRecipe(ModRecipeTypes.SPREAD_TYPE, new Inventory(result), world).isPresent()) {
                 return ItemStack.EMPTY;
             }
 
             result.removeChildTag("IsOnSandwich");
+            result.removeChildTag("IsOnLoaf");
 
             return result;
         }
@@ -245,12 +227,25 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
                 return sandwichSize > 0 && sandwichSize <= getSlots() - getAmountOfItems();
             }
 
-            return (stack.isFood() || stack.getItem() == ModItems.SPREAD.get() || SpreadTypeManager.INSTANCE.hasSpreadType(stack.getItem())) // the item must be edible
-                    && (slot > 0 || ModTags.SANDWICH_BREADS.contains(stack.getItem())); // the first item must be bread
+            return (stack.isFood() || world != null && ModRecipeTypes.getSpreadType(stack, world) != null) // the item must be edible
+                    && (slot > 0 || ModTags.isBread(stack.getItem())); // the first item must be bread
         }
+
+        public ItemStack insertItem(ItemStack stack, boolean spawnContainer) {
+            int nextEmptySlot = getAmountOfItems();
+            if (nextEmptySlot >= getSlots() || !isItemValid(nextEmptySlot, stack)) {
+                return stack;
+            }
+            return insertItem(nextEmptySlot, stack, false, spawnContainer);
+        }
+
 
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+            return insertItem(slot, stack, simulate, true);
+        }
+
+        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate, boolean spawnContainer) {
             if (stack.isEmpty()) {
                 return ItemStack.EMPTY;
             }
@@ -266,23 +261,40 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
                 stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(sandwichItemHandler -> {
                     int slotOffset = getAmountOfItems();
                     for (int sandwichSlot = 0; sandwichSlot < sandwichItemHandler.getSlots() && !sandwichItemHandler.getStackInSlot(sandwichSlot).isEmpty(); sandwichSlot++) {
-                        setStackInSlot(slotOffset + sandwichSlot, sandwichItemHandler.getStackInSlot(sandwichSlot));
+                        setStackInSlot(slotOffset + sandwichSlot, sandwichItemHandler.getStackInSlot(sandwichSlot).copy());
                     }
                 });
                 return ItemHandlerHelper.copyStackWithSize(stack, stack.getCount() - 1);
             }
 
-            // convert ingredients to spreads when possible
-            SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(stack.getItem());
-            ItemStack ingredient = spreadType == null ? stack.copy() : createSpreadItem(spreadType, stack);
+            ItemStack ingredient = stack.copy();
 
-            ingredient.getOrCreateTag().putBoolean("IsOnSandwich", true);
+            CompoundNBT tag = ingredient.getOrCreateTag();
+            tag.putBoolean("IsOnSandwich", true);
+
+            if (!ModTags.isBread(ingredient.getItem())) {
+                List<ItemStack> ingredients = getItems();
+                for (int i = ingredients.size() - 1; i >= 0; i--) {
+                    if (ModTags.isBread(ingredients.get(i).getItem())) {
+                        if (ModTags.isLoaf(ingredients.get(i).getItem())) {
+                            tag.putBoolean("IsOnLoaf", true);
+                        }
+                        break;
+                    }
+                }
+            }
 
             // spawn the spread's container as an item
-            if (!simulate && spreadType != null && SandwichAssemblyTableTileEntity.this.getWorld() != null && spreadType.hasContainer(ingredient)) {
-                ItemEntity item = new ItemEntity(SandwichAssemblyTableTileEntity.this.getWorld(), SandwichAssemblyTableTileEntity.this.pos.getX() + 0.5, SandwichAssemblyTableTileEntity.this.pos.getY() + 1.2, SandwichAssemblyTableTileEntity.this.pos.getZ() + 0.5, new ItemStack(spreadType.getContainer(ingredient)));
-                item.setPickupDelay(5);
-                SandwichAssemblyTableTileEntity.this.getWorld().addEntity(item);
+            if (spawnContainer && !simulate && world != null) {
+                SpreadType spreadType = ModRecipeTypes.getSpreadType(ingredient, world);
+                if (spreadType != null) {
+                    ItemStack container = spreadType.getContainer(ingredient);
+                    if (!container.isEmpty()) {
+                        ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, container);
+                        item.setPickupDelay(5);
+                        world.addEntity(item);
+                    }
+                }
             }
 
             return ItemHandlerHelper.copyStackWithSize(stack, super.insertItem(slot, ingredient, simulate).getCount());

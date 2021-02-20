@@ -23,7 +23,7 @@ public class SandwichIngredientHelper {
     public static List<ItemStack> getUniqueIngredientsExcludingBread(List<ItemStack> ingredients) {
         List<ItemStack> result = new ArrayList<>();
         for (ItemStack ingredient : ingredients) {
-            if (!ModTags.SANDWICH_BREADS.contains(ingredient.getItem()) && result.stream().noneMatch(stack -> ItemStack.areItemStacksEqual(ingredient, stack))) {
+            if (!ModTags.isBread(ingredient.getItem()) && result.stream().noneMatch(stack -> ItemStack.areItemStacksEqual(ingredient, stack))) {
                 result.add(ingredient);
             }
         }
@@ -37,13 +37,13 @@ public class SandwichIngredientHelper {
 
         int breadAmount = 0;
         for (ItemStack ingredient : ingredients) {
-            if (ModTags.SANDWICH_BREADS.contains(ingredient.getItem())) {
+            if (ModTags.isBread(ingredient.getItem())) {
                 if (++breadAmount > 3) {
                     return false;
                 }
             }
         }
-        return breadAmount == 3 && !ModTags.SANDWICH_BREADS.contains(ingredients.get(1).getItem()) && !ModTags.SANDWICH_BREADS.contains(ingredients.get(ingredients.size() - 2).getItem());
+        return breadAmount == 3 && !ModTags.isBread(ingredients.get(1).getItem()) && !ModTags.isBread(ingredients.get(ingredients.size() - 2).getItem());
     }
 
     public static boolean isBLT(List<ItemStack> uniqueIngredients) {

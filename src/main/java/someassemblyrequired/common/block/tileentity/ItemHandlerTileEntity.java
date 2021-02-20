@@ -36,7 +36,7 @@ public class ItemHandlerTileEntity extends TileEntity {
         itemHandler = LazyOptional.of(() -> inventory);
     }
 
-    protected TileEntityItemHandler getInventory() {
+    public TileEntityItemHandler getInventory() {
         return inventory;
     }
 

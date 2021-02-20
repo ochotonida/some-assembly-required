@@ -22,15 +22,19 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
+import someassemblyrequired.common.init.ModRecipeTypes;
+import someassemblyrequired.common.recipe.SpreadType;
 import someassemblyrequired.common.util.SandwichBuilder;
 import someassemblyrequired.common.util.SandwichIngredientHelper;
 import someassemblyrequired.common.util.SandwichNameHelper;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SandwichItem extends BlockItem {
@@ -74,31 +78,59 @@ public class SandwichItem extends BlockItem {
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity entity) {
-        List<ItemStack> ingredients = SandwichIngredientHelper.getIngredients(stack);
+    public ItemStack onItemUseFinish(ItemStack sandwich, World world, LivingEntity entity) {
+        List<ItemStack> ingredients = SandwichIngredientHelper.getIngredients(sandwich);
 
         if (entity instanceof ServerPlayerEntity) {
             if (SandwichIngredientHelper.isDoubleDeckerSandwich(ingredients)) {
-                ModAdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
+                ModAdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.trigger((ServerPlayerEntity) entity, sandwich);
             } else if (SandwichIngredientHelper.isBLT(SandwichIngredientHelper.getUniqueIngredientsExcludingBread(ingredients))) {
-                ModAdvancementTriggers.CONSUME_BLT_SANDWICH.trigger((ServerPlayerEntity) entity, stack);
+                ModAdvancementTriggers.CONSUME_BLT_SANDWICH.trigger((ServerPlayerEntity) entity, sandwich);
             }
         }
 
+        List<ItemStack> results = new ArrayList<>();
         for (ItemStack ingredient : ingredients) {
-            ItemStack finishStack = ingredient.getItem().onItemUseFinish(ingredient, world, entity);
-            if (entity instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) entity;
-                if (player.getCooldownTracker().hasCooldown(ingredient.getItem())) {
-                    player.getCooldownTracker().setCooldown(this, 20);
-                }
-                if (!player.isCreative() && !finishStack.isEmpty()) {
-                    player.addItemStackToInventory(finishStack);
+            ItemStack result = consumeStack(ingredient, world, entity);
+            if (!result.isEmpty()) {
+                results.add(result);
+            }
+        }
+        ItemStack result = super.onItemUseFinish(sandwich, world, entity);
+
+        if (!(entity instanceof PlayerEntity)) {
+            return result;
+        }
+
+        if (result.isEmpty() && results.size() > 0) {
+            result = results.remove(0);
+        }
+
+        for (ItemStack stack : results) {
+            ((PlayerEntity) entity).addItemStackToInventory(stack);
+        }
+
+        return result;
+    }
+
+    private ItemStack consumeStack(ItemStack ingredient, World world, LivingEntity entity) {
+        if (ingredient.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+
+        ItemStack ingredientCopy = ingredient.copy();
+        ItemStack result = ForgeEventFactory.onItemUseFinish(entity, ingredient.copy(), ingredient.getUseDuration(), ingredient.onItemUseFinish(world, entity));
+
+        if (!result.isEmpty()) {
+            SpreadType spreadType = ModRecipeTypes.getSpreadType(ingredientCopy, world);
+            if (spreadType == null || result.getItem() != spreadType.getContainer(ingredientCopy).getItem()) {
+                if (!(entity instanceof PlayerEntity) || !((PlayerEntity) entity).isCreative()) {
+                    return result;
                 }
             }
         }
 
-        return super.onItemUseFinish(stack, world, entity);
+        return ItemStack.EMPTY;
     }
 
     @Override

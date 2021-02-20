@@ -39,6 +39,14 @@ public class ModTags {
     public static final ITag.INamedTag<Item> VINEGAR_INGREDIENTS = createForgeTag("vinegar_ingredients");
     public static final ITag.INamedTag<Item> VINEGAR_INGREDIENTS_APPLE = createForgeTag("vinegar_ingredients/apple");
 
+    public static boolean isBread(Item item) {
+        return SANDWICH_BREADS.contains(item);
+    }
+
+    public static boolean isLoaf(Item item) {
+        return BREAD.contains(item);
+    }
+
     private static ITag.INamedTag<Item> createForgeTag(String path) {
         return ItemTags.createOptional(new ResourceLocation(ForgeVersion.MOD_ID, path));
     }

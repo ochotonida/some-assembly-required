@@ -6,16 +6,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.DrinkHelper;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class DrinkableBottleItem extends Item {
 
     private final SoundEvent drinkSound;
-
-    public DrinkableBottleItem(Item.Properties properties) {
-        this(properties, SoundEvents.ENTITY_GENERIC_DRINK);
-    }
 
     public DrinkableBottleItem(Item.Properties properties, SoundEvent drinkSound) {
         super(properties);

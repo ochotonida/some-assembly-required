@@ -13,6 +13,9 @@ import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.data.advancements.HusbandryAdvancements;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import someassemblyrequired.SomeAssemblyRequired;
@@ -111,7 +114,7 @@ public class Advancements extends AdvancementProvider {
                     consumer,
                     obtainSandwich,
                     SandwichBuilder.create()
-                            .addFakeSpread(16262179)
+                            .addStack(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.HEALING))
                             .build(),
                     ModAdvancementTriggers.ADD_POTION_TO_SANDWICH.instance(),
                     "add_potion_to_sandwich",

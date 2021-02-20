@@ -70,8 +70,8 @@ public class ItemModels extends ItemModelProvider {
                 ModItems.LETTUCE_LEAF.get()
         ).forEach(item -> {
             String itemName = item.getRegistryName().getPath();
-            addGeneratedModel(itemName + "_on_sandwich", prefixItem(itemName + "_on_sandwich"));
-            addGeneratedModel(itemName, prefixItem(itemName))
+            addGeneratedModel(itemName + "_on_sandwich");
+            addGeneratedModel(item)
                     .override()
                     .model(getExistingFile(prefixItem(itemName + "_on_sandwich")))
                     .predicate(Util.prefix("on_sandwich"), 1)

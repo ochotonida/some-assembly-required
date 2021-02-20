@@ -1,6 +1,5 @@
 package someassemblyrequired.common.util;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
@@ -11,29 +10,15 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
+import someassemblyrequired.client.ingredient.IngredientInfoManager;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class SandwichNameHelper {
-
-    private static final Set<Item> INGREDIENT_NAME_OVERRIDES = new HashSet<>(Arrays.asList(
-            ModItems.TOASTED_BREAD_SLICE.get(),
-            ModItems.APPLE_SLICES.get(),
-            ModItems.GOLDEN_APPLE_SLICES.get(),
-            ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
-            ModItems.CHOPPED_CARROT.get(),
-            ModItems.CHOPPED_GOLDEN_CARROT.get(),
-            ModItems.CHOPPED_BEETROOT.get(),
-            ModItems.PORK_CUTS.get(),
-            ModItems.BACON_STRIPS.get(),
-            ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
-            ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
-            ModItems.TOMATO_SLICES.get(),
-            ModItems.LETTUCE_LEAF.get()
-    ));
 
     public static ITextComponent getSandwichDisplayName(ItemStack sandwich) {
         IItemHandler handler = sandwich.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);
@@ -85,10 +70,24 @@ public class SandwichNameHelper {
         }
     }
 
+    private static ITextComponent getIngredientName(ItemStack ingredient) {
+        if (!ingredient.hasDisplayName()) {
+            if (ingredient.getItem() == Items.POTION && PotionUtils.getPotionFromItem(ingredient) == Potions.WATER) {
+                return new TranslationTextComponent("ingredient.someassemblyrequired.water_bottle");
+            } else {
+                ITextComponent name = IngredientInfoManager.INSTANCE.getDisplayName(ingredient.getItem());
+                if (name != null) {
+                    return name;
+                }
+            }
+        }
+        return ingredient.getDisplayName();
+    }
+
     private static int getAmountOfBread(List<ItemStack> ingredients) {
         int result = 0;
         for (ItemStack ingredient : ingredients) {
-            if (ModTags.SANDWICH_BREADS.contains(ingredient.getItem())) {
+            if (ModTags.isBread(ingredient.getItem())) {
                 result++;
             }
         }
@@ -100,26 +99,13 @@ public class SandwichNameHelper {
                 && ingredients.get(0).getItem() != ModItems.TOASTED_BREAD_SLICE.get()
                 && ingredients.get(1).getItem() == ModItems.TOASTED_BREAD_SLICE.get()
                 && ingredients.get(2).getItem() != ModItems.TOASTED_BREAD_SLICE.get()) {
-            return new TranslationTextComponent("item.someassemblyrequired.ingredients_sandwich", getIngredientDisplayName(ingredients.get(1)));
+            return new TranslationTextComponent("item.someassemblyrequired.ingredients_sandwich", getIngredientName(ingredients.get(1)));
         }
         return new TranslationTextComponent("item.someassemblyrequired.bread_sandwich");
     }
 
-    private static ITextComponent getIngredientDisplayName(ItemStack ingredient) {
-        if (!ingredient.hasDisplayName() && INGREDIENT_NAME_OVERRIDES.contains(ingredient.getItem())) {
-            // noinspection ConstantConditions
-            return new TranslationTextComponent(
-                    String.format("ingredient.%s.%s",
-                            ingredient.getItem().getRegistryName().getNamespace(),
-                            ingredient.getItem().getRegistryName().getPath()
-                    )
-            );
-        }
-        return ingredient.getDisplayName();
-    }
-
     private static ITextComponent listIngredients(List<ItemStack> ingredients) {
-        List<ITextComponent> ingredientNames = ingredients.stream().map(SandwichNameHelper::getIngredientDisplayName).collect(Collectors.toList());
+        List<ITextComponent> ingredientNames = ingredients.stream().map(SandwichNameHelper::getIngredientName).collect(Collectors.toList());
         return new TranslationTextComponent("tooltip.someassemblyrequired.ingredient_list." + ingredientNames.size(), ingredientNames.toArray());
     }
 }

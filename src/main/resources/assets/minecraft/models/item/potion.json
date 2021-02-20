@@ -1,0 +1,21 @@
+{
+  "parent": "item/generated",
+  "textures": {
+      "layer0": "minecraft:item/potion_overlay",
+      "layer1": "minecraft:item/potion"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "someassemblyrequired:on_sandwich": 1
+      },
+      "model": "someassemblyrequired:item/translucent_spread"
+    },
+    {
+      "predicate": {
+        "someassemblyrequired:on_loaf": 1
+      },
+      "model": "someassemblyrequired:item/translucent_spread_on_loaf"
+    }
+  ]
+}

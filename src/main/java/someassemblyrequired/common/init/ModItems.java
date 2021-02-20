@@ -10,7 +10,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.client.SandwichItemRenderer;
+import someassemblyrequired.client.render.SandwichItemRenderer;
 import someassemblyrequired.common.item.DrinkableBottleItem;
 import someassemblyrequired.common.item.SandwichItem;
 import someassemblyrequired.common.util.SandwichBuilder;
