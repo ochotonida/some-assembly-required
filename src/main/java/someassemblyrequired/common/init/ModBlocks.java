@@ -30,108 +30,32 @@ public class ModBlocks {
     );
 
     // sandwich assembly tables
-    public static final RegistryObject<Block> OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "oak_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.WOOD)
-    );
-
-    public static final RegistryObject<Block> SPRUCE_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "spruce_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.WOOD)
-    );
-
-    public static final RegistryObject<Block> BIRCH_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "birch_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.WOOD)
-    );
-
-    public static final RegistryObject<Block> JUNGLE_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "jungle_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.WOOD)
-    );
-
-    public static final RegistryObject<Block> ACACIA_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "acacia_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.WOOD)
-    );
-
-    public static final RegistryObject<Block> DARK_OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "dark_oak_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.WOOD)
-    );
-
-    public static final RegistryObject<Block> CRIMSON_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "crimson_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.NETHER_WOOD)
-    );
-
-    public static final RegistryObject<Block> WARPED_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "warped_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.NETHER_WOOD)
-    );
+    public static final RegistryObject<Block> OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("oak_sandwich_assembly_table", () -> createSandwichAssemblyTable(Material.WOOD));
+    public static final RegistryObject<Block> SPRUCE_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("spruce_sandwich_assembly_table", () -> createSandwichAssemblyTable(Material.WOOD));
+    public static final RegistryObject<Block> BIRCH_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("birch_sandwich_assembly_table", () -> createSandwichAssemblyTable(Material.WOOD));
+    public static final RegistryObject<Block> JUNGLE_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("jungle_sandwich_assembly_table", () -> createSandwichAssemblyTable(Material.WOOD));
+    public static final RegistryObject<Block> ACACIA_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("acacia_sandwich_assembly_table", () -> createSandwichAssemblyTable(Material.WOOD));
+    public static final RegistryObject<Block> DARK_OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("dark_oak_sandwich_assembly_table", () -> createSandwichAssemblyTable(Material.WOOD));
+    public static final RegistryObject<Block> CRIMSON_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("crimson_sandwich_assembly_table", () -> createSandwichAssemblyTable(Material.NETHER_WOOD));
+    public static final RegistryObject<Block> WARPED_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("warped_sandwich_assembly_table", () -> createSandwichAssemblyTable(Material.NETHER_WOOD));
 
     // cutting boards
-    public static final RegistryObject<Block> OAK_CUTTING_BOARD = REGISTRY.register(
-            "oak_cutting_board",
-            () -> createCuttingBoard(Material.WOOD, MaterialColor.WOOD, SoundType.WOOD)
-    );
-
-    public static final RegistryObject<Block> SPRUCE_CUTTING_BOARD = REGISTRY.register(
-            "spruce_cutting_board",
-            () -> createCuttingBoard(Material.WOOD, MaterialColor.OBSIDIAN, SoundType.WOOD)
-    );
-
-    public static final RegistryObject<Block> BIRCH_CUTTING_BOARD = REGISTRY.register(
-            "birch_cutting_board",
-            () -> createCuttingBoard(Material.WOOD, MaterialColor.SAND, SoundType.WOOD)
-    );
-
-    public static final RegistryObject<Block> JUNGLE_CUTTING_BOARD = REGISTRY.register(
-            "jungle_cutting_board",
-            () -> createCuttingBoard(Material.WOOD, MaterialColor.DIRT, SoundType.WOOD)
-    );
-
-    public static final RegistryObject<Block> ACACIA_CUTTING_BOARD = REGISTRY.register(
-            "acacia_cutting_board",
-            () -> createCuttingBoard(Material.WOOD, MaterialColor.ADOBE, SoundType.WOOD)
-    );
-
-    public static final RegistryObject<Block> DARK_OAK_CUTTING_BOARD = REGISTRY.register(
-            "dark_oak_cutting_board",
-            () -> createCuttingBoard(Material.WOOD, MaterialColor.BROWN, SoundType.WOOD)
-    );
-
-    public static final RegistryObject<Block> CRIMSON_CUTTING_BOARD = REGISTRY.register(
-            "crimson_cutting_board",
-            () -> createCuttingBoard(Material.NETHER_WOOD, MaterialColor.CRIMSON_HYPHAE, SoundType.HYPHAE)
-    );
-
-    public static final RegistryObject<Block> WARPED_CUTTING_BOARD = REGISTRY.register(
-            "warped_cutting_board",
-            () -> createCuttingBoard(Material.NETHER_WOOD, MaterialColor.WARPED_HYPHAE, SoundType.HYPHAE)
-    );
+    public static final RegistryObject<Block> OAK_CUTTING_BOARD = REGISTRY.register("oak_cutting_board", () -> createCuttingBoard(Material.WOOD, MaterialColor.WOOD, SoundType.WOOD));
+    public static final RegistryObject<Block> SPRUCE_CUTTING_BOARD = REGISTRY.register("spruce_cutting_board", () -> createCuttingBoard(Material.WOOD, MaterialColor.OBSIDIAN, SoundType.WOOD));
+    public static final RegistryObject<Block> BIRCH_CUTTING_BOARD = REGISTRY.register("birch_cutting_board", () -> createCuttingBoard(Material.WOOD, MaterialColor.SAND, SoundType.WOOD));
+    public static final RegistryObject<Block> JUNGLE_CUTTING_BOARD = REGISTRY.register("jungle_cutting_board", () -> createCuttingBoard(Material.WOOD, MaterialColor.DIRT, SoundType.WOOD));
+    public static final RegistryObject<Block> ACACIA_CUTTING_BOARD = REGISTRY.register("acacia_cutting_board", () -> createCuttingBoard(Material.WOOD, MaterialColor.ADOBE, SoundType.WOOD));
+    public static final RegistryObject<Block> DARK_OAK_CUTTING_BOARD = REGISTRY.register("dark_oak_cutting_board", () -> createCuttingBoard(Material.WOOD, MaterialColor.BROWN, SoundType.WOOD));
+    public static final RegistryObject<Block> CRIMSON_CUTTING_BOARD = REGISTRY.register("crimson_cutting_board", () -> createCuttingBoard(Material.NETHER_WOOD, MaterialColor.CRIMSON_HYPHAE, SoundType.HYPHAE));
+    public static final RegistryObject<Block> WARPED_CUTTING_BOARD = REGISTRY.register("warped_cutting_board", () -> createCuttingBoard(Material.NETHER_WOOD, MaterialColor.WARPED_HYPHAE, SoundType.HYPHAE));
 
     // toasters
-    public static final RegistryObject<Block> REDSTONE_TOASTER = REGISTRY.register(
-            "redstone_toaster",
-            () -> createToaster(true)
-    );
-
-    public static final RegistryObject<Block> STICKY_REDSTONE_TOASTER = REGISTRY.register(
-            "sticky_redstone_toaster",
-            () -> createToaster(false)
-    );
+    public static final RegistryObject<Block> REDSTONE_TOASTER = REGISTRY.register("redstone_toaster", () -> createToaster(true));
+    public static final RegistryObject<Block> STICKY_REDSTONE_TOASTER = REGISTRY.register("sticky_redstone_toaster", () -> createToaster(false));
 
     // crops
-    public static final RegistryObject<Block> LETTUCE = REGISTRY.register(
-            "lettuce",
-            () -> new LettuceBlock(AbstractBlock.Properties.from(Blocks.WHEAT))
-    );
-
-    public static final RegistryObject<Block> TOMATOES = REGISTRY.register(
-            "tomatoes",
-            () -> new TomatoBlock(AbstractBlock.Properties.from(Blocks.WHEAT))
-    );
+    public static final RegistryObject<Block> LETTUCE = REGISTRY.register("lettuce", () -> new LettuceBlock(AbstractBlock.Properties.from(Blocks.WHEAT)));
+    public static final RegistryObject<Block> TOMATOES = REGISTRY.register("tomatoes", () -> new TomatoBlock(AbstractBlock.Properties.from(Blocks.WHEAT)));
 
     public static Block[] getSandwichAssemblyTables() {
         return new Block[]{
