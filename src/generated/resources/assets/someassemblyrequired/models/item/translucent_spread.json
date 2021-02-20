@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "someassemblyrequired:item/translucent_spread"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "someassemblyrequired:on_loaf": 1.0
+      },
+      "model": "someassemblyrequired:item/translucent_spread_on_loaf"
+    }
+  ]
+}

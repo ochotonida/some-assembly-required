@@ -32,7 +32,9 @@ public class ModItems {
 
     // misc items
     public static final RegistryObject<Item> SANDWICH = REGISTRY.register("sandwich", () -> new SandwichItem(ModBlocks.SANDWICH.get(), new Item.Properties().maxStackSize(8).food(ModFoods.SANDWICH).setISTER(() -> SandwichItemRenderer::new)));
-    public static final RegistryObject<Item> SPREAD = REGISTRY.register("spread", () -> new SpreadItem(new Item.Properties()));
+
+    public static final RegistryObject<Item> SPREAD = REGISTRY.register("spread", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> TRANSLUCENT_SPREAD = REGISTRY.register("translucent_spread", () -> new Item(new Item.Properties()));
 
     // sandwich assembly tables
     public static final RegistryObject<Item> OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("oak_sandwich_assembly_table", () -> createBlockItem(ModBlocks.OAK_SANDWICH_ASSEMBLY_TABLE.get()));
