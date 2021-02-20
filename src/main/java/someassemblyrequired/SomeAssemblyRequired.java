@@ -35,6 +35,7 @@ public class SomeAssemblyRequired {
         ModBlocks.REGISTRY.register(modEventBus);
         ModRecipeTypes.REGISTRY.register(modEventBus);
         ModTileEntityTypes.REGISTRY.register(modEventBus);
+        ModSoundEvents.REGISTRY.register(modEventBus);
         ModAdvancementTriggers.register();
     }
 

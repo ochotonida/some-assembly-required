@@ -4,11 +4,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModRecipeTypes;
 import someassemblyrequired.common.init.ModTags;
 
@@ -26,6 +28,60 @@ public class CuttingRecipeBuilder {
     private CuttingRecipeBuilder(Ingredient ingredient, Ingredient tool) {
         this.ingredient = ingredient;
         this.tool = tool;
+    }
+
+    public static void addCuttingRecipes(Consumer<IFinishedRecipe> consumer) {
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(Items.APPLE))
+                .addResult(ModItems.APPLE_SLICES.get(), 2)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(Items.BREAD))
+                .addResult(ModItems.BREAD_SLICE.get(), 4)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(Items.BEETROOT))
+                .addResult(ModItems.CHOPPED_BEETROOT.get(), 2)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(Items.CARROT))
+                .addResult(ModItems.CHOPPED_CARROT.get(), 2)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(Items.GOLDEN_CARROT))
+                .addResult(ModItems.CHOPPED_GOLDEN_CARROT.get(), 2)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(Items.ENCHANTED_GOLDEN_APPLE))
+                .addResult(ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(), 2)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(Items.GOLDEN_APPLE))
+                .addResult(ModItems.GOLDEN_APPLE_SLICES.get(), 2)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(ModItems.LETTUCE_HEAD.get()))
+                .addResult(ModItems.LETTUCE_LEAF.get(), 3)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(Items.MELON))
+                .addResult(Items.MELON_SLICE, 9)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(Items.PORKCHOP))
+                .addResult(ModItems.PORK_CUTS.get(), 3)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(ModItems.TOASTED_CRIMSON_FUNGUS.get()))
+                .addResult(ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(), 2)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromItems(ModItems.TOASTED_WARPED_FUNGUS.get()))
+                .addResult(ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(), 2)
+                .build(consumer);
+
+        CuttingRecipeBuilder.cuttingRecipe(Ingredient.fromTag(ModTags.CROPS_TOMATOES))
+                .addResult(ModItems.TOMATO_SLICES.get(), 2)
+                .build(consumer, SomeAssemblyRequired.MODID + ":cutting/tomato_slices");
     }
 
     public static CuttingRecipeBuilder cuttingRecipe(Ingredient ingredient) {

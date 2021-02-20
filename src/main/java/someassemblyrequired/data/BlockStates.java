@@ -57,7 +57,26 @@ public class BlockStates extends BlockStateProvider {
                 .texture("south", "#front")
                 .texture("east", "#side")
                 .texture("west", "#side")
-                .texture("particle", "#side");
+                .texture("particle", "#side")
+                .transforms()
+                .transform(ModelBuilder.Perspective.GUI)
+                .rotation(30, 45, 0)
+                .scale(0.625F)
+                .end()
+                .transform(ModelBuilder.Perspective.FIXED)
+                .rotation(0, 180, 0)
+                .scale(0.5F)
+                .end()
+                .transform(ModelBuilder.Perspective.FIRSTPERSON_RIGHT)
+                .rotation(0, 315, 0)
+                .scale(0.4F)
+                .end()
+                .transform(ModelBuilder.Perspective.THIRDPERSON_RIGHT)
+                .rotation(75, 315, 0)
+                .translation(0, 2.5F, 0)
+                .scale(0.375F)
+                .end()
+                .end();
 
         // cutting board base model
         models().withExistingParent("block/cutting_board", "thin_block")

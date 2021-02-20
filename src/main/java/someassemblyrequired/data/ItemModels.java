@@ -40,6 +40,15 @@ public class ItemModels extends ItemModelProvider {
         removeAll(items, ModItems.KITCHEN_KNIFE.get());
         addHandHeldModel(ModItems.KITCHEN_KNIFE.get());
 
+        // spreads
+        removeAll(items, ModItems.SPREAD.get());
+        addGeneratedModel("spread_on_loaf");
+        addGeneratedModel(ModItems.SPREAD.get())
+                .override()
+                .model(getExistingFile(prefixItem("spread_on_loaf")))
+                .predicate(Util.prefix("on_loaf"), 1)
+                .end();
+
         // items with sandwich overrides
         removeAll(items,
                 ModItems.APPLE_SLICES.get(),
