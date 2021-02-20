@@ -1,0 +1,16 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "atmospheric"
+    }
+  ],
+  "item": "atmospheric:aloe_gel_bottle",
+  "name": {
+    "translate": "ingredient.someassemblyrequired.atmospheric.aloe_gel_bottle"
+  },
+  "display": {
+    "type": "translucent_spread",
+    "color": 7988294
+  }
+}

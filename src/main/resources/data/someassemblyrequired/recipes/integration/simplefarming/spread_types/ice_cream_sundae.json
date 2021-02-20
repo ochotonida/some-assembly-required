@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "ingredient": {
+    "item": "simplefarming:ice_cream_sundae"
+  }
+}

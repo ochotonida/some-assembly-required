@@ -1,0 +1,16 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "item": "farmersdelight:milk_bottle",
+  "name": {
+    "translate": "ingredient.someassemblyrequired.farmersdelight.milk_bottle"
+  },
+  "display": {
+    "type": "spread",
+    "color": 15662591
+  }
+}

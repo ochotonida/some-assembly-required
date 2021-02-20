@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "atmospheric"
+    }
+  ],
+  "item": "atmospheric:passionfruit_sorbet",
+  "display": {
+    "type": "spread",
+    "color": 16764525
+  }
+}

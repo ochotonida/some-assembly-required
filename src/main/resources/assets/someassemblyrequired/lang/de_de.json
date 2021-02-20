@@ -108,9 +108,9 @@
   "ingredient.someassemblyrequired.ketchup_bottle": "Ketchup",
   "ingredient.someassemblyrequired.sweet_berry_jam_bottle": "Süße Beerenmarmelade",
 
-  "spreadtype.someassemblyrequired.farmersdelight.milk_bottle": "Milch",
-  "spreadtype.someassemblyrequired.atmospheric.aloe_gel_bottle": "Aloegel",
-  "spreadtype.someassemblyrequired.neapolitan.milk_bottle": "Milch",
+  "ingredient.someassemblyrequired.atmospheric.aloe_gel_bottle": "Aloegel",
+  "ingredient.someassemblyrequired.farmersdelight.milk_bottle": "Milch",
+  "ingredient.someassemblyrequired.neapolitan.milk_bottle": "Milch",
 
   "description.someassemblyrequired.sandwich_assembly_table": "Platziere hierauf deine zutaten zwischen brot, und dann SHIFT + Rechtsklick um dein Sandwich zu erschaffen",
   "description.someassemblyrequired.cutting_board": "Ein Block auf den mann Brot und andere Nahrungsmittel schneiden kann",

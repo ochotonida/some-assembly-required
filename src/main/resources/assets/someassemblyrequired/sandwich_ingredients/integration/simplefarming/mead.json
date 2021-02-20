@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:mead",
+  "display": {
+    "type": "translucent_spread",
+    "color": 15514661
+  }
+}

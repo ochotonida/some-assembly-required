@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:sorghum_porridge",
+  "display": {
+    "type": "spread",
+    "color": 12274968
+  }
+}

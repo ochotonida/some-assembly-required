@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "autumnity"
+    }
+  ],
+  "ingredient": {
+    "item": "autumnity:syrup_bottle"
+  }
+}

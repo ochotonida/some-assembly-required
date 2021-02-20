@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "autumnity"
+    }
+  ],
+  "item": "autumnity:syrup_bottle",
+  "display": {
+    "type": "translucent_spread",
+    "color": 13392924
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:mac_and_cheese",
+  "display": {
+    "type": "spread",
+    "color": 16766208
+  }
+}

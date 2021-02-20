@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:mulberrysmoothieitem",
+  "display": {
+    "type": "spread",
+    "color": 9451312
+  }
+}

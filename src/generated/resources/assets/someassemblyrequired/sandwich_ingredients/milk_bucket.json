@@ -1,0 +1,10 @@
+{
+  "item": "minecraft:milk_bucket",
+  "name": {
+    "translate": "ingredient.someassemblyrequired.milk_bucket"
+  },
+  "display": {
+    "type": "spread",
+    "color": 15662591
+  }
+}

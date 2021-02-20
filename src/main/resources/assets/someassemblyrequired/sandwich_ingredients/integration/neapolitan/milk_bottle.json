@@ -1,0 +1,16 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "neapolitan"
+    }
+  ],
+  "item": "neapolitan:milk_bottle",
+  "name": {
+    "translate": "ingredient.someassemblyrequired.neapolitan.milk_bottle"
+  },
+  "display": {
+    "type": "spread",
+    "color": 15662591
+  }
+}

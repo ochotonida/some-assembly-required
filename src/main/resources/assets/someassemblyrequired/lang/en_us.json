@@ -108,9 +108,9 @@
   "ingredient.someassemblyrequired.ketchup_bottle": "Ketchup",
   "ingredient.someassemblyrequired.sweet_berry_jam_bottle": "Sweet Berry Jam",
 
-  "spreadtype.someassemblyrequired.farmersdelight.milk_bottle": "Milk",
-  "spreadtype.someassemblyrequired.atmospheric.aloe_gel_bottle": "Aloe Gel",
-  "spreadtype.someassemblyrequired.neapolitan.milk_bottle": "Milk",
+  "ingredient.someassemblyrequired.atmospheric.aloe_gel_bottle": "Aloe Gel",
+  "ingredient.someassemblyrequired.farmersdelight.milk_bottle": "Milk",
+  "ingredient.someassemblyrequired.neapolitan.milk_bottle": "Milk",
 
   "description.someassemblyrequired.sandwich_assembly_table": "Sandwiches can be made using this block. Up to 16 ingredients can be placed on top, starting and ending with a bread slice. Sneak-right click with an empty hand to build your sandwich",
   "description.someassemblyrequired.cutting_board": "A block used to cut or chop food items",

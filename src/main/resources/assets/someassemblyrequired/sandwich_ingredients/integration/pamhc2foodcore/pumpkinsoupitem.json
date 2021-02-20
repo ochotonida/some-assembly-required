@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodcore"
+    }
+  ],
+  "item": "pamhc2foodcore:pumpkinsoupitem",
+  "display": {
+    "type": "spread",
+    "color": 15570688
+  }
+}

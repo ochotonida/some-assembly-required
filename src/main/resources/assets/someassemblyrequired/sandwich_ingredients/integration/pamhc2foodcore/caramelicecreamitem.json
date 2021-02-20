@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodcore"
+    }
+  ],
+  "item": "pamhc2foodcore:caramelicecreamitem",
+  "display": {
+    "type": "spread",
+    "color": 13084808
+  }
+}

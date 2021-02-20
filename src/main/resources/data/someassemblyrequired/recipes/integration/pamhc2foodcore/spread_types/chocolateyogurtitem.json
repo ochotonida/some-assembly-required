@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodcore"
+    }
+  ],
+  "ingredient": {
+    "item": "pamhc2foodcore:chocolateyogurtitem"
+  }
+}

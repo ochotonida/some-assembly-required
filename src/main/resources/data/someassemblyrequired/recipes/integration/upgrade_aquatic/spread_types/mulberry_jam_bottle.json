@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "upgrade_aquatic"
+    }
+  ],
+  "ingredient": {
+    "item": "upgrade_aquatic:mulberry_jam_bottle"
+  }
+}

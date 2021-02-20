@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "upgrade_aquatic"
+    }
+  ],
+  "item": "upgrade_aquatic:mulberry_jam_bottle",
+  "display": {
+    "type": "translucent_spread",
+    "color": 15355727
+  }
+}

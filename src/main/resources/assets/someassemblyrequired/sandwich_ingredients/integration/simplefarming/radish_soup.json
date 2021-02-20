@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:radish_soup",
+  "display": {
+    "type": "spread",
+    "color": 8852287
+  }
+}

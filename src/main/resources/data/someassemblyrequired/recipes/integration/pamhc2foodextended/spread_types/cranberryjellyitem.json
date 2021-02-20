@@ -1,0 +1,11 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "ingredient": {
+    "item": "pamhc2foodextended:cranberryjellyitem"
+  }
+}

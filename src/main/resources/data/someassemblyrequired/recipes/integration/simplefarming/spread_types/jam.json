@@ -1,0 +1,12 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "ingredient": {
+    "item": "simplefarming:jam"
+  },
+  "container": "minecraft:glass_bottle"
+}

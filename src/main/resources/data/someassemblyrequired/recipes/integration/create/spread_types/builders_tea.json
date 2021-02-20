@@ -1,0 +1,12 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "ingredient": {
+    "item": "create:builders_tea"
+  },
+  "container": "minecraft:glass_bottle"
+}

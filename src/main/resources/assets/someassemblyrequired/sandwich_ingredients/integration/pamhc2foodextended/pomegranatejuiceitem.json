@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:pomegranatejuiceitem",
+  "display": {
+    "type": "translucent_spread",
+    "color": 11157825
+  }
+}

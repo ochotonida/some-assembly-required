@@ -1,0 +1,10 @@
+{
+  "item": "minecraft:honey_bottle",
+  "name": {
+    "translate": "ingredient.someassemblyrequired.honey_bottle"
+  },
+  "display": {
+    "type": "translucent_spread",
+    "color": 15763997
+  }
+}

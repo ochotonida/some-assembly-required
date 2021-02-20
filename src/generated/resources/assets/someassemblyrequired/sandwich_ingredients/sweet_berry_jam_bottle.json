@@ -1,0 +1,10 @@
+{
+  "item": "someassemblyrequired:sweet_berry_jam_bottle",
+  "name": {
+    "translate": "ingredient.someassemblyrequired.sweet_berry_jam_bottle"
+  },
+  "display": {
+    "type": "translucent_spread",
+    "color": 15990816
+  }
+}

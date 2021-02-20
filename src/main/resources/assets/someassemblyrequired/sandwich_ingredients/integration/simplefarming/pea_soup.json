@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:pea_soup",
+  "display": {
+    "type": "spread",
+    "color": 10071336
+  }
+}

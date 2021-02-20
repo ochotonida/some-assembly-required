@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:greengrapeyogurtitem",
+  "display": {
+    "type": "spread",
+    "color": 5679942
+  }
+}

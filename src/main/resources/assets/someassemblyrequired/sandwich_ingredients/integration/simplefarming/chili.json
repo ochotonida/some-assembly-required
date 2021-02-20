@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:chili",
+  "display": {
+    "type": "spread",
+    "color": 9585668
+  }
+}

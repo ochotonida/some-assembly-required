@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "pamhc2foodextended"
+    }
+  ],
+  "item": "pamhc2foodextended:starfruitjellyitem",
+  "display": {
+    "type": "translucent_spread",
+    "color": 13038960
+  }
+}

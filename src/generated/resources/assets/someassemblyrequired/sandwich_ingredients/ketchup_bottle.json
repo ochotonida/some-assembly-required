@@ -1,0 +1,10 @@
+{
+  "item": "someassemblyrequired:ketchup_bottle",
+  "name": {
+    "translate": "ingredient.someassemblyrequired.ketchup_bottle"
+  },
+  "display": {
+    "type": "spread",
+    "color": 9505024
+  }
+}

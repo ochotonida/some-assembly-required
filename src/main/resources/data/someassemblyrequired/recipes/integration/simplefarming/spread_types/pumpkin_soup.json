@@ -1,0 +1,12 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "ingredient": {
+    "item": "simplefarming:pumpkin_soup"
+  },
+  "container": "minecraft:bowl"
+}

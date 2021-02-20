@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:pumpkin_soup",
+  "display": {
+    "type": "spread",
+    "color": 10507787
+  }
+}

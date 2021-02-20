@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:wine",
+  "display": {
+    "type": "translucent_spread",
+    "color": 8657216
+  }
+}

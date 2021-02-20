@@ -1,0 +1,10 @@
+{
+  "item": "someassemblyrequired:mayonnaise_bottle",
+  "name": {
+    "translate": "ingredient.someassemblyrequired.mayonnaise_bottle"
+  },
+  "display": {
+    "type": "spread",
+    "color": 14272908
+  }
+}

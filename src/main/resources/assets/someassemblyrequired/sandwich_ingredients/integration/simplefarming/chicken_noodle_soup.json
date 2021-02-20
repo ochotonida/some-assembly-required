@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "simplefarming"
+    }
+  ],
+  "item": "simplefarming:chicken_noodle_soup",
+  "display": {
+    "type": "spread",
+    "color": 12754223
+  }
+}

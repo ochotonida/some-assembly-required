@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "item": "farmersdelight:pumpkin_soup",
+  "display": {
+    "type": "spread",
+    "color": 14912029
+  }
+}

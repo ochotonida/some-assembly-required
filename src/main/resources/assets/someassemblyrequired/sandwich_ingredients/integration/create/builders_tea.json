@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "item": "create:builders_tea",
+  "display": {
+    "type": "translucent_spread",
+    "color": 13069134
+  }
+}
