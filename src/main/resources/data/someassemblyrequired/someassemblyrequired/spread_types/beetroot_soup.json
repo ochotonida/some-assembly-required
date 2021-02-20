@@ -1,8 +1,0 @@
-{
-  "item": "minecraft:beetroot_soup",
-  "container": "minecraft:bowl",
-  "displayname": {
-    "translate": "item.minecraft.beetroot_soup"
-  },
-  "color": 9175075
-}

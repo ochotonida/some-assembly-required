@@ -1,0 +1,6 @@
+{
+  "type": "someassemblyrequired:spread_type",
+  "ingredient": {
+    "item": "someassemblyrequired:sweet_berry_jam_bottle"
+  }
+}

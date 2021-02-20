@@ -101,12 +101,12 @@
   "ingredient.someassemblyrequired.tomato_slices": "Tomato",
   "ingredient.someassemblyrequired.lettuce_leaf": "Lettuce",
 
-  "spreadtype.someassemblyrequired.water_bottle": "Water",
-  "spreadtype.someassemblyrequired.honey_bottle": "Honey",
-  "spreadtype.someassemblyrequired.milk_bucket": "Milk",
-  "spreadtype.someassemblyrequired.mayonnaise_bottle": "Mayonnaise",
-  "spreadtype.someassemblyrequired.ketchup_bottle": "Ketchup",
-  "spreadtype.someassemblyrequired.sweet_berry_jam_bottle": "Sweet Berry Jam",
+  "ingredient.someassemblyrequired.water_bottle": "Water",
+  "ingredient.someassemblyrequired.honey_bottle": "Honey",
+  "ingredient.someassemblyrequired.milk_bucket": "Milk",
+  "ingredient.someassemblyrequired.mayonnaise_bottle": "Mayonnaise",
+  "ingredient.someassemblyrequired.ketchup_bottle": "Ketchup",
+  "ingredient.someassemblyrequired.sweet_berry_jam_bottle": "Sweet Berry Jam",
 
   "spreadtype.someassemblyrequired.farmersdelight.milk_bottle": "Milk",
   "spreadtype.someassemblyrequired.atmospheric.aloe_gel_bottle": "Aloe Gel",

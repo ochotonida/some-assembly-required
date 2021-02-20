@@ -101,12 +101,12 @@
   "ingredient.someassemblyrequired.tomato_slices": "Tomate",
   "ingredient.someassemblyrequired.lettuce_leaf": "Alface",
 
-  "spreadtype.someassemblyrequired.water_bottle": "Água",
-  "spreadtype.someassemblyrequired.honey_bottle": "Mel",
-  "spreadtype.someassemblyrequired.milk_bucket": "Leite",
-  "spreadtype.someassemblyrequired.mayonnaise_bottle": "Maionese",
-  "spreadtype.someassemblyrequired.ketchup_bottle": "Ketchup",
-  "spreadtype.someassemblyrequired.sweet_berry_jam_bottle": "Geléia de Bagas Doces",
+  "ingredient.someassemblyrequired.water_bottle": "Água",
+  "ingredient.someassemblyrequired.honey_bottle": "Mel",
+  "ingredient.someassemblyrequired.milk_bucket": "Leite",
+  "ingredient.someassemblyrequired.mayonnaise_bottle": "Maionese",
+  "ingredient.someassemblyrequired.ketchup_bottle": "Ketchup",
+  "ingredient.someassemblyrequired.sweet_berry_jam_bottle": "Geléia de Bagas Doces",
 
   "spreadtype.someassemblyrequired.farmersdelight.milk_bottle": "Leite",
   "spreadtype.someassemblyrequired.atmospheric.aloe_gel_bottle": "Gel de Aloe Vera",

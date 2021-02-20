@@ -20,6 +20,7 @@ import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 import someassemblyrequired.common.util.Util;
 import someassemblyrequired.data.builder.CuttingRecipeBuilder;
+import someassemblyrequired.data.builder.SpreadTypeBuilder;
 import someassemblyrequired.data.builder.ToastingRecipeBuilder;
 
 import java.util.function.Consumer;
@@ -38,6 +39,7 @@ public class Recipes extends RecipeProvider {
 
         CuttingRecipeBuilder.addCuttingRecipes(consumer);
         ToastingRecipeBuilder.addToastingRecipes(consumer);
+        SpreadTypeBuilder.addSpreadTypes(consumer);
     }
 
     private void addShapedRecipes(Consumer<IFinishedRecipe> consumer) {

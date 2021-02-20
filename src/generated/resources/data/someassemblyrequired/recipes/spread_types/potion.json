@@ -1,0 +1,7 @@
+{
+  "type": "someassemblyrequired:spread_type",
+  "ingredient": {
+    "item": "minecraft:potion"
+  },
+  "container": "minecraft:glass_bottle"
+}
