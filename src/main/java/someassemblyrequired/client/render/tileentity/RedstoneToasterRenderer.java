@@ -1,4 +1,4 @@
-package someassemblyrequired.client;
+package someassemblyrequired.client.render.tileentity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
