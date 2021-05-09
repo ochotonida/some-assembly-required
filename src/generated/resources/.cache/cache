@@ -110,7 +110,7 @@ c6e6dd65f019d4260e905c245e8fa14f40b8ded8 assets/someassemblyrequired/models/item
 2e5d85fc9cc73626c09f8087814d63499e2481cb data/forge/tags/items/bread.json
 a9c6ca6829cd484bbfa78c09806e381a4761eac8 data/forge/tags/items/bread/wheat.json
 1f0ad5387defb0d4626fcfd5439cb10b30bbb79f data/forge/tags/items/bread_slices.json
-5de0d28f8a4e0df69f0d407aa4a82cae4638d50d data/forge/tags/items/bread_slices/wheat.json
+f67aad01cc1fae75770a56b481a9bde80b599c8d data/forge/tags/items/bread_slices/wheat.json
 004d8d97accb498e137461b0cd312f24b111960e data/forge/tags/items/cooked_bacon.json
 b0ece8b77b6ebf043c880c7c48d86efc5ff941f0 data/forge/tags/items/cooked_pork.json
 80414d5567aa18a79e55105f9741f7478e1f85ad data/forge/tags/items/crops.json

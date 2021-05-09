@@ -125,7 +125,7 @@ public class ItemTags extends ItemTagsProvider {
 
         getOrCreateBuilder(ModTags.BREAD_SLICES_WHEAT).add(
                 ModItems.BREAD_SLICE.get(),
-                ModItems.TOASTED_WARPED_FUNGUS.get(),
+                ModItems.TOASTED_BREAD_SLICE.get(),
                 ModItems.CHARRED_BREAD_SLICE.get()
         );
 

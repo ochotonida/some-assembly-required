@@ -15,7 +15,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
-import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
@@ -36,8 +35,8 @@ public class Recipes extends RecipeProvider {
         addShapedRecipes(consumer);
         addShapelessRecipes(consumer);
         addCookingRecipes(consumer);
-        addCuttingRecipes(consumer);
-        addToastingRecipes(consumer);
+        CuttingRecipeBuilder.addCuttingRecipes(consumer);
+        ToastingRecipeBuilder.addToastingRecipes(consumer);
     }
 
     private void addShapedRecipes(Consumer<IFinishedRecipe> consumer) {

@@ -42,7 +42,7 @@ public class ItemModels extends ItemModelProvider {
 
         // spreads
         removeAll(items, ModItems.SPREAD.get());
-        addGeneratedModel("spread_on_loaf");
+        addGeneratedModel("spread_on_loaf", prefixItem("spread_on_loaf"));
         addGeneratedModel(ModItems.SPREAD.get())
                 .override()
                 .model(getExistingFile(prefixItem("spread_on_loaf")))
@@ -110,10 +110,10 @@ public class ItemModels extends ItemModelProvider {
         withExistingParent("item/" + item.getRegistryName().getPath(), "item/handheld").texture("layer0", prefixItem(item.getRegistryName().getPath()));
     }
 
-    private void addGeneratedModel(Item item) {
+    private ItemModelBuilder addGeneratedModel(Item item) {
         // noinspection ConstantConditions
         String name = item.getRegistryName().getPath();
-        withExistingParent("item/" + name, "item/generated").texture("layer0", prefixItem(name));
+        return withExistingParent("item/" + name, "item/generated").texture("layer0", prefixItem(name));
     }
 
     private ItemModelBuilder addGeneratedModel(String name, ResourceLocation texture) {
