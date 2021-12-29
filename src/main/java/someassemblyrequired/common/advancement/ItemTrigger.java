@@ -1,17 +1,12 @@
 package someassemblyrequired.common.advancement;
 
 import com.google.gson.JsonObject;
-import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
-import net.minecraft.advancements.criterion.CriterionInstance;
-import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.ConditionArrayParser;
-import net.minecraft.loot.ConditionArraySerializer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
 
-public class ItemTrigger extends AbstractCriterionTrigger<ItemTrigger.Instance> {
+public class ItemTrigger extends SimpleCriterionTrigger<ItemTrigger.Instance> {
 
     private final ResourceLocation id;
 
@@ -23,34 +18,34 @@ public class ItemTrigger extends AbstractCriterionTrigger<ItemTrigger.Instance> 
         return id;
     }
 
-    public Instance deserializeTrigger(JsonObject json, EntityPredicate.AndPredicate entityPredicate, ConditionArrayParser conditionsParser) {
-        return new Instance(entityPredicate, ItemPredicate.deserialize(json.get("item")));
+    public Instance createInstance(JsonObject json, EntityPredicate.Composite entityPredicate, DeserializationContext conditionsParser) {
+        return new Instance(entityPredicate, ItemPredicate.fromJson(json.get("item")));
     }
 
     public Instance instance() {
-        return new Instance(EntityPredicate.AndPredicate.ANY_AND, ItemPredicate.ANY);
+        return new Instance(EntityPredicate.Composite.ANY, ItemPredicate.ANY);
     }
 
-    public void trigger(ServerPlayerEntity player, ItemStack item) {
-        this.triggerListeners(player, (instance) -> instance.test(item));
+    public void trigger(ServerPlayer player, ItemStack item) {
+        this.trigger(player, (instance) -> instance.test(item));
     }
 
-    public class Instance extends CriterionInstance {
+    public class Instance extends AbstractCriterionTriggerInstance {
 
         private final ItemPredicate item;
 
-        public Instance(EntityPredicate.AndPredicate player, ItemPredicate item) {
+        public Instance(EntityPredicate.Composite player, ItemPredicate item) {
             super(id, player);
             this.item = item;
         }
 
         public boolean test(ItemStack item) {
-            return this.item.test(item);
+            return this.item.matches(item);
         }
 
-        public JsonObject serialize(ConditionArraySerializer conditions) {
-            JsonObject jsonobject = super.serialize(conditions);
-            jsonobject.add("item", this.item.serialize());
+        public JsonObject serializeToJson(SerializationContext conditions) {
+            JsonObject jsonobject = super.serializeToJson(conditions);
+            jsonobject.add("item", this.item.serializeToJson());
             return jsonobject;
         }
     }

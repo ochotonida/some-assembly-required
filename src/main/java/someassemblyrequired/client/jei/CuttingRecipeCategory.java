@@ -7,10 +7,10 @@ import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.recipe.CuttingRecipe;
@@ -30,7 +30,7 @@ public class CuttingRecipeCategory implements IRecipeCategory<CuttingRecipe> {
     public CuttingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createDrawable(Util.prefix("textures/gui/cutting_recipe.png"), 0, 0, 110, 39);
         icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.OAK_CUTTING_BOARD.get()));
-        title = I18n.format("recipecategory." + SomeAssemblyRequired.MODID + ".cutting");
+        title = I18n.get("recipecategory." + SomeAssemblyRequired.MODID + ".cutting");
     }
 
     @Override
@@ -73,10 +73,10 @@ public class CuttingRecipeCategory implements IRecipeCategory<CuttingRecipe> {
         int index = 0;
 
         stacks.init(index, true, 12, 9);
-        stacks.set(index++, Arrays.asList(recipe.getIngredients().get(0).getMatchingStacks()));
+        stacks.set(index++, Arrays.asList(recipe.getIngredients().get(0).getItems()));
 
         stacks.init(index, true, 49, 9);
-        stacks.set(index++, Arrays.asList(recipe.getTool().getMatchingStacks()));
+        stacks.set(index++, Arrays.asList(recipe.getTool().getItems()));
 
         List<ItemStack> results = recipe.getRecipeOutputs();
         int y = 9 - (results.size() > 2 ? 9 : 0);

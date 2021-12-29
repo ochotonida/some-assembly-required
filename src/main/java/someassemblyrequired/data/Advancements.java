@@ -4,17 +4,17 @@ import com.google.common.collect.Sets;
 import com.google.gson.GsonBuilder;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.criterion.CriterionInstance;
-import net.minecraft.advancements.criterion.InventoryChangeTrigger;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.data.AdvancementProvider;
+import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.DirectoryCache;
-import net.minecraft.data.IDataProvider;
+import net.minecraft.data.DataProvider;
+import net.minecraft.data.HashCache;
+import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.HusbandryAdvancements;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModBlocks;
@@ -38,7 +38,7 @@ public class Advancements extends AdvancementProvider {
     }
 
     @Override
-    public void act(DirectoryCache cache) {
+    public void run(HashCache cache) {
         Set<ResourceLocation> set = Sets.newHashSet();
         Consumer<Advancement> consumer = (advancement) -> {
             if (!set.add(advancement.getId())) {
@@ -47,7 +47,7 @@ public class Advancements extends AdvancementProvider {
                 Path path1 = getPath(PATH, advancement);
 
                 try {
-                    IDataProvider.save((new GsonBuilder()).setPrettyPrinting().create(), cache, advancement.copy().serialize(), path1);
+                    DataProvider.save((new GsonBuilder()).setPrettyPrinting().create(), cache, advancement.deconstruct().serializeToJson(), path1);
                 } catch (IOException ioexception) {
                     SomeAssemblyRequired.LOGGER.error("Couldn't save advancement {}", path1, ioexception);
                 }
@@ -82,7 +82,7 @@ public class Advancements extends AdvancementProvider {
                     consumer,
                     root,
                     new ItemStack(ModItems.KITCHEN_KNIFE.get()),
-                    InventoryChangeTrigger.Instance.forItems(ItemPredicate.Builder.create().tag(ModTags.BREAD_SLICES).build()),
+                    InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModTags.BREAD_SLICES).build()),
                     "obtain_bread_slice",
                     false
             );
@@ -93,7 +93,7 @@ public class Advancements extends AdvancementProvider {
                     SandwichBuilder.create()
                             .add(ModItems.LETTUCE_LEAF.get())
                             .build(),
-                    InventoryChangeTrigger.Instance.forItems(ModItems.SANDWICH.get()),
+                    InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SANDWICH.get()),
                     "obtain_sandwich",
                     false
             );
@@ -102,7 +102,7 @@ public class Advancements extends AdvancementProvider {
                     consumer,
                     obtainBreadSlice,
                     new ItemStack(ModBlocks.REDSTONE_TOASTER.get()),
-                    InventoryChangeTrigger.Instance.forItems(ModItems.TOASTED_BREAD_SLICE.get()),
+                    InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.TOASTED_BREAD_SLICE.get()),
                     "obtain_toasted_bread_slice",
                     false
             );
@@ -141,13 +141,13 @@ public class Advancements extends AdvancementProvider {
             );
         }
 
-        private static Advancement addAdvancement(Consumer<Advancement> consumer, Advancement parent, ItemStack display, CriterionInstance criterion, String name, boolean hidden) {
-            return Advancement.Builder.builder().withParent(parent).withDisplay(display,
-                    new TranslationTextComponent("advancement." + SomeAssemblyRequired.MODID + "." + name + ".title"),
-                    new TranslationTextComponent("advancement." + SomeAssemblyRequired.MODID + "." + name + ".description"),
+        private static Advancement addAdvancement(Consumer<Advancement> consumer, Advancement parent, ItemStack display, AbstractCriterionTriggerInstance criterion, String name, boolean hidden) {
+            return Advancement.Builder.advancement().parent(parent).display(display,
+                    new TranslatableComponent("advancement." + SomeAssemblyRequired.MODID + "." + name + ".title"),
+                    new TranslatableComponent("advancement." + SomeAssemblyRequired.MODID + "." + name + ".description"),
                     null, FrameType.TASK, true, true, hidden)
-                    .withCriterion(name, criterion)
-                    .register(consumer, Util.prefix(name).toString());
+                    .addCriterion(name, criterion)
+                    .save(consumer, Util.prefix(name).toString());
         }
     }
 }

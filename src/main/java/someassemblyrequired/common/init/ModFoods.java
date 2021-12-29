@@ -1,147 +1,147 @@
 package someassemblyrequired.common.init;
 
-import net.minecraft.item.Food;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
 
 public class ModFoods {
 
-    public static final Food SANDWICH = new Food.Builder()
-            .setAlwaysEdible()
+    public static final FoodProperties SANDWICH = new FoodProperties.Builder()
+            .alwaysEat()
             .build();
 
-    public static final Food CHARRED_FOOD = new Food.Builder()
-            .hunger(1)
-            .saturation(0.1F)
-            .effect(() -> new EffectInstance(Effects.NAUSEA, 100, 0), 0.4F)
+    public static final FoodProperties CHARRED_FOOD = new FoodProperties.Builder()
+            .nutrition(1)
+            .saturationMod(0.1F)
+            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 100, 0), 0.4F)
             .build();
 
-    public static final Food CHARRED_MORSEL = new Food.Builder()
-            .hunger(1)
-            .saturation(0)
-            .effect(() -> new EffectInstance(Effects.NAUSEA, 100, 0), 0.2F)
+    public static final FoodProperties CHARRED_MORSEL = new FoodProperties.Builder()
+            .nutrition(1)
+            .saturationMod(0)
+            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 100, 0), 0.2F)
             .build();
 
-    public static final Food BREAD_SLICE = new Food.Builder()
-            .hunger(2)
-            .saturation(0.5F)
-            .fastToEat()
+    public static final FoodProperties BREAD_SLICE = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationMod(0.5F)
+            .fast()
             .build();
 
-    public static final Food TOASTED_BREAD_SLICE = new Food.Builder()
-            .hunger(3)
-            .saturation(0.6F)
-            .fastToEat().build();
+    public static final FoodProperties TOASTED_BREAD_SLICE = new FoodProperties.Builder()
+            .nutrition(3)
+            .saturationMod(0.6F)
+            .fast().build();
 
-    public static final Food APPLE_SLICES = new Food.Builder()
-            .hunger(2)
-            .saturation(0.5F)
-            .fastToEat()
+    public static final FoodProperties APPLE_SLICES = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationMod(0.5F)
+            .fast()
             .build();
 
-    public static final Food GOLDEN_APPLE_SLICES = new Food.Builder()
-            .hunger(3).saturation(0.7F).fastToEat()
-            .setAlwaysEdible()
-            .effect(() -> new EffectInstance(Effects.REGENERATION, 50, 1), 1)
-            .effect(() -> new EffectInstance(Effects.ABSORPTION, 1200, 0), 1)
+    public static final FoodProperties GOLDEN_APPLE_SLICES = new FoodProperties.Builder()
+            .nutrition(3).saturationMod(0.7F).fast()
+            .alwaysEat()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 50, 1), 1)
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200, 0), 1)
             .build();
 
-    public static final Food ENCHANTED_GOLDEN_APPLE_SLICES = new Food.Builder()
-            .hunger(4)
-            .saturation(0.8F)
-            .fastToEat()
-            .setAlwaysEdible()
-            .effect(() -> new EffectInstance(Effects.REGENERATION, 200, 1), 1)
-            .effect(() -> new EffectInstance(Effects.RESISTANCE, 3000, 0), 1)
-            .effect(() -> new EffectInstance(Effects.FIRE_RESISTANCE, 3000, 0), 1)
-            .effect(() -> new EffectInstance(Effects.ABSORPTION, 1200, 3), 1)
+    public static final FoodProperties ENCHANTED_GOLDEN_APPLE_SLICES = new FoodProperties.Builder()
+            .nutrition(4)
+            .saturationMod(0.8F)
+            .fast()
+            .alwaysEat()
+            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 200, 1), 1)
+            .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 3000, 0), 1)
+            .effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 3000, 0), 1)
+            .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200, 3), 1)
             .build();
 
-    public static final Food CHOPPED_CARROT = new Food.Builder()
-            .hunger(2)
-            .saturation(0.5F)
-            .fastToEat()
+    public static final FoodProperties CHOPPED_CARROT = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationMod(0.5F)
+            .fast()
             .build();
 
-    public static final Food CHOPPED_GOLDEN_CARROT = new Food.Builder()
-            .hunger(3)
-            .saturation(0.8F)
-            .fastToEat()
+    public static final FoodProperties CHOPPED_GOLDEN_CARROT = new FoodProperties.Builder()
+            .nutrition(3)
+            .saturationMod(0.8F)
+            .fast()
             .build();
 
-    public static final Food CHOPPED_BEETROOT = new Food.Builder()
-            .hunger(3)
-            .saturation(0.6F)
-            .fastToEat()
+    public static final FoodProperties CHOPPED_BEETROOT = new FoodProperties.Builder()
+            .nutrition(3)
+            .saturationMod(0.6F)
+            .fast()
             .build();
 
-    public static final Food MAYONNAISE = new Food.Builder()
-            .hunger(3)
-            .saturation(0.1F)
+    public static final FoodProperties MAYONNAISE = new FoodProperties.Builder()
+            .nutrition(3)
+            .saturationMod(0.1F)
             .build();
 
-    public static final Food KETCHUP = new Food.Builder()
-            .hunger(2)
-            .saturation(0.2F)
+    public static final FoodProperties KETCHUP = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationMod(0.2F)
             .build();
 
-    public static final Food SWEET_BERRY_JAM = new Food.Builder()
-            .hunger(5)
-            .saturation(0.5F)
+    public static final FoodProperties SWEET_BERRY_JAM = new FoodProperties.Builder()
+            .nutrition(5)
+            .saturationMod(0.5F)
             .build();
 
-    public static final Food PORK_CUTS = new Food.Builder()
-            .hunger(2)
-            .saturation(0.3F)
+    public static final FoodProperties PORK_CUTS = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationMod(0.3F)
             .meat()
             .build();
 
-    public static final Food BACON_STRIPS = new Food.Builder()
-            .hunger(4)
-            .saturation(0.7F)
+    public static final FoodProperties BACON_STRIPS = new FoodProperties.Builder()
+            .nutrition(4)
+            .saturationMod(0.7F)
             .meat()
             .build();
 
-    public static final Food TOASTED_CRIMSON_FUNGUS = new Food.Builder()
-            .hunger(4)
-            .saturation(0.5F)
+    public static final FoodProperties TOASTED_CRIMSON_FUNGUS = new FoodProperties.Builder()
+            .nutrition(4)
+            .saturationMod(0.5F)
             .build();
 
-    public static final Food SLICED_TOASTED_CRIMSON_FUNGUS = new Food.Builder()
-            .hunger(2)
-            .saturation(0.6F)
-            .fastToEat()
+    public static final FoodProperties SLICED_TOASTED_CRIMSON_FUNGUS = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationMod(0.6F)
+            .fast()
             .build();
 
-    public static final Food TOASTED_WARPED_FUNGUS = new Food.Builder()
-            .hunger(5)
-            .saturation(0.4F)
+    public static final FoodProperties TOASTED_WARPED_FUNGUS = new FoodProperties.Builder()
+            .nutrition(5)
+            .saturationMod(0.4F)
             .build();
 
-    public static final Food SLICED_TOASTED_WARPED_FUNGUS = new Food.Builder()
-            .hunger(3)
-            .saturation(0.5F)
-            .fastToEat()
+    public static final FoodProperties SLICED_TOASTED_WARPED_FUNGUS = new FoodProperties.Builder()
+            .nutrition(3)
+            .saturationMod(0.5F)
+            .fast()
             .build();
 
-    public static final Food TOMATO = new Food.Builder()
-            .hunger(4)
-            .saturation(0.4F)
+    public static final FoodProperties TOMATO = new FoodProperties.Builder()
+            .nutrition(4)
+            .saturationMod(0.4F)
             .build();
 
-    public static final Food TOMATO_SLICES = new Food.Builder()
-            .hunger(2)
-            .saturation(0.6F)
-            .fastToEat()
+    public static final FoodProperties TOMATO_SLICES = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationMod(0.6F)
+            .fast()
             .build();
 
-    public static final Food LETTUCE_HEAD = new Food.Builder()
-            .hunger(5)
-            .saturation(0.2F)
+    public static final FoodProperties LETTUCE_HEAD = new FoodProperties.Builder()
+            .nutrition(5)
+            .saturationMod(0.2F)
             .build();
 
-    public static final Food LETTUCE_LEAF = new Food.Builder()
-            .hunger(3)
-            .saturation(0.4F)
+    public static final FoodProperties LETTUCE_LEAF = new FoodProperties.Builder()
+            .nutrition(3)
+            .saturationMod(0.4F)
             .build();
 }

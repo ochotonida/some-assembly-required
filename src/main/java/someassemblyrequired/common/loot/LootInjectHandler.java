@@ -1,8 +1,8 @@
 package someassemblyrequired.common.loot;
 
-import net.minecraft.loot.LootEntry;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.TableLootEntry;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.entries.LootTableReference;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -41,13 +41,13 @@ public class LootInjectHandler {
     }
 
     public static LootPool getInjectPool(String entryName) {
-        return LootPool.builder()
-                .addEntry(getInjectEntry(entryName))
+        return LootPool.lootPool()
+                .add(getInjectEntry(entryName))
                 .name("someassemblyrequired_inject")
                 .build();
     }
 
-    private static LootEntry.Builder<?> getInjectEntry(String name) {
-        return TableLootEntry.builder(Util.prefix("inject/" + name)).weight(1);
+    private static LootPoolEntryContainer.Builder<?> getInjectEntry(String name) {
+        return LootTableReference.lootTableReference(Util.prefix("inject/" + name)).setWeight(1);
     }
 }

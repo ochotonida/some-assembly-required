@@ -5,14 +5,14 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import net.minecraft.client.resources.JsonReloadListener;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.profiler.IProfiler;
-import net.minecraft.resources.IResourceManager;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -27,7 +27,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SpreadTypeManager extends JsonReloadListener {
+public class SpreadTypeManager extends SimpleJsonResourceReloadListener {
 
     public static final SpreadTypeManager INSTANCE = new SpreadTypeManager();
 
@@ -40,7 +40,7 @@ public class SpreadTypeManager extends JsonReloadListener {
     }
 
     @Override
-    protected void apply(Map<ResourceLocation, JsonElement> object, IResourceManager resourceManager, IProfiler profiler) {
+    protected void apply(Map<ResourceLocation, JsonElement> object, ResourceManager resourceManager, ProfilerFiller profiler) {
         Map<ResourceLocation, SimpleSpreadType> spreadTypes = Maps.newHashMap();
 
         object.forEach((resourceLocation, element) -> {
@@ -50,7 +50,7 @@ public class SpreadTypeManager extends JsonReloadListener {
                     return;
                 }
 
-                JsonObject jsonobject = JSONUtils.getJsonObject(element, "spread type");
+                JsonObject jsonobject = GsonHelper.convertToJsonObject(element, "spread type");
                 SimpleSpreadType spreadType = SimpleSpreadType.deserialize(jsonobject);
                 if (spreadTypes.values().stream().anyMatch(s -> s.getIngredient() == spreadType.getIngredient())) {
                     SomeAssemblyRequired.LOGGER.warn("Multiple spread types found for item {}", spreadType.getIngredient());
@@ -102,8 +102,8 @@ public class SpreadTypeManager extends JsonReloadListener {
     }
 
     private void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
-        if (event.getPlayer() instanceof ServerPlayerEntity) {
-            NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) event.getPlayer()), new SpreadTypeSyncPacket(spreadTypes));
+        if (event.getPlayer() instanceof ServerPlayer) {
+            NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) event.getPlayer()), new SpreadTypeSyncPacket(spreadTypes));
         }
     }
 }

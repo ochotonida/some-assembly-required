@@ -1,6 +1,6 @@
 package someassemblyrequired.common.util;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
@@ -23,7 +23,7 @@ public class SandwichIngredientHelper {
     public static List<ItemStack> getUniqueIngredientsExcludingBread(List<ItemStack> ingredients) {
         List<ItemStack> result = new ArrayList<>();
         for (ItemStack ingredient : ingredients) {
-            if (!ModTags.SANDWICH_BREADS.contains(ingredient.getItem()) && result.stream().noneMatch(stack -> ItemStack.areItemStacksEqual(ingredient, stack))) {
+            if (!ModTags.SANDWICH_BREADS.contains(ingredient.getItem()) && result.stream().noneMatch(stack -> ItemStack.matches(ingredient, stack))) {
                 result.add(ingredient);
             }
         }

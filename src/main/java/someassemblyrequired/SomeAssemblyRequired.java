@@ -1,10 +1,10 @@
 package someassemblyrequired;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemModelsProperties;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.event.AddReloadListenerEvent;
@@ -25,7 +25,7 @@ import someassemblyrequired.common.util.Util;
 @Mod(SomeAssemblyRequired.MODID)
 public class SomeAssemblyRequired {
 
-    public static final String MODID = "someassemblyrequired";
+    public static final String MODID = "some-assembly-required";
 
     public static final Logger LOGGER = LogManager.getLogger();
 
@@ -61,21 +61,21 @@ public class SomeAssemblyRequired {
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> {
                 ModTileEntityTypes.addRenderers();
-                ItemModelsProperties.registerProperty(ModItems.SPREAD.get(), Util.prefix("on_loaf"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
+                ItemProperties.register(ModItems.SPREAD.get(), Util.prefix("on_loaf"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
 
-                ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.getRegistryName() != null && SomeAssemblyRequired.MODID.equals(item.getRegistryName().getNamespace())).filter(Item::isFood).forEach(item ->
-                        ItemModelsProperties.registerProperty(item, Util.prefix("on_sandwich"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnSandwich") ? 1 : 0)
+                ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.getRegistryName() != null && SomeAssemblyRequired.MODID.equals(item.getRegistryName().getNamespace())).filter(Item::isEdible).forEach(item ->
+                        ItemProperties.register(item, Util.prefix("on_sandwich"), (stack, world, entity) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnSandwich") ? 1 : 0)
                 );
 
-                RenderTypeLookup.setRenderLayer(ModBlocks.LETTUCE.get(), RenderType.getCutout());
-                RenderTypeLookup.setRenderLayer(ModBlocks.TOMATOES.get(), RenderType.getCutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.LETTUCE.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.TOMATOES.get(), RenderType.cutout());
             });
         }
 
         @SubscribeEvent
         public static void registerColorHandlers(ColorHandlerEvent.Item event) {
             event.getItemColors().register((itemStack, tintIndex) -> {
-                CompoundNBT tag = itemStack.getTag();
+                CompoundTag tag = itemStack.getTag();
                 if (tag != null && tintIndex == 0 && tag.getInt("Color") != 0) {
                     return tag.getInt("Color");
                 }

@@ -1,14 +1,14 @@
 package someassemblyrequired.common.init;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.*;
 
@@ -20,12 +20,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> SANDWICH = REGISTRY.register(
             "sandwich",
             () -> new SandwichBlock(
-                    AbstractBlock.Properties
-                            .create(Material.MISCELLANEOUS, MaterialColor.WOOD)
-                            .hardnessAndResistance(0.5F)
-                            .doesNotBlockMovement()
-                            .setOpaque((state, world, pos) -> false)
-                            .sound(SoundType.CLOTH)
+                    BlockBehaviour.Properties
+                            .of(Material.DECORATION, MaterialColor.WOOD)
+                            .strength(0.5F)
+                            .noCollission()
+                            .isRedstoneConductor((state, world, pos) -> false)
+                            .sound(SoundType.WOOL)
             )
     );
 
@@ -78,7 +78,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> SPRUCE_CUTTING_BOARD = REGISTRY.register(
             "spruce_cutting_board",
-            () -> createCuttingBoard(Material.WOOD, MaterialColor.OBSIDIAN, SoundType.WOOD)
+            () -> createCuttingBoard(Material.WOOD, MaterialColor.PODZOL, SoundType.WOOD)
     );
 
     public static final RegistryObject<Block> BIRCH_CUTTING_BOARD = REGISTRY.register(
@@ -93,22 +93,22 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> ACACIA_CUTTING_BOARD = REGISTRY.register(
             "acacia_cutting_board",
-            () -> createCuttingBoard(Material.WOOD, MaterialColor.ADOBE, SoundType.WOOD)
+            () -> createCuttingBoard(Material.WOOD, MaterialColor.COLOR_ORANGE, SoundType.WOOD)
     );
 
     public static final RegistryObject<Block> DARK_OAK_CUTTING_BOARD = REGISTRY.register(
             "dark_oak_cutting_board",
-            () -> createCuttingBoard(Material.WOOD, MaterialColor.BROWN, SoundType.WOOD)
+            () -> createCuttingBoard(Material.WOOD, MaterialColor.COLOR_BROWN, SoundType.WOOD)
     );
 
     public static final RegistryObject<Block> CRIMSON_CUTTING_BOARD = REGISTRY.register(
             "crimson_cutting_board",
-            () -> createCuttingBoard(Material.NETHER_WOOD, MaterialColor.CRIMSON_HYPHAE, SoundType.HYPHAE)
+            () -> createCuttingBoard(Material.NETHER_WOOD, MaterialColor.CRIMSON_HYPHAE, SoundType.STEM)
     );
 
     public static final RegistryObject<Block> WARPED_CUTTING_BOARD = REGISTRY.register(
             "warped_cutting_board",
-            () -> createCuttingBoard(Material.NETHER_WOOD, MaterialColor.WARPED_HYPHAE, SoundType.HYPHAE)
+            () -> createCuttingBoard(Material.NETHER_WOOD, MaterialColor.WARPED_HYPHAE, SoundType.STEM)
     );
 
     // toasters
@@ -125,12 +125,12 @@ public class ModBlocks {
     // crops
     public static final RegistryObject<Block> LETTUCE = REGISTRY.register(
             "lettuce",
-            () -> new LettuceBlock(AbstractBlock.Properties.from(Blocks.WHEAT))
+            () -> new LettuceBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT))
     );
 
     public static final RegistryObject<Block> TOMATOES = REGISTRY.register(
             "tomatoes",
-            () -> new TomatoBlock(AbstractBlock.Properties.from(Blocks.WHEAT))
+            () -> new TomatoBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT))
     );
 
     public static Block[] getSandwichAssemblyTables() {
@@ -168,27 +168,27 @@ public class ModBlocks {
 
     private static Block createSandwichAssemblyTable(Material material) {
         return new SandwichAssemblyTableBlock(
-                AbstractBlock.Properties
-                        .create(material, MaterialColor.STONE)
-                        .hardnessAndResistance(2.5F)
+                BlockBehaviour.Properties
+                        .of(material, MaterialColor.STONE)
+                        .strength(2.5F)
                         .sound(SoundType.WOOD)
         );
     }
 
     private static Block createCuttingBoard(Material material, MaterialColor color, SoundType soundType) {
         return new CuttingBoardBlock(
-                AbstractBlock.Properties
-                        .create(material, color)
-                        .hardnessAndResistance(2)
+                BlockBehaviour.Properties
+                        .of(material, color)
+                        .strength(2)
                         .sound(soundType)
         );
     }
 
     private static Block createToaster(boolean isEjectionToaster) {
-        return new RedstoneToasterBlock(AbstractBlock.Properties
-                .create(Material.ROCK)
-                .setRequiresTool()
-                .hardnessAndResistance(3.5F),
+        return new RedstoneToasterBlock(BlockBehaviour.Properties
+                .of(Material.STONE)
+                .requiresCorrectToolForDrops()
+                .strength(3.5F),
                 isEjectionToaster);
     }
 }

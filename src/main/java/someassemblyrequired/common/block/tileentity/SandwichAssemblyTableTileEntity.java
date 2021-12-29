@@ -1,11 +1,11 @@
 package someassemblyrequired.common.block.tileentity;
 
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -32,14 +32,14 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
 
     public SandwichAssemblyTableTileEntity() {
         // noinspection unchecked
-        super((TileEntityType<SandwichAssemblyTableTileEntity>) ModTileEntityTypes.SANDWICH_ASSEMBLY_TABLE.get(), 16);
+        super((BlockEntityType<SandwichAssemblyTableTileEntity>) ModTileEntityTypes.SANDWICH_ASSEMBLY_TABLE.get(), 16);
     }
 
     private ItemStack createSpreadItem(SpreadType spreadType, ItemStack ingredient) {
-        CompoundNBT spreadNBT = new CompoundNBT();
+        CompoundTag spreadNBT = new CompoundTag();
         spreadNBT.putInt("Color", spreadType.getColor(ingredient));
-        spreadNBT.putBoolean("HasEffect", ingredient.hasEffect());
-        spreadNBT.put("Ingredient", ingredient.copy().split(1).write(new CompoundNBT()));
+        spreadNBT.putBoolean("HasEffect", ingredient.hasFoil());
+        spreadNBT.put("Ingredient", ingredient.copy().split(1).save(new CompoundTag()));
 
         List<ItemStack> ingredients = getItems();
         for (int slot = ingredients.size() - 1; slot >= 0; slot--) {
@@ -131,7 +131,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
                 sandwich = ItemStack.EMPTY;
             } else {
                 sandwich = new ItemStack(ModItems.SANDWICH.get());
-                write(sandwich.getOrCreateChildTag("BlockEntityTag"));
+                save(sandwich.getOrCreateTagElement("BlockEntityTag"));
             }
         }
 
@@ -203,7 +203,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             NonNullList<ItemStack> result = NonNullList.create();
             for (ItemStack ingredient : super.removeItems()) {
                 if (ingredient.getItem() != ModItems.SPREAD.get()) {
-                    ingredient.removeChildTag("IsOnSandwich");
+                    ingredient.removeTagKey("IsOnSandwich");
                     result.add(ingredient);
                 }
             }
@@ -223,7 +223,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
                 return ItemStack.EMPTY;
             }
 
-            result.removeChildTag("IsOnSandwich");
+            result.removeTagKey("IsOnSandwich");
 
             return result;
         }
@@ -245,7 +245,7 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
                 return sandwichSize > 0 && sandwichSize <= getSlots() - getAmountOfItems();
             }
 
-            return (stack.isFood() || stack.getItem() == ModItems.SPREAD.get() || SpreadTypeManager.INSTANCE.hasSpreadType(stack.getItem())) // the item must be edible
+            return (stack.isEdible() || stack.getItem() == ModItems.SPREAD.get() || SpreadTypeManager.INSTANCE.hasSpreadType(stack.getItem())) // the item must be edible
                     && (slot > 0 || ModTags.SANDWICH_BREADS.contains(stack.getItem())); // the first item must be bread
         }
 
@@ -279,10 +279,10 @@ public class SandwichAssemblyTableTileEntity extends ItemHandlerTileEntity {
             ingredient.getOrCreateTag().putBoolean("IsOnSandwich", true);
 
             // spawn the spread's container as an item
-            if (!simulate && spreadType != null && SandwichAssemblyTableTileEntity.this.getWorld() != null && spreadType.hasContainer(ingredient)) {
-                ItemEntity item = new ItemEntity(SandwichAssemblyTableTileEntity.this.getWorld(), SandwichAssemblyTableTileEntity.this.pos.getX() + 0.5, SandwichAssemblyTableTileEntity.this.pos.getY() + 1.2, SandwichAssemblyTableTileEntity.this.pos.getZ() + 0.5, new ItemStack(spreadType.getContainer(ingredient)));
-                item.setPickupDelay(5);
-                SandwichAssemblyTableTileEntity.this.getWorld().addEntity(item);
+            if (!simulate && spreadType != null && SandwichAssemblyTableTileEntity.this.getLevel() != null && spreadType.hasContainer(ingredient)) {
+                ItemEntity item = new ItemEntity(SandwichAssemblyTableTileEntity.this.getLevel(), SandwichAssemblyTableTileEntity.this.worldPosition.getX() + 0.5, SandwichAssemblyTableTileEntity.this.worldPosition.getY() + 1.2, SandwichAssemblyTableTileEntity.this.worldPosition.getZ() + 0.5, new ItemStack(spreadType.getContainer(ingredient)));
+                item.setPickUpDelay(5);
+                SandwichAssemblyTableTileEntity.this.getLevel().addFreshEntity(item);
             }
 
             return ItemHandlerHelper.copyStackWithSize(stack, super.insertItem(slot, ingredient, simulate).getCount());

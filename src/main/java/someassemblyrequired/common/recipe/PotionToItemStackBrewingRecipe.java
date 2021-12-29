@@ -1,10 +1,10 @@
 package someassemblyrequired.common.recipe;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionUtils;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.brewing.BrewingRecipe;
 
 public class PotionToItemStackBrewingRecipe extends BrewingRecipe {
@@ -12,7 +12,7 @@ public class PotionToItemStackBrewingRecipe extends BrewingRecipe {
     private final Potion inputPotion;
 
     public PotionToItemStackBrewingRecipe(Potion inputPotion, Ingredient ingredient, ItemStack result) {
-        super(Ingredient.fromStacks(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), inputPotion)), ingredient, result);
+        super(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), inputPotion)), ingredient, result);
         this.inputPotion = inputPotion;
     }
 
@@ -21,6 +21,6 @@ public class PotionToItemStackBrewingRecipe extends BrewingRecipe {
         if (input.getItem() != Items.POTION) {
             return false;
         }
-        return PotionUtils.getPotionFromItem(input) == inputPotion;
+        return PotionUtils.getPotion(input) == inputPotion;
     }
 }

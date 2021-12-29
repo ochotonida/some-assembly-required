@@ -1,12 +1,12 @@
 package someassemblyrequired.common.item.spreadtype;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 
 public class PotionSpreadType extends SpreadType {
 
@@ -25,10 +25,10 @@ public class PotionSpreadType extends SpreadType {
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
-        if (PotionUtils.getPotionFromItem(stack) == Potions.WATER) {
-            return new TranslationTextComponent("spreadtype.someassemblyrequired.water_bottle");
+    public Component getDisplayName(ItemStack stack) {
+        if (PotionUtils.getPotion(stack) == Potions.WATER) {
+            return new TranslatableComponent("spreadtype.someassemblyrequired.water_bottle");
         }
-        return stack.getDisplayName();
+        return stack.getHoverName();
     }
 }

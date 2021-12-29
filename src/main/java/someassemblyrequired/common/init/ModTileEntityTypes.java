@@ -1,10 +1,10 @@
 package someassemblyrequired.common.init;
 
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.client.CuttingBoardRenderer;
 import someassemblyrequired.client.RedstoneToasterRenderer;
@@ -18,41 +18,41 @@ import someassemblyrequired.common.block.tileentity.SandwichTileEntity;
 @SuppressWarnings("ConstantConditions")
 public class ModTileEntityTypes {
 
-    public static final DeferredRegister<TileEntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, SomeAssemblyRequired.MODID);
+    public static final DeferredRegister<BlockEntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, SomeAssemblyRequired.MODID);
 
-    public static RegistryObject<TileEntityType<?>> SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
+    public static RegistryObject<BlockEntityType<?>> SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
             "sandwich_assembly_table",
-            () -> TileEntityType.Builder.create(SandwichAssemblyTableTileEntity::new,
+            () -> BlockEntityType.Builder.of(SandwichAssemblyTableTileEntity::new,
                     ModBlocks.getSandwichAssemblyTables()
             ).build(null)
     );
 
-    public static RegistryObject<TileEntityType<?>> SANDWICH = REGISTRY.register(
+    public static RegistryObject<BlockEntityType<?>> SANDWICH = REGISTRY.register(
             "sandwich",
-            () -> TileEntityType.Builder.create(SandwichTileEntity::new,
+            () -> BlockEntityType.Builder.of(SandwichTileEntity::new,
                     ModBlocks.SANDWICH.get()
             ).build(null)
     );
 
-    public static RegistryObject<TileEntityType<?>> CUTTING_BOARD = REGISTRY.register(
+    public static RegistryObject<BlockEntityType<?>> CUTTING_BOARD = REGISTRY.register(
             "cutting_board",
-            () -> TileEntityType.Builder.create(CuttingBoardTileEntity::new,
+            () -> BlockEntityType.Builder.of(CuttingBoardTileEntity::new,
                     ModBlocks.getCuttingBoards()
             ).build(null)
     );
 
-    public static RegistryObject<TileEntityType<?>> REDSTONE_TOASTER = REGISTRY.register(
+    public static RegistryObject<BlockEntityType<?>> REDSTONE_TOASTER = REGISTRY.register(
             "redstone_toaster",
-            () -> TileEntityType.Builder.create(RedstoneToasterTileEntity::new,
+            () -> BlockEntityType.Builder.of(RedstoneToasterTileEntity::new,
                     ModBlocks.getToasters()
             ).build(null)
     );
 
     @SuppressWarnings("unchecked")
     public static void addRenderers() {
-        ClientRegistry.bindTileEntityRenderer((TileEntityType<SandwichAssemblyTableTileEntity>) ModTileEntityTypes.SANDWICH_ASSEMBLY_TABLE.get(), SandwichAssemblyTableBlockRenderer::new);
-        ClientRegistry.bindTileEntityRenderer((TileEntityType<CuttingBoardTileEntity>) ModTileEntityTypes.CUTTING_BOARD.get(), CuttingBoardRenderer::new);
-        ClientRegistry.bindTileEntityRenderer((TileEntityType<SandwichTileEntity>) ModTileEntityTypes.SANDWICH.get(), SandwichBlockRenderer::new);
-        ClientRegistry.bindTileEntityRenderer((TileEntityType<RedstoneToasterTileEntity>) ModTileEntityTypes.REDSTONE_TOASTER.get(), RedstoneToasterRenderer::new);
+        ClientRegistry.bindTileEntityRenderer((BlockEntityType<SandwichAssemblyTableTileEntity>) ModTileEntityTypes.SANDWICH_ASSEMBLY_TABLE.get(), SandwichAssemblyTableBlockRenderer::new);
+        ClientRegistry.bindTileEntityRenderer((BlockEntityType<CuttingBoardTileEntity>) ModTileEntityTypes.CUTTING_BOARD.get(), CuttingBoardRenderer::new);
+        ClientRegistry.bindTileEntityRenderer((BlockEntityType<SandwichTileEntity>) ModTileEntityTypes.SANDWICH.get(), SandwichBlockRenderer::new);
+        ClientRegistry.bindTileEntityRenderer((BlockEntityType<RedstoneToasterTileEntity>) ModTileEntityTypes.REDSTONE_TOASTER.get(), RedstoneToasterRenderer::new);
     }
 }

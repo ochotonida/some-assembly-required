@@ -1,10 +1,10 @@
 package someassemblyrequired.common.util;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.items.ItemStackHandler;
 import someassemblyrequired.common.init.ModItems;
 
@@ -21,7 +21,7 @@ public class SandwichBuilder {
         return create(ModItems.BREAD_SLICE.get()).addBread();
     }
 
-    public static SandwichBuilder create(IItemProvider bread) {
+    public static SandwichBuilder create(ItemLike bread) {
         return new SandwichBuilder(bread.asItem());
     }
 
@@ -35,13 +35,13 @@ public class SandwichBuilder {
 
     public SandwichBuilder addFakeSpread(int color, boolean hasGlint) {
         ItemStack spread = new ItemStack(ModItems.SPREAD.get());
-        CompoundNBT tag = spread.getOrCreateTag();
+        CompoundTag tag = spread.getOrCreateTag();
         tag.putInt("Color", color);
         tag.putBoolean("HasGlint", hasGlint);
         return addStack(spread);
     }
 
-    public SandwichBuilder add(IItemProvider item) {
+    public SandwichBuilder add(ItemLike item) {
         return addStack(new ItemStack(item));
     }
 
@@ -54,7 +54,7 @@ public class SandwichBuilder {
     public ItemStack build() {
         addBread();
         ItemStack sandwich = new ItemStack(ModItems.SANDWICH.get());
-        sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", new ItemStackHandler(ingredients).serializeNBT());
+        sandwich.getOrCreateTagElement("BlockEntityTag").put("Ingredients", new ItemStackHandler(ingredients).serializeNBT());
         return sandwich;
     }
 

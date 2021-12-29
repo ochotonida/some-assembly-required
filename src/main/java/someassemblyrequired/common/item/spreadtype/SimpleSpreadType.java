@@ -2,21 +2,21 @@ package someassemblyrequired.common.item.spreadtype;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class SimpleSpreadType extends SpreadType {
 
     private final Item container;
-    private final ITextComponent displayName;
+    private final Component displayName;
     private final int color;
 
-    public SimpleSpreadType(Item ingredient, Item container, ITextComponent displayName, int color) {
+    public SimpleSpreadType(Item ingredient, Item container, Component displayName, int color) {
         super(ingredient);
         this.container = container;
         this.displayName = displayName;
@@ -57,7 +57,7 @@ public class SimpleSpreadType extends SpreadType {
             }
         }
 
-        ITextComponent displayName = ITextComponent.Serializer.getComponentFromJson(object.get("displayname"));
+        Component displayName = Component.Serializer.fromJson(object.get("displayname"));
         if (displayName == null) {
             throw new JsonParseException("Display name must be set");
         }
@@ -70,21 +70,21 @@ public class SimpleSpreadType extends SpreadType {
         return new SimpleSpreadType(item, containerItem, displayName, color);
     }
 
-    public static SimpleSpreadType read(PacketBuffer buffer) {
+    public static SimpleSpreadType read(FriendlyByteBuf buffer) {
         Item ingredient = ForgeRegistries.ITEMS.getValue(buffer.readResourceLocation());
         Item container = buffer.readBoolean() ? ForgeRegistries.ITEMS.getValue(buffer.readResourceLocation()) : Items.AIR;
-        ITextComponent displayName = buffer.readTextComponent();
+        Component displayName = buffer.readComponent();
         int color = buffer.readInt();
         return new SimpleSpreadType(ingredient, container, displayName, color);
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
+    public Component getDisplayName(ItemStack stack) {
         return displayName;
     }
 
     @SuppressWarnings("ConstantConditions")
-    public void write(PacketBuffer buffer) {
+    public void write(FriendlyByteBuf buffer) {
         buffer.writeResourceLocation(getIngredient().getRegistryName());
         if (container == Items.AIR) {
             buffer.writeBoolean(false);
@@ -92,7 +92,7 @@ public class SimpleSpreadType extends SpreadType {
             buffer.writeBoolean(true);
             buffer.writeResourceLocation(container.getRegistryName());
         }
-        buffer.writeTextComponent(displayName);
+        buffer.writeComponent(displayName);
         buffer.writeInt(color);
     }
 }

@@ -1,29 +1,29 @@
 package someassemblyrequired.client;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import someassemblyrequired.common.block.tileentity.RedstoneToasterTileEntity;
 
-public class RedstoneToasterRenderer extends TileEntityRenderer<RedstoneToasterTileEntity> {
+public class RedstoneToasterRenderer extends BlockEntityRenderer<RedstoneToasterTileEntity> {
 
-    public RedstoneToasterRenderer(TileEntityRendererDispatcher rendererDispatcher) {
+    public RedstoneToasterRenderer(BlockEntityRenderDispatcher rendererDispatcher) {
         super(rendererDispatcher);
     }
 
     @Override
-    public void render(RedstoneToasterTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int combinedLight, int combinedOverlay) {
-        matrixStack.push();
+    public void render(RedstoneToasterTileEntity tileEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
+        matrixStack.pushPose();
         matrixStack.translate(0.5, 0.5, 0.5);
         matrixStack.scale(0.5F, 0.5F, 0.5F);
 
-        if (tileEntity.getWorld() != null && tileEntity.getWorld().getBlockState(tileEntity.getPos()).hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
-            matrixStack.rotate(Vector3f.YP.rotationDegrees(90 - tileEntity.getWorld().getBlockState(tileEntity.getPos()).get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle()));
+        if (tileEntity.getLevel() != null && tileEntity.getLevel().getBlockState(tileEntity.getBlockPos()).hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
+            matrixStack.mulPose(Vector3f.YP.rotationDegrees(90 - tileEntity.getLevel().getBlockState(tileEntity.getBlockPos()).getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()));
         }
 
         matrixStack.translate(0, 2 / 16D, 0);
@@ -32,10 +32,10 @@ public class RedstoneToasterRenderer extends TileEntityRenderer<RedstoneToasterT
         }
 
         matrixStack.translate(0, 0, -3 / 16D);
-        Minecraft.getInstance().getItemRenderer().renderItem(tileEntity.getItem(0), ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
+        Minecraft.getInstance().getItemRenderer().renderStatic(tileEntity.getItem(0), ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
         matrixStack.translate(0, 0, 6 / 16D);
-        Minecraft.getInstance().getItemRenderer().renderItem(tileEntity.getItem(1), ItemCameraTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
+        Minecraft.getInstance().getItemRenderer().renderStatic(tileEntity.getItem(1), ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
 
-        matrixStack.pop();
+        matrixStack.popPose();
     }
 }

@@ -1,34 +1,33 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
-        jcenter()
+        maven { url = 'https://maven.minecraftforge.net/' }
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.16.5-1.3.5'
-group = 'someassemblyrequired'
-archivesBaseName = 'someassemblyrequired'
+version = '1.18.1-2.0.0'
+group = 'some-assembly-required'
+archivesBaseName = 'some-assembly-required'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'snapshot', version: '20201028-1.16.3'
+    mappings channel: 'official', version: '1.18.1'
     runs {
         client {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', ''
+            property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+
             mods {
-                someassemblyrequired {
+                some_assembly_required {
                     source sourceSets.main
                 }
             }
@@ -36,10 +35,11 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', ''
+            property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+
             mods {
-                someassemblyrequired {
+                some_assembly_required {
                     source sourceSets.main
                 }
             }
@@ -47,12 +47,12 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', ''
+            property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            args '--mod', 'someassemblyrequired', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-            environment 'target', 'fmluserdevdata'
+            args '--mod', 'some-assembly-required', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
             mods {
-                someassemblyrequired {
+                some_assembly_required {
                     source sourceSets.main
                 }
             }
@@ -60,8 +60,8 @@ minecraft {
     }
 }
 
-sourceSets {
-    main.resources.srcDirs += 'src/generated/resources'
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
 }
 
 repositories {
@@ -73,31 +73,26 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.0.0'
-    compileOnly fg.deobf("mezz.jei:jei-1.16.4:7.6.0.62:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.4:7.6.0.62")
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.9'
+    compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48")
 }
 
-// Example for how to get properties into the manifest for reading by the runtime..
 jar {
     manifest {
         attributes([
-            "Specification-Title": "someassemblyrequired",
-            "Specification-Vendor": "someassemblyrequired",
-            "Specification-Version": "1", // We are version 1 of ourselves
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"someassemblyrequired",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Specification-Title"     : "some-assembly-required",
+                "Specification-Vendor"    : "ochotonida",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "ochotonida",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
 
-// Example configuration to allow publishing using the maven-publish task
-// This is the preferred method to reobfuscate your jar file
-jar.finalizedBy('reobfJar') 
-// However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
-//publish.dependsOn('reobfJar')
+jar.finalizedBy('reobfJar')
 
 publishing {
     publications {
@@ -107,7 +102,7 @@ publishing {
     }
     repositories {
         maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
+            url "file://${project.projectDir}/mcmodsrepo"
         }
     }
 }

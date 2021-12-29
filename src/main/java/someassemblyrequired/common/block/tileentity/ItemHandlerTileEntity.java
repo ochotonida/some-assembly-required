@@ -1,14 +1,14 @@
 package someassemblyrequired.common.block.tileentity;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -19,17 +19,17 @@ import javax.annotation.Nullable;
 /**
  * A tile entity that contains items which should be synced to clients with a max stack size of 1
  */
-public class ItemHandlerTileEntity extends TileEntity {
+public class ItemHandlerTileEntity extends BlockEntity {
 
     private final TileEntityItemHandler inventory;
     private final LazyOptional<TileEntityItemHandler> itemHandler;
     private final boolean canModifyItems;
 
-    public ItemHandlerTileEntity(TileEntityType<? extends ItemHandlerTileEntity> tileEntityType, int size) {
+    public ItemHandlerTileEntity(BlockEntityType<? extends ItemHandlerTileEntity> tileEntityType, int size) {
         this(tileEntityType, size, true);
     }
 
-    public ItemHandlerTileEntity(TileEntityType<? extends ItemHandlerTileEntity> tileEntityType, int size, boolean canModifyItems) {
+    public ItemHandlerTileEntity(BlockEntityType<? extends ItemHandlerTileEntity> tileEntityType, int size, boolean canModifyItems) {
         super(tileEntityType);
         this.canModifyItems = canModifyItems;
         inventory = createItemHandler(size);
@@ -81,12 +81,12 @@ public class ItemHandlerTileEntity extends TileEntity {
     }
 
     private void onContentsChanged() {
-        if (world != null && !world.isRemote) {
-            BlockState state = world.getBlockState(pos);
+        if (level != null && !level.isClientSide) {
+            BlockState state = level.getBlockState(worldPosition);
             // cause a block update to sync the change to clients
-            world.notifyBlockUpdate(pos, state, state, 2);
+            level.sendBlockUpdated(worldPosition, state, state, 2);
             // make sure the tile entity gets saved to disk
-            markDirty();
+            setChanged();
         }
         onContentsUpdated();
     }
@@ -96,40 +96,40 @@ public class ItemHandlerTileEntity extends TileEntity {
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT compoundNBT) {
+    public void load(BlockState state, CompoundTag compoundNBT) {
         inventory.deserializeNBT(compoundNBT.getCompound("Ingredients"));
-        super.read(state, compoundNBT);
+        super.load(state, compoundNBT);
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compoundNBT) {
+    public CompoundTag save(CompoundTag compoundNBT) {
         compoundNBT.put("Ingredients", inventory.serializeNBT());
-        return super.write(compoundNBT);
+        return super.save(compoundNBT);
     }
 
     // sync on chunk load
     @Override
-    public CompoundNBT getUpdateTag() {
-        return write(super.getUpdateTag());
+    public CompoundTag getUpdateTag() {
+        return save(super.getUpdateTag());
     }
 
     // sync on chunk load
     @Override
-    public void handleUpdateTag(BlockState state, CompoundNBT tag) {
-        read(state, tag);
+    public void handleUpdateTag(BlockState state, CompoundTag tag) {
+        load(state, tag);
     }
 
     // sync on block update
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(getPos(), -1, write(new CompoundNBT()));
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, save(new CompoundTag()));
     }
 
     // sync on block update
     @Override
-    public void onDataPacket(NetworkManager networkManager, SUpdateTileEntityPacket packet) {
-        if (world != null) {
-            read(world.getBlockState(pos), packet.getNbtCompound());
+    public void onDataPacket(Connection networkManager, ClientboundBlockEntityDataPacket packet) {
+        if (level != null) {
+            load(level.getBlockState(worldPosition), packet.getTag());
         }
     }
 

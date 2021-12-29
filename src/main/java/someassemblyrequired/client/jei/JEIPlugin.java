@@ -6,13 +6,13 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModRecipeTypes;
@@ -27,9 +27,9 @@ public class JEIPlugin implements IModPlugin {
 
     private static final ResourceLocation ID = Util.prefix("main");
 
-    private static List<IRecipe<?>> findRecipes(IRecipeType<?> recipeType) {
+    private static List<Recipe<?>> findRecipes(RecipeType<?> recipeType) {
         // noinspection ConstantConditions
-        return Minecraft.getInstance().world.getRecipeManager().getRecipes().stream().filter(r -> r.getType() == recipeType).collect(Collectors.toList());
+        return Minecraft.getInstance().level.getRecipeManager().getRecipes().stream().filter(r -> r.getType() == recipeType).collect(Collectors.toList());
     }
 
     @Override
@@ -58,7 +58,7 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipes(findRecipes(ModRecipeTypes.CUTTING), CuttingRecipeCategory.ID);
         registration.addRecipes(findRecipes(ModRecipeTypes.TOASTING), ToastingRecipeCategory.ID);
         // recipes with more than one possible result have an empty output, ignore these (for JEI only)
-        registration.addRecipes(findRecipes(IRecipeType.SMOKING).stream().filter((recipe) -> !recipe.getRecipeOutput().isEmpty()).collect(Collectors.toList()), ToastingRecipeCategory.ID);
+        registration.addRecipes(findRecipes(RecipeType.SMOKING).stream().filter((recipe) -> !recipe.getResultItem().isEmpty()).collect(Collectors.toList()), ToastingRecipeCategory.ID);
 
         for (Block cuttingBoard : ModBlocks.getCuttingBoards()) {
             registration.addIngredientInfo(new ItemStack(cuttingBoard), VanillaTypes.ITEM, "description.someassemblyrequired.cutting_board");
@@ -66,7 +66,7 @@ public class JEIPlugin implements IModPlugin {
         for (Block assemblyTable : ModBlocks.getSandwichAssemblyTables()) {
             registration.addIngredientInfo(new ItemStack(assemblyTable), VanillaTypes.ITEM, "description.someassemblyrequired.sandwich_assembly_table");
         }
-        for (IItemProvider item : new IItemProvider[]{
+        for (ItemLike item : new ItemLike[]{
                 ModBlocks.REDSTONE_TOASTER.get(),
                 ModBlocks.STICKY_REDSTONE_TOASTER.get(),
                 ModItems.KITCHEN_KNIFE.get(),

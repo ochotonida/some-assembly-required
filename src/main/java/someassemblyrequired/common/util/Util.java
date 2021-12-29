@@ -1,6 +1,6 @@
 package someassemblyrequired.common.util;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import someassemblyrequired.SomeAssemblyRequired;
 
 public class Util {

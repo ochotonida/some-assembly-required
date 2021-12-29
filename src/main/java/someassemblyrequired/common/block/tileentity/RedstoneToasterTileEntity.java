@@ -1,24 +1,24 @@
 package someassemblyrequired.common.block.tileentity;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.Explosion;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.TickableBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -32,7 +32,7 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.UUID;
 
-public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements ITickableTileEntity {
+public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements TickableBlockEntity {
 
     private static final int TOASTING_TIME = 240;
     private static final int SMOKE_PARTICLES_TIME = 80;
@@ -45,7 +45,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
 
     public RedstoneToasterTileEntity() {
         // noinspection unchecked
-        super((TileEntityType<RedstoneToasterTileEntity>) ModTileEntityTypes.REDSTONE_TOASTER.get(), 2);
+        super((BlockEntityType<RedstoneToasterTileEntity>) ModTileEntityTypes.REDSTONE_TOASTER.get(), 2);
     }
 
     public void setAutoEject(boolean isEjectionToaster) {
@@ -67,16 +67,16 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
     }
 
     public void explode() {
-        if (world != null && !world.isRemote()) {
-            PlayerEntity player = playerToasting == null ? null : world.getPlayerByUuid(playerToasting);
+        if (level != null && !level.isClientSide()) {
+            Player player = playerToasting == null ? null : level.getPlayerByUUID(playerToasting);
             NonNullList<ItemStack> items = removeItems();
-            world.removeBlock(pos, true);
-            world.createExplosion(player, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2.2F, true, Explosion.Mode.DESTROY);
+            level.removeBlock(worldPosition, true);
+            level.explode(player, worldPosition.getX() + 0.5, worldPosition.getY() + 0.5, worldPosition.getZ() + 0.5, 2.2F, true, Explosion.BlockInteraction.DESTROY);
             for (ItemStack stack : items) {
-                ItemEntity entity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
-                entity.setDefaultPickupDelay();
-                entity.setMotion(entity.getMotion().scale(2.5));
-                world.addEntity(entity);
+                ItemEntity entity = new ItemEntity(level, worldPosition.getX() + 0.5, worldPosition.getY() + 0.5, worldPosition.getZ() + 0.5, stack);
+                entity.setDefaultPickUpDelay();
+                entity.setDeltaMovement(entity.getDeltaMovement().scale(2.5));
+                level.addFreshEntity(entity);
             }
         }
     }
@@ -119,26 +119,26 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
     }
 
     private ItemStack getToastingResult(ItemStack ingredient) {
-        if (ingredient.isEmpty() || ingredient.getItem() == ModItems.CHARRED_MORSEL.get() || world == null) {
+        if (ingredient.isEmpty() || ingredient.getItem() == ModItems.CHARRED_MORSEL.get() || level == null) {
             return ItemStack.EMPTY;
         }
 
-        IInventory ingredientWrapper = new Inventory(ingredient);
+        Container ingredientWrapper = new SimpleContainer(ingredient);
 
-        Optional<? extends IRecipe<IInventory>> toastingRecipe = world.getRecipeManager().getRecipe(ModRecipeTypes.TOASTING, ingredientWrapper, world);
+        Optional<? extends Recipe<Container>> toastingRecipe = level.getRecipeManager().getRecipeFor(ModRecipeTypes.TOASTING, ingredientWrapper, level);
 
-        IRecipe<IInventory> recipe = null;
+        Recipe<Container> recipe = null;
         if (toastingRecipe.isPresent()) {
             recipe = toastingRecipe.get();
         } else {
-            Optional<? extends IRecipe<IInventory>> smokingRecipe = world.getRecipeManager().getRecipe(IRecipeType.SMOKING, ingredientWrapper, world);
+            Optional<? extends Recipe<Container>> smokingRecipe = level.getRecipeManager().getRecipeFor(RecipeType.SMOKING, ingredientWrapper, level);
             if (smokingRecipe.isPresent()) {
                 recipe = smokingRecipe.get();
             }
         }
 
         if (recipe == null) {
-            if (ingredient.getItem().isFood()) {
+            if (ingredient.getItem().isEdible()) {
                 if (ModTags.SMALL_FOODS.contains(ingredient.getItem())) {
                     return new ItemStack(ModItems.CHARRED_MORSEL.get());
                 } else {
@@ -148,12 +148,12 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
                 return ItemStack.EMPTY;
             }
         } else {
-            return recipe.getCraftingResult(ingredientWrapper);
+            return recipe.assemble(ingredientWrapper);
         }
     }
 
     private void toastItems() {
-        if (world == null) {
+        if (level == null) {
             return;
         }
 
@@ -165,28 +165,28 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
         }
     }
 
-    public boolean startToasting(PlayerEntity entity) {
-        playerToasting = entity.getUniqueID();
-        if (world != null && world.getBlockState(pos).get(BlockStateProperties.WATERLOGGED)) {
+    public boolean startToasting(Player entity) {
+        playerToasting = entity.getUUID();
+        if (level != null && level.getBlockState(worldPosition).getValue(BlockStateProperties.WATERLOGGED)) {
             explode();
         }
         return startToasting();
     }
 
     public boolean startToasting() {
-        if (world == null || isToasting()) {
+        if (level == null || isToasting()) {
             return false;
         }
 
-        world.playSound(null, pos, SoundEvents.BLOCK_WOODEN_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.5F, 0.8F);
+        level.playSound(null, worldPosition, SoundEvents.WOODEN_BUTTON_CLICK_ON, SoundSource.BLOCKS, 0.5F, 0.8F);
 
         if (hasMetalInside()) {
             explode();
             return true;
         }
 
-        if (world.getBlockState(pos).hasProperty(RedstoneToasterBlock.TOASTING)) {
-            world.setBlockState(pos, world.getBlockState(pos).with(RedstoneToasterBlock.TOASTING, true));
+        if (level.getBlockState(worldPosition).hasProperty(RedstoneToasterBlock.TOASTING)) {
+            level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(RedstoneToasterBlock.TOASTING, true));
         }
 
         toastingProgress = TOASTING_TIME;
@@ -202,26 +202,26 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
 
         playerToasting = null;
 
-        if (world == null) {
+        if (level == null) {
             return;
         }
 
-        if (world.getBlockState(pos).hasProperty(RedstoneToasterBlock.TOASTING)) {
-            world.setBlockState(pos, world.getBlockState(pos).with(RedstoneToasterBlock.TOASTING, false));
+        if (level.getBlockState(worldPosition).hasProperty(RedstoneToasterBlock.TOASTING)) {
+            level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(RedstoneToasterBlock.TOASTING, false));
         }
 
         if (isEjectionToaster) {
-            world.playSound(null, pos, SoundEvents.BLOCK_PISTON_EXTEND, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.25F + 0.8F);
+            level.playSound(null, worldPosition, SoundEvents.PISTON_EXTEND, SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.25F + 0.8F);
 
             for (ItemStack ingredient : removeItems()) {
-                ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.75, pos.getZ() + 0.5, ingredient);
-                item.setDefaultPickupDelay();
-                item.setMotion(item.getMotion().mul(0.5, 2, 0.5));
-                world.addEntity(item);
+                ItemEntity item = new ItemEntity(level, worldPosition.getX() + 0.5, worldPosition.getY() + 0.75, worldPosition.getZ() + 0.5, ingredient);
+                item.setDefaultPickUpDelay();
+                item.setDeltaMovement(item.getDeltaMovement().multiply(0.5, 2, 0.5));
+                level.addFreshEntity(item);
             }
         }
 
-        world.playSound(null, pos, SoundEvents.BLOCK_NOTE_BLOCK_BELL, SoundCategory.BLOCKS, 0.8F, 4);
+        level.playSound(null, worldPosition, SoundEvents.NOTE_BLOCK_BELL, SoundSource.BLOCKS, 0.8F, 4);
     }
 
     public boolean isToasting() {
@@ -234,30 +234,30 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT compoundNBT) {
-        super.read(state, compoundNBT);
+    public void load(BlockState state, CompoundTag compoundNBT) {
+        super.load(state, compoundNBT);
         toastingProgress = compoundNBT.getInt("ToastingProgress");
         smokeParticlesProgress = compoundNBT.getInt("SmokeParticlesProgress");
         isEjectionToaster = compoundNBT.getBoolean("IsEjectionToaster");
-        if (compoundNBT.hasUniqueId("PlayerToasting")) {
-            playerToasting = compoundNBT.getUniqueId("PlayerToasting");
+        if (compoundNBT.hasUUID("PlayerToasting")) {
+            playerToasting = compoundNBT.getUUID("PlayerToasting");
         }
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compoundNBT) {
+    public CompoundTag save(CompoundTag compoundNBT) {
         compoundNBT.putInt("ToastingProgress", toastingProgress);
         compoundNBT.putInt("SmokeParticlesProgress", smokeParticlesProgress);
         compoundNBT.putBoolean("IsEjectionToaster", isEjectionToaster);
         if (playerToasting != null) {
-            compoundNBT.putUniqueId("PlayerToasting", playerToasting);
+            compoundNBT.putUUID("PlayerToasting", playerToasting);
         }
-        return super.write(compoundNBT);
+        return super.save(compoundNBT);
     }
 
     @Override
     public void tick() {
-        if (world == null) {
+        if (level == null) {
             return;
         }
 
@@ -266,7 +266,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
                 stopToasting();
             } else {
                 if (toastingProgress % 4 == 0) {
-                    world.playSound(null, pos, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.05F, toastingProgress % 8 == 0 ? 2 : 1.9F);
+                    level.playSound(null, worldPosition, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.05F, toastingProgress % 8 == 0 ? 2 : 1.9F);
                 }
             }
         }
@@ -277,7 +277,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
 
         if (smokeParticlesProgress > 0) {
             if (smokeParticlesProgress-- % 3 == 0) {
-                world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, 0, 0.03, 0);
+                level.addParticle(ParticleTypes.SMOKE, worldPosition.getX() + 0.5, worldPosition.getY() + 0.8, worldPosition.getZ() + 0.5, 0, 0.03, 0);
             }
         }
     }
@@ -288,7 +288,7 @@ public class RedstoneToasterTileEntity extends ItemHandlerTileEntity implements 
 
             @Override
             public boolean isItemValid(int slot, ItemStack stack) {
-                return super.isItemValid(slot, stack) && stack.getItem() != ModItems.SANDWICH.get() && (stack.getItem().isFood() || !(stack.getItem() instanceof BlockItem) || hasToastingResult(stack));
+                return super.isItemValid(slot, stack) && stack.getItem() != ModItems.SANDWICH.get() && (stack.getItem().isEdible() || !(stack.getItem() instanceof BlockItem) || hasToastingResult(stack));
             }
         };
     }

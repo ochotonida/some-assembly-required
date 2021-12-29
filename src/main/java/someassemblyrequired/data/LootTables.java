@@ -1,23 +1,29 @@
 package someassemblyrequired.data;
 
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.advancements.criterion.StatePropertiesPredicate;
-import net.minecraft.block.Block;
-import net.minecraft.block.CropsBlock;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.LootTableProvider;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.Item;
+import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.loot.*;
-import net.minecraft.loot.conditions.BlockStateProperty;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.loot.conditions.Inverted;
-import net.minecraft.loot.conditions.SurvivesExplosion;
-import net.minecraft.loot.functions.ApplyBonus;
-import net.minecraft.loot.functions.ExplosionDecay;
-import net.minecraft.loot.functions.SetCount;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
+import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
@@ -31,14 +37,14 @@ import java.util.function.Supplier;
 
 public class LootTables extends LootTableProvider {
 
-    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> tables = new ArrayList<>();
+    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> tables = new ArrayList<>();
 
     public LootTables(DataGenerator dataGenerator) {
         super(dataGenerator);
     }
 
     @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
+    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
         tables.clear();
 
         for (Block block : ModBlocks.getSandwichAssemblyTables()) {
@@ -52,8 +58,8 @@ public class LootTables extends LootTableProvider {
         }
 
 
-        addBlockLootTable(ModBlocks.LETTUCE.get(), createCropWithBonusSeedsLootTable((CropsBlock) ModBlocks.LETTUCE.get(), ModItems.LETTUCE_HEAD.get(), ModItems.LETTUCE_SEEDS.get()));
-        addBlockLootTable(ModBlocks.TOMATOES.get(), createSeedCropLootTable((CropsBlock) ModBlocks.TOMATOES.get(), ModItems.TOMATO.get(), ModItems.TOMATO_SEEDS.get()));
+        addBlockLootTable(ModBlocks.LETTUCE.get(), createCropWithBonusSeedsLootTable((CropBlock) ModBlocks.LETTUCE.get(), ModItems.LETTUCE_HEAD.get(), ModItems.LETTUCE_SEEDS.get()));
+        addBlockLootTable(ModBlocks.TOMATOES.get(), createSeedCropLootTable((CropBlock) ModBlocks.TOMATOES.get(), ModItems.TOMATO.get(), ModItems.TOMATO_SEEDS.get()));
 
         addChestLootTables();
 
@@ -61,154 +67,154 @@ public class LootTables extends LootTableProvider {
     }
 
     private void addChestLootTables() {
-        addChestLootTable("inject/chests/village/village_desert_house", LootTable.builder()
-                .addLootPool(LootPool.builder()
+        addChestLootTable("inject/chests/village/village_desert_house", LootTable.lootTable()
+                .withPool(LootPool.lootPool()
                         .name("main")
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(itemEntry(ModItems.TOMATO.get(), 6, 2, 6))
-                        .addEntry(emptyEntry(12))
+                        .setRolls(ConstantIntValue.exactly(1))
+                        .add(itemEntry(ModItems.TOMATO.get(), 6, 2, 6))
+                        .add(emptyEntry(12))
                 )
         );
 
-        addChestLootTable("inject/chests/village/village_savanna_house", LootTable.builder()
-                .addLootPool(LootPool.builder()
+        addChestLootTable("inject/chests/village/village_savanna_house", LootTable.lootTable()
+                .withPool(LootPool.lootPool()
                         .name("main")
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(itemEntry(ModItems.TOMATO.get(), 4, 1, 3))
-                        .addEntry(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 1, 3))
-                        .addEntry(itemEntry(ModItems.LETTUCE_SEEDS.get(), 1, 1, 3))
-                        .addEntry(emptyEntry(12))
+                        .setRolls(ConstantIntValue.exactly(1))
+                        .add(itemEntry(ModItems.TOMATO.get(), 4, 1, 3))
+                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 1, 3))
+                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 1, 1, 3))
+                        .add(emptyEntry(12))
                 )
         );
 
-        addChestLootTable("inject/chests/village/village_plains_house", LootTable.builder()
-                .addLootPool(LootPool.builder()
+        addChestLootTable("inject/chests/village/village_plains_house", LootTable.lootTable()
+                .withPool(LootPool.lootPool()
                         .name("main")
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(itemEntry(ModItems.TOMATO.get(), 3, 1, 4))
-                        .addEntry(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 1, 4))
-                        .addEntry(itemEntry(ModItems.LETTUCE_SEEDS.get(), 2, 1, 4))
-                        .addEntry(emptyEntry(12))
+                        .setRolls(ConstantIntValue.exactly(1))
+                        .add(itemEntry(ModItems.TOMATO.get(), 3, 1, 4))
+                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 1, 4))
+                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 2, 1, 4))
+                        .add(emptyEntry(12))
                 )
         );
 
-        addChestLootTable("inject/chests/village/village_taiga_house", LootTable.builder()
-                .addLootPool(LootPool.builder()
+        addChestLootTable("inject/chests/village/village_taiga_house", LootTable.lootTable()
+                .withPool(LootPool.lootPool()
                         .name("main")
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(itemEntry(ModItems.TOMATO.get(), 2, 1, 3))
-                        .addEntry(itemEntry(ModItems.LETTUCE_HEAD.get(), 2, 1, 3))
-                        .addEntry(itemEntry(ModItems.LETTUCE_SEEDS.get(), 2, 1, 3))
-                        .addEntry(emptyEntry(12))
+                        .setRolls(ConstantIntValue.exactly(1))
+                        .add(itemEntry(ModItems.TOMATO.get(), 2, 1, 3))
+                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 2, 1, 3))
+                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 2, 1, 3))
+                        .add(emptyEntry(12))
                 )
         );
 
-        addChestLootTable("inject/chests/village/village_snowy_house", LootTable.builder()
-                .addLootPool(LootPool.builder()
+        addChestLootTable("inject/chests/village/village_snowy_house", LootTable.lootTable()
+                .withPool(LootPool.lootPool()
                         .name("main")
-                        .rolls(ConstantRange.of(1))
-                        .addEntry(itemEntry(ModItems.LETTUCE_HEAD.get(), 2, 2, 6))
-                        .addEntry(itemEntry(ModItems.LETTUCE_SEEDS.get(), 4, 2, 6))
-                        .addEntry(emptyEntry(12))
+                        .setRolls(ConstantIntValue.exactly(1))
+                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 2, 2, 6))
+                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 4, 2, 6))
+                        .add(emptyEntry(12))
                 )
         );
 
-        addChestLootTable("inject/chests/igloo_chest", LootTable.builder()
-                .addLootPool(LootPool.builder()
+        addChestLootTable("inject/chests/igloo_chest", LootTable.lootTable()
+                .withPool(LootPool.lootPool()
                         .name("main")
-                        .rolls(ConstantRange.of(2))
-                        .addEntry(itemEntry(ModItems.LETTUCE_HEAD.get(), 6, 1, 4))
-                        .addEntry(itemEntry(ModItems.LETTUCE_SEEDS.get(), 6, 1, 4))
-                        .addEntry(emptyEntry(12))
+                        .setRolls(ConstantIntValue.exactly(2))
+                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 6, 1, 4))
+                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 6, 1, 4))
+                        .add(emptyEntry(12))
                 )
         );
 
-        addChestLootTable("inject/chests/shipwreck_supply", LootTable.builder()
-                .addLootPool(LootPool.builder()
+        addChestLootTable("inject/chests/shipwreck_supply", LootTable.lootTable()
+                .withPool(LootPool.lootPool()
                         .name("main")
-                        .rolls(ConstantRange.of(2))
-                        .addEntry(itemEntry(ModItems.TOMATO.get(), 4, 2, 6))
-                        .addEntry(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 2, 6))
-                        .addEntry(itemEntry(ModItems.LETTUCE_SEEDS.get(), 1, 2, 6))
-                        .addEntry(emptyEntry(12))
+                        .setRolls(ConstantIntValue.exactly(2))
+                        .add(itemEntry(ModItems.TOMATO.get(), 4, 2, 6))
+                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 2, 6))
+                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 1, 2, 6))
+                        .add(emptyEntry(12))
                 )
         );
     }
 
-    private static LootTable.Builder createCropWithBonusSeedsLootTable(CropsBlock cropsBlock, Item cropItem, Item seedItem) {
-        ILootCondition.IBuilder condition = createAgeCondition(cropsBlock);
-        return LootTable.builder()
-                .addLootPool(LootPool.builder()
-                        .addEntry(ItemLootEntry.builder(cropItem)
-                                .acceptCondition(condition)
-                                .alternatively(ItemLootEntry.builder(seedItem))
+    private static LootTable.Builder createCropWithBonusSeedsLootTable(CropBlock cropsBlock, Item cropItem, Item seedItem) {
+        LootItemCondition.Builder condition = createAgeCondition(cropsBlock);
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(cropItem)
+                                .when(condition)
+                                .otherwise(LootItem.lootTableItem(seedItem))
                         )
                 )
-                .addLootPool(LootPool.builder()
-                        .acceptCondition(condition)
-                        .addEntry(ItemLootEntry.builder(seedItem)
-                                .acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 3))
+                .withPool(LootPool.lootPool()
+                        .when(condition)
+                        .add(LootItem.lootTableItem(seedItem)
+                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))
                         )
                 )
-                .acceptFunction(ExplosionDecay.builder());
+                .apply(ApplyExplosionDecay.explosionDecay());
     }
 
-    private static LootTable.Builder createSeedCropLootTable(CropsBlock cropsBlock, Item cropItem, Item seedItem) {
-        ILootCondition.IBuilder condition = createAgeCondition(cropsBlock);
-        return LootTable.builder()
-                .addLootPool(LootPool.builder()
-                        .acceptCondition(Inverted.builder(condition))
-                        .addEntry(ItemLootEntry.builder(seedItem))
+    private static LootTable.Builder createSeedCropLootTable(CropBlock cropsBlock, Item cropItem, Item seedItem) {
+        LootItemCondition.Builder condition = createAgeCondition(cropsBlock);
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .when(InvertedLootItemCondition.invert(condition))
+                        .add(LootItem.lootTableItem(seedItem))
                 )
-                .addLootPool(LootPool.builder()
-                        .acceptCondition(condition)
-                        .addEntry(ItemLootEntry.builder(cropItem))
+                .withPool(LootPool.lootPool()
+                        .when(condition)
+                        .add(LootItem.lootTableItem(cropItem))
                 )
-                .addLootPool(LootPool.builder()
-                        .acceptCondition(condition)
-                        .addEntry(ItemLootEntry.builder(cropItem)
-                                .acceptFunction(ApplyBonus.binomialWithBonusCount(Enchantments.FORTUNE, 0.5714286F, 3))
+                .withPool(LootPool.lootPool()
+                        .when(condition)
+                        .add(LootItem.lootTableItem(cropItem)
+                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))
                         )
                 )
-                .acceptFunction(ExplosionDecay.builder());
+                .apply(ApplyExplosionDecay.explosionDecay());
     }
 
-    private static ILootCondition.IBuilder createAgeCondition(CropsBlock cropsBlock) {
+    private static LootItemCondition.Builder createAgeCondition(CropBlock cropsBlock) {
         //noinspection OptionalGetWithoutIsPresent
-        return BlockStateProperty.builder(cropsBlock)
-                .fromProperties(StatePropertiesPredicate.Builder.newBuilder()
-                        .withIntProp(cropsBlock.getAgeProperty(), cropsBlock.getAgeProperty().getAllowedValues().stream().max(Integer::compare).get())
+        return LootItemBlockStatePropertyCondition.hasBlockStateProperties(cropsBlock)
+                .setProperties(StatePropertiesPredicate.Builder.properties()
+                        .hasProperty(cropsBlock.getAgeProperty(), cropsBlock.getAgeProperty().getPossibleValues().stream().max(Integer::compare).get())
                 );
     }
 
-    private static LootEntry.Builder<?> itemEntry(Item item, int weight, int min, int max) {
-        return ItemLootEntry.builder(item).weight(weight).acceptFunction(SetCount.builder(RandomValueRange.of(min, max)));
+    private static LootPoolEntryContainer.Builder<?> itemEntry(Item item, int weight, int min, int max) {
+        return LootItem.lootTableItem(item).setWeight(weight).apply(SetItemCountFunction.setCount(RandomValueBounds.between(min, max)));
     }
 
-    private static LootEntry.Builder<?> emptyEntry(int weight) {
-        return EmptyLootEntry.func_216167_a().weight(weight);
+    private static LootPoolEntryContainer.Builder<?> emptyEntry(int weight) {
+        return EmptyLootItem.emptyItem().setWeight(weight);
     }
 
 
     private void addStandardDropTable(Block block) {
-        addBlockLootTable(block, LootTable.builder().addLootPool(createStandardDrops(block)));
+        addBlockLootTable(block, LootTable.lootTable().withPool(createStandardDrops(block)));
     }
 
     private void addBlockLootTable(Block block, LootTable.Builder lootTable) {
-        tables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(block.getLootTable(), lootTable), LootParameterSets.BLOCK));
+        tables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(block.getLootTable(), lootTable), LootContextParamSets.BLOCK));
     }
 
     private void addChestLootTable(String location, LootTable.Builder lootTable) {
-        tables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(Util.prefix(location), lootTable), LootParameterSets.GENERIC));
+        tables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(Util.prefix(location), lootTable), LootContextParamSets.ALL_PARAMS));
     }
 
-    private LootPool.Builder createStandardDrops(IItemProvider itemProvider) {
-        return LootPool.builder().rolls(ConstantRange.of(1)).acceptCondition(SurvivesExplosion.builder())
-                .addEntry(ItemLootEntry.builder(itemProvider));
+    private LootPool.Builder createStandardDrops(ItemLike itemProvider) {
+        return LootPool.lootPool().setRolls(ConstantIntValue.exactly(1)).when(ExplosionCondition.survivesExplosion())
+                .add(LootItem.lootTableItem(itemProvider));
     }
 
     @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationTracker validationtracker) {
-        map.forEach((loc, table) -> LootTableManager.validateLootTable(validationtracker, loc, table));
+    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
+        map.forEach((loc, table) -> LootTables.validate(validationtracker, loc, table));
     }
 }

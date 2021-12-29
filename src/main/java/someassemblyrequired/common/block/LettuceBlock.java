@@ -1,26 +1,26 @@
 package someassemblyrequired.common.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CropsBlock;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 
-public class LettuceBlock extends CropsBlock {
+public class LettuceBlock extends CropBlock {
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.makeCuboidShape(5, -1, 5, 11, 3, 11),
-            Block.makeCuboidShape(3, -1, 3, 13, 4, 13),
-            Block.makeCuboidShape(1, -1, 1, 15, 6, 15),
-            Block.makeCuboidShape(0, -1, 0, 16, 8, 16)
+            Block.box(5, -1, 5, 11, 3, 11),
+            Block.box(3, -1, 3, 13, 4, 13),
+            Block.box(1, -1, 1, 15, 6, 15),
+            Block.box(0, -1, 0, 16, 8, 16)
     };
 
     public LettuceBlock(Properties builder) {
@@ -28,12 +28,12 @@ public class LettuceBlock extends CropsBlock {
     }
 
     @Override
-    public BlockState getPlant(IBlockReader world, BlockPos pos) {
-        return ModBlocks.LETTUCE.get().getDefaultState();
+    public BlockState getPlant(BlockGetter world, BlockPos pos) {
+        return ModBlocks.LETTUCE.get().defaultBlockState();
     }
 
     @Override
-    protected IItemProvider getSeedsItem() {
+    protected ItemLike getBaseSeedId() {
         return ModItems.LETTUCE_SEEDS.get();
     }
 
@@ -44,16 +44,16 @@ public class LettuceBlock extends CropsBlock {
 
     @Override
     public IntegerProperty getAgeProperty() {
-        return BlockStateProperties.AGE_0_3;
+        return BlockStateProperties.AGE_3;
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(getAgeProperty());
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPE_BY_AGE[getAge(state)];
     }
 }

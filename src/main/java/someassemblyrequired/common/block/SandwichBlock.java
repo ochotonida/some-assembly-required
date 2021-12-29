@@ -1,20 +1,20 @@
 package someassemblyrequired.common.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import someassemblyrequired.common.block.tileentity.ItemHandlerTileEntity;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTileEntityTypes;
@@ -24,21 +24,21 @@ import java.util.List;
 
 public class SandwichBlock extends WaterLoggableHorizontalBlock {
 
-    private static final VoxelShape SHAPE = Block.makeCuboidShape(4, 0, 4, 12, 8, 12);
+    private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 8, 12);
 
     public SandwichBlock(Properties properties) {
         super(properties);
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
-        return !(world.getBlockState(pos.down()).getBlock() instanceof SandwichAssemblyTableBlock) && super.isValidPosition(state, world, pos);
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        return !(world.getBlockState(pos.below()).getBlock() instanceof SandwichAssemblyTableBlock) && super.canSurvive(state, world, pos);
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
@@ -46,18 +46,18 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock {
         return true;
     }
 
-    public static ItemStack createSandwich(TileEntity tileEntity) {
+    public static ItemStack createSandwich(BlockEntity tileEntity) {
         if (!(tileEntity instanceof ItemHandlerTileEntity)) {
             return ItemStack.EMPTY;
         }
 
         ItemStack sandwich = new ItemStack(ModItems.SANDWICH.get());
-        sandwich.getOrCreateChildTag("BlockEntityTag").put("Ingredients", tileEntity.write(new CompoundNBT()).getCompound("Ingredients"));
+        sandwich.getOrCreateTagElement("BlockEntityTag").put("Ingredients", tileEntity.save(new CompoundTag()).getCompound("Ingredients"));
         return sandwich;
     }
 
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+    public BlockEntity createTileEntity(BlockState state, BlockGetter world) {
         return ModTileEntityTypes.SANDWICH.get().create();
     }
 
@@ -65,18 +65,18 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock {
     @SuppressWarnings("deprecation")
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
         List<ItemStack> drops = new ArrayList<>(super.getDrops(state, builder));
-        drops.add(createSandwich(builder.get(LootParameters.BLOCK_ENTITY)));
+        drops.add(createSandwich(builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY)));
         return drops;
     }
 
     @Override
-    public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
-        return createSandwich(world.getTileEntity(pos));
+    public ItemStack getPickBlock(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
+        return createSandwich(world.getBlockEntity(pos));
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 }

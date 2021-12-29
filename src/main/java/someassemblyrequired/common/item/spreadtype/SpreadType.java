@@ -1,9 +1,9 @@
 package someassemblyrequired.common.item.spreadtype;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
@@ -33,5 +33,5 @@ public abstract class SpreadType extends ForgeRegistryEntry<SpreadType> {
     }
 
     @Nonnull
-    public abstract ITextComponent getDisplayName(ItemStack stack);
+    public abstract Component getDisplayName(ItemStack stack);
 }

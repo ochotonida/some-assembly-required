@@ -1,10 +1,10 @@
 package someassemblyrequired.data;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -120,8 +120,8 @@ public class ItemModels extends ItemModelProvider {
         return withExistingParent(name, "item/generated").texture("layer0", texture);
     }
 
-    private static Collection<Item> removeAll(Set<Item> set, IItemProvider... items) {
-        Set<Item> result = Arrays.stream(items).map(IItemProvider::asItem).collect(Collectors.toSet());
+    private static Collection<Item> removeAll(Set<Item> set, ItemLike... items) {
+        Set<Item> result = Arrays.stream(items).map(ItemLike::asItem).collect(Collectors.toSet());
         set.removeAll(result);
 
         if (result.size() != items.length) {

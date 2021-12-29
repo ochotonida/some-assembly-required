@@ -1,7 +1,7 @@
 package someassemblyrequired.common.network;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkEvent;
 import someassemblyrequired.common.item.spreadtype.SimpleSpreadType;
 import someassemblyrequired.common.item.spreadtype.SpreadTypeManager;
@@ -18,7 +18,7 @@ public class SpreadTypeSyncPacket {
         this.spreadTypes = spreadTypes;
     }
 
-    public SpreadTypeSyncPacket(PacketBuffer buffer) {
+    public SpreadTypeSyncPacket(FriendlyByteBuf buffer) {
         int size = buffer.readVarInt();
         spreadTypes = new HashMap<>(size);
         for (int i = 0; i < size; i++) {
@@ -29,7 +29,7 @@ public class SpreadTypeSyncPacket {
     }
 
     @SuppressWarnings("unused")
-    void encode(PacketBuffer buffer) {
+    void encode(FriendlyByteBuf buffer) {
         buffer.writeVarInt(spreadTypes.size());
         spreadTypes.forEach(((resourceLocation, simpleSpreadType) -> {
             buffer.writeResourceLocation(resourceLocation);

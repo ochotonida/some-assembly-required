@@ -1,9 +1,9 @@
 package someassemblyrequired.common.block.tileentity;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -22,7 +22,7 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
 
     public CuttingBoardTileEntity() {
         // noinspection unchecked
-        super((TileEntityType<CuttingBoardTileEntity>) ModTileEntityTypes.CUTTING_BOARD.get(), 1);
+        super((BlockEntityType<CuttingBoardTileEntity>) ModTileEntityTypes.CUTTING_BOARD.get(), 1);
     }
 
     @Override
@@ -60,12 +60,12 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
     }
 
     public List<ItemStack> processIngredient(ItemStack tool) {
-        if (world == null) {
+        if (level == null) {
             return Collections.emptyList();
         }
 
-        return world.getRecipeManager()
-                .getRecipes(ModRecipeTypes.CUTTING, new RecipeWrapper(getInventory()), world).stream()
+        return level.getRecipeManager()
+                .getRecipesFor(ModRecipeTypes.CUTTING, new RecipeWrapper(getInventory()), level).stream()
                 .filter(cuttingRecipe -> cuttingRecipe.getTool().test(tool))
                 .map(recipe -> (List<ItemStack>) recipe.getRecipeOutputs())
                 .peek(list -> removeIngredient())
@@ -91,7 +91,7 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
             ItemStack result = super.extractItem(slot, amount, simulate);
-            result.removeChildTag("IsOnSandwich");
+            result.removeTagKey("IsOnSandwich");
             return result;
         }
 
@@ -99,7 +99,7 @@ public class CuttingBoardTileEntity extends ItemHandlerTileEntity {
         public NonNullList<ItemStack> removeItems() {
             NonNullList<ItemStack> result = NonNullList.create();
             for (ItemStack ingredient : super.removeItems()) {
-                ingredient.removeChildTag("IsOnSandwich");
+                ingredient.removeTagKey("IsOnSandwich");
                 result.add(ingredient);
             }
             return result;

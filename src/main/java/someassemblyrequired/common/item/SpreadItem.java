@@ -1,10 +1,10 @@
 package someassemblyrequired.common.item;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import someassemblyrequired.common.item.spreadtype.SpreadType;
 import someassemblyrequired.common.item.spreadtype.SpreadTypeManager;
 
@@ -15,28 +15,28 @@ public class SpreadItem extends Item {
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
-        ItemStack ingredient = ItemStack.read(stack.getOrCreateChildTag("Ingredient"));
+    public Component getName(ItemStack stack) {
+        ItemStack ingredient = ItemStack.of(stack.getOrCreateTagElement("Ingredient"));
         if (!ingredient.isEmpty()) {
             SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(ingredient.getItem());
             if (spreadType != null) {
                 return spreadType.getDisplayName(ingredient);
             }
-            return ingredient.getDisplayName();
+            return ingredient.getHoverName();
         }
-        return super.getDisplayName(stack);
+        return super.getName(stack);
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity entity) {
-        super.onItemUseFinish(stack, world, entity);
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
+        super.finishUsingItem(stack, world, entity);
 
-        ItemStack ingredient = ItemStack.read(stack.getOrCreateChildTag("Ingredient"));
+        ItemStack ingredient = ItemStack.of(stack.getOrCreateTagElement("Ingredient"));
         if (!ingredient.isEmpty()) {
             SpreadType spreadType = SpreadTypeManager.INSTANCE.getSpreadType(ingredient.getItem());
             if (spreadType != null) {
                 Item containerItem = spreadType.getContainer(stack);
-                ItemStack result = ingredient.onItemUseFinish(world, entity);
+                ItemStack result = ingredient.finishUsingItem(world, entity);
                 if (!result.isEmpty() && result.getItem() != containerItem) {
                     return result;
                 }
@@ -46,7 +46,7 @@ public class SpreadItem extends Item {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
-        return super.hasEffect(stack) || stack.getOrCreateTag().getBoolean("HasEffect");
+    public boolean isFoil(ItemStack stack) {
+        return super.isFoil(stack) || stack.getOrCreateTag().getBoolean("HasEffect");
     }
 }

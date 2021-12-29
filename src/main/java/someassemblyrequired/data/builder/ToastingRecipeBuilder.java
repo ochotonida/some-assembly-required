@@ -1,13 +1,13 @@
 package someassemblyrequired.data.builder;
 
 import com.google.gson.JsonObject;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.ItemLike;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModRecipeTypes;
@@ -21,57 +21,57 @@ public class ToastingRecipeBuilder {
     private final Ingredient ingredient;
     private final Item result;
 
-    private ToastingRecipeBuilder(Ingredient ingredient, IItemProvider result) {
+    private ToastingRecipeBuilder(Ingredient ingredient, ItemLike result) {
         this.ingredient = ingredient;
         this.result = result.asItem();
     }
 
-    public static void addToastingRecipes(Consumer<IFinishedRecipe> consumer) {
+    public static void addToastingRecipes(Consumer<FinishedRecipe> consumer) {
         ToastingRecipeBuilder.toastingRecipe(
-                Ingredient.fromItems(ModItems.BREAD_SLICE.get()),
+                Ingredient.of(ModItems.BREAD_SLICE.get()),
                 ModItems.TOASTED_BREAD_SLICE.get()
         ).build(consumer);
 
         ToastingRecipeBuilder.toastingRecipe(
-                Ingredient.fromItems(ModItems.TOASTED_BREAD_SLICE.get()),
+                Ingredient.of(ModItems.TOASTED_BREAD_SLICE.get()),
                 ModItems.CHARRED_BREAD_SLICE.get()
         ).build(consumer);
 
         ToastingRecipeBuilder.toastingRecipe(
-                Ingredient.fromItems(Items.CRIMSON_FUNGUS),
+                Ingredient.of(Items.CRIMSON_FUNGUS),
                 ModItems.TOASTED_CRIMSON_FUNGUS.get()
         ).build(consumer);
 
         ToastingRecipeBuilder.toastingRecipe(
-                Ingredient.fromItems(Items.WARPED_FUNGUS),
+                Ingredient.of(Items.WARPED_FUNGUS),
                 ModItems.TOASTED_WARPED_FUNGUS.get()
         ).build(consumer);
 
         ToastingRecipeBuilder.toastingRecipe(
-                Ingredient.fromTag(ModTags.BURNT_FOOD),
+                Ingredient.of(ModTags.BURNT_FOOD),
                 Items.CHARCOAL
         ).build(consumer);
     }
 
-    public static ToastingRecipeBuilder toastingRecipe(Ingredient ingredient, IItemProvider result) {
+    public static ToastingRecipeBuilder toastingRecipe(Ingredient ingredient, ItemLike result) {
         return new ToastingRecipeBuilder(ingredient, result);
     }
 
-    public void build(Consumer<IFinishedRecipe> consumer) {
+    public void build(Consumer<FinishedRecipe> consumer) {
         // noinspection ConstantConditions
         String name = result.getRegistryName().getPath();
         build(consumer, SomeAssemblyRequired.MODID + ":toasting/" + name);
     }
 
-    public void build(Consumer<IFinishedRecipe> consumer, String save) {
+    public void build(Consumer<FinishedRecipe> consumer, String save) {
         build(consumer, new ResourceLocation(save));
     }
 
-    public void build(Consumer<IFinishedRecipe> consumer, ResourceLocation id) {
+    public void build(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
         consumer.accept(new ToastingRecipeBuilder.Result(id, ingredient, result));
     }
 
-    public static class Result implements IFinishedRecipe {
+    public static class Result implements FinishedRecipe {
 
         private final ResourceLocation id;
         private final Ingredient ingredient;
@@ -84,8 +84,8 @@ public class ToastingRecipeBuilder {
         }
 
         @Override
-        public void serialize(JsonObject object) {
-            object.add("ingredient", ingredient.serialize());
+        public void serializeRecipeData(JsonObject object) {
+            object.add("ingredient", ingredient.toJson());
             JsonObject resultObject = new JsonObject();
             // noinspection ConstantConditions
             resultObject.addProperty("item", result.getRegistryName().toString());
@@ -93,24 +93,24 @@ public class ToastingRecipeBuilder {
         }
 
         @Override
-        public ResourceLocation getID() {
+        public ResourceLocation getId() {
             return id;
         }
 
         @Override
-        public IRecipeSerializer<?> getSerializer() {
+        public RecipeSerializer<?> getType() {
             return ModRecipeTypes.TOASTING_SERIALIZER.get();
         }
 
         @Nullable
         @Override
-        public JsonObject getAdvancementJson() {
+        public JsonObject serializeAdvancement() {
             return null;
         }
 
         @Nullable
         @Override
-        public ResourceLocation getAdvancementID() {
+        public ResourceLocation getAdvancementId() {
             return null;
         }
     }

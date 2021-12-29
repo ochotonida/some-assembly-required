@@ -1,19 +1,20 @@
 package someassemblyrequired.data;
 
-import net.minecraft.advancements.criterion.InventoryChangeTrigger;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.data.*;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.CookingRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SimpleCookingSerializer;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
@@ -31,7 +32,7 @@ public class Recipes extends RecipeProvider {
     }
 
     @Override
-    protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
+    protected void buildShapelessRecipes(Consumer<FinishedRecipe> consumer) {
         addShapedRecipes(consumer);
         addShapelessRecipes(consumer);
         addCookingRecipes(consumer);
@@ -39,7 +40,7 @@ public class Recipes extends RecipeProvider {
         ToastingRecipeBuilder.addToastingRecipes(consumer);
     }
 
-    private void addShapedRecipes(Consumer<IFinishedRecipe> consumer) {
+    private void addShapedRecipes(Consumer<FinishedRecipe> consumer) {
         addCuttingBoard(ModBlocks.OAK_CUTTING_BOARD.get(), Blocks.STRIPPED_OAK_LOG, consumer);
         addCuttingBoard(ModBlocks.SPRUCE_CUTTING_BOARD.get(), Blocks.STRIPPED_SPRUCE_LOG, consumer);
         addCuttingBoard(ModBlocks.BIRCH_CUTTING_BOARD.get(), Blocks.STRIPPED_BIRCH_LOG, consumer);
@@ -61,102 +62,102 @@ public class Recipes extends RecipeProvider {
         addToaster(ModBlocks.REDSTONE_TOASTER.get(), Blocks.PISTON, consumer);
         addToaster(ModBlocks.STICKY_REDSTONE_TOASTER.get(), Blocks.STICKY_PISTON, consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(ModItems.KITCHEN_KNIFE.get())
-                .patternLine(" BA")
-                .patternLine(" A ")
-                .patternLine("C  ")
-                .key('A', Tags.Items.INGOTS_IRON)
-                .key('B', Tags.Items.NUGGETS_IRON)
-                .key('C', Tags.Items.RODS_WOODEN)
-                .addCriterion("has_iron_ingot", createTagCriterion(Tags.Items.INGOTS_IRON))
-                .build(consumer, getRecipeLocation(ModItems.KITCHEN_KNIFE.get(), "crafting_shaped"));
+        ShapedRecipeBuilder.shaped(ModItems.KITCHEN_KNIFE.get())
+                .pattern(" BA")
+                .pattern(" A ")
+                .pattern("C  ")
+                .define('A', Tags.Items.INGOTS_IRON)
+                .define('B', Tags.Items.NUGGETS_IRON)
+                .define('C', Tags.Items.RODS_WOODEN)
+                .unlockedBy("has_iron_ingot", createTagCriterion(Tags.Items.INGOTS_IRON))
+                .save(consumer, getRecipeLocation(ModItems.KITCHEN_KNIFE.get(), "crafting_shaped"));
     }
 
-    private void addShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
-        ShapelessRecipeBuilder.shapelessRecipe(ModItems.SWEET_BERRY_JAM_BOTTLE.get())
-                .addIngredient(Items.GLASS_BOTTLE)
-                .addIngredient(Items.SWEET_BERRIES, 2)
-                .addIngredient(Items.SUGAR)
-                .addCriterion("has_sweet_berries", createItemCriterion(Items.SWEET_BERRIES))
-                .build(consumer, getRecipeLocation(ModItems.SWEET_BERRY_JAM_BOTTLE.get(), "crafting_shapeless"));
+    private void addShapelessRecipes(Consumer<FinishedRecipe> consumer) {
+        ShapelessRecipeBuilder.shapeless(ModItems.SWEET_BERRY_JAM_BOTTLE.get())
+                .requires(Items.GLASS_BOTTLE)
+                .requires(Items.SWEET_BERRIES, 2)
+                .requires(Items.SUGAR)
+                .unlockedBy("has_sweet_berries", createItemCriterion(Items.SWEET_BERRIES))
+                .save(consumer, getRecipeLocation(ModItems.SWEET_BERRY_JAM_BOTTLE.get(), "crafting_shapeless"));
 
-        ShapelessRecipeBuilder.shapelessRecipe(ModItems.KETCHUP_BOTTLE.get())
-                .addIngredient(Items.GLASS_BOTTLE)
-                .addIngredient(ModTags.CROPS_TOMATOES)
-                .addIngredient(ModTags.CROPS_TOMATOES)
-                .addCriterion("has_tomato", createTagCriterion(ModTags.CROPS_TOMATOES))
-                .build(consumer, getRecipeLocation(ModItems.KETCHUP_BOTTLE.get(), "crafting_shapeless"));
+        ShapelessRecipeBuilder.shapeless(ModItems.KETCHUP_BOTTLE.get())
+                .requires(Items.GLASS_BOTTLE)
+                .requires(ModTags.CROPS_TOMATOES)
+                .requires(ModTags.CROPS_TOMATOES)
+                .unlockedBy("has_tomato", createTagCriterion(ModTags.CROPS_TOMATOES))
+                .save(consumer, getRecipeLocation(ModItems.KETCHUP_BOTTLE.get(), "crafting_shapeless"));
 
-        ShapelessRecipeBuilder.shapelessRecipe(ModItems.CHARRED_FOOD.get())
-                .addIngredient(ModItems.CHARRED_MORSEL.get(), 9)
-                .addCriterion("has_charred_morsel", createItemCriterion(ModItems.CHARRED_FOOD.get()))
-                .build(consumer, getRecipeLocation(ModItems.CHARRED_MORSEL.get(), "crafting_shapeless"));
+        ShapelessRecipeBuilder.shapeless(ModItems.CHARRED_FOOD.get())
+                .requires(ModItems.CHARRED_MORSEL.get(), 9)
+                .unlockedBy("has_charred_morsel", createItemCriterion(ModItems.CHARRED_FOOD.get()))
+                .save(consumer, getRecipeLocation(ModItems.CHARRED_MORSEL.get(), "crafting_shapeless"));
 
-        ShapelessRecipeBuilder.shapelessRecipe(ModItems.TOMATO_SEEDS.get(), 2)
-                .addIngredient(Ingredient.fromItems(ModItems.TOMATO.get(), ModItems.TOMATO_SLICES.get()))
-                .addCriterion("has_tomato", createItemCriterion(ModItems.TOMATO.get()))
-                .build(consumer, getRecipeLocation(ModItems.TOMATO_SEEDS.get(), "crafting_shapeless"));
+        ShapelessRecipeBuilder.shapeless(ModItems.TOMATO_SEEDS.get(), 2)
+                .requires(Ingredient.of(ModItems.TOMATO.get(), ModItems.TOMATO_SLICES.get()))
+                .unlockedBy("has_tomato", createItemCriterion(ModItems.TOMATO.get()))
+                .save(consumer, getRecipeLocation(ModItems.TOMATO_SEEDS.get(), "crafting_shapeless"));
     }
 
-    private void addCookingRecipes(Consumer<IFinishedRecipe> consumer) {
+    private void addCookingRecipes(Consumer<FinishedRecipe> consumer) {
         addFoodCookingRecipes(ModItems.PORK_CUTS.get(), ModItems.BACON_STRIPS.get(), consumer);
     }
 
-    private void addCuttingBoard(Block cuttingBoard, Block strippedLog, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(cuttingBoard)
-                .patternLine("AA")
-                .key('A', strippedLog)
-                .addCriterion("has_stripped_log", createItemCriterion(strippedLog))
-                .build(consumer, getRecipeLocation(cuttingBoard, "crafting_shaped/cutting_board"));
+    private void addCuttingBoard(Block cuttingBoard, Block strippedLog, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(cuttingBoard)
+                .pattern("AA")
+                .define('A', strippedLog)
+                .unlockedBy("has_stripped_log", createItemCriterion(strippedLog))
+                .save(consumer, getRecipeLocation(cuttingBoard, "crafting_shaped/cutting_board"));
     }
 
-    private void addSandwichAssemblyTable(Block sandwichAssemblyTable, Block planks, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(sandwichAssemblyTable)
-                .patternLine("AA")
-                .patternLine("BB")
-                .key('A', Blocks.SMOOTH_STONE)
-                .key('B', planks)
-                .addCriterion("has_planks", createItemCriterion(planks))
-                .build(consumer, getRecipeLocation(sandwichAssemblyTable, "crafting_shaped/sandwich_assembly_table"));
+    private void addSandwichAssemblyTable(Block sandwichAssemblyTable, Block planks, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(sandwichAssemblyTable)
+                .pattern("AA")
+                .pattern("BB")
+                .define('A', Blocks.SMOOTH_STONE)
+                .define('B', planks)
+                .unlockedBy("has_planks", createItemCriterion(planks))
+                .save(consumer, getRecipeLocation(sandwichAssemblyTable, "crafting_shaped/sandwich_assembly_table"));
     }
 
-    private void addToaster(Block toaster, Block piston, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(toaster)
-                .patternLine(" A ")
-                .patternLine("BEB")
-                .patternLine("CDC")
-                .key('A', Items.LEVER)
-                .key('B', Tags.Items.INGOTS_IRON)
-                .key('C', ItemTags.PLANKS)
-                .key('D', piston)
-                .key('E', Items.REDSTONE)
-                .addCriterion("has_piston", createItemCriterion(piston))
-                .build(consumer, getRecipeLocation(toaster, "crafting_shaped/toaster"));
+    private void addToaster(Block toaster, Block piston, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(toaster)
+                .pattern(" A ")
+                .pattern("BEB")
+                .pattern("CDC")
+                .define('A', Items.LEVER)
+                .define('B', Tags.Items.INGOTS_IRON)
+                .define('C', ItemTags.PLANKS)
+                .define('D', piston)
+                .define('E', Items.REDSTONE)
+                .unlockedBy("has_piston", createItemCriterion(piston))
+                .save(consumer, getRecipeLocation(toaster, "crafting_shaped/toaster"));
     }
 
-    private void addFoodCookingRecipes(IItemProvider ingredient, IItemProvider result, Consumer<IFinishedRecipe> consumer) {
-        addCookingRecipe(ingredient, result, IRecipeSerializer.SMELTING, "smelting", 200, consumer);
-        addCookingRecipe(ingredient, result, IRecipeSerializer.SMOKING, "smoking", 100, consumer);
-        addCookingRecipe(ingredient, result, IRecipeSerializer.CAMPFIRE_COOKING, "campfire_cooking", 600, consumer);
+    private void addFoodCookingRecipes(ItemLike ingredient, ItemLike result, Consumer<FinishedRecipe> consumer) {
+        addCookingRecipe(ingredient, result, RecipeSerializer.SMELTING_RECIPE, "smelting", 200, consumer);
+        addCookingRecipe(ingredient, result, RecipeSerializer.SMOKING_RECIPE, "smoking", 100, consumer);
+        addCookingRecipe(ingredient, result, RecipeSerializer.CAMPFIRE_COOKING_RECIPE, "campfire_cooking", 600, consumer);
     }
 
-    private void addCookingRecipe(IItemProvider ingredient, IItemProvider result, CookingRecipeSerializer<?> serializer, String cookingMethod, int cookingTime, Consumer<IFinishedRecipe> consumer) {
+    private void addCookingRecipe(ItemLike ingredient, ItemLike result, SimpleCookingSerializer<?> serializer, String cookingMethod, int cookingTime, Consumer<FinishedRecipe> consumer) {
         //noinspection ConstantConditions
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(ingredient), result, 0.25F, cookingTime, serializer)
-                .addCriterion("has_ingredient", createItemCriterion(ingredient))
-                .build(consumer, Util.prefix(cookingMethod).toString() + "/" + ingredient.asItem().getRegistryName().getPath());
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(ingredient), result, 0.25F, cookingTime, serializer)
+                .unlockedBy("has_ingredient", createItemCriterion(ingredient))
+                .save(consumer, Util.prefix(cookingMethod) + "/" + ingredient.asItem().getRegistryName().getPath());
     }
 
-    private ResourceLocation getRecipeLocation(IItemProvider result, String location) {
+    private ResourceLocation getRecipeLocation(ItemLike result, String location) {
         // noinspection ConstantConditions
         return Util.prefix(location + "/" + result.asItem().getRegistryName().getPath());
     }
 
-    private InventoryChangeTrigger.Instance createItemCriterion(IItemProvider itemProvider) {
-        return InventoryChangeTrigger.Instance.forItems(itemProvider);
+    private InventoryChangeTrigger.TriggerInstance createItemCriterion(ItemLike itemProvider) {
+        return InventoryChangeTrigger.TriggerInstance.hasItems(itemProvider);
     }
 
-    private InventoryChangeTrigger.Instance createTagCriterion(ITag<Item> tag) {
-        return InventoryChangeTrigger.Instance.forItems(ItemPredicate.Builder.create().tag(tag).build());
+    private InventoryChangeTrigger.TriggerInstance createTagCriterion(Tag<Item> tag) {
+        return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(tag).build());
     }
 }

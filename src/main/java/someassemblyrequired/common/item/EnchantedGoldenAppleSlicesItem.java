@@ -1,7 +1,7 @@
 package someassemblyrequired.common.item;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 public class EnchantedGoldenAppleSlicesItem extends Item {
 
@@ -10,7 +10,7 @@ public class EnchantedGoldenAppleSlicesItem extends Item {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 }

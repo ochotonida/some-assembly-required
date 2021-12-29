@@ -2,15 +2,15 @@ package someassemblyrequired.common.recipe;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import someassemblyrequired.common.init.ModRecipeTypes;
 
@@ -28,12 +28,12 @@ public class CuttingRecipe extends SingleIngredientRecipe {
     }
 
     @Override
-    public ItemStack getCraftingResult(IInventory inventory) {
+    public ItemStack assemble(Container inventory) {
         return results.get(0).copy();
     }
 
     @Override
-    public ItemStack getRecipeOutput() {
+    public ItemStack getResultItem() {
         return results.get(0);
     }
 
@@ -50,25 +50,25 @@ public class CuttingRecipe extends SingleIngredientRecipe {
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
+    public RecipeSerializer<?> getSerializer() {
         return ModRecipeTypes.CUTTING_SERIALIZER.get();
     }
 
-    public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<CuttingRecipe> {
+    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<CuttingRecipe> {
 
         @Override
-        public CuttingRecipe read(ResourceLocation id, JsonObject json) {
-            String group = JSONUtils.getString(json, "group", "");
-            Ingredient ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "ingredient"));
-            Ingredient tool = Ingredient.deserialize(JSONUtils.getJsonObject(json, "tool"));
+        public CuttingRecipe fromJson(ResourceLocation id, JsonObject json) {
+            String group = GsonHelper.getAsString(json, "group", "");
+            Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient"));
+            Ingredient tool = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "tool"));
 
             NonNullList<ItemStack> results = NonNullList.create();
-            if (JSONUtils.isJsonArray(json, "result")) {
-                for (JsonElement resultItem : JSONUtils.getJsonArray(json, "result")) {
-                    results.add(ShapedRecipe.deserializeItem(resultItem.getAsJsonObject()));
+            if (GsonHelper.isArrayNode(json, "result")) {
+                for (JsonElement resultItem : GsonHelper.getAsJsonArray(json, "result")) {
+                    results.add(ShapedRecipe.itemFromJson(resultItem.getAsJsonObject()));
                 }
             } else {
-                results.add(ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result")));
+                results.add(ShapedRecipe.itemFromJson(GsonHelper.getAsJsonObject(json, "result")));
             }
 
             return new CuttingRecipe(id, group, ingredient, tool, results);
@@ -76,29 +76,29 @@ public class CuttingRecipe extends SingleIngredientRecipe {
 
         @Nullable
         @Override
-        public CuttingRecipe read(ResourceLocation id, PacketBuffer buffer) {
-            String group = buffer.readString(32767);
-            Ingredient input = Ingredient.read(buffer);
-            Ingredient tool = Ingredient.read(buffer);
+        public CuttingRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
+            String group = buffer.readUtf(32767);
+            Ingredient input = Ingredient.fromNetwork(buffer);
+            Ingredient tool = Ingredient.fromNetwork(buffer);
 
             int size = buffer.readVarInt();
             NonNullList<ItemStack> results = NonNullList.create();
             for (int i = 0; i < size; ++i) {
-                results.add(buffer.readItemStack());
+                results.add(buffer.readItem());
             }
 
             return new CuttingRecipe(id, group, input, tool, results);
         }
 
         @Override
-        public void write(PacketBuffer buffer, CuttingRecipe recipe) {
-            buffer.writeString(recipe.group);
-            recipe.input.write(buffer);
-            recipe.tool.write(buffer);
+        public void toNetwork(FriendlyByteBuf buffer, CuttingRecipe recipe) {
+            buffer.writeUtf(recipe.group);
+            recipe.input.toNetwork(buffer);
+            recipe.tool.toNetwork(buffer);
 
             buffer.writeVarInt(recipe.results.size());
             for (ItemStack result : recipe.results) {
-                buffer.writeItemStack(result);
+                buffer.writeItem(result);
             }
         }
     }

@@ -1,13 +1,13 @@
 package someassemblyrequired.data;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CropsBlock;
+import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.state.Property;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
@@ -35,7 +35,7 @@ public class BlockStates extends BlockStateProvider {
         // lettuce
         getVariantBuilder(ModBlocks.LETTUCE.get())
                 .forAllStates(state -> ConfiguredModel.builder()
-                        .modelFile(createLettuceModel(state.get(((CropsBlock) ModBlocks.LETTUCE.get()).getAgeProperty())))
+                        .modelFile(createLettuceModel(state.getValue(((CropBlock) ModBlocks.LETTUCE.get()).getAgeProperty())))
                         .build()
                 );
 
@@ -45,7 +45,7 @@ public class BlockStates extends BlockStateProvider {
         // tomatoes
         getVariantBuilder(ModBlocks.TOMATOES.get())
                 .forAllStates(state -> ConfiguredModel.builder()
-                        .modelFile(createTomatoesModel(state.get(((CropsBlock) ModBlocks.TOMATOES.get()).getAgeProperty())))
+                        .modelFile(createTomatoesModel(state.getValue(((CropBlock) ModBlocks.TOMATOES.get()).getAgeProperty())))
                         .build()
                 );
 
@@ -121,7 +121,7 @@ public class BlockStates extends BlockStateProvider {
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> ConfiguredModel.builder()
                         .modelFile(modelFunction.apply(state))
-                        .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 180) % 360)
+                        .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
                         .build(), ignored
                 );
     }
@@ -145,8 +145,8 @@ public class BlockStates extends BlockStateProvider {
     private void toaster(Block block) {
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> ConfiguredModel.builder()
-                        .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 180) % 360)
-                        .modelFile(models().getExistingFile(prefixBlock(state.get(RedstoneToasterBlock.TOASTING) ? "toasting_redstone_toaster" : "idle_redstone_toaster")))
+                        .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
+                        .modelFile(models().getExistingFile(prefixBlock(state.getValue(RedstoneToasterBlock.TOASTING) ? "toasting_redstone_toaster" : "idle_redstone_toaster")))
                         .build(), BlockStateProperties.WATERLOGGED, BlockStateProperties.POWERED);
     }
 
@@ -199,7 +199,7 @@ public class BlockStates extends BlockStateProvider {
                 .face(Direction.SOUTH).end()
                 .face(Direction.WEST).end()
                 .faces((direction, face) ->
-                        face.uvs(direction.getHorizontalIndex() * 2, 0, direction.getHorizontalIndex() * 2 + 2, 16)
+                        face.uvs(direction.get2DDataValue() * 2, 0, direction.get2DDataValue() * 2 + 2, 16)
                 )
                 .face(Direction.UP)
                 .uvs(8, 0, 10, 2)
@@ -211,7 +211,7 @@ public class BlockStates extends BlockStateProvider {
     }
 
     private void addCropLeaves(BlockModelBuilder model, int size, int offsetFromOrigin, float angle, Consumer<ModelBuilder<?>.ElementBuilder> consumer) {
-        Direction.Plane.HORIZONTAL.getDirectionValues().forEach(direction -> {
+        Direction.Plane.HORIZONTAL.stream().forEach(direction -> {
             int axisDirectionSign = direction.getAxisDirection() == Direction.AxisDirection.POSITIVE ? 1 : -1;
             int xWidth = direction.getAxis() == Direction.Axis.Z ? 16 * axisDirectionSign : 0;
             int yWidth = direction.getAxis() == Direction.Axis.X ? 16 * axisDirectionSign : 0;
@@ -225,7 +225,7 @@ public class BlockStates extends BlockStateProvider {
                     .rotation()
                     .origin(leafOriginX, leafOriginY, leafOriginZ)
                     .angle(angle * axisDirectionSign)
-                    .axis(direction.rotateY().getAxis())
+                    .axis(direction.getClockWise().getAxis())
                     .end()
                     .face(direction).end()
                     .face(direction.getOpposite()).end()
