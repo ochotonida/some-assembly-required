@@ -1,0 +1,30 @@
+{
+  "parent": "some_assembly_required:obtain_sandwich",
+  "display": {
+    "icon": {
+      "item": "some_assembly_required:sandwich",
+      "nbt": "{BlockEntityTag:{Ingredients:{Items:[{Count:1b,Slot:0,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}},{Count:1b,Slot:1,id:\"some_assembly_required:chopped_beetroot\",tag:{IsOnSandwich:1b}},{Count:1b,Slot:2,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}},{Count:1b,Slot:3,id:\"some_assembly_required:chopped_beetroot\",tag:{IsOnSandwich:1b}},{Count:1b,Slot:4,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}}],Size:5}}}"
+    },
+    "title": {
+      "translate": "advancement.some_assembly_required.consume_double_decker_sandwich.title"
+    },
+    "description": {
+      "translate": "advancement.some_assembly_required.consume_double_decker_sandwich.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "consume_double_decker_sandwich": {
+      "trigger": "some_assembly_required:consume_double_decker_sandwich",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "consume_double_decker_sandwich"
+    ]
+  ]
+}

@@ -1,7 +1,4 @@
 {
   "replace": false,
-  "values": [
-    "someassemblyrequired:crimson_cutting_board",
-    "someassemblyrequired:warped_cutting_board"
-  ]
+  "values": []
 }

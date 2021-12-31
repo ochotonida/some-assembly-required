@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "some_assembly_required:crafting_shapeless/charred_morsel"
+    ]
+  },
+  "criteria": {
+    "has_charred_morsel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "some_assembly_required:charred_food"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "some_assembly_required:crafting_shapeless/charred_morsel"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_charred_morsel",
+      "has_the_recipe"
+    ]
+  ]
+}

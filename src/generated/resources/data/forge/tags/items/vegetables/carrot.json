@@ -2,6 +2,6 @@
   "replace": false,
   "values": [
     "minecraft:carrot",
-    "someassemblyrequired:chopped_carrot"
+    "some_assembly_required:chopped_carrot"
   ]
 }

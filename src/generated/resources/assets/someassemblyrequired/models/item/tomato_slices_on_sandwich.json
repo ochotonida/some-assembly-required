@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "someassemblyrequired:item/tomato_slices_on_sandwich"
-  }
-}

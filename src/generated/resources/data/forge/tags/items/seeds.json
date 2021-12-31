@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#forge:seeds/lettuce",
-    "#forge:seeds/tomato"
+    "#forge:seeds/lettuce"
   ]
 }

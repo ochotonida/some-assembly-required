@@ -1,0 +1,8 @@
+{
+  "parent": "some_assembly_required:block/sandwich_assembly_table",
+  "textures": {
+    "front": "some_assembly_required:block/birch_sandwich_assembly_table_front",
+    "side": "some_assembly_required:block/birch_sandwich_assembly_table_side",
+    "bottom": "minecraft:block/birch_planks"
+  }
+}

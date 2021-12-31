@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "someassemblyrequired:golden_apple_slices",
-    "someassemblyrequired:enchanted_golden_apple_slices",
-    "someassemblyrequired:chopped_golden_carrot"
+    "some_assembly_required:golden_apple_slices",
+    "some_assembly_required:enchanted_golden_apple_slices",
+    "some_assembly_required:chopped_golden_carrot"
   ]
 }

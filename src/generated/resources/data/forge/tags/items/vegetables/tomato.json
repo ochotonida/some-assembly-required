@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "someassemblyrequired:tomato",
-    "someassemblyrequired:tomato_slices"
+    "some_assembly_required:tomato_slices"
   ]
 }

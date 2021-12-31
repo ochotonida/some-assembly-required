@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "some_assembly_required:item/sliced_toasted_crimson_fungus_on_sandwich"
+  }
+}

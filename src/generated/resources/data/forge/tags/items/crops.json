@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#forge:crops/lettuce",
-    "#forge:crops/tomato"
+    "#forge:crops/lettuce"
   ]
 }

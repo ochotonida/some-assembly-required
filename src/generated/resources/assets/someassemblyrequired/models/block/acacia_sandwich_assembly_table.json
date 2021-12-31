@@ -1,8 +1,0 @@
-{
-  "parent": "someassemblyrequired:block/sandwich_assembly_table",
-  "textures": {
-    "front": "someassemblyrequired:block/acacia_sandwich_assembly_table_front",
-    "side": "someassemblyrequired:block/acacia_sandwich_assembly_table_side",
-    "bottom": "minecraft:block/acacia_planks"
-  }
-}

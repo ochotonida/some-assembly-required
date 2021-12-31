@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "some_assembly_required:crafting_shaped/toaster/sticky_redstone_toaster"
+    ]
+  },
+  "criteria": {
+    "has_piston": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:sticky_piston"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "some_assembly_required:crafting_shaped/toaster/sticky_redstone_toaster"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_piston",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "crop": "some_assembly_required:block/lettuce_stage3",
+    "particle": "some_assembly_required:item/lettuce_head"
+  },
+  "elements": [
+    {
+      "from": [
+        5,
+        -1,
+        5
+      ],
+      "to": [
+        11,
+        4,
+        11
+      ],
+      "faces": {
+        "up": {
+          "texture": "#crop",
+          "uv": [
+            0.0,
+            8.0,
+            3.0,
+            11.0
+          ]
+        },
+        "north": {
+          "texture": "#crop",
+          "uv": [
+            3.0,
+            8.0,
+            6.0,
+            10.5
+          ]
+        },
+        "south": {
+          "texture": "#crop",
+          "uv": [
+            3.0,
+            8.0,
+            6.0,
+            10.5
+          ]
+        },
+        "west": {
+          "texture": "#crop",
+          "uv": [
+            3.0,
+            8.0,
+            6.0,
+            10.5
+          ]
+        },
+        "east": {
+          "texture": "#crop",
+          "uv": [
+            3.0,
+            8.0,
+            6.0,
+            10.5
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        16,
+        -1,
+        5
+      ],
+      "to": [
+        0,
+        7,
+        5
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          -1,
+          5
+        ],
+        "axis": "x",
+        "angle": -45.0
+      },
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#crop",
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            4.0
+          ]
+        },
+        "south": {
+          "texture": "#crop",
+          "uv": [
+            0.0,
+            4.0,
+            8.0,
+            8.0
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        -1,
+        16
+      ],
+      "to": [
+        5,
+        7,
+        0
+      ],
+      "rotation": {
+        "origin": [
+          5,
+          -1,
+          8
+        ],
+        "axis": "z",
+        "angle": 45.0
+      },
+      "shade": false,
+      "faces": {
+        "west": {
+          "texture": "#crop",
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            4.0
+          ]
+        },
+        "east": {
+          "texture": "#crop",
+          "uv": [
+            0.0,
+            4.0,
+            8.0,
+            8.0
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        -1,
+        11
+      ],
+      "to": [
+        16,
+        7,
+        11
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          -1,
+          11
+        ],
+        "axis": "x",
+        "angle": 45.0
+      },
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#crop",
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            4.0
+          ]
+        },
+        "south": {
+          "texture": "#crop",
+          "uv": [
+            0.0,
+            4.0,
+            8.0,
+            8.0
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        11,
+        -1,
+        0
+      ],
+      "to": [
+        11,
+        7,
+        16
+      ],
+      "rotation": {
+        "origin": [
+          11,
+          -1,
+          8
+        ],
+        "axis": "z",
+        "angle": -45.0
+      },
+      "shade": false,
+      "faces": {
+        "west": {
+          "texture": "#crop",
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            4.0
+          ]
+        },
+        "east": {
+          "texture": "#crop",
+          "uv": [
+            0.0,
+            4.0,
+            8.0,
+            8.0
+          ]
+        }
+      }
+    }
+  ]
+}

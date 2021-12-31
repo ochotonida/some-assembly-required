@@ -1,9 +1,0 @@
-{
-  "type": "someassemblyrequired:toasting",
-  "ingredient": {
-    "item": "someassemblyrequired:bread_slice"
-  },
-  "result": {
-    "item": "someassemblyrequired:toasted_bread_slice"
-  }
-}

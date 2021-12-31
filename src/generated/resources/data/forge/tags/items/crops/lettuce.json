@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "someassemblyrequired:lettuce_head",
-    "someassemblyrequired:lettuce_leaf"
+    "some_assembly_required:lettuce_head",
+    "some_assembly_required:lettuce_leaf"
   ]
 }
