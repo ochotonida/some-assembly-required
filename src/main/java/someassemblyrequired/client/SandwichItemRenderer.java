@@ -14,6 +14,11 @@ public class SandwichItemRenderer extends BlockEntityWithoutLevelRenderer {
 
     private static final ItemStack BARRIER = new ItemStack(Items.BARRIER);
 
+    public SandwichItemRenderer() {
+        // noinspection ConstantConditions
+        super(null, null);
+    }
+
     @Override
     public void renderByItem(ItemStack stack, ItemTransforms.TransformType transformType, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
         stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
@@ -38,10 +43,10 @@ public class SandwichItemRenderer extends BlockEntityWithoutLevelRenderer {
             matrixStack.mulPose(Vector3f.ZP.rotationDegrees(180));
 
             if (size == 0) {
-                Minecraft.getInstance().getItemRenderer().renderStatic(BARRIER, ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
+                Minecraft.getInstance().getItemRenderer().renderStatic(BARRIER, ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer, 0);
             } else {
                 for (int slot = 0; slot < size; slot++) {
-                    Minecraft.getInstance().getItemRenderer().renderStatic(handler.getStackInSlot(slot), ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer);
+                    Minecraft.getInstance().getItemRenderer().renderStatic(handler.getStackInSlot(slot), ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, matrixStack, buffer, 0);
                     matrixStack.translate(0, 0, -1 / 16D - 0.001);
                 }
             }

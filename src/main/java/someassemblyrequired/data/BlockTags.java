@@ -17,12 +17,7 @@ public class BlockTags extends BlockTagsProvider {
     @Override
     protected void addTags() {
         tag(net.minecraft.tags.BlockTags.CROPS).add(
-                ModBlocks.LETTUCE.get(),
-                ModBlocks.TOMATOES.get()
-        );
-        tag(net.minecraft.tags.BlockTags.NON_FLAMMABLE_WOOD).add(
-                ModBlocks.CRIMSON_CUTTING_BOARD.get(),
-                ModBlocks.WARPED_CUTTING_BOARD.get()
+                ModBlocks.LETTUCE.get()
         );
     }
 }

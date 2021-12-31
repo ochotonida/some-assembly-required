@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.block.RedstoneToasterBlock;
+import someassemblyrequired.common.block.redstonetoaster.RedstoneToasterBlock;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.util.Util;
 
@@ -36,16 +36,6 @@ public class BlockStates extends BlockStateProvider {
         getVariantBuilder(ModBlocks.LETTUCE.get())
                 .forAllStates(state -> ConfiguredModel.builder()
                         .modelFile(createLettuceModel(state.getValue(((CropBlock) ModBlocks.LETTUCE.get()).getAgeProperty())))
-                        .build()
-                );
-
-        // tomato base model
-        createTomatoesBaseModel();
-
-        // tomatoes
-        getVariantBuilder(ModBlocks.TOMATOES.get())
-                .forAllStates(state -> ConfiguredModel.builder()
-                        .modelFile(createTomatoesModel(state.getValue(((CropBlock) ModBlocks.TOMATOES.get()).getAgeProperty())))
                         .build()
                 );
 
@@ -78,15 +68,6 @@ public class BlockStates extends BlockStateProvider {
                 .end()
                 .end();
 
-        // cutting board base model
-        models().withExistingParent("block/cutting_board", "thin_block")
-                .texture("particle", "#texture")
-                .element()
-                .from(1, 0, 2)
-                .to(15, 1, 14)
-                .allFaces((direction, face) -> face.texture("#texture"))
-                .end();
-
         sandwichAssemblyTable(ModBlocks.OAK_SANDWICH_ASSEMBLY_TABLE.get(), "oak");
         sandwichAssemblyTable(ModBlocks.SPRUCE_SANDWICH_ASSEMBLY_TABLE.get(), "spruce");
         sandwichAssemblyTable(ModBlocks.BIRCH_SANDWICH_ASSEMBLY_TABLE.get(), "birch");
@@ -96,25 +77,16 @@ public class BlockStates extends BlockStateProvider {
         sandwichAssemblyTable(ModBlocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get(), "crimson");
         sandwichAssemblyTable(ModBlocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get(), "warped");
 
-        cuttingBoard(ModBlocks.OAK_CUTTING_BOARD.get(), "oak", "log");
-        cuttingBoard(ModBlocks.SPRUCE_CUTTING_BOARD.get(), "spruce", "log");
-        cuttingBoard(ModBlocks.BIRCH_CUTTING_BOARD.get(), "birch", "log");
-        cuttingBoard(ModBlocks.JUNGLE_CUTTING_BOARD.get(), "jungle", "log");
-        cuttingBoard(ModBlocks.ACACIA_CUTTING_BOARD.get(), "acacia", "log");
-        cuttingBoard(ModBlocks.DARK_OAK_CUTTING_BOARD.get(), "dark_oak", "log");
-        cuttingBoard(ModBlocks.CRIMSON_CUTTING_BOARD.get(), "crimson", "stem");
-        cuttingBoard(ModBlocks.WARPED_CUTTING_BOARD.get(), "warped", "stem");
-
         toaster(ModBlocks.REDSTONE_TOASTER.get());
         toaster(ModBlocks.STICKY_REDSTONE_TOASTER.get());
     }
 
     private ResourceLocation prefixBlock(String path) {
-        return Util.prefix("block/" + path);
+        return Util.id("block/" + path);
     }
 
     private ResourceLocation prefixItem(String path) {
-        return Util.prefix("item/" + path);
+        return Util.id("item/" + path);
     }
 
     private void horizontalBlock(Block block, Function<BlockState, ModelFile> modelFunction, Property<?>... ignored) {
@@ -133,13 +105,6 @@ public class BlockStates extends BlockStateProvider {
                 .texture("side", prefixBlock(woodType + "_sandwich_assembly_table_side"))
                 .texture("bottom", new ResourceLocation("block/" + woodType + "_planks"));
         horizontalBlock(block, $ -> model);
-    }
-
-    private void cuttingBoard(Block block, String woodType, String logName) {
-        ModelFile model = models()
-                .withExistingParent("block/" + woodType + "_cutting_board", prefixBlock("cutting_board"))
-                .texture("texture", new ResourceLocation("block/stripped_" + woodType + "_" + logName));
-        horizontalBlock(block, $ -> model, BlockStateProperties.WATERLOGGED);
     }
 
     private void toaster(Block block) {
@@ -178,36 +143,6 @@ public class BlockStates extends BlockStateProvider {
         }));
 
         return model;
-    }
-
-    private ModelFile createTomatoesModel(int growthStage) {
-        return models()
-                .withExistingParent(prefixBlock("tomatoes_stage" + growthStage).toString(), prefixBlock("tomatoes"))
-                .texture("crop", prefixBlock("tomatoes_stage" + growthStage));
-    }
-
-    private void createTomatoesBaseModel() {
-        BlockModelBuilder model = models().getBuilder("block/tomatoes")
-                .ao(false)
-                .texture("particle", "#crop")
-                .texture("pole", prefixBlock("tomatoes_pole"))
-                .element()
-                .from(7, -1, 7)
-                .to(9, 15, 9)
-                .face(Direction.NORTH).end()
-                .face(Direction.EAST).end()
-                .face(Direction.SOUTH).end()
-                .face(Direction.WEST).end()
-                .faces((direction, face) ->
-                        face.uvs(direction.get2DDataValue() * 2, 0, direction.get2DDataValue() * 2 + 2, 16)
-                )
-                .face(Direction.UP)
-                .uvs(8, 0, 10, 2)
-                .end()
-                .texture("#pole")
-                .end();
-
-        addCropLeaves(model, 16, 2, 0, element -> element.faces((direction, face) -> face.uvs(0, 0, 16, 16)));
     }
 
     private void addCropLeaves(BlockModelBuilder model, int size, int offsetFromOrigin, float angle, Consumer<ModelBuilder<?>.ElementBuilder> consumer) {

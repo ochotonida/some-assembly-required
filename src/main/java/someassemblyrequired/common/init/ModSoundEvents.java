@@ -11,7 +11,7 @@ public class ModSoundEvents {
 
     public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, SomeAssemblyRequired.MODID);
 
-    public static final RegistryObject<SoundEvent> ADD_INGREDIENT = REGISTRY.register("block.sandwich_assembly_table.add_ingredient", () -> new SoundEvent(Util.prefix("block.sandwich_assembly_table.add_ingredient")));
-    public static final RegistryObject<SoundEvent> ADD_SPREAD = REGISTRY.register("block.sandwich_assembly_table.add_spread", () -> new SoundEvent(Util.prefix("block.sandwich_assembly_table.add_spread")));
+    public static final RegistryObject<SoundEvent> ADD_INGREDIENT = REGISTRY.register("block.sandwich_assembly_table.add_ingredient", () -> new SoundEvent(Util.id("block.sandwich_assembly_table.add_ingredient")));
+    public static final RegistryObject<SoundEvent> ADD_SPREAD = REGISTRY.register("block.sandwich_assembly_table.add_spread", () -> new SoundEvent(Util.id("block.sandwich_assembly_table.add_spread")));
 
 }

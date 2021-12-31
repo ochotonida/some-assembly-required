@@ -15,21 +15,15 @@ public class ModTags {
     public static final Tag.Named<Item> BREAD_SLICES = createForgeTag("bread_slices");
     public static final Tag.Named<Item> BREAD_SLICES_WHEAT = createForgeTag("bread_slices/wheat");
     public static final Tag.Named<Item> COOKED_BACON = createForgeTag("cooked_bacon");
-    public static final Tag.Named<Item> COOKED_PORK = createForgeTag("cooked_pork");
     public static final Tag.Named<Item> CROPS = createForgeTag("crops");
     public static final Tag.Named<Item> CROPS_LETTUCE = createForgeTag("crops/lettuce");
     public static final Tag.Named<Item> CROPS_TOMATOES = createForgeTag("crops/tomato");
     public static final Tag.Named<Item> FRUITS = createForgeTag("fruits");
     public static final Tag.Named<Item> FRUITS_APPLE = createForgeTag("fruits/apple");
-    public static final Tag.Named<Item> RAW_BACON = createForgeTag("raw_bacon");
-    public static final Tag.Named<Item> RAW_PORK = createForgeTag("raw_pork");
     public static final Tag.Named<Item> SALAD_INGREDIENTS = createForgeTag("salad_ingredients");
     public static final Tag.Named<Item> SALAD_INGREDIENTS_LETTUCE = createForgeTag("salad_ingredients/lettuce");
     public static final Tag.Named<Item> SEEDS = createForgeTag("seeds");
     public static final Tag.Named<Item> SEEDS_LETTUCE = createForgeTag("seeds/lettuce");
-    public static final Tag.Named<Item> SEEDS_TOMATO = createForgeTag("seeds/tomato");
-    public static final Tag.Named<Item> TOOLS = createForgeTag("tools");
-    public static final Tag.Named<Item> TOOLS_KNIVES = createForgeTag("tools/knives");
     public static final Tag.Named<Item> TORTILLAS = createForgeTag("tortillas");
     public static final Tag.Named<Item> VEGETABLES = createForgeTag("vegetables");
     public static final Tag.Named<Item> VEGETABLES_BEETROOT = createForgeTag("vegetables/beetroot");
@@ -50,6 +44,6 @@ public class ModTags {
     public static final Tag.Named<Item> TOASTER_METALS = createModTag("toaster_metals");
 
     private static Tag.Named<Item> createModTag(String path) {
-        return ItemTags.createOptional(Util.prefix(path));
+        return ItemTags.createOptional(Util.id(path));
     }
 }

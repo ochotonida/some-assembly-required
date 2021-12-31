@@ -5,7 +5,7 @@ import someassemblyrequired.SomeAssemblyRequired;
 
 public class Util {
 
-    public static ResourceLocation prefix(String path) {
+    public static ResourceLocation id(String path) {
         return new ResourceLocation(SomeAssemblyRequired.MODID, path);
     }
 }

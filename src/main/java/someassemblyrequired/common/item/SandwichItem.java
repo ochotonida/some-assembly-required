@@ -1,6 +1,7 @@
 package someassemblyrequired.common.item;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -19,12 +20,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.IItemRenderProperties;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.client.SandwichItemRenderer;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.util.SandwichBuilder;
 import someassemblyrequired.common.util.SandwichIngredientHelper;
@@ -32,6 +36,7 @@ import someassemblyrequired.common.util.SandwichNameHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class SandwichItem extends BlockItem {
 
@@ -50,7 +55,7 @@ public class SandwichItem extends BlockItem {
             for (int slot = size - 1; slot >= 0; slot--) {
                 // only show 8 ingredients (or 9, if there are exactly 9 ingredients)
                 if (slot < size - 8 && size >= 10) {
-                    tooltip.add(new TranslatableComponent("tooltip.someassemblyrequired.truncate_info", size - 8).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+                    tooltip.add(new TranslatableComponent("tooltip.%s.truncate_info".formatted(SomeAssemblyRequired.MODID), size - 8).withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
                     return;
                 }
                 tooltip.add(handler.getStackInSlot(slot).getHoverName().plainCopy().withStyle(ChatFormatting.GRAY));
@@ -87,8 +92,7 @@ public class SandwichItem extends BlockItem {
 
         for (ItemStack ingredient : ingredients) {
             ItemStack finishStack = ingredient.getItem().finishUsingItem(ingredient, world, entity);
-            if (entity instanceof Player) {
-                Player player = (Player) entity;
+            if (entity instanceof Player player) {
                 if (player.getCooldowns().isOnCooldown(ingredient.getItem())) {
                     player.getCooldowns().addCooldown(this, 20);
                 }
@@ -129,6 +133,19 @@ public class SandwichItem extends BlockItem {
                 return LazyOptional.empty();
             }
         };
+    }
+
+    @Override
+    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
+        consumer.accept(new IItemRenderProperties() {
+
+            private final BlockEntityWithoutLevelRenderer renderer = new SandwichItemRenderer();
+
+            @Override
+            public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
+                return renderer;
+            }
+        });
     }
 
     private static class IngredientItemHandler extends ItemStackHandler {

@@ -48,6 +48,6 @@ public class LootInjectHandler {
     }
 
     private static LootPoolEntryContainer.Builder<?> getInjectEntry(String name) {
-        return LootTableReference.lootTableReference(Util.prefix("inject/" + name)).setWeight(1);
+        return LootTableReference.lootTableReference(Util.id("inject/" + name)).setWeight(1);
     }
 }

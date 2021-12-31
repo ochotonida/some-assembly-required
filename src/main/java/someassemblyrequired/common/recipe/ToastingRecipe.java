@@ -44,7 +44,7 @@ public class ToastingRecipe extends SingleIngredientRecipe {
         public ToastingRecipe fromJson(ResourceLocation id, JsonObject json) {
             String group = GsonHelper.getAsString(json, "group", "");
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient"));
-            ItemStack result = ShapedRecipe.itemFromJson(GsonHelper.getAsJsonObject(json, "result"));
+            ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
             return new ToastingRecipe(id, group, ingredient, result);
         }
 

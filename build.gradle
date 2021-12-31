@@ -49,7 +49,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            args '--mod', 'some-assembly-required', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'some_assembly_required', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
                 some_assembly_required {
@@ -81,7 +81,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "some-assembly-required",
+                "Specification-Title"     : "some_assembly_required",
                 "Specification-Vendor"    : "ochotonida",
                 "Specification-Version"   : "1", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,

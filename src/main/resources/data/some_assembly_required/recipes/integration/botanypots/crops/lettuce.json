@@ -1,0 +1,40 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "botanypots"
+    }
+  ],
+  "type": "botanypots:crop",
+  "seed": {
+    "item": "some_assembly_required:lettuce_seeds"
+  },
+  "categories": [
+    "dirt"
+  ],
+  "growthTicks": 900,
+  "display": {
+    "block": "some_assembly_required:lettuce",
+    "properties": {
+      "age": 3
+    }
+  },
+  "results": [
+    {
+      "chance": 1,
+      "output": {
+        "item": "some_assembly_required:lettuce_head"
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    },
+    {
+      "chance": 0.25,
+      "output": {
+        "item": "some_assembly_required:lettuce_seeds"
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    }
+  ]
+}

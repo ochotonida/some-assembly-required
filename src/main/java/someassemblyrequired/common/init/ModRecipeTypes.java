@@ -11,7 +11,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.recipe.CuttingRecipe;
 import someassemblyrequired.common.recipe.PotionToItemStackBrewingRecipe;
 import someassemblyrequired.common.recipe.SingleIngredientRecipe;
 import someassemblyrequired.common.recipe.ToastingRecipe;
@@ -21,10 +20,8 @@ public class ModRecipeTypes {
 
     public static final DeferredRegister<RecipeSerializer<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SomeAssemblyRequired.MODID);
 
-    public static final RecipeType<CuttingRecipe> CUTTING = RecipeType.register(Util.prefix("cutting").toString());
-    public static final RecipeType<SingleIngredientRecipe> TOASTING = RecipeType.register(Util.prefix("toasting").toString());
+    public static final RecipeType<SingleIngredientRecipe> TOASTING = RecipeType.register(Util.id("toasting").toString());
 
-    public static final RegistryObject<RecipeSerializer<?>> CUTTING_SERIALIZER = REGISTRY.register("cutting", CuttingRecipe.Serializer::new);
     public static final RegistryObject<RecipeSerializer<?>> TOASTING_SERIALIZER = REGISTRY.register("toasting", ToastingRecipe.Serializer::new);
 
     public static void registerBrewingRecipes() {

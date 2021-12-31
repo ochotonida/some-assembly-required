@@ -7,6 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
+import someassemblyrequired.SomeAssemblyRequired;
 
 public class PotionSpreadType extends SpreadType {
 
@@ -27,7 +28,7 @@ public class PotionSpreadType extends SpreadType {
     @Override
     public Component getDisplayName(ItemStack stack) {
         if (PotionUtils.getPotion(stack) == Potions.WATER) {
-            return new TranslatableComponent("spreadtype.someassemblyrequired.water_bottle");
+            return new TranslatableComponent("spreadtype.%s.water_bottle".formatted(SomeAssemblyRequired.MODID));
         }
         return stack.getHoverName();
     }

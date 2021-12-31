@@ -11,6 +11,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 
@@ -27,8 +28,6 @@ public class SandwichNameHelper {
             ModItems.CHOPPED_CARROT.get(),
             ModItems.CHOPPED_GOLDEN_CARROT.get(),
             ModItems.CHOPPED_BEETROOT.get(),
-            ModItems.PORK_CUTS.get(),
-            ModItems.BACON_STRIPS.get(),
             ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
             ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
             ModItems.TOMATO_SLICES.get(),
@@ -53,7 +52,7 @@ public class SandwichNameHelper {
 
         // BLT
         if (SandwichIngredientHelper.isBLT(uniqueIngredients)) {
-            return new TranslatableComponent("item.someassemblyrequired.blt_sandwich");
+            return new TranslatableComponent("item.%s.blt_sandwich".formatted(SomeAssemblyRequired.MODID));
         }
 
         // potion sandwich
@@ -62,9 +61,9 @@ public class SandwichNameHelper {
             if (spreadItem.getItem() == Items.POTION) {
                 Potion potion = PotionUtils.getPotion(spreadItem);
                 if (potion == Potions.WATER) {
-                    return new TranslatableComponent("item.someassemblyrequired.soggy_sandwich");
+                    return new TranslatableComponent("item.%s.soggy_sandwich".formatted(SomeAssemblyRequired.MODID));
                 } else if (potion.getEffects().size() == 1) {
-                    return new TranslatableComponent("item.someassemblyrequired.potion_sandwich", potion.getEffects().get(0).getEffect().getDisplayName());
+                    return new TranslatableComponent("item.%s.potion_sandwich".formatted(SomeAssemblyRequired.MODID), potion.getEffects().get(0).getEffect().getDisplayName());
                 }
             }
         }
@@ -72,16 +71,16 @@ public class SandwichNameHelper {
         if (uniqueIngredients.size() > 0 && uniqueIngredients.size() <= 3) {
             Component ingredientList = listIngredients(uniqueIngredients);
             if (SandwichIngredientHelper.isDoubleDeckerSandwich(ingredients)) {
-                return new TranslatableComponent("item.someassemblyrequired.double_decker_ingredients_sandwich", ingredientList);
+                return new TranslatableComponent("item.%s.double_decker_ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), ingredientList);
             } else {
-                return new TranslatableComponent("item.someassemblyrequired.ingredients_sandwich", ingredientList);
+                return new TranslatableComponent("item.%s.ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), ingredientList);
             }
         }
 
         if (SandwichIngredientHelper.isDoubleDeckerSandwich(ingredients)) {
-            return new TranslatableComponent("item.someassemblyrequired.double_decker_sandwich");
+            return new TranslatableComponent("item.%s.double_decker_sandwich".formatted(SomeAssemblyRequired.MODID));
         } else {
-            return new TranslatableComponent("item.someassemblyrequired.sandwich");
+            return new TranslatableComponent("item.%s.sandwich".formatted(SomeAssemblyRequired.MODID));
         }
     }
 
@@ -100,9 +99,9 @@ public class SandwichNameHelper {
                 && ingredients.get(0).getItem() != ModItems.TOASTED_BREAD_SLICE.get()
                 && ingredients.get(1).getItem() == ModItems.TOASTED_BREAD_SLICE.get()
                 && ingredients.get(2).getItem() != ModItems.TOASTED_BREAD_SLICE.get()) {
-            return new TranslatableComponent("item.someassemblyrequired.ingredients_sandwich", getIngredientDisplayName(ingredients.get(1)));
+            return new TranslatableComponent("item.%s.ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), getIngredientDisplayName(ingredients.get(1)));
         }
-        return new TranslatableComponent("item.someassemblyrequired.bread_sandwich");
+        return new TranslatableComponent("item.%s.bread_sandwich".formatted(SomeAssemblyRequired.MODID));
     }
 
     private static Component getIngredientDisplayName(ItemStack ingredient) {
@@ -120,6 +119,6 @@ public class SandwichNameHelper {
 
     private static Component listIngredients(List<ItemStack> ingredients) {
         List<Component> ingredientNames = ingredients.stream().map(SandwichNameHelper::getIngredientDisplayName).collect(Collectors.toList());
-        return new TranslatableComponent("tooltip.someassemblyrequired.ingredient_list." + ingredientNames.size(), ingredientNames.toArray());
+        return new TranslatableComponent("tooltip.%s.ingredient_list.".formatted(SomeAssemblyRequired.MODID) + ingredientNames.size(), ingredientNames.toArray());
     }
 }

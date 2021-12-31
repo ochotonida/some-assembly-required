@@ -56,7 +56,6 @@ public class ItemTags extends ItemTagsProvider {
                 Tags.Items.INGOTS_GOLD,
                 Tags.Items.NUGGETS_GOLD
         ).add(
-                ModItems.KITCHEN_KNIFE.get(),
                 ModItems.GOLDEN_APPLE_SLICES.get(),
                 ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
                 ModItems.CHOPPED_GOLDEN_CARROT.get(),
@@ -129,27 +128,13 @@ public class ItemTags extends ItemTagsProvider {
                 ModItems.CHARRED_BREAD_SLICE.get()
         );
 
-        tag(ModTags.COOKED_BACON).add(
-                ModItems.BACON_STRIPS.get()
-        );
-
-        tag(ModTags.COOKED_PORK).add(
-                Items.COOKED_PORKCHOP,
-                ModItems.BACON_STRIPS.get()
-        );
-
         tag(ModTags.CROPS).addTags(
-                ModTags.CROPS_LETTUCE,
-                ModTags.CROPS_TOMATOES
+                ModTags.CROPS_LETTUCE
         );
 
         tag(ModTags.CROPS_LETTUCE).add(
                 ModItems.LETTUCE_HEAD.get(),
                 ModItems.LETTUCE_LEAF.get()
-        );
-
-        tag(ModTags.CROPS_TOMATOES).add(
-                ModItems.TOMATO.get()
         );
 
         tag(ModTags.FRUITS).addTags(
@@ -159,15 +144,6 @@ public class ItemTags extends ItemTagsProvider {
         tag(ModTags.FRUITS_APPLE).add(
                 Items.APPLE,
                 ModItems.APPLE_SLICES.get()
-        );
-
-        tag(ModTags.RAW_BACON).add(
-                ModItems.PORK_CUTS.get()
-        );
-
-        tag(ModTags.RAW_PORK).add(
-                Items.PORKCHOP,
-                ModItems.PORK_CUTS.get()
         );
 
         tag(ModTags.SALAD_INGREDIENTS).addTags(
@@ -180,24 +156,11 @@ public class ItemTags extends ItemTagsProvider {
         );
 
         tag(ModTags.SEEDS).addTags(
-                ModTags.SEEDS_LETTUCE,
-                ModTags.SEEDS_TOMATO
+                ModTags.SEEDS_LETTUCE
         );
 
         tag(ModTags.SEEDS_LETTUCE).add(
                 ModItems.LETTUCE_SEEDS.get()
-        );
-
-        tag(ModTags.SEEDS_TOMATO).add(
-                ModItems.TOMATO_SEEDS.get()
-        );
-
-        tag(ModTags.TOOLS).addTags(
-                ModTags.TOOLS_KNIVES
-        );
-
-        tag(ModTags.TOOLS_KNIVES).add(
-                ModItems.KITCHEN_KNIFE.get()
         );
 
         tag(ModTags.TORTILLAS);
@@ -224,7 +187,6 @@ public class ItemTags extends ItemTagsProvider {
         );
 
         tag(ModTags.VEGETABLES_TOMATO).add(
-                ModItems.TOMATO.get(),
                 ModItems.TOMATO_SLICES.get()
         );
 

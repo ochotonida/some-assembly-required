@@ -36,17 +36,13 @@ public class ItemModels extends ItemModelProvider {
         // ignored
         removeAll(items, ModItems.SANDWICH.get());
 
-        // kitchen knife
-        removeAll(items, ModItems.KITCHEN_KNIFE.get());
-        addHandHeldModel(ModItems.KITCHEN_KNIFE.get());
-
         // spreads
         removeAll(items, ModItems.SPREAD.get());
         addGeneratedModel("spread_on_loaf", prefixItem("spread_on_loaf"));
         addGeneratedModel(ModItems.SPREAD.get())
                 .override()
                 .model(getExistingFile(prefixItem("spread_on_loaf")))
-                .predicate(Util.prefix("on_loaf"), 1)
+                .predicate(Util.id("on_loaf"), 1)
                 .end();
 
         // items with sandwich overrides
@@ -56,8 +52,6 @@ public class ItemModels extends ItemModelProvider {
                 ModItems.CHOPPED_CARROT.get(),
                 ModItems.CHOPPED_GOLDEN_CARROT.get(),
                 ModItems.CHOPPED_BEETROOT.get(),
-                ModItems.PORK_CUTS.get(),
-                ModItems.BACON_STRIPS.get(),
                 ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
                 ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
                 ModItems.TOMATO_SLICES.get(),
@@ -68,7 +62,7 @@ public class ItemModels extends ItemModelProvider {
             addGeneratedModel(itemName, prefixItem(itemName))
                     .override()
                     .model(getExistingFile(prefixItem(itemName + "_on_sandwich")))
-                    .predicate(Util.prefix("on_sandwich"), 1)
+                    .predicate(Util.id("on_sandwich"), 1)
                     .end();
         });
 
@@ -77,7 +71,7 @@ public class ItemModels extends ItemModelProvider {
         addGeneratedModel("enchanted_golden_apple_slices", prefixItem("golden_apple_slices"))
                 .override()
                 .model(getExistingFile(prefixItem("golden_apple_slices_on_sandwich")))
-                .predicate(Util.prefix("on_sandwich"), 1)
+                .predicate(Util.id("on_sandwich"), 1)
                 .end();
 
         // toasters
@@ -86,7 +80,7 @@ public class ItemModels extends ItemModelProvider {
         }
 
         // block items with sprites
-        removeAll(items, ModItems.LETTUCE_SEEDS.get(), ModItems.TOMATO_SEEDS.get()).forEach(this::addGeneratedModel);
+        removeAll(items, ModItems.LETTUCE_SEEDS.get()).forEach(this::addGeneratedModel);
 
         // normal block items
         removeAll(items, item -> item instanceof BlockItem).forEach(
@@ -98,16 +92,11 @@ public class ItemModels extends ItemModelProvider {
     }
 
     private ResourceLocation prefixBlock(String path) {
-        return Util.prefix("block/" + path);
+        return Util.id("block/" + path);
     }
 
     private ResourceLocation prefixItem(String path) {
-        return Util.prefix("item/" + path);
-    }
-
-    private void addHandHeldModel(Item item) {
-        // noinspection ConstantConditions
-        withExistingParent("item/" + item.getRegistryName().getPath(), "item/handheld").texture("layer0", prefixItem(item.getRegistryName().getPath()));
+        return Util.id("item/" + path);
     }
 
     private ItemModelBuilder addGeneratedModel(Item item) {

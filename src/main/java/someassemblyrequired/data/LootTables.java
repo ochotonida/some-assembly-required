@@ -4,14 +4,15 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.loot.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.storage.loot.*;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
@@ -24,6 +25,8 @@ import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
@@ -50,16 +53,12 @@ public class LootTables extends LootTableProvider {
         for (Block block : ModBlocks.getSandwichAssemblyTables()) {
             addStandardDropTable(block);
         }
-        for (Block block : ModBlocks.getCuttingBoards()) {
-            addStandardDropTable(block);
-        }
         for (Block block : ModBlocks.getToasters()) {
             addStandardDropTable(block);
         }
 
 
         addBlockLootTable(ModBlocks.LETTUCE.get(), createCropWithBonusSeedsLootTable((CropBlock) ModBlocks.LETTUCE.get(), ModItems.LETTUCE_HEAD.get(), ModItems.LETTUCE_SEEDS.get()));
-        addBlockLootTable(ModBlocks.TOMATOES.get(), createSeedCropLootTable((CropBlock) ModBlocks.TOMATOES.get(), ModItems.TOMATO.get(), ModItems.TOMATO_SEEDS.get()));
 
         addChestLootTables();
 
@@ -70,8 +69,7 @@ public class LootTables extends LootTableProvider {
         addChestLootTable("inject/chests/village/village_desert_house", LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .name("main")
-                        .setRolls(ConstantIntValue.exactly(1))
-                        .add(itemEntry(ModItems.TOMATO.get(), 6, 2, 6))
+                        .setRolls(ConstantValue.exactly(1))
                         .add(emptyEntry(12))
                 )
         );
@@ -79,8 +77,7 @@ public class LootTables extends LootTableProvider {
         addChestLootTable("inject/chests/village/village_savanna_house", LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .name("main")
-                        .setRolls(ConstantIntValue.exactly(1))
-                        .add(itemEntry(ModItems.TOMATO.get(), 4, 1, 3))
+                        .setRolls(ConstantValue.exactly(1))
                         .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 1, 3))
                         .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 1, 1, 3))
                         .add(emptyEntry(12))
@@ -90,8 +87,7 @@ public class LootTables extends LootTableProvider {
         addChestLootTable("inject/chests/village/village_plains_house", LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .name("main")
-                        .setRolls(ConstantIntValue.exactly(1))
-                        .add(itemEntry(ModItems.TOMATO.get(), 3, 1, 4))
+                        .setRolls(ConstantValue.exactly(1))
                         .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 1, 4))
                         .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 2, 1, 4))
                         .add(emptyEntry(12))
@@ -101,8 +97,7 @@ public class LootTables extends LootTableProvider {
         addChestLootTable("inject/chests/village/village_taiga_house", LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .name("main")
-                        .setRolls(ConstantIntValue.exactly(1))
-                        .add(itemEntry(ModItems.TOMATO.get(), 2, 1, 3))
+                        .setRolls(ConstantValue.exactly(1))
                         .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 2, 1, 3))
                         .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 2, 1, 3))
                         .add(emptyEntry(12))
@@ -112,7 +107,7 @@ public class LootTables extends LootTableProvider {
         addChestLootTable("inject/chests/village/village_snowy_house", LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .name("main")
-                        .setRolls(ConstantIntValue.exactly(1))
+                        .setRolls(ConstantValue.exactly(1))
                         .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 2, 2, 6))
                         .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 4, 2, 6))
                         .add(emptyEntry(12))
@@ -122,7 +117,7 @@ public class LootTables extends LootTableProvider {
         addChestLootTable("inject/chests/igloo_chest", LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .name("main")
-                        .setRolls(ConstantIntValue.exactly(2))
+                        .setRolls(ConstantValue.exactly(2))
                         .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 6, 1, 4))
                         .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 6, 1, 4))
                         .add(emptyEntry(12))
@@ -132,8 +127,7 @@ public class LootTables extends LootTableProvider {
         addChestLootTable("inject/chests/shipwreck_supply", LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .name("main")
-                        .setRolls(ConstantIntValue.exactly(2))
-                        .add(itemEntry(ModItems.TOMATO.get(), 4, 2, 6))
+                        .setRolls(ConstantValue.exactly(2))
                         .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 2, 6))
                         .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 1, 2, 6))
                         .add(emptyEntry(12))
@@ -188,7 +182,7 @@ public class LootTables extends LootTableProvider {
     }
 
     private static LootPoolEntryContainer.Builder<?> itemEntry(Item item, int weight, int min, int max) {
-        return LootItem.lootTableItem(item).setWeight(weight).apply(SetItemCountFunction.setCount(RandomValueBounds.between(min, max)));
+        return LootItem.lootTableItem(item).setWeight(weight).apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)));
     }
 
     private static LootPoolEntryContainer.Builder<?> emptyEntry(int weight) {
@@ -205,16 +199,16 @@ public class LootTables extends LootTableProvider {
     }
 
     private void addChestLootTable(String location, LootTable.Builder lootTable) {
-        tables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(Util.prefix(location), lootTable), LootContextParamSets.ALL_PARAMS));
+        tables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(Util.id(location), lootTable), LootContextParamSets.ALL_PARAMS));
     }
 
     private LootPool.Builder createStandardDrops(ItemLike itemProvider) {
-        return LootPool.lootPool().setRolls(ConstantIntValue.exactly(1)).when(ExplosionCondition.survivesExplosion())
+        return LootPool.lootPool().setRolls(ConstantValue.exactly(1)).when(ExplosionCondition.survivesExplosion())
                 .add(LootItem.lootTableItem(itemProvider));
     }
 
     @Override
     protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
-        map.forEach((loc, table) -> LootTables.validate(validationtracker, loc, table));
+        map.forEach((location, lootTable) -> net.minecraft.world.level.storage.loot.LootTables.validate(validationtracker, location, lootTable));
     }
 }

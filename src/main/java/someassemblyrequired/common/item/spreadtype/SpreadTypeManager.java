@@ -15,9 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.fml.LogicalSidedProvider;
-import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.network.PacketDistributor;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.network.NetworkHandler;
 import someassemblyrequired.common.network.SpreadTypeSyncPacket;
@@ -62,15 +60,15 @@ public class SpreadTypeManager extends SimpleJsonResourceReloadListener {
         });
         SomeAssemblyRequired.LOGGER.info("Loaded {} spread types", spreadTypes.size());
 
-        boolean isServer = true;
-        try {
-            LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER);
-        } catch (Exception exception) {
-            isServer = false;
-        }
-        if (isServer) {
-            sendSyncingPackets();
-        }
+        // boolean isServer = true;
+        // try {
+        //     LogicalSidedProvider.INSTANCE.get(LogicalSide.SERVER); // TODO dataWhateverEvent
+        // } catch (Exception exception) {
+        //     isServer = false;
+        // }
+        // if (isServer) {
+        //     sendSyncingPackets();
+        // }
 
         setSpreadTypes(spreadTypes);
     }

@@ -4,7 +4,7 @@ license = "MIT"
 issueTrackerURL = "https://github.com/ochotonida/some-assembly-required/issues"
 
 [[mods]]
-modId = "some-assembly-required"
+modId = "some_assembly_required"
 version = "1.18.1-2.0.0"
 displayName = "Some Assembly Required"
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/some-assembly-required"
@@ -15,14 +15,14 @@ description = '''
 Design your own sandwiches!
 '''
 
-[[dependencies.some-assembly-required]]
+[[dependencies.some_assembly_required]]
 modId = "forge"
 mandatory = true
 versionRange = "[39,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.some-assembly-required]]
+[[dependencies.some_assembly_required]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.18.1,1.19)"

@@ -11,8 +11,8 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -29,19 +29,19 @@ import java.util.List;
 @SuppressWarnings("rawtypes")
 public class ToastingRecipeCategory implements IRecipeCategory<Recipe> {
 
-    public static final ResourceLocation ID = Util.prefix("toasting");
+    public static final ResourceLocation ID = Util.id("toasting");
 
     private final IDrawable background;
     private final IDrawable arrow;
     private final IDrawable icon;
-    private final String title;
+    private final Component title;
 
     public ToastingRecipeCategory(IGuiHelper guiHelper) {
-        ResourceLocation texture = Util.prefix("textures/gui/toasting_recipe.png");
+        ResourceLocation texture = Util.id("textures/gui/toasting_recipe.png");
         background = guiHelper.createDrawable(texture, 0, 0, 111, 41);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.REDSTONE_TOASTER.get()));
+        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(ModBlocks.REDSTONE_TOASTER.get()));
         arrow = guiHelper.drawableBuilder(texture, 111, 0, 22, 16).buildAnimated(240, IDrawableAnimated.StartDirection.LEFT, false);
-        title = I18n.get("recipecategory." + SomeAssemblyRequired.MODID + ".toasting");
+        title = new TranslatableComponent("recipecategory." + SomeAssemblyRequired.MODID + ".toasting");
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ToastingRecipeCategory implements IRecipeCategory<Recipe> {
     }
 
     @Override
-    public String getTitle() {
+    public Component getTitle() {
         return title;
     }
 

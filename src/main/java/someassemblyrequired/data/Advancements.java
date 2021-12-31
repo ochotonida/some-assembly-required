@@ -81,7 +81,7 @@ public class Advancements extends AdvancementProvider {
             Advancement obtainBreadSlice = addAdvancement(
                     consumer,
                     root,
-                    new ItemStack(ModItems.KITCHEN_KNIFE.get()),
+                    new ItemStack(ModItems.BREAD_SLICE.get()), // TODO new ItemStack(ModItems.KITCHEN_KNIFE.get()),
                     InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModTags.BREAD_SLICES).build()),
                     "obtain_bread_slice",
                     false
@@ -147,7 +147,7 @@ public class Advancements extends AdvancementProvider {
                     new TranslatableComponent("advancement." + SomeAssemblyRequired.MODID + "." + name + ".description"),
                     null, FrameType.TASK, true, true, hidden)
                     .addCriterion(name, criterion)
-                    .save(consumer, Util.prefix(name).toString());
+                    .save(consumer, Util.id(name).toString());
         }
     }
 }

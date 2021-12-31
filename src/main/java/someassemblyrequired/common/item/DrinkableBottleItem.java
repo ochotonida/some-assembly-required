@@ -28,11 +28,10 @@ public class DrinkableBottleItem extends Item {
         if (stack.isEmpty()) {
             return new ItemStack(Items.GLASS_BOTTLE);
         } else {
-            if (entity instanceof Player && !((Player) entity).abilities.instabuild) {
+            if (entity instanceof Player player && !((Player) entity).isCreative()) {
                 ItemStack itemstack = new ItemStack(Items.GLASS_BOTTLE);
-                Player playerentity = (Player) entity;
-                if (!playerentity.inventory.add(itemstack)) {
-                    playerentity.drop(itemstack, false);
+                if (!player.getInventory().add(itemstack)) {
+                    player.drop(itemstack, false);
                 }
             }
 
@@ -53,6 +52,6 @@ public class DrinkableBottleItem extends Item {
     }
 
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        return ItemUtils.useDrink(world, player, hand);
+        return ItemUtils.startUsingInstantly(world, player, hand);
     }
 }
