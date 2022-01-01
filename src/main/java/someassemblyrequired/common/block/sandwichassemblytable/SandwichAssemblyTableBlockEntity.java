@@ -138,8 +138,6 @@ public class SandwichAssemblyTableBlockEntity extends ItemHandlerBlockEntity {
                 sandwich = new ItemStack(ModItems.SANDWICH.get());
                 saveAdditional(sandwich.getOrCreateTagElement("BlockEntityTag"));
             }
-            System.out.println(sandwich.getItem().getRegistryName());
-            System.out.println(sandwich.getTag());
         }
 
         protected void validateSlotIndex(int slot) {
