@@ -1,4 +1,4 @@
-package someassemblyrequired.client;
+package someassemblyrequired.common.item.sandwich;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;

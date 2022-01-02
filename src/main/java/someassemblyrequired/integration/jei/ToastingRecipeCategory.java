@@ -1,4 +1,4 @@
-package someassemblyrequired.client.jei;
+package someassemblyrequired.integration.jei;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;

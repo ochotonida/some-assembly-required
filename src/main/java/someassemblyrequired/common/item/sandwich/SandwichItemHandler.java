@@ -1,73 +1,107 @@
-package someassemblyrequired.common.util;
+package someassemblyrequired.common.item.sandwich;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable, INBTSerializable<ListTag> {
 
-    protected List<ItemStack> stacks;
+    protected List<ItemStack> items;
 
     public SandwichItemHandler() {
         this(new ArrayList<>());
     }
 
-    public SandwichItemHandler(List<ItemStack> stacks) {
-        for (ItemStack stack : stacks) {
+    public SandwichItemHandler(List<ItemStack> items) {
+        for (ItemStack stack : items) {
             if (stack.isEmpty()) {
                 throw new IllegalArgumentException();
             }
         }
-        this.stacks = new ArrayList<>(stacks);
+        this.items = new ArrayList<>(items);
     }
 
-    protected static boolean isBread(ItemStack stack) {
-        return stack.is(ModTags.SANDWICH_BREADS);
+    public static Optional<SandwichItemHandler> get(@Nullable ICapabilityProvider capabilityProvider) {
+        if (capabilityProvider == null) {
+            return Optional.empty();
+        }
+        return capabilityProvider.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+                .filter(handler -> handler instanceof SandwichItemHandler)
+                .map(handler -> ((SandwichItemHandler) handler));
     }
 
     public boolean isEmpty() {
-        return stacks.isEmpty();
+        return items.isEmpty();
     }
 
     public int size() {
-        return stacks.size();
+        return items.size();
     }
 
-    public void push(ItemStack stack) {
+    public List<ItemStack> getItems() {
+        return items;
+    }
+
+    public void add(ItemStack stack) {
         if (stack.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        stacks.add(stack);
+        items.add(stack);
+        onContentsChanged();
     }
 
-    public void pop() {
-        stacks.remove(stacks.size() - 1);
+    private static int getMaxSize() {
+        return 16; // TODO
+    }
+
+    public boolean canAdd(SandwichItemHandler sandwich) {
+        return this.size() + sandwich.size() <= getMaxSize();
+    }
+
+    public void add(SandwichItemHandler sandwich) {
+        items.addAll(sandwich.items);
+        onContentsChanged();
+    }
+
+    public ItemStack pop() {
+        ItemStack result = items.remove(items.size() - 1);
+        onContentsChanged();
+        return result;
+    }
+
+    public void clear() {
+        items.clear();
+        onContentsChanged();
     }
 
     public ItemStack bottom() {
-        return stacks.get(0);
+        return items.get(0);
     }
 
     public ItemStack top() {
-        return stacks.get(stacks.size() - 1);
+        return items.get(items.size() - 1);
     }
 
     public boolean isValidSandwich() {
         boolean allowOpenFacedSandwiches = false; // TODO add config option
-        return isBread(bottom()) && (allowOpenFacedSandwiches || isBread(top()));
+        return bottom().is(ModTags.BREAD_SLICES) && (allowOpenFacedSandwiches || top().is(ModTags.BREAD_SLICES));
     }
 
     public boolean hasTopAndBottomBread() {
-        return isBread(bottom()) && isBread(top());
+        return bottom().is(ModTags.BREAD_SLICES) && bottom().is(ModTags.BREAD_SLICES);
     }
 
     public boolean isDoubleDeckerSandwich() {
@@ -80,7 +114,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
 
         boolean foundBread = false;
         for (int i = 1; i < size() - 1; i++) {
-            if (isBread(stacks.get(i))) {
+            if (items.get(i).is(ModTags.BREAD_SLICES)) {
                 if (foundBread) {
                     return false;
                 }
@@ -88,8 +122,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
             }
         }
 
-        return !ModTags.SANDWICH_BREADS.contains(stacks.get(1).getItem())
-                && !ModTags.SANDWICH_BREADS.contains(stacks.get(size() - 2).getItem());
+        return !items.get(1).is(ModTags.BREAD_SLICES) && !items.get(size() - 2).is(ModTags.BREAD_SLICES);
     }
 
     public boolean isBLT() {
@@ -102,7 +135,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         boolean hasTomato = false;
 
         for (int i = 1; i < size() - 1; i++) {
-            ItemStack stack = stacks.get(i);
+            ItemStack stack = items.get(i);
 
             if (ModTags.COOKED_BACON.contains(stack.getItem())) {
                 hasBacon = true;
@@ -118,9 +151,15 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         return hasBacon && hasLettuce && hasTomato;
     }
 
+    public ItemStack getAsItem() {
+        ItemStack result = new ItemStack(ModItems.SANDWICH.get());
+        result.getOrCreateTagElement("BlockEntityTag").put("Sandwich", serializeNBT());
+        return result;
+    }
+
     @Override
     public int getSlots() {
-        return stacks.size();
+        return items.size();
     }
 
     @Override
@@ -129,7 +168,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
             throw new IllegalArgumentException();
         }
         validateSlotIndex(slot);
-        stacks.set(slot, stack);
+        items.set(slot, stack);
         onContentsChanged();
     }
 
@@ -137,7 +176,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
     @Nonnull
     public ItemStack getStackInSlot(int slot) {
         validateSlotIndex(slot);
-        return stacks.get(slot);
+        return items.get(slot);
     }
 
     @Override
@@ -165,7 +204,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
     @Override
     public ListTag serializeNBT() {
         ListTag result = new ListTag();
-        for (ItemStack stack : stacks) {
+        for (ItemStack stack : items) {
             result.add(stack.save(new CompoundTag()));
         }
         return result;
@@ -173,16 +212,16 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
 
     @Override
     public void deserializeNBT(ListTag listTag) {
-        stacks.clear();
+        items.clear();
         for (int i = 0; i < listTag.size(); i++) {
-            stacks.add(ItemStack.of(listTag.getCompound(i)));
+            items.add(ItemStack.of(listTag.getCompound(i)));
         }
         onLoad();
     }
 
     protected void validateSlotIndex(int slot) {
-        if (slot < 0 || slot >= stacks.size()) {
-            throw new IndexOutOfBoundsException("Slot " + slot + " not in valid range - [0," + stacks.size() + ")");
+        if (slot < 0 || slot >= items.size()) {
+            throw new IndexOutOfBoundsException("Slot " + slot + " not in valid range - [0," + items.size() + ")");
         }
     }
 

@@ -1,11 +1,10 @@
-package someassemblyrequired.common.util;
+package someassemblyrequired.common.item.sandwich;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.items.ItemStackHandler;
 import someassemblyrequired.common.init.ModItems;
 
 public class SandwichBuilder {
@@ -38,7 +37,7 @@ public class SandwichBuilder {
         CompoundTag tag = spread.getOrCreateTag();
         tag.putInt("Color", color);
         tag.putBoolean("HasGlint", hasGlint);
-        return addStack(spread);
+        return this;
     }
 
     public SandwichBuilder add(ItemLike item) {
@@ -54,7 +53,7 @@ public class SandwichBuilder {
     public ItemStack build() {
         addBread();
         ItemStack sandwich = new ItemStack(ModItems.SANDWICH.get());
-        sandwich.getOrCreateTagElement("BlockEntityTag").put("Ingredients", new ItemStackHandler(ingredients).serializeNBT());
+        sandwich.getOrCreateTagElement("BlockEntityTag").put("Sandwich", new SandwichItemHandler(ingredients).serializeNBT());
         return sandwich;
     }
 

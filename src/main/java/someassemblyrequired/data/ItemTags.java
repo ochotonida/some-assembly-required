@@ -40,12 +40,6 @@ public class ItemTags extends ItemTagsProvider {
                 ModItems.CHARRED_FOOD.get()
         );
 
-        tag(ModTags.SANDWICH_BREADS).addTags(
-                ModTags.BREAD,
-                ModTags.BREAD_SLICES,
-                ModTags.TORTILLAS
-        );
-
         tag(ModTags.SMALL_FOODS).add(
                 Items.DRIED_KELP
         );

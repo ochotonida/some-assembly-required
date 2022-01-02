@@ -20,7 +20,7 @@ import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
-import someassemblyrequired.common.util.SandwichBuilder;
+import someassemblyrequired.common.item.sandwich.SandwichBuilder;
 import someassemblyrequired.common.util.Util;
 
 import java.io.IOException;
@@ -81,7 +81,7 @@ public class Advancements extends AdvancementProvider {
             Advancement obtainBreadSlice = addAdvancement(
                     consumer,
                     root,
-                    new ItemStack(ModItems.BREAD_SLICE.get()), // TODO new ItemStack(ModItems.KITCHEN_KNIFE.get()),
+                    new ItemStack(ModItems.BREAD_SLICE.get()),
                     InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModTags.BREAD_SLICES).build()),
                     "obtain_bread_slice",
                     false

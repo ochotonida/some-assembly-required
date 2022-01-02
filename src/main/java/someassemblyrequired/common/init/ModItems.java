@@ -15,9 +15,9 @@ import org.jetbrains.annotations.Nullable;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.item.DrinkableBottleItem;
 import someassemblyrequired.common.item.EnchantedGoldenAppleSlicesItem;
-import someassemblyrequired.common.item.SandwichItem;
 import someassemblyrequired.common.item.SpreadItem;
-import someassemblyrequired.common.util.SandwichBuilder;
+import someassemblyrequired.common.item.sandwich.SandwichBuilder;
+import someassemblyrequired.common.item.sandwich.SandwichItem;
 
 @SuppressWarnings("unused")
 public class ModItems {

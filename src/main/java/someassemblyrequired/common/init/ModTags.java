@@ -39,7 +39,6 @@ public class ModTags {
 
     // mod item tags
     public static final Tag.Named<Item> BURNT_FOOD = createModTag("burnt_food");
-    public static final Tag.Named<Item> SANDWICH_BREADS = createModTag("sandwich_breads");
     public static final Tag.Named<Item> SMALL_FOODS = createModTag("small_foods");
     public static final Tag.Named<Item> TOASTER_METALS = createModTag("toaster_metals");
 

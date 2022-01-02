@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -17,24 +16,20 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import someassemblyrequired.common.block.WaterLoggableHorizontalBlock;
-import someassemblyrequired.common.block.sandwichassemblytable.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.block.sandwichassemblytable.SandwichAssemblyTableBlockEntity;
 import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SandwichBlock extends WaterLoggableHorizontalBlock implements EntityBlock {
 
+    // TODO height block state
     private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 8, 12);
 
     public SandwichBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        return !(world.getBlockState(pos.below()).getBlock() instanceof SandwichAssemblyTableBlock) && super.canSurvive(state, world, pos);
     }
 
     @Override
@@ -49,7 +44,6 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
         }
 
         ItemStack sandwich = new ItemStack(ModItems.SANDWICH.get());
-        // todo only save ingredients
         sandwichAssemblyTable.saveAdditional(sandwich.getOrCreateTagElement("BlockEntityTag"));
         return sandwich;
     }
@@ -58,7 +52,9 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
     @SuppressWarnings("deprecation")
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
         List<ItemStack> drops = new ArrayList<>(super.getDrops(state, builder));
-        drops.add(createSandwich(builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY)));
+        SandwichItemHandler.get(builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY))
+                .map(SandwichItemHandler::getAsItem)
+                .ifPresent(drops::add);
         return drops;
     }
 

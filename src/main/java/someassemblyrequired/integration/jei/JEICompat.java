@@ -1,4 +1,4 @@
-package someassemblyrequired.client.jei;
+package someassemblyrequired.integration.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 @JeiPlugin
 @SuppressWarnings("unused")
-public class JEIPlugin implements IModPlugin {
+public class JEICompat implements IModPlugin {
 
     private static final ResourceLocation ID = Util.id("main");
 

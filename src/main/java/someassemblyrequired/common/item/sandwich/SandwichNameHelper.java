@@ -1,4 +1,4 @@
-package someassemblyrequired.common.util;
+package someassemblyrequired.common.item.sandwich;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -34,11 +34,16 @@ public class SandwichNameHelper {
             ModItems.LETTUCE_LEAF.get()
     ));
 
-    public static Component getSandwichDisplayName(ItemStack sandwich) {
-        IItemHandler handler = sandwich.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);
+    public static Component getSandwichDisplayName(ItemStack stack) {
+        IItemHandler handler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);
         List<ItemStack> ingredients = new ArrayList<>();
         for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
             ingredients.add(handler.getStackInSlot(slot));
+        }
+
+        SandwichItemHandler sandwich = SandwichItemHandler.get(stack).orElse(null);
+        if (sandwich == null) {
+            return new TranslatableComponent("item.%s.sandwich".formatted(SomeAssemblyRequired.MODID));
         }
 
         int amountOfBread = getAmountOfBread(ingredients);
@@ -48,10 +53,10 @@ public class SandwichNameHelper {
             return getBreadSandwichName(ingredients);
         }
 
-        List<ItemStack> uniqueIngredients = SandwichIngredientHelper.getUniqueIngredientsExcludingBread(ingredients);
+        List<ItemStack> uniqueIngredients = getUniqueIngredientsExcludingBread(ingredients);
 
         // BLT
-        if (SandwichIngredientHelper.isBLT(uniqueIngredients)) {
+        if (sandwich.isBLT()) {
             return new TranslatableComponent("item.%s.blt_sandwich".formatted(SomeAssemblyRequired.MODID));
         }
 
@@ -70,24 +75,34 @@ public class SandwichNameHelper {
 
         if (uniqueIngredients.size() > 0 && uniqueIngredients.size() <= 3) {
             Component ingredientList = listIngredients(uniqueIngredients);
-            if (SandwichIngredientHelper.isDoubleDeckerSandwich(ingredients)) {
+            if (sandwich.isDoubleDeckerSandwich()) {
                 return new TranslatableComponent("item.%s.double_decker_ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), ingredientList);
             } else {
                 return new TranslatableComponent("item.%s.ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), ingredientList);
             }
         }
 
-        if (SandwichIngredientHelper.isDoubleDeckerSandwich(ingredients)) {
+        if (sandwich.isDoubleDeckerSandwich()) {
             return new TranslatableComponent("item.%s.double_decker_sandwich".formatted(SomeAssemblyRequired.MODID));
         } else {
             return new TranslatableComponent("item.%s.sandwich".formatted(SomeAssemblyRequired.MODID));
         }
     }
 
+    private static List<ItemStack> getUniqueIngredientsExcludingBread(List<ItemStack> ingredients) {
+        List<ItemStack> result = new ArrayList<>();
+        for (ItemStack ingredient : ingredients) {
+            if (!ingredient.is(ModTags.BREAD_SLICES) && result.stream().noneMatch(stack -> ItemStack.matches(ingredient, stack))) {
+                result.add(ingredient);
+            }
+        }
+        return result;
+    }
+
     private static int getAmountOfBread(List<ItemStack> ingredients) {
         int result = 0;
         for (ItemStack ingredient : ingredients) {
-            if (ModTags.SANDWICH_BREADS.contains(ingredient.getItem())) {
+            if (ingredient.is(ModTags.BREAD_SLICES)) {
                 result++;
             }
         }
