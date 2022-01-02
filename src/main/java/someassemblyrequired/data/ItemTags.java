@@ -110,6 +110,9 @@ public class ItemTags extends ItemTagsProvider {
 
     @SuppressWarnings("unchecked")
     private void addForgeTags() {
+        tag(ModTags.COOKED_BACON);
+        tag(ModTags.CROPS_TOMATOES);
+
         tag(ModTags.BREAD).addTags(
                 ModTags.BREAD_WHEAT
         );
