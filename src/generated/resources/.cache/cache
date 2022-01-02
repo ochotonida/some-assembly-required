@@ -71,8 +71,10 @@ b407916e87b9c8923890cb40cf3341d77653d3bc assets/some_assembly_required/models/it
 a9c6ca6829cd484bbfa78c09806e381a4761eac8 data/forge/tags/items/bread/wheat.json
 1f0ad5387defb0d4626fcfd5439cb10b30bbb79f data/forge/tags/items/bread_slices.json
 d3c6d64c7f48692527119ae5b6751d416837dcb8 data/forge/tags/items/bread_slices/wheat.json
+74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/cooked_bacon.json
 56797119080a34f570ed5c6fb0b557573496d33a data/forge/tags/items/crops.json
 61e2797e78c2719b231e8f39f8fe593bc138729d data/forge/tags/items/crops/lettuce.json
+74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/crops/tomato.json
 677ac77f1e2bdc00b2d97bb28f9ae97e4a213956 data/forge/tags/items/fruits.json
 03385c40bde4ccf2f598ee095bc9854c2de47934 data/forge/tags/items/fruits/apple.json
 524fc5e0e890fd3b0e867bfe893ed7d6be016fd9 data/forge/tags/items/salad_ingredients.json
