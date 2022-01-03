@@ -18,7 +18,7 @@ public interface SandwichIngredient {
     }
 
     /**
-     * Called when a player eats a sandwich with this ingredient
+     * Called server-side when a player eats a sandwich with this ingredient
      */
     default void onEaten(ItemStack item, Player player) {
 

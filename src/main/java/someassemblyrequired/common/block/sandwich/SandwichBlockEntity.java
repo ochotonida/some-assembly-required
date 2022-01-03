@@ -140,7 +140,7 @@ public class SandwichBlockEntity extends BlockEntity {
     private static void shrinkHeldItem(Player player, InteractionHand hand) {
         if (!player.isCreative()) {
             ItemStack item = player.getItemInHand(hand);
-            ItemStack container = CustomIngredients.getContainer(item);
+            ItemStack container = CustomIngredients.getContainer(item).copy();
             item.shrink(1);
             if (!container.isEmpty() && !player.getInventory().add(container)) {
                 player.drop(container, false);

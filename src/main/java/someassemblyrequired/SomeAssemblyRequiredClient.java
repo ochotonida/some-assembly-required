@@ -33,8 +33,6 @@ public class SomeAssemblyRequiredClient {
             BlockEntityRenderers.register(ModBlockEntityTypes.STICKY_REDSTONE_TOASTER.get(), RedstoneToasterRenderer::new);
             BlockEntityRenderers.register(ModBlockEntityTypes.SANDWICH.get(), SandwichBlockRenderer::new);
 
-            ItemProperties.register(ModItems.SPREAD.get(), Util.id("on_loaf"), (stack, world, entity, i) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
-
             ForgeRegistries.ITEMS.getValues().stream().filter(item -> item.getRegistryName() != null && SomeAssemblyRequired.MODID.equals(item.getRegistryName().getNamespace())).filter(Item::isEdible).forEach(item ->
                     ItemProperties.register(item, Util.id("on_sandwich"), (stack, world, entity, i) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnSandwich") ? 1 : 0)
             );

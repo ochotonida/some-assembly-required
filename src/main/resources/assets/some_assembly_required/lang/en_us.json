@@ -84,14 +84,14 @@
   "ingredient.some_assembly_required.tomato_slices": "Tomato",
   "ingredient.some_assembly_required.lettuce_leaf": "Lettuce",
 
-  "spreadtype.some_assembly_required.water_bottle": "Water",
-  "spreadtype.some_assembly_required.honey_bottle": "Honey",
-  "spreadtype.some_assembly_required.milk_bucket": "Milk",
-  "spreadtype.some_assembly_required.mayonnaise_bottle": "Mayonnaise",
-  "spreadtype.some_assembly_required.ketchup_bottle": "Ketchup",
-  "spreadtype.some_assembly_required.sweet_berry_jam_bottle": "Sweet Berry Jam",
+  "ingredient.some_assembly_required.water_bottle": "Water",
+  "ingredient.some_assembly_required.honey_bottle": "Honey",
+  "ingredient.some_assembly_required.milk_bucket": "Milk",
+  "ingredient.some_assembly_required.mayonnaise_bottle": "Mayonnaise",
+  "ingredient.some_assembly_required.ketchup_bottle": "Ketchup",
+  "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Sweet Berry Jam",
 
-  "spreadtype.some_assembly_required.farmersdelight.milk_bottle": "Milk",
+  "ingredient.some_assembly_required.farmersdelight.milk_bottle": "Milk",
 
   "description.some_assembly_required.sandwich_assembly_table": "Sandwiches can be made using this block. Up to 16 ingredients can be placed on top, starting and ending with a bread slice. Sneak-right click with an empty hand to build your sandwich",
   "description.some_assembly_required.redstone_toaster": "The Redstone Toaster™ can be used to toast bread and other food items. It does not require any fuel. It is recommended one does not try to toast metal, or submerge the toaster in water",

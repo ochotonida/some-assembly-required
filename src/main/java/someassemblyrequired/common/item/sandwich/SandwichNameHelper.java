@@ -57,15 +57,12 @@ public class SandwichNameHelper {
         }
 
         // potion sandwich
-        if (uniqueIngredients.size() == 1 && uniqueIngredients.get(0).getItem() == ModItems.SPREAD.get() && uniqueIngredients.get(0).getOrCreateTag().contains("Ingredient")) {
-            ItemStack spreadItem = ItemStack.of(uniqueIngredients.get(0).getOrCreateTagElement("Ingredient"));
-            if (spreadItem.getItem() == Items.POTION) {
-                Potion potion = PotionUtils.getPotion(spreadItem);
-                if (potion == Potions.WATER) {
-                    return new TranslatableComponent("item.%s.soggy_sandwich".formatted(SomeAssemblyRequired.MODID));
-                } else if (potion.getEffects().size() == 1) {
-                    return new TranslatableComponent("item.%s.potion_sandwich".formatted(SomeAssemblyRequired.MODID), potion.getEffects().get(0).getEffect().getDisplayName());
-                }
+        if (uniqueIngredients.size() == 1 && uniqueIngredients.get(0).is(Items.POTION)) {
+            Potion potion = PotionUtils.getPotion(uniqueIngredients.get(0));
+            if (potion == Potions.WATER) {
+                return new TranslatableComponent("item.%s.soggy_sandwich".formatted(SomeAssemblyRequired.MODID));
+            } else if (potion.getEffects().size() == 1) {
+                return new TranslatableComponent("item.%s.potion_sandwich".formatted(SomeAssemblyRequired.MODID), potion.getEffects().get(0).getEffect().getDisplayName());
             }
         }
 

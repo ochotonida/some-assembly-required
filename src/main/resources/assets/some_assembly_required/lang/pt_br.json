@@ -84,14 +84,14 @@
   "ingredient.some_assembly_required.tomato_slices": "Tomate",
   "ingredient.some_assembly_required.lettuce_leaf": "Alface",
 
-  "spreadtype.some_assembly_required.water_bottle": "Água",
-  "spreadtype.some_assembly_required.honey_bottle": "Mel",
-  "spreadtype.some_assembly_required.milk_bucket": "Leite",
-  "spreadtype.some_assembly_required.mayonnaise_bottle": "Maionese",
-  "spreadtype.some_assembly_required.ketchup_bottle": "Ketchup",
-  "spreadtype.some_assembly_required.sweet_berry_jam_bottle": "Geléia de Bagas Doces",
+  "ingredient.some_assembly_required.water_bottle": "Água",
+  "ingredient.some_assembly_required.honey_bottle": "Mel",
+  "ingredient.some_assembly_required.milk_bucket": "Leite",
+  "ingredient.some_assembly_required.mayonnaise_bottle": "Maionese",
+  "ingredient.some_assembly_required.ketchup_bottle": "Ketchup",
+  "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Geléia de Bagas Doces",
 
-  "spreadtype.some_assembly_required.farmersdelight.milk_bottle": "Leite",
+  "ingredient.some_assembly_required.farmersdelight.milk_bottle": "Leite",
 
   "description.some_assembly_required.sandwich_assembly_table": "Pode ser usado para fazer sanduíches, colocando os itens em cima. Esquerarse + Clique com o botão direito com a mão vazia para fazer seu sanduíche",
   "description.some_assembly_required.redstone_toaster": "O Torradeira Redstone™ pode ser usada para torrar pão e outros itens alimentares. Não requer nenhum combustível. Recomenda-se não tentar torrar metal ou submergir a torradeira em água",

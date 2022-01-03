@@ -10,6 +10,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import someassemblyrequired.common.ingredient.CustomIngredients;
 import someassemblyrequired.common.init.*;
 import someassemblyrequired.common.item.spreadtype.SpreadTypeManager;
 import someassemblyrequired.common.network.NetworkHandler;
@@ -44,6 +45,7 @@ public class SomeAssemblyRequired {
             NetworkHandler.register();
             ModRecipeTypes.registerBrewingRecipes();
             ModItems.registerCompostables();
+            CustomIngredients.addCustomIngredients();
         });
     }
 

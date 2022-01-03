@@ -6,8 +6,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.ingredient.custom.PotionIngredient;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -36,6 +38,10 @@ public class CustomIngredients {
         } else {
             INGREDIENTS.put(item, properties);
         }
+    }
+    
+    public static void addCustomIngredients() {
+        put(Items.POTION, new PotionIngredient());
     }
 
     public static FoodProperties getFood(ItemStack item) {
