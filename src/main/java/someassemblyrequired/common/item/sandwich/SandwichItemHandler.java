@@ -80,11 +80,6 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         return result;
     }
 
-    public void clear() {
-        items.clear();
-        onContentsChanged();
-    }
-
     public ItemStack bottom() {
         return items.get(0);
     }
@@ -95,11 +90,11 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
 
     public boolean isValidSandwich() {
         boolean allowOpenFacedSandwiches = false; // TODO add config option
-        return bottom().is(ModTags.BREAD_SLICES) && (allowOpenFacedSandwiches || top().is(ModTags.BREAD_SLICES));
+        return size() > 0 && bottom().is(ModTags.BREAD_SLICES) && (allowOpenFacedSandwiches || top().is(ModTags.BREAD_SLICES));
     }
 
     public boolean hasTopAndBottomBread() {
-        return bottom().is(ModTags.BREAD_SLICES) && bottom().is(ModTags.BREAD_SLICES);
+        return size() > 0 && bottom().is(ModTags.BREAD_SLICES) && bottom().is(ModTags.BREAD_SLICES);
     }
 
     public boolean isDoubleDeckerSandwich() {

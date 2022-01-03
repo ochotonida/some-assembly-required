@@ -1,10 +1,13 @@
 package someassemblyrequired.common.block.sandwich;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -12,6 +15,8 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
@@ -21,6 +26,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import someassemblyrequired.common.block.WaterLoggableHorizontalBlock;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
+import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 
@@ -29,17 +35,21 @@ import java.util.List;
 
 public class SandwichBlock extends WaterLoggableHorizontalBlock implements EntityBlock {
 
-    // TODO height block state
-    private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 8, 12);
+    public static final IntegerProperty SIZE = IntegerProperty.create("size", 1, 8);
+
+    private static final VoxelShape[] SHAPES = createShapes();
 
     public SandwichBlock(Properties properties) {
         super(properties);
+        registerDefaultState(defaultBlockState().setValue(SIZE, 1));
     }
 
-    @Override
-    @SuppressWarnings("deprecation")
-    public RenderShape getRenderShape(BlockState state) {
-        return RenderShape.ENTITYBLOCK_ANIMATED;
+    private static VoxelShape[] createShapes() {
+        VoxelShape[] result = new VoxelShape[8];
+        for (int i = 0; i < 8; i++) {
+            result[i] = Block.box(4, 0, 4, 12, i + 1, 12);
+        }
+        return result;
     }
 
     public static ItemStack createSandwich(BlockEntity blockEntity) {
@@ -50,6 +60,46 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
         ItemStack sandwich = new ItemStack(ModItems.SANDWICH.get());
         sandwichAssemblyTable.saveAdditional(sandwich.getOrCreateTagElement("BlockEntityTag"));
         return sandwich;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(SIZE);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        CompoundTag tag = context.getItemInHand().getTagElement("BlockEntityTag");
+        if (tag != null) {
+            int sandwichHeight = tag.getList("Sandwich", Tag.TAG_COMPOUND).size();
+            return super.getStateForPlacement(context).setValue(SIZE, getSizeFromHeight(sandwichHeight));
+        }
+        return super.getStateForPlacement(context);
+    }
+
+    public static void updateHeight(Level level, BlockPos pos) {
+        SandwichItemHandler.get(level.getBlockEntity(pos))
+                .ifPresent(sandwich -> {
+                    BlockState state = level.getBlockState(pos);
+                    if (state.is(ModBlocks.SANDWICH.get())) {
+                        BlockState newState = state.setValue(SIZE, getSizeFromHeight(sandwich.size()));
+                        if (!newState.getValue(SIZE).equals(state.getValue(SIZE))) {
+                            level.setBlock(pos, state.setValue(SIZE, getSizeFromHeight(sandwich.size())), Block.UPDATE_ALL);
+                        }
+                    }
+                });
+    }
+
+    private static int getSizeFromHeight(int sandwichHeight) {
+        int size = Math.min(16, Math.max(2, sandwichHeight)) + 1;
+        return size / 2;
     }
 
     @Override
@@ -83,7 +133,7 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
     @Override
     @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        return SHAPE;
+        return SHAPES[state.getValue(SIZE) - 1];
     }
 
     @Nullable

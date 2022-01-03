@@ -74,6 +74,8 @@ public class SandwichBlockEntity extends BlockEntity {
 
         if (sandwich.isEmpty()) {
             level.removeBlock(pos, false);
+        } else {
+            SandwichBlock.updateHeight(level, pos);
         }
     }
 
@@ -96,6 +98,9 @@ public class SandwichBlockEntity extends BlockEntity {
         }
 
         addSingleItem(player, hand, itemToAdd);
+        if (getLevel() != null) {
+            SandwichBlock.updateHeight(getLevel(), getBlockPos());
+        }
         return InteractionResult.SUCCESS;
     }
 
