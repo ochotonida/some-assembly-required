@@ -13,7 +13,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.common.block.redstonetoaster.RedstoneToasterRenderer;
 import someassemblyrequired.common.block.sandwich.SandwichBlockRenderer;
-import someassemblyrequired.common.block.sandwichassemblytable.SandwichAssemblyTableBlockRenderer;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
@@ -33,7 +32,6 @@ public class SomeAssemblyRequiredClient {
             BlockEntityRenderers.register(ModBlockEntityTypes.REDSTONE_TOASTER.get(), RedstoneToasterRenderer::new);
             BlockEntityRenderers.register(ModBlockEntityTypes.STICKY_REDSTONE_TOASTER.get(), RedstoneToasterRenderer::new);
             BlockEntityRenderers.register(ModBlockEntityTypes.SANDWICH.get(), SandwichBlockRenderer::new);
-            BlockEntityRenderers.register(ModBlockEntityTypes.SANDWICH_ASSEMBLY_TABLE.get(), SandwichAssemblyTableBlockRenderer::new);
 
             ItemProperties.register(ModItems.SPREAD.get(), Util.id("on_loaf"), (stack, world, entity, i) -> stack.hasTag() && stack.getOrCreateTag().getBoolean("IsOnLoaf") ? 1 : 0);
 

@@ -33,7 +33,7 @@ public class ModItems {
     };
 
     // misc items
-    public static final RegistryObject<Item> SANDWICH = REGISTRY.register("sandwich", () -> new SandwichItem(ModBlocks.SANDWICH.get(), new Item.Properties().stacksTo(8).food(ModFoods.SANDWICH)));
+    public static final RegistryObject<SandwichItem> SANDWICH = REGISTRY.register("sandwich", () -> new SandwichItem(ModBlocks.SANDWICH.get(), new Item.Properties().stacksTo(8).food(ModFoods.SANDWICH)));
     public static final RegistryObject<Item> SPREAD = REGISTRY.register("spread", () -> new SpreadItem(new Item.Properties()));
 
     // sandwich assembly tables

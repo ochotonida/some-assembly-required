@@ -11,9 +11,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.LettuceBlock;
+import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.block.redstonetoaster.RedstoneToasterBlock;
 import someassemblyrequired.common.block.sandwich.SandwichBlock;
-import someassemblyrequired.common.block.sandwichassemblytable.SandwichAssemblyTableBlock;
 
 public class ModBlocks {
 

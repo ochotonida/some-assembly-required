@@ -13,10 +13,7 @@ import someassemblyrequired.common.init.ModTags;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable, INBTSerializable<ListTag>, Iterable<ItemStack> {
 
@@ -26,9 +23,13 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         this(new ArrayList<>());
     }
 
+    public SandwichItemHandler(ItemStack... items) {
+        this(Arrays.asList(items));
+    }
+
     public SandwichItemHandler(List<ItemStack> items) {
         for (ItemStack stack : items) {
-            if (stack.isEmpty()) {
+            if (stack.isEmpty() || stack.getCount() != 1) {
                 throw new IllegalArgumentException();
             }
         }

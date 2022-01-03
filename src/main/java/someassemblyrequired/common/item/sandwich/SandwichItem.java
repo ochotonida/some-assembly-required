@@ -1,7 +1,9 @@
 package someassemblyrequired.common.item.sandwich;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -9,6 +11,8 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -16,10 +20,12 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.IItemRenderProperties;
@@ -28,6 +34,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 
 import javax.annotation.Nullable;
@@ -74,19 +81,49 @@ public class SandwichItem extends BlockItem {
 
     @Override
     protected boolean placeBlock(BlockPlaceContext context, BlockState state) {
-        if (context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) {
-            if (super.placeBlock(context, state)) {
-                Level level = context.getLevel();
-                BlockEntity blockEntity = level.getBlockEntity(context.getClickedPos());
-                CompoundTag tag = context.getItemInHand().getTag();
-                if (context.getLevel().isClientSide() && blockEntity != null && tag != null) {
-                    blockEntity.load(tag.getCompound("BlockEntityTag"));
-                    level.sendBlockUpdated(context.getClickedPos(), state, level.getBlockState(context.getClickedPos()), Block.UPDATE_CLIENTS);
-                }
-                return true;
-            }
+        boolean isPlacingOnTable = context.getLevel().getBlockState(context.getClickedPos().below()).getBlock() instanceof SandwichAssemblyTableBlock;
+        if (context.getPlayer() != null && (context.getPlayer().isShiftKeyDown() || isPlacingOnTable)) {
+            return super.placeBlock(context, state);
         }
         return false;
+    }
+
+    public InteractionResult place(UseOnContext useOnContext, BlockPos pos, ItemStack sandwich) {
+        BlockPlaceContext placeContext = BlockPlaceContext.at(new BlockPlaceContext(useOnContext), pos, Direction.UP);
+        if (!placeContext.canPlace()) {
+            return InteractionResult.FAIL;
+        }
+        placeContext = this.updatePlacementContext(placeContext);
+        if (placeContext == null) {
+            return InteractionResult.FAIL;
+        }
+        BlockState blockstate = this.getPlacementState(placeContext);
+        if (blockstate == null) {
+            return InteractionResult.FAIL;
+        } else if (!placeBlock(placeContext, blockstate)) {
+            return InteractionResult.FAIL;
+        }
+        Level level = placeContext.getLevel();
+        Player player = placeContext.getPlayer();
+        BlockState placedState = level.getBlockState(pos);
+        if (placedState.is(blockstate.getBlock())) {
+            updateCustomBlockEntityTag(pos, level, player, sandwich, placedState);
+            placedState.getBlock().setPlacedBy(level, pos, placedState, player, sandwich);
+            if (player instanceof ServerPlayer serverPlayer) {
+                CriteriaTriggers.PLACED_BLOCK.trigger(serverPlayer, pos, sandwich);
+            }
+        }
+
+        level.gameEvent(player, GameEvent.BLOCK_PLACE, pos);
+        SoundType soundType = placedState.getSoundType(level, pos, player);
+        if (player != null) {
+            level.playSound(player, pos, getPlaceSound(placedState, level, pos, player), SoundSource.BLOCKS, (soundType.getVolume() + 1.0F) / 2.0F, soundType.getPitch() * 0.8F);
+        }
+        if (player == null || !player.getAbilities().instabuild) {
+            sandwich.shrink(1);
+        }
+
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     @Override
