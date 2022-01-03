@@ -39,17 +39,17 @@ public class CustomIngredients {
             INGREDIENTS.put(item, properties);
         }
     }
-    
+
     public static void addCustomIngredients() {
         put(Items.POTION, new PotionIngredient());
     }
 
     public static FoodProperties getFood(ItemStack item) {
-        return getOrDefault(item).getFood(item); // TODO
+        return getOrDefault(item).getFood(item);
     }
 
     public static void onEaten(ItemStack item, Player player) {
-        getOrDefault(item).onEaten(item, player); // TODO
+        getOrDefault(item).onEaten(item, player);
     }
 
     public static Component getDisplayName(ItemStack item) {

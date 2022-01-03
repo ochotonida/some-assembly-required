@@ -1,5 +1,6 @@
 package someassemblyrequired.common.item.sandwich;
 
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -12,9 +13,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -129,33 +134,52 @@ public class SandwichItem extends BlockItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-        triggerAdvancements(stack, entity);
+        if (!(entity instanceof Player player)) {
+            return super.finishUsingItem(stack, world, entity);
+        }
+        triggerAdvancements(stack, player);
 
         SandwichItemHandler.get(stack).ifPresent(sandwich -> {
             for (ItemStack item : sandwich.items) {
-                ItemStack finishStack = item.getItem().finishUsingItem(item.copy(), world, entity);
-                if (entity instanceof Player player) {
-                    if (player.getCooldowns().isOnCooldown(item.getItem())) {
-                        player.getCooldowns().addCooldown(this, 20);
-                    }
-                    if (!player.isCreative() && !finishStack.isEmpty()) {
-                        player.addItem(finishStack);
+                FoodProperties food = CustomIngredients.getFood(item);
+                player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
+                for (Pair<MobEffectInstance, Float> effect : food.getEffects()) {
+                    if (player.getRandom().nextFloat() < effect.getSecond()) {
+                        player.addEffect(effect.getFirst());
                     }
                 }
+                CustomIngredients.onEaten(item, player);
             }
         });
 
         return super.finishUsingItem(stack, world, entity);
     }
 
-    private void triggerAdvancements(ItemStack stack, LivingEntity entity) {
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        if (this.isEdible()) {
+            ItemStack stack = player.getItemInHand(hand);
+            // noinspection ConstantConditions
+            if (SandwichItemHandler.get(stack).map(SandwichItemHandler::canAlwaysEat).orElse(false) || player.canEat(getFoodProperties().canAlwaysEat())) {
+                player.startUsingItem(hand);
+                return InteractionResultHolder.consume(stack);
+            } else {
+                return InteractionResultHolder.fail(stack);
+            }
+        } else {
+            return InteractionResultHolder.pass(player.getItemInHand(hand));
+        }
+    }
+
+    private void triggerAdvancements(ItemStack stack, Player player) {
+        if (!(player instanceof ServerPlayer serverPlayer)) {
+            return;
+        }
         SandwichItemHandler.get(stack).ifPresent(sandwich -> {
-            if (entity instanceof ServerPlayer) {
-                if (sandwich.isDoubleDeckerSandwich()) {
-                    ModAdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.trigger((ServerPlayer) entity, stack);
-                } else if (sandwich.isBLT()) {
-                    ModAdvancementTriggers.CONSUME_BLT_SANDWICH.trigger((ServerPlayer) entity, stack);
-                }
+            if (sandwich.isDoubleDeckerSandwich()) {
+                ModAdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.trigger(serverPlayer, stack);
+            } else if (sandwich.isBLT()) {
+                ModAdvancementTriggers.CONSUME_BLT_SANDWICH.trigger(serverPlayer, stack);
             }
         });
     }

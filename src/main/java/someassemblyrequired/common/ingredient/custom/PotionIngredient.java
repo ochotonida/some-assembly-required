@@ -4,6 +4,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -16,11 +17,17 @@ import someassemblyrequired.common.init.ModItems;
 public class PotionIngredient implements SandwichIngredient {
 
     private final ItemStack container = new ItemStack(Items.GLASS_BOTTLE);
+    private final FoodProperties food = new FoodProperties.Builder().alwaysEat().build();
     private final ItemStack displayItem;
 
     public PotionIngredient() {
         displayItem = new ItemStack(ModItems.SPREAD.get());
         displayItem.getOrCreateTag();
+    }
+
+    @Override
+    public FoodProperties getFood(ItemStack item) {
+        return food;
     }
 
     @Override

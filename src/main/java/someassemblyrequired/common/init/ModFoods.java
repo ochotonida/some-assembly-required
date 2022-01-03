@@ -7,7 +7,6 @@ import net.minecraft.world.food.FoodProperties;
 public class ModFoods {
 
     public static final FoodProperties SANDWICH = new FoodProperties.Builder()
-            .alwaysEat()
             .build();
 
     public static final FoodProperties CHARRED_FOOD = new FoodProperties.Builder()

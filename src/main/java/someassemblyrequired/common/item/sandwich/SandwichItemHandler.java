@@ -2,12 +2,14 @@ package someassemblyrequired.common.item.sandwich;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import someassemblyrequired.common.ingredient.CustomIngredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 
@@ -142,6 +144,16 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         }
 
         return hasBacon && hasLettuce && hasTomato;
+    }
+
+    public boolean canAlwaysEat() {
+        for (ItemStack item : items) {
+            FoodProperties food = CustomIngredients.getFood(item);
+            if (food != null && food.canAlwaysEat()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ItemStack getAsItem() {

@@ -13,6 +13,7 @@ import javax.annotation.Nullable;
 
 public interface SandwichIngredient {
 
+    @Nullable
     default FoodProperties getFood(ItemStack item) {
         return item.getItem().getFoodProperties();
     }
