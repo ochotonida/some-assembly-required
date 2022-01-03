@@ -25,6 +25,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import someassemblyrequired.common.block.WaterLoggableHorizontalBlock;
+import someassemblyrequired.common.ingredient.CustomIngredients;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
@@ -100,7 +101,11 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
                     if (sandwich.isValidSandwich()) {
                         drops.add(sandwich.getAsItem());
                     } else {
-                        sandwich.forEach(drops::add);
+                        for (ItemStack stack : sandwich) {
+                            if (!CustomIngredients.hasContainer(stack)) {
+                                drops.add(stack);
+                            }
+                        }
                     }
                 });
         return drops;
