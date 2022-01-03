@@ -65,7 +65,7 @@ public class SandwichItem extends BlockItem {
             }
 
             for (int i = 0; i < ingredientsToShow; i++) {
-                tooltip.add(CustomIngredients.getDisplayName(handler.getStackInSlot(size - i - 1)).plainCopy().withStyle(ChatFormatting.GRAY));
+                tooltip.add(CustomIngredients.getFullName(handler.getStackInSlot(size - i - 1)).plainCopy().withStyle(ChatFormatting.GRAY));
             }
 
             if (size > ingredientsToShow) {

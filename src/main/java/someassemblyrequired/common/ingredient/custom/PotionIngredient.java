@@ -53,7 +53,7 @@ public class PotionIngredient implements SandwichIngredient {
     @Override
     public Component getDisplayName(ItemStack item) {
         Potion potion = PotionUtils.getPotion(item);
-        if (potion == Potions.WATER) {
+        if (!item.hasCustomHoverName() && potion == Potions.WATER) {
             return new TranslatableComponent("ingredient.%s.water_bottle".formatted(SomeAssemblyRequired.MODID));
         }
         return SandwichIngredient.super.getDisplayName(item);

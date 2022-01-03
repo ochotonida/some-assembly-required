@@ -26,9 +26,16 @@ public interface SandwichIngredient {
     }
 
     /**
-     * Returns the name of the ingredient
+     * Returns the name of the ingredient to determine the name of the sandwich
      */
     default Component getDisplayName(ItemStack item) {
+        return getFullName(item);
+    }
+
+    /**
+     * Returns the name of the ingredient as it should appear in the tooltip
+     */
+    default Component getFullName(ItemStack item) {
         return item.getHoverName();
     }
 

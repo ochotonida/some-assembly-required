@@ -2,7 +2,6 @@ package someassemblyrequired.common.item.sandwich;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -13,24 +12,11 @@ import someassemblyrequired.common.ingredient.CustomIngredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class SandwichNameHelper {
-
-    private static final Set<Item> INGREDIENT_NAME_OVERRIDES = new HashSet<>(Arrays.asList(
-            ModItems.TOASTED_BREAD_SLICE.get(),
-            ModItems.APPLE_SLICES.get(),
-            ModItems.GOLDEN_APPLE_SLICES.get(),
-            ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
-            ModItems.CHOPPED_CARROT.get(),
-            ModItems.CHOPPED_GOLDEN_CARROT.get(),
-            ModItems.CHOPPED_BEETROOT.get(),
-            ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
-            ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
-            ModItems.TOMATO_SLICES.get(),
-            ModItems.LETTUCE_LEAF.get()
-    ));
 
     public static Component getSandwichDisplayName(ItemStack stack) {
         SandwichItemHandler sandwich = SandwichItemHandler.get(stack).orElse(null);
@@ -107,26 +93,13 @@ public class SandwichNameHelper {
                 && ingredients.get(0).getItem() != ModItems.TOASTED_BREAD_SLICE.get()
                 && ingredients.get(1).getItem() == ModItems.TOASTED_BREAD_SLICE.get()
                 && ingredients.get(2).getItem() != ModItems.TOASTED_BREAD_SLICE.get()) {
-            return new TranslatableComponent("item.%s.ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), getIngredientDisplayName(ingredients.get(1)));
+            return new TranslatableComponent("item.%s.ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), CustomIngredients.getDisplayName(ingredients.get(1)));
         }
         return new TranslatableComponent("item.%s.bread_sandwich".formatted(SomeAssemblyRequired.MODID));
     }
 
-    private static Component getIngredientDisplayName(ItemStack stack) {
-        if (!stack.hasCustomHoverName() && INGREDIENT_NAME_OVERRIDES.contains(stack.getItem())) {
-            // noinspection ConstantConditions
-            return new TranslatableComponent(
-                    String.format("ingredient.%s.%s",
-                            stack.getItem().getRegistryName().getNamespace(),
-                            stack.getItem().getRegistryName().getPath()
-                    )
-            );
-        }
-        return CustomIngredients.getDisplayName(stack);
-    }
-
     private static Component listIngredients(List<ItemStack> ingredients) {
-        List<Component> ingredientNames = ingredients.stream().map(SandwichNameHelper::getIngredientDisplayName).collect(Collectors.toList());
+        List<Component> ingredientNames = ingredients.stream().map(CustomIngredients::getDisplayName).collect(Collectors.toList());
         return new TranslatableComponent("tooltip.%s.ingredient_list.".formatted(SomeAssemblyRequired.MODID) + ingredientNames.size(), ingredientNames.toArray());
     }
 }
