@@ -47,8 +47,8 @@ public class SandwichAssemblyTableBlockEntity extends BlockEntity {
     }
 
     public InteractionResult use(Player player, InteractionHand hand) {
-        if (level == null || level.isClientSide()) {
-            return InteractionResult.SUCCESS;
+        if (level == null) {
+            return InteractionResult.FAIL;
         }
 
         if (player.isShiftKeyDown()) {
@@ -67,7 +67,7 @@ public class SandwichAssemblyTableBlockEntity extends BlockEntity {
     }
 
     private void spawnSandwichAsItem(Player player) {
-        if (level == null || sandwich.size() == 0) {
+        if (level == null || level.isClientSide() || sandwich.size() == 0) {
             return;
         }
         if (!sandwich.isValidSandwich()) {
@@ -83,7 +83,7 @@ public class SandwichAssemblyTableBlockEntity extends BlockEntity {
     }
 
     private void removeItem(Player player) {
-        if (level == null) {
+        if (level == null || level.isClientSide()) {
             return;
         }
 
@@ -129,7 +129,7 @@ public class SandwichAssemblyTableBlockEntity extends BlockEntity {
     }
 
     private void addSingleItem(Player player, InteractionHand hand, ItemStack stack) {
-        if (level == null) {
+        if (level == null || level.isClientSide()) {
             return;
         }
 
@@ -150,7 +150,7 @@ public class SandwichAssemblyTableBlockEntity extends BlockEntity {
     }
 
     private void addSandwich(Player player, InteractionHand hand, ItemStack stack) {
-        if (level == null) {
+        if (level == null || level.isClientSide()) {
             return;
         }
         SandwichItemHandler.get(stack).ifPresent(handler -> {
