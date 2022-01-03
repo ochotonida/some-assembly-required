@@ -31,6 +31,7 @@ public class SomeAssemblyRequiredClient {
     public void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             BlockEntityRenderers.register(ModBlockEntityTypes.REDSTONE_TOASTER.get(), RedstoneToasterRenderer::new);
+            BlockEntityRenderers.register(ModBlockEntityTypes.STICKY_REDSTONE_TOASTER.get(), RedstoneToasterRenderer::new);
             BlockEntityRenderers.register(ModBlockEntityTypes.SANDWICH.get(), SandwichBlockRenderer::new);
             BlockEntityRenderers.register(ModBlockEntityTypes.SANDWICH_ASSEMBLY_TABLE.get(), SandwichAssemblyTableBlockRenderer::new);
 

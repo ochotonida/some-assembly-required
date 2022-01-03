@@ -2,7 +2,6 @@ package someassemblyrequired.common.block.redstonetoaster;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -45,27 +44,30 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock implement
             Block.box(2, 1, 4, 14, 10, 12)
     );
 
-    public RedstoneToasterBlock(Properties properties) {
+    private final boolean isSticky;
+
+    public RedstoneToasterBlock(Properties properties, boolean isSticky) {
         super(properties);
-        registerDefaultState(defaultBlockState().setValue(TOASTING, false).setValue(BlockStateProperties.POWERED, false));
+        this.isSticky = isSticky;
+        registerDefaultState(defaultBlockState().setValue(TOASTING, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(TOASTING, BlockStateProperties.POWERED);
+        builder.add(TOASTING);
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return super.getStateForPlacement(context).setValue(TOASTING, false).setValue(BlockStateProperties.POWERED, false).setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection().getClockWise());
+        return super.getStateForPlacement(context).setValue(TOASTING, false).setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection().getClockWise());
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        BlockEntity tileEntity = world.getBlockEntity(pos);
-        if (!(tileEntity instanceof RedstoneToasterBlockEntity toaster)) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (!(blockEntity instanceof RedstoneToasterBlockEntity toaster)) {
             return InteractionResult.PASS;
         }
 
@@ -75,22 +77,22 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock implement
             return toaster.startToasting(player) ? InteractionResult.SUCCESS : InteractionResult.PASS;
         } else {
             if (!heldItem.isEmpty() && toaster.addItem(player.isCreative() ? heldItem.copy() : heldItem)) {
-                world.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.2F, 0.8F);
+                level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.2F, 0.8F);
                 return InteractionResult.SUCCESS;
             }
-            return removeIngredient(toaster, world, pos, player) ? InteractionResult.SUCCESS : InteractionResult.PASS;
+            return removeIngredient(toaster, level, pos, player) ? InteractionResult.SUCCESS : InteractionResult.PASS;
         }
     }
 
-    private boolean removeIngredient(RedstoneToasterBlockEntity toaster, Level world, BlockPos pos, Player player) {
+    private boolean removeIngredient(RedstoneToasterBlockEntity toaster, Level level, BlockPos pos, Player player) {
         ItemStack ingredient = toaster.removeItem();
         if (!ingredient.isEmpty()) {
             if (!player.isCreative()) {
-                ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.75, pos.getZ() + 0.5, ingredient);
+                ItemEntity item = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.75, pos.getZ() + 0.5, ingredient);
                 item.setPickUpDelay(5);
-                world.addFreshEntity(item);
+                level.addFreshEntity(item);
             }
-            world.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.2F, 1F);
+            level.playSound(player, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.2F, 1F);
             return true;
         }
         return false;
@@ -98,43 +100,38 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock implement
 
     @Override
     @SuppressWarnings("deprecation")
-    public void tick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
-        BlockEntity tileEntity = world.getBlockEntity(pos);
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random rand) {
+        BlockEntity blockEntity = level.getBlockEntity(pos);
         // start toasting when receiving a redstone signal
-        if (tileEntity instanceof RedstoneToasterBlockEntity) {
-            ((RedstoneToasterBlockEntity) tileEntity).startToasting();
+        if (blockEntity instanceof RedstoneToasterBlockEntity toaster) {
+            toaster.startToasting();
         }
     }
 
     @SuppressWarnings("deprecation")
-    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
-        boolean isPowered = world.hasNeighborSignal(pos) || world.hasNeighborSignal(pos.above());
-        boolean wasPowered = state.getValue(BlockStateProperties.POWERED);
-        if (isPowered != wasPowered) {
-            if (isPowered) {
-
-            }
-            world.setBlock(pos, state.setValue(BlockStateProperties.POWERED, isPowered), Block.UPDATE_INVISIBLE);
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+        if (!(level.getBlockEntity(pos) instanceof RedstoneToasterBlockEntity toaster)) {
+            return;
         }
 
-        if (world.getBlockState(pos).getValue(BlockStateProperties.WATERLOGGED)) {
-            BlockEntity tileEntity = world.getBlockEntity(pos);
-            if (tileEntity instanceof RedstoneToasterBlockEntity && ((RedstoneToasterBlockEntity) tileEntity).isToasting()) {
-                ((RedstoneToasterBlockEntity) tileEntity).explode();
-            }
+        boolean isPowered = level.hasNeighborSignal(pos) || level.hasNeighborSignal(pos.above());
+        boolean isToasting = state.getValue(TOASTING);
+
+        if (isPowered && !isToasting) {
+            toaster.startToasting();
         }
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return state.getValue(BlockStateProperties.HORIZONTAL_FACING).getAxis() == Direction.Axis.X ? SHAPE_EAST_WEST : SHAPE_NORTH_SOUTH;
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-        return getShape(state, worldIn, pos, context);
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return getShape(state, level, pos, context);
     }
 
     @Override
@@ -145,36 +142,29 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock implement
 
     @Override
     @SuppressWarnings("deprecation")
-    public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
-        BlockEntity tileEntity = world.getBlockEntity(pos);
-        if (tileEntity instanceof RedstoneToasterBlockEntity) {
-            return 2 * ((RedstoneToasterBlockEntity) tileEntity).getAmountOfItems() - 1;
+    public int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos pos) {
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof RedstoneToasterBlockEntity toaster) {
+            return 8 * toaster.getAmountOfItems() - 1;
         }
         return 0;
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!newState.is(state.getBlock())) {
-            BlockEntity tileEntity = world.getBlockEntity(pos);
-            if (tileEntity instanceof RedstoneToasterBlockEntity) {
-                // drop contained ingredient
-                NonNullList<ItemStack> items = ((RedstoneToasterBlockEntity) tileEntity).removeItems();
-                for (ItemStack stack : items) {
-                    ItemEntity item = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
-                    world.addFreshEntity(item);
-                }
-
-                world.updateNeighbourForOutputSignal(pos, this);
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof RedstoneToasterBlockEntity toaster) {
+                toaster.dropItems();
             }
-            super.onRemove(state, world, pos, newState, isMoving);
+            super.onRemove(state, level, pos, newState, isMoving);
         }
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new RedstoneToasterBlockEntity(pos, state);
+        return RedstoneToasterBlockEntity.create(pos, state, isSticky);
     }
 
     @Nullable

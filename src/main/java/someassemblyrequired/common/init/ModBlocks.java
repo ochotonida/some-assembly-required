@@ -76,12 +76,12 @@ public class ModBlocks {
     // toasters
     public static final RegistryObject<Block> REDSTONE_TOASTER = REGISTRY.register(
             "redstone_toaster",
-            ModBlocks::createToaster
+            () -> createToaster(false)
     );
 
     public static final RegistryObject<Block> STICKY_REDSTONE_TOASTER = REGISTRY.register(
             "sticky_redstone_toaster",
-            ModBlocks::createToaster
+            () -> createToaster(true)
     );
 
     // crops
@@ -119,11 +119,12 @@ public class ModBlocks {
         );
     }
 
-    private static Block createToaster() {
+    private static Block createToaster(boolean isSticky) {
         return new RedstoneToasterBlock(BlockBehaviour.Properties
                 .of(Material.STONE)
                 .requiresCorrectToolForDrops()
-                .strength(3.5F)
+                .strength(3.5F),
+                isSticky
         );
     }
 }

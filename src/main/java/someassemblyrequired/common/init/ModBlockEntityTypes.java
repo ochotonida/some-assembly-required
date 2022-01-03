@@ -1,6 +1,8 @@
 package someassemblyrequired.common.init;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -30,8 +32,21 @@ public class ModBlockEntityTypes {
 
     public static RegistryObject<BlockEntityType<RedstoneToasterBlockEntity>> REDSTONE_TOASTER = REGISTRY.register(
             "redstone_toaster",
-            () -> BlockEntityType.Builder.of(RedstoneToasterBlockEntity::new,
-                    ModBlocks.getToasters()
+            () -> BlockEntityType.Builder.of(
+                    toaster(false),
+                    ModBlocks.REDSTONE_TOASTER.get()
             ).build(null)
     );
+
+    public static RegistryObject<BlockEntityType<RedstoneToasterBlockEntity>> STICKY_REDSTONE_TOASTER = REGISTRY.register(
+            "sticky_redstone_toaster",
+            () -> BlockEntityType.Builder.of(
+                    toaster(true),
+                    ModBlocks.STICKY_REDSTONE_TOASTER.get()
+            ).build(null)
+    );
+
+    private static BlockEntityType.BlockEntitySupplier<RedstoneToasterBlockEntity> toaster(boolean isSticky) {
+        return (BlockPos pos, BlockState state) -> RedstoneToasterBlockEntity.create(pos, state, isSticky);
+    }
 }
