@@ -11,11 +11,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 import someassemblyrequired.common.item.sandwich.SandwichItemRenderer;
 
-import java.util.Random;
-
 public class SandwichBlockRenderer implements BlockEntityRenderer<BlockEntity> {
-
-    private static final Random random = new Random();
 
     @SuppressWarnings("unused")
     public SandwichBlockRenderer(BlockEntityRendererProvider.Context context) {
@@ -33,8 +29,7 @@ public class SandwichBlockRenderer implements BlockEntityRenderer<BlockEntity> {
             }
         }
 
-        SandwichItemHandler.get(blockEntity)
-                .ifPresent(sandwich -> SandwichItemRenderer.renderSandwich(sandwich, poseStack, buffer, packedLight, overlay, blockEntity.getBlockPos().asLong()));
+        SandwichItemHandler.get(blockEntity).ifPresent(sandwich -> SandwichItemRenderer.renderSandwich(sandwich, poseStack, buffer, packedLight, overlay, blockEntity.getBlockPos().asLong()));
         poseStack.popPose();
     }
 }

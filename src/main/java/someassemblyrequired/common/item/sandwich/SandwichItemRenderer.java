@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import someassemblyrequired.common.init.ModTags;
 
 import java.util.Random;
 
@@ -58,10 +59,11 @@ public class SandwichItemRenderer extends BlockEntityWithoutLevelRenderer {
         random.setSeed(seed);
         for (int slot = 0; slot < sandwich.size(); slot++) {
             poseStack.pushPose();
-            if (slot != 0 && slot != sandwich.size() - 1) {
+            ItemStack stack = sandwich.getStackInSlot(slot);
+            if (!stack.is(ModTags.BREAD_SLICES)) {
                 poseStack.mulPose(Vector3f.ZP.rotationDegrees(random.nextFloat() * 20 - 10));
             }
-            Minecraft.getInstance().getItemRenderer().renderStatic(sandwich.getStackInSlot(slot), ItemTransforms.TransformType.FIXED, packedLight, overlay, poseStack, buffer, (int) seed + slot);
+            Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.FIXED, packedLight, overlay, poseStack, buffer, (int) seed + slot);
             poseStack.popPose();
             poseStack.translate(0, 0, -1 / 16D - 0.001);
         }
