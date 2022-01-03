@@ -15,13 +15,13 @@ public class SandwichAssemblyTableBlockRenderer extends SandwichBlockRenderer {
     }
 
     @Override
-    public void render(BlockEntity blockEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
-        matrixStack.pushPose();
-        matrixStack.translate(0, 1, 0);
+    public void render(BlockEntity blockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int overlay) {
+        poseStack.pushPose();
+        poseStack.translate(0, 1, 0);
         if (blockEntity.getLevel() != null) {
-            combinedLight = LevelRenderer.getLightColor(blockEntity.getLevel(), blockEntity.getBlockPos().above());
+            packedLight = LevelRenderer.getLightColor(blockEntity.getLevel(), blockEntity.getBlockPos().above());
         }
-        super.render(blockEntity, partialTicks, matrixStack, buffer, combinedLight, combinedOverlay);
-        matrixStack.popPose();
+        super.render(blockEntity, partialTicks, poseStack, buffer, packedLight, overlay);
+        poseStack.popPose();
     }
 }

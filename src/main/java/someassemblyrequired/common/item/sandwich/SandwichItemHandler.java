@@ -51,10 +51,6 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         return items.size();
     }
 
-    public List<ItemStack> getItems() {
-        return items;
-    }
-
     public void add(ItemStack stack) {
         if (stack.isEmpty()) {
             throw new IllegalArgumentException();
