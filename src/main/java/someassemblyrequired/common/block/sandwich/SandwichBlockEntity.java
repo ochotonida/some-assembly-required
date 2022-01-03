@@ -85,19 +85,18 @@ public class SandwichBlockEntity extends BlockEntity {
         itemToAdd.setCount(1);
         if (itemToAdd.is(ModItems.SANDWICH.get())) {
             addSandwich(player, hand, itemToAdd);
+            updateHeight();
             return InteractionResult.SUCCESS;
-        }
-        if (!isValidItem(itemToAdd)) {
+        } else if (!isValidItem(itemToAdd)) {
             return InteractionResult.PASS;
-        }
-        if (sandwich.size() >= getMaxHeight()) {
+        } else if (sandwich.size() >= getMaxHeight()) {
             player.displayClientMessage(new TranslatableComponent("message.%s.full_sandwich".formatted(SomeAssemblyRequired.MODID)), true);
             return InteractionResult.SUCCESS;
+        } else {
+            addSingleItem(player, hand, itemToAdd);
+            updateHeight();
+            return InteractionResult.SUCCESS;
         }
-
-        addSingleItem(player, hand, itemToAdd);
-        updateHeight();
-        return InteractionResult.SUCCESS;
     }
 
     public static boolean isValidItem(ItemStack stack) {
