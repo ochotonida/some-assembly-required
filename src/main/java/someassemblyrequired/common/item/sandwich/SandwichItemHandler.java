@@ -113,7 +113,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         }
 
         boolean foundBread = false;
-        for (int i = 1; i < size() - 1; i++) {
+        for (int i = 1; i < size() - 2; i++) {
             if (items.get(i).is(ModTags.BREAD_SLICES)) {
                 if (foundBread) {
                     return false;
@@ -122,7 +122,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
             }
         }
 
-        return !items.get(1).is(ModTags.BREAD_SLICES) && !items.get(size() - 2).is(ModTags.BREAD_SLICES);
+        return foundBread && !items.get(1).is(ModTags.BREAD_SLICES) && !items.get(size() - 2).is(ModTags.BREAD_SLICES);
     }
 
     public boolean isBLT() {
