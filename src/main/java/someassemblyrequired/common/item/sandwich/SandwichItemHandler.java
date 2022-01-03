@@ -76,10 +76,9 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         onContentsChanged();
     }
 
-    public ItemStack pop() {
-        ItemStack result = items.remove(items.size() - 1);
+    public void pop() {
+        items.remove(items.size() - 1);
         onContentsChanged();
-        return result;
     }
 
     public ItemStack bottom() {
