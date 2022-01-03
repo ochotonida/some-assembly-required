@@ -14,10 +14,11 @@ import someassemblyrequired.common.init.ModTags;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable, INBTSerializable<ListTag> {
+public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable, INBTSerializable<ListTag>, Iterable<ItemStack> {
 
     protected List<ItemStack> items;
 
@@ -213,6 +214,11 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
             items.add(ItemStack.of(listTag.getCompound(i)));
         }
         onLoad();
+    }
+
+    @Override
+    public Iterator<ItemStack> iterator() {
+        return items.iterator();
     }
 
     protected void validateSlotIndex(int slot) {

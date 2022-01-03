@@ -46,15 +46,15 @@ public class WaterLoggableHorizontalBlock extends WaterLoggableBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        return canSupportCenter(world, pos.below(), Direction.UP);
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        return canSupportCenter(level, pos.below(), Direction.UP);
     }
 
-    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
-        if (facing == Direction.DOWN && !this.canSurvive(state, world, currentPos)) {
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+        if (facing == Direction.DOWN && !this.canSurvive(state, level, currentPos)) {
             return Blocks.AIR.defaultBlockState();
         }
 
-        return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
+        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
     }
 }

@@ -177,8 +177,8 @@ public class SandwichAssemblyTableBlockEntity extends BlockEntity {
             return;
         }
         BlockPos pos = getBlockPos();
-        for (int i = 0; i < sandwich.size(); i++) {
-            ItemEntity item = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, sandwich.getStackInSlot(i));
+        for (ItemStack stack : sandwich) {
+            ItemEntity item = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, stack);
             level.addFreshEntity(item);
         }
     }

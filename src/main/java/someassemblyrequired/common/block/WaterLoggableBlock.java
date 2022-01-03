@@ -29,11 +29,11 @@ public class WaterLoggableBlock extends Block implements SimpleWaterloggedBlock 
 
     @Override
     @SuppressWarnings("deprecation")
-    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         if (state.getValue(BlockStateProperties.WATERLOGGED)) {
-            world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+            level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
-        return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
+        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
     }
 
     @SuppressWarnings("deprecation")

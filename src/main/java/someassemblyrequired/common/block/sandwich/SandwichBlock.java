@@ -53,8 +53,13 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
         List<ItemStack> drops = new ArrayList<>(super.getDrops(state, builder));
         SandwichItemHandler.get(builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY))
-                .map(SandwichItemHandler::getAsItem)
-                .ifPresent(drops::add);
+                .ifPresent(sandwich -> {
+                    if (sandwich.isValidSandwich()) {
+                        drops.add(sandwich.getAsItem());
+                    } else {
+                        sandwich.forEach(drops::add);
+                    }
+                });
         return drops;
     }
 

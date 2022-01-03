@@ -8,9 +8,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.EmptyHandler;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
@@ -35,16 +32,14 @@ public class SandwichNameHelper {
     ));
 
     public static Component getSandwichDisplayName(ItemStack stack) {
-        IItemHandler handler = stack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).orElse(EmptyHandler.INSTANCE);
-        List<ItemStack> ingredients = new ArrayList<>();
-        for (int slot = 0; slot < handler.getSlots() && !handler.getStackInSlot(slot).isEmpty(); slot++) {
-            ingredients.add(handler.getStackInSlot(slot));
-        }
-
         SandwichItemHandler sandwich = SandwichItemHandler.get(stack).orElse(null);
+
         if (sandwich == null) {
             return new TranslatableComponent("item.%s.sandwich".formatted(SomeAssemblyRequired.MODID));
         }
+
+        List<ItemStack> ingredients = new ArrayList<>();
+        sandwich.forEach(ingredients::add);
 
         int amountOfBread = getAmountOfBread(ingredients);
 
