@@ -48,11 +48,11 @@ public class SandwichAssemblyTableBlock extends HorizontalDirectionalBlock {
     }
 
     private static InteractionResult tryPlaceSandwich(Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitResult) {
-        if (player.getItemInHand(hand).isEmpty()) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (stack.isEmpty() || !SandwichBlockEntity.isValidItem(stack)) {
             return InteractionResult.PASS;
         }
 
-        ItemStack stack = player.getItemInHand(hand);
         if (!stack.is(ModItems.SANDWICH.get())) {
             if (!stack.is(ModTags.BREAD_SLICES)) {
                 player.displayClientMessage(new TranslatableComponent("message.%s.bottom_bread".formatted(SomeAssemblyRequired.MODID)), true);

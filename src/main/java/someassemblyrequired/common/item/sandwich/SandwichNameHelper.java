@@ -9,6 +9,7 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.ingredient.CustomIngredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 
@@ -114,17 +115,17 @@ public class SandwichNameHelper {
         return new TranslatableComponent("item.%s.bread_sandwich".formatted(SomeAssemblyRequired.MODID));
     }
 
-    private static Component getIngredientDisplayName(ItemStack ingredient) {
-        if (!ingredient.hasCustomHoverName() && INGREDIENT_NAME_OVERRIDES.contains(ingredient.getItem())) {
+    private static Component getIngredientDisplayName(ItemStack stack) {
+        if (!stack.hasCustomHoverName() && INGREDIENT_NAME_OVERRIDES.contains(stack.getItem())) {
             // noinspection ConstantConditions
             return new TranslatableComponent(
                     String.format("ingredient.%s.%s",
-                            ingredient.getItem().getRegistryName().getNamespace(),
-                            ingredient.getItem().getRegistryName().getPath()
+                            stack.getItem().getRegistryName().getNamespace(),
+                            stack.getItem().getRegistryName().getPath()
                     )
             );
         }
-        return ingredient.getHoverName();
+        return CustomIngredients.getDisplayName(stack);
     }
 
     private static Component listIngredients(List<ItemStack> ingredients) {

@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import someassemblyrequired.common.ingredient.CustomIngredients;
 import someassemblyrequired.common.init.ModTags;
 
 import java.util.Random;
@@ -63,6 +64,7 @@ public class SandwichItemRenderer extends BlockEntityWithoutLevelRenderer {
             if (!stack.is(ModTags.BREAD_SLICES)) {
                 poseStack.mulPose(Vector3f.ZP.rotationDegrees(random.nextFloat() * 20 - 10));
             }
+            stack = CustomIngredients.getDisplayItem(stack);
             Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.FIXED, packedLight, overlay, poseStack, buffer, (int) seed + slot);
             poseStack.popPose();
             poseStack.translate(0, 0, -1 / 16D - 0.001);

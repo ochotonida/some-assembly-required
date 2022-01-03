@@ -35,6 +35,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
+import someassemblyrequired.common.ingredient.CustomIngredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 
 import javax.annotation.Nullable;
@@ -59,7 +60,7 @@ public class SandwichItem extends BlockItem {
             }
 
             for (int i = 0; i < ingredientsToShow; i++) {
-                tooltip.add(handler.getStackInSlot(size - i - 1).getHoverName().plainCopy().withStyle(ChatFormatting.GRAY));
+                tooltip.add(CustomIngredients.getDisplayName(handler.getStackInSlot(size - i - 1)).plainCopy().withStyle(ChatFormatting.GRAY));
             }
 
             if (size > ingredientsToShow) {

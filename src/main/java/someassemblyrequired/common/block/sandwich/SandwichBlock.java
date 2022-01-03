@@ -26,7 +26,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import someassemblyrequired.common.block.WaterLoggableHorizontalBlock;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
-import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 
@@ -79,27 +78,9 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
         CompoundTag tag = context.getItemInHand().getTagElement("BlockEntityTag");
         if (tag != null) {
             int sandwichHeight = tag.getList("Sandwich", Tag.TAG_COMPOUND).size();
-            return super.getStateForPlacement(context).setValue(SIZE, getSizeFromHeight(sandwichHeight));
+            return super.getStateForPlacement(context).setValue(SIZE, SandwichBlockEntity.getSizeFromHeight(sandwichHeight));
         }
         return super.getStateForPlacement(context);
-    }
-
-    public static void updateHeight(Level level, BlockPos pos) {
-        SandwichItemHandler.get(level.getBlockEntity(pos))
-                .ifPresent(sandwich -> {
-                    BlockState state = level.getBlockState(pos);
-                    if (state.is(ModBlocks.SANDWICH.get())) {
-                        BlockState newState = state.setValue(SIZE, getSizeFromHeight(sandwich.size()));
-                        if (!newState.getValue(SIZE).equals(state.getValue(SIZE))) {
-                            level.setBlock(pos, state.setValue(SIZE, getSizeFromHeight(sandwich.size())), Block.UPDATE_ALL);
-                        }
-                    }
-                });
-    }
-
-    private static int getSizeFromHeight(int sandwichHeight) {
-        int size = Math.min(16, Math.max(2, sandwichHeight)) + 1;
-        return size / 2;
     }
 
     @Override

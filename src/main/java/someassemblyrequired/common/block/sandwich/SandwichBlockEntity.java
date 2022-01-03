@@ -18,14 +18,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.ingredient.CustomIngredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
+import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 
@@ -54,29 +57,24 @@ public class SandwichBlockEntity extends BlockEntity {
     }
 
     private void removeItem(Player player) {
-        if (level == null || level.isClientSide()) {
+        if (level == null) {
+            return;
+        }
+        ItemStack stack = sandwich.top();
+        CustomIngredients.playRemoveSound(stack, level, player, getBlockPos());
+        if (level.isClientSide()) {
             return;
         }
 
-        ItemStack stack = sandwich.pop();
+        sandwich.pop();
         BlockPos pos = getBlockPos();
-        boolean isSpread = false; // TODO
-        if (isSpread) {
-            level.playSound(null, pos, SoundEvents.HONEY_BLOCK_BREAK, SoundSource.BLOCKS, 0.3F, 1.6F);
-        } else {
-            if (!player.isCreative()) {
-                ItemEntity item = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, stack);
-                item.setPickUpDelay(5);
-                level.addFreshEntity(item);
-            }
-            level.playSound(null, pos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 0.3F, 1.6F);
+        if (!CustomIngredients.hasContainer(stack) && !player.isCreative()) {
+            ItemEntity item = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, stack);
+            item.setPickUpDelay(5);
+            level.addFreshEntity(item);
         }
 
-        if (sandwich.isEmpty()) {
-            level.removeBlock(pos, false);
-        } else {
-            SandwichBlock.updateHeight(level, pos);
-        }
+        updateHeight();
     }
 
     private InteractionResult addItem(Player player, InteractionHand hand) {
@@ -89,7 +87,7 @@ public class SandwichBlockEntity extends BlockEntity {
             addSandwich(player, hand, itemToAdd);
             return InteractionResult.SUCCESS;
         }
-        if (!itemToAdd.isEdible()) {
+        if (!isValidItem(itemToAdd)) {
             return InteractionResult.PASS;
         }
         if (sandwich.size() >= getMaxHeight()) {
@@ -98,28 +96,27 @@ public class SandwichBlockEntity extends BlockEntity {
         }
 
         addSingleItem(player, hand, itemToAdd);
-        if (getLevel() != null) {
-            SandwichBlock.updateHeight(getLevel(), getBlockPos());
-        }
+        updateHeight();
         return InteractionResult.SUCCESS;
     }
 
+    public static boolean isValidItem(ItemStack stack) {
+        return stack.isEdible() || stack.is(ModItems.SANDWICH.get()) || CustomIngredients.get(stack) != null;
+    }
+
     private void addSingleItem(Player player, InteractionHand hand, ItemStack stack) {
-        if (level == null || level.isClientSide()) {
+        if (level == null) {
+            return;
+        }
+        CustomIngredients.playApplySound(stack, level, player, getBlockPos());
+        if (level.isClientSide()) {
             return;
         }
 
         sandwich.add(stack);
 
-        boolean hasSpread = false; // TODO
-        if (!hasSpread) {
-            level.playSound(null, getBlockPos(), SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 0.3F, 1.3F);
-        } else {
-            level.playSound(null, getBlockPos(), SoundEvents.HONEY_BLOCK_PLACE, SoundSource.BLOCKS, 0.3F, 1.3F);
-
-            if (player instanceof ServerPlayer && stack.getItem() == Items.POTION && PotionUtils.getPotion(stack) != Potions.WATER) {
-                ModAdvancementTriggers.ADD_POTION_TO_SANDWICH.trigger((ServerPlayer) player, stack);
-            }
+        if (player instanceof ServerPlayer serverPlayer && stack.is(Items.POTION) && PotionUtils.getPotion(stack) != Potions.WATER) {
+            ModAdvancementTriggers.ADD_POTION_TO_SANDWICH.trigger(serverPlayer, stack);
         }
 
         shrinkHeldItem(player, hand);
@@ -142,9 +139,38 @@ public class SandwichBlockEntity extends BlockEntity {
 
     private static void shrinkHeldItem(Player player, InteractionHand hand) {
         if (!player.isCreative()) {
-            player.getItemInHand(hand).shrink(1);
-            // TODO return spread type container
+            ItemStack item = player.getItemInHand(hand);
+            ItemStack container = CustomIngredients.getContainer(item);
+            item.shrink(1);
+            if (!container.isEmpty() && !player.getInventory().add(container)) {
+                player.drop(container, false);
+            }
         }
+    }
+
+    public void updateHeight() {
+        if (level == null) {
+            return;
+        }
+        if (sandwich.isEmpty()) {
+            level.removeBlock(getBlockPos(), false);
+        } else {
+            SandwichItemHandler.get(level.getBlockEntity(getBlockPos()))
+                    .ifPresent(sandwich -> {
+                        BlockState state = level.getBlockState(getBlockPos());
+                        if (state.is(ModBlocks.SANDWICH.get())) {
+                            BlockState newState = state.setValue(SandwichBlock.SIZE, getSizeFromHeight(sandwich.size()));
+                            if (!newState.getValue(SandwichBlock.SIZE).equals(state.getValue(SandwichBlock.SIZE))) {
+                                level.setBlock(getBlockPos(), state.setValue(SandwichBlock.SIZE, getSizeFromHeight(sandwich.size())), Block.UPDATE_ALL);
+                            }
+                        }
+                    });
+        }
+    }
+
+    static int getSizeFromHeight(int sandwichHeight) {
+        int size = Math.min(16, Math.max(2, sandwichHeight)) + 1;
+        return size / 2;
     }
 
     @Override
