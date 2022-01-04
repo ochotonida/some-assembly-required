@@ -1,0 +1,12 @@
+{
+  "item": "minecraft:rabbit_stew",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Color": 12546612
+    }
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  }
+}

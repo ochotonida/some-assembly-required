@@ -1,0 +1,12 @@
+{
+  "item": "some_assembly_required:lettuce_leaf",
+  "displayName": {
+    "translate": "ingredient.some_assembly_required.lettuce_leaf"
+  },
+  "displayItem": {
+    "item": "some_assembly_required:lettuce_leaf",
+    "nbt": {
+      "CustomModelData": 1
+    }
+  }
+}

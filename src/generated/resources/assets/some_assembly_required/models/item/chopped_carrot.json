@@ -6,7 +6,7 @@
   "overrides": [
     {
       "predicate": {
-        "some_assembly_required:on_sandwich": 1.0
+        "minecraft:custom_model_data": 1.0
       },
       "model": "some_assembly_required:item/chopped_carrot_on_sandwich"
     }

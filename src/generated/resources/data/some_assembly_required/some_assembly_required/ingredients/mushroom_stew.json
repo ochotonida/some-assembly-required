@@ -1,0 +1,12 @@
+{
+  "item": "minecraft:mushroom_stew",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Color": 11367505
+    }
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  }
+}

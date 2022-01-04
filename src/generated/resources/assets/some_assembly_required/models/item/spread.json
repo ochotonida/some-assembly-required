@@ -2,13 +2,5 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "some_assembly_required:item/spread"
-  },
-  "overrides": [
-    {
-      "predicate": {
-        "some_assembly_required:on_loaf": 1.0
-      },
-      "model": "some_assembly_required:item/spread_on_loaf"
-    }
-  ]
+  }
 }

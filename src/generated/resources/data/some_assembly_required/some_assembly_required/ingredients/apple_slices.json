@@ -1,0 +1,12 @@
+{
+  "item": "some_assembly_required:apple_slices",
+  "displayName": {
+    "translate": "ingredient.some_assembly_required.apple_slices"
+  },
+  "displayItem": {
+    "item": "some_assembly_required:apple_slices",
+    "nbt": {
+      "CustomModelData": 1
+    }
+  }
+}

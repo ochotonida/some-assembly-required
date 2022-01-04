@@ -1,0 +1,12 @@
+{
+  "item": "minecraft:beetroot_soup",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Color": 9175075
+    }
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  }
+}

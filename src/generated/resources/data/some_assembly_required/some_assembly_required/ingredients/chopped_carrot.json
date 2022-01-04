@@ -1,0 +1,12 @@
+{
+  "item": "some_assembly_required:chopped_carrot",
+  "displayName": {
+    "translate": "ingredient.some_assembly_required.chopped_carrot"
+  },
+  "displayItem": {
+    "item": "some_assembly_required:chopped_carrot",
+    "nbt": {
+      "CustomModelData": 1
+    }
+  }
+}

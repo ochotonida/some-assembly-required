@@ -1,0 +1,12 @@
+{
+  "item": "some_assembly_required:sliced_toasted_warped_fungus",
+  "displayName": {
+    "translate": "ingredient.some_assembly_required.sliced_toasted_warped_fungus"
+  },
+  "displayItem": {
+    "item": "some_assembly_required:sliced_toasted_warped_fungus",
+    "nbt": {
+      "CustomModelData": 1
+    }
+  }
+}
