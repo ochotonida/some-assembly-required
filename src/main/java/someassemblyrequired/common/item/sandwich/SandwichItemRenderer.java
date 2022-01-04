@@ -37,7 +37,7 @@ public class SandwichItemRenderer extends BlockEntityWithoutLevelRenderer {
                 }
             }
 
-            if (transformType.firstPerson() || transformType == ItemTransforms.TransformType.GUI || transformType == ItemTransforms.TransformType.FIXED) {
+            if (transformType.firstPerson() || transformType == ItemTransforms.TransformType.GUI) {
                 poseStack.translate(0, -size / 32D, 0);
             }
 
