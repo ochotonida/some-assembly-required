@@ -49,20 +49,28 @@ public class SandwichAssemblyTableBlock extends HorizontalDirectionalBlock {
     }
 
     private static InteractionResult tryPlaceSandwich(Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitResult) {
-        ItemStack stack = player.getItemInHand(hand);
-        if (stack.isEmpty() || !CustomIngredients.isValidIngredient(stack)) {
+        ItemStack heldItem = player.getItemInHand(hand);
+        if (heldItem.isEmpty() || !CustomIngredients.isValidIngredient(heldItem)) {
             return InteractionResult.PASS;
         }
 
-        if (!stack.is(ModItems.SANDWICH.get())) {
-            if (!stack.is(ModTags.BREAD_SLICES)) {
+        ItemStack sandwich;
+        if (!heldItem.is(ModItems.SANDWICH.get())) {
+            if (!heldItem.is(ModTags.BREAD_SLICES)) {
                 player.displayClientMessage(new TranslatableComponent("message.%s.bottom_bread".formatted(SomeAssemblyRequired.MODID)), true);
                 return InteractionResult.SUCCESS;
             }
-            stack = new SandwichItemHandler(stack.split(1)).getAsItem();
+            ItemStack breadSlice = heldItem.copy();
+            breadSlice.setCount(1);
+            sandwich = new SandwichItemHandler(breadSlice).getAsItem();
+            if (!player.isCreative()) {
+                player.getItemInHand(hand).shrink(1);
+            }
+        } else {
+            sandwich = heldItem;
         }
 
         UseOnContext useOnContext = new UseOnContext(player, hand, hitResult);
-        return ModItems.SANDWICH.get().place(useOnContext, pos.above(), stack);
+        return ModItems.SANDWICH.get().place(useOnContext, pos.above(), sandwich);
     }
 }
