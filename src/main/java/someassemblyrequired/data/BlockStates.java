@@ -12,6 +12,7 @@ import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.redstonetoaster.RedstoneToasterBlock;
+import someassemblyrequired.common.block.sandwich.SandwichBlock;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.util.Util;
 
@@ -30,7 +31,7 @@ public class BlockStates extends BlockStateProvider {
         ModelFile sandwichModel = models()
                 .getBuilder(prefixBlock("sandwich").toString())
                 .texture("particle", prefixItem("bread_slice"));
-        horizontalBlock(ModBlocks.SANDWICH.get(), $ -> sandwichModel, BlockStateProperties.WATERLOGGED);
+        horizontalBlock(ModBlocks.SANDWICH.get(), $ -> sandwichModel, BlockStateProperties.WATERLOGGED, SandwichBlock.SIZE);
 
         // lettuce
         getVariantBuilder(ModBlocks.LETTUCE.get())
