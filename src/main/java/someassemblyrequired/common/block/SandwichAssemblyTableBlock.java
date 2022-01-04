@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.sandwich.SandwichBlockEntity;
+import someassemblyrequired.common.ingredient.CustomIngredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
@@ -49,7 +50,7 @@ public class SandwichAssemblyTableBlock extends HorizontalDirectionalBlock {
 
     private static InteractionResult tryPlaceSandwich(Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitResult) {
         ItemStack stack = player.getItemInHand(hand);
-        if (stack.isEmpty() || !SandwichBlockEntity.isValidItem(stack)) {
+        if (stack.isEmpty() || !CustomIngredients.isValidIngredient(stack)) {
             return InteractionResult.PASS;
         }
 

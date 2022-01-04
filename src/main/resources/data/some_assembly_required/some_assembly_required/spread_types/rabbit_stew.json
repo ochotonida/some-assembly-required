@@ -1,8 +1,0 @@
-{
-  "item": "minecraft:rabbit_stew",
-  "container": "minecraft:bowl",
-  "displayname": {
-    "translate": "item.minecraft.rabbit_stew"
-  },
-  "color": 12546612
-}

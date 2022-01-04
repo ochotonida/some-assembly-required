@@ -2,7 +2,6 @@ package someassemblyrequired;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -11,8 +10,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import someassemblyrequired.common.ingredient.CustomIngredients;
+import someassemblyrequired.common.ingredient.DataIngredients;
 import someassemblyrequired.common.init.*;
-import someassemblyrequired.common.item.spreadtype.SpreadTypeManager;
 import someassemblyrequired.common.network.NetworkHandler;
 
 @Mod(SomeAssemblyRequired.MODID)
@@ -35,7 +34,8 @@ public class SomeAssemblyRequired {
 
         modEventBus.addListener(this::onCommonSetup);
 
-        MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListeners);
+        MinecraftForge.EVENT_BUS.addListener(DataIngredients::onAddReloadListener);
+        MinecraftForge.EVENT_BUS.addListener(DataIngredients::onDataPackReload);
 
         ModAdvancementTriggers.register();
     }
@@ -47,9 +47,5 @@ public class SomeAssemblyRequired {
             ModItems.registerCompostables();
             CustomIngredients.addCustomIngredients();
         });
-    }
-
-    public void onAddReloadListeners(AddReloadListenerEvent event) {
-        event.addListener(SpreadTypeManager.INSTANCE);
     }
 }

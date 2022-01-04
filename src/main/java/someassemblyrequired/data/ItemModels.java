@@ -36,15 +36,6 @@ public class ItemModels extends ItemModelProvider {
         // ignored
         removeAll(items, ModItems.SANDWICH.get());
 
-        // spreads
-        removeAll(items, ModItems.SPREAD.get());
-        addGeneratedModel("spread_on_loaf", prefixItem("spread_on_loaf"));
-        addGeneratedModel(ModItems.SPREAD.get())
-                .override()
-                .model(getExistingFile(prefixItem("spread_on_loaf")))
-                .predicate(Util.id("on_loaf"), 1)
-                .end();
-
         // items with sandwich overrides
         removeAll(items,
                 ModItems.APPLE_SLICES.get(),
@@ -62,7 +53,7 @@ public class ItemModels extends ItemModelProvider {
             addGeneratedModel(itemName, prefixItem(itemName))
                     .override()
                     .model(getExistingFile(prefixItem(itemName + "_on_sandwich")))
-                    .predicate(Util.id("on_sandwich"), 1)
+                    .predicate(new ResourceLocation("custom_model_data"), 1)
                     .end();
         });
 

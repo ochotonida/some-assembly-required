@@ -9,12 +9,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.custom.NamedIngredient;
-import someassemblyrequired.common.ingredient.custom.PotionIngredient;
 import someassemblyrequired.common.init.ModItems;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class CustomIngredients {
@@ -25,6 +22,9 @@ public class CustomIngredients {
     };
 
     public static SandwichIngredient get(ItemStack item) {
+        if (DataIngredients.get(item) != null) {
+            return DataIngredients.get(item);
+        }
         return INGREDIENTS.get(item.getItem());
     }
 
@@ -45,20 +45,10 @@ public class CustomIngredients {
 
     public static void addCustomIngredients() {
         put(Items.POTION, new PotionIngredient());
+    }
 
-        Arrays.asList(
-                ModItems.TOASTED_BREAD_SLICE.get(),
-                ModItems.APPLE_SLICES.get(),
-                ModItems.GOLDEN_APPLE_SLICES.get(),
-                ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
-                ModItems.CHOPPED_CARROT.get(),
-                ModItems.CHOPPED_GOLDEN_CARROT.get(),
-                ModItems.CHOPPED_BEETROOT.get(),
-                ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
-                ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
-                ModItems.TOMATO_SLICES.get(),
-                ModItems.LETTUCE_LEAF.get()
-        ).forEach(item -> put(item, NamedIngredient.fromItem(item)));
+    public static boolean isValidIngredient(ItemStack item) {
+        return item.isEdible() || !item.is(ModItems.SANDWICH.get()) || get(item) != null;
     }
 
     public static FoodProperties getFood(ItemStack item) {

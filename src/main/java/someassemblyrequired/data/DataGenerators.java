@@ -22,6 +22,7 @@ public class DataGenerators {
             generator.addProvider(new Recipes(generator));
             generator.addProvider(new Advancements(generator));
             generator.addProvider(new LootTables(generator));
+            generator.addProvider(new SandwichIngredients(generator));
         }
         if (event.includeClient()) {
             BlockStates blockStates = new BlockStates(generator, helper);

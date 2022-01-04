@@ -1,8 +1,0 @@
-{
-  "item": "minecraft:honey_bottle",
-  "container": "minecraft:glass_bottle",
-  "displayname": {
-    "translate": "spreadtype.some_assembly_required.honey_bottle"
-  },
-  "color": 15763997
-}

@@ -23,7 +23,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.Nullable;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.block.WaterLoggableHorizontalBlock;
 import someassemblyrequired.common.ingredient.CustomIngredients;
@@ -31,6 +30,7 @@ import someassemblyrequired.common.init.ModBlockEntityTypes;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 

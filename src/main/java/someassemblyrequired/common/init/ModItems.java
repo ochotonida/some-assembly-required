@@ -11,13 +11,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.Nullable;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.item.DrinkableBottleItem;
 import someassemblyrequired.common.item.EnchantedGoldenAppleSlicesItem;
 import someassemblyrequired.common.item.SpreadItem;
 import someassemblyrequired.common.item.sandwich.SandwichBuilder;
 import someassemblyrequired.common.item.sandwich.SandwichItem;
+
+import javax.annotation.Nullable;
 
 @SuppressWarnings("unused")
 public class ModItems {

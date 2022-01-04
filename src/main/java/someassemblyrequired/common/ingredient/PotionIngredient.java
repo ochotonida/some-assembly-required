@@ -1,4 +1,4 @@
-package someassemblyrequired.common.ingredient.custom;
+package someassemblyrequired.common.ingredient;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -11,7 +11,6 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.SandwichIngredient;
 import someassemblyrequired.common.init.ModItems;
 
 public class PotionIngredient implements SandwichIngredient {

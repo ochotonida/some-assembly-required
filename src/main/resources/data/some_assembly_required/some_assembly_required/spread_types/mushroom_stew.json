@@ -1,8 +1,0 @@
-{
-  "item": "minecraft:mushroom_stew",
-  "container": "minecraft:bowl",
-  "displayname": {
-    "translate": "item.minecraft.mushroom_stew"
-  },
-  "color": 11367505
-}

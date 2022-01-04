@@ -1,8 +1,0 @@
-{
-  "item": "minecraft:milk_bucket",
-  "container": "minecraft:bucket",
-  "displayname": {
-    "translate": "spreadtype.some_assembly_required.milk_bucket"
-  },
-  "color": 15662591
-}

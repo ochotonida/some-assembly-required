@@ -15,6 +15,6 @@ public class NetworkHandler {
     );
 
     public static void register() {
-        INSTANCE.registerMessage(0, SpreadTypeSyncPacket.class, SpreadTypeSyncPacket::encode, SpreadTypeSyncPacket::new, SpreadTypeSyncPacket::handle);
+        INSTANCE.registerMessage(0, IngredientSyncPacket.class, IngredientSyncPacket::encode, IngredientSyncPacket::new, IngredientSyncPacket::handle);
     }
 }
