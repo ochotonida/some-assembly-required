@@ -13,6 +13,7 @@ import someassemblyrequired.common.ingredient.CustomIngredients;
 import someassemblyrequired.common.ingredient.DataIngredients;
 import someassemblyrequired.common.init.*;
 import someassemblyrequired.common.network.NetworkHandler;
+import someassemblyrequired.integration.ModCompat;
 
 @Mod(SomeAssemblyRequired.MODID)
 public class SomeAssemblyRequired {
@@ -23,6 +24,8 @@ public class SomeAssemblyRequired {
 
     public SomeAssemblyRequired() {
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> SomeAssemblyRequiredClient::new);
+
+        ModCompat.setup();
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 

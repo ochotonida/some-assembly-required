@@ -48,7 +48,7 @@ public class CustomIngredients {
     }
 
     public static boolean isValidIngredient(ItemStack item) {
-        return item.isEdible() || !item.is(ModItems.SANDWICH.get()) || get(item) != null;
+        return !item.isEmpty() && (item.isEdible() || !item.is(ModItems.SANDWICH.get()) || get(item) != null);
     }
 
     public static FoodProperties getFood(ItemStack item) {
