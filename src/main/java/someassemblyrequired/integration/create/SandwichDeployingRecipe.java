@@ -45,7 +45,13 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
             return false;
         }
 
-        return CustomIngredients.isValidIngredient(inventory.getItem(1));
+        if (!CustomIngredients.isValidIngredient(inventory.getItem(1))) {
+            return false;
+        }
+
+        return SandwichItemHandler.get(item)
+                .map(sandwich -> sandwich.size() < 16) // TODO config
+                .orElse(true);
     }
 
     public static ItemStack assembleSandwich(RecipeWrapper inventory) {
