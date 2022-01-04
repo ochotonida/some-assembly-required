@@ -137,8 +137,12 @@ public class SandwichBlockEntity extends BlockEntity {
             ItemStack item = player.getItemInHand(hand);
             ItemStack container = CustomIngredients.getContainer(item).copy();
             item.shrink(1);
-            if (!container.isEmpty() && !player.getInventory().add(container)) {
-                player.drop(container, false);
+            if (!container.isEmpty()) {
+                if (player.getItemInHand(hand).isEmpty()) {
+                    player.setItemInHand(hand, container);
+                } else if (!player.getInventory().add(container)) {
+                    player.drop(container, false);
+                }
             }
         }
     }
