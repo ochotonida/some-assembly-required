@@ -29,7 +29,7 @@ import java.util.function.Consumer;
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class CuttingRecipeBuilder {
 
-    private static final Set<CuttingRecipeBuilder> recipes = new HashSet<>();
+    private static final Set<CuttingRecipeBuilder> RECIPES = new HashSet<>();
 
     private final List<ChanceResult> results = new ArrayList<>(4);
     private final Ingredient ingredient;
@@ -43,7 +43,7 @@ public class CuttingRecipeBuilder {
     }
 
     public static void addCuttingRecipes(Consumer<FinishedRecipe> consumer) {
-        recipes.clear();
+        RECIPES.clear();
 
         cut(Items.APPLE, ModItems.APPLE_SLICES.get(), 2);
         cut(Items.BREAD, ModItems.BREAD_SLICE.get(), 4);
@@ -57,7 +57,7 @@ public class CuttingRecipeBuilder {
         cut(ModItems.TOASTED_WARPED_FUNGUS.get(), ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(), 2);
         cut(ForgeTags.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2);
 
-        for (CuttingRecipeBuilder recipe : new HashSet<>(recipes)) {
+        for (CuttingRecipeBuilder recipe : new HashSet<>(RECIPES)) {
             recipe.build(consumer);
         }
     }
@@ -72,7 +72,7 @@ public class CuttingRecipeBuilder {
 
     public static CuttingRecipeBuilder cut(Ingredient ingredient, ItemLike mainResult, int count) {
         CuttingRecipeBuilder builder = new CuttingRecipeBuilder(ingredient, Ingredient.of(ForgeTags.TOOLS_KNIVES), mainResult, count, 1.0F);
-        recipes.add(builder);
+        RECIPES.add(builder);
         return builder;
     }
 
@@ -110,7 +110,7 @@ public class CuttingRecipeBuilder {
     }
 
     public void build(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
-        recipes.remove(this);
+        RECIPES.remove(this);
         consumer.accept(new Result(id, ingredient, tool, results, soundEvent));
     }
 
