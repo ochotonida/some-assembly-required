@@ -1,0 +1,21 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:golden_carrot"
+    }
+  ],
+  "results": [
+    {
+      "item": "some_assembly_required:chopped_golden_carrot",
+      "count": 2
+    }
+  ],
+  "processingTime": 30,
+  "conditions": [
+    {
+      "modid": "create",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

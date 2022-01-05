@@ -1,0 +1,21 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "some_assembly_required:lettuce_head"
+    }
+  ],
+  "results": [
+    {
+      "item": "some_assembly_required:lettuce_leaf",
+      "count": 3
+    }
+  ],
+  "processingTime": 30,
+  "conditions": [
+    {
+      "modid": "create",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}
