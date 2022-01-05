@@ -95,25 +95,5 @@
 
   "description.some_assembly_required.sandwich_assembly_table": "Platziere hierauf deine zutaten zwischen brot, und dann SHIFT + Rechtsklick um dein Sandwich zu erschaffen",
   "description.some_assembly_required.redstone_toaster": "Der Redstone Toaster™ wird Brot und andere Narungsmittel rösten, und braucht kein Kraftstoff. Bitte füge kein Metall hierein, und tauche den Toaste nicht ins Wasser.",
-  "description.some_assembly_required.sticky_redstone_toaster": "Eine etwas weniger gewalttätige Variante des Redstone Toasters™",
-  "description.some_assembly_required.bread_slice": "Viel hungereffizienter als Brot und kann schneller gegessen werden",
-  "description.some_assembly_required.toasted_bread_slice": "Stellt mehr Hunger als eine Brotscheibe wieder her",
-  "description.some_assembly_required.charred_bread_slice": "Nicht ganz so lecker wie Brot",
-  "description.some_assembly_required.apple_slices": "Viel hungereffizienter als ein ganzer Apfel und kann schneller gegessen werden",
-  "description.some_assembly_required.golden_apple_slices": "Viel hungereffizienter als ein ganzer goldener Apfel und kann schneller gegessen werden",
-  "description.some_assembly_required.enchanted_golden_apple_slices": "Viel hungereffizienter als ein ganzer verzauberter goldener Apfel und kann schneller gegessen werden",
-  "description.some_assembly_required.chopped_carrot": "Viel hungereffizienter als eine ganze Karotte und kann schneller gegessen werden",
-  "description.some_assembly_required.chopped_golden_carrot": "Viel hungereffizienter als eine ganze goldene Karotte und kann schneller gegessen werden",
-  "description.some_assembly_required.chopped_beetroot": "Viel hungereffizienter als eine ganze rote Beete und kann schneller gegessen werden",
-  "description.some_assembly_required.mayonnaise_bottle": "Kann auf einem Sandwich ausgebreitet werden",
-  "description.some_assembly_required.sweet_berry_jam_bottle": "Eine Marmeladenflasche die auf einem Sandwich verteilt werden kann. Stellt mehr Hunger wieder her als süße Beeren",
-  "description.some_assembly_required.toasted_crimson_fungus": "Eine essbare Form von purpurrotem Pilz. Kann geschnitten werden",
-  "description.some_assembly_required.toasted_warped_fungus": "Eine essbare Form von verzogenem Pilz. Kann geschnitten werden",
-  "description.some_assembly_required.sliced_toasted_crimson_fungus": "Viel hungereffizienter als ein ganzer gerösteter purpurroter Pilz und kann schneller gegessen werden",
-  "description.some_assembly_required.sliced_toasted_warped_fungus": "Viel hungereffizienter als ein ganzer gerösteter verzogener Pilz und kann schneller gegessen werden",
-  "description.some_assembly_required.charred_food": "Vielleicht hilft es, es noch einmal zu rösten?",
-  "description.some_assembly_required.tomato_slices": "Hungerseffizienter als eine ganze Tomate und kann schneller gegessen werden",
-  "description.some_assembly_required.ketchup_bottle": "Eine Flasche Ketchup. Kann auf ein Sandwich aufgetragen werden",
-  "description.some_assembly_required.lettuce_head": "Ein Salatkopf. Kann in Blätter geschnitten werden",
-  "description.some_assembly_required.lettuce_leaf": "Ein Blatt eines Salatkopfes. Hungerseffizienter als ein ganzer Kopf"
+  "description.some_assembly_required.sticky_redstone_toaster": "Eine etwas weniger gewalttätige Variante des Redstone Toasters™"
 }

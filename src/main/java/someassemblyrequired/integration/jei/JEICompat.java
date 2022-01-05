@@ -14,8 +14,8 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModBlocks;
-import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModRecipeTypes;
 import someassemblyrequired.common.util.Util;
 
@@ -57,34 +57,14 @@ public class JEICompat implements IModPlugin {
         registration.addRecipes(findRecipes(RecipeType.SMOKING).stream().filter((recipe) -> !recipe.getResultItem().isEmpty()).collect(Collectors.toList()), ToastingRecipeCategory.ID);
 
         for (Block assemblyTable : ModBlocks.getSandwichAssemblyTables()) {
-            registration.addIngredientInfo(new ItemStack(assemblyTable), VanillaTypes.ITEM, new TranslatableComponent("description.someassemblyrequired.sandwich_assembly_table"));
+            registration.addIngredientInfo(new ItemStack(assemblyTable), VanillaTypes.ITEM, new TranslatableComponent("description.%s.sandwich_assembly_table".formatted(SomeAssemblyRequired.MODID)));
         }
         for (ItemLike item : new ItemLike[]{
                 ModBlocks.REDSTONE_TOASTER.get(),
                 ModBlocks.STICKY_REDSTONE_TOASTER.get(),
-                ModItems.BREAD_SLICE.get(),
-                ModItems.TOASTED_BREAD_SLICE.get(),
-                ModItems.CHARRED_BREAD_SLICE.get(),
-                ModItems.CHARRED_FOOD.get(),
-                ModItems.APPLE_SLICES.get(),
-                ModItems.GOLDEN_APPLE_SLICES.get(),
-                ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
-                ModItems.CHOPPED_CARROT.get(),
-                ModItems.CHOPPED_GOLDEN_CARROT.get(),
-                ModItems.CHOPPED_BEETROOT.get(),
-                ModItems.TOASTED_CRIMSON_FUNGUS.get(),
-                ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
-                ModItems.TOASTED_WARPED_FUNGUS.get(),
-                ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
-                ModItems.TOMATO_SLICES.get(),
-                ModItems.LETTUCE_HEAD.get(),
-                ModItems.LETTUCE_LEAF.get(),
-                ModItems.MAYONNAISE_BOTTLE.get(),
-                ModItems.KETCHUP_BOTTLE.get(),
-                ModItems.SWEET_BERRY_JAM_BOTTLE.get()
         }) {
             // noinspection ConstantConditions
-            registration.addIngredientInfo(new ItemStack(item), VanillaTypes.ITEM, new TranslatableComponent(String.format("description.someassemblyrequired.%s", item.asItem().getRegistryName().getPath())));
+            registration.addIngredientInfo(new ItemStack(item), VanillaTypes.ITEM, new TranslatableComponent(String.format("description.%s.%s", SomeAssemblyRequired.MODID, item.asItem().getRegistryName().getPath())));
         }
     }
 }
