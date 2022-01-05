@@ -2,6 +2,7 @@ package someassemblyrequired.common.ingredient;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -45,6 +46,7 @@ public class CustomIngredients {
 
     public static void addCustomIngredients() {
         put(Items.POTION, new PotionIngredient());
+        put(Items.SUSPICIOUS_STEW, new SuspiciousStewIngredient());
     }
 
     public static boolean isValidIngredient(ItemStack item) {
@@ -55,8 +57,8 @@ public class CustomIngredients {
         return getOrDefault(item).getFood(item);
     }
 
-    public static void onEaten(ItemStack item, Player player) {
-        getOrDefault(item).onEaten(item, player);
+    public static void onEaten(ItemStack item, LivingEntity entity) {
+        getOrDefault(item).onEaten(item, entity);
     }
 
     public static Component getDisplayName(ItemStack item) {

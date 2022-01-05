@@ -3,7 +3,7 @@ package someassemblyrequired.common.ingredient;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -15,7 +15,8 @@ import someassemblyrequired.common.init.ModItems;
 
 public class PotionIngredient implements SandwichIngredient {
 
-    private final ItemStack container = new ItemStack(Items.GLASS_BOTTLE);
+    private static final ItemStack CONTAINER = new ItemStack(Items.GLASS_BOTTLE);
+
     private final FoodProperties food = new FoodProperties.Builder().alwaysEat().build();
     private final ItemStack displayItem;
 
@@ -30,12 +31,12 @@ public class PotionIngredient implements SandwichIngredient {
     }
 
     @Override
-    public void onEaten(ItemStack item, Player player) {
+    public void onEaten(ItemStack item, LivingEntity entity) {
         for (MobEffectInstance mobEffect : PotionUtils.getMobEffects(item)) {
             if (mobEffect.getEffect().isInstantenous()) {
-                mobEffect.getEffect().applyInstantenousEffect(player, player, player, mobEffect.getAmplifier(), 1);
+                mobEffect.getEffect().applyInstantenousEffect(entity, entity, entity, mobEffect.getAmplifier(), 1);
             } else {
-                player.addEffect(new MobEffectInstance(mobEffect));
+                entity.addEffect(new MobEffectInstance(mobEffect));
             }
         }
     }
@@ -60,6 +61,6 @@ public class PotionIngredient implements SandwichIngredient {
 
     @Override
     public ItemStack getContainer(ItemStack item) {
-        return container;
+        return CONTAINER;
     }
 }

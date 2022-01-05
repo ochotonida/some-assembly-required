@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
@@ -21,7 +22,7 @@ public interface SandwichIngredient {
     /**
      * Called server-side when a player eats a sandwich with this ingredient
      */
-    default void onEaten(ItemStack item, Player player) {
+    default void onEaten(ItemStack item, LivingEntity entity) {
 
     }
 
