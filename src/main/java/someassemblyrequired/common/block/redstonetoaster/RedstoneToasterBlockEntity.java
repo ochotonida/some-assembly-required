@@ -65,7 +65,7 @@ public class RedstoneToasterBlockEntity extends BlockEntity {
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction side) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && (side == null || side == Direction.DOWN)) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return itemHandler.cast();
         }
         return super.getCapability(capability, side);
