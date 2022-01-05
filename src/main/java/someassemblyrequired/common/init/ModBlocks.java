@@ -1,7 +1,6 @@
 package someassemblyrequired.common.init;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -10,7 +9,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.block.LettuceBlock;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.block.redstonetoaster.RedstoneToasterBlock;
 import someassemblyrequired.common.block.sandwich.SandwichBlock;
@@ -82,12 +80,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> STICKY_REDSTONE_TOASTER = REGISTRY.register(
             "sticky_redstone_toaster",
             () -> createToaster(true)
-    );
-
-    // crops
-    public static final RegistryObject<Block> LETTUCE = REGISTRY.register(
-            "lettuce",
-            () -> new LettuceBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT))
     );
 
     public static Block[] getSandwichAssemblyTables() {

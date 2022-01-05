@@ -31,7 +31,6 @@
   "block.some_assembly_required.redstone_toaster": "Torradeira Redstone",
   "block.some_assembly_required.sticky_redstone_toaster": "Torradeira Redstone Pegajosa",
   "block.some_assembly_required.sandwich": "Sanduíche",
-  "block.some_assembly_required.lettuce": "Alface",
 
   "item.some_assembly_required.spread": "Pasta Para Espalhar Sobre o Pão",
   "item.some_assembly_required.bread_slice": "Fatia de Pão",
@@ -53,9 +52,6 @@
   "item.some_assembly_required.charred_morsel": "Pedaço Carbonizado",
   "item.some_assembly_required.tomato_slices": "Fatias de Tomate",
   "item.some_assembly_required.ketchup_bottle": "Frasco de Ketchup",
-  "item.some_assembly_required.lettuce_head": "Cabeça de Alface",
-  "item.some_assembly_required.lettuce_leaf": "Folha de Alface",
-  "item.some_assembly_required.lettuce_seeds": "Sementes de Alface",
 
   "item.some_assembly_required.sandwich": "Sanduíche",
   "item.some_assembly_required.double_decker_sandwich": "Sanduíche de Dois Andares",
@@ -82,7 +78,6 @@
   "ingredient.some_assembly_required.sliced_toasted_crimson_fungus": "Fungo Carmesim",
   "ingredient.some_assembly_required.sliced_toasted_warped_fungus": "Fungo Distorcido",
   "ingredient.some_assembly_required.tomato_slices": "Tomate",
-  "ingredient.some_assembly_required.lettuce_leaf": "Alface",
 
   "ingredient.some_assembly_required.water_bottle": "Água",
   "ingredient.some_assembly_required.honey_bottle": "Mel",

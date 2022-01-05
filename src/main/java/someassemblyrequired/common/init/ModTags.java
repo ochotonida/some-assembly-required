@@ -22,13 +22,10 @@ public class ModTags {
     public static final Tag.Named<Item> FRUITS_APPLE = createForgeTag("fruits/apple");
     public static final Tag.Named<Item> SALAD_INGREDIENTS = createForgeTag("salad_ingredients");
     public static final Tag.Named<Item> SALAD_INGREDIENTS_LETTUCE = createForgeTag("salad_ingredients/lettuce");
-    public static final Tag.Named<Item> SEEDS = createForgeTag("seeds");
-    public static final Tag.Named<Item> SEEDS_LETTUCE = createForgeTag("seeds/lettuce");
     public static final Tag.Named<Item> TORTILLAS = createForgeTag("tortillas");
     public static final Tag.Named<Item> VEGETABLES = createForgeTag("vegetables");
     public static final Tag.Named<Item> VEGETABLES_BEETROOT = createForgeTag("vegetables/beetroot");
     public static final Tag.Named<Item> VEGETABLES_CARROT = createForgeTag("vegetables/carrot");
-    public static final Tag.Named<Item> VEGETABLES_LETTUCE = createForgeTag("vegetables/lettuce");
     public static final Tag.Named<Item> VEGETABLES_TOMATO = createForgeTag("vegetables/tomato");
     public static final Tag.Named<Item> VINEGAR_INGREDIENTS = createForgeTag("vinegar_ingredients");
     public static final Tag.Named<Item> VINEGAR_INGREDIENTS_APPLE = createForgeTag("vinegar_ingredients/apple");

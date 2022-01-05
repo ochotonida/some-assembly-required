@@ -28,7 +28,6 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import someassemblyrequired.common.init.ModBlocks;
-import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
 
 import java.util.ArrayList;
@@ -57,82 +56,13 @@ public class LootTables extends LootTableProvider {
             addStandardDropTable(block);
         }
 
-
-        addBlockLootTable(ModBlocks.LETTUCE.get(), createCropWithBonusSeedsLootTable((CropBlock) ModBlocks.LETTUCE.get(), ModItems.LETTUCE_HEAD.get(), ModItems.LETTUCE_SEEDS.get()));
-
         addChestLootTables();
 
         return tables;
     }
 
     private void addChestLootTables() {
-        addChestLootTable("inject/chests/village/village_desert_house", LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .name("main")
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(emptyEntry(12))
-                )
-        );
 
-        addChestLootTable("inject/chests/village/village_savanna_house", LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .name("main")
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 1, 3))
-                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 1, 1, 3))
-                        .add(emptyEntry(12))
-                )
-        );
-
-        addChestLootTable("inject/chests/village/village_plains_house", LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .name("main")
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 1, 4))
-                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 2, 1, 4))
-                        .add(emptyEntry(12))
-                )
-        );
-
-        addChestLootTable("inject/chests/village/village_taiga_house", LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .name("main")
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 2, 1, 3))
-                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 2, 1, 3))
-                        .add(emptyEntry(12))
-                )
-        );
-
-        addChestLootTable("inject/chests/village/village_snowy_house", LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .name("main")
-                        .setRolls(ConstantValue.exactly(1))
-                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 2, 2, 6))
-                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 4, 2, 6))
-                        .add(emptyEntry(12))
-                )
-        );
-
-        addChestLootTable("inject/chests/igloo_chest", LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .name("main")
-                        .setRolls(ConstantValue.exactly(2))
-                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 6, 1, 4))
-                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 6, 1, 4))
-                        .add(emptyEntry(12))
-                )
-        );
-
-        addChestLootTable("inject/chests/shipwreck_supply", LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .name("main")
-                        .setRolls(ConstantValue.exactly(2))
-                        .add(itemEntry(ModItems.LETTUCE_HEAD.get(), 1, 2, 6))
-                        .add(itemEntry(ModItems.LETTUCE_SEEDS.get(), 1, 2, 6))
-                        .add(emptyEntry(12))
-                )
-        );
     }
 
     private static LootTable.Builder createCropWithBonusSeedsLootTable(CropBlock cropsBlock, Item cropItem, Item seedItem) {

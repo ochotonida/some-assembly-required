@@ -31,7 +31,6 @@
   "block.some_assembly_required.redstone_toaster": "Redstone Toaster",
   "block.some_assembly_required.sticky_redstone_toaster": "Klebriger Redstone Toaster",
   "block.some_assembly_required.sandwich": "Sandwich",
-  "block.some_assembly_required.lettuce": "Salat",
 
   "item.some_assembly_required.spread": "Aufstrich",
   "item.some_assembly_required.bread_slice": "Brotscheibe",
@@ -53,9 +52,6 @@
   "item.some_assembly_required.charred_morsel": "Verkohlter Bissen",
   "item.some_assembly_required.tomato_slices": "Tomatenscheiben",
   "item.some_assembly_required.ketchup_bottle": "Ketchup",
-  "item.some_assembly_required.lettuce_head": "Salatkopf",
-  "item.some_assembly_required.lettuce_leaf": "Salatblätter",
-  "item.some_assembly_required.lettuce_seeds": "Salatsamen",
 
   "item.some_assembly_required.sandwich": "Sandwich",
   "item.some_assembly_required.double_decker_sandwich": "Doppeldecker Sandwich",
@@ -82,7 +78,6 @@
   "ingredient.some_assembly_required.sliced_toasted_crimson_fungus": "Purpurroter Pilz",
   "ingredient.some_assembly_required.sliced_toasted_warped_fungus": "Verzogener Pilz",
   "ingredient.some_assembly_required.tomato_slices": "Tomaten",
-  "ingredient.some_assembly_required.lettuce_leaf": "Salat",
 
   "ingredient.some_assembly_required.water_bottle": "Wasser",
   "ingredient.some_assembly_required.honey_bottle": "Honig",

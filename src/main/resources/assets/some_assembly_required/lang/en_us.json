@@ -31,7 +31,6 @@
   "block.some_assembly_required.redstone_toaster": "Redstone Toaster",
   "block.some_assembly_required.sticky_redstone_toaster": "Sticky Redstone Toaster",
   "block.some_assembly_required.sandwich": "Sandwich",
-  "block.some_assembly_required.lettuce": "Lettuce",
 
   "item.some_assembly_required.spread": "Spread",
   "item.some_assembly_required.bread_slice": "Bread Slice",
@@ -53,9 +52,6 @@
   "item.some_assembly_required.charred_morsel": "Charred Morsel",
   "item.some_assembly_required.tomato_slices": "Tomato Slices",
   "item.some_assembly_required.ketchup_bottle": "Ketchup Bottle",
-  "item.some_assembly_required.lettuce_head": "Lettuce Head",
-  "item.some_assembly_required.lettuce_leaf": "Lettuce Leaf",
-  "item.some_assembly_required.lettuce_seeds": "Lettuce Seeds",
 
   "item.some_assembly_required.sandwich": "Sandwich",
   "item.some_assembly_required.double_decker_sandwich": "Double Decker Sandwich",
@@ -82,7 +78,6 @@
   "ingredient.some_assembly_required.sliced_toasted_crimson_fungus": "Crimson Fungus",
   "ingredient.some_assembly_required.sliced_toasted_warped_fungus": "Warped Fungus",
   "ingredient.some_assembly_required.tomato_slices": "Tomato",
-  "ingredient.some_assembly_required.lettuce_leaf": "Lettuce",
 
   "ingredient.some_assembly_required.water_bottle": "Water",
   "ingredient.some_assembly_required.honey_bottle": "Honey",

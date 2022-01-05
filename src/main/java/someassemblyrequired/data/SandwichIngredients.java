@@ -54,8 +54,7 @@ public record SandwichIngredients(DataGenerator generator) implements DataProvid
                 ModItems.CHOPPED_BEETROOT.get(),
                 ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
                 ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
-                ModItems.TOMATO_SLICES.get(),
-                ModItems.LETTUCE_LEAF.get()
+                ModItems.TOMATO_SLICES.get()
         ).forEach(item -> builder(item).setCustomDisplayName().setCustomModelData());
     }
 

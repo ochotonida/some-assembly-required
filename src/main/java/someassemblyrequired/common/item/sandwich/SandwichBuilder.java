@@ -59,7 +59,7 @@ public class SandwichBuilder {
 
     public static ItemStack blt() {
         return create()
-                .add(ModItems.LETTUCE_LEAF.get())
+                // TODO .add(ModItems.LETTUCE_LEAF.get())
                 // TODO .add(ModItems.BACON_STRIPS.get())
                 .add(ModItems.TOMATO_SLICES.get())
                 .build();

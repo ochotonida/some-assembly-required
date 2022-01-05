@@ -68,16 +68,11 @@ public class ModItems {
     public static final RegistryObject<Item> TOASTED_WARPED_FUNGUS = REGISTRY.register("toasted_warped_fungus", () -> createFoodItem(ModFoods.TOASTED_WARPED_FUNGUS));
     public static final RegistryObject<Item> SLICED_TOASTED_WARPED_FUNGUS = REGISTRY.register("sliced_toasted_warped_fungus", () -> createFoodItem(ModFoods.SLICED_TOASTED_WARPED_FUNGUS));
     public static final RegistryObject<Item> TOMATO_SLICES = REGISTRY.register("tomato_slices", () -> createFoodItem(ModFoods.TOMATO_SLICES));
-    public static final RegistryObject<Item> LETTUCE_HEAD = REGISTRY.register("lettuce_head", () -> createFoodItem(ModFoods.LETTUCE_HEAD));
-    public static final RegistryObject<Item> LETTUCE_LEAF = REGISTRY.register("lettuce_leaf", () -> createFoodItem(ModFoods.LETTUCE_LEAF));
 
     // spreadables
     public static final RegistryObject<Item> MAYONNAISE_BOTTLE = REGISTRY.register("mayonnaise_bottle", () -> createSpreadItem(ModFoods.MAYONNAISE));
     public static final RegistryObject<Item> KETCHUP_BOTTLE = REGISTRY.register("ketchup_bottle", () -> createSpreadItem(ModFoods.KETCHUP));
     public static final RegistryObject<Item> SWEET_BERRY_JAM_BOTTLE = REGISTRY.register("sweet_berry_jam_bottle", () -> createSpreadItem(ModFoods.SWEET_BERRY_JAM));
-
-    // seeds
-    public static final RegistryObject<Item> LETTUCE_SEEDS = REGISTRY.register("lettuce_seeds", () -> createSeedItem(ModBlocks.LETTUCE.get()));
 
     private static Item createBlockItem(Block block) {
         return new BlockItem(block, new Item.Properties().tab(CREATIVE_TAB));
@@ -101,10 +96,6 @@ public class ModItems {
         return new DrinkableBottleItem(new Item.Properties().tab(CREATIVE_TAB).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(food), SoundEvents.HONEY_DRINK);
     }
 
-    private static Item createSeedItem(Block crop) {
-        return new ItemNameBlockItem(crop, new Item.Properties().tab(CREATIVE_TAB));
-    }
-
     public static void registerCompostables() {
         // 30%
         ComposterBlock.COMPOSTABLES.put(BREAD_SLICE.get(), 0.3F);
@@ -117,13 +108,10 @@ public class ModItems {
         ComposterBlock.COMPOSTABLES.put(CHOPPED_BEETROOT.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(SLICED_TOASTED_CRIMSON_FUNGUS.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(SLICED_TOASTED_CRIMSON_FUNGUS.get(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(LETTUCE_SEEDS.get(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(LETTUCE_LEAF.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TOMATO_SLICES.get(), 0.3F);
 
         // 65%
         ComposterBlock.COMPOSTABLES.put(TOASTED_CRIMSON_FUNGUS.get(), 0.65F);
         ComposterBlock.COMPOSTABLES.put(TOASTED_WARPED_FUNGUS.get(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(LETTUCE_HEAD.get(), 0.65F);
     }
 }

@@ -89,18 +89,6 @@ public class ModFoods {
             .saturationMod(0.5F)
             .build();
 
-    public static final FoodProperties PORK_CUTS = new FoodProperties.Builder()
-            .nutrition(2)
-            .saturationMod(0.3F)
-            .meat()
-            .build();
-
-    public static final FoodProperties BACON_STRIPS = new FoodProperties.Builder()
-            .nutrition(4)
-            .saturationMod(0.7F)
-            .meat()
-            .build();
-
     public static final FoodProperties TOASTED_CRIMSON_FUNGUS = new FoodProperties.Builder()
             .nutrition(4)
             .saturationMod(0.5F)
@@ -123,24 +111,9 @@ public class ModFoods {
             .fast()
             .build();
 
-    public static final FoodProperties TOMATO = new FoodProperties.Builder()
-            .nutrition(4)
-            .saturationMod(0.4F)
-            .build();
-
     public static final FoodProperties TOMATO_SLICES = new FoodProperties.Builder()
             .nutrition(2)
             .saturationMod(0.6F)
             .fast()
-            .build();
-
-    public static final FoodProperties LETTUCE_HEAD = new FoodProperties.Builder()
-            .nutrition(5)
-            .saturationMod(0.2F)
-            .build();
-
-    public static final FoodProperties LETTUCE_LEAF = new FoodProperties.Builder()
-            .nutrition(3)
-            .saturationMod(0.4F)
             .build();
 }

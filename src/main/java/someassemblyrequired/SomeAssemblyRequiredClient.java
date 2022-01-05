@@ -1,7 +1,5 @@
 package someassemblyrequired;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -12,7 +10,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import someassemblyrequired.common.block.redstonetoaster.RedstoneToasterRenderer;
 import someassemblyrequired.common.block.sandwich.SandwichBlockRenderer;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
-import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 
 public class SomeAssemblyRequiredClient {
@@ -29,7 +26,6 @@ public class SomeAssemblyRequiredClient {
             BlockEntityRenderers.register(ModBlockEntityTypes.REDSTONE_TOASTER.get(), RedstoneToasterRenderer::new);
             BlockEntityRenderers.register(ModBlockEntityTypes.STICKY_REDSTONE_TOASTER.get(), RedstoneToasterRenderer::new);
             BlockEntityRenderers.register(ModBlockEntityTypes.SANDWICH.get(), SandwichBlockRenderer::new);
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.LETTUCE.get(), RenderType.cutout());
         });
     }
 

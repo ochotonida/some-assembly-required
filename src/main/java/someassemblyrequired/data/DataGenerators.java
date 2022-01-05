@@ -17,11 +17,9 @@ public class DataGenerators {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
         if (event.includeServer()) {
-            BlockTags blockTags = new BlockTags(generator, helper);
-            generator.addProvider(blockTags);
-            generator.addProvider(new ItemTags(generator, blockTags, helper));
+            generator.addProvider(new ItemTags(generator, helper));
             generator.addProvider(new Recipes(generator));
-            generator.addProvider(new Advancements(generator));
+            generator.addProvider(new Advancements(generator, helper));
             generator.addProvider(new LootTables(generator));
             generator.addProvider(new SandwichIngredients(generator));
             ProcessingRecipeGenerator.registerAll(generator);

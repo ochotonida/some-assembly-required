@@ -45,8 +45,7 @@ public class ItemModels extends ItemModelProvider {
                 ModItems.CHOPPED_BEETROOT.get(),
                 ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
                 ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
-                ModItems.TOMATO_SLICES.get(),
-                ModItems.LETTUCE_LEAF.get()
+                ModItems.TOMATO_SLICES.get()
         ).forEach(item -> {
             String itemName = item.getRegistryName().getPath();
             addGeneratedModel(itemName + "_on_sandwich", prefixItem(itemName + "_on_sandwich"));
@@ -69,9 +68,6 @@ public class ItemModels extends ItemModelProvider {
         for (Item toaster : removeAll(items, ModBlocks.getToasters())) {
             withExistingParent(toaster.getRegistryName().getPath(), prefixBlock("idle_redstone_toaster"));
         }
-
-        // block items with sprites
-        removeAll(items, ModItems.LETTUCE_SEEDS.get()).forEach(this::addGeneratedModel);
 
         // normal block items
         removeAll(items, item -> item instanceof BlockItem).forEach(

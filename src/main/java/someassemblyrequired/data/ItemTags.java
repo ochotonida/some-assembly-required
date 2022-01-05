@@ -15,8 +15,8 @@ import javax.annotation.Nullable;
 
 public class ItemTags extends ItemTagsProvider {
 
-    public ItemTags(DataGenerator dataGenerator, BlockTagsProvider blockTagProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, blockTagProvider, SomeAssemblyRequired.MODID, existingFileHelper);
+    public ItemTags(DataGenerator dataGenerator, @Nullable ExistingFileHelper existingFileHelper) {
+        super(dataGenerator, new BlockTagsProvider(dataGenerator, SomeAssemblyRequired.MODID, existingFileHelper), SomeAssemblyRequired.MODID, existingFileHelper);
     }
 
     @Override
@@ -106,6 +106,7 @@ public class ItemTags extends ItemTagsProvider {
     private void addForgeTags() {
         tag(ModTags.COOKED_BACON);
         tag(ModTags.CROPS_TOMATOES);
+        tag(ModTags.CROPS_LETTUCE);
 
         tag(ModTags.BREAD).addTags(
                 ModTags.BREAD_WHEAT
@@ -129,11 +130,6 @@ public class ItemTags extends ItemTagsProvider {
                 ModTags.CROPS_LETTUCE
         );
 
-        tag(ModTags.CROPS_LETTUCE).add(
-                ModItems.LETTUCE_HEAD.get(),
-                ModItems.LETTUCE_LEAF.get()
-        );
-
         tag(ModTags.FRUITS).addTags(
                 ModTags.FRUITS_APPLE
         );
@@ -143,28 +139,10 @@ public class ItemTags extends ItemTagsProvider {
                 ModItems.APPLE_SLICES.get()
         );
 
-        tag(ModTags.SALAD_INGREDIENTS).addTags(
-                ModTags.SALAD_INGREDIENTS_LETTUCE
-        );
-
-        tag(ModTags.SALAD_INGREDIENTS_LETTUCE).add(
-                ModItems.LETTUCE_HEAD.get(),
-                ModItems.LETTUCE_LEAF.get()
-        );
-
-        tag(ModTags.SEEDS).addTags(
-                ModTags.SEEDS_LETTUCE
-        );
-
-        tag(ModTags.SEEDS_LETTUCE).add(
-                ModItems.LETTUCE_SEEDS.get()
-        );
-
         tag(ModTags.TORTILLAS);
         tag(ModTags.VEGETABLES).addTags(
                 ModTags.VEGETABLES_BEETROOT,
                 ModTags.VEGETABLES_CARROT,
-                ModTags.VEGETABLES_LETTUCE,
                 ModTags.VEGETABLES_TOMATO
         );
 
@@ -176,11 +154,6 @@ public class ItemTags extends ItemTagsProvider {
         tag(ModTags.VEGETABLES_CARROT).add(
                 Items.CARROT,
                 ModItems.CHOPPED_CARROT.get()
-        );
-
-        tag(ModTags.VEGETABLES_LETTUCE).add(
-                ModItems.LETTUCE_HEAD.get(),
-                ModItems.LETTUCE_LEAF.get()
         );
 
         tag(ModTags.VEGETABLES_TOMATO).add(

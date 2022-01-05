@@ -15,6 +15,8 @@ import net.minecraft.data.advancements.HusbandryAdvancements;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModBlocks;
@@ -32,8 +34,8 @@ public class Advancements extends AdvancementProvider {
 
     private final Path PATH;
 
-    public Advancements(DataGenerator generator) {
-        super(generator);
+    public Advancements(DataGenerator generator, ExistingFileHelper helper) {
+        super(generator, helper);
         PATH = generator.getOutputFolder();
     }
 
@@ -91,7 +93,7 @@ public class Advancements extends AdvancementProvider {
                     consumer,
                     obtainBreadSlice,
                     SandwichBuilder.create()
-                            .add(ModItems.LETTUCE_LEAF.get())
+                            .add(Items.COOKED_BEEF)
                             .build(),
                     InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SANDWICH.get()),
                     "obtain_sandwich",
