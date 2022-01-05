@@ -3,7 +3,7 @@
   "display": {
     "icon": {
       "item": "some_assembly_required:sandwich",
-      "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"some_assembly_required:lettuce_leaf\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}}]}}"
+      "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"minecraft:cooked_beef\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}}]}}"
     },
     "title": {
       "translate": "advancement.some_assembly_required.obtain_sandwich.title"
