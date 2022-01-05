@@ -16,8 +16,8 @@ import net.minecraftforge.common.Tags;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
-import someassemblyrequired.data.builder.CuttingRecipeBuilder;
-import someassemblyrequired.data.builder.ToastingRecipeBuilder;
+import someassemblyrequired.data.recipe.ToastingRecipeBuilder;
+import someassemblyrequired.data.recipe.farmersdelight.CuttingRecipeBuilder;
 
 import java.util.function.Consumer;
 

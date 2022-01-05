@@ -12,7 +12,7 @@ import net.minecraft.world.item.Items;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.DataIngredient;
 import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.data.builder.IngredientBuilder;
+import someassemblyrequired.data.recipe.IngredientBuilder;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

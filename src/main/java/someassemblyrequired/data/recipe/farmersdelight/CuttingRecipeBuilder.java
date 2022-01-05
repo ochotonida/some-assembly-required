@@ -1,4 +1,4 @@
-package someassemblyrequired.data.builder;
+package someassemblyrequired.data.recipe.farmersdelight;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -45,32 +45,32 @@ public class CuttingRecipeBuilder {
     public static void addCuttingRecipes(Consumer<FinishedRecipe> consumer) {
         recipes.clear();
 
-        cuttingRecipe(Items.APPLE, ModItems.APPLE_SLICES.get(), 2);
-        cuttingRecipe(Items.BREAD, ModItems.BREAD_SLICE.get(), 4);
-        cuttingRecipe(Items.BEETROOT, ModItems.CHOPPED_BEETROOT.get(), 2);
-        cuttingRecipe(Items.CARROT, ModItems.CHOPPED_CARROT.get(), 2);
-        cuttingRecipe(Items.GOLDEN_CARROT, ModItems.CHOPPED_GOLDEN_CARROT.get(), 2);
-        cuttingRecipe(Items.ENCHANTED_GOLDEN_APPLE, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(), 2);
-        cuttingRecipe(Items.GOLDEN_APPLE, ModItems.GOLDEN_APPLE_SLICES.get(), 2);
-        cuttingRecipe(ModItems.LETTUCE_HEAD.get(), ModItems.LETTUCE_LEAF.get(), 3);
-        cuttingRecipe(ModItems.TOASTED_CRIMSON_FUNGUS.get(), ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(), 2);
-        cuttingRecipe(ModItems.TOASTED_WARPED_FUNGUS.get(), ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(), 2);
-        cuttingRecipe(ForgeTags.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2);
+        cut(Items.APPLE, ModItems.APPLE_SLICES.get(), 2);
+        cut(Items.BREAD, ModItems.BREAD_SLICE.get(), 4);
+        cut(Items.BEETROOT, ModItems.CHOPPED_BEETROOT.get(), 2);
+        cut(Items.CARROT, ModItems.CHOPPED_CARROT.get(), 2);
+        cut(Items.GOLDEN_CARROT, ModItems.CHOPPED_GOLDEN_CARROT.get(), 2);
+        cut(Items.ENCHANTED_GOLDEN_APPLE, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(), 2);
+        cut(Items.GOLDEN_APPLE, ModItems.GOLDEN_APPLE_SLICES.get(), 2);
+        cut(ModItems.LETTUCE_HEAD.get(), ModItems.LETTUCE_LEAF.get(), 3);
+        cut(ModItems.TOASTED_CRIMSON_FUNGUS.get(), ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(), 2);
+        cut(ModItems.TOASTED_WARPED_FUNGUS.get(), ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(), 2);
+        cut(ForgeTags.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2);
 
         for (CuttingRecipeBuilder recipe : new HashSet<>(recipes)) {
             recipe.build(consumer);
         }
     }
 
-    public static CuttingRecipeBuilder cuttingRecipe(ItemLike ingredient, ItemLike mainResult, int count) {
-        return cuttingRecipe(Ingredient.of(ingredient), mainResult, count);
+    public static CuttingRecipeBuilder cut(ItemLike ingredient, ItemLike mainResult, int count) {
+        return cut(Ingredient.of(ingredient), mainResult, count);
     }
 
-    public static CuttingRecipeBuilder cuttingRecipe(Tag<Item> ingredient, ItemLike mainResult, int count) {
-        return cuttingRecipe(Ingredient.of(ingredient), mainResult, count);
+    public static CuttingRecipeBuilder cut(Tag<Item> ingredient, ItemLike mainResult, int count) {
+        return cut(Ingredient.of(ingredient), mainResult, count);
     }
 
-    public static CuttingRecipeBuilder cuttingRecipe(Ingredient ingredient, ItemLike mainResult, int count) {
+    public static CuttingRecipeBuilder cut(Ingredient ingredient, ItemLike mainResult, int count) {
         CuttingRecipeBuilder builder = new CuttingRecipeBuilder(ingredient, Ingredient.of(ForgeTags.TOOLS_KNIVES), mainResult, count, 1.0F);
         recipes.add(builder);
         return builder;
@@ -102,7 +102,7 @@ public class CuttingRecipeBuilder {
     public void build(Consumer<FinishedRecipe> consumer) {
         ResourceLocation location = results.get(0).getStack().getItem().getRegistryName();
         // noinspection ConstantConditions
-        build(consumer, Util.id("cutting/" + location.getPath()));
+        build(consumer, Util.id("cutting/%s/".formatted(ModCompat.FARMERS_DELIGHT) + location.getPath()));
     }
 
     public void build(Consumer<FinishedRecipe> consumer, String save) {

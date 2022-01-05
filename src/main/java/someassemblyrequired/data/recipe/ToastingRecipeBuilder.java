@@ -1,4 +1,4 @@
-package someassemblyrequired.data.builder;
+package someassemblyrequired.data.recipe;
 
 import com.google.gson.JsonObject;
 import net.minecraft.data.recipes.FinishedRecipe;
