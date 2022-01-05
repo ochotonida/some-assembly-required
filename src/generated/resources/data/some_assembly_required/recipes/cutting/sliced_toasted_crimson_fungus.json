@@ -1,18 +1,18 @@
 {
+  "type": "farmersdelight:cutting",
   "conditions": [
     {
-      "type": "forge:mod_loaded",
-      "modid": "farmersdelight"
+      "modid": "farmersdelight",
+      "type": "forge:mod_loaded"
     }
   ],
-  "type": "farmersdelight:cutting",
   "ingredients": [
     {
       "item": "some_assembly_required:toasted_crimson_fungus"
     }
   ],
   "tool": {
-    "tag": "forge:tools/knives"
+    "tag": "farmersdelight:tools/knives"
   },
   "result": [
     {

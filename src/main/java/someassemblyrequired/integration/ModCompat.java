@@ -6,6 +6,7 @@ import someassemblyrequired.integration.create.CreateCompat;
 public class ModCompat {
 
     public static final String CREATE = "create";
+    public static final String FARMERS_DELIGHT = "farmersdelight";
 
     public static void setup() {
         if (isCreateLoaded()) {

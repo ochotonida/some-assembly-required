@@ -16,6 +16,7 @@ import net.minecraftforge.common.Tags;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
+import someassemblyrequired.data.builder.CuttingRecipeBuilder;
 import someassemblyrequired.data.builder.ToastingRecipeBuilder;
 
 import java.util.function.Consumer;
@@ -31,6 +32,7 @@ public class Recipes extends RecipeProvider {
         addShapedRecipes(consumer);
         addShapelessRecipes(consumer);
         ToastingRecipeBuilder.addToastingRecipes(consumer);
+        CuttingRecipeBuilder.addCuttingRecipes(consumer);
     }
 
     private void addShapedRecipes(Consumer<FinishedRecipe> consumer) {
