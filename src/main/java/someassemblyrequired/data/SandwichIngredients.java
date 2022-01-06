@@ -34,14 +34,10 @@ public record SandwichIngredients(DataGenerator generator) implements DataProvid
         builder(Items.BEETROOT_SOUP).setBowled().setSpread(0x8C0023);
         builder(Items.MUSHROOM_STEW).setBowled().setSpread(0xAD7451);
         builder(Items.RABBIT_STEW).setBowled().setSpread(0xBF7234);
-        // TODO suspicious stew
 
-        builder(Items.HONEY_BOTTLE).setCustomFullName().setBottled().setSpread(0xF08A1D);
         builder(ModItems.KETCHUP_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0x910900);
         builder(ModItems.MAYONNAISE_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xD9C98C);
         builder(ModItems.SWEET_BERRY_JAM_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xF40020);
-
-        builder(Items.MILK_BUCKET).setCustomFullName().setBucketed().setSpread(0xEEFDFF);
 
         builder(ModItems.TOASTED_BREAD_SLICE.get()).setCustomDisplayName();
 

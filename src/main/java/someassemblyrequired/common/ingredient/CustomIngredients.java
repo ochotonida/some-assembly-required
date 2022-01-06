@@ -11,6 +11,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.integration.ModCompat;
+import someassemblyrequired.integration.farmersdelight.FarmersDelightCompat;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -47,17 +49,23 @@ public class CustomIngredients {
     public static void addCustomIngredients() {
         put(Items.POTION, new PotionIngredient());
         put(Items.SUSPICIOUS_STEW, new SuspiciousStewIngredient());
+        put(Items.CHORUS_FRUIT, new ChorusFruitIngredient());
+        put(Items.MILK_BUCKET, new MilkBucketIngredient());
+        put(Items.HONEY_BOTTLE, new HoneyBottleIngredient());
     }
 
-    public static boolean isValidIngredient(ItemStack item) {
-        return !item.isEmpty() && !item.is(ModItems.SANDWICH.get()) && (item.isEdible() || get(item) != null);
+    public static boolean canAddToSandwich(ItemStack item) {
+        return !item.isEmpty() && !item.is(ModItems.SANDWICH.get()) && (item.isEdible() || get(item) != null || ModCompat.isFarmersDelightLoaded() && FarmersDelightCompat.canAddToSandwich(item));
     }
 
     public static FoodProperties getFood(ItemStack item) {
         return getOrDefault(item).getFood(item);
     }
 
-    public static void onEaten(ItemStack item, LivingEntity entity) {
+    public static void onFoodEaten(ItemStack item, LivingEntity entity) {
+        if (ModCompat.isFarmersDelightLoaded()) {
+            FarmersDelightCompat.onFoodEaten(item, entity);
+        }
         getOrDefault(item).onEaten(item, entity);
     }
 

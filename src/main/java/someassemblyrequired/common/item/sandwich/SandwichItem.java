@@ -139,21 +139,24 @@ public class SandwichItem extends BlockItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-        if (!(entity instanceof Player player)) {
-            return super.finishUsingItem(stack, world, entity);
+        if (entity instanceof Player player) {
+            triggerAdvancements(stack, player);
         }
-        triggerAdvancements(stack, player);
 
         SandwichItemHandler.get(stack).ifPresent(sandwich -> {
             for (ItemStack item : sandwich.items) {
                 FoodProperties food = CustomIngredients.getFood(item);
-                player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
-                for (Pair<MobEffectInstance, Float> effect : food.getEffects()) {
-                    if (player.getRandom().nextFloat() < effect.getSecond()) {
-                        player.addEffect(effect.getFirst());
+                if (food != null) {
+                    if (entity instanceof Player player) {
+                        player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
+                    }
+                    for (Pair<MobEffectInstance, Float> effect : food.getEffects()) {
+                        if (entity.getRandom().nextFloat() < effect.getSecond()) {
+                            entity.addEffect(effect.getFirst());
+                        }
                     }
                 }
-                CustomIngredients.onEaten(item, player);
+                CustomIngredients.onFoodEaten(item, entity);
             }
         });
 

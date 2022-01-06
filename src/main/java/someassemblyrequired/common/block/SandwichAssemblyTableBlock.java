@@ -50,7 +50,7 @@ public class SandwichAssemblyTableBlock extends HorizontalDirectionalBlock {
 
     private static InteractionResult tryPlaceSandwich(Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitResult) {
         ItemStack heldItem = player.getItemInHand(hand);
-        if (heldItem.isEmpty() || !CustomIngredients.isValidIngredient(heldItem)) {
+        if (heldItem.isEmpty() || !CustomIngredients.canAddToSandwich(heldItem)) {
             return InteractionResult.PASS;
         }
 

@@ -87,7 +87,7 @@ public class SandwichBlockEntity extends BlockEntity {
             addSandwich(player, hand, itemToAdd);
             updateHeight();
             return InteractionResult.SUCCESS;
-        } else if (!CustomIngredients.isValidIngredient(itemToAdd)) {
+        } else if (!CustomIngredients.canAddToSandwich(itemToAdd)) {
             return InteractionResult.PASS;
         } else if (sandwich.size() >= getMaxHeight()) {
             player.displayClientMessage(new TranslatableComponent("message.%s.full_sandwich".formatted(SomeAssemblyRequired.MODID)), true);

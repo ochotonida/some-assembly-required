@@ -45,7 +45,7 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
             return false;
         }
 
-        if (!CustomIngredients.isValidIngredient(inventory.getItem(1))) {
+        if (!CustomIngredients.canAddToSandwich(inventory.getItem(1))) {
             return false;
         }
 
