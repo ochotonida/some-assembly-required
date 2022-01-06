@@ -6,6 +6,7 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.ISubtypeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModBlocks;
+import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModRecipeTypes;
 import someassemblyrequired.common.util.Util;
 
@@ -36,6 +38,11 @@ public class JEICompat implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
         return ID;
+    }
+
+    @Override
+    public void registerItemSubtypes(ISubtypeRegistration registration) {
+        registration.useNbtForSubtypes(ModItems.SANDWICH.get());
     }
 
     @Override

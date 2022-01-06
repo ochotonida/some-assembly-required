@@ -16,11 +16,11 @@ public class SandwichBuilder {
         this.bread = bread;
     }
 
-    public static SandwichBuilder create() {
-        return create(ModItems.BREAD_SLICE.get()).addBread();
+    public static SandwichBuilder builder() {
+        return builder(ModItems.BREAD_SLICE.get()).addBread();
     }
 
-    public static SandwichBuilder create(ItemLike bread) {
+    public static SandwichBuilder builder(ItemLike bread) {
         return new SandwichBuilder(bread.asItem());
     }
 
@@ -41,10 +41,10 @@ public class SandwichBuilder {
     }
 
     public SandwichBuilder add(ItemLike item) {
-        return addStack(new ItemStack(item));
+        return add(new ItemStack(item));
     }
 
-    private SandwichBuilder addStack(ItemStack ingredient) {
+    public SandwichBuilder add(ItemStack ingredient) {
         ingredient.getOrCreateTag().putBoolean("IsOnSandwich", true);
         ingredients.add(ingredient);
         return this;
@@ -58,7 +58,7 @@ public class SandwichBuilder {
     }
 
     public static ItemStack blt() {
-        return create()
+        return builder()
                 // TODO .add(ModItems.LETTUCE_LEAF.get())
                 // TODO .add(ModItems.BACON_STRIPS.get())
                 .add(ModItems.TOMATO_SLICES.get())

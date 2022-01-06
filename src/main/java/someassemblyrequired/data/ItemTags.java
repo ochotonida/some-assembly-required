@@ -104,18 +104,6 @@ public class ItemTags extends ItemTagsProvider {
 
     @SuppressWarnings("unchecked")
     private void addForgeTags() {
-        tag(ModTags.COOKED_BACON);
-        tag(ModTags.CROPS_TOMATOES);
-        tag(ModTags.CROPS_LETTUCE);
-
-        tag(ModTags.BREAD).addTags(
-                ModTags.BREAD_WHEAT
-        );
-
-        tag(ModTags.BREAD_WHEAT).add(
-                Items.BREAD
-        );
-
         tag(ModTags.BREAD_SLICES).addTags(
                 ModTags.BREAD_SLICES_WHEAT
         );
@@ -126,9 +114,7 @@ public class ItemTags extends ItemTagsProvider {
                 ModItems.CHARRED_BREAD_SLICE.get()
         );
 
-        tag(ModTags.CROPS).addTags(
-                ModTags.CROPS_LETTUCE
-        );
+        tag(ModTags.COOKED_BACON);
 
         tag(ModTags.FRUITS).addTags(
                 ModTags.FRUITS_APPLE
@@ -139,7 +125,8 @@ public class ItemTags extends ItemTagsProvider {
                 ModItems.APPLE_SLICES.get()
         );
 
-        tag(ModTags.TORTILLAS);
+        tag(ModTags.SALAD_INGREDIENTS);
+
         tag(ModTags.VEGETABLES).addTags(
                 ModTags.VEGETABLES_BEETROOT,
                 ModTags.VEGETABLES_CARROT,
@@ -158,15 +145,6 @@ public class ItemTags extends ItemTagsProvider {
 
         tag(ModTags.VEGETABLES_TOMATO).add(
                 ModItems.TOMATO_SLICES.get()
-        );
-
-        tag(ModTags.VINEGAR_INGREDIENTS).addTags(
-                ModTags.VINEGAR_INGREDIENTS_APPLE
-        );
-
-        tag(ModTags.VINEGAR_INGREDIENTS_APPLE).add(
-                Items.APPLE,
-                ModItems.APPLE_SLICES.get()
         );
     }
 }

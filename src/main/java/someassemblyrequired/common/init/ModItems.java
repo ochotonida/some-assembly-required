@@ -33,10 +33,6 @@ public class ModItems {
         }
     };
 
-    // misc items
-    public static final RegistryObject<SandwichItem> SANDWICH = REGISTRY.register("sandwich", () -> new SandwichItem(ModBlocks.SANDWICH.get(), new Item.Properties().stacksTo(12).food(ModFoods.SANDWICH)));
-    public static final RegistryObject<Item> SPREAD = REGISTRY.register("spread", () -> new SpreadItem(new Item.Properties()));
-
     // sandwich assembly tables
     public static final RegistryObject<Item> OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("oak_sandwich_assembly_table", () -> createBlockItem(ModBlocks.OAK_SANDWICH_ASSEMBLY_TABLE.get()));
     public static final RegistryObject<Item> SPRUCE_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("spruce_sandwich_assembly_table", () -> createBlockItem(ModBlocks.SPRUCE_SANDWICH_ASSEMBLY_TABLE.get()));
@@ -73,6 +69,10 @@ public class ModItems {
     public static final RegistryObject<Item> MAYONNAISE_BOTTLE = REGISTRY.register("mayonnaise_bottle", () -> createSpreadItem(ModFoods.MAYONNAISE));
     public static final RegistryObject<Item> KETCHUP_BOTTLE = REGISTRY.register("ketchup_bottle", () -> createSpreadItem(ModFoods.KETCHUP));
     public static final RegistryObject<Item> SWEET_BERRY_JAM_BOTTLE = REGISTRY.register("sweet_berry_jam_bottle", () -> createSpreadItem(ModFoods.SWEET_BERRY_JAM));
+
+    // misc items
+    public static final RegistryObject<SandwichItem> SANDWICH = REGISTRY.register("sandwich", () -> new SandwichItem(ModBlocks.SANDWICH.get(), new Item.Properties().stacksTo(12).tab(CREATIVE_TAB).food(ModFoods.SANDWICH)));
+    public static final RegistryObject<Item> SPREAD = REGISTRY.register("spread", () -> new SpreadItem(new Item.Properties()));
 
     private static Item createBlockItem(Block block) {
         return new BlockItem(block, new Item.Properties().tab(CREATIVE_TAB));

@@ -2,6 +2,7 @@ package someassemblyrequired.common.item.sandwich;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -21,7 +22,7 @@ public class SandwichNameHelper {
     public static Component getSandwichDisplayName(ItemStack stack) {
         SandwichItemHandler sandwich = SandwichItemHandler.get(stack).orElse(null);
 
-        if (sandwich == null) {
+        if (sandwich == null || !ItemTags.getAllTags().hasTag(ModTags.BREAD_SLICES.getName())) {
             return new TranslatableComponent("item.%s.sandwich".formatted(SomeAssemblyRequired.MODID));
         }
 

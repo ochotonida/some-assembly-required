@@ -92,7 +92,7 @@ public class Advancements extends AdvancementProvider {
             Advancement obtainSandwich = addAdvancement(
                     consumer,
                     obtainBreadSlice,
-                    SandwichBuilder.create()
+                    SandwichBuilder.builder()
                             .add(Items.COOKED_BEEF)
                             .build(),
                     InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SANDWICH.get()),
@@ -112,7 +112,7 @@ public class Advancements extends AdvancementProvider {
             addAdvancement(
                     consumer,
                     obtainSandwich,
-                    SandwichBuilder.create()
+                    SandwichBuilder.builder()
                             .addFakeSpread(16262179)
                             .build(),
                     ModAdvancementTriggers.ADD_POTION_TO_SANDWICH.instance(),
@@ -132,7 +132,7 @@ public class Advancements extends AdvancementProvider {
             addAdvancement(
                     consumer,
                     obtainSandwich,
-                    SandwichBuilder.create()
+                    SandwichBuilder.builder()
                             .add(ModItems.CHOPPED_BEETROOT.get())
                             .addBread()
                             .add(ModItems.CHOPPED_BEETROOT.get())

@@ -20,10 +20,9 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -42,6 +41,9 @@ import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.ingredient.CustomIngredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
+import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModTags;
+import someassemblyrequired.integration.ModCompat;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -81,7 +83,10 @@ public class SandwichItem extends BlockItem {
     @Override
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (allowdedIn(group)) {
-            items.add(SandwichBuilder.blt());
+            items.add(SandwichBuilder.builder().add(ModItems.CHOPPED_CARROT.get()).add(Items.COOKED_BEEF).add(ModItems.TOMATO_SLICES.get()).build());
+            items.add(SandwichBuilder.builder().add(Items.HONEY_BOTTLE).build());
+            items.add(SandwichBuilder.builder().add(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY)).build());
+            ModCompat.addSandwichSubtypes(items);
         }
     }
 
@@ -186,7 +191,7 @@ public class SandwichItem extends BlockItem {
 
     @Override
     public Component getName(ItemStack stack) {
-        if (stack.hasCustomHoverName()) {
+        if (ModTags.BREAD_SLICES.isDefaulted() || stack.hasCustomHoverName()) {
             return super.getName(stack);
         }
         return SandwichNameHelper.getSandwichDisplayName(stack);

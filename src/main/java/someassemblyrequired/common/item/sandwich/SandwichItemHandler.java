@@ -128,16 +128,14 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         boolean hasLettuce = false;
         boolean hasTomato = false;
 
-        for (int i = 1; i < size() - 1; i++) {
-            ItemStack stack = items.get(i);
-
-            if (ModTags.COOKED_BACON.contains(stack.getItem())) {
+        for (ItemStack stack : items) {
+            if (stack.is(ModTags.COOKED_BACON)) {
                 hasBacon = true;
-            } else if (ModTags.CROPS_LETTUCE.contains(stack.getItem())) {
+            } else if (stack.is(ModTags.SALAD_INGREDIENTS)) {
                 hasLettuce = true;
-            } else if (stack.getItem() == ModItems.TOMATO_SLICES.get() || ModTags.CROPS_TOMATOES.contains(stack.getItem())) {
+            } else if (stack.is(ModTags.VEGETABLES_TOMATO)) {
                 hasTomato = true;
-            } else {
+            } else if (!stack.is(ModTags.BREAD_SLICES)) {
                 return false;
             }
         }
