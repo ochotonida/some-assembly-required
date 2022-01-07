@@ -13,8 +13,6 @@
   "advancement.some_assembly_required.add_potion_to_sandwich.description": "Coloque uma poção em um sanduíche",
   "advancement.some_assembly_required.consume_double_decker_sandwich.title": "Com o Dobro de Fome",
   "advancement.some_assembly_required.consume_double_decker_sandwich.description": "Crie e coma um sanduíche de dois andares",
-  "advancement.some_assembly_required.consume_blt_sandwich.title": "Pão, Amor e Tomates",
-  "advancement.some_assembly_required.consume_blt_sandwich.description": "Crie e coma um BLT",
 
   "message.some_assembly_required.top_bread": "Fatia de pão superior ausente! ",
   "message.some_assembly_required.bottom_bread": "Fatia de pão inferior ausente!",

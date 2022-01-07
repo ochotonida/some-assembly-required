@@ -7,7 +7,6 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -15,9 +14,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -26,7 +22,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.CustomIngredients;
-import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
@@ -109,11 +104,6 @@ public class SandwichBlockEntity extends BlockEntity {
         }
 
         sandwich.add(stack);
-
-        if (player instanceof ServerPlayer serverPlayer && stack.is(Items.POTION) && PotionUtils.getPotion(stack) != Potions.WATER) {
-            ModAdvancementTriggers.ADD_POTION_TO_SANDWICH.trigger(serverPlayer, stack);
-        }
-
         shrinkHeldItem(player, hand);
     }
 

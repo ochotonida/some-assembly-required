@@ -186,8 +186,11 @@ public class SandwichItem extends BlockItem {
         SandwichItemHandler.get(stack).ifPresent(sandwich -> {
             if (sandwich.isDoubleDeckerSandwich()) {
                 ModAdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.trigger(serverPlayer, stack);
-            } else if (sandwich.isBLT()) {
-                ModAdvancementTriggers.CONSUME_BLT_SANDWICH.trigger(serverPlayer, stack);
+            }
+            for (ItemStack ingredient : sandwich) {
+                if (ingredient.is(Items.POTION) && PotionUtils.getPotion(ingredient) != Potions.WATER) {
+                    ModAdvancementTriggers.CONSUME_POTION_SANDWICH.trigger(serverPlayer, stack);
+                }
             }
         });
     }

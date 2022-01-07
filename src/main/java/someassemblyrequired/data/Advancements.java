@@ -15,7 +15,7 @@ import net.minecraft.data.advancements.HusbandryAdvancements;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
@@ -93,7 +93,8 @@ public class Advancements extends AdvancementProvider {
                     consumer,
                     obtainBreadSlice,
                     SandwichBuilder.builder()
-                            .add(Items.COOKED_BEEF)
+                            .add(ModItems.TOMATO_SLICES.get())
+                            .add(ModItems.CHOPPED_CARROT.get())
                             .build(),
                     InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SANDWICH.get()),
                     "obtain_sandwich",
@@ -113,9 +114,9 @@ public class Advancements extends AdvancementProvider {
                     consumer,
                     obtainSandwich,
                     SandwichBuilder.builder()
-                            .addFakeSpread(16262179)
+                            .add(Potions.NIGHT_VISION)
                             .build(),
-                    ModAdvancementTriggers.ADD_POTION_TO_SANDWICH.instance(),
+                    ModAdvancementTriggers.CONSUME_POTION_SANDWICH.instance(),
                     "add_potion_to_sandwich",
                     true
             );
@@ -123,19 +124,12 @@ public class Advancements extends AdvancementProvider {
             addAdvancement(
                     consumer,
                     obtainSandwich,
-                    SandwichBuilder.blt(),
-                    ModAdvancementTriggers.CONSUME_BLT_SANDWICH.instance(),
-                    "consume_blt_sandwich",
-                    true
-            );
-
-            addAdvancement(
-                    consumer,
-                    obtainSandwich,
                     SandwichBuilder.builder()
-                            .add(ModItems.CHOPPED_BEETROOT.get())
+                            .add(ModItems.TOMATO_SLICES.get())
+                            .add(ModItems.CHOPPED_CARROT.get())
                             .addBread()
-                            .add(ModItems.CHOPPED_BEETROOT.get())
+                            .add(ModItems.TOMATO_SLICES.get())
+                            .add(ModItems.CHOPPED_CARROT.get())
                             .build(),
                     ModAdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.instance(),
                     "consume_double_decker_sandwich",

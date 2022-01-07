@@ -15,7 +15,6 @@ import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.item.DrinkableBottleItem;
 import someassemblyrequired.common.item.EnchantedGoldenAppleSlicesItem;
 import someassemblyrequired.common.item.SpreadItem;
-import someassemblyrequired.common.item.sandwich.SandwichBuilder;
 import someassemblyrequired.common.item.sandwich.SandwichItem;
 
 import javax.annotation.Nullable;
@@ -29,7 +28,7 @@ public class ModItems {
         @Override
         @OnlyIn(Dist.CLIENT)
         public ItemStack makeIcon() {
-            return SandwichBuilder.blt();
+            return new ItemStack(BREAD_SLICE.get());
         }
     };
 

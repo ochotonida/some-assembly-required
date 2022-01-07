@@ -13,8 +13,6 @@
   "advancement.some_assembly_required.add_potion_to_sandwich.description": "Setze ein Trank auf dein Sandwich",
   "advancement.some_assembly_required.consume_double_decker_sandwich.title": "Doppelter Hunger",
   "advancement.some_assembly_required.consume_double_decker_sandwich.description": "Erschaffe und iss ein Doppeldecker Sandwich",
-  "advancement.some_assembly_required.consume_blt_sandwich.title": "Brot, Liebe & Tomaten",
-  "advancement.some_assembly_required.consume_blt_sandwich.description": "Erschaffe & iss ein BLT",
 
   "message.some_assembly_required.top_bread": "Obere Brotscheibe fehlt!",
   "message.some_assembly_required.bottom_bread": "Untere Brotscheibe fehlt!",

@@ -1,9 +1,11 @@
 package someassemblyrequired.common.item.sandwich;
 
 import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.ItemLike;
 import someassemblyrequired.common.init.ModItems;
 
@@ -28,20 +30,14 @@ public class SandwichBuilder {
         return add(bread);
     }
 
-    public SandwichBuilder addFakeSpread(int color) {
-        return addFakeSpread(color, false);
-    }
-
-    public SandwichBuilder addFakeSpread(int color, boolean hasGlint) {
-        ItemStack spread = new ItemStack(ModItems.SPREAD.get());
-        CompoundTag tag = spread.getOrCreateTag();
-        tag.putInt("Color", color);
-        tag.putBoolean("HasGlint", hasGlint);
-        return this;
-    }
-
     public SandwichBuilder add(ItemLike item) {
         return add(new ItemStack(item));
+    }
+
+    public SandwichBuilder add(Potion potion) {
+        ItemStack item = new ItemStack(Items.POTION);
+        PotionUtils.setPotion(item, potion);
+        return add(item);
     }
 
     public SandwichBuilder add(ItemStack ingredient) {
