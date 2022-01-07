@@ -3,7 +3,7 @@
   "display": {
     "icon": {
       "item": "some_assembly_required:sandwich",
-      "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}}]}}"
+      "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"minecraft:potion\",tag:{IsOnSandwich:1b,Potion:\"minecraft:night_vision\"}},{Count:1b,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}}]}}"
     },
     "title": {
       "translate": "advancement.some_assembly_required.add_potion_to_sandwich.title"
