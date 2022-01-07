@@ -1,0 +1,17 @@
+package someassemblyrequired.integration.create;
+
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import someassemblyrequired.common.ingredient.behavior.IngredientBehavior;
+
+public class BuildersTeaBehavior implements IngredientBehavior {
+
+    @Override
+    public void onEaten(ItemStack ingredient, LivingEntity entity) {
+        if (!entity.getLevel().isClientSide()) {
+            entity.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 3600, 0, false, false, false));
+        }
+    }
+}

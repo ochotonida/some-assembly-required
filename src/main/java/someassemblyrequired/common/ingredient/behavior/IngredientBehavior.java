@@ -6,5 +6,5 @@ import net.minecraft.world.item.ItemStack;
 @FunctionalInterface
 public interface IngredientBehavior {
 
-    void onEaten(ItemStack ingredient, LivingEntity player);
+    void onEaten(ItemStack ingredient, LivingEntity entity);
 }
