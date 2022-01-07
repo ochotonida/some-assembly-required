@@ -9,8 +9,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import someassemblyrequired.common.ingredient.CustomIngredients;
-import someassemblyrequired.common.ingredient.DataIngredients;
+import someassemblyrequired.common.ingredient.IngredientPropertiesManager;
+import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.*;
 import someassemblyrequired.common.network.NetworkHandler;
 import someassemblyrequired.integration.ModCompat;
@@ -37,8 +37,8 @@ public class SomeAssemblyRequired {
 
         modEventBus.addListener(this::onCommonSetup);
 
-        MinecraftForge.EVENT_BUS.addListener(DataIngredients::onAddReloadListener);
-        MinecraftForge.EVENT_BUS.addListener(DataIngredients::onDataPackReload);
+        MinecraftForge.EVENT_BUS.addListener(IngredientPropertiesManager::onAddReloadListener);
+        MinecraftForge.EVENT_BUS.addListener(IngredientPropertiesManager::onDataPackReload);
 
         ModAdvancementTriggers.register();
     }
@@ -48,7 +48,7 @@ public class SomeAssemblyRequired {
             NetworkHandler.register();
             ModRecipeTypes.registerBrewingRecipes();
             ModItems.registerCompostables();
-            CustomIngredients.addCustomIngredients();
+            Ingredients.addBehaviors();
         });
     }
 }

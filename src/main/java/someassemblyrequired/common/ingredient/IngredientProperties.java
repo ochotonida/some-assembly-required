@@ -24,71 +24,87 @@ import someassemblyrequired.SomeAssemblyRequired;
 
 import javax.annotation.Nullable;
 
-public record DataIngredient(
-        @Nullable FoodProperties foodProperties,
-        @Nullable Component displayName,
-        @Nullable Component fullName,
-        ItemStack displayItem,
-        ItemStack container,
-        @Nullable SoundEvent soundEvent
-) implements SandwichIngredient {
+public class IngredientProperties {
 
-    @Override
+    @Nullable
+    private final FoodProperties foodProperties;
+    @Nullable
+    private final Component displayName;
+    @Nullable
+    private final Component fullName;
+    private final ItemStack displayItem;
+    private final ItemStack container;
+    @Nullable
+    private final SoundEvent soundEvent;
+
+    public IngredientProperties(FoodProperties foodProperties, Component displayName, Component fullName, ItemStack displayItem, ItemStack container, SoundEvent soundEvent) {
+        this.foodProperties = foodProperties;
+        this.displayName = displayName;
+        this.fullName = fullName;
+        this.displayItem = displayItem;
+        this.container = container;
+        this.soundEvent = soundEvent;
+    }
+
+    public IngredientProperties() {
+        this(null, null, null, ItemStack.EMPTY, ItemStack.EMPTY, null);
+    }
+
     @Nullable
     public FoodProperties getFood(ItemStack item) {
         if (foodProperties == null) {
-            return SandwichIngredient.super.getFood(item);
+            return item.getItem().getFoodProperties();
         }
         return foodProperties;
     }
 
-    @Override
     public Component getDisplayName(ItemStack item) {
         if (displayName == null) {
-            return SandwichIngredient.super.getDisplayName(item);
+            return getFullName(item);
         }
         return displayName;
     }
 
-    @Override
     public Component getFullName(ItemStack item) {
         if (fullName == null) {
-            return SandwichIngredient.super.getFullName(item);
+            return item.getHoverName();
         }
         return fullName;
     }
 
-    @Override
     public ItemStack getDisplayItem(ItemStack item) {
         if (displayItem.isEmpty()) {
-            return SandwichIngredient.super.getDisplayItem(item);
+            return item;
         }
         return displayItem;
     }
 
-    @Override
     public ItemStack getContainer(ItemStack item) {
         if (container.isEmpty()) {
-            return SandwichIngredient.super.getContainer(item);
+            return ItemStack.EMPTY;
         }
         return container;
     }
 
-    @Override
     public void playApplySound(ItemStack item, Level level, @Nullable Player player, BlockPos pos) {
-        if (soundEvent != null) {
-            level.playSound(player, pos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 0.3F, 1.3F);
-        } else {
-            SandwichIngredient.super.playRemoveSound(item, level, player, pos);
-        }
+        playSound(item, level, player, pos, 1.3F);
     }
 
-    @Override
     public void playRemoveSound(ItemStack item, Level level, Player player, BlockPos pos) {
+        playSound(item, level, player, pos, 1.6F);
+    }
+
+    private void playSound(ItemStack item, Level level, Player player, BlockPos pos, float pitch) {
+        level.playSound(player, pos, getSoundEvent(item), SoundSource.BLOCKS, 0.3F, pitch);
+    }
+
+    private SoundEvent getSoundEvent(ItemStack item) {
         if (soundEvent != null) {
-            level.playSound(player, pos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 0.3F, 1.6F);
+            return soundEvent;
+        } else if (getContainer(item).isEmpty()) {
+            return SoundEvents.WOOL_PLACE;
         } else {
-            SandwichIngredient.super.playRemoveSound(item, level, player, pos);
+            return SoundEvents.HONEY_BLOCK_BREAK;
         }
     }
 
@@ -119,7 +135,7 @@ public record DataIngredient(
         return result;
     }
 
-    public static DataIngredient fromJson(JsonObject object) {
+    public static IngredientProperties fromJson(JsonObject object) {
         FoodProperties foodProperties = readFoodProperties(object, "food");
         Component displayName = null;
         if (object.has("displayName")) {
@@ -139,7 +155,7 @@ public record DataIngredient(
             }
             soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(id);
         }
-        return new DataIngredient(foodProperties, displayName, fullName, displayItem, container, soundEvent);
+        return new IngredientProperties(foodProperties, displayName, fullName, displayItem, container, soundEvent);
     }
 
     private static JsonElement writeFoodProperties(FoodProperties properties) {
@@ -216,7 +232,7 @@ public record DataIngredient(
         }
     }
 
-    public static DataIngredient fromNetwork(FriendlyByteBuf buffer) {
+    public static IngredientProperties fromNetwork(FriendlyByteBuf buffer) {
         FoodProperties foodProperties = null;
         if (buffer.readBoolean()) {
             foodProperties = readFoodProperties(buffer);
@@ -235,7 +251,7 @@ public record DataIngredient(
         if (buffer.readBoolean()) {
             soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(buffer.readResourceLocation());
         }
-        return new DataIngredient(foodProperties, displayName, fullName, displayItem, container, soundEvent);
+        return new IngredientProperties(foodProperties, displayName, fullName, displayItem, container, soundEvent);
     }
 
     private static void writeFoodProperties(FriendlyByteBuf buffer, FoodProperties foodProperties) {

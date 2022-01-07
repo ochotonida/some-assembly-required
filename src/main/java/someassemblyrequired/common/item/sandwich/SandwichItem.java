@@ -39,7 +39,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
-import someassemblyrequired.common.ingredient.CustomIngredients;
+import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
@@ -67,7 +67,7 @@ public class SandwichItem extends BlockItem {
             }
 
             for (int i = 0; i < ingredientsToShow; i++) {
-                tooltip.add(CustomIngredients.getFullName(handler.getStackInSlot(size - i - 1)).plainCopy().withStyle(ChatFormatting.GRAY));
+                tooltip.add(Ingredients.getFullName(handler.getStackInSlot(size - i - 1)).plainCopy().withStyle(ChatFormatting.GRAY));
             }
 
             if (size > ingredientsToShow) {
@@ -145,7 +145,7 @@ public class SandwichItem extends BlockItem {
 
         SandwichItemHandler.get(stack).ifPresent(sandwich -> {
             for (ItemStack item : sandwich.items) {
-                FoodProperties food = CustomIngredients.getFood(item);
+                FoodProperties food = Ingredients.getFood(item);
                 if (food != null) {
                     if (entity instanceof Player player) {
                         player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
@@ -156,7 +156,7 @@ public class SandwichItem extends BlockItem {
                         }
                     }
                 }
-                CustomIngredients.onFoodEaten(item, entity);
+                Ingredients.onFoodEaten(item, entity);
             }
         });
 

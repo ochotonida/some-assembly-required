@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.DataIngredient;
+import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.data.recipe.IngredientBuilder;
 
@@ -23,7 +23,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public record SandwichIngredients(DataGenerator generator) implements DataProvider {
+public record Ingredients(DataGenerator generator) implements DataProvider {
 
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
     private static final Set<IngredientBuilder> ingredients = new HashSet<>();
@@ -34,10 +34,14 @@ public record SandwichIngredients(DataGenerator generator) implements DataProvid
         builder(Items.BEETROOT_SOUP).setBowled().setSpread(0x8C0023);
         builder(Items.MUSHROOM_STEW).setBowled().setSpread(0xAD7451);
         builder(Items.RABBIT_STEW).setBowled().setSpread(0xBF7234);
+        builder(Items.SUSPICIOUS_STEW).setBowled().setSpread(0x3f9E80);
 
+        builder(Items.HONEY_BOTTLE).setCustomFullName().setBottled().setSpread(0xF08A1D);
         builder(ModItems.KETCHUP_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0x910900);
         builder(ModItems.MAYONNAISE_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xD9C98C);
         builder(ModItems.SWEET_BERRY_JAM_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xF40020);
+
+        builder(Items.MILK_BUCKET).setCustomFullName().setBucketed().setSpread(0xEEFDFF);
 
         builder(ModItems.TOASTED_BREAD_SLICE.get()).setCustomDisplayName();
 
@@ -69,7 +73,7 @@ public record SandwichIngredients(DataGenerator generator) implements DataProvid
             if (!set.add(item)) {
                 throw new IllegalStateException("Duplicate ingredient for item " + item.getRegistryName());
             } else {
-                DataIngredient ingredient = builder.build();
+                IngredientProperties ingredient = builder.build();
                 ResourceLocation id = item.getRegistryName();
                 // noinspection ConstantConditions
                 String name = id.getPath();

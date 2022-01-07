@@ -1,4 +1,4 @@
-package someassemblyrequired.common.ingredient;
+package someassemblyrequired.common.ingredient.behavior;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.EntityTeleportEvent;
 
-public class ChorusFruitIngredient implements SandwichIngredient {
+public class ChorusFruitBehavior implements IngredientBehavior {
 
     @Override
     public void onEaten(ItemStack item, LivingEntity entity) {

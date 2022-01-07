@@ -21,7 +21,7 @@ public class DataGenerators {
             generator.addProvider(new Recipes(generator));
             generator.addProvider(new Advancements(generator, helper));
             generator.addProvider(new LootTables(generator));
-            generator.addProvider(new SandwichIngredients(generator));
+            generator.addProvider(new Ingredients(generator));
             ProcessingRecipeGenerator.registerAll(generator);
         }
         if (event.includeClient()) {

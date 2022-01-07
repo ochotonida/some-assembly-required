@@ -9,7 +9,7 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.CustomIngredients;
+import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 
@@ -94,13 +94,13 @@ public class SandwichNameHelper {
                 && ingredients.get(0).getItem() != ModItems.TOASTED_BREAD_SLICE.get()
                 && ingredients.get(1).getItem() == ModItems.TOASTED_BREAD_SLICE.get()
                 && ingredients.get(2).getItem() != ModItems.TOASTED_BREAD_SLICE.get()) {
-            return new TranslatableComponent("item.%s.ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), CustomIngredients.getDisplayName(ingredients.get(1)));
+            return new TranslatableComponent("item.%s.ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), Ingredients.getDisplayName(ingredients.get(1)));
         }
         return new TranslatableComponent("item.%s.bread_sandwich".formatted(SomeAssemblyRequired.MODID));
     }
 
     private static Component listIngredients(List<ItemStack> ingredients) {
-        List<Component> ingredientNames = ingredients.stream().map(CustomIngredients::getDisplayName).collect(Collectors.toList());
+        List<Component> ingredientNames = ingredients.stream().map(Ingredients::getDisplayName).collect(Collectors.toList());
         return new TranslatableComponent("tooltip.%s.ingredient_list.".formatted(SomeAssemblyRequired.MODID) + ingredientNames.size(), ingredientNames.toArray());
     }
 }

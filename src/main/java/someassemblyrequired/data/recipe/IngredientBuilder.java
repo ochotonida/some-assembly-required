@@ -7,7 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.DataIngredient;
+import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
 
 import javax.annotation.Nullable;
@@ -29,8 +29,8 @@ public class IngredientBuilder {
         this.item = item;
     }
 
-    public DataIngredient build() {
-        return new DataIngredient(null, displayName, fullName, displayItem, container, null);
+    public IngredientProperties build() {
+        return new IngredientProperties(null, displayName, fullName, displayItem, container, null);
     }
 
     public Item getItem() {

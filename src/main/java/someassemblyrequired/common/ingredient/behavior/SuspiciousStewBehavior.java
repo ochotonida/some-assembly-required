@@ -1,4 +1,4 @@
-package someassemblyrequired.common.ingredient;
+package someassemblyrequired.common.ingredient.behavior;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -7,28 +7,8 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import someassemblyrequired.common.init.ModItems;
 
-public class SuspiciousStewIngredient implements SandwichIngredient {
-
-    private static final ItemStack CONTAINER = new ItemStack(Items.BOWL);
-    private static final ItemStack DISPLAY_ITEM;
-
-    static {
-        DISPLAY_ITEM = new ItemStack(ModItems.SPREAD.get());
-        DISPLAY_ITEM.getOrCreateTag().putInt("Color", 0x3f9E80);
-    }
-
-    @Override
-    public ItemStack getDisplayItem(ItemStack item) {
-        return DISPLAY_ITEM;
-    }
-
-    @Override
-    public ItemStack getContainer(ItemStack item) {
-        return CONTAINER;
-    }
+public class SuspiciousStewBehavior implements IngredientBehavior {
 
     @Override
     public void onEaten(ItemStack item, LivingEntity entity) {

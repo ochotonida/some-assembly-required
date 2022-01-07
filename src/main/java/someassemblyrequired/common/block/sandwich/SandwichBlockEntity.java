@@ -21,7 +21,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.CustomIngredients;
+import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
@@ -56,14 +56,14 @@ public class SandwichBlockEntity extends BlockEntity {
             return;
         }
         ItemStack stack = sandwich.top();
-        CustomIngredients.playRemoveSound(stack, level, player, getBlockPos());
+        Ingredients.playRemoveSound(stack, level, player, getBlockPos());
         if (level.isClientSide()) {
             return;
         }
 
         sandwich.pop();
         BlockPos pos = getBlockPos();
-        if (!CustomIngredients.hasContainer(stack) && !player.isCreative()) {
+        if (!Ingredients.hasContainer(stack) && !player.isCreative()) {
             ItemEntity item = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, stack);
             item.setPickUpDelay(5);
             level.addFreshEntity(item);
@@ -82,7 +82,7 @@ public class SandwichBlockEntity extends BlockEntity {
             addSandwich(player, hand, itemToAdd);
             updateHeight();
             return InteractionResult.SUCCESS;
-        } else if (!CustomIngredients.canAddToSandwich(itemToAdd)) {
+        } else if (!Ingredients.canAddToSandwich(itemToAdd)) {
             return InteractionResult.PASS;
         } else if (sandwich.size() >= getMaxHeight()) {
             player.displayClientMessage(new TranslatableComponent("message.%s.full_sandwich".formatted(SomeAssemblyRequired.MODID)), true);
@@ -98,7 +98,7 @@ public class SandwichBlockEntity extends BlockEntity {
         if (level == null) {
             return;
         }
-        CustomIngredients.playApplySound(stack, level, player, getBlockPos());
+        Ingredients.playApplySound(stack, level, player, getBlockPos());
         if (level.isClientSide()) {
             return;
         }
@@ -125,7 +125,7 @@ public class SandwichBlockEntity extends BlockEntity {
     private static void shrinkHeldItem(Player player, InteractionHand hand) {
         if (!player.isCreative()) {
             ItemStack item = player.getItemInHand(hand);
-            ItemStack container = CustomIngredients.getContainer(item).copy();
+            ItemStack container = Ingredients.getContainer(item).copy();
             item.shrink(1);
             if (!container.isEmpty()) {
                 if (player.getItemInHand(hand).isEmpty()) {

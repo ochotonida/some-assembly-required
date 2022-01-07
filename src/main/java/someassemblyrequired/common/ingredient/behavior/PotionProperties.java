@@ -1,9 +1,7 @@
-package someassemblyrequired.common.ingredient;
+package someassemblyrequired.common.ingredient.behavior;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -11,34 +9,23 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
 
-public class PotionIngredient implements SandwichIngredient {
+public class PotionProperties extends IngredientProperties {
 
     private static final ItemStack CONTAINER = new ItemStack(Items.GLASS_BOTTLE);
 
-    private final FoodProperties food = new FoodProperties.Builder().alwaysEat().build();
     private final ItemStack displayItem;
 
-    public PotionIngredient() {
+    public PotionProperties() {
         displayItem = new ItemStack(ModItems.SPREAD.get());
         displayItem.getOrCreateTag();
     }
 
     @Override
     public FoodProperties getFood(ItemStack item) {
-        return food;
-    }
-
-    @Override
-    public void onEaten(ItemStack item, LivingEntity entity) {
-        for (MobEffectInstance mobEffect : PotionUtils.getMobEffects(item)) {
-            if (mobEffect.getEffect().isInstantenous()) {
-                mobEffect.getEffect().applyInstantenousEffect(entity, entity, entity, mobEffect.getAmplifier(), 1);
-            } else {
-                entity.addEffect(new MobEffectInstance(mobEffect));
-            }
-        }
+        return null;
     }
 
     @Override
@@ -56,7 +43,7 @@ public class PotionIngredient implements SandwichIngredient {
         if (!item.hasCustomHoverName() && potion == Potions.WATER) {
             return new TranslatableComponent("ingredient.%s.water_bottle".formatted(SomeAssemblyRequired.MODID));
         }
-        return SandwichIngredient.super.getDisplayName(item);
+        return super.getDisplayName(item);
     }
 
     @Override

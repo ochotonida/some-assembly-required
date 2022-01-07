@@ -9,7 +9,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import someassemblyrequired.common.ingredient.CustomIngredients;
+import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 
@@ -145,7 +145,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
 
     public boolean canAlwaysEat() {
         for (ItemStack item : items) {
-            FoodProperties food = CustomIngredients.getFood(item);
+            FoodProperties food = Ingredients.getFood(item);
             if (food != null && food.canAlwaysEat()) {
                 return true;
             }
