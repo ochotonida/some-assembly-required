@@ -1,0 +1,12 @@
+{
+  "item": "farmersdelight:vegetable_soup",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Color": 10850614
+    }
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  }
+}

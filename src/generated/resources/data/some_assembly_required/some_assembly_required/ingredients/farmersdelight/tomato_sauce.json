@@ -1,0 +1,12 @@
+{
+  "item": "farmersdelight:tomato_sauce",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Color": 12464927
+    }
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  }
+}

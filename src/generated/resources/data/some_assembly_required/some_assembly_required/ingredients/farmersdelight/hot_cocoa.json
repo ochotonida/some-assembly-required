@@ -1,0 +1,12 @@
+{
+  "item": "farmersdelight:hot_cocoa",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Color": 8079413
+    }
+  },
+  "container": {
+    "item": "minecraft:glass_bottle"
+  }
+}

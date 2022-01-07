@@ -1,0 +1,15 @@
+{
+  "item": "farmersdelight:milk_bottle",
+  "fullName": {
+    "translate": "ingredient.some_assembly_required.milk_bucket"
+  },
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Color": 15662591
+    }
+  },
+  "container": {
+    "item": "minecraft:glass_bottle"
+  }
+}

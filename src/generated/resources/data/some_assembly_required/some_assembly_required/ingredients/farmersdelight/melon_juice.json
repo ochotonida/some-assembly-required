@@ -1,0 +1,12 @@
+{
+  "item": "farmersdelight:melon_juice",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Color": 13054501
+    }
+  },
+  "container": {
+    "item": "minecraft:glass_bottle"
+  }
+}
