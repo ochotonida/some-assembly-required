@@ -1,0 +1,12 @@
+{
+  "item": "minecraft:suspicious_stew",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Color": 4169344
+    }
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  }
+}
