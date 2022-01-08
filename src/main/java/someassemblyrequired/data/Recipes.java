@@ -57,10 +57,10 @@ public class Recipes extends RecipeProvider {
                 .unlockedBy("has_sweet_berries", createItemCriterion(Items.SWEET_BERRIES))
                 .save(consumer, getRecipeLocation(ModItems.SWEET_BERRY_JAM_BOTTLE.get(), "crafting_shapeless"));
 
-        ShapelessRecipeBuilder.shapeless(ModItems.CHARRED_FOOD.get())
-                .requires(ModItems.CHARRED_MORSEL.get(), 9)
-                .unlockedBy("has_charred_morsel", createItemCriterion(ModItems.CHARRED_FOOD.get()))
-                .save(consumer, getRecipeLocation(ModItems.CHARRED_MORSEL.get(), "crafting_shapeless"));
+        ShapelessRecipeBuilder.shapeless(Items.CHARCOAL)
+                .requires(ModItems.CHARRED_FOOD.get(), 4)
+                .unlockedBy("has_charred_food", createItemCriterion(ModItems.CHARRED_FOOD.get()))
+                .save(consumer, getRecipeLocation(ModItems.CHARRED_FOOD.get(), "crafting_shapeless"));
     }
 
     private void addSandwichAssemblyTable(Block sandwichAssemblyTable, Block planks, Consumer<FinishedRecipe> consumer) {

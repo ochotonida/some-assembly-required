@@ -11,23 +11,18 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModBlocks;
+import someassemblyrequired.common.recipe.ToastingRecipe;
 import someassemblyrequired.common.util.Util;
 
 import java.util.Arrays;
-import java.util.List;
 
-// there's probs a better way to do this...
-@SuppressWarnings("rawtypes")
-public class ToastingRecipeCategory implements IRecipeCategory<Recipe> {
+public class ToastingRecipeCategory implements IRecipeCategory<ToastingRecipe> {
 
     public static final ResourceLocation ID = Util.id("toasting");
 
@@ -50,8 +45,8 @@ public class ToastingRecipeCategory implements IRecipeCategory<Recipe> {
     }
 
     @Override
-    public Class<? extends Recipe> getRecipeClass() {
-        return Recipe.class;
+    public Class<? extends ToastingRecipe> getRecipeClass() {
+        return ToastingRecipe.class;
     }
 
     @Override
@@ -70,26 +65,24 @@ public class ToastingRecipeCategory implements IRecipeCategory<Recipe> {
     }
 
     @Override
-    public void setIngredients(Recipe recipe, IIngredients ingredients) {
-        //noinspection unchecked
-        ingredients.setInputIngredients((List<Ingredient>) recipe.getIngredients());
+    public void setIngredients(ToastingRecipe recipe, IIngredients ingredients) {
+        ingredients.setInputIngredients(recipe.getIngredients());
         ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
     }
 
     @Override
-    public void setRecipe(IRecipeLayout layout, Recipe recipe, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout layout, ToastingRecipe recipe, IIngredients ingredients) {
         IGuiItemStackGroup stacks = layout.getItemStacks();
 
         stacks.init(0, true, 11, 7);
-        //noinspection unchecked
-        stacks.set(0, Arrays.asList(((NonNullList<Ingredient>) recipe.getIngredients()).get(0).getItems()));
+        stacks.set(0, Arrays.asList((recipe.getIngredients()).get(0).getItems()));
 
         stacks.init(2, true, 79, 7);
         stacks.set(2, recipe.getResultItem());
     }
 
     @Override
-    public void draw(Recipe recipe, PoseStack matrixStack, double mouseX, double mouseY) {
+    public void draw(ToastingRecipe recipe, PoseStack matrixStack, double mouseX, double mouseY) {
         arrow.draw(matrixStack, 44, 12);
 
         TranslatableComponent timeString = new TranslatableComponent("gui.jei.category.smelting.time.seconds", 12);

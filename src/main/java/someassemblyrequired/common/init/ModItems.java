@@ -50,7 +50,6 @@ public class ModItems {
     public static final RegistryObject<Item> BREAD_SLICE = REGISTRY.register("bread_slice", () -> createFoodItem(ModFoods.BREAD_SLICE));
     public static final RegistryObject<Item> TOASTED_BREAD_SLICE = REGISTRY.register("toasted_bread_slice", () -> createFoodItem(ModFoods.TOASTED_BREAD_SLICE));
     public static final RegistryObject<Item> CHARRED_BREAD_SLICE = REGISTRY.register("charred_bread_slice", () -> createFoodItem(ModFoods.CHARRED_FOOD));
-    public static final RegistryObject<Item> CHARRED_MORSEL = REGISTRY.register("charred_morsel", () -> createFoodItem(ModFoods.CHARRED_MORSEL));
     public static final RegistryObject<Item> CHARRED_FOOD = REGISTRY.register("charred_food", () -> createFoodItem(ModFoods.CHARRED_FOOD));
     public static final RegistryObject<Item> APPLE_SLICES = REGISTRY.register("apple_slices", () -> createFoodItem(ModFoods.APPLE_SLICES));
     public static final RegistryObject<Item> GOLDEN_APPLE_SLICES = REGISTRY.register("golden_apple_slices", () -> new Item(new Item.Properties().tab(CREATIVE_TAB).food(ModFoods.GOLDEN_APPLE_SLICES).rarity(Rarity.RARE)));
@@ -101,7 +100,6 @@ public class ModItems {
         ComposterBlock.COMPOSTABLES.put(TOASTED_BREAD_SLICE.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHARRED_BREAD_SLICE.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHARRED_FOOD.get(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(CHARRED_MORSEL.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(APPLE_SLICES.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHOPPED_CARROT.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHOPPED_BEETROOT.get(), 0.3F);

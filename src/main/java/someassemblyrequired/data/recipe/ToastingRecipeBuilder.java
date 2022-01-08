@@ -11,7 +11,6 @@ import net.minecraft.world.level.ItemLike;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModRecipeTypes;
-import someassemblyrequired.common.init.ModTags;
 
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
@@ -45,11 +44,6 @@ public class ToastingRecipeBuilder {
         ToastingRecipeBuilder.toastingRecipe(
                 Ingredient.of(Items.WARPED_FUNGUS),
                 ModItems.TOASTED_WARPED_FUNGUS.get()
-        ).build(consumer);
-
-        ToastingRecipeBuilder.toastingRecipe(
-                Ingredient.of(ModTags.BURNT_FOOD),
-                Items.CHARCOAL
         ).build(consumer);
     }
 

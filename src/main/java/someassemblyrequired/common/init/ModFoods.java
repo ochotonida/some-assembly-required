@@ -15,12 +15,6 @@ public class ModFoods {
             .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 100, 0), 0.4F)
             .build();
 
-    public static final FoodProperties CHARRED_MORSEL = new FoodProperties.Builder()
-            .nutrition(1)
-            .saturationMod(0)
-            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 100, 0), 0.2F)
-            .build();
-
     public static final FoodProperties BREAD_SLICE = new FoodProperties.Builder()
             .nutrition(2)
             .saturationMod(0.5F)

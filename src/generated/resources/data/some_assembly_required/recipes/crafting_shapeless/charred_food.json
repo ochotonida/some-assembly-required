@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "some_assembly_required:charred_food"
+    },
+    {
+      "item": "some_assembly_required:charred_food"
+    },
+    {
+      "item": "some_assembly_required:charred_food"
+    },
+    {
+      "item": "some_assembly_required:charred_food"
+    }
+  ],
+  "result": {
+    "item": "minecraft:charcoal"
+  }
+}

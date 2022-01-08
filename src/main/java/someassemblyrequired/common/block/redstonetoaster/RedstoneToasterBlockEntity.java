@@ -149,7 +149,7 @@ public class RedstoneToasterBlockEntity extends BlockEntity {
     }
 
     private static ItemStack getToastingResult(Level level, ItemStack ingredient) {
-        if (ingredient.isEmpty() || ingredient.getItem() == ModItems.CHARRED_MORSEL.get() || level == null) {
+        if (ingredient.isEmpty() || level == null) {
             return ItemStack.EMPTY;
         }
 
@@ -168,18 +168,12 @@ public class RedstoneToasterBlockEntity extends BlockEntity {
         }
 
         if (recipe == null) {
-            if (ingredient.getItem().isEdible()) {
-                if (ModTags.SMALL_FOODS.contains(ingredient.getItem())) {
-                    return new ItemStack(ModItems.CHARRED_MORSEL.get());
-                } else {
-                    return new ItemStack(ModItems.CHARRED_FOOD.get());
-                }
-            } else {
-                return ItemStack.EMPTY;
+            if (ingredient.getItem().isEdible() && ingredient.getItem() != ModItems.CHARRED_FOOD.get()) {
+                return new ItemStack(ModItems.CHARRED_FOOD.get());
             }
-        } else {
-            return recipe.assemble(ingredientWrapper);
+            return ItemStack.EMPTY;
         }
+        return recipe.assemble(ingredientWrapper);
     }
 
     private void toastItems() {

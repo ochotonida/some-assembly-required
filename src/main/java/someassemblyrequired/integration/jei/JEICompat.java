@@ -2,6 +2,7 @@ package someassemblyrequired.integration.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -54,22 +55,18 @@ public class JEICompat implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         for (Block toaster : ModBlocks.getToasters()) {
             registration.addRecipeCatalyst(new ItemStack(toaster), ToastingRecipeCategory.ID);
+            registration.addRecipeCatalyst(new ItemStack(toaster), VanillaRecipeCategoryUid.SMOKING);
         }
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         registration.addRecipes(findRecipes(ModRecipeTypes.TOASTING), ToastingRecipeCategory.ID);
-        // recipes with more than one possible result have an empty output, ignore these (for JEI only)
-        registration.addRecipes(findRecipes(RecipeType.SMOKING).stream().filter((recipe) -> !recipe.getResultItem().isEmpty()).collect(Collectors.toList()), ToastingRecipeCategory.ID);
 
         for (Block assemblyTable : ModBlocks.getSandwichAssemblyTables()) {
             registration.addIngredientInfo(new ItemStack(assemblyTable), VanillaTypes.ITEM, new TranslatableComponent("description.%s.sandwich_assembly_table".formatted(SomeAssemblyRequired.MODID)));
         }
-        for (ItemLike item : new ItemLike[]{
-                ModBlocks.REDSTONE_TOASTER.get(),
-                ModBlocks.STICKY_REDSTONE_TOASTER.get(),
-        }) {
+        for (ItemLike item : ModBlocks.getToasters()) {
             // noinspection ConstantConditions
             registration.addIngredientInfo(new ItemStack(item), VanillaTypes.ITEM, new TranslatableComponent(String.format("description.%s.%s", SomeAssemblyRequired.MODID, item.asItem().getRegistryName().getPath())));
         }
