@@ -25,7 +25,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.block.WaterLoggableHorizontalBlock;
-import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
@@ -101,17 +100,13 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
         List<ItemStack> drops = new ArrayList<>(super.getDrops(state, builder));
         SandwichItemHandler.get(builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY))
-                .ifPresent(sandwich -> {
-                    if (sandwich.isValidSandwich()) {
-                        drops.add(sandwich.getAsItem());
-                    } else {
-                        for (ItemStack stack : sandwich) {
-                            if (!Ingredients.hasContainer(stack)) {
-                                drops.add(stack);
-                            }
-                        }
+                .map(sandwich -> {
+                    if (sandwich.size() != 1) {
+                        return sandwich.getAsItem();
                     }
-                });
+                    return sandwich.getStackInSlot(0);
+                })
+                .ifPresent(drops::add);
         return drops;
     }
 

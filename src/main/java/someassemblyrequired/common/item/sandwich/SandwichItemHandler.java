@@ -86,13 +86,8 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         return items.get(items.size() - 1);
     }
 
-    public boolean isValidSandwich() {
-        boolean allowOpenFacedSandwiches = false; // TODO add config option
-        return size() > 0 && bottom().is(ModTags.BREAD_SLICES) && (allowOpenFacedSandwiches || top().is(ModTags.BREAD_SLICES));
-    }
-
     public boolean hasTopAndBottomBread() {
-        return size() > 0 && bottom().is(ModTags.BREAD_SLICES) && bottom().is(ModTags.BREAD_SLICES);
+        return size() > 0 && bottom().is(ModTags.BREAD_SLICES) && top().is(ModTags.BREAD_SLICES);
     }
 
     public boolean isDoubleDeckerSandwich() {
@@ -114,30 +109,6 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         }
 
         return foundBread && !items.get(1).is(ModTags.BREAD_SLICES) && !items.get(size() - 2).is(ModTags.BREAD_SLICES);
-    }
-
-    public boolean isBLT() {
-        if (!hasTopAndBottomBread()) {
-            return false;
-        }
-
-        boolean hasBacon = false;
-        boolean hasLettuce = false;
-        boolean hasTomato = false;
-
-        for (ItemStack stack : items) {
-            if (stack.is(ModTags.COOKED_BACON)) {
-                hasBacon = true;
-            } else if (stack.is(ModTags.SALAD_INGREDIENTS)) {
-                hasLettuce = true;
-            } else if (stack.is(ModTags.VEGETABLES_TOMATO)) {
-                hasTomato = true;
-            } else if (!stack.is(ModTags.BREAD_SLICES)) {
-                return false;
-            }
-        }
-
-        return hasBacon && hasLettuce && hasTomato;
     }
 
     public boolean canAlwaysEat() {

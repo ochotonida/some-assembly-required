@@ -52,8 +52,10 @@
   "item.some_assembly_required.ketchup_bottle": "Ketchup Bottle",
 
   "item.some_assembly_required.sandwich": "Sandwich",
+  "item.some_assembly_required.open_faced_sandwich": "Open-Faced Sandwich",
   "item.some_assembly_required.double_decker_sandwich": "Double Decker Sandwich",
   "item.some_assembly_required.ingredients_sandwich": "%s Sandwich",
+  "item.some_assembly_required.open_faced_ingredients_sandwich": "Open-Faced %s Sandwich",
   "item.some_assembly_required.double_decker_ingredients_sandwich": "Double Decker %s Sandwich",
   "item.some_assembly_required.bread_sandwich": "Sandwich... ?",
   "item.some_assembly_required.potion_sandwich": "Sandwich of %s",

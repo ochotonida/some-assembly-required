@@ -26,20 +26,17 @@ public class SandwichNameHelper {
             return new TranslatableComponent("item.%s.sandwich".formatted(SomeAssemblyRequired.MODID));
         }
 
-        List<ItemStack> ingredients = new ArrayList<>();
-        sandwich.forEach(ingredients::add);
-
-        int amountOfBread = getAmountOfBread(ingredients);
+        int amountOfBread = getAmountOfBread(sandwich);
 
         // full bread sandwich
-        if (ingredients.size() == amountOfBread) {
-            return getBreadSandwichName(ingredients);
+        if (sandwich.size() == amountOfBread) {
+            return getBreadSandwichName(sandwich);
         }
 
-        List<ItemStack> uniqueIngredients = getUniqueIngredientsExcludingBread(ingredients);
+        List<ItemStack> uniqueIngredients = getUniqueIngredientsExcludingBread(sandwich);
 
         // BLT
-        if (sandwich.isBLT()) {
+        if (isBLT(sandwich)) {
             return new TranslatableComponent("item.%s.blt_sandwich".formatted(SomeAssemblyRequired.MODID));
         }
 
@@ -53,10 +50,14 @@ public class SandwichNameHelper {
             }
         }
 
+        boolean isOpenFacedSandwich = amountOfBread == 1 && sandwich.size() > 1;
+
         if (uniqueIngredients.size() > 0 && uniqueIngredients.size() <= 3) {
             Component ingredientList = listIngredients(uniqueIngredients);
             if (sandwich.isDoubleDeckerSandwich()) {
                 return new TranslatableComponent("item.%s.double_decker_ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), ingredientList);
+            } else if (isOpenFacedSandwich) {
+                return new TranslatableComponent("item.%s.open_faced_ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), ingredientList);
             } else {
                 return new TranslatableComponent("item.%s.ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), ingredientList);
             }
@@ -64,14 +65,16 @@ public class SandwichNameHelper {
 
         if (sandwich.isDoubleDeckerSandwich()) {
             return new TranslatableComponent("item.%s.double_decker_sandwich".formatted(SomeAssemblyRequired.MODID));
+        } else if (isOpenFacedSandwich) {
+            return new TranslatableComponent("item.%s.open_faced_sandwich".formatted(SomeAssemblyRequired.MODID));
         } else {
             return new TranslatableComponent("item.%s.sandwich".formatted(SomeAssemblyRequired.MODID));
         }
     }
 
-    private static List<ItemStack> getUniqueIngredientsExcludingBread(List<ItemStack> ingredients) {
+    private static List<ItemStack> getUniqueIngredientsExcludingBread(SandwichItemHandler sandwich) {
         List<ItemStack> result = new ArrayList<>();
-        for (ItemStack ingredient : ingredients) {
+        for (ItemStack ingredient : sandwich) {
             if (!ingredient.is(ModTags.BREAD_SLICES) && result.stream().noneMatch(stack -> ItemStack.matches(ingredient, stack))) {
                 result.add(ingredient);
             }
@@ -79,9 +82,9 @@ public class SandwichNameHelper {
         return result;
     }
 
-    private static int getAmountOfBread(List<ItemStack> ingredients) {
+    private static int getAmountOfBread(SandwichItemHandler sandwich) {
         int result = 0;
-        for (ItemStack ingredient : ingredients) {
+        for (ItemStack ingredient : sandwich) {
             if (ingredient.is(ModTags.BREAD_SLICES)) {
                 result++;
             }
@@ -89,12 +92,12 @@ public class SandwichNameHelper {
         return result;
     }
 
-    private static Component getBreadSandwichName(List<ItemStack> ingredients) {
-        if ((ingredients.size() == 3)
-                && ingredients.get(0).getItem() != ModItems.TOASTED_BREAD_SLICE.get()
-                && ingredients.get(1).getItem() == ModItems.TOASTED_BREAD_SLICE.get()
-                && ingredients.get(2).getItem() != ModItems.TOASTED_BREAD_SLICE.get()) {
-            return new TranslatableComponent("item.%s.ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), Ingredients.getDisplayName(ingredients.get(1)));
+    private static Component getBreadSandwichName(SandwichItemHandler sandwich) {
+        if ((sandwich.size() == 3)
+                && sandwich.getStackInSlot(0).getItem() != ModItems.TOASTED_BREAD_SLICE.get()
+                && sandwich.getStackInSlot(1).getItem() == ModItems.TOASTED_BREAD_SLICE.get()
+                && sandwich.getStackInSlot(2).getItem() != ModItems.TOASTED_BREAD_SLICE.get()) {
+            return new TranslatableComponent("item.%s.ingredients_sandwich".formatted(SomeAssemblyRequired.MODID), Ingredients.getDisplayName(sandwich.getStackInSlot(1)));
         }
         return new TranslatableComponent("item.%s.bread_sandwich".formatted(SomeAssemblyRequired.MODID));
     }
@@ -102,5 +105,29 @@ public class SandwichNameHelper {
     private static Component listIngredients(List<ItemStack> ingredients) {
         List<Component> ingredientNames = ingredients.stream().map(Ingredients::getDisplayName).collect(Collectors.toList());
         return new TranslatableComponent("tooltip.%s.ingredient_list.".formatted(SomeAssemblyRequired.MODID) + ingredientNames.size(), ingredientNames.toArray());
+    }
+
+    private static boolean isBLT(SandwichItemHandler sandwich) {
+        if (!sandwich.hasTopAndBottomBread()) {
+            return false;
+        }
+
+        boolean hasBacon = false;
+        boolean hasLettuce = false;
+        boolean hasTomato = false;
+
+        for (ItemStack stack : sandwich) {
+            if (stack.is(ModTags.COOKED_BACON)) {
+                hasBacon = true;
+            } else if (stack.is(ModTags.SALAD_INGREDIENTS)) {
+                hasLettuce = true;
+            } else if (stack.is(ModTags.VEGETABLES_TOMATO)) {
+                hasTomato = true;
+            } else if (!stack.is(ModTags.BREAD_SLICES)) {
+                return false;
+            }
+        }
+
+        return hasBacon && hasLettuce && hasTomato;
     }
 }

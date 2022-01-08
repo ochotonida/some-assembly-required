@@ -42,7 +42,6 @@ import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.common.init.ModTags;
 import someassemblyrequired.integration.ModCompat;
 
 import javax.annotation.Nullable;
@@ -197,7 +196,7 @@ public class SandwichItem extends BlockItem {
 
     @Override
     public Component getName(ItemStack stack) {
-        if (ModTags.BREAD_SLICES.isDefaulted() || stack.hasCustomHoverName()) {
+        if (stack.hasCustomHoverName()) {
             return super.getName(stack);
         }
         return SandwichNameHelper.getSandwichDisplayName(stack);
