@@ -47,9 +47,7 @@
   "item.some_assembly_required.mayonnaise_bottle": "Mayonnaisenflasche",
   "item.some_assembly_required.sweet_berry_jam_bottle": "süßiger Beerenmarmeladenflasche",
   "item.some_assembly_required.charred_food": "Verkohltes Essen",
-  "item.some_assembly_required.charred_morsel": "Verkohlter Bissen",
   "item.some_assembly_required.tomato_slices": "Tomatenscheiben",
-  "item.some_assembly_required.ketchup_bottle": "Ketchup",
 
   "item.some_assembly_required.sandwich": "Sandwich",
   "item.some_assembly_required.double_decker_sandwich": "Doppeldecker Sandwich",
@@ -81,7 +79,6 @@
   "ingredient.some_assembly_required.honey_bottle": "Honig",
   "ingredient.some_assembly_required.milk_bucket": "Milch",
   "ingredient.some_assembly_required.mayonnaise_bottle": "Mayonnaise",
-  "ingredient.some_assembly_required.ketchup_bottle": "Ketchup",
   "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Süße Beerenmarmelade",
 
   "description.some_assembly_required.sandwich_assembly_table": "Platziere hierauf deine zutaten zwischen brot, und dann SHIFT + Rechtsklick um dein Sandwich zu erschaffen",

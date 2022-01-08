@@ -73,11 +73,6 @@ public class ModFoods {
             .saturationMod(0.1F)
             .build();
 
-    public static final FoodProperties KETCHUP = new FoodProperties.Builder()
-            .nutrition(2)
-            .saturationMod(0.2F)
-            .build();
-
     public static final FoodProperties SWEET_BERRY_JAM = new FoodProperties.Builder()
             .nutrition(5)
             .saturationMod(0.5F)

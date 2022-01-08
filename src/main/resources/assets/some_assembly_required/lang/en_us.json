@@ -47,9 +47,7 @@
   "item.some_assembly_required.mayonnaise_bottle": "Mayonnaise Bottle",
   "item.some_assembly_required.sweet_berry_jam_bottle": "Sweet Berry Jam Bottle",
   "item.some_assembly_required.charred_food": "Charred Food",
-  "item.some_assembly_required.charred_morsel": "Charred Morsel",
   "item.some_assembly_required.tomato_slices": "Tomato Slices",
-  "item.some_assembly_required.ketchup_bottle": "Ketchup Bottle",
 
   "item.some_assembly_required.sandwich": "Sandwich",
   "item.some_assembly_required.open_faced_sandwich": "Open-Faced Sandwich",
@@ -83,7 +81,6 @@
   "ingredient.some_assembly_required.honey_bottle": "Honey",
   "ingredient.some_assembly_required.milk_bucket": "Milk",
   "ingredient.some_assembly_required.mayonnaise_bottle": "Mayonnaise",
-  "ingredient.some_assembly_required.ketchup_bottle": "Ketchup",
   "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Sweet Berry Jam",
 
   "ingredient.some_assembly_required.farmersdelight.cabbage_leaf": "Cabbage",

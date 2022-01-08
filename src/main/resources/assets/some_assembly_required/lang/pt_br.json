@@ -47,9 +47,7 @@
   "item.some_assembly_required.mayonnaise_bottle": "Frasco de Maionese",
   "item.some_assembly_required.sweet_berry_jam_bottle": "Frasco de Geléia de Bagas Doces",
   "item.some_assembly_required.charred_food": "Comida Carbonizada",
-  "item.some_assembly_required.charred_morsel": "Pedaço Carbonizado",
   "item.some_assembly_required.tomato_slices": "Fatias de Tomate",
-  "item.some_assembly_required.ketchup_bottle": "Frasco de Ketchup",
 
   "item.some_assembly_required.sandwich": "Sanduíche",
   "item.some_assembly_required.double_decker_sandwich": "Sanduíche de Dois Andares",
@@ -81,7 +79,6 @@
   "ingredient.some_assembly_required.honey_bottle": "Mel",
   "ingredient.some_assembly_required.milk_bucket": "Leite",
   "ingredient.some_assembly_required.mayonnaise_bottle": "Maionese",
-  "ingredient.some_assembly_required.ketchup_bottle": "Ketchup",
   "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Geléia de Bagas Doces",
 
   "description.some_assembly_required.sandwich_assembly_table": "Pode ser usado para fazer sanduíches, colocando os itens em cima. Esquerarse + Clique com o botão direito com a mão vazia para fazer seu sanduíche",

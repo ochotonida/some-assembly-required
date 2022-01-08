@@ -42,7 +42,6 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
         builder(Items.SUSPICIOUS_STEW).setBowled().setSpread(0x3f9E80);
 
         builder(Items.HONEY_BOTTLE).setCustomFullName().setBottled().setSpread(0xF08A1D);
-        builder(ModItems.KETCHUP_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0x910900);
         builder(ModItems.MAYONNAISE_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xD9C98C);
         builder(ModItems.SWEET_BERRY_JAM_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xF40020);
 
