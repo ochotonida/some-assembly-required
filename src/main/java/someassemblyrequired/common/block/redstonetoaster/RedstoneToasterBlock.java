@@ -49,18 +49,21 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock implement
     public RedstoneToasterBlock(Properties properties, boolean isSticky) {
         super(properties);
         this.isSticky = isSticky;
-        registerDefaultState(defaultBlockState().setValue(TOASTING, false));
+        registerDefaultState(defaultBlockState().setValue(TOASTING, false).setValue(BlockStateProperties.POWERED, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(TOASTING);
+        builder.add(TOASTING, BlockStateProperties.POWERED);
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return super.getStateForPlacement(context).setValue(TOASTING, false).setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection().getClockWise());
+        return super.getStateForPlacement(context)
+                .setValue(TOASTING, false)
+                .setValue(BlockStateProperties.POWERED, false)
+                .setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection().getClockWise());
     }
 
     @Override
@@ -110,15 +113,14 @@ public class RedstoneToasterBlock extends WaterLoggableHorizontalBlock implement
 
     @SuppressWarnings("deprecation")
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
-        if (!(level.getBlockEntity(pos) instanceof RedstoneToasterBlockEntity toaster)) {
-            return;
-        }
-
         boolean isPowered = level.hasNeighborSignal(pos) || level.hasNeighborSignal(pos.above());
-        boolean isToasting = state.getValue(TOASTING);
+        boolean wasPowered = state.getValue(BlockStateProperties.POWERED);
 
-        if (isPowered && !isToasting) {
-            toaster.startToasting();
+        if (isPowered != wasPowered) {
+            level.setBlock(pos, state.setValue(BlockStateProperties.POWERED, isPowered), Block.UPDATE_INVISIBLE);
+            if (isPowered && level.getBlockEntity(pos) instanceof RedstoneToasterBlockEntity toaster) {
+                toaster.startToasting();
+            }
         }
     }
 
