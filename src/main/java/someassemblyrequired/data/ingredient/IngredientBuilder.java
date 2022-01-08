@@ -1,4 +1,4 @@
-package someassemblyrequired.data.recipe;
+package someassemblyrequired.data.ingredient;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;

@@ -86,6 +86,15 @@
   "ingredient.some_assembly_required.ketchup_bottle": "Ketchup",
   "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Sweet Berry Jam",
 
+  "ingredient.some_assembly_required.farmersdelight.cabbage_leaf": "Cabbage",
+  "ingredient.some_assembly_required.farmersdelight.fried_egg": "Egg",
+  "ingredient.some_assembly_required.farmersdelight.beef_patty": "Beef",
+  "ingredient.some_assembly_required.farmersdelight.cooked_chicken_cuts": "Chicken",
+  "ingredient.some_assembly_required.farmersdelight.cooked_bacon": "Bacon",
+  "ingredient.some_assembly_required.farmersdelight.cooked_cod_slice": "Cod",
+  "ingredient.some_assembly_required.farmersdelight.cooked_salmon_slice": "Salmon",
+  "ingredient.some_assembly_required.farmersdelight.cooked_mutton_chops": "Mutton",
+
   "description.some_assembly_required.sandwich_assembly_table": "Sandwiches can be made using this block. Up to 16 ingredients can be placed on top, starting and ending with a bread slice. Sneak-right click with an empty hand to build your sandwich",
   "description.some_assembly_required.redstone_toaster": "The Redstone Toaster™ can be used to toast bread and other food items. It does not require any fuel. It is recommended one does not try to toast metal, or submerge the toaster in water",
   "description.some_assembly_required.sticky_redstone_toaster": "A slightly less violent variant of the Redstone Toaster™",

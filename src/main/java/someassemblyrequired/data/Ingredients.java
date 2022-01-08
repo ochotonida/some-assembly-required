@@ -12,7 +12,9 @@ import net.minecraft.world.item.Items;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.data.recipe.IngredientBuilder;
+import someassemblyrequired.data.ingredient.CreateIngredients;
+import someassemblyrequired.data.ingredient.FarmersDelightIngredients;
+import someassemblyrequired.data.ingredient.IngredientBuilder;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -31,7 +33,8 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
     private void addIngredients() {
         ingredients.clear();
 
-        addFarmersDelightIngredients();
+        ingredients.addAll(CreateIngredients.createIngredients());
+        ingredients.addAll(FarmersDelightIngredients.createIngredients());
 
         builder(Items.BEETROOT_SOUP).setBowled().setSpread(0x8C0023);
         builder(Items.MUSHROOM_STEW).setBowled().setSpread(0xAD7451);
@@ -58,16 +61,6 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
                 ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
                 ModItems.TOMATO_SLICES.get()
         ).forEach(item -> builder(item).setCustomDisplayName().setCustomModelData());
-    }
-
-    private void addFarmersDelightIngredients() {
-        builder(vectorwing.farmersdelight.common.registry.ModItems.VEGETABLE_SOUP.get()).setBowled().setSpread(0xa59136);
-        builder(vectorwing.farmersdelight.common.registry.ModItems.TOMATO_SAUCE.get()).setBowled().setSpread(0xbe331f);
-
-        builder(vectorwing.farmersdelight.common.registry.ModItems.MILK_BOTTLE.get()).setFullName("ingredient.%s.milk_bucket".formatted(SomeAssemblyRequired.MODID)).setBottled().setSpread(0xEEFDFF);
-        builder(vectorwing.farmersdelight.common.registry.ModItems.HOT_COCOA.get()).setBottled().setSpread(0x7b4835);
-        builder(vectorwing.farmersdelight.common.registry.ModItems.APPLE_CIDER.get()).setBottled().setSpread(0xbd783d);
-        builder(vectorwing.farmersdelight.common.registry.ModItems.MELON_JUICE.get()).setBottled().setSpread(0xc73225);
     }
 
     private IngredientBuilder builder(Item item) {
