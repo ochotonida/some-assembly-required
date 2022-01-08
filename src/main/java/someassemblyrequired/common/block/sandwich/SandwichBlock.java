@@ -36,7 +36,7 @@ import java.util.List;
 
 public class SandwichBlock extends WaterLoggableHorizontalBlock implements EntityBlock {
 
-    public static final IntegerProperty SIZE = IntegerProperty.create("size", 1, 8);
+    public static final IntegerProperty SIZE = IntegerProperty.create("size", 1, 16);
 
     private static final VoxelShape[] SHAPES = createShapes();
 
@@ -46,8 +46,8 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
     }
 
     private static VoxelShape[] createShapes() {
-        VoxelShape[] result = new VoxelShape[8];
-        for (int i = 0; i < 8; i++) {
+        VoxelShape[] result = new VoxelShape[16];
+        for (int i = 0; i < 16; i++) {
             result[i] = Block.box(4, 0, 4, 12, i + 1, 12);
         }
         return result;

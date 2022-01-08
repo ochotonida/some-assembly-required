@@ -10,6 +10,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
+import someassemblyrequired.common.config.ModConfig;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
@@ -50,7 +51,7 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
         }
 
         return SandwichItemHandler.get(item)
-                .map(sandwich -> sandwich.size() < 16) // TODO config
+                .map(sandwich -> sandwich.size() < ModConfig.server.maximumSandwichHeight.get())
                 .orElse(true);
     }
 

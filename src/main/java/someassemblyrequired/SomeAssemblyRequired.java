@@ -9,6 +9,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import someassemblyrequired.common.config.ModConfig;
 import someassemblyrequired.common.ingredient.IngredientPropertiesManager;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.*;
@@ -45,10 +46,11 @@ public class SomeAssemblyRequired {
 
     public void onCommonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            ModConfig.registerServer();
+            Ingredients.addBehaviors();
             NetworkHandler.register();
             ModRecipeTypes.registerBrewingRecipes();
             ModItems.registerCompostables();
-            Ingredients.addBehaviors();
         });
     }
 }

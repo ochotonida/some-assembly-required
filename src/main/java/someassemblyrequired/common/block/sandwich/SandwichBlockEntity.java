@@ -21,6 +21,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.config.ModConfig;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
 import someassemblyrequired.common.init.ModBlocks;
@@ -36,10 +37,6 @@ public class SandwichBlockEntity extends BlockEntity {
 
     public SandwichBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntityTypes.SANDWICH.get(), pos, state);
-    }
-
-    private int getMaxHeight() {
-        return 16; // TODO config
     }
 
     public InteractionResult interact(Player player, InteractionHand hand) {
@@ -64,7 +61,8 @@ public class SandwichBlockEntity extends BlockEntity {
         sandwich.pop();
         BlockPos pos = getBlockPos();
         if (!Ingredients.hasContainer(stack) && !player.isCreative()) {
-            ItemEntity item = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, stack);
+            double y = pos.getY() + Math.max(0.2, sandwich.size() * (1 / 32D) - 0.2);
+            ItemEntity item = new ItemEntity(level, pos.getX() + 0.5, y, pos.getZ() + 0.5, stack);
             item.setPickUpDelay(5);
             level.addFreshEntity(item);
         }
@@ -84,7 +82,7 @@ public class SandwichBlockEntity extends BlockEntity {
             return InteractionResult.SUCCESS;
         } else if (!Ingredients.canAddToSandwich(itemToAdd)) {
             return InteractionResult.PASS;
-        } else if (sandwich.size() >= getMaxHeight()) {
+        } else if (sandwich.size() >= ModConfig.server.maximumSandwichHeight.get()) {
             player.displayClientMessage(new TranslatableComponent("message.%s.full_sandwich".formatted(SomeAssemblyRequired.MODID)), true);
             return InteractionResult.SUCCESS;
         } else {
@@ -158,7 +156,7 @@ public class SandwichBlockEntity extends BlockEntity {
     }
 
     static int getSizeFromHeight(int sandwichHeight) {
-        int size = Math.min(16, Math.max(2, sandwichHeight)) + 1;
+        int size = Math.min(32, Math.max(2, sandwichHeight)) + 1;
         return size / 2;
     }
 

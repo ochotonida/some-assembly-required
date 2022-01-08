@@ -33,7 +33,8 @@ public class SandwichItemRenderer extends BlockEntityWithoutLevelRenderer {
             int size = sandwich.size();
             if (transformType == ItemTransforms.TransformType.GUI) {
                 if (size > 16) {
-                    poseStack.scale(16F / size, 16F / size, 16F / size);
+                    float scale = 24 / (size + 8F);
+                    poseStack.scale(scale, scale, scale);
                 }
             }
 

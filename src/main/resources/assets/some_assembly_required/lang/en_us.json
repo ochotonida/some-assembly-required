@@ -86,5 +86,7 @@
 
   "description.some_assembly_required.sandwich_assembly_table": "Sandwiches can be made using this block. Up to 16 ingredients can be placed on top, starting and ending with a bread slice. Sneak-right click with an empty hand to build your sandwich",
   "description.some_assembly_required.redstone_toaster": "The Redstone Toaster™ can be used to toast bread and other food items. It does not require any fuel. It is recommended one does not try to toast metal, or submerge the toaster in water",
-  "description.some_assembly_required.sticky_redstone_toaster": "A slightly less violent variant of the Redstone Toaster™"
+  "description.some_assembly_required.sticky_redstone_toaster": "A slightly less violent variant of the Redstone Toaster™",
+
+  "some_assembly_required.config.server.maximum_sandwich_height": "Maximum sandwich height"
 }

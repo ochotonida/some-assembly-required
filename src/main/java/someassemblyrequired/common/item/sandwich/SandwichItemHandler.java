@@ -9,6 +9,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import someassemblyrequired.common.config.ModConfig;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
@@ -63,12 +64,8 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         onContentsChanged();
     }
 
-    private static int getMaxSize() {
-        return 16; // TODO
-    }
-
     public boolean canAdd(SandwichItemHandler sandwich) {
-        return this.size() + sandwich.size() <= getMaxSize();
+        return this.size() + sandwich.size() <= ModConfig.server.maximumSandwichHeight.get();
     }
 
     public void add(SandwichItemHandler sandwich) {
