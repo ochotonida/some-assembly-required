@@ -79,6 +79,11 @@ repositories {
         name = "Progwml6 maven"
         url = "https://dvs1.progwml6.com/files/maven/"
     }
+    maven {
+        name 'tterrag maven'
+        url 'https://maven.tterrag.com'
+    }
+
 
     maven {
         url "https://www.cursemaven.com"
@@ -91,8 +96,8 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48:api")
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48")
 
-    implementation fg.deobf("curse.maven:create-328085:3583784")
-    implementation fg.deobf("curse.maven:flywheel-486392:3584224")
+    implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:1.18-0.5.1.44")
+    implementation fg.deobf("com.simibubi.create:Create:mc1.18.1_v0.4c+63")
 
     implementation fg.deobf("curse.maven:farmersdelight-398521:3590226")
 }
