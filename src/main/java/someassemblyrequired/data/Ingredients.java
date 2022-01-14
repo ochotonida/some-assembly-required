@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -44,6 +45,12 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
 
         new CreateIngredients(ingredients).addIngredients();
         new FarmersDelightIngredients(ingredients).addIngredients();
+
+        ItemStack displayItem = new ItemStack(ModItems.SPREAD.get());
+        CompoundTag tag = displayItem.getOrCreateTag();
+        tag.putString("Item", ModItems.GOLDEN_APPLE_SLICES.getId().toString());
+        tag.putBoolean("HasEffect", true);
+        builder(ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get()).setDisplayItem(displayItem);
 
         builder(Items.BEETROOT_SOUP).setBowled().setSpread(0x8C0023);
         builder(Items.MUSHROOM_STEW).setBowled().setSpread(0xAD7451);
