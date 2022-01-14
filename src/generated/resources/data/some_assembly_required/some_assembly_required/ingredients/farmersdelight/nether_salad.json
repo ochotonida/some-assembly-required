@@ -1,9 +1,9 @@
 {
-  "item": "farmersdelight:fruit_salad",
+  "item": "farmersdelight:nether_salad",
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 12
+      "CustomModelData": 13
     }
   },
   "container": {

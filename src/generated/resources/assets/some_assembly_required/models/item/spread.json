@@ -75,6 +75,18 @@
         "minecraft:custom_model_data": 12.0
       },
       "model": "some_assembly_required:ingredient/farmersdelight/fruit_salad"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 13.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/nether_salad"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 14.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/cooked_rice"
     }
   ]
 }
