@@ -4,9 +4,9 @@
     "translate": "ingredient.some_assembly_required.golden_apple_slices"
   },
   "displayItem": {
-    "item": "some_assembly_required:golden_apple_slices",
+    "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 1
+      "Item": "some_assembly_required:golden_apple_slices"
     }
   }
 }

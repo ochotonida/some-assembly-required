@@ -87,21 +87,27 @@ public class IngredientProperties {
     }
 
     public void playApplySound(ItemStack item, Level level, @Nullable Player player, BlockPos pos) {
-        playSound(item, level, player, pos, 1.3F);
+        if (soundEvent == null) {
+            playSound(getSoundEvent(item), level, player, pos, 1.3F);
+        } else {
+            playSound(soundEvent, level, player, pos, 1);
+        }
     }
 
     public void playRemoveSound(ItemStack item, Level level, Player player, BlockPos pos) {
-        playSound(item, level, player, pos, 1.6F);
+        if (soundEvent == null) {
+            playSound(getSoundEvent(item), level, player, pos, 1.6F);
+        } else {
+            playSound(soundEvent, level, player, pos, 1.2F);
+        }
     }
 
-    private void playSound(ItemStack item, Level level, Player player, BlockPos pos, float pitch) {
-        level.playSound(player, pos, getSoundEvent(item), SoundSource.BLOCKS, 0.3F, pitch);
+    private void playSound(SoundEvent soundEvent, Level level, Player player, BlockPos pos, float pitch) {
+        level.playSound(player, pos, soundEvent, SoundSource.BLOCKS, 0.3F, pitch);
     }
 
     private SoundEvent getSoundEvent(ItemStack item) {
-        if (soundEvent != null) {
-            return soundEvent;
-        } else if (getContainer(item).isEmpty()) {
+        if (getContainer(item).isEmpty()) {
             return SoundEvents.WOOL_PLACE;
         } else {
             return SoundEvents.HONEY_BLOCK_BREAK;

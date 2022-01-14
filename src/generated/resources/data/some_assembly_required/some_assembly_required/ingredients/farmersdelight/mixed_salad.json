@@ -1,0 +1,13 @@
+{
+  "item": "farmersdelight:mixed_salad",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Item": "farmersdelight:mixed_salad"
+    }
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "soundEvent": "minecraft:block.azalea_leaves.place"
+}

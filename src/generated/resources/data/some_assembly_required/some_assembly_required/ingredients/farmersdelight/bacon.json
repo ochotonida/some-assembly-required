@@ -1,0 +1,9 @@
+{
+  "item": "farmersdelight:bacon",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Item": "farmersdelight:bacon"
+    }
+  }
+}

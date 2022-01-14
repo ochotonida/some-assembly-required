@@ -10,6 +10,7 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.ingredient.CustomIngredientModels;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
@@ -36,33 +37,27 @@ public class ItemModels extends ItemModelProvider {
         // ignored
         removeAll(items, ModItems.SANDWICH.get());
 
+        removeAll(items, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get());
+
         // items with sandwich overrides
-        removeAll(items,
-                ModItems.APPLE_SLICES.get(),
-                ModItems.GOLDEN_APPLE_SLICES.get(),
-                ModItems.CHOPPED_CARROT.get(),
-                ModItems.CHOPPED_GOLDEN_CARROT.get(),
-                ModItems.CHOPPED_BEETROOT.get(),
-                ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
-                ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
-                ModItems.TOMATO_SLICES.get()
-        ).forEach(item -> {
-            String itemName = item.getRegistryName().getPath();
-            addGeneratedModel(itemName + "_on_sandwich", prefixItem(itemName + "_on_sandwich"));
-            addGeneratedModel(itemName, prefixItem(itemName))
-                    .override()
-                    .model(getExistingFile(prefixItem(itemName + "_on_sandwich")))
-                    .predicate(new ResourceLocation("custom_model_data"), 1)
+        removeAll(items, ModItems.SPREAD.get());
+        ItemModelBuilder builder = addGeneratedModel(ModItems.SPREAD.get());
+        removeAll(items, CustomIngredientModels.itemsWithCustomModel.toArray(new ItemLike[]{})).forEach(item -> {
+            if (SomeAssemblyRequired.MODID.equals(item.getRegistryName().getNamespace())) {
+                addGeneratedModel(item);
+            }
+            String id = "%s/%s".formatted(item.getRegistryName().getNamespace(), item.getRegistryName().getPath());
+            String path = "ingredient/" + id;
+
+            builder.override()
+                    .model(addGeneratedModel(path, prefixItem(path)))
+                    .predicate(Util.id(id), 1)
                     .end();
         });
 
         // enchanted golden apple slices
         removeAll(items, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get());
-        addGeneratedModel("enchanted_golden_apple_slices", prefixItem("golden_apple_slices"))
-                .override()
-                .model(getExistingFile(prefixItem("golden_apple_slices_on_sandwich")))
-                .predicate(Util.id("on_sandwich"), 1)
-                .end();
+        addGeneratedModel("enchanted_golden_apple_slices", prefixItem("golden_apple_slices"));
 
         // toasters
         for (Item toaster : removeAll(items, ModBlocks.getToasters())) {

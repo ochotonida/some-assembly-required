@@ -1,5 +1,6 @@
 package someassemblyrequired.data.ingredient;
 
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import someassemblyrequired.SomeAssemblyRequired;
 import vectorwing.farmersdelight.common.registry.ModItems;
@@ -30,6 +31,10 @@ public class FarmersDelightIngredients {
         builder(ModItems.COOKED_COD_SLICE.get()).setCustomDisplayName();
         builder(ModItems.COOKED_SALMON_SLICE.get()).setCustomDisplayName();
         builder(ModItems.COOKED_MUTTON_CHOPS.get()).setCustomDisplayName();
+
+        builder(ModItems.BACON.get());
+
+        builder(ModItems.MIXED_SALAD.get()).setBowled().setSound(SoundEvents.AZALEA_LEAVES_PLACE);
 
         return ingredients;
     }

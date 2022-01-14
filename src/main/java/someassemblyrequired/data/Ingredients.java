@@ -47,9 +47,8 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
 
         builder(Items.MILK_BUCKET).setCustomFullName().setBucketed().setSpread(0xEEFDFF);
 
-        builder(ModItems.TOASTED_BREAD_SLICE.get()).setCustomDisplayName();
-
         Arrays.asList(
+                ModItems.TOASTED_BREAD_SLICE.get(),
                 ModItems.APPLE_SLICES.get(),
                 ModItems.GOLDEN_APPLE_SLICES.get(),
                 ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
@@ -59,7 +58,7 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
                 ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
                 ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
                 ModItems.TOMATO_SLICES.get()
-        ).forEach(item -> builder(item).setCustomDisplayName().setCustomModelData());
+        ).forEach(item -> builder(item).setCustomDisplayName());
     }
 
     private IngredientBuilder builder(Item item) {

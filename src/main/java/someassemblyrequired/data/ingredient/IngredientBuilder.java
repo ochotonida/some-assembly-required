@@ -3,10 +3,12 @@ package someassemblyrequired.data.ingredient;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.ingredient.CustomIngredientModels;
 import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
 
@@ -21,16 +23,24 @@ public class IngredientBuilder {
     private Component displayName;
     @Nullable
     private Component fullName;
+    @Nullable
+    private SoundEvent soundEvent;
 
     private ItemStack displayItem = ItemStack.EMPTY;
     private ItemStack container = ItemStack.EMPTY;
 
     public IngredientBuilder(Item item) {
         this.item = item;
+
+        if (CustomIngredientModels.itemsWithCustomModel.contains(item)) {
+            displayItem = new ItemStack(ModItems.SPREAD.get());
+            // noinspection ConstantConditions
+            displayItem.getOrCreateTag().putString("Item", item.getRegistryName().toString());
+        }
     }
 
     public IngredientProperties build() {
-        return new IngredientProperties(null, displayName, fullName, displayItem, container, null);
+        return new IngredientProperties(null, displayName, fullName, displayItem, container, soundEvent);
     }
 
     public Item getItem() {
@@ -68,12 +78,6 @@ public class IngredientBuilder {
         return this;
     }
 
-    public IngredientBuilder setCustomModelData() {
-        ItemStack display = new ItemStack(item);
-        display.getOrCreateTag().putInt("CustomModelData", 1);
-        return setDisplayItem(display);
-    }
-
     public IngredientBuilder setSpread(int color) {
         ItemStack spread = new ItemStack(ModItems.SPREAD.get());
         spread.getOrCreateTag().putInt("Color", color);
@@ -99,6 +103,11 @@ public class IngredientBuilder {
 
     public IngredientBuilder setBucketed() {
         return setContainer(Items.BUCKET);
+    }
+
+    public IngredientBuilder setSound(SoundEvent soundEvent) {
+        this.soundEvent = soundEvent;
+        return this;
     }
 
     private static String getDefaultTranslationKey(Item item) {

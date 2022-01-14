@@ -4,9 +4,9 @@
     "translate": "ingredient.some_assembly_required.chopped_carrot"
   },
   "displayItem": {
-    "item": "some_assembly_required:chopped_carrot",
+    "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 1
+      "Item": "some_assembly_required:chopped_carrot"
     }
   }
 }

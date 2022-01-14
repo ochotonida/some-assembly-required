@@ -41,6 +41,7 @@ public class IngredientPropertiesManager extends SimpleJsonResourceReloadListene
 
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> resources, ResourceManager resourceManager, ProfilerFiller profiler) {
+        properties.clear();
         resources.forEach((resourceLocation, element) -> {
             try {
                 if (element.isJsonObject() && !CraftingHelper.processConditions(element.getAsJsonObject(), "conditions")) {

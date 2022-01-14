@@ -2,13 +2,5 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "some_assembly_required:item/apple_slices"
-  },
-  "overrides": [
-    {
-      "predicate": {
-        "minecraft:custom_model_data": 1.0
-      },
-      "model": "some_assembly_required:item/apple_slices_on_sandwich"
-    }
-  ]
+  }
 }

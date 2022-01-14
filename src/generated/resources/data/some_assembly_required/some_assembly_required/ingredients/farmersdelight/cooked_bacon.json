@@ -2,5 +2,11 @@
   "item": "farmersdelight:cooked_bacon",
   "displayName": {
     "translate": "ingredient.some_assembly_required.farmersdelight.cooked_bacon"
+  },
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Item": "farmersdelight:cooked_bacon"
+    }
   }
 }

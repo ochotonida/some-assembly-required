@@ -16,6 +16,10 @@ public class ModCompat {
         if (isFarmersDelightLoaded()) FarmersDelightCompat.setup();
     }
 
+    public static void addCustomIngredientModels() {
+        if (isFarmersDelightLoaded()) FarmersDelightCompat.addCustomIngredientModels();
+    }
+
     public static void addSandwichSubtypes(NonNullList<ItemStack> items) {
         if (isFarmersDelightLoaded()) FarmersDelightCompat.addSandwichSubtypes(items);
     }

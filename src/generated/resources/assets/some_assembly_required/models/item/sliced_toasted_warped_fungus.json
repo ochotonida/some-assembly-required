@@ -2,13 +2,5 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "some_assembly_required:item/sliced_toasted_warped_fungus"
-  },
-  "overrides": [
-    {
-      "predicate": {
-        "minecraft:custom_model_data": 1.0
-      },
-      "model": "some_assembly_required:item/sliced_toasted_warped_fungus_on_sandwich"
-    }
-  ]
+  }
 }
