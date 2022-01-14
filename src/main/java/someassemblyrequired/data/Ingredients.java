@@ -28,20 +28,19 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
     private static final Map<Item, IngredientBuilder> ingredients = new HashMap<>();
 
-    public static final List<Item> itemsWithCustomModel = Arrays.asList(
-            ModItems.APPLE_SLICES.get(),
-            ModItems.GOLDEN_APPLE_SLICES.get(),
-            ModItems.CHOPPED_CARROT.get(),
-            ModItems.CHOPPED_GOLDEN_CARROT.get(),
-            ModItems.CHOPPED_BEETROOT.get(),
-            ModItems.TOMATO_SLICES.get(),
-            vectorwing.farmersdelight.common.registry.ModItems.BACON.get(),
-            vectorwing.farmersdelight.common.registry.ModItems.BEEF_PATTY.get(),
-            vectorwing.farmersdelight.common.registry.ModItems.COOKED_BACON.get(),
-            vectorwing.farmersdelight.common.registry.ModItems.FRIED_EGG.get(),
-            vectorwing.farmersdelight.common.registry.ModItems.MIXED_SALAD.get(),
-            vectorwing.farmersdelight.common.registry.ModItems.FRUIT_SALAD.get()
-    );
+    public static final List<Item> itemsWithCustomModel = new ArrayList<>();
+
+    static {
+        itemsWithCustomModel.addAll(Arrays.asList(
+                ModItems.APPLE_SLICES.get(),
+                ModItems.GOLDEN_APPLE_SLICES.get(),
+                ModItems.CHOPPED_CARROT.get(),
+                ModItems.CHOPPED_GOLDEN_CARROT.get(),
+                ModItems.CHOPPED_BEETROOT.get(),
+                ModItems.TOMATO_SLICES.get()
+        ));
+        itemsWithCustomModel.addAll(FarmersDelightIngredients.itemsWithCustomModel);
+    }
 
     private void addIngredients() {
         ingredients.clear();

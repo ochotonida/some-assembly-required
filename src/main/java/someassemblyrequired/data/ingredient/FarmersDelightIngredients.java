@@ -5,9 +5,22 @@ import net.minecraft.world.item.Item;
 import someassemblyrequired.SomeAssemblyRequired;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients) {
+
+    public static final List<Item> itemsWithCustomModel = Arrays.asList(
+            ModItems.BACON.get(),
+            ModItems.BEEF_PATTY.get(),
+            ModItems.COOKED_BACON.get(),
+            ModItems.FRIED_EGG.get(),
+            ModItems.MIXED_SALAD.get(),
+            ModItems.FRUIT_SALAD.get(),
+            ModItems.NETHER_SALAD.get(),
+            ModItems.COOKED_RICE.get()
+    );
 
     public void addIngredients() {
         builder(ModItems.VEGETABLE_SOUP.get()).setBowled().setSpread(0xa59136);
@@ -27,7 +40,11 @@ public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients
         builder(ModItems.COOKED_SALMON_SLICE.get()).setCustomDisplayName();
         builder(ModItems.COOKED_MUTTON_CHOPS.get()).setCustomDisplayName();
 
+        builder(ModItems.COOKED_RICE.get()).setBowled().setCustomDisplayName();
+
         builder(ModItems.MIXED_SALAD.get()).setBowled().setSound(SoundEvents.AZALEA_LEAVES_PLACE);
+        builder(ModItems.FRUIT_SALAD.get()).setBowled();
+        builder(ModItems.NETHER_SALAD.get()).setBowled();
     }
 
     private IngredientBuilder builder(Item item) {
