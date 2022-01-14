@@ -8,7 +8,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.CustomIngredientModels;
 import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
 
@@ -31,12 +30,6 @@ public class IngredientBuilder {
 
     public IngredientBuilder(Item item) {
         this.item = item;
-
-        if (CustomIngredientModels.itemsWithCustomModel.contains(item)) {
-            displayItem = new ItemStack(ModItems.SPREAD.get());
-            // noinspection ConstantConditions
-            displayItem.getOrCreateTag().putString("Item", item.getRegistryName().toString());
-        }
     }
 
     public IngredientProperties build() {

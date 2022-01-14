@@ -5,16 +5,11 @@ import net.minecraft.world.item.Item;
 import someassemblyrequired.SomeAssemblyRequired;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
 
-public class FarmersDelightIngredients {
+public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients) {
 
-    private static final Set<IngredientBuilder> ingredients = new HashSet<>();
-
-    public static Set<IngredientBuilder> createIngredients() {
-        ingredients.clear();
-
+    public void addIngredients() {
         builder(ModItems.VEGETABLE_SOUP.get()).setBowled().setSpread(0xa59136);
         builder(ModItems.TOMATO_SAUCE.get()).setBowled().setSpread(0xbe331f);
 
@@ -32,16 +27,15 @@ public class FarmersDelightIngredients {
         builder(ModItems.COOKED_SALMON_SLICE.get()).setCustomDisplayName();
         builder(ModItems.COOKED_MUTTON_CHOPS.get()).setCustomDisplayName();
 
-        builder(ModItems.BACON.get());
-
         builder(ModItems.MIXED_SALAD.get()).setBowled().setSound(SoundEvents.AZALEA_LEAVES_PLACE);
-
-        return ingredients;
     }
 
-    private static IngredientBuilder builder(Item item) {
+    private IngredientBuilder builder(Item item) {
+        if (ingredients.containsKey(item)) {
+            return ingredients.get(item);
+        }
         IngredientBuilder builder = new IngredientBuilder(item);
-        ingredients.add(builder);
+        ingredients.put(item, builder);
         return builder;
     }
 }

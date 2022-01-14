@@ -3,24 +3,20 @@ package someassemblyrequired.data.ingredient;
 import com.simibubi.create.AllItems;
 import net.minecraft.world.item.Item;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
 
-public class CreateIngredients {
+public record CreateIngredients(Map<Item, IngredientBuilder> ingredients) {
 
-    private static final Set<IngredientBuilder> ingredients = new HashSet<>();
-
-    public static Set<IngredientBuilder> createIngredients() {
-        ingredients.clear();
-
+    public void addIngredients() {
         builder(AllItems.BUILDERS_TEA.get()).setBottled().setSpread(0xa54f34);
-
-        return ingredients;
     }
 
-    private static IngredientBuilder builder(Item item) {
+    private IngredientBuilder builder(Item item) {
+        if (ingredients.containsKey(item)) {
+            return ingredients.get(item);
+        }
         IngredientBuilder builder = new IngredientBuilder(item);
-        ingredients.add(builder);
+        ingredients.put(item, builder);
         return builder;
     }
 }

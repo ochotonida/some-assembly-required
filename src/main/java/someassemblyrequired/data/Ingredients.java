@@ -8,8 +8,10 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.ingredient.CustomIngredientModels;
 import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.data.ingredient.CreateIngredients;
@@ -21,20 +23,27 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 public record Ingredients(DataGenerator generator) implements DataProvider {
 
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
-    private static final Set<IngredientBuilder> ingredients = new HashSet<>();
+    private static final Map<Item, IngredientBuilder> ingredients = new HashMap<>();
 
     private void addIngredients() {
         ingredients.clear();
 
-        ingredients.addAll(CreateIngredients.createIngredients());
-        ingredients.addAll(FarmersDelightIngredients.createIngredients());
+        for (Item item : CustomIngredientModels.itemsWithCustomModel) {
+            ItemStack displayItem = new ItemStack(ModItems.SPREAD.get());
+            // noinspection ConstantConditions
+            displayItem.getOrCreateTag().putString("Item", item.getRegistryName().toString());
+            builder(item).setDisplayItem(displayItem);
+        }
+
+        new CreateIngredients(ingredients).addIngredients();
+        new FarmersDelightIngredients(ingredients).addIngredients();
 
         builder(Items.BEETROOT_SOUP).setBowled().setSpread(0x8C0023);
         builder(Items.MUSHROOM_STEW).setBowled().setSpread(0xAD7451);
@@ -60,31 +69,28 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
     }
 
     private IngredientBuilder builder(Item item) {
+        if (ingredients.containsKey(item)) {
+            return ingredients.get(item);
+        }
         IngredientBuilder builder = new IngredientBuilder(item);
-        ingredients.add(builder);
+        ingredients.put(item, builder);
         return builder;
     }
 
     public void run(HashCache cache) {
         Path outputFolder = this.generator.getOutputFolder();
-        Set<Item> set = new HashSet<>();
         addIngredients();
-        ingredients.forEach(builder -> {
-            Item item = builder.getItem();
-            if (!set.add(item)) {
-                throw new IllegalStateException("Duplicate ingredient for item " + item.getRegistryName());
-            } else {
-                IngredientProperties ingredient = builder.build();
-                ResourceLocation id = item.getRegistryName();
-                // noinspection ConstantConditions
-                String name = id.getPath();
-                if (!"minecraft".equals(id.getNamespace()) && !SomeAssemblyRequired.MODID.equals(id.getNamespace())) {
-                    name = id.getNamespace() + "/" + name;
-                }
-
-                Path path = outputFolder.resolve("data/%s/%s/ingredients/%s.json".formatted(SomeAssemblyRequired.MODID, SomeAssemblyRequired.MODID, name));
-                saveIngredient(cache, ingredient.toJson(item), path);
+        ingredients.forEach((item, builder) -> {
+            IngredientProperties ingredient = builder.build();
+            ResourceLocation id = item.getRegistryName();
+            // noinspection ConstantConditions
+            String name = id.getPath();
+            if (!"minecraft".equals(id.getNamespace()) && !SomeAssemblyRequired.MODID.equals(id.getNamespace())) {
+                name = id.getNamespace() + "/" + name;
             }
+
+            Path path = outputFolder.resolve("data/%s/%s/ingredients/%s.json".formatted(SomeAssemblyRequired.MODID, SomeAssemblyRequired.MODID, name));
+            saveIngredient(cache, ingredient.toJson(item), path);
         });
     }
 
