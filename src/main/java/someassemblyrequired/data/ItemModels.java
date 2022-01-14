@@ -10,13 +10,13 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.CustomIngredientModels;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -42,8 +42,10 @@ public class ItemModels extends ItemModelProvider {
         // items with sandwich overrides
         removeAll(items, ModItems.SPREAD.get());
         ItemModelBuilder builder = addGeneratedModel(ModItems.SPREAD.get());
-        removeAll(items, CustomIngredientModels.itemsWithCustomModel.toArray(new ItemLike[]{}));
-        for (Item item : CustomIngredientModels.itemsWithCustomModel) {
+        removeAll(items, Ingredients.itemsWithCustomModel.toArray(new ItemLike[]{}));
+        List<Item> itemsWithCustomModel = Ingredients.itemsWithCustomModel;
+        for (int i = 0; i < itemsWithCustomModel.size(); i++) {
+            Item item = itemsWithCustomModel.get(i);
             if (SomeAssemblyRequired.MODID.equals(item.getRegistryName().getNamespace())) {
                 addGeneratedModel(item);
             }
@@ -52,7 +54,7 @@ public class ItemModels extends ItemModelProvider {
 
             builder.override()
                     .model(addGeneratedModel(path, prefixItem(path)))
-                    .predicate(Util.id(id), 1)
+                    .predicate(new ResourceLocation("custom_model_data"), i + 1)
                     .end();
         }
 

@@ -40,6 +40,10 @@ public class IngredientBuilder {
         return item;
     }
 
+    public ItemStack getDisplayItem() {
+        return displayItem;
+    }
+
     public IngredientBuilder setDisplayName(Component displayName) {
         this.displayName = displayName;
         return this;

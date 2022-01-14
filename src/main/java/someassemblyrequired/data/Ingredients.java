@@ -6,13 +6,11 @@ import com.google.gson.JsonObject;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.CustomIngredientModels;
 import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.data.ingredient.CreateIngredients;
@@ -23,33 +21,43 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public record Ingredients(DataGenerator generator) implements DataProvider {
 
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
     private static final Map<Item, IngredientBuilder> ingredients = new HashMap<>();
 
+    public static final List<Item> itemsWithCustomModel = Arrays.asList(
+            ModItems.APPLE_SLICES.get(),
+            ModItems.GOLDEN_APPLE_SLICES.get(),
+            ModItems.CHOPPED_CARROT.get(),
+            ModItems.CHOPPED_GOLDEN_CARROT.get(),
+            ModItems.CHOPPED_BEETROOT.get(),
+            ModItems.TOMATO_SLICES.get(),
+            vectorwing.farmersdelight.common.registry.ModItems.BACON.get(),
+            vectorwing.farmersdelight.common.registry.ModItems.BEEF_PATTY.get(),
+            vectorwing.farmersdelight.common.registry.ModItems.COOKED_BACON.get(),
+            vectorwing.farmersdelight.common.registry.ModItems.FRIED_EGG.get(),
+            vectorwing.farmersdelight.common.registry.ModItems.MIXED_SALAD.get(),
+            vectorwing.farmersdelight.common.registry.ModItems.FRUIT_SALAD.get()
+    );
+
     private void addIngredients() {
         ingredients.clear();
 
-        for (Item item : CustomIngredientModels.itemsWithCustomModel) {
+        for (int i = 0; i < itemsWithCustomModel.size(); i++) {
+            Item item = itemsWithCustomModel.get(i);
             ItemStack displayItem = new ItemStack(ModItems.SPREAD.get());
-            // noinspection ConstantConditions
-            displayItem.getOrCreateTag().putString("Item", item.getRegistryName().toString());
+            displayItem.getOrCreateTag().putInt("CustomModelData", i + 1);
             builder(item).setDisplayItem(displayItem);
         }
 
         new CreateIngredients(ingredients).addIngredients();
         new FarmersDelightIngredients(ingredients).addIngredients();
 
-        ItemStack displayItem = new ItemStack(ModItems.SPREAD.get());
-        CompoundTag tag = displayItem.getOrCreateTag();
-        tag.putString("Item", ModItems.GOLDEN_APPLE_SLICES.getId().toString());
-        tag.putBoolean("HasEffect", true);
+        ItemStack displayItem = ingredients.get(ModItems.GOLDEN_APPLE_SLICES.get()).getDisplayItem().copy();
+        displayItem.getOrCreateTag().putBoolean("HasEffect", true);
         builder(ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get()).setDisplayItem(displayItem);
 
         builder(Items.BEETROOT_SOUP).setBowled().setSpread(0x8C0023);

@@ -9,7 +9,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import someassemblyrequired.common.block.redstonetoaster.RedstoneToasterRenderer;
 import someassemblyrequired.common.block.sandwich.SandwichBlockRenderer;
-import someassemblyrequired.common.ingredient.CustomIngredientModels;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
 import someassemblyrequired.common.init.ModItems;
 
@@ -27,7 +26,6 @@ public class SomeAssemblyRequiredClient {
             BlockEntityRenderers.register(ModBlockEntityTypes.REDSTONE_TOASTER.get(), RedstoneToasterRenderer::new);
             BlockEntityRenderers.register(ModBlockEntityTypes.STICKY_REDSTONE_TOASTER.get(), RedstoneToasterRenderer::new);
             BlockEntityRenderers.register(ModBlockEntityTypes.SANDWICH.get(), SandwichBlockRenderer::new);
-            CustomIngredientModels.registerItemModelProperties();
         });
     }
 
