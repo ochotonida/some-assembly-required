@@ -55,8 +55,6 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
                 ModItems.CHOPPED_CARROT.get(),
                 ModItems.CHOPPED_GOLDEN_CARROT.get(),
                 ModItems.CHOPPED_BEETROOT.get(),
-                ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
-                ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
                 ModItems.TOMATO_SLICES.get()
         ).forEach(item -> builder(item).setCustomDisplayName());
     }

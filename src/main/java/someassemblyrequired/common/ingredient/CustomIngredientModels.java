@@ -22,8 +22,6 @@ public class CustomIngredientModels {
                 ModItems.CHOPPED_CARROT.get(),
                 ModItems.CHOPPED_GOLDEN_CARROT.get(),
                 ModItems.CHOPPED_BEETROOT.get(),
-                ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(),
-                ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(),
                 ModItems.TOMATO_SLICES.get()
         ));
 
@@ -38,9 +36,5 @@ public class CustomIngredientModels {
                     (stack, level, entity, seed) -> stack.getTag() != null && stack.getTag().getString("Item").equals(item.getRegistryName().toString()) ? 1 : 0
             );
         }
-    }
-
-    private static ResourceLocation getModelLocation(Item item) {
-        return item.getRegistryName();
     }
 }

@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
@@ -34,16 +33,6 @@ public class ToastingRecipeBuilder {
         ToastingRecipeBuilder.toastingRecipe(
                 Ingredient.of(ModItems.TOASTED_BREAD_SLICE.get()),
                 ModItems.CHARRED_BREAD_SLICE.get()
-        ).build(consumer);
-
-        ToastingRecipeBuilder.toastingRecipe(
-                Ingredient.of(Items.CRIMSON_FUNGUS),
-                ModItems.TOASTED_CRIMSON_FUNGUS.get()
-        ).build(consumer);
-
-        ToastingRecipeBuilder.toastingRecipe(
-                Ingredient.of(Items.WARPED_FUNGUS),
-                ModItems.TOASTED_WARPED_FUNGUS.get()
         ).build(consumer);
     }
 

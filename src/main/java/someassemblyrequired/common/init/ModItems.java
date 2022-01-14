@@ -57,10 +57,6 @@ public class ModItems {
     public static final RegistryObject<Item> CHOPPED_CARROT = REGISTRY.register("chopped_carrot", () -> createFoodItem(ModFoods.CHOPPED_CARROT));
     public static final RegistryObject<Item> CHOPPED_GOLDEN_CARROT = REGISTRY.register("chopped_golden_carrot", () -> createFoodItem(ModFoods.CHOPPED_GOLDEN_CARROT));
     public static final RegistryObject<Item> CHOPPED_BEETROOT = REGISTRY.register("chopped_beetroot", () -> createFoodItem(ModFoods.CHOPPED_BEETROOT));
-    public static final RegistryObject<Item> TOASTED_CRIMSON_FUNGUS = REGISTRY.register("toasted_crimson_fungus", () -> createFoodItem(ModFoods.TOASTED_CRIMSON_FUNGUS));
-    public static final RegistryObject<Item> SLICED_TOASTED_CRIMSON_FUNGUS = REGISTRY.register("sliced_toasted_crimson_fungus", () -> createFoodItem(ModFoods.SLICED_TOASTED_CRIMSON_FUNGUS));
-    public static final RegistryObject<Item> TOASTED_WARPED_FUNGUS = REGISTRY.register("toasted_warped_fungus", () -> createFoodItem(ModFoods.TOASTED_WARPED_FUNGUS));
-    public static final RegistryObject<Item> SLICED_TOASTED_WARPED_FUNGUS = REGISTRY.register("sliced_toasted_warped_fungus", () -> createFoodItem(ModFoods.SLICED_TOASTED_WARPED_FUNGUS));
     public static final RegistryObject<Item> TOMATO_SLICES = REGISTRY.register("tomato_slices", () -> createFoodItem(ModFoods.TOMATO_SLICES));
 
     // spreadables
@@ -94,7 +90,6 @@ public class ModItems {
     }
 
     public static void registerCompostables() {
-        // 30%
         ComposterBlock.COMPOSTABLES.put(BREAD_SLICE.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TOASTED_BREAD_SLICE.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHARRED_BREAD_SLICE.get(), 0.3F);
@@ -102,12 +97,6 @@ public class ModItems {
         ComposterBlock.COMPOSTABLES.put(APPLE_SLICES.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHOPPED_CARROT.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHOPPED_BEETROOT.get(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(SLICED_TOASTED_CRIMSON_FUNGUS.get(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(SLICED_TOASTED_CRIMSON_FUNGUS.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TOMATO_SLICES.get(), 0.3F);
-
-        // 65%
-        ComposterBlock.COMPOSTABLES.put(TOASTED_CRIMSON_FUNGUS.get(), 0.65F);
-        ComposterBlock.COMPOSTABLES.put(TOASTED_WARPED_FUNGUS.get(), 0.65F);
     }
 }

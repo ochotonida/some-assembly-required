@@ -4,17 +4,16 @@
   "recipecategory.some_assembly_required.toasting": "Toasting",
 
   "advancement.some_assembly_required.obtain_bread_slice.title": "A Matter of Loaf and Bread",
-  "advancement.some_assembly_required.obtain_bread_slice.description": "Cut a loaf of bread into slices using a Cutting Board",
+  "advancement.some_assembly_required.obtain_bread_slice.description": "Cut a loaf of bread into slices",
   "advancement.some_assembly_required.obtain_toasted_bread_slice.title": "The Greatest Thing Since...",
-  "advancement.some_assembly_required.obtain_toasted_bread_slice.description": "Toast a slice of bread using the Redstone Toaster™",
+  "advancement.some_assembly_required.obtain_toasted_bread_slice.description": "Turn a slice of bread into toast",
   "advancement.some_assembly_required.obtain_sandwich.title": "Beginner Breadsmithing",
   "advancement.some_assembly_required.obtain_sandwich.description": "Create your first sandwich",
   "advancement.some_assembly_required.add_potion_to_sandwich.title": "Sorcerer's Snack",
   "advancement.some_assembly_required.add_potion_to_sandwich.description": "Eat a sandwich with a potion in it",
   "advancement.some_assembly_required.consume_double_decker_sandwich.title": "Double Hungry",
-  "advancement.some_assembly_required.consume_double_decker_sandwich.description": "Create & eat a double decker sandwich",
+  "advancement.some_assembly_required.consume_double_decker_sandwich.description": "Eat a double decker sandwich",
 
-  "message.some_assembly_required.top_bread": "Missing top bread slice!",
   "message.some_assembly_required.bottom_bread": "Missing bottom bread slice!",
   "message.some_assembly_required.full_sandwich": "You cannot add any more items!",
 
@@ -40,10 +39,6 @@
   "item.some_assembly_required.chopped_carrot": "Chopped Carrot",
   "item.some_assembly_required.chopped_golden_carrot": "Chopped Golden Carrot",
   "item.some_assembly_required.chopped_beetroot": "Chopped Beetroot",
-  "item.some_assembly_required.toasted_crimson_fungus": "Toasted Crimson Fungus",
-  "item.some_assembly_required.toasted_warped_fungus": "Toasted Warped Fungus",
-  "item.some_assembly_required.sliced_toasted_crimson_fungus": "Sliced Toasted Crimson Fungus",
-  "item.some_assembly_required.sliced_toasted_warped_fungus": "Sliced Toasted Warped Fungus",
   "item.some_assembly_required.mayonnaise_bottle": "Mayonnaise Bottle",
   "item.some_assembly_required.sweet_berry_jam_bottle": "Sweet Berry Jam Bottle",
   "item.some_assembly_required.charred_food": "Charred Food",
@@ -73,8 +68,6 @@
   "ingredient.some_assembly_required.chopped_carrot": "Carrot",
   "ingredient.some_assembly_required.chopped_golden_carrot": "Golden Carrot",
   "ingredient.some_assembly_required.chopped_beetroot": "Beetroot",
-  "ingredient.some_assembly_required.sliced_toasted_crimson_fungus": "Crimson Fungus",
-  "ingredient.some_assembly_required.sliced_toasted_warped_fungus": "Warped Fungus",
   "ingredient.some_assembly_required.tomato_slices": "Tomato",
 
   "ingredient.some_assembly_required.water_bottle": "Water",
@@ -91,10 +84,6 @@
   "ingredient.some_assembly_required.farmersdelight.cooked_cod_slice": "Cod",
   "ingredient.some_assembly_required.farmersdelight.cooked_salmon_slice": "Salmon",
   "ingredient.some_assembly_required.farmersdelight.cooked_mutton_chops": "Mutton",
-
-  "description.some_assembly_required.sandwich_assembly_table": "Sandwiches can be made using this block. Up to 16 ingredients can be placed on top, starting and ending with a bread slice. Sneak-right click with an empty hand to build your sandwich",
-  "description.some_assembly_required.redstone_toaster": "The Redstone Toaster™ can be used to toast bread and other food items. It does not require any fuel. It is recommended one does not try to toast metal, or submerge the toaster in water",
-  "description.some_assembly_required.sticky_redstone_toaster": "A slightly less violent variant of the Redstone Toaster™",
 
   "some_assembly_required.config.server.maximum_sandwich_height": "Maximum sandwich height"
 }

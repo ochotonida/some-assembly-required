@@ -14,7 +14,6 @@
   "advancement.some_assembly_required.consume_double_decker_sandwich.title": "Doppelter Hunger",
   "advancement.some_assembly_required.consume_double_decker_sandwich.description": "Erschaffe und iss ein Doppeldecker Sandwich",
 
-  "message.some_assembly_required.top_bread": "Obere Brotscheibe fehlt!",
   "message.some_assembly_required.bottom_bread": "Untere Brotscheibe fehlt!",
   "message.some_assembly_required.full_sandwich": "Sie können nichts weiteres hinzufügen!",
 
@@ -40,10 +39,6 @@
   "item.some_assembly_required.chopped_carrot": "Geschnittene Karotten",
   "item.some_assembly_required.chopped_golden_carrot": "Geschnittene Gold-Karotten",
   "item.some_assembly_required.chopped_beetroot": "Geschnittene rote Beete",
-  "item.some_assembly_required.toasted_crimson_fungus": "Gerösteter purpurroter Pilz",
-  "item.some_assembly_required.toasted_warped_fungus": "Gerösteter verzogener Pilz",
-  "item.some_assembly_required.sliced_toasted_crimson_fungus": "Geschnittener Gerösteter purpurroter Pilz",
-  "item.some_assembly_required.sliced_toasted_warped_fungus": "Geschnittener Gerösteter verzogener Pilz",
   "item.some_assembly_required.mayonnaise_bottle": "Mayonnaisenflasche",
   "item.some_assembly_required.sweet_berry_jam_bottle": "süßiger Beerenmarmeladenflasche",
   "item.some_assembly_required.charred_food": "Verkohltes Essen",
@@ -71,17 +66,11 @@
   "ingredient.some_assembly_required.chopped_carrot": "Karotte",
   "ingredient.some_assembly_required.chopped_golden_carrot": "Goldene Karotte",
   "ingredient.some_assembly_required.chopped_beetroot": "Rote Beete",
-  "ingredient.some_assembly_required.sliced_toasted_crimson_fungus": "Purpurroter Pilz",
-  "ingredient.some_assembly_required.sliced_toasted_warped_fungus": "Verzogener Pilz",
   "ingredient.some_assembly_required.tomato_slices": "Tomaten",
 
   "ingredient.some_assembly_required.water_bottle": "Wasser",
   "ingredient.some_assembly_required.honey_bottle": "Honig",
   "ingredient.some_assembly_required.milk_bucket": "Milch",
   "ingredient.some_assembly_required.mayonnaise_bottle": "Mayonnaise",
-  "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Süße Beerenmarmelade",
-
-  "description.some_assembly_required.sandwich_assembly_table": "Platziere hierauf deine zutaten zwischen brot, und dann SHIFT + Rechtsklick um dein Sandwich zu erschaffen",
-  "description.some_assembly_required.redstone_toaster": "Der Redstone Toaster™ wird Brot und andere Narungsmittel rösten, und braucht kein Kraftstoff. Bitte füge kein Metall hierein, und tauche den Toaste nicht ins Wasser.",
-  "description.some_assembly_required.sticky_redstone_toaster": "Eine etwas weniger gewalttätige Variante des Redstone Toasters™"
+  "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Süße Beerenmarmelade"
 }

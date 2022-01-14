@@ -24,8 +24,6 @@ public class CuttingRecipeGenerator extends ProcessingRecipeGenerator {
         cut(Items.GOLDEN_CARROT, ModItems.CHOPPED_GOLDEN_CARROT.get(), 2);
         cut(Items.ENCHANTED_GOLDEN_APPLE, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(), 2);
         cut(Items.GOLDEN_APPLE, ModItems.GOLDEN_APPLE_SLICES.get(), 2);
-        cut(ModItems.TOASTED_CRIMSON_FUNGUS.get(), ModItems.SLICED_TOASTED_CRIMSON_FUNGUS.get(), 2);
-        cut(ModItems.TOASTED_WARPED_FUNGUS.get(), ModItems.SLICED_TOASTED_WARPED_FUNGUS.get(), 2);
         cut(ForgeTags.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2);
     }
 

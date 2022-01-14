@@ -14,7 +14,6 @@
   "advancement.some_assembly_required.consume_double_decker_sandwich.title": "Com o Dobro de Fome",
   "advancement.some_assembly_required.consume_double_decker_sandwich.description": "Crie e coma um sanduíche de dois andares",
 
-  "message.some_assembly_required.top_bread": "Fatia de pão superior ausente! ",
   "message.some_assembly_required.bottom_bread": "Fatia de pão inferior ausente!",
   "message.some_assembly_required.full_sandwich": "Você não pode adicionar mais itens!",
 
@@ -40,10 +39,6 @@
   "item.some_assembly_required.chopped_carrot": "Cenoura Picada",
   "item.some_assembly_required.chopped_golden_carrot": "Cenoura Dourada Picada",
   "item.some_assembly_required.chopped_beetroot": "Beterraba Picada",
-  "item.some_assembly_required.toasted_crimson_fungus": "Fungo Carmesim Torrado",
-  "item.some_assembly_required.toasted_warped_fungus": "Fungo Distorcidos Torrado",
-  "item.some_assembly_required.sliced_toasted_crimson_fungus": "Fungo Carmesim Torrado Fatiado",
-  "item.some_assembly_required.sliced_toasted_warped_fungus": "Fungo Distorcido Torrado Fatiado",
   "item.some_assembly_required.mayonnaise_bottle": "Frasco de Maionese",
   "item.some_assembly_required.sweet_berry_jam_bottle": "Frasco de Geléia de Bagas Doces",
   "item.some_assembly_required.charred_food": "Comida Carbonizada",
@@ -71,17 +66,11 @@
   "ingredient.some_assembly_required.chopped_carrot": "Cenoura",
   "ingredient.some_assembly_required.chopped_golden_carrot": "Cenoura Dourada",
   "ingredient.some_assembly_required.chopped_beetroot": "Beterraba",
-  "ingredient.some_assembly_required.sliced_toasted_crimson_fungus": "Fungo Carmesim",
-  "ingredient.some_assembly_required.sliced_toasted_warped_fungus": "Fungo Distorcido",
   "ingredient.some_assembly_required.tomato_slices": "Tomate",
 
   "ingredient.some_assembly_required.water_bottle": "Água",
   "ingredient.some_assembly_required.honey_bottle": "Mel",
   "ingredient.some_assembly_required.milk_bucket": "Leite",
   "ingredient.some_assembly_required.mayonnaise_bottle": "Maionese",
-  "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Geléia de Bagas Doces",
-
-  "description.some_assembly_required.sandwich_assembly_table": "Pode ser usado para fazer sanduíches, colocando os itens em cima. Esquerarse + Clique com o botão direito com a mão vazia para fazer seu sanduíche",
-  "description.some_assembly_required.redstone_toaster": "O Torradeira Redstone™ pode ser usada para torrar pão e outros itens alimentares. Não requer nenhum combustível. Recomenda-se não tentar torrar metal ou submergir a torradeira em água",
-  "description.some_assembly_required.sticky_redstone_toaster": "Uma variante um pouco menos violenta da Torradeira Redstone™"
+  "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Geléia de Bagas Doces"
 }
