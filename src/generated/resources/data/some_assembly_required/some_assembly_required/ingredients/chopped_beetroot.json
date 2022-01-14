@@ -6,7 +6,7 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "Item": "some_assembly_required:chopped_beetroot"
+      "CustomModelData": 5
     }
   }
 }

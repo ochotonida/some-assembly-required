@@ -1,9 +1,9 @@
 {
-  "item": "farmersdelight:bacon",
+  "item": "farmersdelight:fruit_salad",
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 7
+      "CustomModelData": 12
     }
   }
 }
