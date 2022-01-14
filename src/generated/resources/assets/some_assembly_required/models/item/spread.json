@@ -6,45 +6,9 @@
   "overrides": [
     {
       "predicate": {
-        "some_assembly_required:farmersdelight/bacon": 1.0
-      },
-      "model": "some_assembly_required:ingredient/farmersdelight/bacon"
-    },
-    {
-      "predicate": {
-        "some_assembly_required:farmersdelight/beef_patty": 1.0
-      },
-      "model": "some_assembly_required:ingredient/farmersdelight/beef_patty"
-    },
-    {
-      "predicate": {
-        "some_assembly_required:some_assembly_required/chopped_golden_carrot": 1.0
-      },
-      "model": "some_assembly_required:ingredient/some_assembly_required/chopped_golden_carrot"
-    },
-    {
-      "predicate": {
-        "some_assembly_required:some_assembly_required/tomato_slices": 1.0
-      },
-      "model": "some_assembly_required:ingredient/some_assembly_required/tomato_slices"
-    },
-    {
-      "predicate": {
         "some_assembly_required:some_assembly_required/apple_slices": 1.0
       },
       "model": "some_assembly_required:ingredient/some_assembly_required/apple_slices"
-    },
-    {
-      "predicate": {
-        "some_assembly_required:farmersdelight/cooked_bacon": 1.0
-      },
-      "model": "some_assembly_required:ingredient/farmersdelight/cooked_bacon"
-    },
-    {
-      "predicate": {
-        "some_assembly_required:some_assembly_required/chopped_beetroot": 1.0
-      },
-      "model": "some_assembly_required:ingredient/some_assembly_required/chopped_beetroot"
     },
     {
       "predicate": {
@@ -57,6 +21,42 @@
         "some_assembly_required:some_assembly_required/chopped_carrot": 1.0
       },
       "model": "some_assembly_required:ingredient/some_assembly_required/chopped_carrot"
+    },
+    {
+      "predicate": {
+        "some_assembly_required:some_assembly_required/chopped_golden_carrot": 1.0
+      },
+      "model": "some_assembly_required:ingredient/some_assembly_required/chopped_golden_carrot"
+    },
+    {
+      "predicate": {
+        "some_assembly_required:some_assembly_required/chopped_beetroot": 1.0
+      },
+      "model": "some_assembly_required:ingredient/some_assembly_required/chopped_beetroot"
+    },
+    {
+      "predicate": {
+        "some_assembly_required:some_assembly_required/tomato_slices": 1.0
+      },
+      "model": "some_assembly_required:ingredient/some_assembly_required/tomato_slices"
+    },
+    {
+      "predicate": {
+        "some_assembly_required:farmersdelight/bacon": 1.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/bacon"
+    },
+    {
+      "predicate": {
+        "some_assembly_required:farmersdelight/beef_patty": 1.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/beef_patty"
+    },
+    {
+      "predicate": {
+        "some_assembly_required:farmersdelight/cooked_bacon": 1.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/cooked_bacon"
     },
     {
       "predicate": {
