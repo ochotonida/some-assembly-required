@@ -42,7 +42,8 @@ public class ItemModels extends ItemModelProvider {
         // items with sandwich overrides
         removeAll(items, ModItems.SPREAD.get());
         ItemModelBuilder builder = addGeneratedModel(ModItems.SPREAD.get());
-        removeAll(items, CustomIngredientModels.itemsWithCustomModel.toArray(new ItemLike[]{})).forEach(item -> {
+        removeAll(items, CustomIngredientModels.itemsWithCustomModel.toArray(new ItemLike[]{}));
+        for (Item item : CustomIngredientModels.itemsWithCustomModel) {
             if (SomeAssemblyRequired.MODID.equals(item.getRegistryName().getNamespace())) {
                 addGeneratedModel(item);
             }
@@ -53,7 +54,7 @@ public class ItemModels extends ItemModelProvider {
                     .model(addGeneratedModel(path, prefixItem(path)))
                     .predicate(Util.id(id), 1)
                     .end();
-        });
+        }
 
         // enchanted golden apple slices
         removeAll(items, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get());
