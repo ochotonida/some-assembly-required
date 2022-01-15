@@ -55,4 +55,9 @@ public abstract class SingleIngredientRecipe implements Recipe<Container> {
     public RecipeType<?> getType() {
         return type;
     }
+
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
 }
