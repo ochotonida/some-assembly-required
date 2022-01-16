@@ -87,6 +87,18 @@
         "minecraft:custom_model_data": 14.0
       },
       "model": "some_assembly_required:ingredient/farmersdelight/cooked_rice"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 15.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/beef_stew"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 16.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/chicken_soup"
     }
   ]
 }

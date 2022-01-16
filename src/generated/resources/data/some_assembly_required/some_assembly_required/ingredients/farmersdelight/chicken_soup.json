@@ -1,0 +1,12 @@
+{
+  "item": "farmersdelight:chicken_soup",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 16
+    }
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  }
+}
