@@ -19,7 +19,9 @@ public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients
             ModItems.MIXED_SALAD.get(),
             ModItems.FRUIT_SALAD.get(),
             ModItems.NETHER_SALAD.get(),
-            ModItems.COOKED_RICE.get()
+            ModItems.COOKED_RICE.get(),
+            ModItems.BEEF_STEW.get(),
+            ModItems.CHICKEN_SOUP.get()
     );
 
     public void addIngredients() {
@@ -45,6 +47,8 @@ public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients
         builder(ModItems.MIXED_SALAD.get()).setBowled().setSound(SoundEvents.AZALEA_LEAVES_PLACE);
         builder(ModItems.FRUIT_SALAD.get()).setBowled();
         builder(ModItems.NETHER_SALAD.get()).setBowled();
+        builder(ModItems.BEEF_STEW.get()).setBowled();
+        builder(ModItems.CHICKEN_SOUP.get()).setBowled();
     }
 
     private IngredientBuilder builder(Item item) {
