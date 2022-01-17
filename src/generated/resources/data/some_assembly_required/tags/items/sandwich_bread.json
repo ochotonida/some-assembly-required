@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "minecraft:dried_kelp"
+    "#forge:bread_slices"
   ]
 }

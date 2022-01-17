@@ -31,6 +31,10 @@
     "minecraft:golden_carrot",
     "minecraft:golden_apple",
     "minecraft:enchanted_golden_apple",
+    "minecraft:copper_ingot",
+    "minecraft:raw_iron",
+    "minecraft:raw_gold",
+    "minecraft:raw_copper",
     "minecraft:chainmail_boots",
     "minecraft:chainmail_leggings",
     "minecraft:chainmail_chestplate",
@@ -42,6 +46,8 @@
     "minecraft:pufferfish_bucket",
     "minecraft:salmon_bucket",
     "minecraft:tropical_fish_bucket",
+    "minecraft:axolotl_bucket",
+    "minecraft:powder_snow_bucket",
     "minecraft:water_bucket",
     "minecraft:minecart",
     "minecraft:chest_minecart",
@@ -53,6 +59,7 @@
     "minecraft:flint_and_steel",
     "minecraft:shears",
     "minecraft:snowball",
-    "minecraft:clock"
+    "minecraft:clock",
+    "minecraft:spyglass"
   ]
 }
