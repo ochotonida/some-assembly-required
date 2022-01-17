@@ -42,7 +42,7 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
     public static boolean matches(RecipeWrapper inventory) {
         ItemStack item = inventory.getItem(0);
 
-        if (item.isEmpty() || !item.is(ModTags.BREAD_SLICES) && !item.is(ModItems.SANDWICH.get())) {
+        if (item.isEmpty() || !item.is(ModTags.SANDWICH_BREAD) && !item.is(ModItems.SANDWICH.get())) {
             return false;
         }
 
@@ -59,7 +59,7 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
         ItemStack sandwich = inventory.getItem(0).copy();
         sandwich.setCount(1);
 
-        if (sandwich.is(ModTags.BREAD_SLICES)) {
+        if (sandwich.is(ModTags.SANDWICH_BREAD)) {
             sandwich = new SandwichItemHandler(sandwich).getAsItem();
         } else {
             sandwich = sandwich.copy();

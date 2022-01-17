@@ -35,15 +35,6 @@ public class ItemTags extends ItemTagsProvider {
 
     @SuppressWarnings("unchecked")
     private void addModTags() {
-        tag(ModTags.BURNT_FOOD).add(
-                ModItems.CHARRED_BREAD_SLICE.get(),
-                ModItems.CHARRED_FOOD.get()
-        );
-
-        tag(ModTags.SMALL_FOODS).add(
-                Items.DRIED_KELP
-        );
-
         tag(ModTags.TOASTER_METALS).addTags(
                 Tags.Items.INGOTS_IRON,
                 Tags.Items.NUGGETS_IRON,
@@ -76,6 +67,10 @@ public class ItemTags extends ItemTagsProvider {
                 Items.GOLDEN_CARROT,
                 Items.GOLDEN_APPLE,
                 Items.ENCHANTED_GOLDEN_APPLE,
+                Items.COPPER_INGOT,
+                Items.RAW_IRON,
+                Items.RAW_GOLD,
+                Items.RAW_COPPER,
                 Items.CHAINMAIL_BOOTS,
                 Items.CHAINMAIL_LEGGINGS,
                 Items.CHAINMAIL_CHESTPLATE,
@@ -87,6 +82,8 @@ public class ItemTags extends ItemTagsProvider {
                 Items.PUFFERFISH_BUCKET,
                 Items.SALMON_BUCKET,
                 Items.TROPICAL_FISH_BUCKET,
+                Items.AXOLOTL_BUCKET,
+                Items.POWDER_SNOW_BUCKET,
                 Items.WATER_BUCKET,
                 Items.MINECART,
                 Items.CHEST_MINECART,
@@ -98,12 +95,17 @@ public class ItemTags extends ItemTagsProvider {
                 Items.FLINT_AND_STEEL,
                 Items.SHEARS,
                 Items.SNOWBALL,
-                Items.CLOCK
+                Items.CLOCK,
+                Items.SPYGLASS
         );
     }
 
     @SuppressWarnings("unchecked")
     private void addForgeTags() {
+        tag(ModTags.SANDWICH_BREAD).addTags(
+                ModTags.BREAD_SLICES
+        );
+
         tag(ModTags.BREAD_SLICES).addTags(
                 ModTags.BREAD_SLICES_WHEAT
         );

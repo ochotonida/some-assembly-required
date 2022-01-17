@@ -56,7 +56,7 @@ public class SandwichAssemblyTableBlock extends HorizontalDirectionalBlock {
 
         ItemStack sandwich;
         if (!heldItem.is(ModItems.SANDWICH.get())) {
-            if (!heldItem.is(ModTags.BREAD_SLICES)) {
+            if (!heldItem.is(ModTags.SANDWICH_BREAD)) {
                 player.displayClientMessage(new TranslatableComponent("message.%s.bottom_bread".formatted(SomeAssemblyRequired.MODID)), true);
                 return InteractionResult.SUCCESS;
             }

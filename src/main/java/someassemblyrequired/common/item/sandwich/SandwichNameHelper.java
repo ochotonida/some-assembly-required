@@ -22,7 +22,7 @@ public class SandwichNameHelper {
     public static Component getSandwichDisplayName(ItemStack stack) {
         SandwichItemHandler sandwich = SandwichItemHandler.get(stack).orElse(null);
 
-        if (sandwich == null || !ItemTags.getAllTags().hasTag(ModTags.BREAD_SLICES.getName())) {
+        if (sandwich == null || !ItemTags.getAllTags().hasTag(ModTags.SANDWICH_BREAD.getName())) {
             return new TranslatableComponent("item.%s.sandwich".formatted(SomeAssemblyRequired.MODID));
         }
 
@@ -75,7 +75,7 @@ public class SandwichNameHelper {
     private static List<ItemStack> getUniqueIngredientsExcludingBread(SandwichItemHandler sandwich) {
         List<ItemStack> result = new ArrayList<>();
         for (ItemStack ingredient : sandwich) {
-            if (!ingredient.is(ModTags.BREAD_SLICES) && result.stream().noneMatch(stack -> ItemStack.matches(ingredient, stack))) {
+            if (!ingredient.is(ModTags.SANDWICH_BREAD) && result.stream().noneMatch(stack -> ItemStack.matches(ingredient, stack))) {
                 result.add(ingredient);
             }
         }
@@ -85,7 +85,7 @@ public class SandwichNameHelper {
     private static int getAmountOfBread(SandwichItemHandler sandwich) {
         int result = 0;
         for (ItemStack ingredient : sandwich) {
-            if (ingredient.is(ModTags.BREAD_SLICES)) {
+            if (ingredient.is(ModTags.SANDWICH_BREAD)) {
                 result++;
             }
         }
@@ -123,7 +123,7 @@ public class SandwichNameHelper {
                 hasLettuce = true;
             } else if (stack.is(ModTags.VEGETABLES_TOMATO)) {
                 hasTomato = true;
-            } else if (!stack.is(ModTags.BREAD_SLICES)) {
+            } else if (!stack.is(ModTags.SANDWICH_BREAD)) {
                 return false;
             }
         }

@@ -87,7 +87,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
     }
 
     public boolean hasTopAndBottomBread() {
-        return size() > 0 && bottom().is(ModTags.BREAD_SLICES) && top().is(ModTags.BREAD_SLICES);
+        return size() > 0 && bottom().is(ModTags.SANDWICH_BREAD) && top().is(ModTags.SANDWICH_BREAD);
     }
 
     public boolean isDoubleDeckerSandwich() {
@@ -100,7 +100,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
 
         boolean foundBread = false;
         for (int i = 1; i < size() - 2; i++) {
-            if (items.get(i).is(ModTags.BREAD_SLICES)) {
+            if (items.get(i).is(ModTags.SANDWICH_BREAD)) {
                 if (foundBread) {
                     return false;
                 }
@@ -108,7 +108,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
             }
         }
 
-        return foundBread && !items.get(1).is(ModTags.BREAD_SLICES) && !items.get(size() - 2).is(ModTags.BREAD_SLICES);
+        return foundBread && !items.get(1).is(ModTags.SANDWICH_BREAD) && !items.get(size() - 2).is(ModTags.SANDWICH_BREAD);
     }
 
     public boolean canAlwaysEat() {
