@@ -25,7 +25,6 @@ public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients
     );
 
     public void addIngredients() {
-        builder(ModItems.VEGETABLE_SOUP.get()).setBowled().setSpread(0xa59136);
         builder(ModItems.TOMATO_SAUCE.get()).setBowled().setSpread(0xbe331f);
 
         builder(ModItems.MILK_BOTTLE.get()).setFullName("ingredient.%s.milk_bucket".formatted(SomeAssemblyRequired.MODID)).setBottled().setSpread(0xEEFDFF);
@@ -49,6 +48,25 @@ public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients
         builder(ModItems.NETHER_SALAD.get()).setBowled();
         builder(ModItems.BEEF_STEW.get()).setBowled();
         builder(ModItems.CHICKEN_SOUP.get()).setBowled();
+        builder(ModItems.VEGETABLE_SOUP.get()).setBowled();
+        builder(ModItems.FISH_STEW.get()).setBowled();
+        builder(ModItems.FRIED_RICE.get()).setBowled();
+        builder(ModItems.PUMPKIN_SOUP.get()).setBowled();
+        builder(ModItems.BAKED_COD_STEW.get()).setBowled();
+        builder(ModItems.NOODLE_SOUP.get()).setBowled();
+        builder(ModItems.BACON_AND_EGGS.get()).setBowled();
+        builder(ModItems.PASTA_WITH_MEATBALLS.get()).setBowled();
+        builder(ModItems.PASTA_WITH_MUTTON_CHOP.get()).setBowled();
+        builder(ModItems.ROASTED_MUTTON_CHOPS.get()).setBowled();
+        builder(ModItems.VEGETABLE_NOODLES.get()).setBowled();
+        builder(ModItems.STEAK_AND_POTATOES.get()).setBowled();
+        builder(ModItems.RATATOUILLE.get()).setBowled();
+        builder(ModItems.SQUID_INK_PASTA.get()).setBowled();
+        builder(ModItems.GRILLED_SALMON.get()).setBowled();
+        builder(ModItems.ROAST_CHICKEN.get()).setBowled();
+        builder(ModItems.STUFFED_PUMPKIN.get()).setBowled();
+        builder(ModItems.HONEY_GLAZED_HAM.get()).setBowled();
+        builder(ModItems.SHEPHERDS_PIE.get()).setBowled();
     }
 
     private IngredientBuilder builder(Item item) {
