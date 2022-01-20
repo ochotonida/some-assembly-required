@@ -48,12 +48,33 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
                 .map(handler -> ((SandwichItemHandler) handler));
     }
 
+    public List<ItemStack> getItems() {
+        return items;
+    }
+
     public boolean isEmpty() {
         return items.isEmpty();
     }
 
     public int size() {
         return items.size();
+    }
+
+    public int getTotalNutrition() {
+        int result = 0;
+        for (ItemStack stack : items) {
+            result += Ingredients.getFood(stack).getNutrition();
+        }
+        return result;
+    }
+
+    public float getAverageSaturation() {
+        float totalSaturation = 0;
+        for (ItemStack stack : items) {
+            FoodProperties food = Ingredients.getFood(stack);
+            totalSaturation += food.getSaturationModifier() * food.getNutrition();
+        }
+        return totalSaturation / getTotalNutrition();
     }
 
     public void add(ItemStack stack) {
