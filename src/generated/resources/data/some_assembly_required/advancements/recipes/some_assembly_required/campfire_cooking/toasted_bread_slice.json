@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "some_assembly_required:crafting_shapeless/charred_food"
+      "some_assembly_required:campfire_cooking/toasted_bread_slice"
     ]
   },
   "criteria": {
-    "has_charred_food": {
+    "has_bread": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "some_assembly_required:charred_food"
+              "some_assembly_required:bread_slice"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "some_assembly_required:crafting_shapeless/charred_food"
+        "recipe": "some_assembly_required:campfire_cooking/toasted_bread_slice"
       }
     }
   },
   "requirements": [
     [
-      "has_charred_food",
+      "has_bread",
       "has_the_recipe"
     ]
   ]

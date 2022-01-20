@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "some_assembly_required:crafting_shaped/toaster/redstone_toaster"
+      "some_assembly_required:smoking/toasted_bread_slice"
     ]
   },
   "criteria": {
-    "has_piston": {
+    "has_bread": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:piston"
+              "some_assembly_required:bread_slice"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "some_assembly_required:crafting_shaped/toaster/redstone_toaster"
+        "recipe": "some_assembly_required:smoking/toasted_bread_slice"
       }
     }
   },
   "requirements": [
     [
-      "has_piston",
+      "has_bread",
       "has_the_recipe"
     ]
   ]
