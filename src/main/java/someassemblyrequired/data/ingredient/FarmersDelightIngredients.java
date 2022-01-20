@@ -11,12 +11,13 @@ import java.util.Map;
 public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients) {
 
     public static final List<Item> itemsWithCustomModel = Arrays.asList(
-            ModItems.BACON.get(),
-            ModItems.BEEF_PATTY.get(),
-            ModItems.COOKED_BACON.get(),
             ModItems.FRIED_EGG.get(),
-            ModItems.MIXED_SALAD.get(),
+            ModItems.CABBAGE_LEAF.get(),
+            ModItems.BEEF_PATTY.get(),
+            ModItems.BACON.get(),
+            ModItems.COOKED_BACON.get(),
             ModItems.FRUIT_SALAD.get(),
+            ModItems.MIXED_SALAD.get(),
             ModItems.NETHER_SALAD.get(),
             ModItems.COOKED_RICE.get(),
             ModItems.BEEF_STEW.get(),
