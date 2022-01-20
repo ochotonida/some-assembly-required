@@ -10,7 +10,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.player.Player;
@@ -21,6 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.init.ModSoundEvents;
 
 import javax.annotation.Nullable;
 
@@ -86,32 +86,12 @@ public class IngredientProperties {
         return container;
     }
 
-    public void playApplySound(ItemStack item, Level level, @Nullable Player player, BlockPos pos) {
+    public void playSound(Level level, Player player, BlockPos pos, float pitch) {
+        SoundEvent soundEvent = this.soundEvent;
         if (soundEvent == null) {
-            playSound(getSoundEvent(item), level, player, pos, 1.3F);
-        } else {
-            playSound(soundEvent, level, player, pos, 1);
+            soundEvent = ModSoundEvents.ADD_ITEM.get();
         }
-    }
-
-    public void playRemoveSound(ItemStack item, Level level, Player player, BlockPos pos) {
-        if (soundEvent == null) {
-            playSound(getSoundEvent(item), level, player, pos, 1.6F);
-        } else {
-            playSound(soundEvent, level, player, pos, 1.2F);
-        }
-    }
-
-    private void playSound(SoundEvent soundEvent, Level level, Player player, BlockPos pos, float pitch) {
-        level.playSound(player, pos, soundEvent, SoundSource.BLOCKS, 0.3F, pitch);
-    }
-
-    private SoundEvent getSoundEvent(ItemStack item) {
-        if (getContainer(item).isEmpty()) {
-            return SoundEvents.WOOL_PLACE;
-        } else {
-            return SoundEvents.HONEY_BLOCK_BREAK;
-        }
+        level.playSound(player, pos, soundEvent, SoundSource.BLOCKS, 1, pitch);
     }
 
     public JsonObject toJson(Item item) {

@@ -7,7 +7,6 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -26,6 +25,7 @@ import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModSoundEvents;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 
 import javax.annotation.Nullable;
@@ -115,7 +115,7 @@ public class SandwichBlockEntity extends BlockEntity {
             } else {
                 sandwich.add(handler);
                 shrinkHeldItem(player, hand);
-                level.playSound(null, getBlockPos(), SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 0.3F, 1.3F);
+                level.playSound(null, getBlockPos(), ModSoundEvents.ADD_ITEM.get(), SoundSource.BLOCKS, 1, 1);
             }
         });
     }

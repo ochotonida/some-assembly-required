@@ -8,7 +8,7 @@ import java.util.Map;
 public record CreateIngredients(Map<Item, IngredientBuilder> ingredients) {
 
     public void addIngredients() {
-        builder(AllItems.BUILDERS_TEA.get()).setBottled().setSpread(0xa54f34);
+        builder(AllItems.BUILDERS_TEA.get()).setBottled().setSpread(0xa54f34).setSpreadSound();
     }
 
     private IngredientBuilder builder(Item item) {

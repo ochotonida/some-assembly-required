@@ -10,6 +10,7 @@ import net.minecraft.world.item.Items;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModSoundEvents;
 
 import javax.annotation.Nullable;
 
@@ -79,6 +80,14 @@ public class IngredientBuilder {
         ItemStack spread = new ItemStack(ModItems.SPREAD.get());
         spread.getOrCreateTag().putInt("Color", color);
         return setDisplayItem(spread);
+    }
+
+    public IngredientBuilder setSpreadSound() {
+        return setSound(ModSoundEvents.ADD_SPREAD.get());
+    }
+
+    public IngredientBuilder setLeavesSound() {
+        return setSound(ModSoundEvents.ADD_LEAVES.get());
     }
 
     public IngredientBuilder setContainer(ItemStack container) {

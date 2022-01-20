@@ -76,10 +76,10 @@ public class Ingredients {
     }
 
     public static void playApplySound(ItemStack item, Level level, @Nullable Player player, BlockPos pos) {
-        IngredientPropertiesManager.getOrDefault(item).playApplySound(item, level, player, pos);
+        IngredientPropertiesManager.getOrDefault(item).playSound(level, player, pos, 1);
     }
 
     public static void playRemoveSound(ItemStack item, Level level, @Nullable Player player, BlockPos pos) {
-        IngredientPropertiesManager.getOrDefault(item).playRemoveSound(item, level, player, pos);
+        IngredientPropertiesManager.getOrDefault(item).playSound(level, player, pos, 1.2F);
     }
 }

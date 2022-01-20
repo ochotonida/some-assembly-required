@@ -59,14 +59,14 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
         displayItem.getOrCreateTag().putBoolean("HasEffect", true);
         builder(ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get()).setDisplayItem(displayItem);
 
-        builder(Items.BEETROOT_SOUP).setBowled().setSpread(0x8C0023);
-        builder(Items.MUSHROOM_STEW).setBowled().setSpread(0xAD7451);
-        builder(Items.RABBIT_STEW).setBowled().setSpread(0xBF7234);
-        builder(Items.SUSPICIOUS_STEW).setBowled().setSpread(0x3f9E80);
+        builder(Items.BEETROOT_SOUP).setBowled().setSpread(0x8C0023).setSpreadSound();
+        builder(Items.MUSHROOM_STEW).setBowled().setSpread(0xAD7451).setSpreadSound();
+        builder(Items.RABBIT_STEW).setBowled().setSpread(0xBF7234).setSpreadSound();
+        builder(Items.SUSPICIOUS_STEW).setBowled().setSpread(0x3f9E80).setSpreadSound();
 
-        builder(Items.HONEY_BOTTLE).setCustomFullName().setBottled().setSpread(0xF08A1D);
-        builder(ModItems.MAYONNAISE_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xD9C98C);
-        builder(ModItems.SWEET_BERRY_JAM_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xF40020);
+        builder(Items.HONEY_BOTTLE).setCustomFullName().setBottled().setSpread(0xF08A1D).setSpreadSound();
+        builder(ModItems.MAYONNAISE_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xD9C98C).setSpreadSound();
+        builder(ModItems.SWEET_BERRY_JAM_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xF40020).setSpreadSound();
 
         builder(Items.MILK_BUCKET).setCustomFullName().setBucketed().setSpread(0xEEFDFF);
 

@@ -28,6 +28,7 @@ public class DataGenerators {
             BlockStates blockStates = new BlockStates(generator, helper);
             generator.addProvider(blockStates);
             generator.addProvider(new ItemModels(generator, blockStates.models().existingFileHelper));
+            generator.addProvider(new SoundDefinitions(generator, helper));
         }
     }
 }
