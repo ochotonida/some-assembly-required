@@ -54,8 +54,12 @@ public class IngredientBuilder {
         return setDisplayName(new TranslatableComponent(translationKey));
     }
 
-    public IngredientBuilder setCustomDisplayName() {
+    public IngredientBuilder setDisplayName(Item item) {
         return setDisplayName(getDefaultTranslationKey(item));
+    }
+
+    public IngredientBuilder setCustomDisplayName() {
+        return setDisplayName(getItem());
     }
 
     public IngredientBuilder setFullName(Component fullName) {
@@ -65,6 +69,10 @@ public class IngredientBuilder {
 
     public IngredientBuilder setFullName(String translationKey) {
         return setFullName(new TranslatableComponent(translationKey));
+    }
+
+    public IngredientBuilder setFullName(Item item) {
+        return setFullName(getDefaultTranslationKey(item));
     }
 
     public IngredientBuilder setCustomFullName() {

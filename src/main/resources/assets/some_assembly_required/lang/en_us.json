@@ -79,11 +79,11 @@
   "ingredient.some_assembly_required.farmersdelight.cabbage_leaf": "Cabbage",
   "ingredient.some_assembly_required.farmersdelight.fried_egg": "Egg",
   "ingredient.some_assembly_required.farmersdelight.beef_patty": "Beef",
-  "ingredient.some_assembly_required.farmersdelight.cooked_chicken_cuts": "Chicken",
-  "ingredient.some_assembly_required.farmersdelight.cooked_bacon": "Bacon",
-  "ingredient.some_assembly_required.farmersdelight.cooked_cod_slice": "Cod",
-  "ingredient.some_assembly_required.farmersdelight.cooked_salmon_slice": "Salmon",
-  "ingredient.some_assembly_required.farmersdelight.cooked_mutton_chops": "Mutton",
+  "ingredient.some_assembly_required.farmersdelight.chicken_cuts": "Chicken",
+  "ingredient.some_assembly_required.farmersdelight.bacon": "Bacon",
+  "ingredient.some_assembly_required.farmersdelight.cod_slice": "Cod",
+  "ingredient.some_assembly_required.farmersdelight.salmon_slice": "Salmon",
+  "ingredient.some_assembly_required.farmersdelight.mutton_chops": "Mutton",
   "ingredient.some_assembly_required.farmersdelight.cooked_rice": "Rice",
 
   "some_assembly_required.config.server.maximum_sandwich_height": "Maximum sandwich height"

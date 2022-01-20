@@ -13,7 +13,12 @@ public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients
     public static final List<Item> itemsWithCustomModel = Arrays.asList(
             ModItems.FRIED_EGG.get(),
             ModItems.CABBAGE_LEAF.get(),
+            ModItems.MINCED_BEEF.get(),
             ModItems.BEEF_PATTY.get(),
+            ModItems.CHICKEN_CUTS.get(),
+            ModItems.COOKED_CHICKEN_CUTS.get(),
+            ModItems.MUTTON_CHOPS.get(),
+            ModItems.COOKED_MUTTON_CHOPS.get(),
             ModItems.BACON.get(),
             ModItems.COOKED_BACON.get(),
             ModItems.FRUIT_SALAD.get(),
@@ -26,20 +31,26 @@ public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients
 
     public void addIngredients() {
         builder(ModItems.TOMATO_SAUCE.get()).setBowled().setSpread(0xbe331f).setSpreadSound();
-
         builder(ModItems.MILK_BOTTLE.get()).setFullName("ingredient.%s.milk_bucket".formatted(SomeAssemblyRequired.MODID)).setBottled().setSpread(0xEEFDFF).setSpreadSound();
         builder(ModItems.HOT_COCOA.get()).setBottled().setSpread(0x7b4835).setSpreadSound();
         builder(ModItems.APPLE_CIDER.get()).setBottled().setSpread(0xbd783d).setSpreadSound();
         builder(ModItems.MELON_JUICE.get()).setBottled().setSpread(0xc73225).setSpreadSound();
 
+        builder(ModItems.MINCED_BEEF.get()).setSpreadSound();
+        builder(ModItems.CHICKEN_CUTS.get()).setSpreadSound().setCustomDisplayName();
+        builder(ModItems.BACON.get()).setCustomDisplayName();
+        builder(ModItems.MUTTON_CHOPS.get()).setSpreadSound().setCustomDisplayName();
+        builder(ModItems.COD_SLICE.get()).setSpreadSound().setCustomDisplayName();
+        builder(ModItems.SALMON_SLICE.get()).setSpreadSound().setCustomDisplayName();
+
         builder(ModItems.CABBAGE_LEAF.get()).setCustomDisplayName().setLeavesSound();
         builder(ModItems.FRIED_EGG.get()).setCustomDisplayName().setSpreadSound();
         builder(ModItems.BEEF_PATTY.get()).setCustomDisplayName();
-        builder(ModItems.COOKED_CHICKEN_CUTS.get()).setCustomDisplayName();
-        builder(ModItems.COOKED_BACON.get()).setCustomDisplayName();
-        builder(ModItems.COOKED_COD_SLICE.get()).setCustomDisplayName();
-        builder(ModItems.COOKED_SALMON_SLICE.get()).setCustomDisplayName();
-        builder(ModItems.COOKED_MUTTON_CHOPS.get()).setCustomDisplayName();
+        builder(ModItems.COOKED_CHICKEN_CUTS.get()).setDisplayName(ModItems.CHICKEN_CUTS.get());
+        builder(ModItems.COOKED_BACON.get()).setDisplayName(ModItems.BACON.get());
+        builder(ModItems.COOKED_COD_SLICE.get()).setDisplayName(ModItems.COD_SLICE.get());
+        builder(ModItems.COOKED_SALMON_SLICE.get()).setDisplayName(ModItems.SALMON_SLICE.get());
+        builder(ModItems.COOKED_MUTTON_CHOPS.get()).setDisplayName(ModItems.MUTTON_CHOPS.get());
 
         builder(ModItems.COOKED_RICE.get()).setBowled().setCustomDisplayName();
 
