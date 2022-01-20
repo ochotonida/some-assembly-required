@@ -1,13 +1,10 @@
 {
-  "item": "farmersdelight:chicken_soup",
+  "item": "farmersdelight:minced_beef",
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 22
+      "CustomModelData": 9
     }
-  },
-  "container": {
-    "item": "minecraft:bowl"
   },
   "soundEvent": "some_assembly_required:block.sandwich_assembly_table.add_spread"
 }

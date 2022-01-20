@@ -1,0 +1,7 @@
+{
+  "item": "farmersdelight:salmon_slice",
+  "displayName": {
+    "translate": "ingredient.some_assembly_required.farmersdelight.salmon_slice"
+  },
+  "soundEvent": "some_assembly_required:block.sandwich_assembly_table.add_spread"
+}

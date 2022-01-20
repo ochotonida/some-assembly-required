@@ -1,9 +1,12 @@
 {
   "item": "farmersdelight:bacon",
+  "displayName": {
+    "translate": "ingredient.some_assembly_required.farmersdelight.bacon"
+  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 10
+      "CustomModelData": 15
     }
   }
 }

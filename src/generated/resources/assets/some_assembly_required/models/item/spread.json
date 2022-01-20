@@ -56,53 +56,83 @@
       "predicate": {
         "minecraft:custom_model_data": 9.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/beef_patty"
+      "model": "some_assembly_required:ingredient/farmersdelight/minced_beef"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 10.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/bacon"
+      "model": "some_assembly_required:ingredient/farmersdelight/beef_patty"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 11.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/cooked_bacon"
+      "model": "some_assembly_required:ingredient/farmersdelight/chicken_cuts"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 12.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/fruit_salad"
+      "model": "some_assembly_required:ingredient/farmersdelight/cooked_chicken_cuts"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 13.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/mixed_salad"
+      "model": "some_assembly_required:ingredient/farmersdelight/mutton_chops"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 14.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/nether_salad"
+      "model": "some_assembly_required:ingredient/farmersdelight/cooked_mutton_chops"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 15.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/cooked_rice"
+      "model": "some_assembly_required:ingredient/farmersdelight/bacon"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 16.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/beef_stew"
+      "model": "some_assembly_required:ingredient/farmersdelight/cooked_bacon"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 17.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/fruit_salad"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 18.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/mixed_salad"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 19.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/nether_salad"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 20.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/cooked_rice"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 21.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/beef_stew"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 22.0
       },
       "model": "some_assembly_required:ingredient/farmersdelight/chicken_soup"
     }

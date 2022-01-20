@@ -1,12 +1,12 @@
 {
   "item": "farmersdelight:cooked_bacon",
   "displayName": {
-    "translate": "ingredient.some_assembly_required.farmersdelight.cooked_bacon"
+    "translate": "ingredient.some_assembly_required.farmersdelight.bacon"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 11
+      "CustomModelData": 16
     }
   }
 }

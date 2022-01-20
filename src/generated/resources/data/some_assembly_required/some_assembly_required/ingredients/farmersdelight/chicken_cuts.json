@@ -1,12 +1,13 @@
 {
-  "item": "farmersdelight:cooked_chicken_cuts",
+  "item": "farmersdelight:chicken_cuts",
   "displayName": {
     "translate": "ingredient.some_assembly_required.farmersdelight.chicken_cuts"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 12
+      "CustomModelData": 11
     }
-  }
+  },
+  "soundEvent": "some_assembly_required:block.sandwich_assembly_table.add_spread"
 }
