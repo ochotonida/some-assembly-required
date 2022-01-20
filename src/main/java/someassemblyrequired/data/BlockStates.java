@@ -26,13 +26,12 @@ public class BlockStates extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        // sandwich
         ModelFile sandwichModel = models()
                 .getBuilder(prefixBlock("sandwich").toString())
                 .texture("particle", prefixItem("bread_slice"));
-        horizontalBlock(ModBlocks.SANDWICH.get(), $ -> sandwichModel, BlockStateProperties.WATERLOGGED, SandwichBlock.SIZE);
 
-        // sandwich assembly table base model
+        horizontalBlock(ModBlocks.SANDWICH.get(), state -> sandwichModel, BlockStateProperties.WATERLOGGED, SandwichBlock.SIZE);
+
         models().withExistingParent("block/sandwich_assembly_table", "cube")
                 .texture("down", "#bottom")
                 .texture("up", prefixBlock("sandwich_assembly_table_top"))

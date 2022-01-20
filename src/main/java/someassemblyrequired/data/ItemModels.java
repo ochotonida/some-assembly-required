@@ -7,9 +7,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelBuilder;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
 
@@ -33,12 +36,40 @@ public class ItemModels extends ItemModelProvider {
                 .filter(item -> item.getRegistryName().getNamespace().equals(SomeAssemblyRequired.MODID))
                 .collect(Collectors.toSet());
 
-        // ignored
         removeAll(items, ModItems.SANDWICH.get());
+        getBuilder(ModBlocks.SANDWICH.getId().getPath()).parent(new ModelFile.UncheckedModelFile("builtin/entity"))
+                .texture("particle", prefixItem("bread_slice"))
+                .transforms()
+                .transform(ModelBuilder.Perspective.GUI)
+                .rotation(30, 45, 0)
+                .scale(0.8F)
+                .end()
+                .transform(ModelBuilder.Perspective.GROUND)
+                .rotation(0, 180, 0)
+                .scale(0.5F)
+                .end()
+                .transform(ModelBuilder.Perspective.HEAD)
+                .rotation(0, 180, 0)
+                .translation(0, 0.5F, 0)
+                .end()
+                .transform(ModelBuilder.Perspective.FIXED)
+                .rotation(0, 180, 0)
+                .translation(0, -4, 0)
+                .end()
+                .transform(ModelBuilder.Perspective.THIRDPERSON_RIGHT)
+                .rotation(75, 315, 0)
+                .translation(0, 2.5F, 0)
+                .scale(0.55F)
+                .end()
+                .transform(ModelBuilder.Perspective.FIRSTPERSON_RIGHT)
+                .rotation(0, 315, 0)
+                .translation(0, 1, 0)
+                .scale(0.5F)
+                .end()
+                .end();
 
         removeAll(items, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get());
 
-        // items with sandwich overrides
         removeAll(items, ModItems.SPREAD.get());
         ItemModelBuilder builder = addGeneratedModel(ModItems.SPREAD.get());
         removeAll(items, Ingredients.itemsWithCustomModel.toArray(new ItemLike[]{}));
@@ -57,16 +88,13 @@ public class ItemModels extends ItemModelProvider {
                     .end();
         }
 
-        // enchanted golden apple slices
         removeAll(items, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get());
         addGeneratedModel("enchanted_golden_apple_slices", prefixItem("golden_apple_slices"));
 
-        // normal block items
         removeAll(items, item -> item instanceof BlockItem).forEach(
                 block -> withExistingParent(block.getRegistryName().getPath(), prefixBlock(block.getRegistryName().getPath()))
         );
 
-        // normal items
         items.forEach(this::addGeneratedModel);
     }
 
