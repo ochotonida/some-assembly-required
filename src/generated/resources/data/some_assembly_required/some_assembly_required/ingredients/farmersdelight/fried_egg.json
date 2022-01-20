@@ -6,7 +6,7 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 10
+      "CustomModelData": 7
     }
   },
   "soundEvent": "some_assembly_required:block.sandwich_assembly_table.add_spread"

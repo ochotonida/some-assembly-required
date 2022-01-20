@@ -3,5 +3,11 @@
   "displayName": {
     "translate": "ingredient.some_assembly_required.farmersdelight.cabbage_leaf"
   },
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 8
+    }
+  },
   "soundEvent": "some_assembly_required:block.sandwich_assembly_table.add_leaves"
 }

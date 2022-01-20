@@ -44,31 +44,31 @@
       "predicate": {
         "minecraft:custom_model_data": 7.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/bacon"
+      "model": "some_assembly_required:ingredient/farmersdelight/fried_egg"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 8.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/beef_patty"
+      "model": "some_assembly_required:ingredient/farmersdelight/cabbage_leaf"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 9.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/cooked_bacon"
+      "model": "some_assembly_required:ingredient/farmersdelight/beef_patty"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 10.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/fried_egg"
+      "model": "some_assembly_required:ingredient/farmersdelight/bacon"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 11.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/mixed_salad"
+      "model": "some_assembly_required:ingredient/farmersdelight/cooked_bacon"
     },
     {
       "predicate": {
@@ -80,23 +80,29 @@
       "predicate": {
         "minecraft:custom_model_data": 13.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/nether_salad"
+      "model": "some_assembly_required:ingredient/farmersdelight/mixed_salad"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 14.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/cooked_rice"
+      "model": "some_assembly_required:ingredient/farmersdelight/nether_salad"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 15.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/beef_stew"
+      "model": "some_assembly_required:ingredient/farmersdelight/cooked_rice"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 16.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/beef_stew"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 17.0
       },
       "model": "some_assembly_required:ingredient/farmersdelight/chicken_soup"
     }
