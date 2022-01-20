@@ -8,5 +8,6 @@
     "nbt": {
       "CustomModelData": 10
     }
-  }
+  },
+  "soundEvent": "some_assembly_required:block.sandwich_assembly_table.add_spread"
 }

@@ -1,0 +1,78 @@
+{
+  "block.sandwich_assembly_table.add_item": {
+    "sounds": [
+      {
+        "name": "dig/cloth1",
+        "pitch": 1.5
+      },
+      {
+        "name": "dig/cloth2",
+        "pitch": 1.5
+      },
+      {
+        "name": "dig/cloth3",
+        "pitch": 1.5
+      },
+      {
+        "name": "dig/cloth4",
+        "pitch": 1.5
+      }
+    ]
+  },
+  "block.sandwich_assembly_table.add_spread": {
+    "sounds": [
+      {
+        "name": "block/honeyblock/break1",
+        "pitch": 1.5
+      },
+      {
+        "name": "block/honeyblock/break2",
+        "pitch": 1.5
+      },
+      {
+        "name": "block/honeyblock/break3",
+        "pitch": 1.5
+      },
+      {
+        "name": "block/honeyblock/break4",
+        "pitch": 1.5
+      },
+      {
+        "name": "block/honeyblock/break5",
+        "pitch": 1.5
+      }
+    ]
+  },
+  "block.sandwich_assembly_table.add_leaves": {
+    "sounds": [
+      {
+        "name": "block/azalea_leaves/break1",
+        "volume": 0.85
+      },
+      {
+        "name": "block/azalea_leaves/break2",
+        "volume": 0.85
+      },
+      {
+        "name": "block/azalea_leaves/break3",
+        "volume": 0.85
+      },
+      {
+        "name": "block/azalea_leaves/break4",
+        "volume": 0.85
+      },
+      {
+        "name": "block/azalea_leaves/break5",
+        "volume": 0.85
+      },
+      {
+        "name": "block/azalea_leaves/break6",
+        "volume": 0.85
+      },
+      {
+        "name": "block/azalea_leaves/break6",
+        "volume": 0.85
+      }
+    ]
+  }
+}

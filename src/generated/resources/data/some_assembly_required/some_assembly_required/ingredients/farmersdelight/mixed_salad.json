@@ -9,5 +9,5 @@
   "container": {
     "item": "minecraft:bowl"
   },
-  "soundEvent": "minecraft:block.azalea_leaves.place"
+  "soundEvent": "some_assembly_required:block.sandwich_assembly_table.add_leaves"
 }
