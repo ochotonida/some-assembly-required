@@ -1,6 +1,7 @@
 package someassemblyrequired.integration.create;
 
 import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.content.contraptions.processing.ProcessingOutput;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipe;
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuilder;
 import com.simibubi.create.foundation.utility.recipe.IRecipeTypeInfo;
@@ -32,11 +33,7 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
         if (!matches(inventory)) {
             return Optional.empty();
         }
-        return Optional.of(
-                new ProcessingRecipeBuilder<>(SandwichDeployingRecipe::new, RECIPE_ID)
-                        .withSingleItemOutput(assembleSandwich(inventory))
-                        .build()
-        );
+        return Optional.of(createRecipe(inventory.getItem(0), inventory.getItem(1)));
     }
 
     public static boolean matches(RecipeWrapper inventory) {
@@ -55,22 +52,26 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
                 .orElse(true);
     }
 
-    public static ItemStack assembleSandwich(RecipeWrapper inventory) {
-        ItemStack sandwich = inventory.getItem(0).copy();
+    public static SandwichDeployingRecipe createRecipe(ItemStack sandwich, ItemStack ingredient) {
+        sandwich = sandwich.copy();
         sandwich.setCount(1);
-
         if (sandwich.is(ModTags.SANDWICH_BREAD)) {
             sandwich = new SandwichItemHandler(sandwich).getAsItem();
-        } else {
-            sandwich = sandwich.copy();
         }
 
-        ItemStack ingredient = inventory.getItem(1).copy();
-        ingredient.setCount(1);
+        final ItemStack ingredient1 = ingredient.copy();
+        ingredient1.setCount(1);
 
-        SandwichItemHandler.get(sandwich).ifPresent(handler -> handler.add(ingredient));
+        ItemStack container = Ingredients.getContainer(ingredient);
 
-        return sandwich;
+        SandwichItemHandler.get(sandwich).ifPresent(handler -> handler.add(ingredient1));
+
+        return new ProcessingRecipeBuilder<>(SandwichDeployingRecipe::new, RECIPE_ID)
+                .withItemOutputs(
+                        new ProcessingOutput(sandwich, 1),
+                        container.isEmpty() ? ProcessingOutput.EMPTY : new ProcessingOutput(container, 1)
+                )
+                .build();
     }
 
     @Override
