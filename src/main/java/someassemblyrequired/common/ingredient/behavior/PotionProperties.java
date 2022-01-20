@@ -11,6 +11,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModSoundEvents;
 
 public class PotionProperties extends IngredientProperties {
 
@@ -19,6 +20,7 @@ public class PotionProperties extends IngredientProperties {
     private final ItemStack displayItem;
 
     public PotionProperties() {
+        super(null, null, null, ItemStack.EMPTY, ItemStack.EMPTY, ModSoundEvents.ADD_SPREAD.get());
         displayItem = new ItemStack(ModItems.SPREAD.get());
         displayItem.getOrCreateTag();
     }
