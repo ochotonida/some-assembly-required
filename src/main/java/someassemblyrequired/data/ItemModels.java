@@ -10,7 +10,6 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
 
@@ -61,11 +60,6 @@ public class ItemModels extends ItemModelProvider {
         // enchanted golden apple slices
         removeAll(items, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get());
         addGeneratedModel("enchanted_golden_apple_slices", prefixItem("golden_apple_slices"));
-
-        // toasters
-        for (Item toaster : removeAll(items, ModBlocks.getToasters())) {
-            withExistingParent(toaster.getRegistryName().getPath(), prefixBlock("idle_redstone_toaster"));
-        }
 
         // normal block items
         removeAll(items, item -> item instanceof BlockItem).forEach(

@@ -1,12 +1,9 @@
 {
   "itemGroup.some_assembly_required": "Some Assembly Required",
 
-  "recipecategory.some_assembly_required.toasting": "Torrar",
-
   "advancement.some_assembly_required.obtain_bread_slice.title": "Uma Questão de Fatia e Pão",
   "advancement.some_assembly_required.obtain_bread_slice.description": "Corte um pão em fatias usando a Tábua de Cortar e uma Faca de Cozinha",
   "advancement.some_assembly_required.obtain_toasted_bread_slice.title": "A melhor coisa desde...",
-  "advancement.some_assembly_required.obtain_toasted_bread_slice.description": "Torrar uma fatia de pão usando a Torradeira Redstone™",
   "advancement.some_assembly_required.obtain_sandwich.title": "Padaria Iniciante",
   "advancement.some_assembly_required.obtain_sandwich.description": "Crie um Sanduíche usando a Mesa de Montagem de Sanduíche",
   "advancement.some_assembly_required.add_potion_to_sandwich.title": "Sanduíche de Feiticeiro",
@@ -25,14 +22,11 @@
   "block.some_assembly_required.oak_sandwich_assembly_table": "Mesa de Montagem de Sanduíche de Carvalho",
   "block.some_assembly_required.spruce_sandwich_assembly_table": "Mesa de Montagem de Sanduíche de Pinheiro",
   "block.some_assembly_required.warped_sandwich_assembly_table": "Mesa de Montagem de Sanduíche Retorcida",
-  "block.some_assembly_required.redstone_toaster": "Torradeira Redstone",
-  "block.some_assembly_required.sticky_redstone_toaster": "Torradeira Redstone Pegajosa",
   "block.some_assembly_required.sandwich": "Sanduíche",
 
   "item.some_assembly_required.spread": "Pasta Para Espalhar Sobre o Pão",
   "item.some_assembly_required.bread_slice": "Fatia de Pão",
   "item.some_assembly_required.toasted_bread_slice": "Fatia De Pão Torrado",
-  "item.some_assembly_required.charred_bread_slice": "Fatia de Pão Carbonizado",
   "item.some_assembly_required.apple_slices": "Fatias de Maçã",
   "item.some_assembly_required.golden_apple_slices": "Fatias de Maçã Dourada",
   "item.some_assembly_required.enchanted_golden_apple_slices": "Fatias de Maçã Dourada Encantada",
@@ -41,7 +35,6 @@
   "item.some_assembly_required.chopped_beetroot": "Beterraba Picada",
   "item.some_assembly_required.mayonnaise_bottle": "Frasco de Maionese",
   "item.some_assembly_required.sweet_berry_jam_bottle": "Frasco de Geléia de Bagas Doces",
-  "item.some_assembly_required.charred_food": "Comida Carbonizada",
   "item.some_assembly_required.tomato_slices": "Fatias de Tomate",
 
   "item.some_assembly_required.sandwich": "Sanduíche",

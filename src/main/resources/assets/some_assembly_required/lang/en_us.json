@@ -1,8 +1,6 @@
 {
   "itemGroup.some_assembly_required": "Some Assembly Required",
 
-  "recipecategory.some_assembly_required.toasting": "Toasting",
-
   "advancement.some_assembly_required.obtain_bread_slice.title": "A Matter of Loaf and Bread",
   "advancement.some_assembly_required.obtain_bread_slice.description": "Cut a loaf of bread into slices",
   "advancement.some_assembly_required.obtain_toasted_bread_slice.title": "The Greatest Thing Since...",
@@ -25,14 +23,11 @@
   "block.some_assembly_required.oak_sandwich_assembly_table": "Oak Sandwich Assembly Table",
   "block.some_assembly_required.spruce_sandwich_assembly_table": "Spruce Sandwich Assembly Table",
   "block.some_assembly_required.warped_sandwich_assembly_table": "Warped Sandwich Assembly Table",
-  "block.some_assembly_required.redstone_toaster": "Redstone Toaster",
-  "block.some_assembly_required.sticky_redstone_toaster": "Sticky Redstone Toaster",
   "block.some_assembly_required.sandwich": "Sandwich",
 
   "item.some_assembly_required.spread": "Spread",
   "item.some_assembly_required.bread_slice": "Bread Slice",
   "item.some_assembly_required.toasted_bread_slice": "Toasted Bread Slice",
-  "item.some_assembly_required.charred_bread_slice": "Charred Bread Slice",
   "item.some_assembly_required.apple_slices": "Apple Slices",
   "item.some_assembly_required.golden_apple_slices": "Golden Apple Slices",
   "item.some_assembly_required.enchanted_golden_apple_slices": "Enchanted Golden Apple Slices",
@@ -41,7 +36,6 @@
   "item.some_assembly_required.chopped_beetroot": "Chopped Beetroot",
   "item.some_assembly_required.mayonnaise_bottle": "Mayonnaise Bottle",
   "item.some_assembly_required.sweet_berry_jam_bottle": "Sweet Berry Jam Bottle",
-  "item.some_assembly_required.charred_food": "Charred Food",
   "item.some_assembly_required.tomato_slices": "Tomato Slices",
 
   "item.some_assembly_required.sandwich": "Sandwich",

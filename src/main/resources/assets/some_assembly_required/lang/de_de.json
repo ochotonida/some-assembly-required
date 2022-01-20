@@ -1,12 +1,9 @@
 {
   "itemGroup.some_assembly_required": "Some Assembly Required",
 
-  "recipecategory.some_assembly_required.toasting": "Toasten",
-
   "advancement.some_assembly_required.obtain_bread_slice.title": "Eine Geschichte von Leib und Brot",
   "advancement.some_assembly_required.obtain_bread_slice.description": "Schneide das Leib Brot in Scheiben mit dem Schneidebrett und ein Küchenmesser",
   "advancement.some_assembly_required.obtain_toasted_bread_slice.title": "Das beste Ding seit...",
-  "advancement.some_assembly_required.obtain_toasted_bread_slice.description": "Röste eine Scheibe Brot mit dem Redstone Toaster™",
   "advancement.some_assembly_required.obtain_sandwich.title": "Junger Bäcker",
   "advancement.some_assembly_required.obtain_sandwich.description": "Stelle ein Sandwich mit dem Sandwich-Montagetisch her.",
   "advancement.some_assembly_required.add_potion_to_sandwich.title": "Sandwich des Zauberers",
@@ -25,14 +22,11 @@
   "block.some_assembly_required.oak_sandwich_assembly_table": "Eichen-Sandwich-Montagetisch",
   "block.some_assembly_required.spruce_sandwich_assembly_table": "Fichten-Sandwich-Montagetisch",
   "block.some_assembly_required.warped_sandwich_assembly_table": "Verzogener-Sandwich-Montagetisch",
-  "block.some_assembly_required.redstone_toaster": "Redstone Toaster",
-  "block.some_assembly_required.sticky_redstone_toaster": "Klebriger Redstone Toaster",
   "block.some_assembly_required.sandwich": "Sandwich",
 
   "item.some_assembly_required.spread": "Aufstrich",
   "item.some_assembly_required.bread_slice": "Brotscheibe",
   "item.some_assembly_required.toasted_bread_slice": "Getoastete Brotscheibe",
-  "item.some_assembly_required.charred_bread_slice": "Verkohlte Brotscheibe",
   "item.some_assembly_required.apple_slices": "Apfelscheiben",
   "item.some_assembly_required.golden_apple_slices": "Goldene Apfelscheiben",
   "item.some_assembly_required.enchanted_golden_apple_slices": "Verzauberte Goldene Apfelscheiben",
@@ -41,7 +35,6 @@
   "item.some_assembly_required.chopped_beetroot": "Geschnittene rote Beete",
   "item.some_assembly_required.mayonnaise_bottle": "Mayonnaisenflasche",
   "item.some_assembly_required.sweet_berry_jam_bottle": "süßiger Beerenmarmeladenflasche",
-  "item.some_assembly_required.charred_food": "Verkohltes Essen",
   "item.some_assembly_required.tomato_slices": "Tomatenscheiben",
 
   "item.some_assembly_required.sandwich": "Sandwich",

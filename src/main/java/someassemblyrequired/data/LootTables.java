@@ -52,9 +52,6 @@ public class LootTables extends LootTableProvider {
         for (Block block : ModBlocks.getSandwichAssemblyTables()) {
             addStandardDropTable(block);
         }
-        for (Block block : ModBlocks.getToasters()) {
-            addStandardDropTable(block);
-        }
 
         addChestLootTables();
 

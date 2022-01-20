@@ -9,12 +9,6 @@ public class ModFoods {
     public static final FoodProperties SANDWICH = new FoodProperties.Builder()
             .build();
 
-    public static final FoodProperties CHARRED_FOOD = new FoodProperties.Builder()
-            .nutrition(1)
-            .saturationMod(0.1F)
-            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 100, 0), 0.4F)
-            .build();
-
     public static final FoodProperties BREAD_SLICE = new FoodProperties.Builder()
             .nutrition(2)
             .saturationMod(0.5F)

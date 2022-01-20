@@ -42,15 +42,9 @@ public class ModItems {
     public static final RegistryObject<Item> CRIMSON_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("crimson_sandwich_assembly_table", () -> createBlockItem(ModBlocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get()));
     public static final RegistryObject<Item> WARPED_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register("warped_sandwich_assembly_table", () -> createBlockItem(ModBlocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get()));
 
-    // toasters
-    public static final RegistryObject<Item> REDSTONE_TOASTER = REGISTRY.register("redstone_toaster", () -> createBlockItem(ModBlocks.REDSTONE_TOASTER.get()));
-    public static final RegistryObject<Item> STICKY_REDSTONE_TOASTER = REGISTRY.register("sticky_redstone_toaster", () -> createBlockItem(ModBlocks.STICKY_REDSTONE_TOASTER.get()));
-
     // foods
     public static final RegistryObject<Item> BREAD_SLICE = REGISTRY.register("bread_slice", () -> createFoodItem(ModFoods.BREAD_SLICE));
     public static final RegistryObject<Item> TOASTED_BREAD_SLICE = REGISTRY.register("toasted_bread_slice", () -> createFoodItem(ModFoods.TOASTED_BREAD_SLICE));
-    public static final RegistryObject<Item> CHARRED_BREAD_SLICE = REGISTRY.register("charred_bread_slice", () -> createFoodItem(ModFoods.CHARRED_FOOD));
-    public static final RegistryObject<Item> CHARRED_FOOD = REGISTRY.register("charred_food", () -> createFoodItem(ModFoods.CHARRED_FOOD));
     public static final RegistryObject<Item> APPLE_SLICES = REGISTRY.register("apple_slices", () -> createFoodItem(ModFoods.APPLE_SLICES));
     public static final RegistryObject<Item> GOLDEN_APPLE_SLICES = REGISTRY.register("golden_apple_slices", () -> new Item(new Item.Properties().tab(CREATIVE_TAB).food(ModFoods.GOLDEN_APPLE_SLICES).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> ENCHANTED_GOLDEN_APPLE_SLICES = REGISTRY.register("enchanted_golden_apple_slices", () -> new EnchantedGoldenAppleSlicesItem(new Item.Properties().tab(CREATIVE_TAB).food(ModFoods.ENCHANTED_GOLDEN_APPLE_SLICES).rarity(Rarity.EPIC)));
@@ -92,8 +86,6 @@ public class ModItems {
     public static void registerCompostables() {
         ComposterBlock.COMPOSTABLES.put(BREAD_SLICE.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TOASTED_BREAD_SLICE.get(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(CHARRED_BREAD_SLICE.get(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(CHARRED_FOOD.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(APPLE_SLICES.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHOPPED_CARROT.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHOPPED_BEETROOT.get(), 0.3F);

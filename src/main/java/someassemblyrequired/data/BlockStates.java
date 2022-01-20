@@ -12,7 +12,6 @@ import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.block.redstonetoaster.RedstoneToasterBlock;
 import someassemblyrequired.common.block.sandwich.SandwichBlock;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.util.Util;
@@ -70,9 +69,6 @@ public class BlockStates extends BlockStateProvider {
         sandwichAssemblyTable(ModBlocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE.get(), "dark_oak");
         sandwichAssemblyTable(ModBlocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get(), "crimson");
         sandwichAssemblyTable(ModBlocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get(), "warped");
-
-        toaster(ModBlocks.REDSTONE_TOASTER.get());
-        toaster(ModBlocks.STICKY_REDSTONE_TOASTER.get());
     }
 
     private ResourceLocation prefixBlock(String path) {
@@ -99,13 +95,5 @@ public class BlockStates extends BlockStateProvider {
                 .texture("side", prefixBlock(woodType + "_sandwich_assembly_table_side"))
                 .texture("bottom", new ResourceLocation("block/" + woodType + "_planks"));
         horizontalBlock(block, $ -> model);
-    }
-
-    private void toaster(Block block) {
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> ConfiguredModel.builder()
-                        .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
-                        .modelFile(models().getExistingFile(prefixBlock(state.getValue(RedstoneToasterBlock.TOASTING) ? "toasting_redstone_toaster" : "idle_redstone_toaster")))
-                        .build(), BlockStateProperties.WATERLOGGED, BlockStateProperties.POWERED);
     }
 }

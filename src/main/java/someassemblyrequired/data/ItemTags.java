@@ -3,9 +3,7 @@ package someassemblyrequired.data;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModItems;
@@ -20,88 +18,14 @@ public class ItemTags extends ItemTagsProvider {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void addTags() {
-        copy(BlockTags.NON_FLAMMABLE_WOOD, net.minecraft.tags.ItemTags.NON_FLAMMABLE_WOOD);
-
         tag(net.minecraft.tags.ItemTags.PIGLIN_LOVED).add(
                 ModItems.GOLDEN_APPLE_SLICES.get(),
                 ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
                 ModItems.CHOPPED_GOLDEN_CARROT.get()
         );
 
-        addModTags();
-        addForgeTags();
-    }
-
-    @SuppressWarnings("unchecked")
-    private void addModTags() {
-        tag(ModTags.TOASTER_METALS).addTags(
-                Tags.Items.INGOTS_IRON,
-                Tags.Items.NUGGETS_IRON,
-                Tags.Items.INGOTS_GOLD,
-                Tags.Items.NUGGETS_GOLD
-        ).add(
-                ModItems.GOLDEN_APPLE_SLICES.get(),
-                ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
-                ModItems.CHOPPED_GOLDEN_CARROT.get(),
-                Items.IRON_AXE,
-                Items.IRON_HOE,
-                Items.IRON_PICKAXE,
-                Items.IRON_SHOVEL,
-                Items.IRON_SWORD,
-                Items.IRON_BOOTS,
-                Items.IRON_LEGGINGS,
-                Items.IRON_CHESTPLATE,
-                Items.IRON_HELMET,
-                Items.IRON_HORSE_ARMOR,
-                Items.GOLDEN_AXE,
-                Items.GOLDEN_HOE,
-                Items.GOLDEN_PICKAXE,
-                Items.GOLDEN_SHOVEL,
-                Items.GOLDEN_SWORD,
-                Items.GOLDEN_BOOTS,
-                Items.GOLDEN_LEGGINGS,
-                Items.GOLDEN_CHESTPLATE,
-                Items.GOLDEN_HELMET,
-                Items.GOLDEN_HORSE_ARMOR,
-                Items.GOLDEN_CARROT,
-                Items.GOLDEN_APPLE,
-                Items.ENCHANTED_GOLDEN_APPLE,
-                Items.COPPER_INGOT,
-                Items.RAW_IRON,
-                Items.RAW_GOLD,
-                Items.RAW_COPPER,
-                Items.CHAINMAIL_BOOTS,
-                Items.CHAINMAIL_LEGGINGS,
-                Items.CHAINMAIL_CHESTPLATE,
-                Items.CHAINMAIL_HELMET,
-                Items.BUCKET,
-                Items.COD_BUCKET,
-                Items.LAVA_BUCKET,
-                Items.MILK_BUCKET,
-                Items.PUFFERFISH_BUCKET,
-                Items.SALMON_BUCKET,
-                Items.TROPICAL_FISH_BUCKET,
-                Items.AXOLOTL_BUCKET,
-                Items.POWDER_SNOW_BUCKET,
-                Items.WATER_BUCKET,
-                Items.MINECART,
-                Items.CHEST_MINECART,
-                Items.COMMAND_BLOCK_MINECART,
-                Items.FURNACE_MINECART,
-                Items.HOPPER_MINECART,
-                Items.TNT_MINECART,
-                Items.COMPASS,
-                Items.FLINT_AND_STEEL,
-                Items.SHEARS,
-                Items.SNOWBALL,
-                Items.CLOCK,
-                Items.SPYGLASS
-        );
-    }
-
-    @SuppressWarnings("unchecked")
-    private void addForgeTags() {
         tag(ModTags.SANDWICH_BREAD).addTags(
                 ModTags.BREAD_SLICES
         );
@@ -112,8 +36,7 @@ public class ItemTags extends ItemTagsProvider {
 
         tag(ModTags.BREAD_SLICES_WHEAT).add(
                 ModItems.BREAD_SLICE.get(),
-                ModItems.TOASTED_BREAD_SLICE.get(),
-                ModItems.CHARRED_BREAD_SLICE.get()
+                ModItems.TOASTED_BREAD_SLICE.get()
         );
 
         tag(ModTags.COOKED_BACON);

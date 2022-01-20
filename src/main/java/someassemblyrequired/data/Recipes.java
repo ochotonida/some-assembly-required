@@ -2,21 +2,18 @@ package someassemblyrequired.data;
 
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
-import someassemblyrequired.data.recipe.ToastingRecipeBuilder;
 import someassemblyrequired.data.recipe.farmersdelight.CuttingRecipeBuilder;
 
 import java.util.function.Consumer;
@@ -31,7 +28,7 @@ public class Recipes extends RecipeProvider {
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         addShapedRecipes(consumer);
         addShapelessRecipes(consumer);
-        ToastingRecipeBuilder.addToastingRecipes(consumer);
+        addCookingRecipes(consumer);
         CuttingRecipeBuilder.addCuttingRecipes(consumer);
     }
 
@@ -44,9 +41,6 @@ public class Recipes extends RecipeProvider {
         addSandwichAssemblyTable(ModBlocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.DARK_OAK_PLANKS, consumer);
         addSandwichAssemblyTable(ModBlocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.CRIMSON_PLANKS, consumer);
         addSandwichAssemblyTable(ModBlocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.WARPED_PLANKS, consumer);
-
-        addToaster(ModBlocks.REDSTONE_TOASTER.get(), Blocks.PISTON, consumer);
-        addToaster(ModBlocks.STICKY_REDSTONE_TOASTER.get(), Blocks.STICKY_PISTON, consumer);
     }
 
     private void addShapelessRecipes(Consumer<FinishedRecipe> consumer) {
@@ -56,11 +50,19 @@ public class Recipes extends RecipeProvider {
                 .requires(Items.SUGAR)
                 .unlockedBy("has_sweet_berries", createItemCriterion(Items.SWEET_BERRIES))
                 .save(consumer, getRecipeLocation(ModItems.SWEET_BERRY_JAM_BOTTLE.get(), "crafting_shapeless"));
+    }
 
-        ShapelessRecipeBuilder.shapeless(Items.CHARCOAL)
-                .requires(ModItems.CHARRED_FOOD.get(), 4)
-                .unlockedBy("has_charred_food", createItemCriterion(ModItems.CHARRED_FOOD.get()))
-                .save(consumer, getRecipeLocation(ModItems.CHARRED_FOOD.get(), "crafting_shapeless"));
+    private void addCookingRecipes(Consumer<FinishedRecipe> consumer) {
+        addBreadCookingRecipe(consumer, 200, RecipeSerializer.SMELTING_RECIPE, "smelting");
+        addBreadCookingRecipe(consumer, 100, RecipeSerializer.SMOKING_RECIPE, "smoking");
+        addBreadCookingRecipe(consumer, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE, "campfire_cooking");
+    }
+
+    private void addBreadCookingRecipe(Consumer<FinishedRecipe> consumer, int time, SimpleCookingSerializer<?> serializer, String type) {
+        SimpleCookingRecipeBuilder
+                .cooking(Ingredient.of(ModItems.BREAD_SLICE.get()), ModItems.TOASTED_BREAD_SLICE.get(), 0.35F, time, serializer)
+                .unlockedBy("has_bread", createItemCriterion(ModItems.BREAD_SLICE.get()))
+                .save(consumer, getRecipeLocation(ModItems.TOASTED_BREAD_SLICE.get(), type));
     }
 
     private void addSandwichAssemblyTable(Block sandwichAssemblyTable, Block planks, Consumer<FinishedRecipe> consumer) {
@@ -71,20 +73,6 @@ public class Recipes extends RecipeProvider {
                 .define('B', planks)
                 .unlockedBy("has_planks", createItemCriterion(planks))
                 .save(consumer, getRecipeLocation(sandwichAssemblyTable, "crafting_shaped/sandwich_assembly_table"));
-    }
-
-    private void addToaster(Block toaster, Block piston, Consumer<FinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(toaster)
-                .pattern(" A ")
-                .pattern("BEB")
-                .pattern("CDC")
-                .define('A', Items.LEVER)
-                .define('B', Tags.Items.INGOTS_IRON)
-                .define('C', ItemTags.PLANKS)
-                .define('D', piston)
-                .define('E', Items.REDSTONE)
-                .unlockedBy("has_piston", createItemCriterion(piston))
-                .save(consumer, getRecipeLocation(toaster, "crafting_shaped/toaster"));
     }
 
     private ResourceLocation getRecipeLocation(ItemLike result, String location) {

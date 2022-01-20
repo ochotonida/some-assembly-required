@@ -1,7 +1,12 @@
 package someassemblyrequired;
 
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -14,6 +19,7 @@ import someassemblyrequired.common.ingredient.IngredientPropertiesManager;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.*;
 import someassemblyrequired.common.network.NetworkHandler;
+import someassemblyrequired.common.recipe.PotionToItemStackBrewingRecipe;
 import someassemblyrequired.integration.ModCompat;
 
 @Mod(SomeAssemblyRequired.MODID)
@@ -32,7 +38,6 @@ public class SomeAssemblyRequired {
 
         ModItems.REGISTRY.register(modEventBus);
         ModBlocks.REGISTRY.register(modEventBus);
-        ModRecipeTypes.REGISTRY.register(modEventBus);
         ModBlockEntityTypes.REGISTRY.register(modEventBus);
         ModSoundEvents.REGISTRY.register(modEventBus);
 
@@ -49,8 +54,18 @@ public class SomeAssemblyRequired {
             ModConfig.registerServer();
             Ingredients.addBehaviors();
             NetworkHandler.register();
-            ModRecipeTypes.registerBrewingRecipes();
+            registerBrewingRecipes();
             ModItems.registerCompostables();
         });
+    }
+
+    private static void registerBrewingRecipes() {
+        BrewingRecipeRegistry.addRecipe(
+                new PotionToItemStackBrewingRecipe(
+                        Potions.THICK,
+                        Ingredient.of(Items.EGG),
+                        new ItemStack(ModItems.MAYONNAISE_BOTTLE.get())
+                )
+        );
     }
 }

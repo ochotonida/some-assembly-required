@@ -10,7 +10,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
-import someassemblyrequired.common.block.redstonetoaster.RedstoneToasterBlock;
 import someassemblyrequired.common.block.sandwich.SandwichBlock;
 
 public class ModBlocks {
@@ -71,17 +70,6 @@ public class ModBlocks {
             () -> createSandwichAssemblyTable(Material.NETHER_WOOD)
     );
 
-    // toasters
-    public static final RegistryObject<Block> REDSTONE_TOASTER = REGISTRY.register(
-            "redstone_toaster",
-            () -> createToaster(false)
-    );
-
-    public static final RegistryObject<Block> STICKY_REDSTONE_TOASTER = REGISTRY.register(
-            "sticky_redstone_toaster",
-            () -> createToaster(true)
-    );
-
     public static Block[] getSandwichAssemblyTables() {
         return new Block[]{
                 ModBlocks.OAK_SANDWICH_ASSEMBLY_TABLE.get(),
@@ -95,28 +83,12 @@ public class ModBlocks {
         };
     }
 
-    public static Block[] getToasters() {
-        return new Block[]{
-                ModBlocks.REDSTONE_TOASTER.get(),
-                ModBlocks.STICKY_REDSTONE_TOASTER.get()
-        };
-    }
-
     private static Block createSandwichAssemblyTable(Material material) {
         return new SandwichAssemblyTableBlock(
                 BlockBehaviour.Properties
                         .of(material, MaterialColor.STONE)
                         .strength(2.5F)
                         .sound(SoundType.WOOD)
-        );
-    }
-
-    private static Block createToaster(boolean isSticky) {
-        return new RedstoneToasterBlock(BlockBehaviour.Properties
-                .of(Material.STONE)
-                .requiresCorrectToolForDrops()
-                .strength(3.5F),
-                isSticky
         );
     }
 }

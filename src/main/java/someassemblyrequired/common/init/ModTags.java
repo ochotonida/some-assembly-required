@@ -28,7 +28,6 @@ public class ModTags {
 
     // mod item tags
     public static final Tag.Named<Item> SANDWICH_BREAD = createModTag("sandwich_bread");
-    public static final Tag.Named<Item> TOASTER_METALS = createModTag("toaster_metals");
 
     private static Tags.IOptionalNamedTag<Item> createModTag(String path) {
         return ItemTags.createOptional(Util.id(path));

@@ -19,7 +19,6 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
-import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 import someassemblyrequired.common.item.sandwich.SandwichBuilder;
@@ -104,7 +103,7 @@ public class Advancements extends AdvancementProvider {
             addAdvancement(
                     consumer,
                     obtainBreadSlice,
-                    new ItemStack(ModBlocks.REDSTONE_TOASTER.get()),
+                    new ItemStack(ModItems.TOASTED_BREAD_SLICE.get()),
                     InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.TOASTED_BREAD_SLICE.get()),
                     "obtain_toasted_bread_slice",
                     false
