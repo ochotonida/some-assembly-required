@@ -1,0 +1,17 @@
+{
+  "type": "some_assembly_required:sandwich_spouting",
+  "conditions": [
+    {
+      "modid": "create",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "fluid": {
+    "fluid": "create:tea",
+    "nbt": {},
+    "amount": 250
+  },
+  "result": {
+    "item": "create:builders_tea"
+  }
+}
