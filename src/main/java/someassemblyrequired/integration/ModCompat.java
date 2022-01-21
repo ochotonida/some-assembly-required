@@ -1,7 +1,5 @@
 package someassemblyrequired.integration;
 
-import net.minecraft.core.NonNullList;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.ModList;
 import someassemblyrequired.integration.create.CreateCompat;
 import someassemblyrequired.integration.diet.DietCompat;
@@ -17,10 +15,6 @@ public class ModCompat {
         if (isCreateLoaded()) CreateCompat.setup();
         if (isDietLoaded()) DietCompat.setup();
         if (isFarmersDelightLoaded()) FarmersDelightCompat.setup();
-    }
-
-    public static void addSandwichSubtypes(NonNullList<ItemStack> items) {
-        if (isFarmersDelightLoaded()) FarmersDelightCompat.addSandwichSubtypes(items);
     }
 
     public static boolean isCreateLoaded() {

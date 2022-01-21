@@ -43,6 +43,7 @@ import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.integration.ModCompat;
+import someassemblyrequired.integration.farmersdelight.FarmersDelightCompat;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -85,7 +86,9 @@ public class SandwichItem extends BlockItem {
             items.add(SandwichBuilder.builder().add(ModItems.CHOPPED_CARROT.get()).add(Items.COOKED_BEEF).add(ModItems.TOMATO_SLICES.get()).build());
             items.add(SandwichBuilder.builder().add(Items.HONEY_BOTTLE).build());
             items.add(SandwichBuilder.builder().add(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY)).build());
-            ModCompat.addSandwichSubtypes(items);
+            if (ModCompat.isFarmersDelightLoaded()) {
+                FarmersDelightCompat.addSandwichSubtypes(items);
+            }
         }
     }
 
