@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+        classpath 'org.spongepowered:mixingradle:0.7.+'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -93,6 +93,8 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.1-39.0.43'
 
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
     compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48:api")
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48")
 
@@ -100,6 +102,12 @@ dependencies {
     implementation fg.deobf("com.simibubi.create:Create:mc1.18.1_v0.4c+67")
 
     implementation fg.deobf("curse.maven:farmersdelight-398521:3608961")
+}
+
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, 'mixins.some_assembly_required.refmap.json'
+    config 'mixins.some_assembly_required.json'
 }
 
 jar {

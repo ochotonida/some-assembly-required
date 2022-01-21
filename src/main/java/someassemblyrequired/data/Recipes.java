@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Blocks;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
+import someassemblyrequired.data.recipe.SandwichSpoutingRecipeBuilder;
 import someassemblyrequired.data.recipe.farmersdelight.CuttingRecipeBuilder;
 
 import java.util.function.Consumer;
@@ -30,6 +31,7 @@ public class Recipes extends RecipeProvider {
         addShapelessRecipes(consumer);
         addCookingRecipes(consumer);
         CuttingRecipeBuilder.addCuttingRecipes(consumer);
+        SandwichSpoutingRecipeBuilder.addFillingRecipes(consumer);
     }
 
     private void addShapedRecipes(Consumer<FinishedRecipe> consumer) {

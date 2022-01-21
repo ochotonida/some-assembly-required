@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "someassemblyrequired.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mixins.some_assembly_required.refmap.json",
+  "mixins": [
+    "FillingBySpoutMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

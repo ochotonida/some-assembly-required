@@ -3,9 +3,7 @@ package someassemblyrequired.common.ingredient;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.mojang.serialization.JsonOps;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -19,8 +17,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModSoundEvents;
+import someassemblyrequired.common.util.JsonHelper;
 
 import javax.annotation.Nullable;
 
@@ -108,10 +106,10 @@ public class IngredientProperties {
             result.add("fullName", Component.Serializer.toJsonTree(fullName));
         }
         if (!displayItem.isEmpty()) {
-            result.add("displayItem", writeItemStack(displayItem));
+            result.add("displayItem", JsonHelper.writeItemStack(displayItem));
         }
         if (!container.isEmpty()) {
-            result.add("container", writeItemStack(container));
+            result.add("container", JsonHelper.writeItemStack(container));
         }
         if (soundEvent != null) {
             // noinspection ConstantConditions
@@ -170,30 +168,11 @@ public class IngredientProperties {
                 .build();
     }
 
-    private static JsonObject writeItemStack(ItemStack stack) {
-        JsonObject object = new JsonObject();
-
-        // noinspection ConstantConditions
-        object.addProperty("item", stack.getItem().getRegistryName().toString());
-        if (stack.hasTag()) {
-            object.add("nbt", writeNbt(stack.getTag()));
-        }
-
-        return object;
-    }
-
     private static ItemStack readOptionalItemStack(JsonObject object, String memberName) {
         if (!object.has(memberName)) {
             return ItemStack.EMPTY;
         }
         return CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(object, memberName), true);
-    }
-
-    private static JsonElement writeNbt(CompoundTag tag) {
-        return CompoundTag.CODEC
-                .encodeStart(JsonOps.INSTANCE, tag)
-                .resultOrPartial(SomeAssemblyRequired.LOGGER::error)
-                .orElseThrow();
     }
 
     public void toNetwork(FriendlyByteBuf buffer) {

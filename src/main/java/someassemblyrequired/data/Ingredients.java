@@ -64,7 +64,7 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
         builder(Items.RABBIT_STEW).setBowled().setSpread(0xBF7234).setSpreadSound();
         builder(Items.SUSPICIOUS_STEW).setBowled().setSpread(0x3f9E80).setSpreadSound();
 
-        builder(Items.HONEY_BOTTLE).setCustomFullName().setBottled().setSpread(0xF08A1D).setSpreadSound();
+        builder(Items.HONEY_BOTTLE).setCustomFullName().setBottled().setSpread(0xf0a90e).setSpreadSound();
         builder(ModItems.MAYONNAISE_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xD9C98C).setSpreadSound();
         builder(ModItems.SWEET_BERRY_JAM_BOTTLE.get()).setCustomFullName().setBottled().setSpread(0xF40020).setSpreadSound();
 

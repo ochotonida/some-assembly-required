@@ -1,4 +1,4 @@
-package someassemblyrequired.integration.create;
+package someassemblyrequired.integration.create.recipe.deployer;
 
 import com.simibubi.create.AllRecipeTypes;
 import com.simibubi.create.content.contraptions.processing.ProcessingOutput;

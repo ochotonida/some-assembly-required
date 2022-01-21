@@ -1,4 +1,4 @@
-package someassemblyrequired.integration.create;
+package someassemblyrequired.integration.create.ingredient;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

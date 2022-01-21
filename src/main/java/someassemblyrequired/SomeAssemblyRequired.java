@@ -40,6 +40,7 @@ public class SomeAssemblyRequired {
         ModBlocks.REGISTRY.register(modEventBus);
         ModBlockEntityTypes.REGISTRY.register(modEventBus);
         ModSoundEvents.REGISTRY.register(modEventBus);
+        ModRecipeTypes.REGISTRY.register(modEventBus);
 
         modEventBus.addListener(this::onCommonSetup);
 
