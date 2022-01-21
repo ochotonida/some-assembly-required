@@ -52,7 +52,7 @@ public class CreateCompat {
             ItemStack sandwich = sandwiches.get(i);
             SandwichItemHandler handler = SandwichItemHandler.get(sandwich).orElseThrow();
 
-            SequencedAssemblyRecipeBuilder builder = new SequencedAssemblyRecipeBuilder(Util.id("example" + (i + 1)))
+            SequencedAssemblyRecipeBuilder builder = new SequencedAssemblyRecipeBuilder(Util.id("sequenced_assembly/example" + (i + 1)))
                     .require(Ingredient.of(handler.getItems().get(0)))
                     .transitionTo(ModItems.SANDWICH.get())
                     .loops(1)
