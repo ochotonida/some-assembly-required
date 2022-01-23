@@ -1,4 +1,4 @@
-package someassemblyrequired.common.ingredient.behavior;
+package someassemblyrequired.common.ingredient;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -9,7 +9,6 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModSoundEvents;
 
@@ -46,6 +45,14 @@ public class PotionProperties extends IngredientProperties {
             return new TranslatableComponent("ingredient.%s.water_bottle".formatted(SomeAssemblyRequired.MODID));
         }
         return super.getDisplayName(item);
+    }
+
+    @Override
+    public Component getFullName(ItemStack item) {
+        if (PotionUtils.getPotion(item) == Potions.WATER) {
+            return getDisplayName(item);
+        }
+        return super.getFullName(item);
     }
 
     @Override

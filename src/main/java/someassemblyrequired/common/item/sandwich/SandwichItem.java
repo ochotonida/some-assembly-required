@@ -25,6 +25,7 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -41,7 +42,6 @@ import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
-import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.integration.farmersdelight.FarmersDelightCompat;
 
@@ -53,6 +53,14 @@ public class SandwichItem extends BlockItem {
 
     public SandwichItem(Block block, Properties builder) {
         super(block, builder);
+    }
+
+    public static ItemStack of(ItemLike item) {
+        return of(new ItemStack(item));
+    }
+
+    public static ItemStack of(ItemStack item) {
+        return SandwichBuilder.builder().add(item).build();
     }
 
     @Override
@@ -83,9 +91,6 @@ public class SandwichItem extends BlockItem {
     @Override
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (allowdedIn(group)) {
-            items.add(SandwichBuilder.builder().add(ModItems.CHOPPED_CARROT.get()).add(Items.COOKED_BEEF).add(ModItems.TOMATO_SLICES.get()).build());
-            items.add(SandwichBuilder.builder().add(Items.HONEY_BOTTLE).build());
-            items.add(SandwichBuilder.builder().add(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY)).build());
             if (ModCompat.isFarmersDelightLoaded()) {
                 FarmersDelightCompat.addSandwichSubtypes(items);
             }

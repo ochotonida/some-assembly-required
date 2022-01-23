@@ -31,7 +31,7 @@ public class JEICompat implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         if (ModCompat.isCreateLoaded()) {
-            registration.addRecipes(CreateCompat.createSandwichDeployingRecipes(), SEQUENCED_ASSEMBLY);
+            registration.addRecipes(CreateCompat.createSandwichAssemblingRecipes(registration.getIngredientManager()), SEQUENCED_ASSEMBLY);
         }
     }
 }

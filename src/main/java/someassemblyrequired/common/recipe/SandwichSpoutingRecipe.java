@@ -60,7 +60,7 @@ public abstract class SandwichSpoutingRecipe implements Recipe<Container> {
     }
 
     @Override
-    public final ItemStack getResultItem() {
+    public ItemStack getResultItem() {
         return null;
     }
 

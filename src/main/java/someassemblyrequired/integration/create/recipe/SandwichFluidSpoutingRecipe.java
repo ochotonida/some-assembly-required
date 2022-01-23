@@ -47,6 +47,15 @@ public class SandwichFluidSpoutingRecipe extends SandwichSpoutingRecipe {
         return ModRecipeTypes.SANDWICH_FLUID_SPOUTING_SERIALIZER.get();
     }
 
+    @Override
+    public ItemStack getResultItem() {
+        return result;
+    }
+
+    public FluidIngredient getIngredient() {
+        return ingredient;
+    }
+
     public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<SandwichFluidSpoutingRecipe> {
 
         @Override

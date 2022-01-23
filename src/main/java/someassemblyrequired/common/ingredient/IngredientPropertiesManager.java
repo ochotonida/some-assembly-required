@@ -20,7 +20,6 @@ import net.minecraftforge.forgespi.Environment;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.behavior.PotionProperties;
 import someassemblyrequired.common.network.IngredientSyncPacket;
 import someassemblyrequired.common.network.NetworkHandler;
 
