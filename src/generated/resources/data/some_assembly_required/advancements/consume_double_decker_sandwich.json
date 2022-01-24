@@ -3,7 +3,7 @@
   "display": {
     "icon": {
       "item": "some_assembly_required:sandwich",
-      "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"some_assembly_required:tomato_slices\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"some_assembly_required:chopped_carrot\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"some_assembly_required:tomato_slices\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"some_assembly_required:chopped_carrot\",tag:{IsOnSandwich:1b}},{Count:1b,id:\"some_assembly_required:bread_slice\",tag:{IsOnSandwich:1b}}]}}"
+      "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\"},{Count:1b,id:\"some_assembly_required:tomato_slices\"},{Count:1b,id:\"some_assembly_required:chopped_carrot\"},{Count:1b,id:\"some_assembly_required:bread_slice\"},{Count:1b,id:\"some_assembly_required:tomato_slices\"},{Count:1b,id:\"some_assembly_required:chopped_carrot\"},{Count:1b,id:\"some_assembly_required:bread_slice\"}]}}"
     },
     "title": {
       "translate": "advancement.some_assembly_required.consume_double_decker_sandwich.title"
