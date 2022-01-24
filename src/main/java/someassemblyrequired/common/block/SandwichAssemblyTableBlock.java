@@ -63,10 +63,8 @@ public class SandwichAssemblyTableBlock extends HorizontalDirectionalBlock {
         UseOnContext useOnContext = new UseOnContext(player, hand, hitResult);
         InteractionResult placeResult = ModItems.SANDWICH.get().place(useOnContext, pos.above(), sandwich);
 
-        if (placeResult == InteractionResult.SUCCESS) {
-            if (!player.isCreative()) {
-                player.getItemInHand(hand).shrink(1);
-            }
+        if (sandwich.isEmpty()) {
+            player.getItemInHand(hand).shrink(1);
         }
 
         return placeResult;
