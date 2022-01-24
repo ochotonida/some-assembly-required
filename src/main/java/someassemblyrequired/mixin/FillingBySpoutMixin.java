@@ -12,6 +12,7 @@ import someassemblyrequired.common.config.ModConfig;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModRecipeTypes;
 import someassemblyrequired.common.init.ModTags;
+import someassemblyrequired.common.item.sandwich.SandwichItem;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 import someassemblyrequired.common.recipe.SandwichSpoutingRecipe;
 
@@ -24,7 +25,11 @@ public class FillingBySpoutMixin {
         if (stack.is(ModTags.SANDWICH_BREAD)) {
             cir.setReturnValue(true);
         } else if (stack.is(ModItems.SANDWICH.get())) {
-            cir.setReturnValue(SandwichItemHandler.get(stack).map(s -> s.size() < ModConfig.server.maximumSandwichHeight.get()).orElse(false));
+            cir.setReturnValue(
+                    SandwichItemHandler.get(stack)
+                            .map(s -> s.size() < ModConfig.server.maximumSandwichHeight.get())
+                            .orElse(false)
+            );
         }
     }
 
@@ -41,30 +46,17 @@ public class FillingBySpoutMixin {
 
     @Inject(method = "fillItem", remap = false, cancellable = true, at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/content/contraptions/fluids/actors/GenericItemFilling;fillItem(Lnet/minecraft/world/level/Level;ILnet/minecraft/world/item/ItemStack;Lnet/minecraftforge/fluids/FluidStack;)Lnet/minecraft/world/item/ItemStack;", remap = false))
     private static void fillSandwich(Level level, int requiredAmount, ItemStack stack, FluidStack availableFluid, CallbackInfoReturnable<ItemStack> cir) {
-        SandwichItemHandler sandwich;
-        if (stack.is(ModItems.SANDWICH.get())) {
-            sandwich = SandwichItemHandler.get(stack).orElse(null);
-        } else if (stack.is(ModTags.SANDWICH_BREAD)) {
-            sandwich = new SandwichItemHandler(stack);
-        } else {
-            return;
-        }
-
-        if (sandwich == null) {
-            return;
-        }
-
         SandwichSpoutingRecipe recipe = getMatchingRecipe(availableFluid, level);
         if (recipe == null) {
             return;
         }
 
-        sandwich.add(recipe.assemble(availableFluid.copy()));
+        ItemStack sandwich = SandwichItem.of(stack, recipe.assemble(availableFluid.copy()));
 
         availableFluid.shrink(requiredAmount);
         stack.shrink(1);
 
-        cir.setReturnValue(sandwich.getAsItem());
+        cir.setReturnValue(sandwich);
     }
 
     private static SandwichSpoutingRecipe getMatchingRecipe(FluidStack fluid, Level level) {

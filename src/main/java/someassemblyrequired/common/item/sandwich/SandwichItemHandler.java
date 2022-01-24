@@ -16,26 +16,30 @@ import someassemblyrequired.common.init.ModTags;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable, INBTSerializable<ListTag>, Iterable<ItemStack> {
 
     protected List<ItemStack> items;
 
     public SandwichItemHandler() {
-        this(new ArrayList<>());
+        this.items = new ArrayList<>();
     }
 
-    public SandwichItemHandler(ItemStack... items) {
-        this(Arrays.asList(items));
+    public SandwichItemHandler(ItemStack stack) {
+        this.items = new ArrayList<>();
+        if (stack.isEmpty() || stack.getCount() != 1) {
+            throw new IllegalArgumentException();
+        }
+        this.items = new ArrayList<>();
+        items.add(stack);
     }
 
     public SandwichItemHandler(List<ItemStack> items) {
-        for (ItemStack stack : items) {
-            if (stack.isEmpty() || stack.getCount() != 1) {
-                throw new IllegalArgumentException();
-            }
-        }
+
         this.items = new ArrayList<>(items);
     }
 
@@ -194,6 +198,10 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
 
     @Override
     public ListTag serializeNBT() {
+        return serializerItems(items);
+    }
+
+    public static ListTag serializerItems(List<ItemStack> items) {
         ListTag result = new ListTag();
         for (ItemStack stack : items) {
             result.add(stack.save(new CompoundTag()));

@@ -15,6 +15,7 @@ import someassemblyrequired.common.config.ModConfig;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
+import someassemblyrequired.common.item.sandwich.SandwichItem;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 import someassemblyrequired.common.util.Util;
 
@@ -43,7 +44,8 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
             return false;
         }
 
-        if (!Ingredients.canAddToSandwich(inventory.getItem(1))) {
+        ItemStack ingredient = inventory.getItem(1);
+        if (!Ingredients.canAddToSandwich(ingredient) || ingredient.is(ModItems.SANDWICH.get())) {
             return false;
         }
 
@@ -55,23 +57,17 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
     public static SandwichDeployingRecipe createRecipe(ItemStack sandwich, ItemStack ingredient) {
         sandwich = sandwich.copy();
         sandwich.setCount(1);
-        if (sandwich.is(ModTags.SANDWICH_BREAD)) {
-            sandwich = new SandwichItemHandler(sandwich).getAsItem();
-        }
-
-        final ItemStack ingredient1 = ingredient.copy();
-        ingredient1.setCount(1);
+        ingredient = ingredient.copy();
+        ingredient.setCount(1);
 
         ItemStack container = Ingredients.getContainer(ingredient);
-
-        SandwichItemHandler.get(sandwich).ifPresent(handler -> handler.add(ingredient1));
+        ItemStack result = SandwichItem.of(sandwich, ingredient);
 
         return new ProcessingRecipeBuilder<>(SandwichDeployingRecipe::new, RECIPE_ID)
                 .withItemOutputs(
-                        new ProcessingOutput(sandwich, 1),
+                        new ProcessingOutput(result, 1),
                         container.isEmpty() ? ProcessingOutput.EMPTY : new ProcessingOutput(container, 1)
-                )
-                .build();
+                ).build();
     }
 
     @Override

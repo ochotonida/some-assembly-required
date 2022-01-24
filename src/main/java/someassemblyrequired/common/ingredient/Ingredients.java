@@ -11,7 +11,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.behavior.*;
-import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.integration.farmersdelight.FarmersDelightCompat;
 
@@ -39,7 +38,7 @@ public class Ingredients {
     }
 
     public static boolean canAddToSandwich(ItemStack item) {
-        return !item.isEmpty() && !item.is(ModItems.SANDWICH.get()) && (item.isEdible() || IngredientPropertiesManager.get(item) != null || ModCompat.isFarmersDelightLoaded() && FarmersDelightCompat.canAddToSandwich(item));
+        return !item.isEmpty() && (item.isEdible() || IngredientPropertiesManager.get(item) != null || ModCompat.isFarmersDelightLoaded() && FarmersDelightCompat.canAddToSandwich(item));
     }
 
     public static FoodProperties getFood(ItemStack item) {

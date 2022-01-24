@@ -3,7 +3,7 @@ package someassemblyrequired.integration.farmersdelight;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import someassemblyrequired.common.item.sandwich.SandwichBuilder;
+import someassemblyrequired.common.item.sandwich.SandwichItem;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -18,11 +18,11 @@ public class FarmersDelightCompat {
     }
 
     public static ItemStack blt() {
-        return SandwichBuilder.builder()
-                .add(ModItems.COOKED_BACON.get())
-                .add(ModItems.CABBAGE_LEAF.get())
-                .add(someassemblyrequired.common.init.ModItems.TOMATO_SLICES.get())
-                .build();
+        return SandwichItem.makeSandwich(
+                ModItems.COOKED_BACON.get(),
+                ModItems.CABBAGE_LEAF.get(),
+                someassemblyrequired.common.init.ModItems.TOMATO_SLICES.get()
+        );
     }
 
     public static boolean canAddToSandwich(ItemStack item) {

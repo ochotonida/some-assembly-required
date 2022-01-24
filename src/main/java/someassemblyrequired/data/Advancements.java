@@ -21,7 +21,7 @@ import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
-import someassemblyrequired.common.item.sandwich.SandwichBuilder;
+import someassemblyrequired.common.item.sandwich.SandwichItem;
 import someassemblyrequired.common.util.Util;
 
 import java.io.IOException;
@@ -91,10 +91,7 @@ public class Advancements extends AdvancementProvider {
             Advancement obtainSandwich = addAdvancement(
                     consumer,
                     obtainBreadSlice,
-                    SandwichBuilder.builder()
-                            .add(ModItems.TOMATO_SLICES.get())
-                            .add(ModItems.CHOPPED_CARROT.get())
-                            .build(),
+                    SandwichItem.makeSandwich(ModItems.TOMATO_SLICES.get(), ModItems.CHOPPED_CARROT.get()),
                     InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SANDWICH.get()),
                     "obtain_sandwich",
                     false
@@ -112,9 +109,7 @@ public class Advancements extends AdvancementProvider {
             addAdvancement(
                     consumer,
                     obtainSandwich,
-                    SandwichBuilder.builder()
-                            .add(Potions.NIGHT_VISION)
-                            .build(),
+                    SandwichItem.makeSandwich(Potions.NIGHT_VISION),
                     ModAdvancementTriggers.CONSUME_POTION_SANDWICH.instance(),
                     "add_potion_to_sandwich",
                     true
@@ -123,13 +118,13 @@ public class Advancements extends AdvancementProvider {
             addAdvancement(
                     consumer,
                     obtainSandwich,
-                    SandwichBuilder.builder()
-                            .add(ModItems.TOMATO_SLICES.get())
-                            .add(ModItems.CHOPPED_CARROT.get())
-                            .addBread()
-                            .add(ModItems.TOMATO_SLICES.get())
-                            .add(ModItems.CHOPPED_CARROT.get())
-                            .build(),
+                    SandwichItem.makeSandwich(
+                            ModItems.TOMATO_SLICES.get(),
+                            ModItems.CHOPPED_CARROT.get(),
+                            ModItems.BREAD_SLICE.get(),
+                            ModItems.TOMATO_SLICES.get(),
+                            ModItems.CHOPPED_CARROT.get()
+                    ),
                     ModAdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.instance(),
                     "consume_double_decker_sandwich",
                     true

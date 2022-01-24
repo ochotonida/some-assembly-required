@@ -21,6 +21,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -42,10 +43,14 @@ import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
+import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.integration.farmersdelight.FarmersDelightCompat;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -55,12 +60,46 @@ public class SandwichItem extends BlockItem {
         super(block, builder);
     }
 
-    public static ItemStack of(ItemLike item) {
-        return of(new ItemStack(item));
+    public static ItemStack makeSandwich(Potion potion) {
+        ItemStack item = new ItemStack(Items.POTION);
+        PotionUtils.setPotion(item, potion);
+        return makeSandwich(item);
     }
 
-    public static ItemStack of(ItemStack item) {
-        return SandwichBuilder.builder().add(item).build();
+    public static ItemStack makeSandwich(ItemLike... items) {
+        return makeSandwich(Arrays.stream(items)
+                .map(ItemStack::new)
+                .toArray(ItemStack[]::new));
+    }
+
+    public static ItemStack makeSandwich(ItemStack... items) {
+        ArrayList<ItemStack> list = new ArrayList<>();
+        list.add(new ItemStack(ModItems.BREAD_SLICE.get()));
+        list.addAll(Arrays.asList(items));
+        list.add(new ItemStack(ModItems.BREAD_SLICE.get()));
+        return of(list);
+    }
+
+    public static ItemStack of(ItemStack... items) {
+        return of(Arrays.asList(items));
+    }
+
+    public static ItemStack of(List<ItemStack> items) {
+        List<ItemStack> flattenedItems = new ArrayList<>();
+        for (ItemStack item : items) {
+            if (!item.is(ModItems.SANDWICH.get())) {
+                flattenedItems.add(item);
+            } else {
+                SandwichItemHandler.get(item).stream()
+                        .map(SandwichItemHandler::getItems)
+                        .flatMap(Collection::stream)
+                        .forEach(flattenedItems::add);
+            }
+        }
+
+        ItemStack result = new ItemStack(ModItems.SANDWICH.get());
+        result.getOrCreateTagElement("BlockEntityTag").put("Sandwich", SandwichItemHandler.serializerItems(flattenedItems));
+        return result;
     }
 
     @Override

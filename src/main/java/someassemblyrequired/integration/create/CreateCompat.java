@@ -66,14 +66,14 @@ public class CreateCompat {
                 .stream()
                 .filter(stack -> stack.getItem() instanceof PotionItem)
                 .filter(stack -> PotionFluidHandler.bottleTypeFromItem(stack) == PotionFluid.BottleType.REGULAR)
-                .map(SandwichItem::of)
+                .map(SandwichItem::makeSandwich)
                 .map(sandwich -> createSandwichRecipe(sandwich, "sequenced_assembly/sandwich_potions"))
                 .forEach(recipes::add);
 
         CreateJEI.findRecipes(recipe -> recipe.getSerializer() == ModRecipeTypes.SANDWICH_FLUID_SPOUTING_SERIALIZER.get())
                 .stream()
                 .map(recipe -> (SandwichFluidSpoutingRecipe) recipe)
-                .map(recipe -> builder(SandwichItem.of(recipe.getResultItem()), "sandwich_spouting")
+                .map(recipe -> builder(SandwichItem.makeSandwich(recipe.getResultItem()), "sandwich_spouting")
                         .addStep(FillingRecipe::new, r -> r.require(recipe.getIngredient()))
                         .addStep(DeployerApplicationRecipe::new, r -> r.require(ModItems.BREAD_SLICE.get()))
                         .build()

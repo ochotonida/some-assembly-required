@@ -20,7 +20,7 @@ import someassemblyrequired.common.block.sandwich.SandwichBlockEntity;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
-import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
+import someassemblyrequired.common.item.sandwich.SandwichItem;
 
 public class SandwichAssemblyTableBlock extends HorizontalDirectionalBlock {
 
@@ -49,28 +49,26 @@ public class SandwichAssemblyTableBlock extends HorizontalDirectionalBlock {
     }
 
     private static InteractionResult tryPlaceSandwich(Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitResult) {
-        ItemStack heldItem = player.getItemInHand(hand);
-        if (heldItem.isEmpty() || !Ingredients.canAddToSandwich(heldItem)) {
+        ItemStack heldItem = player.getItemInHand(hand).copy();
+        heldItem.setCount(1);
+
+        if (!Ingredients.canAddToSandwich(heldItem)) {
             return InteractionResult.PASS;
+        } else if (!heldItem.is(ModItems.SANDWICH.get()) && !heldItem.is(ModTags.SANDWICH_BREAD)) {
+            player.displayClientMessage(new TranslatableComponent("message.%s.bottom_bread".formatted(SomeAssemblyRequired.MODID)), true);
+            return InteractionResult.SUCCESS;
         }
 
-        ItemStack sandwich;
-        if (!heldItem.is(ModItems.SANDWICH.get())) {
-            if (!heldItem.is(ModTags.SANDWICH_BREAD)) {
-                player.displayClientMessage(new TranslatableComponent("message.%s.bottom_bread".formatted(SomeAssemblyRequired.MODID)), true);
-                return InteractionResult.SUCCESS;
-            }
-            ItemStack breadSlice = heldItem.copy();
-            breadSlice.setCount(1);
-            sandwich = new SandwichItemHandler(breadSlice).getAsItem();
+        ItemStack sandwich = SandwichItem.of(heldItem);
+        UseOnContext useOnContext = new UseOnContext(player, hand, hitResult);
+        InteractionResult placeResult = ModItems.SANDWICH.get().place(useOnContext, pos.above(), sandwich);
+
+        if (placeResult == InteractionResult.SUCCESS) {
             if (!player.isCreative()) {
                 player.getItemInHand(hand).shrink(1);
             }
-        } else {
-            sandwich = heldItem;
         }
 
-        UseOnContext useOnContext = new UseOnContext(player, hand, hitResult);
-        return ModItems.SANDWICH.get().place(useOnContext, pos.above(), sandwich);
+        return placeResult;
     }
 }
