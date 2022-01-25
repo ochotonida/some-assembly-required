@@ -6,17 +6,14 @@ import com.simibubi.create.compat.jei.CreateJEI;
 import com.simibubi.create.content.contraptions.components.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.contraptions.components.deployer.DeployerRecipeSearchEvent;
 import com.simibubi.create.content.contraptions.fluids.actors.FillingRecipe;
-import com.simibubi.create.content.contraptions.fluids.potion.PotionFluid;
 import com.simibubi.create.content.contraptions.fluids.potion.PotionFluidHandler;
 import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRecipeBuilder;
-import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.runtime.IIngredientManager;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,6 +31,7 @@ import someassemblyrequired.integration.create.recipe.SandwichFluidSpoutingRecip
 import someassemblyrequired.integration.create.recipe.deployer.SandwichDeployingRecipe;
 
 import java.util.HashSet;
+import java.util.stream.Stream;
 
 public class CreateCompat {
 
@@ -53,7 +51,7 @@ public class CreateCompat {
         event.addRecipe(() -> SandwichDeployingRecipe.createRecipe(event.getInventory()), 150);
     }
 
-    public static HashSet<Recipe<?>> createSandwichAssemblingRecipes(IIngredientManager ingredientManager) {
+    public static HashSet<Recipe<?>> createSandwichAssemblingRecipes() {
         NonNullList<ItemStack> sandwiches = NonNullList.create();
         ModItems.SANDWICH.get().fillItemCategory(ModItems.CREATIVE_TAB, sandwiches);
         HashSet<Recipe<?>> recipes = new HashSet<>();
@@ -62,10 +60,23 @@ public class CreateCompat {
             recipes.add(createSandwichRecipe(sandwich, "sandwich_deploying"));
         }
 
-        ingredientManager.getAllIngredients(VanillaTypes.ITEM)
-                .stream()
-                .filter(stack -> stack.getItem() instanceof PotionItem)
-                .filter(stack -> PotionFluidHandler.bottleTypeFromItem(stack) == PotionFluid.BottleType.REGULAR)
+        Stream.of(
+                Potions.NIGHT_VISION,
+                Potions.INVISIBILITY,
+                Potions.LEAPING,
+                Potions.FIRE_RESISTANCE,
+                Potions.SWIFTNESS,
+                Potions.SLOWNESS,
+                Potions.TURTLE_MASTER,
+                Potions.WATER_BREATHING,
+                Potions.HEALING,
+                Potions.HARMING,
+                Potions.POISON,
+                Potions.REGENERATION,
+                Potions.STRENGTH,
+                Potions.WEAKNESS,
+                Potions.SLOW_FALLING
+        )
                 .map(SandwichItem::makeSandwich)
                 .map(sandwich -> createSandwichRecipe(sandwich, "sequenced_assembly/sandwich_potions"))
                 .forEach(recipes::add);
