@@ -14,15 +14,12 @@ public class FarmersDelightCompat {
     }
 
     public static void addSandwichSubtypes(NonNullList<ItemStack> items) {
-        items.add(blt());
-    }
-
-    public static ItemStack blt() {
-        return SandwichItem.makeSandwich(
-                ModItems.COOKED_BACON.get(),
-                ModItems.CABBAGE_LEAF.get(),
-                someassemblyrequired.common.init.ModItems.TOMATO_SLICES.get()
-        );
+        items.add(SandwichItem.makeSandwich(
+                ModItems.BEEF_PATTY.get(),
+                someassemblyrequired.common.init.ModItems.TOMATO_SLICES.get(),
+                ModItems.FRIED_EGG.get(),
+                ModItems.CABBAGE_LEAF.get()
+        ));
     }
 
     public static boolean canAddToSandwich(ItemStack item) {
