@@ -33,8 +33,6 @@
   "item.some_assembly_required.chopped_carrot": "Geschnittene Karotten",
   "item.some_assembly_required.chopped_golden_carrot": "Geschnittene Gold-Karotten",
   "item.some_assembly_required.chopped_beetroot": "Geschnittene rote Beete",
-  "item.some_assembly_required.mayonnaise_bottle": "Mayonnaisenflasche",
-  "item.some_assembly_required.sweet_berry_jam_bottle": "süßiger Beerenmarmeladenflasche",
   "item.some_assembly_required.tomato_slices": "Tomatenscheiben",
 
   "item.some_assembly_required.sandwich": "Sandwich",
@@ -63,7 +61,5 @@
 
   "ingredient.some_assembly_required.water_bottle": "Wasser",
   "ingredient.some_assembly_required.honey_bottle": "Honig",
-  "ingredient.some_assembly_required.milk_bucket": "Milch",
-  "ingredient.some_assembly_required.mayonnaise_bottle": "Mayonnaise",
-  "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Süße Beerenmarmelade"
+  "ingredient.some_assembly_required.milk_bucket": "Milch"
 }

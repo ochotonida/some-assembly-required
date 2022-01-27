@@ -33,8 +33,6 @@
   "item.some_assembly_required.chopped_carrot": "Cenoura Picada",
   "item.some_assembly_required.chopped_golden_carrot": "Cenoura Dourada Picada",
   "item.some_assembly_required.chopped_beetroot": "Beterraba Picada",
-  "item.some_assembly_required.mayonnaise_bottle": "Frasco de Maionese",
-  "item.some_assembly_required.sweet_berry_jam_bottle": "Frasco de Geléia de Bagas Doces",
   "item.some_assembly_required.tomato_slices": "Fatias de Tomate",
 
   "item.some_assembly_required.sandwich": "Sanduíche",
@@ -63,7 +61,5 @@
 
   "ingredient.some_assembly_required.water_bottle": "Água",
   "ingredient.some_assembly_required.honey_bottle": "Mel",
-  "ingredient.some_assembly_required.milk_bucket": "Leite",
-  "ingredient.some_assembly_required.mayonnaise_bottle": "Maionese",
-  "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Geléia de Bagas Doces"
+  "ingredient.some_assembly_required.milk_bucket": "Leite"
 }

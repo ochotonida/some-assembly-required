@@ -34,8 +34,6 @@
   "item.some_assembly_required.chopped_carrot": "Chopped Carrot",
   "item.some_assembly_required.chopped_golden_carrot": "Chopped Golden Carrot",
   "item.some_assembly_required.chopped_beetroot": "Chopped Beetroot",
-  "item.some_assembly_required.mayonnaise_bottle": "Mayonnaise Bottle",
-  "item.some_assembly_required.sweet_berry_jam_bottle": "Sweet Berry Jam Bottle",
   "item.some_assembly_required.tomato_slices": "Tomato Slices",
 
   "item.some_assembly_required.sandwich": "Sandwich",
@@ -67,8 +65,6 @@
   "ingredient.some_assembly_required.water_bottle": "Water",
   "ingredient.some_assembly_required.honey_bottle": "Honey",
   "ingredient.some_assembly_required.milk_bucket": "Milk",
-  "ingredient.some_assembly_required.mayonnaise_bottle": "Mayonnaise",
-  "ingredient.some_assembly_required.sweet_berry_jam_bottle": "Sweet Berry Jam",
 
   "ingredient.some_assembly_required.farmersdelight.cabbage_leaf": "Cabbage",
   "ingredient.some_assembly_required.farmersdelight.fried_egg": "Egg",

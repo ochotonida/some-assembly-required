@@ -2,9 +2,11 @@ package someassemblyrequired.data;
 
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
@@ -28,7 +30,6 @@ public class Recipes extends RecipeProvider {
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         addShapedRecipes(consumer);
-        addShapelessRecipes(consumer);
         addCookingRecipes(consumer);
         CuttingRecipeBuilder.addCuttingRecipes(consumer);
         SandwichSpoutingRecipeBuilder.addFillingRecipes(consumer);
@@ -43,15 +44,6 @@ public class Recipes extends RecipeProvider {
         addSandwichAssemblyTable(ModBlocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.DARK_OAK_PLANKS, consumer);
         addSandwichAssemblyTable(ModBlocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.CRIMSON_PLANKS, consumer);
         addSandwichAssemblyTable(ModBlocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.WARPED_PLANKS, consumer);
-    }
-
-    private void addShapelessRecipes(Consumer<FinishedRecipe> consumer) {
-        ShapelessRecipeBuilder.shapeless(ModItems.SWEET_BERRY_JAM_BOTTLE.get())
-                .requires(Items.GLASS_BOTTLE)
-                .requires(Items.SWEET_BERRIES, 2)
-                .requires(Items.SUGAR)
-                .unlockedBy("has_sweet_berries", createItemCriterion(Items.SWEET_BERRIES))
-                .save(consumer, getRecipeLocation(ModItems.SWEET_BERRY_JAM_BOTTLE.get(), "crafting_shapeless"));
     }
 
     private void addCookingRecipes(Consumer<FinishedRecipe> consumer) {

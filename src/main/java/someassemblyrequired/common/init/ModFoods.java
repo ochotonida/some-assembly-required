@@ -62,16 +62,6 @@ public class ModFoods {
             .fast()
             .build();
 
-    public static final FoodProperties MAYONNAISE = new FoodProperties.Builder()
-            .nutrition(3)
-            .saturationMod(0.1F)
-            .build();
-
-    public static final FoodProperties SWEET_BERRY_JAM = new FoodProperties.Builder()
-            .nutrition(5)
-            .saturationMod(0.5F)
-            .build();
-
     public static final FoodProperties TOMATO_SLICES = new FoodProperties.Builder()
             .nutrition(2)
             .saturationMod(0.6F)

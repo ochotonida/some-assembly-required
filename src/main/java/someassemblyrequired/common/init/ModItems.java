@@ -1,6 +1,5 @@
 package someassemblyrequired.common.init;
 
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -12,7 +11,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.item.DrinkableBottleItem;
 import someassemblyrequired.common.item.EnchantedGoldenAppleSlicesItem;
 import someassemblyrequired.common.item.SpreadItem;
 import someassemblyrequired.common.item.sandwich.SandwichItem;
@@ -53,10 +51,6 @@ public class ModItems {
     public static final RegistryObject<Item> CHOPPED_BEETROOT = REGISTRY.register("chopped_beetroot", () -> createFoodItem(ModFoods.CHOPPED_BEETROOT));
     public static final RegistryObject<Item> TOMATO_SLICES = REGISTRY.register("tomato_slices", () -> createFoodItem(ModFoods.TOMATO_SLICES));
 
-    // spreadables
-    public static final RegistryObject<Item> MAYONNAISE_BOTTLE = REGISTRY.register("mayonnaise_bottle", () -> createSpreadItem(ModFoods.MAYONNAISE));
-    public static final RegistryObject<Item> SWEET_BERRY_JAM_BOTTLE = REGISTRY.register("sweet_berry_jam_bottle", () -> createSpreadItem(ModFoods.SWEET_BERRY_JAM));
-
     // misc items
     public static final RegistryObject<SandwichItem> SANDWICH = REGISTRY.register("sandwich", () -> new SandwichItem(ModBlocks.SANDWICH.get(), new Item.Properties().stacksTo(12).tab(CREATIVE_TAB).food(ModFoods.SANDWICH)));
     public static final RegistryObject<Item> SPREAD = REGISTRY.register("spread", () -> new SpreadItem(new Item.Properties()));
@@ -77,10 +71,6 @@ public class ModItems {
 
     private static Item createFoodItem(FoodProperties food) {
         return new Item(new Item.Properties().tab(CREATIVE_TAB).food(food));
-    }
-
-    private static Item createSpreadItem(FoodProperties food) {
-        return new DrinkableBottleItem(new Item.Properties().tab(CREATIVE_TAB).craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(food), SoundEvents.HONEY_DRINK);
     }
 
     public static void registerCompostables() {
