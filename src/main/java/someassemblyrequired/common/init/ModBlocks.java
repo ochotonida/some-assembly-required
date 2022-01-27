@@ -25,7 +25,7 @@ public class ModBlocks {
                             .strength(0.5F)
                             .noCollission()
                             .isRedstoneConductor((state, world, pos) -> false)
-                            .sound(SoundType.WOOL)
+                            .sound(ModSoundTypes.SANDWICH_SOUND_TYPE)
             )
     );
 
