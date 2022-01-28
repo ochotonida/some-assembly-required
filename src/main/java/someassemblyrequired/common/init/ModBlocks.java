@@ -22,7 +22,7 @@ public class ModBlocks {
             () -> new SandwichBlock(
                     BlockBehaviour.Properties
                             .of(Material.DECORATION, MaterialColor.WOOD)
-                            .strength(0.5F)
+                            .strength(0.15F)
                             .noCollission()
                             .isRedstoneConductor((state, world, pos) -> false)
                             .sound(ModSoundTypes.SANDWICH_SOUND_TYPE)
