@@ -1,5 +1,11 @@
 {
   "item": "farmersdelight:ratatouille",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 26
+    }
+  },
   "container": {
     "item": "minecraft:bowl"
   },

@@ -1,5 +1,11 @@
 {
   "item": "farmersdelight:vegetable_soup",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 23
+    }
+  },
   "container": {
     "item": "minecraft:bowl"
   },

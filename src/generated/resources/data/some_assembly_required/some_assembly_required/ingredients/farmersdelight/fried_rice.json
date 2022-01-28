@@ -1,5 +1,11 @@
 {
   "item": "farmersdelight:fried_rice",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 24
+    }
+  },
   "container": {
     "item": "minecraft:bowl"
   },

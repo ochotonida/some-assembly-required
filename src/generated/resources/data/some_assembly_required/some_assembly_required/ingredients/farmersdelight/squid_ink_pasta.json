@@ -1,5 +1,11 @@
 {
   "item": "farmersdelight:squid_ink_pasta",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 27
+    }
+  },
   "container": {
     "item": "minecraft:bowl"
   },
