@@ -26,7 +26,12 @@ public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients
             ModItems.NETHER_SALAD.get(),
             ModItems.COOKED_RICE.get(),
             ModItems.BEEF_STEW.get(),
-            ModItems.CHICKEN_SOUP.get()
+            ModItems.CHICKEN_SOUP.get(),
+            ModItems.VEGETABLE_SOUP.get(),
+            ModItems.FRIED_RICE.get(),
+            ModItems.PASTA_WITH_MEATBALLS.get(),
+            ModItems.RATATOUILLE.get(),
+            ModItems.SQUID_INK_PASTA.get()
     );
 
     public void addIngredients() {
