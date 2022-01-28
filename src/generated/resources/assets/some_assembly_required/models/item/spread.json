@@ -146,23 +146,35 @@
       "predicate": {
         "minecraft:custom_model_data": 24.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/fried_rice"
+      "model": "some_assembly_required:ingredient/farmersdelight/pumpkin_soup"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 25.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/pasta_with_meatballs"
+      "model": "some_assembly_required:ingredient/farmersdelight/bacon_and_eggs"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 26.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/ratatouille"
+      "model": "some_assembly_required:ingredient/farmersdelight/fried_rice"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 27.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/pasta_with_meatballs"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 28.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/ratatouille"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 29.0
       },
       "model": "some_assembly_required:ingredient/farmersdelight/squid_ink_pasta"
     }
