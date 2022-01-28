@@ -29,6 +29,8 @@ public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients
             ModItems.CHICKEN_SOUP.get(),
             ModItems.VEGETABLE_SOUP.get(),
             ModItems.FRIED_RICE.get(),
+            ModItems.PUMPKIN_SOUP.get(),
+            ModItems.BACON_AND_EGGS.get(),
             ModItems.PASTA_WITH_MEATBALLS.get(),
             ModItems.RATATOUILLE.get(),
             ModItems.SQUID_INK_PASTA.get()
