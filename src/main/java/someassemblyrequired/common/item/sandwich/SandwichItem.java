@@ -48,11 +48,9 @@ import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.integration.farmersdelight.FarmersDelightCompat;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class SandwichItem extends BlockItem {
 
@@ -104,27 +102,26 @@ public class SandwichItem extends BlockItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        super.appendHoverText(stack, world, tooltip, flag);
-        SandwichItemHandler.get(stack).ifPresent(handler -> {
-            int size = handler.size();
-            int ingredientsToShow = Math.min(size, 8);
-            if (size == ingredientsToShow + 1) {
-                ingredientsToShow++;
-            }
-
-            for (int i = 0; i < ingredientsToShow; i++) {
-                tooltip.add(Ingredients.getFullName(handler.getStackInSlot(size - i - 1)).plainCopy().withStyle(ChatFormatting.GRAY));
-            }
-
-            if (size > ingredientsToShow) {
-                tooltip.add(
-                        new TranslatableComponent("tooltip.%s.truncate_info".formatted(SomeAssemblyRequired.MODID), size - ingredientsToShow)
-                                .withStyle(ChatFormatting.GRAY)
-                                .withStyle(ChatFormatting.ITALIC)
-                );
-            }
-        });
+    public void appendHoverText(ItemStack sandwich, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(sandwich, world, tooltip, flag);
+        SandwichItemHandler.get(sandwich).ifPresent(handler -> handler.getItems()
+                .stream()
+                .collect(
+                        Collectors.groupingBy(
+                                item -> Ingredients.getFullName(item).plainCopy(),
+                                LinkedHashMap::new,
+                                Collectors.counting()
+                        )
+                )
+                .forEach(
+                        (item, count) -> {
+                            if (count > 1) {
+                                tooltip.add(new TranslatableComponent("tooltip.%s.ingredient_count".formatted(SomeAssemblyRequired.MODID), item, count).withStyle(ChatFormatting.GRAY));
+                            } else {
+                                tooltip.add(item.withStyle(ChatFormatting.GRAY));
+                            }
+                        }
+                ));
     }
 
     @Override

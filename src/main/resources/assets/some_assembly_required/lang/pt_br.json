@@ -47,8 +47,6 @@
   "tooltip.some_assembly_required.ingredient_list.1": "%s",
   "tooltip.some_assembly_required.ingredient_list.2": "%s e %s",
   "tooltip.some_assembly_required.ingredient_list.3": "%s, %s e %s",
-  
-  "tooltip.some_assembly_required.truncate_info": "(%s ingredientes adicionais)",
 
   "ingredient.some_assembly_required.toasted_bread_slice": "Torrada",
   "ingredient.some_assembly_required.apple_slices": "Maçã",

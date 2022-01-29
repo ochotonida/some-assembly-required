@@ -51,7 +51,7 @@
   "tooltip.some_assembly_required.ingredient_list.2": "%s & %s",
   "tooltip.some_assembly_required.ingredient_list.3": "%s, %s & %s",
 
-  "tooltip.some_assembly_required.truncate_info": "(%s additional ingredients)",
+  "tooltip.some_assembly_required.ingredient_count": "%s (x%s)",
 
   "ingredient.some_assembly_required.toasted_bread_slice": "Toast",
   "ingredient.some_assembly_required.apple_slices": "Apple",
