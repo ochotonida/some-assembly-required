@@ -1,7 +1,7 @@
 {
   "item": "minecraft:milk_bucket",
   "fullName": {
-    "translate": "ingredient.some_assembly_required.milk_bucket"
+    "translate": "some_assembly_required.ingredient.milk_bucket"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",

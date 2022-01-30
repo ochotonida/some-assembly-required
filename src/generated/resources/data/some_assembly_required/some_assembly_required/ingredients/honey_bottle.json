@@ -1,7 +1,7 @@
 {
   "item": "minecraft:honey_bottle",
   "fullName": {
-    "translate": "ingredient.some_assembly_required.honey_bottle"
+    "translate": "some_assembly_required.ingredient.honey_bottle"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",

@@ -1,7 +1,7 @@
 {
   "item": "farmersdelight:bacon",
   "displayName": {
-    "translate": "ingredient.some_assembly_required.farmersdelight.bacon"
+    "translate": "some_assembly_required.ingredient.farmersdelight.bacon"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",

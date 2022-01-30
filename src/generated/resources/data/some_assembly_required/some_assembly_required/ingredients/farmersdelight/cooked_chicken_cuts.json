@@ -1,7 +1,7 @@
 {
   "item": "farmersdelight:cooked_chicken_cuts",
   "displayName": {
-    "translate": "ingredient.some_assembly_required.farmersdelight.chicken_cuts"
+    "translate": "some_assembly_required.ingredient.farmersdelight.chicken_cuts"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",

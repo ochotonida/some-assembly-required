@@ -1,7 +1,7 @@
 {
   "item": "some_assembly_required:tomato_slices",
   "displayName": {
-    "translate": "ingredient.some_assembly_required.tomato_slices"
+    "translate": "some_assembly_required.ingredient.tomato_slices"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",

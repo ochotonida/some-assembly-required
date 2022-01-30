@@ -1,7 +1,7 @@
 {
   "item": "farmersdelight:fried_egg",
   "displayName": {
-    "translate": "ingredient.some_assembly_required.farmersdelight.fried_egg"
+    "translate": "some_assembly_required.ingredient.farmersdelight.fried_egg"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",

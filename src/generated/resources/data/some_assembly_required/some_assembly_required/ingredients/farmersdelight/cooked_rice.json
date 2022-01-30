@@ -1,7 +1,7 @@
 {
   "item": "farmersdelight:cooked_rice",
   "displayName": {
-    "translate": "ingredient.some_assembly_required.farmersdelight.cooked_rice"
+    "translate": "some_assembly_required.ingredient.farmersdelight.cooked_rice"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",

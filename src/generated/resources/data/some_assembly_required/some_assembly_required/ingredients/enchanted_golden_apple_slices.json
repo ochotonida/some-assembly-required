@@ -1,7 +1,7 @@
 {
   "item": "some_assembly_required:enchanted_golden_apple_slices",
   "displayName": {
-    "translate": "ingredient.some_assembly_required.enchanted_golden_apple_slices"
+    "translate": "some_assembly_required.ingredient.enchanted_golden_apple_slices"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",

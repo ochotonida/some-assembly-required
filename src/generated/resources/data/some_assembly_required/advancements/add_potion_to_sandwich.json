@@ -6,10 +6,10 @@
       "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\"},{Count:1b,id:\"minecraft:potion\",tag:{Potion:\"minecraft:night_vision\"}},{Count:1b,id:\"some_assembly_required:bread_slice\"}]}}"
     },
     "title": {
-      "translate": "advancement.some_assembly_required.add_potion_to_sandwich.title"
+      "translate": "some_assembly_required.advancement.add_potion_to_sandwich.title"
     },
     "description": {
-      "translate": "advancement.some_assembly_required.add_potion_to_sandwich.description"
+      "translate": "some_assembly_required.advancement.add_potion_to_sandwich.description"
     },
     "frame": "task",
     "show_toast": true,

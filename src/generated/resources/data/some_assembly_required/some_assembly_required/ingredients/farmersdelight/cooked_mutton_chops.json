@@ -1,7 +1,7 @@
 {
   "item": "farmersdelight:cooked_mutton_chops",
   "displayName": {
-    "translate": "ingredient.some_assembly_required.farmersdelight.mutton_chops"
+    "translate": "some_assembly_required.ingredient.farmersdelight.mutton_chops"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",

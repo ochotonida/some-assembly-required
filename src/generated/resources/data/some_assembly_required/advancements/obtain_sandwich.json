@@ -6,10 +6,10 @@
       "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\"},{Count:1b,id:\"some_assembly_required:tomato_slices\"},{Count:1b,id:\"some_assembly_required:chopped_carrot\"},{Count:1b,id:\"some_assembly_required:bread_slice\"}]}}"
     },
     "title": {
-      "translate": "advancement.some_assembly_required.obtain_sandwich.title"
+      "translate": "some_assembly_required.advancement.obtain_sandwich.title"
     },
     "description": {
-      "translate": "advancement.some_assembly_required.obtain_sandwich.description"
+      "translate": "some_assembly_required.advancement.obtain_sandwich.description"
     },
     "frame": "task",
     "show_toast": true,

@@ -1,7 +1,7 @@
 {
   "item": "farmersdelight:cabbage_leaf",
   "displayName": {
-    "translate": "ingredient.some_assembly_required.farmersdelight.cabbage_leaf"
+    "translate": "some_assembly_required.ingredient.farmersdelight.cabbage_leaf"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",
