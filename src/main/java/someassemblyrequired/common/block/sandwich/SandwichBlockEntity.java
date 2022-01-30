@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -19,7 +18,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
-import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.config.ModConfig;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
@@ -27,6 +25,7 @@ import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModSoundEvents;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
+import someassemblyrequired.common.util.Util;
 
 import javax.annotation.Nullable;
 
@@ -83,7 +82,7 @@ public class SandwichBlockEntity extends BlockEntity {
         } else if (!Ingredients.canAddToSandwich(itemToAdd)) {
             return InteractionResult.PASS;
         } else if (sandwich.size() >= ModConfig.server.maximumSandwichHeight.get()) {
-            player.displayClientMessage(new TranslatableComponent("message.%s.full_sandwich".formatted(SomeAssemblyRequired.MODID)), true);
+            player.displayClientMessage(Util.translate("message.full_sandwich"), true);
             return InteractionResult.SUCCESS;
         } else {
             addSingleItem(player, hand, itemToAdd);
@@ -111,7 +110,7 @@ public class SandwichBlockEntity extends BlockEntity {
         }
         SandwichItemHandler.get(stack).ifPresent(handler -> {
             if (!sandwich.canAdd(handler)) {
-                player.displayClientMessage(new TranslatableComponent("message.%s.full_sandwich".formatted(SomeAssemblyRequired.MODID)), true);
+                player.displayClientMessage(Util.translate("message.full_sandwich"), true);
             } else {
                 sandwich.add(handler);
                 shrinkHeldItem(player, hand);

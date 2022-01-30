@@ -1,7 +1,6 @@
 package someassemblyrequired.common.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -15,12 +14,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
-import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.sandwich.SandwichBlockEntity;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 import someassemblyrequired.common.item.sandwich.SandwichItem;
+import someassemblyrequired.common.util.Util;
 
 public class SandwichAssemblyTableBlock extends HorizontalDirectionalBlock {
 
@@ -55,7 +54,7 @@ public class SandwichAssemblyTableBlock extends HorizontalDirectionalBlock {
         if (!Ingredients.canAddToSandwich(heldItem)) {
             return InteractionResult.PASS;
         } else if (!heldItem.is(ModItems.SANDWICH.get()) && !heldItem.is(ModTags.SANDWICH_BREAD)) {
-            player.displayClientMessage(new TranslatableComponent("message.%s.bottom_bread".formatted(SomeAssemblyRequired.MODID)), true);
+            player.displayClientMessage(Util.translate("message.bottom_bread"), true);
             return InteractionResult.SUCCESS;
         }
 

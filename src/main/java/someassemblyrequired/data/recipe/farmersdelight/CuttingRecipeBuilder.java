@@ -1,7 +1,5 @@
 package someassemblyrequired.data.recipe.farmersdelight;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -11,11 +9,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
-import someassemblyrequired.integration.ModCompat;
+import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.crafting.ingredient.ChanceResult;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
@@ -99,7 +95,7 @@ public class CuttingRecipeBuilder {
     public void build(Consumer<FinishedRecipe> consumer) {
         ResourceLocation location = results.get(0).getStack().getItem().getRegistryName();
         // noinspection ConstantConditions
-        build(consumer, Util.id("cutting/%s/".formatted(ModCompat.FARMERS_DELIGHT) + location.getPath()));
+        build(consumer, Util.id("cutting/%s/".formatted(FarmersDelight.MODID) + location.getPath()));
     }
 
     public void build(Consumer<FinishedRecipe> consumer, String save) {
@@ -108,21 +104,8 @@ public class CuttingRecipeBuilder {
 
     public void build(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
         RECIPES.remove(this);
-        consumer.accept(new Result(id, ingredient, tool, results, soundEvent));
-    }
-
-    public static final class Result extends CuttingBoardRecipeBuilder.Result {
-
-        public Result(ResourceLocation id, Ingredient ingredient, Ingredient tool, List<ChanceResult> results, SoundEvent soundEvent) {
-            // noinspection ConstantConditions
-            super(id, ingredient, tool, results, soundEvent == null ? "" : soundEvent.getRegistryName().toString());
-        }
-
-        public void serializeRecipeData(JsonObject object) {
-            JsonArray conditions = new JsonArray();
-            conditions.add(CraftingHelper.serialize(new ModLoadedCondition(ModCompat.FARMERS_DELIGHT)));
-            object.add("conditions", conditions);
-            super.serializeRecipeData(object);
-        }
+        // noinspection ConstantConditions
+        String sound = soundEvent == null ? "" : soundEvent.getRegistryName().toString();
+        consumer.accept(new CuttingBoardRecipeBuilder.Result(id, ingredient, tool, results, sound));
     }
 }

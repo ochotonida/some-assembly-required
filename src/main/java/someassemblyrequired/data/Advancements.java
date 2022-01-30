@@ -12,7 +12,6 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.HusbandryAdvancements;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potions;
@@ -133,8 +132,8 @@ public class Advancements extends AdvancementProvider {
 
         private static Advancement addAdvancement(Consumer<Advancement> consumer, Advancement parent, ItemStack display, AbstractCriterionTriggerInstance criterion, String name, boolean hidden) {
             return Advancement.Builder.advancement().parent(parent).display(display,
-                    new TranslatableComponent("advancement." + SomeAssemblyRequired.MODID + "." + name + ".title"),
-                    new TranslatableComponent("advancement." + SomeAssemblyRequired.MODID + "." + name + ".description"),
+                    Util.translate("advancement.%s.title".formatted(name)),
+                    Util.translate("advancement.%s.description".formatted(name)),
                     null, FrameType.TASK, true, true, hidden)
                     .addCriterion(name, criterion)
                     .save(consumer, Util.id(name).toString());

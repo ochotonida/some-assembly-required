@@ -128,9 +128,9 @@ public class IngredientBuilder {
         ResourceLocation id = item.getRegistryName();
         // noinspection ConstantConditions
         if ("minecraft".equals(id.getNamespace()) || SomeAssemblyRequired.MODID.equals(id.getNamespace())) {
-            return "ingredient.%s.%s".formatted(SomeAssemblyRequired.MODID, id.getPath());
+            return "%s.ingredient.%s".formatted(SomeAssemblyRequired.MODID, id.getPath());
         } else {
-            return "ingredient.%s.%s.%s".formatted(SomeAssemblyRequired.MODID, id.getNamespace(), id.getPath());
+            return "%s.ingredient.%s.%s".formatted(SomeAssemblyRequired.MODID, id.getNamespace(), id.getPath());
         }
     }
 }

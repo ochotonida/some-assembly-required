@@ -10,7 +10,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -39,13 +38,11 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
-import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.integration.ModCompat;
-import someassemblyrequired.integration.farmersdelight.FarmersDelightCompat;
+import someassemblyrequired.common.util.Util;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -116,7 +113,7 @@ public class SandwichItem extends BlockItem {
                 .forEach(
                         (item, count) -> {
                             if (count > 1) {
-                                tooltip.add(new TranslatableComponent("tooltip.%s.ingredient_count".formatted(SomeAssemblyRequired.MODID), item, count).withStyle(ChatFormatting.GRAY));
+                                tooltip.add(Util.translate("tooltip.ingredient_count", item, count).withStyle(ChatFormatting.GRAY));
                             } else {
                                 tooltip.add(item.withStyle(ChatFormatting.GRAY));
                             }
@@ -127,9 +124,12 @@ public class SandwichItem extends BlockItem {
     @Override
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (allowdedIn(group)) {
-            if (ModCompat.isFarmersDelightLoaded()) {
-                FarmersDelightCompat.addSandwichSubtypes(items);
-            }
+            items.add(SandwichItem.makeSandwich(
+                    vectorwing.farmersdelight.common.registry.ModItems.BEEF_PATTY.get(),
+                    someassemblyrequired.common.init.ModItems.TOMATO_SLICES.get(),
+                    vectorwing.farmersdelight.common.registry.ModItems.FRIED_EGG.get(),
+                    vectorwing.farmersdelight.common.registry.ModItems.CABBAGE_LEAF.get()
+            ));
         }
     }
 
