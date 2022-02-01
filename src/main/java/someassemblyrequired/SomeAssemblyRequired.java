@@ -50,6 +50,7 @@ public class SomeAssemblyRequired {
             Ingredients.addBehaviors();
             NetworkHandler.register();
             ModItems.registerCompostables();
+            ModLootFunctions.register();
         });
     }
 }
