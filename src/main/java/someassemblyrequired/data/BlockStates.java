@@ -8,7 +8,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
@@ -32,42 +31,15 @@ public class BlockStates extends BlockStateProvider {
 
         horizontalBlock(ModBlocks.SANDWICH.get(), state -> sandwichModel, BlockStateProperties.WATERLOGGED, SandwichBlock.SIZE);
 
-        models().withExistingParent("block/sandwich_assembly_table", "cube")
-                .texture("down", "#bottom")
-                .texture("up", prefixBlock("sandwich_assembly_table_top"))
-                .texture("north", "#side")
-                .texture("south", "#front")
-                .texture("east", "#side")
-                .texture("west", "#side")
-                .texture("particle", "#side")
-                .transforms()
-                .transform(ModelBuilder.Perspective.GUI)
-                .rotation(30, 45, 0)
-                .scale(0.625F)
-                .end()
-                .transform(ModelBuilder.Perspective.FIXED)
-                .rotation(0, 180, 0)
-                .scale(0.5F)
-                .end()
-                .transform(ModelBuilder.Perspective.FIRSTPERSON_RIGHT)
-                .rotation(0, 315, 0)
-                .scale(0.4F)
-                .end()
-                .transform(ModelBuilder.Perspective.THIRDPERSON_RIGHT)
-                .rotation(75, 315, 0)
-                .translation(0, 2.5F, 0)
-                .scale(0.375F)
-                .end()
-                .end();
+        String name = ModBlocks.SANDWICHING_STATION.getId().getPath();
+        ModelFile model = models().cubeBottomTop(
+                "block/" + name,
+                prefixBlock(name + "_side"),
+                prefixBlock(name + "_bottom"),
+                prefixBlock(name + "_top")
+        );
 
-        sandwichAssemblyTable(ModBlocks.OAK_SANDWICH_ASSEMBLY_TABLE.get(), "oak");
-        sandwichAssemblyTable(ModBlocks.SPRUCE_SANDWICH_ASSEMBLY_TABLE.get(), "spruce");
-        sandwichAssemblyTable(ModBlocks.BIRCH_SANDWICH_ASSEMBLY_TABLE.get(), "birch");
-        sandwichAssemblyTable(ModBlocks.JUNGLE_SANDWICH_ASSEMBLY_TABLE.get(), "jungle");
-        sandwichAssemblyTable(ModBlocks.ACACIA_SANDWICH_ASSEMBLY_TABLE.get(), "acacia");
-        sandwichAssemblyTable(ModBlocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE.get(), "dark_oak");
-        sandwichAssemblyTable(ModBlocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get(), "crimson");
-        sandwichAssemblyTable(ModBlocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get(), "warped");
+        simpleBlock(ModBlocks.SANDWICHING_STATION.get(), model);
     }
 
     private ResourceLocation prefixBlock(String path) {
@@ -85,14 +57,5 @@ public class BlockStates extends BlockStateProvider {
                         .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
                         .build(), ignored
                 );
-    }
-
-    private void sandwichAssemblyTable(Block block, String woodType) {
-        ModelFile model = models()
-                .withExistingParent("block/" + woodType + "_sandwich_assembly_table", prefixBlock("sandwich_assembly_table"))
-                .texture("front", prefixBlock(woodType + "_sandwich_assembly_table_front"))
-                .texture("side", prefixBlock(woodType + "_sandwich_assembly_table_side"))
-                .texture("bottom", new ResourceLocation("block/" + woodType + "_planks"));
-        horizontalBlock(block, $ -> model);
     }
 }

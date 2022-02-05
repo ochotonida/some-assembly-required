@@ -7,12 +7,11 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
@@ -36,14 +35,13 @@ public class Recipes extends RecipeProvider {
     }
 
     private void addShapedRecipes(Consumer<FinishedRecipe> consumer) {
-        addSandwichAssemblyTable(ModBlocks.OAK_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.OAK_PLANKS, consumer);
-        addSandwichAssemblyTable(ModBlocks.SPRUCE_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.SPRUCE_PLANKS, consumer);
-        addSandwichAssemblyTable(ModBlocks.BIRCH_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.BIRCH_PLANKS, consumer);
-        addSandwichAssemblyTable(ModBlocks.JUNGLE_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.JUNGLE_PLANKS, consumer);
-        addSandwichAssemblyTable(ModBlocks.ACACIA_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.ACACIA_PLANKS, consumer);
-        addSandwichAssemblyTable(ModBlocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.DARK_OAK_PLANKS, consumer);
-        addSandwichAssemblyTable(ModBlocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.CRIMSON_PLANKS, consumer);
-        addSandwichAssemblyTable(ModBlocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get(), Blocks.WARPED_PLANKS, consumer);
+        ShapedRecipeBuilder.shaped(ModBlocks.SANDWICHING_STATION.get())
+                .pattern("AA")
+                .pattern("BB")
+                .define('A', ModItems.BREAD_SLICE.get())
+                .define('B', ItemTags.PLANKS)
+                .unlockedBy("has_bread", createItemCriterion(ModItems.BREAD_SLICE.get()))
+                .save(consumer, getRecipeLocation(ModBlocks.SANDWICHING_STATION.get(), "crafting_shaped"));
     }
 
     private void addCookingRecipes(Consumer<FinishedRecipe> consumer) {
@@ -57,16 +55,6 @@ public class Recipes extends RecipeProvider {
                 .cooking(Ingredient.of(ModItems.BREAD_SLICE.get()), ModItems.TOASTED_BREAD_SLICE.get(), 0.35F, time, serializer)
                 .unlockedBy("has_bread", createItemCriterion(ModItems.BREAD_SLICE.get()))
                 .save(consumer, getRecipeLocation(ModItems.TOASTED_BREAD_SLICE.get(), type));
-    }
-
-    private void addSandwichAssemblyTable(Block sandwichAssemblyTable, Block planks, Consumer<FinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(sandwichAssemblyTable)
-                .pattern("AA")
-                .pattern("BB")
-                .define('A', Blocks.SMOOTH_STONE)
-                .define('B', planks)
-                .unlockedBy("has_planks", createItemCriterion(planks))
-                .save(consumer, getRecipeLocation(sandwichAssemblyTable, "crafting_shaped/sandwich_assembly_table"));
     }
 
     private ResourceLocation getRecipeLocation(ItemLike result, String location) {

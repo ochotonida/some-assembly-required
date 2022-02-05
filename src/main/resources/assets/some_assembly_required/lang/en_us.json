@@ -15,14 +15,7 @@
   "some_assembly_required.message.bottom_bread": "Missing bottom bread slice!",
   "some_assembly_required.message.full_sandwich": "You cannot add any more items!",
 
-  "block.some_assembly_required.acacia_sandwich_assembly_table": "Acacia Sandwich Assembly Table",
-  "block.some_assembly_required.birch_sandwich_assembly_table": "Birch Sandwich Assembly Table",
-  "block.some_assembly_required.crimson_sandwich_assembly_table": "Crimson Sandwich Assembly Table",
-  "block.some_assembly_required.dark_oak_sandwich_assembly_table": "Dark Oak Sandwich Assembly Table",
-  "block.some_assembly_required.jungle_sandwich_assembly_table": "Jungle Sandwich Assembly Table",
-  "block.some_assembly_required.oak_sandwich_assembly_table": "Oak Sandwich Assembly Table",
-  "block.some_assembly_required.spruce_sandwich_assembly_table": "Spruce Sandwich Assembly Table",
-  "block.some_assembly_required.warped_sandwich_assembly_table": "Warped Sandwich Assembly Table",
+  "block.some_assembly_required.sandwiching_station": "Sandwiching Station",
   "block.some_assembly_required.sandwich": "Sandwich",
 
   "item.some_assembly_required.spread": "Spread",

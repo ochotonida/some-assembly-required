@@ -14,14 +14,6 @@
   "some_assembly_required.message.bottom_bread": "Fatia de pão inferior ausente!",
   "some_assembly_required.message.full_sandwich": "Você não pode adicionar mais itens!",
 
-  "block.some_assembly_required.acacia_sandwich_assembly_table": "Mesa de Montagem de Sanduíche de Acácia",
-  "block.some_assembly_required.birch_sandwich_assembly_table": "Mesa de Montagem de Sanduíche de Bétula",
-  "block.some_assembly_required.crimson_sandwich_assembly_table": "Mesa de Montagem de Sanduíche Carmesim",
-  "block.some_assembly_required.dark_oak_sandwich_assembly_table": "Mesa de Montagem de Sanduíche de Carvalho Escuro",
-  "block.some_assembly_required.jungle_sandwich_assembly_table": "Mesa de Montagem de Sanduíche da Selva",
-  "block.some_assembly_required.oak_sandwich_assembly_table": "Mesa de Montagem de Sanduíche de Carvalho",
-  "block.some_assembly_required.spruce_sandwich_assembly_table": "Mesa de Montagem de Sanduíche de Pinheiro",
-  "block.some_assembly_required.warped_sandwich_assembly_table": "Mesa de Montagem de Sanduíche Retorcida",
   "block.some_assembly_required.sandwich": "Sanduíche",
 
   "item.some_assembly_required.spread": "Pasta Para Espalhar Sobre o Pão",

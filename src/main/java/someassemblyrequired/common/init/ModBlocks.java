@@ -29,59 +29,10 @@ public class ModBlocks {
             )
     );
 
-    // sandwich assembly tables
-    public static final RegistryObject<Block> OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "oak_sandwich_assembly_table",
+    public static final RegistryObject<Block> SANDWICHING_STATION = REGISTRY.register(
+            "sandwiching_station",
             () -> createSandwichAssemblyTable(Material.WOOD)
     );
-
-    public static final RegistryObject<Block> SPRUCE_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "spruce_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.WOOD)
-    );
-
-    public static final RegistryObject<Block> BIRCH_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "birch_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.WOOD)
-    );
-
-    public static final RegistryObject<Block> JUNGLE_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "jungle_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.WOOD)
-    );
-
-    public static final RegistryObject<Block> ACACIA_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "acacia_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.WOOD)
-    );
-
-    public static final RegistryObject<Block> DARK_OAK_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "dark_oak_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.WOOD)
-    );
-
-    public static final RegistryObject<Block> CRIMSON_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "crimson_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.NETHER_WOOD)
-    );
-
-    public static final RegistryObject<Block> WARPED_SANDWICH_ASSEMBLY_TABLE = REGISTRY.register(
-            "warped_sandwich_assembly_table",
-            () -> createSandwichAssemblyTable(Material.NETHER_WOOD)
-    );
-
-    public static Block[] getSandwichAssemblyTables() {
-        return new Block[]{
-                ModBlocks.OAK_SANDWICH_ASSEMBLY_TABLE.get(),
-                ModBlocks.SPRUCE_SANDWICH_ASSEMBLY_TABLE.get(),
-                ModBlocks.BIRCH_SANDWICH_ASSEMBLY_TABLE.get(),
-                ModBlocks.JUNGLE_SANDWICH_ASSEMBLY_TABLE.get(),
-                ModBlocks.ACACIA_SANDWICH_ASSEMBLY_TABLE.get(),
-                ModBlocks.DARK_OAK_SANDWICH_ASSEMBLY_TABLE.get(),
-                ModBlocks.CRIMSON_SANDWICH_ASSEMBLY_TABLE.get(),
-                ModBlocks.WARPED_SANDWICH_ASSEMBLY_TABLE.get()
-        };
-    }
 
     private static Block createSandwichAssemblyTable(Material material) {
         return new SandwichAssemblyTableBlock(
