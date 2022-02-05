@@ -6,13 +6,13 @@
   ],
   "key": {
     "A": {
-      "item": "minecraft:smooth_stone"
+      "item": "some_assembly_required:bread_slice"
     },
     "B": {
-      "item": "minecraft:spruce_planks"
+      "tag": "minecraft:planks"
     }
   },
   "result": {
-    "item": "some_assembly_required:spruce_sandwich_assembly_table"
+    "item": "some_assembly_required:sandwiching_station"
   }
 }

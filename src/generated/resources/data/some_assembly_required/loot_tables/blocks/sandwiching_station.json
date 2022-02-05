@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "some_assembly_required:birch_sandwich_assembly_table"
+          "name": "some_assembly_required:sandwiching_station"
         }
       ],
       "conditions": [
