@@ -2,5 +2,11 @@
   "item": "farmersdelight:cooked_salmon_slice",
   "displayName": {
     "translate": "some_assembly_required.ingredient.farmersdelight.salmon_slice"
+  },
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 20
+    }
   }
 }

@@ -1,5 +1,11 @@
 {
   "item": "farmersdelight:pasta_with_mutton_chop",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 33
+    }
+  },
   "container": {
     "item": "minecraft:bowl"
   },

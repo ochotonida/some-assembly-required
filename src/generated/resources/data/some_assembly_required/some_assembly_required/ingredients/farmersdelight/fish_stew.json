@@ -1,5 +1,11 @@
 {
   "item": "farmersdelight:fish_stew",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 28
+    }
+  },
   "container": {
     "item": "minecraft:bowl"
   },

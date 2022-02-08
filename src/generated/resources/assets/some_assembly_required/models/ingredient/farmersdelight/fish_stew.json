@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "some_assembly_required:item/ingredient/farmersdelight/fish_stew"
+  }
+}

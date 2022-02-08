@@ -6,7 +6,7 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 20
+      "CustomModelData": 24
     }
   },
   "container": {
