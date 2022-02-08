@@ -21,6 +21,10 @@ public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients
             ModItems.COOKED_MUTTON_CHOPS.get(),
             ModItems.BACON.get(),
             ModItems.COOKED_BACON.get(),
+            ModItems.COD_SLICE.get(),
+            ModItems.COOKED_COD_SLICE.get(),
+            ModItems.SALMON_SLICE.get(),
+            ModItems.COOKED_SALMON_SLICE.get(),
             ModItems.FRUIT_SALAD.get(),
             ModItems.MIXED_SALAD.get(),
             ModItems.NETHER_SALAD.get(),
@@ -28,10 +32,12 @@ public record FarmersDelightIngredients(Map<Item, IngredientBuilder> ingredients
             ModItems.BEEF_STEW.get(),
             ModItems.CHICKEN_SOUP.get(),
             ModItems.VEGETABLE_SOUP.get(),
+            ModItems.FISH_STEW.get(),
             ModItems.FRIED_RICE.get(),
             ModItems.PUMPKIN_SOUP.get(),
             ModItems.BACON_AND_EGGS.get(),
             ModItems.PASTA_WITH_MEATBALLS.get(),
+            ModItems.PASTA_WITH_MUTTON_CHOP.get(),
             ModItems.RATATOUILLE.get(),
             ModItems.SQUID_INK_PASTA.get()
     );
