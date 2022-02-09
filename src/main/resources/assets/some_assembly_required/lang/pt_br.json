@@ -28,13 +28,11 @@
   "item.some_assembly_required.tomato_slices": "Fatias de Tomate",
 
   "item.some_assembly_required.sandwich": "Sanduíche",
+  "item.some_assembly_required.bread_sandwich": "Sanduíche... ?",
   "item.some_assembly_required.double_decker_sandwich": "Sanduíche de Dois Andares",
   "item.some_assembly_required.ingredients_sandwich": "Sanduíche de %s",
   "item.some_assembly_required.double_decker_ingredients_sandwich": "Sanduíche de %s de Dois Andares",
-  "item.some_assembly_required.bread_sandwich": "Sanduíche... ?",
   "item.some_assembly_required.potion_sandwich": "Sanduíche de %s",
-  "item.some_assembly_required.soggy_sandwich": "Sanduíche Empapado",
-  "item.some_assembly_required.blt_sandwich": "BLT",
 
   "some_assembly_required.tooltip.ingredient_list.1": "%s",
   "some_assembly_required.tooltip.ingredient_list.2": "%s e %s",

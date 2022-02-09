@@ -7,7 +7,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraft.world.item.alchemy.Potions;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModItems;
@@ -36,17 +35,10 @@ public class SandwichNameHelper {
 
         List<ItemStack> uniqueIngredients = getUniqueIngredientsExcludingBread(sandwich);
 
-        // BLT
-        if (isBLT(sandwich)) {
-            return translateItem("blt_sandwich");
-        }
-
         // potion sandwich
         if (uniqueIngredients.size() == 1 && uniqueIngredients.get(0).is(Items.POTION)) {
             Potion potion = PotionUtils.getPotion(uniqueIngredients.get(0));
-            if (potion == Potions.WATER) {
-                return translateItem("soggy_sandwich");
-            } else if (potion.getEffects().size() == 1) {
+            if (potion.getEffects().size() == 1) {
                 return translateItem("potion_sandwich", potion.getEffects().get(0).getEffect().getDisplayName());
             }
         }
@@ -110,29 +102,5 @@ public class SandwichNameHelper {
 
     private static Component translateItem(String name, Object... args) {
         return new TranslatableComponent("item.%s.%s".formatted(SomeAssemblyRequired.MODID, name), args);
-    }
-
-    private static boolean isBLT(SandwichItemHandler sandwich) {
-        if (!sandwich.hasTopAndBottomBread()) {
-            return false;
-        }
-
-        boolean hasBacon = false;
-        boolean hasLettuce = false;
-        boolean hasTomato = false;
-
-        for (ItemStack stack : sandwich) {
-            if (stack.is(ModTags.COOKED_BACON)) {
-                hasBacon = true;
-            } else if (stack.is(ModTags.SALAD_INGREDIENTS)) {
-                hasLettuce = true;
-            } else if (stack.is(ModTags.VEGETABLES_TOMATO)) {
-                hasTomato = true;
-            } else if (!stack.is(ModTags.SANDWICH_BREAD)) {
-                return false;
-            }
-        }
-
-        return hasBacon && hasLettuce && hasTomato;
     }
 }

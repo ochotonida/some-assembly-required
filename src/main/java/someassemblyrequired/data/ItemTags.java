@@ -3,7 +3,6 @@ package someassemblyrequired.data;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModItems;
@@ -37,39 +36,6 @@ public class ItemTags extends ItemTagsProvider {
         tag(ModTags.BREAD_SLICES_WHEAT).add(
                 ModItems.BREAD_SLICE.get(),
                 ModItems.TOASTED_BREAD_SLICE.get()
-        );
-
-        tag(ModTags.COOKED_BACON);
-
-        tag(ModTags.FRUITS).addTags(
-                ModTags.FRUITS_APPLE
-        );
-
-        tag(ModTags.FRUITS_APPLE).add(
-                Items.APPLE,
-                ModItems.APPLE_SLICES.get()
-        );
-
-        tag(ModTags.SALAD_INGREDIENTS);
-
-        tag(ModTags.VEGETABLES).addTags(
-                ModTags.VEGETABLES_BEETROOT,
-                ModTags.VEGETABLES_CARROT,
-                ModTags.VEGETABLES_TOMATO
-        );
-
-        tag(ModTags.VEGETABLES_BEETROOT).add(
-                Items.BEETROOT,
-                ModItems.CHOPPED_BEETROOT.get()
-        );
-
-        tag(ModTags.VEGETABLES_CARROT).add(
-                Items.CARROT,
-                ModItems.CHOPPED_CARROT.get()
-        );
-
-        tag(ModTags.VEGETABLES_TOMATO).add(
-                ModItems.TOMATO_SLICES.get()
         );
     }
 }
