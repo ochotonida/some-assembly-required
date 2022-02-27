@@ -32,11 +32,9 @@ public class SandwichPotionSpoutingRecipe extends SandwichSpoutingRecipe {
 
     @Override
     public boolean matches(FluidStack fluid) {
-        if (!fluid.getFluid().isSame(AllFluids.POTION.get())) {
+        if (!fluid.getFluid().isSame(AllFluids.POTION.get()) || fluid.getTag() == null) 
             return false;
-        } else if (fluid.getTag() == null) {
-            return false;
-        }
+        
         return NBTHelper.readEnum(fluid.getOrCreateTag(), "Bottle", PotionFluid.BottleType.class) == PotionFluid.BottleType.REGULAR;
     }
 
