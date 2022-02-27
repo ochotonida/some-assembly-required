@@ -6,7 +6,7 @@
   ],
   "key": {
     "A": {
-      "item": "some_assembly_required:bread_slice"
+      "item": "minecraft:smooth_stone"
     },
     "B": {
       "tag": "minecraft:planks"

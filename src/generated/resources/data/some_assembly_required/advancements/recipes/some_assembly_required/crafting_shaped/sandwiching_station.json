@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_bread": {
+    "has_smooth_stone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "some_assembly_required:bread_slice"
+              "minecraft:smooth_stone"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_bread",
+      "has_smooth_stone",
       "has_the_recipe"
     ]
   ]
