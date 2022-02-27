@@ -8,6 +8,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
@@ -38,9 +39,9 @@ public class Recipes extends RecipeProvider {
         ShapedRecipeBuilder.shaped(ModBlocks.SANDWICHING_STATION.get())
                 .pattern("AA")
                 .pattern("BB")
-                .define('A', ModItems.BREAD_SLICE.get())
+                .define('A', Items.SMOOTH_STONE)
                 .define('B', ItemTags.PLANKS)
-                .unlockedBy("has_bread", createItemCriterion(ModItems.BREAD_SLICE.get()))
+                .unlockedBy("has_smooth_stone", createItemCriterion(Items.SMOOTH_STONE))
                 .save(consumer, getRecipeLocation(ModBlocks.SANDWICHING_STATION.get(), "crafting_shaped"));
     }
 
