@@ -5,7 +5,7 @@ issueTrackerURL = "https://github.com/ochotonida/some-assembly-required/issues"
 
 [[mods]]
 modId = "some_assembly_required"
-version = "1.18.1-2.0.0"
+version = "${file.jarVersion}"
 displayName = "Some Assembly Required"
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/some-assembly-required"
 logoFile = "logo.png"
@@ -25,7 +25,7 @@ Design your own sandwiches!
 [[dependencies.some_assembly_required]]
     modId = "minecraft"
     mandatory = true
-    versionRange = "[1.18.1,1.19)"
+    versionRange = "[1.18.1,1.18.2)"
     ordering = "NONE"
     side = "BOTH"
 
