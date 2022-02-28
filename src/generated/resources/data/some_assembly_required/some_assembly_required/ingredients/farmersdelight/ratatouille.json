@@ -9,5 +9,5 @@
   "container": {
     "item": "minecraft:bowl"
   },
-  "soundEvent": "some_assembly_required:block.sandwich_assembly_table.add_spread"
+  "soundEvent": "some_assembly_required:block.sandwich.add_spread"
 }

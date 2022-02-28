@@ -1,5 +1,5 @@
 {
-  "block.sandwich_assembly_table.add_item": {
+  "block.sandwich.add_item": {
     "sounds": [
       {
         "name": "dig/cloth1",
@@ -19,7 +19,7 @@
       }
     ]
   },
-  "block.sandwich_assembly_table.add_spread": {
+  "block.sandwich.add_spread": {
     "sounds": [
       {
         "name": "block/honeyblock/break1",
@@ -43,7 +43,7 @@
       }
     ]
   },
-  "block.sandwich_assembly_table.add_leaves": {
+  "block.sandwich.add_leaves": {
     "sounds": [
       {
         "name": "block/azalea_leaves/break1",
@@ -70,7 +70,7 @@
         "volume": 0.85
       },
       {
-        "name": "block/azalea_leaves/break6",
+        "name": "block/azalea_leaves/break7",
         "volume": 0.85
       }
     ]

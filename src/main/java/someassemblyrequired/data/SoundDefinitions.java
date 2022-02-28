@@ -35,7 +35,7 @@ public class SoundDefinitions extends SoundDefinitionsProvider {
                 .with(sound("block/azalea_leaves/break4").volume(0.85))
                 .with(sound("block/azalea_leaves/break5").volume(0.85))
                 .with(sound("block/azalea_leaves/break6").volume(0.85))
-                .with(sound("block/azalea_leaves/break6").volume(0.85))
+                .with(sound("block/azalea_leaves/break7").volume(0.85))
         );
     }
 }
