@@ -26,11 +26,7 @@ public class SandwichAssemblyTableBlock extends Block {
     @Override
     @SuppressWarnings("deprecation")
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.getBlockEntity(pos.above()) instanceof SandwichBlockEntity blockEntity) {
-            return blockEntity.interact(player, hand);
-        } else {
-            return tryPlaceSandwich(player, hand, pos, hitResult);
-        }
+        return (level.getBlockEntity(pos.above()) instanceof SandwichBlockEntity blockEntity) ? blockEntity.interact(player, hand) : tryPlaceSandwich(player, hand, pos, hitResult);
     }
 
     private static InteractionResult tryPlaceSandwich(Player player, InteractionHand hand, BlockPos pos, BlockHitResult hitResult) {
