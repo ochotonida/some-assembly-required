@@ -1,5 +1,11 @@
 {
   "item": "farmersdelight:baked_cod_stew",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 31
+    }
+  },
   "container": {
     "item": "minecraft:bowl"
   },

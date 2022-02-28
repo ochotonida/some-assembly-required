@@ -1,5 +1,11 @@
 {
   "item": "farmersdelight:roasted_mutton_chops",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 36
+    }
+  },
   "container": {
     "item": "minecraft:bowl"
   },

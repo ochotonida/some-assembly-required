@@ -1,5 +1,11 @@
 {
   "item": "farmersdelight:grilled_salmon",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 41
+    }
+  },
   "container": {
     "item": "minecraft:bowl"
   },

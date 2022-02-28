@@ -188,31 +188,67 @@
       "predicate": {
         "minecraft:custom_model_data": 31.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/bacon_and_eggs"
+      "model": "some_assembly_required:ingredient/farmersdelight/baked_cod_stew"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 32.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/pasta_with_meatballs"
+      "model": "some_assembly_required:ingredient/farmersdelight/noodle_soup"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 33.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/pasta_with_mutton_chop"
+      "model": "some_assembly_required:ingredient/farmersdelight/bacon_and_eggs"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 34.0
       },
-      "model": "some_assembly_required:ingredient/farmersdelight/ratatouille"
+      "model": "some_assembly_required:ingredient/farmersdelight/pasta_with_meatballs"
     },
     {
       "predicate": {
         "minecraft:custom_model_data": 35.0
       },
+      "model": "some_assembly_required:ingredient/farmersdelight/pasta_with_mutton_chop"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 36.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/roasted_mutton_chops"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 37.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/vegetable_noodles"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 38.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/steak_and_potatoes"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 39.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/ratatouille"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 40.0
+      },
       "model": "some_assembly_required:ingredient/farmersdelight/squid_ink_pasta"
+    },
+    {
+      "predicate": {
+        "minecraft:custom_model_data": 41.0
+      },
+      "model": "some_assembly_required:ingredient/farmersdelight/grilled_salmon"
     }
   ]
 }

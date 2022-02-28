@@ -1,5 +1,11 @@
 {
   "item": "farmersdelight:vegetable_noodles",
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 37
+    }
+  },
   "container": {
     "item": "minecraft:bowl"
   },
