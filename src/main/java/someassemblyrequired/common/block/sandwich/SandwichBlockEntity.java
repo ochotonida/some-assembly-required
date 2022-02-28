@@ -42,9 +42,9 @@ public class SandwichBlockEntity extends BlockEntity {
         if (player.getItemInHand(InteractionHand.OFF_HAND).isEmpty() && player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
             removeItem(player);
             return InteractionResult.SUCCESS;
-        } else {
-            return addItem(player, hand);
         }
+        
+        return addItem(player, hand);
     }
 
     private void removeItem(Player player) {
