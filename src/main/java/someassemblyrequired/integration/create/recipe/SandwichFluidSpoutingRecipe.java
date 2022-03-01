@@ -83,8 +83,8 @@ public class SandwichFluidSpoutingRecipe extends SandwichSpoutingRecipe {
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, SandwichFluidSpoutingRecipe recipe) {
-            buffer.writeItem(recipe.result);
             recipe.ingredient.write(buffer);
+            buffer.writeItem(recipe.result);
         }
     }
 }

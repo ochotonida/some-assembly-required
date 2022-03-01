@@ -74,7 +74,7 @@ public abstract class SandwichSpoutingRecipe implements Recipe<Container> {
         @Nullable
         @Override
         public SandwichSpoutingRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buffer) {
-            return null;
+            throw new UnsupportedOperationException();
         }
 
         @Override
