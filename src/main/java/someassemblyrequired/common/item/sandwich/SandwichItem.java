@@ -82,6 +82,9 @@ public class SandwichItem extends BlockItem {
     public static ItemStack of(List<ItemStack> items) {
         List<ItemStack> flattenedItems = new ArrayList<>();
         for (ItemStack item : items) {
+            if (item.getCount() != 1) {
+                throw new IllegalArgumentException();
+            }
             if (!item.is(ModItems.SANDWICH.get())) {
                 flattenedItems.add(item);
             } else {

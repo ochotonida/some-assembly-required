@@ -51,11 +51,9 @@ public class FillingBySpoutMixin {
             return;
         }
 
-        ItemStack sandwich = SandwichItem.of(stack, recipe.assemble(availableFluid.copy()));
-
+        ItemStack existing = stack.split(1);
+        ItemStack sandwich = SandwichItem.of(existing, recipe.assemble(availableFluid.copy()));
         availableFluid.shrink(requiredAmount);
-        stack.shrink(1);
-
         cir.setReturnValue(sandwich);
     }
 
