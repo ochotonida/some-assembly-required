@@ -6,7 +6,7 @@ import net.minecraft.world.food.FoodProperties;
 
 public class ModFoods {
 
-    public static final FoodProperties SANDWICH = new FoodProperties.Builder()
+    public static final FoodProperties EMPTY = new FoodProperties.Builder()
             .build();
 
     public static final FoodProperties BREAD_SLICE = new FoodProperties.Builder()

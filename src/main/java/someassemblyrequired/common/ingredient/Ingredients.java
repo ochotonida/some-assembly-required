@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.behavior.*;
+import someassemblyrequired.common.init.ModFoods;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
 
 import javax.annotation.Nullable;
@@ -49,7 +50,8 @@ public class Ingredients {
     }
 
     public static FoodProperties getFood(ItemStack item) {
-        return IngredientPropertiesManager.getOrDefault(item).getFood(item);
+        FoodProperties result = IngredientPropertiesManager.getOrDefault(item).getFood(item);
+        return result == null ? ModFoods.EMPTY : result;
     }
 
     public static void onFoodEaten(ItemStack item, LivingEntity entity) {

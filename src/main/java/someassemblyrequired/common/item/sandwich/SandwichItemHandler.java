@@ -139,7 +139,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
     public boolean canAlwaysEat() {
         for (ItemStack item : items) {
             FoodProperties food = Ingredients.getFood(item);
-            if (food != null && food.canAlwaysEat()) {
+            if (food.canAlwaysEat()) {
                 return true;
             }
         }

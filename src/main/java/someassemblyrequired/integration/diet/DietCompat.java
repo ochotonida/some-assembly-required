@@ -26,7 +26,7 @@ public class DietCompat {
         modEventBus.addListener(DietCompat::onInterModEnqueue);
     }
 
-    public static void onInterModEnqueue(InterModEnqueueEvent event) { // TODO test this
+    public static void onInterModEnqueue(InterModEnqueueEvent event) {
         InterModComms.sendTo(ModCompat.DIET, "item",
                 () -> new Tuple<Item, BiFunction<Player, ItemStack, Triple<List<ItemStack>, Integer, Float>>>(
                         ModItems.SANDWICH.get(),

@@ -192,14 +192,12 @@ public class SandwichItem extends BlockItem {
         SandwichItemHandler.get(stack).ifPresent(sandwich -> {
             for (ItemStack item : sandwich.items) {
                 FoodProperties food = Ingredients.getFood(item);
-                if (food != null) {
-                    if (entity instanceof Player player) {
-                        player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
-                    }
-                    for (Pair<MobEffectInstance, Float> effect : food.getEffects()) {
-                        if (entity.getRandom().nextFloat() < effect.getSecond()) {
-                            entity.addEffect(effect.getFirst());
-                        }
+                if (entity instanceof Player player) {
+                    player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
+                }
+                for (Pair<MobEffectInstance, Float> effect : food.getEffects()) {
+                    if (entity.getRandom().nextFloat() < effect.getSecond()) {
+                        entity.addEffect(effect.getFirst());
                     }
                 }
                 Ingredients.onFoodEaten(item, entity);

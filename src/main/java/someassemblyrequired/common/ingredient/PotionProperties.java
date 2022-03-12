@@ -1,7 +1,6 @@
 package someassemblyrequired.common.ingredient;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -21,11 +20,6 @@ public class PotionProperties extends IngredientProperties {
         super(null, null, null, ItemStack.EMPTY, ItemStack.EMPTY, ModSoundEvents.ADD_SPREAD.get());
         displayItem = new ItemStack(ModItems.SPREAD.get());
         displayItem.getOrCreateTag();
-    }
-
-    @Override
-    public FoodProperties getFood(ItemStack item) {
-        return null;
     }
 
     @Override
