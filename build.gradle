@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.18.1-2.0.2'
+version = '1.18.1-2.0.3'
 group = 'some-assembly-required'
 archivesBaseName = 'some-assembly-required'
 
@@ -83,8 +83,6 @@ repositories {
         name 'tterrag maven'
         url 'https://maven.tterrag.com'
     }
-
-
     maven {
         url "https://www.cursemaven.com"
     }
@@ -102,6 +100,8 @@ dependencies {
     implementation fg.deobf("com.simibubi.create:Create:mc1.18.1_v0.4c+67")
 
     implementation fg.deobf("curse.maven:farmersdelight-398521:3608961")
+
+    implementation fg.deobf("curse.maven:diet-443570:3650575")
 }
 
 mixin {
