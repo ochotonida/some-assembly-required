@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.18.1-2.0.3'
+version = '1.18.1-2.0.4'
 group = 'some-assembly-required'
 archivesBaseName = 'some-assembly-required'
 
