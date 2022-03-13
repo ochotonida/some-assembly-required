@@ -32,7 +32,7 @@ Design your own sandwiches!
 [[dependencies.some_assembly_required]]
     modId = "create"
     mandatory = false
-    versionRange = "[0.4b,)"
+    versionRange = "[0.4e,)"
     ordering = "AFTER"
     side = "BOTH"
 
