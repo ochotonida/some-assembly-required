@@ -81,7 +81,7 @@ public class CreateCompat {
                 .map(sandwich -> createSandwichRecipe(sandwich, "sequenced_assembly/sandwich_potions"))
                 .forEach(recipes::add);
 
-        CreateJEI.findRecipes(recipe -> recipe.getSerializer() == ModRecipeTypes.SANDWICH_FLUID_SPOUTING_SERIALIZER.get())
+        CreateJEI.getTypedRecipesExcluding(ModRecipeTypes.SANDWICH_SPOUTING, recipe -> recipe.getSerializer() != ModRecipeTypes.SANDWICH_FLUID_SPOUTING_SERIALIZER.get())
                 .stream()
                 .map(recipe -> (SandwichFluidSpoutingRecipe) recipe)
                 .map(recipe -> builder(SandwichItem.makeSandwich(recipe.getResultItem()), "sandwich_spouting")
