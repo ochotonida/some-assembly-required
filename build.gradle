@@ -22,7 +22,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'official', version: '1.18.2'
     runs {
         client {
             workingDirectory project.file('run')
@@ -89,19 +89,19 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.46'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.0.30'
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.1.1.48")
+    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.5.174:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.5.174")
 
-    implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:1.18-0.6.1.63")
-    implementation fg.deobf("com.simibubi.create:Create:mc1.18.1_v0.4e+99")
+    implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:1.18-0.6.2.64")
+    implementation fg.deobf("com.simibubi.create:Create:mc1.18.2_v0.4.1+111")
 
-    implementation fg.deobf("curse.maven:farmersdelight-398521:3608961")
+    implementation fg.deobf("curse.maven:farmersdelight-398521:3739914")
 
-    implementation fg.deobf("curse.maven:diet-443570:3650575")
+    implementation fg.deobf("curse.maven:diet-443570:3735750")
 }
 
 mixin {

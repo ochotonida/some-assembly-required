@@ -3,7 +3,7 @@ package someassemblyrequired.data.recipe.farmersdelight;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -59,7 +59,7 @@ public class CuttingRecipeBuilder {
         return cut(Ingredient.of(ingredient), mainResult, count);
     }
 
-    public static CuttingRecipeBuilder cut(Tag<Item> ingredient, ItemLike mainResult, int count) {
+    public static CuttingRecipeBuilder cut(TagKey<Item> ingredient, ItemLike mainResult, int count) {
         return cut(Ingredient.of(ingredient), mainResult, count);
     }
 

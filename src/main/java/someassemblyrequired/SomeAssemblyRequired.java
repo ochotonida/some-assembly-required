@@ -1,5 +1,6 @@
 package someassemblyrequired;
 
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -37,6 +38,7 @@ public class SomeAssemblyRequired {
         ModRecipeTypes.REGISTRY.register(modEventBus);
         ModLootModifiers.REGISTRY.register(modEventBus);
 
+        modEventBus.addGenericListener(RecipeSerializer.class, ModRecipeTypes::register);
         modEventBus.addListener(this::onCommonSetup);
 
         MinecraftForge.EVENT_BUS.addListener(IngredientPropertiesManager::onAddReloadListener);

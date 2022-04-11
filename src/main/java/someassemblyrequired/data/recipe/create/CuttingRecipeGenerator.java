@@ -2,7 +2,7 @@ package someassemblyrequired.data.recipe.create;
 
 import com.simibubi.create.AllRecipeTypes;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -31,7 +31,7 @@ public class CuttingRecipeGenerator extends ProcessingRecipeGenerator {
         cut(Ingredient.of(input), result, count);
     }
 
-    private void cut(Tag<Item> input, ItemLike result, int count) {
+    private void cut(TagKey<Item> input, ItemLike result, int count) {
         cut(Ingredient.of(input), result, count);
     }
 

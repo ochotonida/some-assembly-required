@@ -9,7 +9,7 @@ import someassemblyrequired.common.loot.RollLootTableLootModifier;
 
 public class ModLootModifiers {
 
-    public static final DeferredRegister<GlobalLootModifierSerializer<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.LOOT_MODIFIER_SERIALIZERS, SomeAssemblyRequired.MODID);
+    public static final DeferredRegister<GlobalLootModifierSerializer<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.Keys.LOOT_MODIFIER_SERIALIZERS, SomeAssemblyRequired.MODID);
 
     public static final RegistryObject<GlobalLootModifierSerializer<RollLootTableLootModifier>> ROLL_LOOT_TABLE = REGISTRY.register("roll_loot_table", RollLootTableLootModifier.Serializer::new);
 }

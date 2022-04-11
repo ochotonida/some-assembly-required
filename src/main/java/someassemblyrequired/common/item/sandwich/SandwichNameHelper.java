@@ -7,6 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModItems;
@@ -22,7 +23,8 @@ public class SandwichNameHelper {
     public static Component getSandwichDisplayName(ItemStack stack) {
         SandwichItemHandler sandwich = SandwichItemHandler.get(stack).orElse(null);
 
-        if (sandwich == null || !ItemTags.getAllTags().hasTag(ModTags.SANDWICH_BREAD.getName())) {
+        // noinspection ConstantConditions
+        if (sandwich == null || !ForgeRegistries.ITEMS.tags().isKnownTagName(ModTags.SANDWICH_BREAD)) {
             return translateItem("sandwich");
         }
 
