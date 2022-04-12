@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "create",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "item": "create:builders_tea",
   "displayItem": {
     "item": "some_assembly_required:spread",
