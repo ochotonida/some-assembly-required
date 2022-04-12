@@ -17,8 +17,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModSoundEvents;
 import someassemblyrequired.common.util.JsonHelper;
+import vectorwing.farmersdelight.FarmersDelight;
 
 import javax.annotation.Nullable;
 
@@ -94,7 +96,13 @@ public class IngredientProperties {
 
     public JsonObject toJson(Item item) {
         JsonObject result = new JsonObject();
+
         // noinspection ConstantConditions
+        String modid = item.getRegistryName().getNamespace();
+        if (!modid.equals("minecraft") && !modid.equals(SomeAssemblyRequired.MODID) && !modid.equals(FarmersDelight.MODID)) {
+            JsonHelper.addModLoadedCondition(result, modid);
+        }
+
         result.addProperty("item", item.getRegistryName().toString());
         if (foodProperties != null) {
             result.add("food", writeFoodProperties(foodProperties));

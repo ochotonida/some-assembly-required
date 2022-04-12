@@ -62,9 +62,7 @@ public class SandwichSpoutingRecipeBuilder {
 
             @Override
             public void serializeRecipeData(JsonObject object) {
-                JsonArray conditions = new JsonArray();
-                conditions.add(CraftingHelper.serialize(new ModLoadedCondition(ModCompat.CREATE)));
-                object.add("conditions", conditions);
+                JsonHelper.addModLoadedCondition(object, ModCompat.CREATE);
             }
 
             @Override
