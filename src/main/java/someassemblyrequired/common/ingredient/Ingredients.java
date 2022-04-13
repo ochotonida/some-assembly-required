@@ -35,7 +35,6 @@ public class Ingredients {
         addBehavior(Items.SUSPICIOUS_STEW, new SuspiciousStewBehavior());
         addBehavior(Items.MILK_BUCKET, new MilkBucketBehavior());
         addBehavior(Items.HONEY_BOTTLE, new HoneyBottleBehavior());
-        addBehavior(Items.POTION, new PotionBehavior());
 
         ForgeRegistries.ITEMS.getValues()
                 .stream()

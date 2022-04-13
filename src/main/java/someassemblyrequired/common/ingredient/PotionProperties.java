@@ -1,11 +1,15 @@
 package someassemblyrequired.common.ingredient;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
+import org.jetbrains.annotations.Nullable;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModSoundEvents;
 import someassemblyrequired.common.util.Util;
@@ -20,6 +24,18 @@ public class PotionProperties extends IngredientProperties {
         super(null, null, null, ItemStack.EMPTY, ItemStack.EMPTY, ModSoundEvents.ADD_SPREAD.get());
         displayItem = new ItemStack(ModItems.SPREAD.get());
         displayItem.getOrCreateTag();
+    }
+
+    @Nullable
+    @Override
+    public FoodProperties getFood(ItemStack item, @Nullable LivingEntity entity) {
+        FoodProperties.Builder builder = new FoodProperties.Builder();
+
+        for (MobEffectInstance mobEffect : PotionUtils.getMobEffects(item)) {
+            builder.effect(() -> new MobEffectInstance(mobEffect), 1);
+        }
+
+        return builder.build();
     }
 
     @Override
