@@ -49,8 +49,8 @@ public class Ingredients {
         return !item.isEmpty() && (item.isEdible() || IngredientPropertiesManager.get(item) != null);
     }
 
-    public static FoodProperties getFood(ItemStack item) {
-        FoodProperties result = IngredientPropertiesManager.getOrDefault(item).getFood(item);
+    public static FoodProperties getFood(ItemStack item, @Nullable LivingEntity entity) {
+        FoodProperties result = IngredientPropertiesManager.getOrDefault(item).getFood(item, entity);
         return result == null ? ModFoods.EMPTY : result;
     }
 

@@ -1,6 +1,5 @@
 package someassemblyrequired.common.item.sandwich;
 
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -12,10 +11,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
@@ -41,6 +37,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
+import someassemblyrequired.common.init.ModFoods;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
 
@@ -184,6 +181,13 @@ public class SandwichItem extends BlockItem {
     }
 
     @Override
+    public FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
+        return SandwichItemHandler.get(stack)
+                .map(SandwichItemHandler::getFoodProperties)
+                .orElse(ModFoods.EMPTY);
+    }
+
+    @Override
     public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
         if (entity instanceof Player player) {
             triggerAdvancements(stack, player);
@@ -191,36 +195,11 @@ public class SandwichItem extends BlockItem {
 
         SandwichItemHandler.get(stack).ifPresent(sandwich -> {
             for (ItemStack item : sandwich.items) {
-                FoodProperties food = Ingredients.getFood(item);
-                if (entity instanceof Player player) {
-                    player.getFoodData().eat(food.getNutrition(), food.getSaturationModifier());
-                }
-                for (Pair<MobEffectInstance, Float> effect : food.getEffects()) {
-                    if (entity.getRandom().nextFloat() < effect.getSecond()) {
-                        entity.addEffect(effect.getFirst());
-                    }
-                }
                 Ingredients.onFoodEaten(item, entity);
             }
         });
 
         return super.finishUsingItem(stack, world, entity);
-    }
-
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if (this.isEdible()) {
-            ItemStack stack = player.getItemInHand(hand);
-            // noinspection ConstantConditions
-            if (SandwichItemHandler.get(stack).map(SandwichItemHandler::canAlwaysEat).orElse(false) || player.canEat(getFoodProperties().canAlwaysEat())) {
-                player.startUsingItem(hand);
-                return InteractionResultHolder.consume(stack);
-            } else {
-                return InteractionResultHolder.fail(stack);
-            }
-        } else {
-            return InteractionResultHolder.pass(player.getItemInHand(hand));
-        }
     }
 
     private void triggerAdvancements(ItemStack stack, Player player) {
@@ -292,6 +271,7 @@ public class SandwichItem extends BlockItem {
 
         @Override
         protected void onContentsChanged() {
+            super.onContentsChanged();
             sandwich.getOrCreateTagElement("BlockEntityTag").put("Sandwich", serializeNBT());
         }
     }

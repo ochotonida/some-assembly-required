@@ -18,7 +18,7 @@ Design your own sandwiches!
 [[dependencies.some_assembly_required]]
     modId = "forge"
     mandatory = true
-    versionRange = "[40.0.30,)"
+    versionRange = "[40.0.47,)"
     ordering = "NONE"
     side = "BOTH"
 

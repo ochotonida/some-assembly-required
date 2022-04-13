@@ -199,6 +199,7 @@ public class SandwichBlockEntity extends BlockEntity {
 
         @Override
         protected void onContentsChanged() {
+            super.onContentsChanged();
             if (getLevel() instanceof ServerLevel level) {
                 level.getChunkSource().blockChanged(getBlockPos());
                 setChanged();

@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -51,9 +52,9 @@ public class IngredientProperties {
     }
 
     @Nullable
-    public FoodProperties getFood(ItemStack item) {
+    public FoodProperties getFood(ItemStack item, @Nullable LivingEntity entity) {
         if (foodProperties == null) {
-            return item.getItem().getFoodProperties();
+            return item.getItem().getFoodProperties(item, entity);
         }
         return foodProperties;
     }

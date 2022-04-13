@@ -1,7 +1,9 @@
 package someassemblyrequired.common.item.sandwich;
 
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -11,8 +13,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import someassemblyrequired.common.config.ModConfig;
 import someassemblyrequired.common.ingredient.Ingredients;
+import someassemblyrequired.common.init.ModFoods;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
+import someassemblyrequired.mixin.FoodPropertiesMixin;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -20,27 +24,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable, INBTSerializable<ListTag>, Iterable<ItemStack> {
 
     protected List<ItemStack> items;
+    protected FoodProperties foodProperties;
 
     public SandwichItemHandler() {
         this.items = new ArrayList<>();
-    }
-
-    public SandwichItemHandler(ItemStack stack) {
-        this.items = new ArrayList<>();
-        if (stack.isEmpty() || stack.getCount() != 1) {
-            throw new IllegalArgumentException();
-        }
-        this.items = new ArrayList<>();
-        items.add(stack);
-    }
-
-    public SandwichItemHandler(List<ItemStack> items) {
-
-        this.items = new ArrayList<>(items);
+        this.foodProperties = ModFoods.EMPTY;
     }
 
     public static Optional<SandwichItemHandler> get(@Nullable ICapabilityProvider capabilityProvider) {
@@ -56,6 +49,10 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         return items;
     }
 
+    public FoodProperties getFoodProperties() {
+        return foodProperties;
+    }
+
     public boolean isEmpty() {
         return items.isEmpty();
     }
@@ -67,7 +64,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
     public int getTotalNutrition() {
         int result = 0;
         for (ItemStack stack : items) {
-            result += Ingredients.getFood(stack).getNutrition();
+            result += Ingredients.getFood(stack, null).getNutrition();
         }
         return result;
     }
@@ -75,10 +72,34 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
     public float getAverageSaturation() {
         float totalSaturation = 0;
         for (ItemStack stack : items) {
-            FoodProperties food = Ingredients.getFood(stack);
+            FoodProperties food = Ingredients.getFood(stack, null);
             totalSaturation += food.getSaturationModifier() * food.getNutrition();
         }
         return totalSaturation / getTotalNutrition();
+    }
+
+    private void updateFoodProperties() {
+        if (isEmpty()) {
+            foodProperties = ModFoods.EMPTY;
+        } else {
+            FoodProperties.Builder builder = new FoodProperties.Builder()
+                    .nutrition(getTotalNutrition())
+                    .saturationMod(getAverageSaturation());
+
+            for (ItemStack item : items) {
+                FoodProperties food = Ingredients.getFood(item, null);
+
+                if (food.canAlwaysEat()) {
+                    builder.alwaysEat();
+                }
+
+                for (Pair<Supplier<MobEffectInstance>, Float> pair : ((FoodPropertiesMixin) food).getEffectSuppliers()) {
+                    builder.effect(pair.getFirst(), pair.getSecond());
+                }
+            }
+
+            foodProperties = builder.build();
+        }
     }
 
     public void add(ItemStack stack) {
@@ -134,16 +155,6 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         }
 
         return foundBread && !items.get(1).is(ModTags.SANDWICH_BREAD) && !items.get(size() - 2).is(ModTags.SANDWICH_BREAD);
-    }
-
-    public boolean canAlwaysEat() {
-        for (ItemStack item : items) {
-            FoodProperties food = Ingredients.getFood(item);
-            if (food.canAlwaysEat()) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public ItemStack getAsItem() {
@@ -230,10 +241,10 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
     }
 
     protected void onLoad() {
-
+        updateFoodProperties();
     }
 
     protected void onContentsChanged() {
-
+        updateFoodProperties();
     }
 }
