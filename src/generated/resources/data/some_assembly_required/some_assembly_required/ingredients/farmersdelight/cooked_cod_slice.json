@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "farmersdelight",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "item": "farmersdelight:cooked_cod_slice",
   "displayName": {
     "translate": "some_assembly_required.ingredient.farmersdelight.cod_slice"

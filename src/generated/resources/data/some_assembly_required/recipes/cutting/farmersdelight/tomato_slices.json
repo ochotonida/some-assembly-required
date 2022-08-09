@@ -1,5 +1,11 @@
 {
   "type": "farmersdelight:cutting",
+  "conditions": [
+    {
+      "modid": "farmersdelight",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "ingredients": [
     {
       "tag": "forge:crops/tomato"

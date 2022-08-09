@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "farmersdelight",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "item": "farmersdelight:cooked_chicken_cuts",
   "displayName": {
     "translate": "some_assembly_required.ingredient.farmersdelight.chicken_cuts"

@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "farmersdelight",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "item": "farmersdelight:steak_and_potatoes",
   "displayItem": {
     "item": "some_assembly_required:spread",

@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "farmersdelight",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "item": "farmersdelight:cabbage_leaf",
   "displayName": {
     "translate": "some_assembly_required.ingredient.farmersdelight.cabbage_leaf"

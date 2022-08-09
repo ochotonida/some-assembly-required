@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "farmersdelight",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "item": "farmersdelight:cooked_salmon_slice",
   "displayName": {
     "translate": "some_assembly_required.ingredient.farmersdelight.salmon_slice"

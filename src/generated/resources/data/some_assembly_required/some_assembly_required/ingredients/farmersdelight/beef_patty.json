@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "farmersdelight",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "item": "farmersdelight:beef_patty",
   "displayName": {
     "translate": "some_assembly_required.ingredient.farmersdelight.beef_patty"

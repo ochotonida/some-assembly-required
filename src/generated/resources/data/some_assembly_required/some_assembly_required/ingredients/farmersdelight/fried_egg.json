@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "modid": "farmersdelight",
+      "type": "forge:mod_loaded"
+    }
+  ],
   "item": "farmersdelight:fried_egg",
   "displayName": {
     "translate": "some_assembly_required.ingredient.farmersdelight.fried_egg"
