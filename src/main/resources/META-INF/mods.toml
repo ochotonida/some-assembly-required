@@ -11,9 +11,7 @@ displayURL = "https://www.curseforge.com/minecraft/mc-mods/some-assembly-require
 logoFile = "logo.png"
 authors = "ochotonida"
 credits = "Based on the fabric mod Sandwichable by FoundationGames"
-description = '''
-Design your own sandwiches!
-'''
+description = '''Design your own sandwiches!'''
 
 [[dependencies.some_assembly_required]]
     modId = "forge"
@@ -38,7 +36,7 @@ Design your own sandwiches!
 
 [[dependencies.some_assembly_required]]
     modId = "farmersdelight"
-    mandatory = true
+    mandatory = false
     versionRange = "[1.18.2-1.0.4,)"
     ordering = "AFTER"
     side = "BOTH"

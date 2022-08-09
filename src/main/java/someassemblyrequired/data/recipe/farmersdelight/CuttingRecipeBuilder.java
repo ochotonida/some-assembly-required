@@ -1,5 +1,6 @@
 package someassemblyrequired.data.recipe.farmersdelight;
 
+import com.google.gson.JsonObject;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -10,16 +11,14 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.util.JsonHelper;
 import someassemblyrequired.common.util.Util;
-import vectorwing.farmersdelight.FarmersDelight;
+import someassemblyrequired.integration.ModCompat;
 import vectorwing.farmersdelight.common.crafting.ingredient.ChanceResult;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Consumer;
 
 @SuppressWarnings({"unused", "UnusedReturnValue"})
@@ -95,7 +94,7 @@ public class CuttingRecipeBuilder {
     public void build(Consumer<FinishedRecipe> consumer) {
         ResourceLocation location = results.get(0).getStack().getItem().getRegistryName();
         // noinspection ConstantConditions
-        build(consumer, Util.id("cutting/%s/".formatted(FarmersDelight.MODID) + location.getPath()));
+        build(consumer, Util.id("cutting/%s/".formatted(ModCompat.FARMERSDELIGHT) + location.getPath()));
     }
 
     public void build(Consumer<FinishedRecipe> consumer, String save) {
@@ -106,6 +105,19 @@ public class CuttingRecipeBuilder {
         RECIPES.remove(this);
         // noinspection ConstantConditions
         String sound = soundEvent == null ? "" : soundEvent.getRegistryName().toString();
-        consumer.accept(new CuttingBoardRecipeBuilder.Result(id, ingredient, tool, results, sound));
+        consumer.accept(new Result(id, ingredient, tool, results, sound));
+    }
+
+    public static class Result extends CuttingBoardRecipeBuilder.Result {
+
+        public Result(ResourceLocation id, Ingredient ingredient, Ingredient tool, List<ChanceResult> results, String soundEventID) {
+            super(id, ingredient, tool, results, soundEventID);
+        }
+
+        @Override
+        public void serializeRecipeData(JsonObject json) {
+            JsonHelper.addModLoadedCondition(json, ModCompat.FARMERSDELIGHT);
+            super.serializeRecipeData(json);
+        }
     }
 }

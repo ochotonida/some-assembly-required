@@ -9,11 +9,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.behavior.*;
 import someassemblyrequired.common.init.ModFoods;
-import vectorwing.farmersdelight.common.item.ConsumableItem;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -35,13 +33,6 @@ public class Ingredients {
         addBehavior(Items.SUSPICIOUS_STEW, new SuspiciousStewBehavior());
         addBehavior(Items.MILK_BUCKET, new MilkBucketBehavior());
         addBehavior(Items.HONEY_BOTTLE, new HoneyBottleBehavior());
-
-        ForgeRegistries.ITEMS.getValues()
-                .stream()
-                .filter(item -> item instanceof ConsumableItem)
-                .map(item -> (ConsumableItem) item)
-                .map(ConsumableItemBehavior::new)
-                .forEach(behavior -> addBehavior(behavior.item(), behavior));
     }
 
     public static boolean canAddToSandwich(ItemStack item) {

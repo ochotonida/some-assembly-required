@@ -89,8 +89,7 @@ public class SandwichSpoutingRecipeBuilder {
         };
     }
 
-    public static final record Result(ResourceLocation id, FluidIngredient ingredient,
-                                      ItemStack result) implements FinishedRecipe {
+    public record Result(ResourceLocation id, FluidIngredient ingredient, ItemStack result) implements FinishedRecipe {
 
         @Override
         public ResourceLocation getId() {
@@ -106,9 +105,7 @@ public class SandwichSpoutingRecipeBuilder {
             JsonArray conditions = new JsonArray();
             conditions.add(CraftingHelper.serialize(new ModLoadedCondition(ModCompat.CREATE)));
             object.add("conditions", conditions);
-
             object.add("fluid", ingredient.serialize());
-
             object.add("result", JsonHelper.writeItemStack(result));
         }
 

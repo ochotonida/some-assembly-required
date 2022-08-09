@@ -21,7 +21,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModSoundEvents;
 import someassemblyrequired.common.util.JsonHelper;
-import vectorwing.farmersdelight.FarmersDelight;
 
 import javax.annotation.Nullable;
 
@@ -100,7 +99,7 @@ public class IngredientProperties {
 
         // noinspection ConstantConditions
         String modid = item.getRegistryName().getNamespace();
-        if (!modid.equals("minecraft") && !modid.equals(SomeAssemblyRequired.MODID) && !modid.equals(FarmersDelight.MODID)) {
+        if (!modid.equals("minecraft") && !modid.equals(SomeAssemblyRequired.MODID)) {
             JsonHelper.addModLoadedCondition(result, modid);
         }
 

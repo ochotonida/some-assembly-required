@@ -7,11 +7,11 @@ import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.item.sandwich.SandwichItem;
@@ -33,10 +33,8 @@ public class SandwichAssemblyCategory implements IRecipeCategory<SandwichAssembl
         background = helper.createDrawable(Util.id("textures/jei/sandwich_assembly.png"), 0, 0, 96, 64);
         breadSlice = new ItemStack(ModItems.BREAD_SLICE.get());
         sandwich = SandwichItem.makeSandwich(
-                vectorwing.farmersdelight.common.registry.ModItems.BEEF_PATTY.get(),
-                someassemblyrequired.common.init.ModItems.TOMATO_SLICES.get(),
-                vectorwing.farmersdelight.common.registry.ModItems.FRIED_EGG.get(),
-                vectorwing.farmersdelight.common.registry.ModItems.CABBAGE_LEAF.get()
+                Items.COOKED_BEEF,
+                ModItems.TOMATO_SLICES.get()
         );
         icon = helper.createDrawableIngredient(VanillaTypes.ITEM, sandwich);
     }
