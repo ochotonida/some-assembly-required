@@ -89,19 +89,19 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.0.48'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.73'
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.5.174:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.5.174")
+    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.232:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.232")
 
-    implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:1.18-0.6.2.64")
-    implementation fg.deobf("com.simibubi.create:Create:mc1.18.2_v0.4.1+111")
+    implementation fg.deobf("com.jozufozu.flywheel:Flywheel-Forge:1.18-0.6.4.87")
+    implementation fg.deobf("com.simibubi.create:Create:mc1.18.2_v0.5.0c+146")
 
-    implementation fg.deobf("curse.maven:farmersdelight-398521:3739914")
+    implementation fg.deobf("curse.maven:farmersdelight-398521:3834150")
 
-    implementation fg.deobf("curse.maven:diet-443570:3735750")
+    implementation fg.deobf("curse.maven:diet-443570:3758891")
 }
 
 mixin {
