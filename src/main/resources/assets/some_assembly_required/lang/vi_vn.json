@@ -1,0 +1,74 @@
+{
+  "itemGroup.some_assembly_required": "Some Assembly Required",
+
+  "some_assembly_required.advancement.obtain_bread_slice.title": "Làm Tí Bánh Mì Hem",
+  "some_assembly_required.advancement.obtain_bread_slice.description": "Cắt một ổ bánh mì thành từng lát",
+  "some_assembly_required.advancement.obtain_toasted_bread_slice.title": "Điều tuyệt vời nhất kể từ khi...",
+  "some_assembly_required.advancement.obtain_toasted_bread_slice.description": "Biến một lát bánh mì thành bánh mì nướng",
+  "some_assembly_required.advancement.obtain_sandwich.title": "Bánh mì kẹp êii",
+  "some_assembly_required.advancement.obtain_sandwich.description": "Làm ra chiếc bánh sandwich đầu tiên của bạn",
+  "some_assembly_required.advancement.add_potion_to_sandwich.title": "Bữa ăn nhẹ của phù thủy",
+  "some_assembly_required.advancement.add_potion_to_sandwich.description": "Ăn một cái bánh mì kẹp có thuốc ở trong",
+  "some_assembly_required.advancement.consume_double_decker_sandwich.title": "Đói gấp đôi",
+  "some_assembly_required.advancement.consume_double_decker_sandwich.description": "Ăn bánh sandwich hai tầng",
+
+  "some_assembly_required.message.bottom_bread": "Thiếu lát bánh mì dưới cùng!",
+  "some_assembly_required.message.full_sandwich": "Bạn không thể thêm bất kỳ vật phẩm nào nữa!",
+
+  "block.some_assembly_required.sandwiching_station": "Bàn làm bánh mì kẹp",
+  "block.some_assembly_required.sandwich": "Bánh mì kẹp",
+
+  "item.some_assembly_required.spread": "Spread",
+  "item.some_assembly_required.bread_slice": "Lát bánh mì",
+  "item.some_assembly_required.toasted_bread_slice": "Lát bánh mì nướng",
+  "item.some_assembly_required.apple_slices": "Táo cắt lát",
+  "item.some_assembly_required.golden_apple_slices": "Táo vàng cắt lát",
+  "item.some_assembly_required.enchanted_golden_apple_slices": "Táo vàng được phù phép cắt lát",
+  "item.some_assembly_required.chopped_carrot": "Cà rốt xắt nhỏ",
+  "item.some_assembly_required.chopped_golden_carrot": "Cà rốt vàng xắt nhỏ",
+  "item.some_assembly_required.chopped_beetroot": "Củ dền xắt nhỏ",
+  "item.some_assembly_required.tomato_slices": "Cà chua thái lát",
+
+  "item.some_assembly_required.sandwich": "Bánh mì kẹp",
+  "item.some_assembly_required.bread_sandwich": "Bánh mì kẹp... ?",
+  "item.some_assembly_required.open_faced_sandwich": "Bánh mì kẹp một mặt",
+  "item.some_assembly_required.double_decker_sandwich": "Bánh mì kẹp hai tầng",
+  "item.some_assembly_required.ingredients_sandwich": "Bánh mì kẹp %s",
+  "item.some_assembly_required.open_faced_ingredients_sandwich": "Bánh mì kẹp %s một mặt",
+  "item.some_assembly_required.double_decker_ingredients_sandwich": "Bánh mì kẹp %s hai tầng",
+  "item.some_assembly_required.potion_sandwich": "Bánh mì phết thuốc %s",
+
+  "some_assembly_required.tooltip.ingredient_list.1": "%s",
+  "some_assembly_required.tooltip.ingredient_list.2": "%s & %s",
+  "some_assembly_required.tooltip.ingredient_list.3": "%s, %s & %s",
+
+  "some_assembly_required.tooltip.ingredient_count": "%s (x%s)",
+
+  "some_assembly_required.jei.sandwich_assembly": "Làm bánh mì kẹp",
+  "some_assembly_required.jei.sandwich_assembly.ingredients": "Bất kì thứ gì có thể ăn được",
+
+  "some_assembly_required.ingredient.toasted_bread_slice": "Nướng",
+  "some_assembly_required.ingredient.apple_slices": "Táo",
+  "some_assembly_required.ingredient.golden_apple_slices": "Táo vàng",
+  "some_assembly_required.ingredient.enchanted_golden_apple_slices": "Táo vàng được phù phép",
+  "some_assembly_required.ingredient.chopped_carrot": "Cà rốt",
+  "some_assembly_required.ingredient.chopped_golden_carrot": "Cà rốt vàng",
+  "some_assembly_required.ingredient.chopped_beetroot": "Củ dền",
+  "some_assembly_required.ingredient.tomato_slices": "Cà rốt",
+
+  "some_assembly_required.ingredient.water_bottle": "Nước",
+  "some_assembly_required.ingredient.honey_bottle": "Mật ong",
+  "some_assembly_required.ingredient.milk_bucket": "Sữa",
+
+  "some_assembly_required.ingredient.farmersdelight.cabbage_leaf": "Bắp cải",
+  "some_assembly_required.ingredient.farmersdelight.fried_egg": "Trứng",
+  "some_assembly_required.ingredient.farmersdelight.beef_patty": "Bò bít tết",
+  "some_assembly_required.ingredient.farmersdelight.chicken_cuts": "Gà",
+  "some_assembly_required.ingredient.farmersdelight.bacon": "Thịt xông khói",
+  "some_assembly_required.ingredient.farmersdelight.cod_slice": "Cá tuyết",
+  "some_assembly_required.ingredient.farmersdelight.salmon_slice": "Cá hồi",
+  "some_assembly_required.ingredient.farmersdelight.mutton_chops": "Cừu",
+  "some_assembly_required.ingredient.farmersdelight.cooked_rice": "Cơm",
+
+  "some_assembly_required.config.server.maximum_sandwich_height": "Maximum sandwich height"
+}
