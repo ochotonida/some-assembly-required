@@ -51,7 +51,7 @@ public abstract class SandwichSpoutingRecipe implements Recipe<Container> {
 
     @Override
     public final ItemStack assemble(Container container) {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -61,7 +61,7 @@ public abstract class SandwichSpoutingRecipe implements Recipe<Container> {
 
     @Override
     public ItemStack getResultItem() {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     public static class EmptySerializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<SandwichSpoutingRecipe> {
