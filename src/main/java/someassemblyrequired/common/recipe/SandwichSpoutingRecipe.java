@@ -10,7 +10,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 import someassemblyrequired.common.init.ModRecipeTypes;
 
 import javax.annotation.Nullable;
@@ -36,7 +35,7 @@ public abstract class SandwichSpoutingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return ModRecipeTypes.SANDWICH_SPOUTING;
+        return ModRecipeTypes.SANDWICH_SPOUTING.get();
     }
 
     @Override
@@ -64,7 +63,7 @@ public abstract class SandwichSpoutingRecipe implements Recipe<Container> {
         return ItemStack.EMPTY;
     }
 
-    public static class EmptySerializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<SandwichSpoutingRecipe> {
+    public static class EmptySerializer implements RecipeSerializer<SandwichSpoutingRecipe> {
 
         @Override
         public SandwichSpoutingRecipe fromJson(ResourceLocation id, JsonObject object) {

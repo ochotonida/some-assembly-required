@@ -1,15 +1,14 @@
 package someassemblyrequired.data;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
@@ -17,15 +16,12 @@ import someassemblyrequired.data.ingredient.CreateIngredients;
 import someassemblyrequired.data.ingredient.FarmersDelightIngredients;
 import someassemblyrequired.data.ingredient.IngredientBuilder;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
 public record Ingredients(DataGenerator generator) implements DataProvider {
 
-    private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
     private static final Map<Item, IngredientBuilder> ingredients = new HashMap<>();
 
     public static final List<Item> itemsWithCustomModel = new ArrayList<>();
@@ -89,12 +85,12 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
         return builder;
     }
 
-    public void run(HashCache cache) {
+    public void run(CachedOutput cache) {
         Path outputFolder = this.generator.getOutputFolder();
         addIngredients();
         ingredients.forEach((item, builder) -> {
             IngredientProperties ingredient = builder.build();
-            ResourceLocation id = item.getRegistryName();
+            ResourceLocation id = ForgeRegistries.ITEMS.getKey(item);
             // noinspection ConstantConditions
             String name = id.getPath();
             if (!"minecraft".equals(id.getNamespace()) && !SomeAssemblyRequired.MODID.equals(id.getNamespace())) {
@@ -106,17 +102,10 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
         });
     }
 
-    private static void saveIngredient(HashCache cache, JsonObject object, Path path) {
+    private static void saveIngredient(CachedOutput cache, JsonObject object, Path path) {
+        // TODO
         try {
-            String json = GSON.toJson(object);
-            String hash = SHA1.hashUnencodedChars(json).toString();
-            if (!Objects.equals(cache.getHash(path), hash) || !Files.exists(path)) {
-                Files.createDirectories(path.getParent());
-                try (BufferedWriter bufferedwriter = Files.newBufferedWriter(path)) {
-                    bufferedwriter.write(json);
-                }
-            }
-            cache.putNew(path, hash);
+            DataProvider.saveStable(cache, object, path);
         } catch (IOException exception) {
             SomeAssemblyRequired.LOGGER.error("Couldn't save ingredient {}", path, exception);
         }

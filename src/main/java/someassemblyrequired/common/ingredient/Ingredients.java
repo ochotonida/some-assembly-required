@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.behavior.*;
 import someassemblyrequired.common.init.ModFoods;
@@ -22,7 +23,7 @@ public class Ingredients {
 
     public static void addBehavior(Item item, IngredientBehavior properties) {
         if (INGREDIENT_BEHAVIORS.get(item) != null) {
-            SomeAssemblyRequired.LOGGER.error("Multiple ingredient behaviors for item " + item.getRegistryName());
+            SomeAssemblyRequired.LOGGER.error("Multiple ingredient behaviors for item " + ForgeRegistries.ITEMS.getKey(item));
         } else {
             INGREDIENT_BEHAVIORS.put(item, properties);
         }

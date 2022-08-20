@@ -14,10 +14,10 @@ import someassemblyrequired.common.block.sandwich.SandwichBlock;
 
 public class ModBlocks {
 
-    public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCKS, SomeAssemblyRequired.MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SomeAssemblyRequired.MODID);
 
     // misc blocks
-    public static final RegistryObject<Block> SANDWICH = REGISTRY.register(
+    public static final RegistryObject<Block> SANDWICH = BLOCKS.register(
             "sandwich",
             () -> new SandwichBlock(
                     BlockBehaviour.Properties
@@ -29,7 +29,7 @@ public class ModBlocks {
             )
     );
 
-    public static final RegistryObject<Block> SANDWICHING_STATION = REGISTRY.register(
+    public static final RegistryObject<Block> SANDWICHING_STATION = BLOCKS.register(
             "sandwiching_station",
             () -> createSandwichAssemblyTable(Material.WOOD)
     );

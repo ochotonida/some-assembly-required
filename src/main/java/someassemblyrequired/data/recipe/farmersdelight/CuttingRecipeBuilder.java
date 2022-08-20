@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.JsonHelper;
 import someassemblyrequired.common.util.Util;
@@ -18,7 +19,10 @@ import vectorwing.farmersdelight.common.crafting.ingredient.ChanceResult;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
 
 @SuppressWarnings({"unused", "UnusedReturnValue"})
@@ -92,7 +96,7 @@ public class CuttingRecipeBuilder {
     }
 
     public void build(Consumer<FinishedRecipe> consumer) {
-        ResourceLocation location = results.get(0).getStack().getItem().getRegistryName();
+        ResourceLocation location = ForgeRegistries.ITEMS.getKey(results.get(0).getStack().getItem());
         // noinspection ConstantConditions
         build(consumer, Util.id("cutting/%s/".formatted(ModCompat.FARMERSDELIGHT) + location.getPath()));
     }
@@ -104,7 +108,7 @@ public class CuttingRecipeBuilder {
     public void build(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
         RECIPES.remove(this);
         // noinspection ConstantConditions
-        String sound = soundEvent == null ? "" : soundEvent.getRegistryName().toString();
+        String sound = soundEvent == null ? "" : ForgeRegistries.SOUND_EVENTS.getKey(soundEvent).toString();
         consumer.accept(new Result(id, ingredient, tool, results, sound));
     }
 

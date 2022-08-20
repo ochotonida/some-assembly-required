@@ -1,25 +1,25 @@
 {
   "parent": "some_assembly_required:obtain_sandwich",
+  "criteria": {
+    "consume_double_decker_sandwich": {
+      "conditions": {},
+      "trigger": "some_assembly_required:consume_double_decker_sandwich"
+    }
+  },
   "display": {
-    "icon": {
-      "item": "some_assembly_required:sandwich",
-      "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\"},{Count:1b,id:\"some_assembly_required:tomato_slices\"},{Count:1b,id:\"some_assembly_required:chopped_carrot\"},{Count:1b,id:\"some_assembly_required:bread_slice\"},{Count:1b,id:\"some_assembly_required:tomato_slices\"},{Count:1b,id:\"some_assembly_required:chopped_carrot\"},{Count:1b,id:\"some_assembly_required:bread_slice\"}]}}"
-    },
-    "title": {
-      "translate": "some_assembly_required.advancement.consume_double_decker_sandwich.title"
-    },
+    "announce_to_chat": true,
     "description": {
       "translate": "some_assembly_required.advancement.consume_double_decker_sandwich.description"
     },
     "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "some_assembly_required:sandwich",
+      "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\"},{Count:1b,id:\"some_assembly_required:tomato_slices\"},{Count:1b,id:\"some_assembly_required:chopped_carrot\"},{Count:1b,id:\"some_assembly_required:bread_slice\"},{Count:1b,id:\"some_assembly_required:tomato_slices\"},{Count:1b,id:\"some_assembly_required:chopped_carrot\"},{Count:1b,id:\"some_assembly_required:bread_slice\"}]}}"
+    },
     "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": true
-  },
-  "criteria": {
-    "consume_double_decker_sandwich": {
-      "trigger": "some_assembly_required:consume_double_decker_sandwich",
-      "conditions": {}
+    "title": {
+      "translate": "some_assembly_required.advancement.consume_double_decker_sandwich.title"
     }
   },
   "requirements": [

@@ -1,30 +1,30 @@
 {
   "parent": "minecraft:husbandry/plant_seed",
-  "display": {
-    "icon": {
-      "item": "some_assembly_required:bread_slice"
-    },
-    "title": {
-      "translate": "some_assembly_required.advancement.obtain_bread_slice.title"
-    },
-    "description": {
-      "translate": "some_assembly_required.advancement.obtain_bread_slice.description"
-    },
-    "frame": "task",
-    "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": false
-  },
   "criteria": {
     "obtain_bread_slice": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "tag": "forge:bread_slices"
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "some_assembly_required.advancement.obtain_bread_slice.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "some_assembly_required:bread_slice"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "some_assembly_required.advancement.obtain_bread_slice.title"
     }
   },
   "requirements": [

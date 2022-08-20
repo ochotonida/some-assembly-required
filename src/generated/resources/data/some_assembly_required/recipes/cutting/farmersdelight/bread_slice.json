@@ -2,8 +2,8 @@
   "type": "farmersdelight:cutting",
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
   "ingredients": [
@@ -11,13 +11,13 @@
       "item": "minecraft:bread"
     }
   ],
-  "tool": {
-    "tag": "forge:tools/knives"
-  },
   "result": [
     {
-      "item": "some_assembly_required:bread_slice",
-      "count": 4
+      "count": 4,
+      "item": "some_assembly_required:bread_slice"
     }
-  ]
+  ],
+  "tool": {
+    "tag": "forge:tools/knives"
+  }
 }

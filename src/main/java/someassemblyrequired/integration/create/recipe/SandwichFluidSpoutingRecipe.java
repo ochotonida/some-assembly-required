@@ -10,7 +10,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 import someassemblyrequired.common.init.ModRecipeTypes;
 import someassemblyrequired.common.recipe.SandwichSpoutingRecipe;
 
@@ -56,7 +55,7 @@ public class SandwichFluidSpoutingRecipe extends SandwichSpoutingRecipe {
         return ingredient;
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<SandwichFluidSpoutingRecipe> {
+    public static class Serializer implements RecipeSerializer<SandwichFluidSpoutingRecipe> {
 
         @Override
         public SandwichFluidSpoutingRecipe fromJson(ResourceLocation id, JsonObject object) {

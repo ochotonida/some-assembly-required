@@ -1,15 +1,14 @@
 package someassemblyrequired.data;
 
 import com.google.common.collect.Sets;
-import com.google.gson.GsonBuilder;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.HashCache;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraft.data.advancements.HusbandryAdvancements;
 import net.minecraft.resources.ResourceLocation;
@@ -30,35 +29,31 @@ import java.util.function.Consumer;
 
 public class Advancements extends AdvancementProvider {
 
-    private final Path PATH;
+    private final DataGenerator.PathProvider pathProvider;
 
     public Advancements(DataGenerator generator, ExistingFileHelper helper) {
         super(generator, helper);
-        PATH = generator.getOutputFolder();
+        this.pathProvider = generator.createPathProvider(DataGenerator.Target.DATA_PACK, "advancements");
     }
 
     @Override
-    public void run(HashCache cache) {
+    public void run(CachedOutput cache) {
         Set<ResourceLocation> set = Sets.newHashSet();
         Consumer<Advancement> consumer = (advancement) -> {
             if (!set.add(advancement.getId())) {
                 throw new IllegalStateException("Duplicate advancement " + advancement.getId());
             } else {
-                Path path1 = getPath(PATH, advancement);
+                Path path = this.pathProvider.json(advancement.getId());
 
                 try {
-                    DataProvider.save((new GsonBuilder()).setPrettyPrinting().create(), cache, advancement.deconstruct().serializeToJson(), path1);
+                    DataProvider.saveStable(cache, advancement.deconstruct().serializeToJson(), path);
                 } catch (IOException ioexception) {
-                    SomeAssemblyRequired.LOGGER.error("Couldn't save advancement {}", path1, ioexception);
+                    SomeAssemblyRequired.LOGGER.error("Couldn't save advancement {}", path, ioexception);
                 }
             }
         };
 
         new SomeAssemblyRequiredAdvancements().accept(consumer);
-    }
-
-    private static Path getPath(Path pathIn, Advancement advancementIn) {
-        return pathIn.resolve("data/" + advancementIn.getId().getNamespace() + "/advancements/" + advancementIn.getId().getPath() + ".json");
     }
 
     public static class SomeAssemblyRequiredAdvancements implements Consumer<Consumer<Advancement>> {

@@ -14,6 +14,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.forgespi.Environment;
@@ -43,7 +44,7 @@ public class IngredientPropertiesManager extends SimpleJsonResourceReloadListene
         properties.clear();
         resources.forEach((resourceLocation, element) -> {
             try {
-                if (element.isJsonObject() && !CraftingHelper.processConditions(element.getAsJsonObject(), "conditions")) {
+                if (element.isJsonObject() && !CraftingHelper.processConditions(element.getAsJsonObject(), "conditions", ICondition.IContext.EMPTY)) {
                     SomeAssemblyRequired.LOGGER.debug("Skipping loading spread type {} as it's conditions were not met", resourceLocation);
                     return;
                 }

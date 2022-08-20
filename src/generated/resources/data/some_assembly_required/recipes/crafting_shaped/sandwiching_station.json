@@ -1,9 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "AA",
-    "BB"
-  ],
   "key": {
     "A": {
       "item": "minecraft:smooth_stone"
@@ -12,6 +8,10 @@
       "tag": "minecraft:planks"
     }
   },
+  "pattern": [
+    "AA",
+    "BB"
+  ],
   "result": {
     "item": "some_assembly_required:sandwiching_station"
   }

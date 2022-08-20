@@ -1,25 +1,25 @@
 {
   "parent": "some_assembly_required:obtain_sandwich",
+  "criteria": {
+    "add_potion_to_sandwich": {
+      "conditions": {},
+      "trigger": "some_assembly_required:add_potion_to_sandwich"
+    }
+  },
   "display": {
-    "icon": {
-      "item": "some_assembly_required:sandwich",
-      "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\"},{Count:1b,id:\"minecraft:potion\",tag:{Potion:\"minecraft:night_vision\"}},{Count:1b,id:\"some_assembly_required:bread_slice\"}]}}"
-    },
-    "title": {
-      "translate": "some_assembly_required.advancement.add_potion_to_sandwich.title"
-    },
+    "announce_to_chat": true,
     "description": {
       "translate": "some_assembly_required.advancement.add_potion_to_sandwich.description"
     },
     "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "some_assembly_required:sandwich",
+      "nbt": "{BlockEntityTag:{Sandwich:[{Count:1b,id:\"some_assembly_required:bread_slice\"},{Count:1b,id:\"minecraft:potion\",tag:{Potion:\"minecraft:night_vision\"}},{Count:1b,id:\"some_assembly_required:bread_slice\"}]}}"
+    },
     "show_toast": true,
-    "announce_to_chat": true,
-    "hidden": true
-  },
-  "criteria": {
-    "add_potion_to_sandwich": {
-      "trigger": "some_assembly_required:add_potion_to_sandwich",
-      "conditions": {}
+    "title": {
+      "translate": "some_assembly_required.advancement.add_potion_to_sandwich.title"
     }
   },
   "requirements": [

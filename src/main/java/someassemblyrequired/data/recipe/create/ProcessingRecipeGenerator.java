@@ -5,12 +5,13 @@ import com.simibubi.create.content.contraptions.processing.ProcessingRecipeBuild
 import com.simibubi.create.content.contraptions.processing.ProcessingRecipeSerializer;
 import com.simibubi.create.foundation.data.recipe.ProcessingRecipeGen;
 import com.simibubi.create.foundation.utility.recipe.IRecipeTypeInfo;
+import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.common.util.Util;
 import someassemblyrequired.integration.ModCompat;
 
@@ -23,15 +24,15 @@ public abstract class ProcessingRecipeGenerator extends ProcessingRecipeGen {
 
     private static final List<ProcessingRecipeGenerator> GENERATORS = new ArrayList<>();
 
-    public static void registerAll(DataGenerator gen) {
+    public static void registerAll(boolean runProviders, DataGenerator gen) {
         GENERATORS.add(new CuttingRecipeGenerator(gen));
 
-        gen.addProvider(new DataProvider() {
+        gen.addProvider(runProviders, new DataProvider() {
             public String getName() {
                 return "Processing Recipes";
             }
 
-            public void run(HashCache cache) {
+            public void run(CachedOutput cache) {
                 GENERATORS.forEach((generator) -> {
                     try {
                         generator.run(cache);
@@ -55,7 +56,7 @@ public abstract class ProcessingRecipeGenerator extends ProcessingRecipeGen {
             transform.apply(
                     new ProcessingRecipeBuilder<>(
                             serializer.getFactory(),
-                            new ResourceLocation(namespace, iItemProvider.asItem().getRegistryName().getPath())
+                            new ResourceLocation(namespace, ForgeRegistries.ITEMS.getKey(iItemProvider.asItem()).getPath())
                     ).whenModLoaded(ModCompat.CREATE).withItemIngredients(Ingredient.of(iItemProvider))
             ).build(c);
         };
@@ -85,7 +86,7 @@ public abstract class ProcessingRecipeGenerator extends ProcessingRecipeGen {
 
     protected Supplier<ResourceLocation> idWithSuffix(Supplier<ItemLike> item, String suffix) {
         return () -> {
-            ResourceLocation registryName = item.get().asItem().getRegistryName();
+            ResourceLocation registryName = ForgeRegistries.ITEMS.getKey(item.get().asItem());
             // noinspection ConstantConditions
             return Util.id(registryName.getPath() + suffix);
         };

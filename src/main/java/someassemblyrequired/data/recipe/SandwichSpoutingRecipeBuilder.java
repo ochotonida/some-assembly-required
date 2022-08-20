@@ -18,6 +18,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
+import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.common.init.ModRecipeTypes;
 import someassemblyrequired.common.util.JsonHelper;
 import someassemblyrequired.common.util.Util;
@@ -46,7 +47,7 @@ public class SandwichSpoutingRecipeBuilder {
 
     public static Result create(ItemStack result, Fluid fluid, int amountRequired) {
         // noinspection ConstantConditions
-        return create(result.getItem().getRegistryName().getPath(), result, FluidIngredient.fromFluid(fluid, amountRequired));
+        return create(ForgeRegistries.ITEMS.getKey(result.getItem()).getPath(), result, FluidIngredient.fromFluid(fluid, amountRequired));
     }
 
     public static Result create(String name, ItemStack result, FluidIngredient ingredient) {

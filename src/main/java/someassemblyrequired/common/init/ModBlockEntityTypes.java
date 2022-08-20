@@ -10,9 +10,9 @@ import someassemblyrequired.common.block.sandwich.SandwichBlockEntity;
 @SuppressWarnings("ConstantConditions")
 public class ModBlockEntityTypes {
 
-    public static final DeferredRegister<BlockEntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, SomeAssemblyRequired.MODID);
+    public static final DeferredRegister<BlockEntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, SomeAssemblyRequired.MODID);
 
-    public static RegistryObject<BlockEntityType<SandwichBlockEntity>> SANDWICH = REGISTRY.register(
+    public static RegistryObject<BlockEntityType<SandwichBlockEntity>> SANDWICH = ENTITY_TYPES.register(
             "sandwich",
             () -> BlockEntityType.Builder.of(SandwichBlockEntity::new,
                     ModBlocks.SANDWICH.get()

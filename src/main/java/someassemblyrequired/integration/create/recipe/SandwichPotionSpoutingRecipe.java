@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 import someassemblyrequired.common.init.ModRecipeTypes;
 import someassemblyrequired.common.recipe.SandwichSpoutingRecipe;
 
@@ -48,7 +47,7 @@ public class SandwichPotionSpoutingRecipe extends SandwichSpoutingRecipe {
         return ModRecipeTypes.SANDWICH_POTION_SPOUTING_SERIALIZER.get();
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<SandwichPotionSpoutingRecipe> {
+    public static class Serializer implements RecipeSerializer<SandwichPotionSpoutingRecipe> {
 
         @Override
         public SandwichPotionSpoutingRecipe fromJson(ResourceLocation id, JsonObject object) {

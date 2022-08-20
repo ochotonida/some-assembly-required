@@ -9,13 +9,13 @@ import someassemblyrequired.common.util.Util;
 
 public class ModSoundEvents {
 
-    public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, SomeAssemblyRequired.MODID);
+    public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, SomeAssemblyRequired.MODID);
 
     public static final RegistryObject<SoundEvent> ADD_ITEM = register("block.sandwich.add_item");
     public static final RegistryObject<SoundEvent> ADD_SPREAD = register("block.sandwich.add_spread");
     public static final RegistryObject<SoundEvent> ADD_LEAVES = register("block.sandwich.add_leaves");
 
     private static RegistryObject<SoundEvent> register(String id) {
-        return REGISTRY.register(id, () -> new SoundEvent(Util.id(id)));
+        return SOUND_EVENTS.register(id, () -> new SoundEvent(Util.id(id)));
     }
 }

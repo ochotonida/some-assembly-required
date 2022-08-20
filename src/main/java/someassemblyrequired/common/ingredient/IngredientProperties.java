@@ -98,12 +98,13 @@ public class IngredientProperties {
         JsonObject result = new JsonObject();
 
         // noinspection ConstantConditions
-        String modid = item.getRegistryName().getNamespace();
+        String modid = ForgeRegistries.ITEMS.getKey(item).getNamespace();
         if (!modid.equals("minecraft") && !modid.equals(SomeAssemblyRequired.MODID)) {
             JsonHelper.addModLoadedCondition(result, modid);
         }
 
-        result.addProperty("item", item.getRegistryName().toString());
+        // noinspection ConstantConditions
+        result.addProperty("item", ForgeRegistries.ITEMS.getKey(item).toString());
         if (foodProperties != null) {
             result.add("food", writeFoodProperties(foodProperties));
         }
@@ -121,7 +122,7 @@ public class IngredientProperties {
         }
         if (soundEvent != null) {
             // noinspection ConstantConditions
-            result.addProperty("soundEvent", soundEvent.getRegistryName().toString());
+            result.addProperty("soundEvent", ForgeRegistries.SOUND_EVENTS.getKey(soundEvent).toString());
         }
 
         return result;
@@ -201,7 +202,7 @@ public class IngredientProperties {
         buffer.writeBoolean(soundEvent != null);
         if (soundEvent != null) {
             // noinspection ConstantConditions
-            buffer.writeResourceLocation(soundEvent.getRegistryName());
+            buffer.writeResourceLocation(ForgeRegistries.SOUND_EVENTS.getKey(soundEvent));
         }
     }
 

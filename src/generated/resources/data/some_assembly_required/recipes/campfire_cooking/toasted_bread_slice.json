@@ -1,9 +1,9 @@
 {
   "type": "minecraft:campfire_cooking",
+  "cookingtime": 600,
+  "experience": 0.35,
   "ingredient": {
     "item": "some_assembly_required:bread_slice"
   },
-  "result": "some_assembly_required:toasted_bread_slice",
-  "experience": 0.35,
-  "cookingtime": 600
+  "result": "some_assembly_required:toasted_bread_slice"
 }

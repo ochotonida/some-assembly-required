@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
+import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 
 public class JsonHelper {
@@ -16,7 +17,7 @@ public class JsonHelper {
         JsonObject result = new JsonObject();
 
         // noinspection ConstantConditions
-        result.addProperty("item", stack.getItem().getRegistryName().toString());
+        result.addProperty("item", ForgeRegistries.ITEMS.getKey(stack.getItem()).toString());
         if (stack.getCount() != 1) {
             result.addProperty("count", stack.getCount());
         }

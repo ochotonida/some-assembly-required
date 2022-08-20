@@ -8,6 +8,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import someassemblyrequired.common.config.ModConfig;
@@ -31,20 +32,28 @@ public class SomeAssemblyRequired {
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModItems.REGISTRY.register(modEventBus);
-        ModBlocks.REGISTRY.register(modEventBus);
-        ModBlockEntityTypes.REGISTRY.register(modEventBus);
-        ModSoundEvents.REGISTRY.register(modEventBus);
-        ModRecipeTypes.REGISTRY.register(modEventBus);
-        ModLootModifiers.REGISTRY.register(modEventBus);
+        register(modEventBus,
+                ModItems.ITEMS,
+                ModBlocks.BLOCKS,
+                ModBlockEntityTypes.ENTITY_TYPES,
+                ModSoundEvents.SOUND_EVENTS,
+                ModRecipeTypes.RECIPE_TYPES,
+                ModRecipeTypes.RECIPE_SERIALIZERS,
+                ModLootModifiers.LOOT_MODIFIERS
+        );
 
-        modEventBus.addGenericListener(RecipeSerializer.class, ModRecipeTypes::register);
         modEventBus.addListener(this::onCommonSetup);
 
         MinecraftForge.EVENT_BUS.addListener(IngredientPropertiesManager::onAddReloadListener);
         MinecraftForge.EVENT_BUS.addListener(IngredientPropertiesManager::onDataPackReload);
 
         ModAdvancementTriggers.register();
+    }
+
+    private static void register(IEventBus modEventBus, DeferredRegister<?>... registers) {
+        for (DeferredRegister<?> register : registers) {
+            register.register(modEventBus);
+        }
     }
 
     public void onCommonSetup(FMLCommonSetupEvent event) {

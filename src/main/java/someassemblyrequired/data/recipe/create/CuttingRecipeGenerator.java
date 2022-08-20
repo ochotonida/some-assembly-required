@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
 import someassemblyrequired.integration.ModCompat;
@@ -37,7 +38,7 @@ public class CuttingRecipeGenerator extends ProcessingRecipeGenerator {
 
     private void cut(Ingredient input, ItemLike result, int count) {
         // noinspection ConstantConditions
-        create(Util.id(ModCompat.CREATE + "/" + result.asItem().getRegistryName().getPath()), builder -> builder.duration(30).output(result, count).withItemIngredients(input));
+        create(Util.id(ModCompat.CREATE + "/" + ForgeRegistries.ITEMS.getKey(result.asItem()).getPath()), builder -> builder.duration(30).output(result, count).withItemIngredients(input));
     }
 
     protected AllRecipeTypes getRecipeType() {

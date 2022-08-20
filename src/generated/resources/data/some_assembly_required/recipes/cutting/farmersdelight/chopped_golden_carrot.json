@@ -2,8 +2,8 @@
   "type": "farmersdelight:cutting",
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
   "ingredients": [
@@ -11,13 +11,13 @@
       "item": "minecraft:golden_carrot"
     }
   ],
-  "tool": {
-    "tag": "forge:tools/knives"
-  },
   "result": [
     {
-      "item": "some_assembly_required:chopped_golden_carrot",
-      "count": 2
+      "count": 2,
+      "item": "some_assembly_required:chopped_golden_carrot"
     }
-  ]
+  ],
+  "tool": {
+    "tag": "forge:tools/knives"
+  }
 }

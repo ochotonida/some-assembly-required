@@ -1,12 +1,12 @@
 package someassemblyrequired.data.ingredient;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.ingredient.IngredientProperties;
 import someassemblyrequired.common.init.ModItems;
@@ -51,7 +51,7 @@ public class IngredientBuilder {
     }
 
     public IngredientBuilder setDisplayName(String translationKey) {
-        return setDisplayName(new TranslatableComponent(translationKey));
+        return setDisplayName(Component.translatable(translationKey));
     }
 
     public IngredientBuilder setDisplayName(Item item) {
@@ -68,7 +68,7 @@ public class IngredientBuilder {
     }
 
     public IngredientBuilder setFullName(String translationKey) {
-        return setFullName(new TranslatableComponent(translationKey));
+        return setFullName(Component.translatable(translationKey));
     }
 
     public IngredientBuilder setFullName(Item item) {
@@ -125,7 +125,7 @@ public class IngredientBuilder {
     }
 
     private static String getDefaultTranslationKey(Item item) {
-        ResourceLocation id = item.getRegistryName();
+        ResourceLocation id = ForgeRegistries.ITEMS.getKey(item);
         // noinspection ConstantConditions
         if ("minecraft".equals(id.getNamespace()) || SomeAssemblyRequired.MODID.equals(id.getNamespace())) {
             return "%s.ingredient.%s".formatted(SomeAssemblyRequired.MODID, id.getPath());

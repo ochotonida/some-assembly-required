@@ -1,8 +1,6 @@
 package someassemblyrequired.common.item.sandwich;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -16,7 +14,6 @@ import someassemblyrequired.common.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SandwichNameHelper {
 
@@ -98,11 +95,11 @@ public class SandwichNameHelper {
     }
 
     private static Component listIngredients(List<ItemStack> ingredients) {
-        List<Component> ingredientNames = ingredients.stream().map(Ingredients::getDisplayName).collect(Collectors.toList());
+        List<Component> ingredientNames = ingredients.stream().map(Ingredients::getDisplayName).toList();
         return Util.translate("tooltip.ingredient_list.%s".formatted(ingredientNames.size()), ingredientNames.toArray());
     }
 
     private static Component translateItem(String name, Object... args) {
-        return new TranslatableComponent("item.%s.%s".formatted(SomeAssemblyRequired.MODID, name), args);
+        return Component.translatable("item.%s.%s".formatted(SomeAssemblyRequired.MODID, name), args);
     }
 }

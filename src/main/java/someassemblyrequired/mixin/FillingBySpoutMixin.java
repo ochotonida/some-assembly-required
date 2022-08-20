@@ -61,7 +61,7 @@ public class FillingBySpoutMixin {
     }
 
     private static SandwichSpoutingRecipe getMatchingRecipe(FluidStack fluid, Level level) {
-        for (SandwichSpoutingRecipe recipe : level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.SANDWICH_SPOUTING)) {
+        for (SandwichSpoutingRecipe recipe : level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.SANDWICH_SPOUTING.get())) {
             if (recipe.matches(fluid)) {
                 return recipe;
             }

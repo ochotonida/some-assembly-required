@@ -34,7 +34,7 @@ public class IngredientSyncPacket {
         buffer.writeVarInt(ingredients.size());
         ingredients.forEach(((item, ingredient) -> {
             // noinspection ConstantConditions
-            buffer.writeResourceLocation(item.getRegistryName());
+            buffer.writeResourceLocation(ForgeRegistries.ITEMS.getKey(item));
             ingredient.toNetwork(buffer);
         }));
     }

@@ -13,6 +13,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
@@ -60,7 +61,7 @@ public class Recipes extends RecipeProvider {
 
     private ResourceLocation getRecipeLocation(ItemLike result, String location) {
         // noinspection ConstantConditions
-        return Util.id(location + "/" + result.asItem().getRegistryName().getPath());
+        return Util.id(location + "/" + ForgeRegistries.ITEMS.getKey(result.asItem()).getPath());
     }
 
     private InventoryChangeTrigger.TriggerInstance createItemCriterion(ItemLike itemProvider) {

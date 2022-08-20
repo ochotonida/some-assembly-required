@@ -1,5 +1,6 @@
 package someassemblyrequired.data;
 
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -7,7 +8,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -33,35 +33,35 @@ public class ItemModels extends ItemModelProvider {
     @SuppressWarnings("ConstantConditions")
     protected void registerModels() {
         Set<Item> items = ForgeRegistries.ITEMS.getValues().stream()
-                .filter(item -> item.getRegistryName().getNamespace().equals(SomeAssemblyRequired.MODID))
+                .filter(item -> ForgeRegistries.ITEMS.getKey(item).getNamespace().equals(SomeAssemblyRequired.MODID))
                 .collect(Collectors.toSet());
 
         removeAll(items, ModItems.SANDWICH.get());
         getBuilder(ModBlocks.SANDWICH.getId().getPath()).parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .texture("particle", prefixItem("bread_slice"))
                 .transforms()
-                .transform(ModelBuilder.Perspective.GUI)
+                .transform(ItemTransforms.TransformType.GUI)
                 .rotation(30, 45, 0)
                 .scale(0.8F)
                 .end()
-                .transform(ModelBuilder.Perspective.GROUND)
+                .transform(ItemTransforms.TransformType.GROUND)
                 .rotation(0, 180, 0)
                 .scale(0.5F)
                 .end()
-                .transform(ModelBuilder.Perspective.HEAD)
+                .transform(ItemTransforms.TransformType.HEAD)
                 .rotation(0, 180, 0)
                 .translation(0, 0.5F, 0)
                 .end()
-                .transform(ModelBuilder.Perspective.FIXED)
+                .transform(ItemTransforms.TransformType.FIXED)
                 .rotation(0, 180, 0)
                 .translation(0, -4, 0)
                 .end()
-                .transform(ModelBuilder.Perspective.THIRDPERSON_RIGHT)
+                .transform(ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND)
                 .rotation(75, 315, 0)
                 .translation(0, 2.5F, 0)
                 .scale(0.55F)
                 .end()
-                .transform(ModelBuilder.Perspective.FIRSTPERSON_RIGHT)
+                .transform(ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND)
                 .rotation(0, 315, 0)
                 .translation(0, 1, 0)
                 .scale(0.5F)
@@ -76,10 +76,10 @@ public class ItemModels extends ItemModelProvider {
         List<Item> itemsWithCustomModel = Ingredients.itemsWithCustomModel;
         for (int i = 0; i < itemsWithCustomModel.size(); i++) {
             Item item = itemsWithCustomModel.get(i);
-            if (SomeAssemblyRequired.MODID.equals(item.getRegistryName().getNamespace())) {
+            if (SomeAssemblyRequired.MODID.equals(ForgeRegistries.ITEMS.getKey(item).getNamespace())) {
                 addGeneratedModel(item);
             }
-            String id = "%s/%s".formatted(item.getRegistryName().getNamespace(), item.getRegistryName().getPath());
+            String id = "%s/%s".formatted(ForgeRegistries.ITEMS.getKey(item).getNamespace(), ForgeRegistries.ITEMS.getKey(item).getPath());
             String path = "ingredient/" + id;
 
             builder.override()
@@ -92,7 +92,7 @@ public class ItemModels extends ItemModelProvider {
         addGeneratedModel("enchanted_golden_apple_slices", prefixItem("golden_apple_slices"));
 
         removeAll(items, item -> item instanceof BlockItem).forEach(
-                block -> withExistingParent(block.getRegistryName().getPath(), prefixBlock(block.getRegistryName().getPath()))
+                block -> withExistingParent(ForgeRegistries.ITEMS.getKey(block).getPath(), prefixBlock(ForgeRegistries.ITEMS.getKey(block).getPath()))
         );
 
         items.forEach(this::addGeneratedModel);
@@ -108,7 +108,7 @@ public class ItemModels extends ItemModelProvider {
 
     private ItemModelBuilder addGeneratedModel(Item item) {
         // noinspection ConstantConditions
-        String name = item.getRegistryName().getPath();
+        String name = ForgeRegistries.ITEMS.getKey(item).getPath();
         return withExistingParent("item/" + name, "item/generated").texture("layer0", prefixItem(name));
     }
 
