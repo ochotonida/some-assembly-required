@@ -19,6 +19,7 @@ import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.util.Util;
 import someassemblyrequired.data.recipe.SandwichSpoutingRecipeBuilder;
 import someassemblyrequired.data.recipe.farmersdelight.CuttingRecipeBuilder;
+import someassemblyrequired.integration.ModCompat;
 
 import java.util.function.Consumer;
 
@@ -32,8 +33,12 @@ public class Recipes extends RecipeProvider {
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         addShapedRecipes(consumer);
         addCookingRecipes(consumer);
-        CuttingRecipeBuilder.addCuttingRecipes(consumer);
-        SandwichSpoutingRecipeBuilder.addFillingRecipes(consumer);
+        if (ModCompat.isFarmersDelightLoaded()) {
+            CuttingRecipeBuilder.addCuttingRecipes(consumer);
+        }
+        if (ModCompat.isCreateLoaded()) {
+            SandwichSpoutingRecipeBuilder.addFillingRecipes(consumer);
+        }
     }
 
     private void addShapedRecipes(Consumer<FinishedRecipe> consumer) {

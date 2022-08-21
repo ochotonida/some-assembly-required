@@ -7,6 +7,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.data.recipe.create.ProcessingRecipeGenerator;
+import someassemblyrequired.integration.ModCompat;
 
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber(modid = SomeAssemblyRequired.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -22,7 +23,10 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new Advancements(generator, helper));
         generator.addProvider(event.includeServer(), new LootTables(generator));
         generator.addProvider(event.includeServer(), new Ingredients(generator));
-        ProcessingRecipeGenerator.registerAll(event.includeServer(), generator);
+        // TODO add create back
+        if (ModCompat.isCreateLoaded()) {
+            ProcessingRecipeGenerator.registerAll(event.includeServer(), generator);
+        }
 
         BlockStates blockStates = new BlockStates(generator, helper);
         generator.addProvider(event.includeClient(), blockStates);

@@ -15,6 +15,7 @@ import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.data.ingredient.CreateIngredients;
 import someassemblyrequired.data.ingredient.FarmersDelightIngredients;
 import someassemblyrequired.data.ingredient.IngredientBuilder;
+import someassemblyrequired.integration.ModCompat;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -48,8 +49,12 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
             builder(item).setDisplayItem(displayItem);
         }
 
-        new CreateIngredients(ingredients).addIngredients();
-        new FarmersDelightIngredients(ingredients).addIngredients();
+        if (ModCompat.isCreateLoaded()) {
+            CreateIngredients.addIngredients(this);
+        }
+        if (ModCompat.isFarmersDelightLoaded()) {
+            FarmersDelightIngredients.addIngredients(this);
+        }
 
         ItemStack displayItem = ingredients.get(ModItems.GOLDEN_APPLE_SLICES.get()).getDisplayItem().copy();
         displayItem.getOrCreateTag().putBoolean("HasEffect", true);
@@ -76,7 +81,7 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
         ).forEach(item -> builder(item).setCustomDisplayName());
     }
 
-    private IngredientBuilder builder(Item item) {
+    public IngredientBuilder builder(Item item) {
         if (ingredients.containsKey(item)) {
             return ingredients.get(item);
         }
