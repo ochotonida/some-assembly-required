@@ -10,32 +10,32 @@ public class ModFoods {
             .build();
 
     public static final FoodProperties BREAD_SLICE = new FoodProperties.Builder()
-            .nutrition(2)
-            .saturationMod(0.5F)
+            .nutrition(1)
+            .saturationMod(0.6F)
             .fast()
             .build();
 
     public static final FoodProperties TOASTED_BREAD_SLICE = new FoodProperties.Builder()
-            .nutrition(3)
-            .saturationMod(0.6F)
+            .nutrition(1)
+            .saturationMod(1F)
             .fast().build();
 
     public static final FoodProperties APPLE_SLICES = new FoodProperties.Builder()
             .nutrition(2)
-            .saturationMod(0.5F)
+            .saturationMod(0.3F)
             .fast()
             .build();
 
     public static final FoodProperties GOLDEN_APPLE_SLICES = new FoodProperties.Builder()
-            .nutrition(3).saturationMod(0.7F).fast()
+            .nutrition(2).saturationMod(1.2F).fast()
             .alwaysEat()
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 50, 1), 1)
             .effect(() -> new MobEffectInstance(MobEffects.ABSORPTION, 1200, 0), 1)
             .build();
 
     public static final FoodProperties ENCHANTED_GOLDEN_APPLE_SLICES = new FoodProperties.Builder()
-            .nutrition(4)
-            .saturationMod(0.8F)
+            .nutrition(2)
+            .saturationMod(1.2F)
             .fast()
             .alwaysEat()
             .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 200, 1), 1)
@@ -46,25 +46,25 @@ public class ModFoods {
 
     public static final FoodProperties CHOPPED_CARROT = new FoodProperties.Builder()
             .nutrition(2)
-            .saturationMod(0.5F)
+            .saturationMod(0.6F)
             .fast()
             .build();
 
     public static final FoodProperties CHOPPED_GOLDEN_CARROT = new FoodProperties.Builder()
             .nutrition(3)
-            .saturationMod(0.8F)
+            .saturationMod(1.2F)
             .fast()
             .build();
 
     public static final FoodProperties CHOPPED_BEETROOT = new FoodProperties.Builder()
-            .nutrition(3)
-            .saturationMod(0.6F)
+            .nutrition(1)
+            .saturationMod(0.8F)
             .fast()
             .build();
 
     public static final FoodProperties TOMATO_SLICES = new FoodProperties.Builder()
-            .nutrition(2)
-            .saturationMod(0.6F)
+            .nutrition(1)
+            .saturationMod(1F)
             .fast()
             .build();
 }
