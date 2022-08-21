@@ -1,18 +1,18 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:bacon",
-  "displayName": {
-    "translate": "some_assembly_required.ingredient.farmersdelight.bacon"
-  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 15
     }
-  }
+  },
+  "displayName": {
+    "translate": "some_assembly_required.ingredient.farmersdelight.bacon"
+  },
+  "item": "farmersdelight:bacon"
 }

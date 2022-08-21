@@ -19,30 +19,6 @@
       }
     ]
   },
-  "block.sandwich.add_spread": {
-    "sounds": [
-      {
-        "name": "block/honeyblock/break1",
-        "pitch": 1.5
-      },
-      {
-        "name": "block/honeyblock/break2",
-        "pitch": 1.5
-      },
-      {
-        "name": "block/honeyblock/break3",
-        "pitch": 1.5
-      },
-      {
-        "name": "block/honeyblock/break4",
-        "pitch": 1.5
-      },
-      {
-        "name": "block/honeyblock/break5",
-        "pitch": 1.5
-      }
-    ]
-  },
   "block.sandwich.add_leaves": {
     "sounds": [
       {
@@ -72,6 +48,30 @@
       {
         "name": "block/azalea_leaves/break7",
         "volume": 0.85
+      }
+    ]
+  },
+  "block.sandwich.add_spread": {
+    "sounds": [
+      {
+        "name": "block/honeyblock/break1",
+        "pitch": 1.5
+      },
+      {
+        "name": "block/honeyblock/break2",
+        "pitch": 1.5
+      },
+      {
+        "name": "block/honeyblock/break3",
+        "pitch": 1.5
+      },
+      {
+        "name": "block/honeyblock/break4",
+        "pitch": 1.5
+      },
+      {
+        "name": "block/honeyblock/break5",
+        "pitch": 1.5
       }
     ]
   }

@@ -1,18 +1,18 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:cooked_cod_slice",
-  "displayName": {
-    "translate": "some_assembly_required.ingredient.farmersdelight.cod_slice"
-  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 18
     }
-  }
+  },
+  "displayName": {
+    "translate": "some_assembly_required.ingredient.farmersdelight.cod_slice"
+  },
+  "item": "farmersdelight:cooked_cod_slice"
 }

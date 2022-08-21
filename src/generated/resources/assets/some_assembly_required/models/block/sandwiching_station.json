@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "side": "some_assembly_required:block/sandwiching_station_side",
     "bottom": "some_assembly_required:block/sandwiching_station_bottom",
+    "side": "some_assembly_required:block/sandwiching_station_side",
     "top": "some_assembly_required:block/sandwiching_station_top"
   }
 }

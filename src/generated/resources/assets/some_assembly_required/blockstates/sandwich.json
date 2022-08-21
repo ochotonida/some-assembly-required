@@ -1,5 +1,9 @@
 {
   "variants": {
+    "facing=east": {
+      "model": "some_assembly_required:block/sandwich",
+      "y": 90
+    },
     "facing=north": {
       "model": "some_assembly_required:block/sandwich"
     },
@@ -10,10 +14,6 @@
     "facing=west": {
       "model": "some_assembly_required:block/sandwich",
       "y": 270
-    },
-    "facing=east": {
-      "model": "some_assembly_required:block/sandwich",
-      "y": 90
     }
   }
 }

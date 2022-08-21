@@ -1,19 +1,19 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:beef_stew",
+  "container": {
+    "item": "minecraft:bowl"
+  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 25
     }
   },
-  "container": {
-    "item": "minecraft:bowl"
-  },
+  "item": "farmersdelight:beef_stew",
   "soundEvent": "some_assembly_required:block.sandwich.add_spread"
 }

@@ -1,19 +1,19 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:tomato_sauce",
+  "container": {
+    "item": "minecraft:bowl"
+  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "Color": 12464927
     }
   },
-  "container": {
-    "item": "minecraft:bowl"
-  },
+  "item": "farmersdelight:tomato_sauce",
   "soundEvent": "some_assembly_required:block.sandwich.add_spread"
 }

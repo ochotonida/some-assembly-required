@@ -1,13 +1,12 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:cooked_rice",
-  "displayName": {
-    "translate": "some_assembly_required.ingredient.farmersdelight.cooked_rice"
+  "container": {
+    "item": "minecraft:bowl"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",
@@ -15,7 +14,8 @@
       "CustomModelData": 24
     }
   },
-  "container": {
-    "item": "minecraft:bowl"
-  }
+  "displayName": {
+    "translate": "some_assembly_required.ingredient.farmersdelight.cooked_rice"
+  },
+  "item": "farmersdelight:cooked_rice"
 }

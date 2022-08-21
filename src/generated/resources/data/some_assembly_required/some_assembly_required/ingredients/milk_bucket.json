@@ -1,7 +1,6 @@
 {
-  "item": "minecraft:milk_bucket",
-  "fullName": {
-    "translate": "some_assembly_required.ingredient.milk_bucket"
+  "container": {
+    "item": "minecraft:bucket"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",
@@ -9,7 +8,8 @@
       "Color": 15662591
     }
   },
-  "container": {
-    "item": "minecraft:bucket"
-  }
+  "fullName": {
+    "translate": "some_assembly_required.ingredient.milk_bucket"
+  },
+  "item": "minecraft:milk_bucket"
 }

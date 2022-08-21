@@ -1,19 +1,19 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:steak_and_potatoes",
+  "container": {
+    "item": "minecraft:bowl"
+  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 38
     }
   },
-  "container": {
-    "item": "minecraft:bowl"
-  },
+  "item": "farmersdelight:steak_and_potatoes",
   "soundEvent": "some_assembly_required:block.sandwich.add_spread"
 }

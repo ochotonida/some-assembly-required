@@ -1,19 +1,19 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:pasta_with_meatballs",
+  "container": {
+    "item": "minecraft:bowl"
+  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 34
     }
   },
-  "container": {
-    "item": "minecraft:bowl"
-  },
+  "item": "farmersdelight:pasta_with_meatballs",
   "soundEvent": "some_assembly_required:block.sandwich.add_spread"
 }

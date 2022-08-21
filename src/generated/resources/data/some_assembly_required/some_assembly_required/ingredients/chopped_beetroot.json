@@ -1,12 +1,12 @@
 {
-  "item": "some_assembly_required:chopped_beetroot",
-  "displayName": {
-    "translate": "some_assembly_required.ingredient.chopped_beetroot"
-  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 5
     }
-  }
+  },
+  "displayName": {
+    "translate": "some_assembly_required.ingredient.chopped_beetroot"
+  },
+  "item": "some_assembly_required:chopped_beetroot"
 }

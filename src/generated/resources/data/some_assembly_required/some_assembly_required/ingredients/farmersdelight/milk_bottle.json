@@ -1,13 +1,12 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:milk_bottle",
-  "fullName": {
-    "translate": "ingredient.some_assembly_required.milk_bucket"
+  "container": {
+    "item": "minecraft:glass_bottle"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",
@@ -15,8 +14,9 @@
       "Color": 15662591
     }
   },
-  "container": {
-    "item": "minecraft:glass_bottle"
+  "fullName": {
+    "translate": "ingredient.some_assembly_required.milk_bucket"
   },
+  "item": "farmersdelight:milk_bottle",
   "soundEvent": "some_assembly_required:block.sandwich.add_spread"
 }

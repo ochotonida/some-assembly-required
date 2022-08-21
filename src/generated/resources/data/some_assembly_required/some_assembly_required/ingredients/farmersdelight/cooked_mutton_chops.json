@@ -1,18 +1,18 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:cooked_mutton_chops",
-  "displayName": {
-    "translate": "some_assembly_required.ingredient.farmersdelight.mutton_chops"
-  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 14
     }
-  }
+  },
+  "displayName": {
+    "translate": "some_assembly_required.ingredient.farmersdelight.mutton_chops"
+  },
+  "item": "farmersdelight:cooked_mutton_chops"
 }

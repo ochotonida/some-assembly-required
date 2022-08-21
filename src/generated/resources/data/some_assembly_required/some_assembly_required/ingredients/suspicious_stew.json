@@ -1,13 +1,13 @@
 {
-  "item": "minecraft:suspicious_stew",
+  "container": {
+    "item": "minecraft:bowl"
+  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "Color": 4169344
     }
   },
-  "container": {
-    "item": "minecraft:bowl"
-  },
+  "item": "minecraft:suspicious_stew",
   "soundEvent": "some_assembly_required:block.sandwich.add_spread"
 }

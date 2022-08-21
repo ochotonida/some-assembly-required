@@ -1,12 +1,12 @@
 {
-  "item": "some_assembly_required:golden_apple_slices",
-  "displayName": {
-    "translate": "some_assembly_required.ingredient.golden_apple_slices"
-  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 2
     }
-  }
+  },
+  "displayName": {
+    "translate": "some_assembly_required.ingredient.golden_apple_slices"
+  },
+  "item": "some_assembly_required:golden_apple_slices"
 }

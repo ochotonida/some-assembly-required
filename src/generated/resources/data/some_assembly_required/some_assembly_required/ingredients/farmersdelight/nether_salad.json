@@ -1,18 +1,18 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:nether_salad",
+  "container": {
+    "item": "minecraft:bowl"
+  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 23
     }
   },
-  "container": {
-    "item": "minecraft:bowl"
-  }
+  "item": "farmersdelight:nether_salad"
 }

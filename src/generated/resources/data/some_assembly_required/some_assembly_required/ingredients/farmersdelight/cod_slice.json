@@ -1,19 +1,19 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:cod_slice",
-  "displayName": {
-    "translate": "some_assembly_required.ingredient.farmersdelight.cod_slice"
-  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 17
     }
   },
+  "displayName": {
+    "translate": "some_assembly_required.ingredient.farmersdelight.cod_slice"
+  },
+  "item": "farmersdelight:cod_slice",
   "soundEvent": "some_assembly_required:block.sandwich.add_spread"
 }

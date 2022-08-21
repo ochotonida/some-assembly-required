@@ -1,12 +1,12 @@
 {
-  "item": "some_assembly_required:chopped_golden_carrot",
-  "displayName": {
-    "translate": "some_assembly_required.ingredient.chopped_golden_carrot"
-  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 4
     }
-  }
+  },
+  "displayName": {
+    "translate": "some_assembly_required.ingredient.chopped_golden_carrot"
+  },
+  "item": "some_assembly_required:chopped_golden_carrot"
 }

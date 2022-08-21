@@ -1,18 +1,18 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:beef_patty",
-  "displayName": {
-    "translate": "some_assembly_required.ingredient.farmersdelight.beef_patty"
-  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "CustomModelData": 10
     }
-  }
+  },
+  "displayName": {
+    "translate": "some_assembly_required.ingredient.farmersdelight.beef_patty"
+  },
+  "item": "farmersdelight:beef_patty"
 }

@@ -1,13 +1,13 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:roast_chicken",
   "container": {
     "item": "minecraft:bowl"
   },
+  "item": "farmersdelight:roast_chicken",
   "soundEvent": "some_assembly_required:block.sandwich.add_spread"
 }

@@ -1,7 +1,6 @@
 {
-  "item": "minecraft:honey_bottle",
-  "fullName": {
-    "translate": "some_assembly_required.ingredient.honey_bottle"
+  "container": {
+    "item": "minecraft:glass_bottle"
   },
   "displayItem": {
     "item": "some_assembly_required:spread",
@@ -9,8 +8,9 @@
       "Color": 15771918
     }
   },
-  "container": {
-    "item": "minecraft:glass_bottle"
+  "fullName": {
+    "translate": "some_assembly_required.ingredient.honey_bottle"
   },
+  "item": "minecraft:honey_bottle",
   "soundEvent": "some_assembly_required:block.sandwich.add_spread"
 }

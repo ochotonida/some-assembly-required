@@ -1,19 +1,19 @@
 {
   "conditions": [
     {
-      "modid": "farmersdelight",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
     }
   ],
-  "item": "farmersdelight:hot_cocoa",
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
       "Color": 8079413
     }
   },
-  "container": {
-    "item": "minecraft:glass_bottle"
-  },
+  "item": "farmersdelight:hot_cocoa",
   "soundEvent": "some_assembly_required:block.sandwich.add_spread"
 }
