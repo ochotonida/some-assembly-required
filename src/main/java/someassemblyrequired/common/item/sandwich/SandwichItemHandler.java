@@ -6,9 +6,9 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import someassemblyrequired.common.config.ModConfig;
@@ -28,7 +28,7 @@ import java.util.function.Supplier;
 
 public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable, INBTSerializable<ListTag>, Iterable<ItemStack> {
 
-    protected List<ItemStack> items;
+    protected final List<ItemStack> items;
     protected FoodProperties foodProperties;
 
     public SandwichItemHandler() {
@@ -40,7 +40,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         if (capabilityProvider == null) {
             return Optional.empty();
         }
-        return capabilityProvider.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+        return capabilityProvider.getCapability(ForgeCapabilities.ITEM_HANDLER)
                 .filter(handler -> handler instanceof SandwichItemHandler)
                 .map(handler -> ((SandwichItemHandler) handler));
     }

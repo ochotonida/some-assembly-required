@@ -71,10 +71,6 @@ public class IngredientBuilder {
         return setFullName(Component.translatable(translationKey));
     }
 
-    public IngredientBuilder setFullName(Item item) {
-        return setFullName(getDefaultTranslationKey(item));
-    }
-
     public IngredientBuilder setCustomFullName() {
         return setFullName(getDefaultTranslationKey(getItem()));
     }

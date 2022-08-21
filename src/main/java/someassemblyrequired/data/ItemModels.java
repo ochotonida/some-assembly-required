@@ -116,15 +116,9 @@ public class ItemModels extends ItemModelProvider {
         return withExistingParent(name, "item/generated").texture("layer0", texture);
     }
 
-    private static Collection<Item> removeAll(Set<Item> set, ItemLike... items) {
+    private static void removeAll(Set<Item> set, ItemLike... items) {
         Set<Item> result = Arrays.stream(items).map(ItemLike::asItem).collect(Collectors.toSet());
         set.removeAll(result);
-
-        if (result.size() != items.length) {
-            throw new IllegalArgumentException();
-        }
-
-        return result;
     }
 
     private static <T> Collection<T> removeAll(Set<T> set, Predicate<T> pred) {

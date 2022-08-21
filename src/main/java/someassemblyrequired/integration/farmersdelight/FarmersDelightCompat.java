@@ -17,11 +17,13 @@ public class FarmersDelightCompat {
     }
 
     public static void onCommonSetup(FMLCommonSetupEvent event) {
-        ForgeRegistries.ITEMS.getValues()
-                .stream()
-                .filter(item -> item instanceof ConsumableItem)
-                .map(item -> (ConsumableItem) item)
-                .map(ConsumableItemBehavior::new)
-                .forEach(behavior -> Ingredients.addBehavior(behavior.item(), behavior));
+        event.enqueueWork(
+                () -> ForgeRegistries.ITEMS.getValues()
+                        .stream()
+                        .filter(item -> item instanceof ConsumableItem)
+                        .map(item -> (ConsumableItem) item)
+                        .map(ConsumableItemBehavior::new)
+                        .forEach(behavior -> Ingredients.addBehavior(behavior.item(), behavior))
+        );
     }
 }

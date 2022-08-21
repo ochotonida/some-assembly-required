@@ -12,7 +12,7 @@ public class ModBlockEntityTypes {
 
     public static final DeferredRegister<BlockEntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, SomeAssemblyRequired.MODID);
 
-    public static RegistryObject<BlockEntityType<SandwichBlockEntity>> SANDWICH = ENTITY_TYPES.register(
+    public static final RegistryObject<BlockEntityType<SandwichBlockEntity>> SANDWICH = ENTITY_TYPES.register(
             "sandwich",
             () -> BlockEntityType.Builder.of(SandwichBlockEntity::new,
                     ModBlocks.SANDWICH.get()

@@ -44,7 +44,7 @@ public class CreateCompat {
     }
 
     public static void onCommonSetup(FMLCommonSetupEvent event) {
-        Ingredients.addBehavior(AllItems.BUILDERS_TEA.get(), new BuildersTeaBehavior());
+        event.enqueueWork(() -> Ingredients.addBehavior(AllItems.BUILDERS_TEA.get(), new BuildersTeaBehavior()));
     }
 
     public static void onDeployerRecipeSearch(DeployerRecipeSearchEvent event) {

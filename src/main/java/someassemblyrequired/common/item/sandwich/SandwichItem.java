@@ -31,9 +31,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
@@ -251,7 +251,7 @@ public class SandwichItem extends BlockItem {
 
             @Override
             public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction side) {
-                if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+                if (capability == ForgeCapabilities.ITEM_HANDLER) {
                     return handler.cast();
                 }
                 return LazyOptional.empty();

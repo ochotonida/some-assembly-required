@@ -25,7 +25,7 @@ public class SomeAssemblyRequiredClient {
     }
 
     public void onRegisterColorHandlers(RegisterColorHandlersEvent.Item event) {
-        event.getItemColors().register((itemStack, tintIndex) -> {
+        event.register((itemStack, tintIndex) -> {
             CompoundTag tag = itemStack.getTag();
             if (tag != null && tintIndex == 0 && tag.contains("Color", Tag.TAG_INT)) {
                 return tag.getInt("Color");
