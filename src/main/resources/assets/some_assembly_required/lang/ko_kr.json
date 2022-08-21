@@ -44,9 +44,6 @@
 
   "some_assembly_required.tooltip.ingredient_count": "%s (x%s)",
 
-  "some_assembly_required.jei.sandwich_assembly": "샌드위치 공정",
-  "some_assembly_required.jei.sandwich_assembly.ingredients": "먹을 수 있는 아이템",
-
   "some_assembly_required.ingredient.toasted_bread_slice": "토스트",
   "some_assembly_required.ingredient.apple_slices": "사과",
   "some_assembly_required.ingredient.golden_apple_slices": "황금 사과",

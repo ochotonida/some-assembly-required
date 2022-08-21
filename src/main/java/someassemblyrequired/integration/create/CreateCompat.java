@@ -7,6 +7,7 @@ import com.simibubi.create.content.contraptions.components.deployer.DeployerAppl
 import com.simibubi.create.content.contraptions.components.deployer.DeployerRecipeSearchEvent;
 import com.simibubi.create.content.contraptions.fluids.actors.FillingRecipe;
 import com.simibubi.create.content.contraptions.fluids.potion.PotionFluidHandler;
+import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRecipe;
 import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRecipeBuilder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
@@ -15,7 +16,6 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -30,7 +30,8 @@ import someassemblyrequired.integration.create.ingredient.BuildersTeaBehavior;
 import someassemblyrequired.integration.create.recipe.SandwichFluidSpoutingRecipe;
 import someassemblyrequired.integration.create.recipe.deployer.SandwichDeployingRecipe;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class CreateCompat {
@@ -51,10 +52,10 @@ public class CreateCompat {
         event.addRecipe(() -> SandwichDeployingRecipe.createRecipe(event.getInventory()), 150);
     }
 
-    public static HashSet<Recipe<?>> createSandwichAssemblingRecipes() {
+    public static List<SequencedAssemblyRecipe> createSandwichAssemblingRecipes() {
         NonNullList<ItemStack> sandwiches = NonNullList.create();
         ModItems.SANDWICH.get().fillItemCategory(ModItems.CREATIVE_TAB, sandwiches);
-        HashSet<Recipe<?>> recipes = new HashSet<>();
+        List<SequencedAssemblyRecipe> recipes = new ArrayList<>();
 
         for (ItemStack sandwich : sandwiches) {
             recipes.add(createSandwichRecipe(sandwich, "sandwich_deploying"));
@@ -106,7 +107,7 @@ public class CreateCompat {
         return recipes;
     }
 
-    private static Recipe<?> createSandwichRecipe(ItemStack sandwich, String name) {
+    private static SequencedAssemblyRecipe createSandwichRecipe(ItemStack sandwich, String name) {
         SequencedAssemblyRecipeBuilder builder = builder(sandwich, name);
         SandwichItemHandler handler = SandwichItemHandler.get(sandwich).orElseThrow();
 

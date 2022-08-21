@@ -44,9 +44,6 @@
 
   "some_assembly_required.tooltip.ingredient_count": "%s (x%s)",
 
-  "some_assembly_required.jei.sandwich_assembly": "Assemblage de Sandwich",
-  "some_assembly_required.jei.sandwich_assembly.ingredients": "Tout objet comestible",
-
   "some_assembly_required.ingredient.toasted_bread_slice": "Tranche de Pain Grillée",
   "some_assembly_required.ingredient.apple_slices": "Pomme",
   "some_assembly_required.ingredient.golden_apple_slices": "Pomme Dorée",

@@ -44,9 +44,6 @@
 
   "some_assembly_required.tooltip.ingredient_count": "%s (x%s)",
 
-  "some_assembly_required.jei.sandwich_assembly": "Sandwich Assembly",
-  "some_assembly_required.jei.sandwich_assembly.ingredients": "Any edible items",
-
   "some_assembly_required.ingredient.toasted_bread_slice": "Toast",
   "some_assembly_required.ingredient.apple_slices": "Apple",
   "some_assembly_required.ingredient.golden_apple_slices": "Golden Apple",

@@ -40,7 +40,7 @@ public class IngredientSyncPacket {
     }
 
     void handle(Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> IngredientPropertiesManager.setIngredientProperties(ingredients));
+        context.get().enqueueWork(() -> IngredientPropertiesManager.syncIngredientProperties(ingredients));
         context.get().setPacketHandled(true);
     }
 }

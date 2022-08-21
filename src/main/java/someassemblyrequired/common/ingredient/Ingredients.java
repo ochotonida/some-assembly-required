@@ -36,6 +36,10 @@ public class Ingredients {
         addBehavior(Items.HONEY_BOTTLE, new HoneyBottleBehavior());
     }
 
+    public static boolean hasCustomIngredientProperties(Item item) {
+        return IngredientPropertiesManager.hasIngredientFor(item);
+    }
+
     public static boolean canAddToSandwich(ItemStack item) {
         return !item.isEmpty() && (item.isEdible() || IngredientPropertiesManager.get(item) != null);
     }

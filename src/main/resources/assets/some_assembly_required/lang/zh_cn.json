@@ -44,9 +44,6 @@
 
   "some_assembly_required.tooltip.ingredient_count": "%s (x%s)",
 
-  "some_assembly_required.jei.sandwich_assembly": "三明治组装",
-  "some_assembly_required.jei.sandwich_assembly.ingredients": "任何可食用的物品",
-
   "some_assembly_required.ingredient.toasted_bread_slice": "烤面包",
   "some_assembly_required.ingredient.apple_slices": "苹果",
   "some_assembly_required.ingredient.golden_apple_slices": "金苹果",

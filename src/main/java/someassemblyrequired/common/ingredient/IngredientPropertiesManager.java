@@ -23,6 +23,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.network.IngredientSyncPacket;
 import someassemblyrequired.common.network.NetworkHandler;
+import someassemblyrequired.integration.ModCompat;
+import someassemblyrequired.integration.jei.SandwichingStationCategory;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -45,11 +47,11 @@ public class IngredientPropertiesManager extends SimpleJsonResourceReloadListene
         resources.forEach((resourceLocation, element) -> {
             try {
                 if (element.isJsonObject() && !CraftingHelper.processConditions(element.getAsJsonObject(), "conditions", ICondition.IContext.EMPTY)) {
-                    SomeAssemblyRequired.LOGGER.debug("Skipping loading spread type {} as it's conditions were not met", resourceLocation);
+                    SomeAssemblyRequired.LOGGER.debug("Skipping loading ingredient {} as it's conditions were not met", resourceLocation);
                     return;
                 }
 
-                JsonObject object = GsonHelper.convertToJsonObject(element, "spread type");
+                JsonObject object = GsonHelper.convertToJsonObject(element, "ingredient");
                 IngredientProperties ingredient = IngredientProperties.fromJson(object);
                 ResourceLocation itemId = new ResourceLocation(GsonHelper.getAsString(object, "item"));
                 if (!ForgeRegistries.ITEMS.containsKey(itemId)) {
@@ -69,6 +71,10 @@ public class IngredientPropertiesManager extends SimpleJsonResourceReloadListene
         SomeAssemblyRequired.LOGGER.info("Loaded {} sandwich ingredients", properties.size());
     }
 
+    protected static boolean hasIngredientFor(Item item) {
+        return properties.containsKey(item);
+    }
+
     @Nullable
     protected static IngredientProperties get(ItemStack item) {
         if (item.getItem() == Items.POTION) {
@@ -84,8 +90,11 @@ public class IngredientPropertiesManager extends SimpleJsonResourceReloadListene
         return DEFAULT_PROPERTIES;
     }
 
-    public static void setIngredientProperties(Map<Item, IngredientProperties> map) {
+    public static void syncIngredientProperties(Map<Item, IngredientProperties> map) {
         properties = map;
+        if (ModCompat.isJEILoaded()) {
+            SandwichingStationCategory.refreshSandwiches();
+        }
     }
 
     public static void onAddReloadListener(AddReloadListenerEvent event) {
@@ -94,6 +103,7 @@ public class IngredientPropertiesManager extends SimpleJsonResourceReloadListene
 
     public static void onDataPackReload(OnDatapackSyncEvent event) {
         if (Environment.get().getDist().isClient()) {
+            SandwichingStationCategory.refreshSandwiches();
             return;
         }
         if (event.getPlayer() != null) {
