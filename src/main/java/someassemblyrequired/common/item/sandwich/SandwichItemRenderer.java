@@ -66,9 +66,12 @@ public class SandwichItemRenderer extends BlockEntityWithoutLevelRenderer {
                 poseStack.mulPose(Vector3f.ZP.rotationDegrees(random.nextFloat() * 20 - 10));
             }
             stack = Ingredients.getDisplayItem(stack);
+
+            poseStack.scale(1, 1, 0.99F);
             Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.FIXED, packedLight, overlay, poseStack, buffer, (int) seed + slot);
             poseStack.popPose();
-            poseStack.translate(0, 0, -1 / 16D - 0.001);
+
+            poseStack.translate(0, 0, -1 / 16D);
         }
         poseStack.popPose();
     }
