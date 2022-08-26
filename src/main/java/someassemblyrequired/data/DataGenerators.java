@@ -18,10 +18,13 @@ public class DataGenerators {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
 
+
         generator.addProvider(event.includeServer(), new ItemTags(generator, helper));
         generator.addProvider(event.includeServer(), new Recipes(generator));
         generator.addProvider(event.includeServer(), new Advancements(generator, helper));
-        generator.addProvider(event.includeServer(), new LootTables(generator));
+        LootModifiers lootModifiers = new LootModifiers(generator);
+        generator.addProvider(event.includeServer(), lootModifiers);
+        generator.addProvider(event.includeServer(), new LootTables(generator, helper, lootModifiers));
         generator.addProvider(event.includeServer(), new Ingredients(generator));
         // TODO add create back
         if (ModCompat.isCreateLoaded()) {

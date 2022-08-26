@@ -38,7 +38,8 @@ public class SomeAssemblyRequired {
                 ModSoundEvents.SOUND_EVENTS,
                 ModRecipeTypes.RECIPE_TYPES,
                 ModRecipeTypes.RECIPE_SERIALIZERS,
-                ModLootModifiers.LOOT_MODIFIERS
+                ModLootModifiers.LOOT_MODIFIERS,
+                ModLootFunctions.LOOT_FUNCTION_TYPES
         );
 
         modEventBus.addListener(this::onCommonSetup);
@@ -61,7 +62,6 @@ public class SomeAssemblyRequired {
             Ingredients.addBehaviors();
             NetworkHandler.register();
             ModItems.registerCompostables();
-            ModLootFunctions.register();
         });
     }
 }
