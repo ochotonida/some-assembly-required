@@ -1,0 +1,10 @@
+{
+  "type": "some_assembly_required:roll_loot_table",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/abandoned_mineshaft"
+    }
+  ],
+  "lootTable": "some_assembly_required:inject/chests/abandoned_mineshaft"
+}

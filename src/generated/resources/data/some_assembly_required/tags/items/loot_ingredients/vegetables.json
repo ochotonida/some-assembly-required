@@ -1,0 +1,12 @@
+{
+  "values": [
+    "some_assembly_required:chopped_carrot",
+    "some_assembly_required:chopped_beetroot",
+    "some_assembly_required:tomato_slices",
+    "some_assembly_required:apple_slices",
+    {
+      "id": "farmersdelight:cabbage_leaf",
+      "required": false
+    }
+  ]
+}

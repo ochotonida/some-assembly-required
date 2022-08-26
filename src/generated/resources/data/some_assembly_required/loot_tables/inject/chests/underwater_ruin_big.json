@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.05,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "entries": [
+                {
+                  "type": "minecraft:item",
+                  "name": "some_assembly_required:bread_slice"
+                },
+                {
+                  "type": "minecraft:item",
+                  "functions": [
+                    {
+                      "function": "minecraft:set_potion",
+                      "id": "minecraft:water"
+                    }
+                  ],
+                  "name": "minecraft:potion"
+                },
+                {
+                  "type": "minecraft:item",
+                  "name": "some_assembly_required:bread_slice"
+                }
+              ],
+              "function": "some_assembly_required:set_ingredients"
+            }
+          ],
+          "name": "some_assembly_required:sandwich"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

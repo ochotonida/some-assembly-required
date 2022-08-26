@@ -1,0 +1,39 @@
+{
+  "values": [
+    "some_assembly_required:toasted_bread_slice",
+    "minecraft:milk_bucket",
+    "minecraft:potato",
+    {
+      "id": "farmersdelight:squid_ink_pasta",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:egg_sandwich",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:hot_cocoa",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:pumpkin_soup",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:pasta_with_meatballs",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:ratatouille",
+      "required": false
+    },
+    {
+      "id": "create:builders_tea",
+      "required": false
+    },
+    {
+      "id": "create:chocolate_berries",
+      "required": false
+    }
+  ]
+}

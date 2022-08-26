@@ -1,0 +1,72 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.3,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "entries": [
+                {
+                  "type": "minecraft:alternatives",
+                  "children": [
+                    {
+                      "type": "minecraft:loot_table",
+                      "conditions": [
+                        {
+                          "chance": 0.35,
+                          "condition": "minecraft:random_chance"
+                        }
+                      ],
+                      "name": "some_assembly_required:sandwich/village_special"
+                    },
+                    {
+                      "type": "minecraft:loot_table",
+                      "conditions": [
+                        {
+                          "chance": 0.25,
+                          "condition": "minecraft:random_chance"
+                        }
+                      ],
+                      "functions": [
+                        {
+                          "function": "some_assembly_required:smelt_matching_item",
+                          "item": "some_assembly_required:bread_slice"
+                        }
+                      ],
+                      "name": "some_assembly_required:sandwich/village_generic"
+                    },
+                    {
+                      "type": "minecraft:loot_table",
+                      "name": "some_assembly_required:sandwich/village_generic"
+                    }
+                  ]
+                }
+              ],
+              "function": "some_assembly_required:set_ingredients"
+            },
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 8.0,
+                "min": 3.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "some_assembly_required:sandwich"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

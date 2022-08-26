@@ -1,0 +1,63 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:bread_slice"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:tag",
+              "conditions": [
+                {
+                  "chance": 0.65,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "expand": true,
+              "name": "some_assembly_required:loot_ingredients/meat"
+            },
+            {
+              "type": "minecraft:tag",
+              "expand": true,
+              "name": "some_assembly_required:loot_ingredients/vegetables"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:group",
+          "children": [
+            {
+              "type": "minecraft:alternatives",
+              "children": [
+                {
+                  "type": "minecraft:tag",
+                  "expand": true,
+                  "name": "some_assembly_required:loot_ingredients/vegetables"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

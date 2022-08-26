@@ -1,0 +1,43 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "entries": [
+                {
+                  "type": "minecraft:item",
+                  "name": "some_assembly_required:bread_slice"
+                },
+                {
+                  "type": "minecraft:item",
+                  "name": "minecraft:honey_bottle"
+                },
+                {
+                  "type": "minecraft:item",
+                  "name": "some_assembly_required:bread_slice"
+                }
+              ],
+              "function": "some_assembly_required:set_ingredients"
+            },
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 8.0,
+                "min": 3.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "some_assembly_required:sandwich"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

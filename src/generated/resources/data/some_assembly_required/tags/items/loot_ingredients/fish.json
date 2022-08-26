@@ -1,0 +1,14 @@
+{
+  "values": [
+    "minecraft:cooked_cod",
+    "minecraft:cooked_salmon",
+    {
+      "id": "farmersdelight:cooked_salmon_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:cooked_cod_slice",
+      "required": false
+    }
+  ]
+}
