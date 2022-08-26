@@ -129,17 +129,18 @@ public class LootTables extends LootTableProvider {
                                 SetIngredientsFunction.setIngredients().withEntry(
                                         AlternativesEntry.alternatives(
                                                 LootTableReference.lootTableReference(specialSandwichLootTable)
-                                                        .when(chance(0.35))
+                                                        .when(chance(0.35)),
+                                                LootTableReference.lootTableReference(genericSandwichLootTable)
+                                                        .when(chance(0.25))
+                                                        .apply(toastBread())
                                         ).otherwise(
-                                                LootTableReference.lootTableReference(genericSandwichLootTable).apply(
-                                                        toastRandomly(0.25)
-                                                )
+                                                LootTableReference.lootTableReference(genericSandwichLootTable)
                                         )
                                 )
                         ).apply(count(3, 8))
-                ).when(chance(0.3))), LootContextParamSets.CHEST);
+                ).when(chance(0.3))), LootContextParamSets.CHEST
+        );
     }
-
 
     private void addStandardDropTable(Block block) {
         addBlockLootTable(block, LootTable.lootTable().withPool(createStandardDrops(block)));
@@ -154,8 +155,8 @@ public class LootTables extends LootTableProvider {
                 .add(LootItem.lootTableItem(itemProvider));
     }
 
-    protected static LootItemConditionalFunction.Builder<?> toastRandomly(double chance) {
-        return SmeltMatchingItemFunction.smeltMatching(ModItems.BREAD_SLICE.get()).when(LootItemRandomChanceCondition.randomChance((float) chance));
+    protected static LootItemConditionalFunction.Builder<?> toastBread() {
+        return SmeltMatchingItemFunction.smeltMatching(ModItems.BREAD_SLICE.get());
     }
 
     protected static LootPoolSingletonContainer.Builder<?> sandwich(Potion potion) {
