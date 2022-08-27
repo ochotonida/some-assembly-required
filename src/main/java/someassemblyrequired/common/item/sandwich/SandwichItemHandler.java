@@ -209,10 +209,10 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
 
     @Override
     public ListTag serializeNBT() {
-        return serializerItems(items);
+        return serializeItems(items);
     }
 
-    public static ListTag serializerItems(List<ItemStack> items) {
+    public static ListTag serializeItems(List<ItemStack> items) {
         ListTag result = new ListTag();
         for (ItemStack stack : items) {
             result.add(stack.save(new CompoundTag()));

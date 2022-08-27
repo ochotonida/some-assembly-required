@@ -93,7 +93,7 @@ public class SandwichItem extends BlockItem {
         }
 
         ItemStack result = new ItemStack(ModItems.SANDWICH.get());
-        result.getOrCreateTagElement("BlockEntityTag").put("Sandwich", SandwichItemHandler.serializerItems(flattenedItems));
+        result.getOrCreateTagElement("BlockEntityTag").put("Sandwich", SandwichItemHandler.serializeItems(flattenedItems));
         return result;
     }
 
