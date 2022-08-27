@@ -50,7 +50,7 @@ public class FarmersDelightIngredients {
 
     public static void addIngredients(Ingredients ingredients) {
         ingredients.builder(ModItems.TOMATO_SAUCE.get()).setBowled().setSpread(0xbe331f).setSpreadSound();
-        ingredients.builder(ModItems.MILK_BOTTLE.get()).setFullName("ingredient.%s.milk_bucket".formatted(SomeAssemblyRequired.MODID)).setBottled().setSpread(0xEEFDFF).setSpreadSound();
+        ingredients.builder(ModItems.MILK_BOTTLE.get()).setFullName("%s.ingredient.milk_bucket".formatted(SomeAssemblyRequired.MODID)).setBottled().setSpread(0xEEFDFF).setSpreadSound();
         ingredients.builder(ModItems.HOT_COCOA.get()).setBottled().setSpread(0x7b4835).setSpreadSound();
         ingredients.builder(ModItems.APPLE_CIDER.get()).setBottled().setSpread(0xbd783d).setSpreadSound();
         ingredients.builder(ModItems.MELON_JUICE.get()).setBottled().setSpread(0xc73225).setSpreadSound();
