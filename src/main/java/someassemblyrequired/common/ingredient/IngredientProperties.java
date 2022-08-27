@@ -155,9 +155,6 @@ public class IngredientProperties {
         JsonObject result = new JsonObject();
         result.addProperty("nutrition", properties.getNutrition());
         result.addProperty("saturationModifier", properties.getSaturationModifier());
-        if (properties.canAlwaysEat()) {
-            result.addProperty("canAlwaysEat", properties.canAlwaysEat());
-        }
         return result;
     }
 
@@ -168,9 +165,6 @@ public class IngredientProperties {
         }
         JsonObject foodObject = GsonHelper.getAsJsonObject(object, memberName);
         FoodProperties.Builder builder = new FoodProperties.Builder();
-        if (GsonHelper.getAsBoolean(foodObject, "canAlwaysEat")) {
-            builder.alwaysEat();
-        }
         return builder
                 .nutrition(GsonHelper.getAsInt(foodObject, "nutrition"))
                 .saturationMod(GsonHelper.getAsInt(foodObject, "saturationModifier"))
@@ -231,16 +225,12 @@ public class IngredientProperties {
     private static void writeFoodProperties(FriendlyByteBuf buffer, FoodProperties foodProperties) {
         buffer.writeInt(foodProperties.getNutrition());
         buffer.writeFloat(foodProperties.getSaturationModifier());
-        buffer.writeBoolean(foodProperties.canAlwaysEat());
     }
 
     private static FoodProperties readFoodProperties(FriendlyByteBuf buffer) {
-        FoodProperties.Builder builder = new FoodProperties.Builder()
+        return new FoodProperties.Builder()
                 .nutrition(buffer.readInt())
-                .saturationMod(buffer.readFloat());
-        if (buffer.readBoolean()) {
-            builder.alwaysEat();
-        }
-        return builder.build();
+                .saturationMod(buffer.readFloat())
+                .build();
     }
 }

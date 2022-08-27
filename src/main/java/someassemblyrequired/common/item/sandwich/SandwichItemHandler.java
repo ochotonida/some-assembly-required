@@ -89,10 +89,6 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
             for (ItemStack item : items) {
                 FoodProperties food = Ingredients.getFood(item, null);
 
-                if (food.canAlwaysEat()) {
-                    builder.alwaysEat();
-                }
-
                 for (Pair<Supplier<MobEffectInstance>, Float> pair : ((FoodPropertiesMixin) food).getEffectSuppliers()) {
                     builder.effect(pair.getFirst(), pair.getSecond());
                 }
