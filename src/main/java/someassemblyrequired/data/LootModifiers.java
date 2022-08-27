@@ -18,6 +18,7 @@ import net.minecraftforge.common.loot.LootTableIdCondition;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.loot.RollLootTableModifier;
+import someassemblyrequired.common.loot.SandwichLootEnabledCondition;
 import someassemblyrequired.common.util.Util;
 
 import java.util.ArrayList;
@@ -54,11 +55,11 @@ public class LootModifiers extends GlobalLootModifierProvider {
 
     protected Builder builder(ResourceLocation lootTable, double chance) {
         Builder builder = new Builder(lootTable.getPath());
-        builder.lootModifierCondition(LootTableIdCondition.builder(lootTable));
+        builder.lootModifierCondition(LootTableIdCondition.builder(lootTable).build());
+        builder.lootModifierCondition(SandwichLootEnabledCondition.sandwichLootEnabled());
         if (chance != 1) {
             builder.lootPoolCondition(LootItemRandomChanceCondition.randomChance((float) chance));
         }
-        // TODO add config predicate
 
         lootBuilders.add(builder);
         return builder;
@@ -80,12 +81,13 @@ public class LootModifiers extends GlobalLootModifierProvider {
                 BuiltInLootTables.VILLAGE_SNOWY_HOUSE
         )) {
             List<LootItemCondition> conditions = new ArrayList<>();
+            conditions.add(SandwichLootEnabledCondition.sandwichLootEnabled());
             conditions.add(LootTableIdCondition.builder(lootTable).build());
             add("inject/" + lootTable.getPath(), new RollLootTableModifier(conditions.toArray(new LootItemCondition[]{}), LootTables.VILLAGE_SANDWICH));
         }
     }
 
-    @SuppressWarnings({"UnusedReturnValue", "SameParameterValue"})
+    @SuppressWarnings({"UnusedReturnValue", "unused"})
     protected static class Builder {
 
         private final String lootTableName;
@@ -129,8 +131,8 @@ public class LootModifiers extends GlobalLootModifierProvider {
             return this;
         }
 
-        private Builder lootModifierCondition(LootItemCondition.Builder condition) {
-            conditions.add(condition.build());
+        private Builder lootModifierCondition(LootItemCondition condition) {
+            conditions.add(condition);
             return this;
         }
     }

@@ -67,5 +67,6 @@
   "some_assembly_required.ingredient.farmersdelight.mutton_chops": "Mutton",
   "some_assembly_required.ingredient.farmersdelight.cooked_rice": "Rice",
 
-  "some_assembly_required.config.server.maximum_sandwich_height": "Maximum sandwich height"
+  "some_assembly_required.config.server.maximum_sandwich_height": "Maximum sandwich height",
+  "some_assembly_required.config.server.generate_chest_loot": "Generate chest loot"
 }
