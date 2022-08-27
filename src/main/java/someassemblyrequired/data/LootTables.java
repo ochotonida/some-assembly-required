@@ -88,11 +88,7 @@ public class LootTables extends LootTableProvider {
                                 )
                         )
                 ).withPool(LootPool.lootPool()
-                        .add(EntryGroup.list(
-                                AlternativesEntry.alternatives(
-                                        TagEntry.expandTag(ModTags.LOOT_VEGETABLES)
-                                )
-                        ))
+                        .add(TagEntry.expandTag(ModTags.LOOT_VEGETABLES))
                 )
                 , LootContextParamSets.CHEST
         );
