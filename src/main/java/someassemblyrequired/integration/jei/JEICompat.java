@@ -6,7 +6,6 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
-import mezz.jei.api.registration.ISubtypeRegistration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import someassemblyrequired.SomeAssemblyRequired;
@@ -25,15 +24,9 @@ public class JEICompat implements IModPlugin {
 
     public static final RecipeType<SandwichingStationCategory.Recipe> SANDWICHING_STATION = RecipeType.create(SomeAssemblyRequired.MODID, "sandwiching_station", SandwichingStationCategory.Recipe.class);
 
-
     @Override
     public ResourceLocation getPluginUid() {
         return ID;
-    }
-
-    @Override
-    public void registerItemSubtypes(ISubtypeRegistration registration) {
-        // registration.useNbtForSubtypes(ModItems.SANDWICH.get());
     }
 
     @Override

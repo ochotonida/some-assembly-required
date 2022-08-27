@@ -1,9 +1,11 @@
 package someassemblyrequired.integration.jei;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.ITypedIngredient;
 import mezz.jei.api.recipe.IFocus;
@@ -12,6 +14,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
@@ -33,11 +36,21 @@ public class SandwichingStationCategory implements IRecipeCategory<SandwichingSt
 
     private final IDrawable background;
     private final IDrawable icon;
+    private final IDrawable slot;
+    private final IDrawable arrow;
 
     private static final ItemStack BREAD_SLICE = new ItemStack(ModItems.BREAD_SLICE.get());
     private static final List<ItemStack> SANDWICHES = new ArrayList<>();
     private static final List<ItemStack> INGREDIENTS = new ArrayList<>();
     private static final List<ItemStack> POTIONS = new ArrayList<>();
+
+    public SandwichingStationCategory(IGuiHelper helper) {
+        ResourceLocation texture = Util.id("textures/jei/sandwiching_station.png");
+        background = helper.createBlankDrawable(96, 64);
+        icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.SANDWICHING_STATION.get()));
+        slot = helper.createDrawable(texture, 0, 0, 18, 18);
+        arrow = helper.createDrawable(texture, 18, 0, 24, 17);
+    }
 
     public static void refreshSandwiches() {
         INGREDIENTS.clear();
@@ -56,11 +69,6 @@ public class SandwichingStationCategory implements IRecipeCategory<SandwichingSt
                 .toList());
 
         INGREDIENTS.stream().map(SandwichItem::makeSandwich).forEach(SANDWICHES::add);
-    }
-
-    public SandwichingStationCategory(IGuiHelper helper) {
-        background = helper.createDrawable(Util.id("textures/jei/sandwich_assembly.png"), 0, 0, 96, 64);
-        icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.SANDWICHING_STATION.get()));
     }
 
     @Override
@@ -85,10 +93,10 @@ public class SandwichingStationCategory implements IRecipeCategory<SandwichingSt
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, Recipe recipe, IFocusGroup focuses) {
-        IRecipeSlotBuilder breadInput1 = builder.addSlot(RecipeIngredientRole.INPUT, 8, 43);
-        IRecipeSlotBuilder breadInput2 = builder.addSlot(RecipeIngredientRole.INPUT, 8, 5);
-        IRecipeSlotBuilder ingredientInput = builder.addSlot(RecipeIngredientRole.INPUT, 8, 24);
-        IRecipeSlotBuilder output = builder.addSlot(RecipeIngredientRole.OUTPUT, 72, 24);
+        IRecipeSlotBuilder breadInput1 = builder.addSlot(RecipeIngredientRole.INPUT, 8, 43).setBackground(slot, -1, -1);
+        IRecipeSlotBuilder breadInput2 = builder.addSlot(RecipeIngredientRole.INPUT, 8, 5).setBackground(slot, -1, -1);
+        IRecipeSlotBuilder ingredientInput = builder.addSlot(RecipeIngredientRole.INPUT, 8, 24).setBackground(slot, -1, -1);
+        IRecipeSlotBuilder output = builder.addSlot(RecipeIngredientRole.OUTPUT, 72, 24).setBackground(slot, -1, -1);
 
         Optional<SandwichItemHandler> sandwich = focuses.getItemStackFocuses(RecipeIngredientRole.OUTPUT)
                 .findFirst()
@@ -128,6 +136,11 @@ public class SandwichingStationCategory implements IRecipeCategory<SandwichingSt
                     .addIngredients(Ingredient.of(ModTags.SANDWICH_BREAD))
                     .addItemStacks(POTIONS);
         }
+    }
+
+    @Override
+    public void draw(Recipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+        arrow.draw(stack, 36, 23);
     }
 
     public static class Recipe {
