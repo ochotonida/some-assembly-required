@@ -2,6 +2,9 @@
   "type": "some_assembly_required:roll_loot_table",
   "conditions": [
     {
+      "condition": "some_assembly_required:sandwich_loot_enabled"
+    },
+    {
       "condition": "forge:loot_table_id",
       "loot_table_id": "minecraft:chests/village/village_desert_house"
     }

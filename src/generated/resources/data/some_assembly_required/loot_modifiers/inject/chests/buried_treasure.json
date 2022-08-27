@@ -4,6 +4,9 @@
     {
       "condition": "forge:loot_table_id",
       "loot_table_id": "minecraft:chests/buried_treasure"
+    },
+    {
+      "condition": "some_assembly_required:sandwich_loot_enabled"
     }
   ],
   "lootTable": "some_assembly_required:inject/chests/buried_treasure"
