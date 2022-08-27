@@ -81,8 +81,8 @@ public class LootTables extends LootTableProvider {
                         .add(item(ModItems.BREAD_SLICE.get()))
                 ).withPool(LootPool.lootPool()
                         .add(AlternativesEntry.alternatives(
-                                        TagEntry.expandTag(ModTags.LOOT_MEAT)
-                                                .when(chance(0.65))
+                                        TagEntry.expandTag(ModTags.LOOT_MEAT).when(chance(0.5)),
+                                        TagEntry.expandTag(ModTags.LOOT_OTHER).when(chance(0.3))
                                 ).otherwise(
                                         TagEntry.expandTag(ModTags.LOOT_VEGETABLES)
                                 )
@@ -109,7 +109,7 @@ public class LootTables extends LootTableProvider {
                         .add(item(ModItems.BREAD_SLICE.get()))
                 ).withPool(LootPool.lootPool()
                         .add(AlternativesEntry.alternatives(
-                                TagEntry.expandTag(ModTags.LOOT_SPECIAL).when(chance(0.1))
+                                TagEntry.expandTag(ModTags.LOOT_SPECIAL).when(chance(0.15))
                         ).otherwise(
                                 TagEntry.expandTag(ModTags.LOOT_OTHER)
                         ))
@@ -125,7 +125,7 @@ public class LootTables extends LootTableProvider {
                                 SetIngredientsFunction.setIngredients().withEntry(
                                         AlternativesEntry.alternatives(
                                                 LootTableReference.lootTableReference(specialSandwichLootTable)
-                                                        .when(chance(0.35)),
+                                                        .when(chance(0.2)),
                                                 LootTableReference.lootTableReference(genericSandwichLootTable)
                                                         .when(chance(0.25))
                                                         .apply(toastBread())
@@ -134,7 +134,7 @@ public class LootTables extends LootTableProvider {
                                         )
                                 )
                         ).apply(count(3, 8))
-                ).when(chance(0.3))), LootContextParamSets.CHEST
+                ).when(chance(0.4))), LootContextParamSets.CHEST
         );
     }
 
