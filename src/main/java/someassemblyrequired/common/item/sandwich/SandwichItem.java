@@ -34,11 +34,11 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModFoods;
 import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModTags;
 import someassemblyrequired.common.util.Util;
 
 import javax.annotation.Nullable;
@@ -133,7 +133,7 @@ public class SandwichItem extends BlockItem {
 
     @Override
     protected boolean placeBlock(BlockPlaceContext context, BlockState state) {
-        boolean isPlacingOnTable = context.getLevel().getBlockState(context.getClickedPos().below()).getBlock() instanceof SandwichAssemblyTableBlock;
+        boolean isPlacingOnTable = context.getLevel().getBlockState(context.getClickedPos().below()).is(ModTags.SANDWICHING_STATIONS);
         if (context.getPlayer() != null && (context.getPlayer().isShiftKeyDown() || isPlacingOnTable)) {
             return super.placeBlock(context, state);
         }

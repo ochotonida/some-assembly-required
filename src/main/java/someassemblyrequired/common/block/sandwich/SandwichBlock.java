@@ -21,10 +21,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.block.WaterLoggableHorizontalBlock;
 import someassemblyrequired.common.init.ModBlockEntityTypes;
 import someassemblyrequired.common.init.ModItems;
+import someassemblyrequired.common.init.ModTags;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 
 import javax.annotation.Nullable;
@@ -84,7 +84,7 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
     @Override
     @SuppressWarnings("deprecation")
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockHitResult) {
-        if (level.getBlockState(pos.below()).getBlock() instanceof SandwichAssemblyTableBlock) {
+        if (level.getBlockState(pos.below()).is(ModTags.SANDWICHING_STATIONS)) {
             return level.getBlockEntity(pos, ModBlockEntityTypes.SANDWICH.get())
                     .map(blockEntity -> blockEntity.interact(player, hand))
                     .orElse(InteractionResult.FAIL);

@@ -20,6 +20,7 @@ public class DataGenerators {
 
 
         generator.addProvider(event.includeServer(), new ItemTags(generator, helper));
+        generator.addProvider(event.includeServer(), new BlockTags(generator, helper));
         generator.addProvider(event.includeServer(), new Recipes(generator));
         generator.addProvider(event.includeServer(), new Advancements(generator, helper));
         LootModifiers lootModifiers = new LootModifiers(generator);

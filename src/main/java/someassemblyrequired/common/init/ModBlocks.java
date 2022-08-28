@@ -9,7 +9,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.block.SandwichAssemblyTableBlock;
 import someassemblyrequired.common.block.sandwich.SandwichBlock;
 
 public class ModBlocks {
@@ -35,7 +34,7 @@ public class ModBlocks {
     );
 
     private static Block createSandwichAssemblyTable(Material material) {
-        return new SandwichAssemblyTableBlock(
+        return new Block(
                 BlockBehaviour.Properties
                         .of(material, MaterialColor.STONE)
                         .strength(2.5F)
