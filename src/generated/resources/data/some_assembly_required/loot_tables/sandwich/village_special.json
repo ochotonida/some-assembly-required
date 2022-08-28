@@ -21,7 +21,7 @@
               "type": "minecraft:tag",
               "conditions": [
                 {
-                  "chance": 0.1,
+                  "chance": 0.15,
                   "condition": "minecraft:random_chance"
                 }
               ],

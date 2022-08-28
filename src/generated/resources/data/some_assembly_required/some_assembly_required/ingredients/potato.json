@@ -1,0 +1,10 @@
+{
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 42
+    }
+  },
+  "height": 5,
+  "item": "minecraft:potato"
+}

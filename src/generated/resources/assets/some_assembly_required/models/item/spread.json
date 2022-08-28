@@ -246,6 +246,12 @@
       "predicate": {
         "minecraft:custom_model_data": 41.0
       }
+    },
+    {
+      "model": "some_assembly_required:ingredient/minecraft/potato",
+      "predicate": {
+        "minecraft:custom_model_data": 42.0
+      }
     }
   ],
   "textures": {

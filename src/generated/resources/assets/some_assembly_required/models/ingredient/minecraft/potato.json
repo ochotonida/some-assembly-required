@@ -1,0 +1,80 @@
+{
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "rotation": 180,
+          "texture": "#potato",
+          "uv": [
+            0.0,
+            11.0,
+            6.0,
+            16.0
+          ]
+        },
+        "east": {
+          "rotation": 90,
+          "texture": "#potato",
+          "uv": [
+            0.0,
+            0.0,
+            8.0,
+            5.0
+          ]
+        },
+        "north": {
+          "rotation": 270,
+          "texture": "#potato",
+          "uv": [
+            0.0,
+            5.0,
+            8.0,
+            11.0
+          ]
+        },
+        "south": {
+          "rotation": 90,
+          "texture": "#potato",
+          "uv": [
+            8.0,
+            5.0,
+            16.0,
+            11.0
+          ]
+        },
+        "up": {
+          "texture": "#potato",
+          "uv": [
+            6.0,
+            11.0,
+            12.0,
+            16.0
+          ]
+        },
+        "west": {
+          "rotation": 270,
+          "texture": "#potato",
+          "uv": [
+            8.0,
+            0.0,
+            16.0,
+            5.0
+          ]
+        }
+      },
+      "from": [
+        5,
+        4,
+        3.5
+      ],
+      "to": [
+        11,
+        12,
+        8.5
+      ]
+    }
+  ],
+  "textures": {
+    "potato": "some_assembly_required:item/ingredient/minecraft/potato"
+  }
+}
