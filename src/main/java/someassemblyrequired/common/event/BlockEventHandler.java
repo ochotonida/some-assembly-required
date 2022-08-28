@@ -45,8 +45,6 @@ public class BlockEventHandler { // TODO do more testing on this
                     ? blockEntity.interact(player, hand)
                     : tryPlaceSandwich(event);
 
-            System.out.println(result + ", client: " + level.isClientSide());
-
             if (result != InteractionResult.PASS) {
                 event.setCanceled(true);
                 event.setCancellationResult(result);
