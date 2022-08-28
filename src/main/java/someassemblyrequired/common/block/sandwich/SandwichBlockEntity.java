@@ -60,7 +60,7 @@ public class SandwichBlockEntity extends BlockEntity {
         sandwich.pop();
         BlockPos pos = getBlockPos();
         if (!Ingredients.hasContainer(stack) && !player.isCreative()) {
-            double y = pos.getY() + Math.max(0.2, sandwich.size() * (1 / 32D) - 0.2);
+            double y = pos.getY() + Math.max(0.2, sandwich.getTotalHeight() * (1 / 32D) - 0.2);
             ItemEntity item = new ItemEntity(level, pos.getX() + 0.5, y, pos.getZ() + 0.5, stack);
             item.setPickUpDelay(5);
             level.addFreshEntity(item);
@@ -81,7 +81,7 @@ public class SandwichBlockEntity extends BlockEntity {
             return InteractionResult.SUCCESS;
         } else if (!Ingredients.canAddToSandwich(itemToAdd)) {
             return InteractionResult.PASS;
-        } else if (sandwich.size() >= ModConfig.server.maximumSandwichHeight.get()) {
+        } else if (sandwich.getTotalHeight() + Ingredients.getHeight(itemToAdd) > ModConfig.server.maximumSandwichHeight.get()) {
             player.displayClientMessage(Util.translate("message.full_sandwich"), true);
             return InteractionResult.SUCCESS;
         } else {
@@ -145,17 +145,17 @@ public class SandwichBlockEntity extends BlockEntity {
                     .ifPresent(sandwich -> {
                         BlockState state = level.getBlockState(getBlockPos());
                         if (state.is(ModBlocks.SANDWICH.get())) {
-                            BlockState newState = state.setValue(SandwichBlock.SIZE, getSizeFromHeight(sandwich.size()));
+                            BlockState newState = state.setValue(SandwichBlock.SIZE, getSizeFromSandwich(sandwich));
                             if (!newState.getValue(SandwichBlock.SIZE).equals(state.getValue(SandwichBlock.SIZE))) {
-                                level.setBlock(getBlockPos(), state.setValue(SandwichBlock.SIZE, getSizeFromHeight(sandwich.size())), Block.UPDATE_ALL);
+                                level.setBlock(getBlockPos(), state.setValue(SandwichBlock.SIZE, getSizeFromSandwich(sandwich)), Block.UPDATE_ALL);
                             }
                         }
                     });
         }
     }
 
-    static int getSizeFromHeight(int sandwichHeight) {
-        int size = Math.min(32, Math.max(2, sandwichHeight)) + 1;
+    static int getSizeFromSandwich(SandwichItemHandler sandwich) {
+        int size = Math.min(32, Math.max(2, sandwich.getTotalHeight())) + 1;
         return size / 2;
     }
 

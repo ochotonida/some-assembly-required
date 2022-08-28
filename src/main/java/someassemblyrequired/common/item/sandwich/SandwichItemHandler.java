@@ -57,8 +57,16 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         return items.isEmpty();
     }
 
-    public int size() {
+    public int getItemCount() {
         return items.size();
+    }
+
+    public int getTotalHeight() {
+        int size = 0;
+        for (ItemStack item : items) {
+            size += Ingredients.getHeight(item);
+        }
+        return size;
     }
 
     public int getTotalNutrition() {
@@ -107,7 +115,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
     }
 
     public boolean canAdd(SandwichItemHandler sandwich) {
-        return this.size() + sandwich.size() <= ModConfig.server.maximumSandwichHeight.get();
+        return this.getTotalHeight() + sandwich.getTotalHeight() <= ModConfig.server.maximumSandwichHeight.get();
     }
 
     public void add(SandwichItemHandler sandwich) {
@@ -129,11 +137,11 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
     }
 
     public boolean hasTopAndBottomBread() {
-        return size() > 0 && bottom().is(ModTags.SANDWICH_BREAD) && top().is(ModTags.SANDWICH_BREAD);
+        return getItemCount() > 0 && bottom().is(ModTags.SANDWICH_BREAD) && top().is(ModTags.SANDWICH_BREAD);
     }
 
     public boolean isDoubleDeckerSandwich() {
-        if (size() < 5) {
+        if (getItemCount() < 5) {
             return false;
         }
         if (!hasTopAndBottomBread()) {
@@ -141,7 +149,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         }
 
         boolean foundBread = false;
-        for (int i = 1; i < size() - 2; i++) {
+        for (int i = 1; i < getItemCount() - 2; i++) {
             if (items.get(i).is(ModTags.SANDWICH_BREAD)) {
                 if (foundBread) {
                     return false;
@@ -150,7 +158,7 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
             }
         }
 
-        return foundBread && !items.get(1).is(ModTags.SANDWICH_BREAD) && !items.get(size() - 2).is(ModTags.SANDWICH_BREAD);
+        return foundBread && !items.get(1).is(ModTags.SANDWICH_BREAD) && !items.get(getItemCount() - 2).is(ModTags.SANDWICH_BREAD);
     }
 
     public ItemStack getAsItem() {

@@ -29,12 +29,14 @@ public class IngredientBuilder {
     private ItemStack displayItem = ItemStack.EMPTY;
     private ItemStack container = ItemStack.EMPTY;
 
+    private int height = 1;
+
     public IngredientBuilder(Item item) {
         this.item = item;
     }
 
     public IngredientProperties build() {
-        return new IngredientProperties(null, displayName, fullName, displayItem, container, soundEvent);
+        return new IngredientProperties(null, displayName, fullName, displayItem, container, soundEvent, height);
     }
 
     public Item getItem() {
@@ -117,6 +119,11 @@ public class IngredientBuilder {
 
     public IngredientBuilder setSound(SoundEvent soundEvent) {
         this.soundEvent = soundEvent;
+        return this;
+    }
+
+    public IngredientBuilder setHeight(int height) {
+        this.height = height;
         return this;
     }
 

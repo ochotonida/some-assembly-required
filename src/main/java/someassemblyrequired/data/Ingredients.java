@@ -23,12 +23,12 @@ import java.util.*;
 
 public record Ingredients(DataGenerator generator) implements DataProvider {
 
-    private static final Map<Item, IngredientBuilder> ingredients = new HashMap<>();
+    private static final Map<Item, IngredientBuilder> INGREDIENTS = new HashMap<>();
 
-    public static final List<Item> itemsWithCustomModel = new ArrayList<>();
+    public static final List<Item> MODEL_OVERRIDES = new ArrayList<>();
 
     static {
-        itemsWithCustomModel.addAll(Arrays.asList(
+        MODEL_OVERRIDES.addAll(List.of(
                 ModItems.APPLE_SLICES.get(),
                 ModItems.GOLDEN_APPLE_SLICES.get(),
                 ModItems.CHOPPED_CARROT.get(),
@@ -36,14 +36,17 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
                 ModItems.CHOPPED_BEETROOT.get(),
                 ModItems.TOMATO_SLICES.get()
         ));
-        itemsWithCustomModel.addAll(FarmersDelightIngredients.itemsWithCustomModel);
+        MODEL_OVERRIDES.addAll(FarmersDelightIngredients.itemsWithCustomModel);
+        MODEL_OVERRIDES.add(
+                Items.POTATO
+        );
     }
 
     private void addIngredients() {
-        ingredients.clear();
+        INGREDIENTS.clear();
 
-        for (int i = 0; i < itemsWithCustomModel.size(); i++) {
-            Item item = itemsWithCustomModel.get(i);
+        for (int i = 0; i < MODEL_OVERRIDES.size(); i++) {
+            Item item = MODEL_OVERRIDES.get(i);
             ItemStack displayItem = new ItemStack(ModItems.SPREAD.get());
             displayItem.getOrCreateTag().putInt("CustomModelData", i + 1);
             builder(item).setDisplayItem(displayItem);
@@ -56,7 +59,7 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
             FarmersDelightIngredients.addIngredients(this);
         }
 
-        ItemStack displayItem = ingredients.get(ModItems.GOLDEN_APPLE_SLICES.get()).getDisplayItem().copy();
+        ItemStack displayItem = INGREDIENTS.get(ModItems.GOLDEN_APPLE_SLICES.get()).getDisplayItem().copy();
         displayItem.getOrCreateTag().putBoolean("HasEffect", true);
         builder(ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get()).setDisplayItem(displayItem);
 
@@ -68,6 +71,8 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
         builder(Items.HONEY_BOTTLE).setCustomFullName().setBottled().setSpread(0xf0a90e).setSpreadSound();
 
         builder(Items.MILK_BUCKET).setCustomFullName().setBucketed().setSpread(0xEEFDFF);
+
+        builder(Items.POTATO).setHeight(5);
 
         Arrays.asList(
                 ModItems.TOASTED_BREAD_SLICE.get(),
@@ -82,18 +87,18 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
     }
 
     public IngredientBuilder builder(Item item) {
-        if (ingredients.containsKey(item)) {
-            return ingredients.get(item);
+        if (INGREDIENTS.containsKey(item)) {
+            return INGREDIENTS.get(item);
         }
         IngredientBuilder builder = new IngredientBuilder(item);
-        ingredients.put(item, builder);
+        INGREDIENTS.put(item, builder);
         return builder;
     }
 
     public void run(CachedOutput cache) {
         Path outputFolder = this.generator.getOutputFolder();
         addIngredients();
-        ingredients.forEach((item, builder) -> {
+        INGREDIENTS.forEach((item, builder) -> {
             IngredientProperties ingredient = builder.build();
             ResourceLocation id = ForgeRegistries.ITEMS.getKey(item);
             // noinspection ConstantConditions

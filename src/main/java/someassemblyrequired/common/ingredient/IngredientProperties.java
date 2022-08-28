@@ -24,6 +24,7 @@ import someassemblyrequired.common.util.JsonHelper;
 
 import javax.annotation.Nullable;
 
+@SuppressWarnings("unused")
 public class IngredientProperties {
 
     @Nullable
@@ -37,17 +38,20 @@ public class IngredientProperties {
     @Nullable
     private final SoundEvent soundEvent;
 
-    public IngredientProperties(FoodProperties foodProperties, Component displayName, Component fullName, ItemStack displayItem, ItemStack container, SoundEvent soundEvent) {
+    private final int height;
+
+    public IngredientProperties(FoodProperties foodProperties, Component displayName, Component fullName, ItemStack displayItem, ItemStack container, SoundEvent soundEvent, int height) {
         this.foodProperties = foodProperties;
         this.displayName = displayName;
         this.fullName = fullName;
         this.displayItem = displayItem;
         this.container = container;
         this.soundEvent = soundEvent;
+        this.height = height;
     }
 
     public IngredientProperties() {
-        this(null, null, null, ItemStack.EMPTY, ItemStack.EMPTY, null);
+        this(null, null, null, ItemStack.EMPTY, ItemStack.EMPTY, null, 1);
     }
 
     @Nullable
@@ -84,6 +88,10 @@ public class IngredientProperties {
             return ItemStack.EMPTY;
         }
         return container;
+    }
+
+    public int getHeight(ItemStack item) {
+        return height;
     }
 
     public void playSound(Level level, Player player, BlockPos pos, float pitch) {
@@ -124,6 +132,9 @@ public class IngredientProperties {
             // noinspection ConstantConditions
             result.addProperty("soundEvent", ForgeRegistries.SOUND_EVENTS.getKey(soundEvent).toString());
         }
+        if (height != 1) {
+            result.addProperty("height", height);
+        }
 
         return result;
     }
@@ -148,7 +159,14 @@ public class IngredientProperties {
             }
             soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(id);
         }
-        return new IngredientProperties(foodProperties, displayName, fullName, displayItem, container, soundEvent);
+        int height = 1;
+        if (object.has("height")) {
+            height = GsonHelper.convertToInt(object.get("height"), "height");
+            if (height < 1) {
+                throw new JsonParseException("Ingredient height cannot be smaller than 1");
+            }
+        }
+        return new IngredientProperties(foodProperties, displayName, fullName, displayItem, container, soundEvent, height);
     }
 
     private static JsonElement writeFoodProperties(FoodProperties properties) {
@@ -198,6 +216,7 @@ public class IngredientProperties {
             // noinspection ConstantConditions
             buffer.writeResourceLocation(ForgeRegistries.SOUND_EVENTS.getKey(soundEvent));
         }
+        buffer.writeInt(height);
     }
 
     public static IngredientProperties fromNetwork(FriendlyByteBuf buffer) {
@@ -219,7 +238,8 @@ public class IngredientProperties {
         if (buffer.readBoolean()) {
             soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(buffer.readResourceLocation());
         }
-        return new IngredientProperties(foodProperties, displayName, fullName, displayItem, container, soundEvent);
+        int height = buffer.readInt();
+        return new IngredientProperties(foodProperties, displayName, fullName, displayItem, container, soundEvent, height);
     }
 
     private static void writeFoodProperties(FriendlyByteBuf buffer, FoodProperties foodProperties) {

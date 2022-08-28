@@ -121,7 +121,7 @@ public class SandwichingStationCategory implements IRecipeCategory<SandwichingSt
             }
         }
 
-        if (sandwich.isPresent() && sandwich.get().size() == 3 && sandwich.get().hasTopAndBottomBread()) {
+        if (sandwich.isPresent() && sandwich.get().getItemCount() == 3 && sandwich.get().hasTopAndBottomBread()) {
             breadInput1.addItemStack(sandwich.get().bottom());
             breadInput2.addItemStack(sandwich.get().top());
             ingredientInput.addItemStack(sandwich.get().getItems().get(1));

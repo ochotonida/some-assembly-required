@@ -16,12 +16,10 @@ import someassemblyrequired.common.util.Util;
 
 public class PotionProperties extends IngredientProperties {
 
-    private static final ItemStack CONTAINER = new ItemStack(Items.GLASS_BOTTLE);
-
     private final ItemStack displayItem;
 
     public PotionProperties() {
-        super(null, null, null, ItemStack.EMPTY, ItemStack.EMPTY, ModSoundEvents.ADD_SPREAD.get());
+        super(null, null, null, ItemStack.EMPTY, new ItemStack(Items.GLASS_BOTTLE), ModSoundEvents.ADD_SPREAD.get(), 2);
         displayItem = new ItemStack(ModItems.SPREAD.get());
         displayItem.getOrCreateTag();
     }
@@ -62,10 +60,5 @@ public class PotionProperties extends IngredientProperties {
             return getDisplayName(item);
         }
         return super.getFullName(item);
-    }
-
-    @Override
-    public ItemStack getContainer(ItemStack item) {
-        return CONTAINER;
     }
 }

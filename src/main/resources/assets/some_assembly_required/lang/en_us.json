@@ -13,7 +13,7 @@
   "some_assembly_required.advancement.consume_double_decker_sandwich.description": "Eat a double decker sandwich",
 
   "some_assembly_required.message.bottom_bread": "Missing bottom bread slice!",
-  "some_assembly_required.message.full_sandwich": "You cannot add any more items!",
+  "some_assembly_required.message.full_sandwich": "The resulting sandwich is too large!",
 
   "block.some_assembly_required.sandwiching_station": "Sandwiching Station",
   "block.some_assembly_required.sandwich": "Sandwich",

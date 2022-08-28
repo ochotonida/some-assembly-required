@@ -28,7 +28,7 @@ public class SandwichNameHelper {
         int amountOfBread = getAmountOfBread(sandwich);
 
         // full bread sandwich
-        if (sandwich.size() == amountOfBread) {
+        if (sandwich.getItemCount() == amountOfBread) {
             return getBreadSandwichName(sandwich);
         }
 
@@ -42,7 +42,7 @@ public class SandwichNameHelper {
             }
         }
 
-        boolean isOpenFacedSandwich = amountOfBread == 1 && sandwich.size() > 1;
+        boolean isOpenFacedSandwich = amountOfBread == 1 && sandwich.getItemCount() > 1;
 
         if (uniqueIngredients.size() > 0 && uniqueIngredients.size() <= 3) {
             Component ingredientList = listIngredients(uniqueIngredients);
@@ -85,7 +85,7 @@ public class SandwichNameHelper {
     }
 
     private static Component getBreadSandwichName(SandwichItemHandler sandwich) {
-        if ((sandwich.size() == 3)
+        if ((sandwich.getItemCount() == 3)
                 && sandwich.getStackInSlot(0).getItem() != ModItems.TOASTED_BREAD_SLICE.get()
                 && sandwich.getStackInSlot(1).getItem() == ModItems.TOASTED_BREAD_SLICE.get()
                 && sandwich.getStackInSlot(2).getItem() != ModItems.TOASTED_BREAD_SLICE.get()) {

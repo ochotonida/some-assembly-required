@@ -1,8 +1,6 @@
 package someassemblyrequired.common.block.sandwich;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -76,12 +74,11 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        CompoundTag tag = context.getItemInHand().getTagElement("BlockEntityTag");
-        if (tag != null) {
-            int sandwichHeight = tag.getList("Sandwich", Tag.TAG_COMPOUND).size();
-            return super.getStateForPlacement(context).setValue(SIZE, SandwichBlockEntity.getSizeFromHeight(sandwichHeight));
-        }
-        return super.getStateForPlacement(context);
+        int size = SandwichItemHandler.get(context.getItemInHand())
+                .map(SandwichBlockEntity::getSizeFromSandwich)
+                .orElse(1);
+
+        return super.getStateForPlacement(context).setValue(SIZE, size);
     }
 
     @Override
@@ -101,7 +98,7 @@ public class SandwichBlock extends WaterLoggableHorizontalBlock implements Entit
         List<ItemStack> drops = new ArrayList<>(super.getDrops(state, builder));
         SandwichItemHandler.get(builder.getOptionalParameter(LootContextParams.BLOCK_ENTITY))
                 .map(sandwich -> {
-                    if (sandwich.size() != 1) {
+                    if (sandwich.getItemCount() != 1) {
                         return sandwich.getAsItem();
                     }
                     return sandwich.getStackInSlot(0);

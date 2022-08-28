@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import someassemblyrequired.common.config.ModConfig;
+import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModRecipeTypes;
 import someassemblyrequired.common.init.ModTags;
@@ -22,14 +23,8 @@ public class FillingBySpoutMixin {
 
     @Inject(method = "canItemBeFilled", remap = false, cancellable = true, at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/content/contraptions/fluids/actors/GenericItemFilling;canItemBeFilled(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)Z", remap = false))
     private static void canSandwichBeFilled(Level level, ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.is(ModTags.SANDWICH_BREAD)) {
+        if (stack.is(ModTags.SANDWICH_BREAD) || stack.is(ModItems.SANDWICH.get())) {
             cir.setReturnValue(true);
-        } else if (stack.is(ModItems.SANDWICH.get())) {
-            cir.setReturnValue(
-                    SandwichItemHandler.get(stack)
-                            .map(s -> s.size() < ModConfig.server.maximumSandwichHeight.get())
-                            .orElse(false)
-            );
         }
     }
 
@@ -39,7 +34,9 @@ public class FillingBySpoutMixin {
             return;
         }
         SandwichSpoutingRecipe recipe = getMatchingRecipe(availableFluid, level);
-        if (recipe != null) {
+        // noinspection ConstantConditions
+        int resultHeight = SandwichItemHandler.get(stack).map(s -> s.getTotalHeight() + Ingredients.getHeight(recipe.getResultItem())).orElse(1);
+        if (recipe != null && resultHeight <= ModConfig.server.maximumSandwichHeight.get()) {
             cir.setReturnValue(recipe.getAmountRequired(availableFluid));
         }
     }
