@@ -1,4 +1,4 @@
-package someassemblyrequired.common.block.sandwich;
+package someassemblyrequired.common.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;

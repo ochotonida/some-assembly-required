@@ -1,4 +1,4 @@
-package someassemblyrequired.common.block.sandwich;
+package someassemblyrequired.common.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

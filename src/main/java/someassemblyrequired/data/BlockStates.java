@@ -11,7 +11,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.block.sandwich.SandwichBlock;
+import someassemblyrequired.common.block.SandwichBlock;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.util.Util;
 

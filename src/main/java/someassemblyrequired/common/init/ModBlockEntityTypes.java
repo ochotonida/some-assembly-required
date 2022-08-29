@@ -5,7 +5,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.block.sandwich.SandwichBlockEntity;
+import someassemblyrequired.common.block.SandwichBlockEntity;
 
 @SuppressWarnings("ConstantConditions")
 public class ModBlockEntityTypes {

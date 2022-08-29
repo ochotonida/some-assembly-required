@@ -105,7 +105,7 @@ public class Advancements extends AdvancementProvider {
                     obtainSandwich,
                     SandwichItem.makeSandwich(Potions.NIGHT_VISION),
                     ModAdvancementTriggers.CONSUME_POTION_SANDWICH.instance(),
-                    "add_potion_to_sandwich",
+                    "consume_potion_sandwich",
                     true
             );
 

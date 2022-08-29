@@ -12,7 +12,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
-import someassemblyrequired.common.block.sandwich.SandwichBlockEntity;
+import someassemblyrequired.common.block.SandwichBlockEntity;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
