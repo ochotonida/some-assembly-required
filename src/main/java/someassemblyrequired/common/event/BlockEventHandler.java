@@ -53,7 +53,7 @@ public class BlockEventHandler { // TODO do more testing on this
     }
 
     private static InteractionResult tryPlaceSandwich(PlayerInteractEvent.RightClickBlock event) {
-        ItemStack heldItem = event.getItemStack();
+        ItemStack heldItem = event.getItemStack().copy();
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
         BlockHitResult hitResult = event.getHitVec();
