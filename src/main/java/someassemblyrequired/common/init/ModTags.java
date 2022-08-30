@@ -17,6 +17,7 @@ public class ModTags {
 
     // mod item tags
     public static final TagKey<Item> SANDWICH_BREAD = itemTag("sandwich_bread");
+    public static final TagKey<Item> BURGER_BUNS = itemTag("burger_buns");
     public static final TagKey<Item> LOOT_VEGETABLES = itemTag("loot_ingredients/vegetables");
     public static final TagKey<Item> LOOT_MEAT = itemTag("loot_ingredients/meat");
     public static final TagKey<Item> LOOT_FISH = itemTag("loot_ingredients/fish");

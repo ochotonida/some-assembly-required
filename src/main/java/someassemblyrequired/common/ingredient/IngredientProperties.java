@@ -37,10 +37,19 @@ public class IngredientProperties {
     private final ItemStack container;
     @Nullable
     private final SoundEvent soundEvent;
-
     private final int height;
+    private final boolean renderAsItem;
 
-    public IngredientProperties(FoodProperties foodProperties, Component displayName, Component fullName, ItemStack displayItem, ItemStack container, SoundEvent soundEvent, int height) {
+    public IngredientProperties(
+            FoodProperties foodProperties,
+            Component displayName,
+            Component fullName,
+            ItemStack displayItem,
+            ItemStack container,
+            SoundEvent soundEvent,
+            int height,
+            boolean renderAsItem
+    ) {
         this.foodProperties = foodProperties;
         this.displayName = displayName;
         this.fullName = fullName;
@@ -48,10 +57,11 @@ public class IngredientProperties {
         this.container = container;
         this.soundEvent = soundEvent;
         this.height = height;
+        this.renderAsItem = renderAsItem;
     }
 
     public IngredientProperties() {
-        this(null, null, null, ItemStack.EMPTY, ItemStack.EMPTY, null, 1);
+        this(null, null, null, ItemStack.EMPTY, ItemStack.EMPTY, null, 1, true);
     }
 
     @Nullable
@@ -88,6 +98,10 @@ public class IngredientProperties {
             return ItemStack.EMPTY;
         }
         return container;
+    }
+
+    public boolean shouldRenderAsItem(ItemStack item) {
+        return renderAsItem;
     }
 
     public int getHeight(ItemStack item) {
@@ -135,6 +149,9 @@ public class IngredientProperties {
         if (height != 1) {
             result.addProperty("height", height);
         }
+        if (!renderAsItem) {
+            result.addProperty("renderAsItem", false);
+        }
 
         return result;
     }
@@ -166,7 +183,12 @@ public class IngredientProperties {
                 throw new JsonParseException("Ingredient height cannot be smaller than 1");
             }
         }
-        return new IngredientProperties(foodProperties, displayName, fullName, displayItem, container, soundEvent, height);
+        boolean renderAsItem = true;
+        if (object.has("renderAsItem")) {
+            renderAsItem = GsonHelper.convertToBoolean(object.get("renderAsItem"), "renderAsItem");
+        }
+
+        return new IngredientProperties(foodProperties, displayName, fullName, displayItem, container, soundEvent, height, renderAsItem);
     }
 
     private static JsonElement writeFoodProperties(FoodProperties properties) {
@@ -217,6 +239,7 @@ public class IngredientProperties {
             buffer.writeResourceLocation(ForgeRegistries.SOUND_EVENTS.getKey(soundEvent));
         }
         buffer.writeInt(height);
+        buffer.writeBoolean(renderAsItem);
     }
 
     public static IngredientProperties fromNetwork(FriendlyByteBuf buffer) {
@@ -239,7 +262,8 @@ public class IngredientProperties {
             soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(buffer.readResourceLocation());
         }
         int height = buffer.readInt();
-        return new IngredientProperties(foodProperties, displayName, fullName, displayItem, container, soundEvent, height);
+        boolean renderAsItem = buffer.readBoolean();
+        return new IngredientProperties(foodProperties, displayName, fullName, displayItem, container, soundEvent, height, renderAsItem);
     }
 
     private static void writeFoodProperties(FriendlyByteBuf buffer, FoodProperties foodProperties) {

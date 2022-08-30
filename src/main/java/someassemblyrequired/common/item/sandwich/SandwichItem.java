@@ -34,6 +34,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
+import someassemblyrequired.common.block.SandwichBlock;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModAdvancementTriggers;
 import someassemblyrequired.common.init.ModFoods;
@@ -152,7 +153,16 @@ public class SandwichItem extends BlockItem {
         BlockState blockstate = this.getPlacementState(placeContext);
         if (blockstate == null) {
             return InteractionResult.FAIL;
-        } else if (!placeBlock(placeContext, blockstate)) {
+        }
+
+        Optional<SandwichItemHandler> itemHandler = SandwichItemHandler.get(sandwich);
+        if (itemHandler.isEmpty()) {
+            return InteractionResult.FAIL;
+        }
+        int size = SandwichBlock.getSizeFromSandwich(itemHandler.get());
+        blockstate = blockstate.setValue(SandwichBlock.SIZE, size);
+
+        if (!placeBlock(placeContext, blockstate)) {
             return InteractionResult.FAIL;
         }
         Level level = placeContext.getLevel();

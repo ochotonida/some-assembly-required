@@ -19,7 +19,7 @@ public class PotionProperties extends IngredientProperties {
     private final ItemStack displayItem;
 
     public PotionProperties() {
-        super(null, null, null, ItemStack.EMPTY, new ItemStack(Items.GLASS_BOTTLE), ModSoundEvents.ADD_SPREAD.get(), 1);
+        super(null, null, null, ItemStack.EMPTY, new ItemStack(Items.GLASS_BOTTLE), ModSoundEvents.ADD_SPREAD.get(), 1, true);
         displayItem = new ItemStack(ModItems.SPREAD.get());
         displayItem.getOrCreateTag();
     }

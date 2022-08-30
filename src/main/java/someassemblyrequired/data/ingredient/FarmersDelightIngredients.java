@@ -10,7 +10,7 @@ import java.util.List;
 
 public class FarmersDelightIngredients {
 
-    public static final List<Item> itemsWithCustomModel = Arrays.asList(
+    public static final List<Item> MODEL_OVERRIDES = Arrays.asList(
             ModItems.FRIED_EGG.get(),
             ModItems.CABBAGE_LEAF.get(),
             ModItems.MINCED_BEEF.get(),

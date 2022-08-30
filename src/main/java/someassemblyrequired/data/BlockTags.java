@@ -16,5 +16,6 @@ public class BlockTags extends BlockTagsProvider {
     @Override
     protected void addTags() {
         tag(ModTags.SANDWICHING_STATIONS).add(ModBlocks.SANDWICHING_STATION.get());
+        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.SANDWICHING_STATION.get());
     }
 }

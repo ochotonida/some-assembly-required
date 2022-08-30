@@ -28,7 +28,13 @@ public class ItemTags extends ItemTagsProvider {
         );
 
         tag(ModTags.SANDWICH_BREAD).addTags(
-                ModTags.BREAD_SLICES
+                ModTags.BREAD_SLICES,
+                ModTags.BURGER_BUNS
+        );
+
+        tag(ModTags.BURGER_BUNS).add(
+                ModItems.BURGER_BUN_BOTTOM.get(),
+                ModItems.BURGER_BUN_TOP.get()
         );
 
         tag(ModTags.BREAD_SLICES).addTags(

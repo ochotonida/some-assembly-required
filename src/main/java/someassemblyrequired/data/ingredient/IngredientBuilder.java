@@ -31,12 +31,14 @@ public class IngredientBuilder {
 
     private int height = 1;
 
+    private boolean renderAsItem = true;
+
     public IngredientBuilder(Item item) {
         this.item = item;
     }
 
     public IngredientProperties build() {
-        return new IngredientProperties(null, displayName, fullName, displayItem, container, soundEvent, height);
+        return new IngredientProperties(null, displayName, fullName, displayItem, container, soundEvent, height, renderAsItem);
     }
 
     public Item getItem() {
@@ -124,6 +126,11 @@ public class IngredientBuilder {
 
     public IngredientBuilder setHeight(int height) {
         this.height = height;
+        return this;
+    }
+
+    public IngredientBuilder setRenderAsItem(boolean renderAsItem) {
+        this.renderAsItem = renderAsItem;
         return this;
     }
 

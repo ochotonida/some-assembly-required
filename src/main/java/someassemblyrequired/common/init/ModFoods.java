@@ -20,6 +20,21 @@ public class ModFoods {
             .saturationMod(1F)
             .fast().build();
 
+    public static final FoodProperties BURGER_BUN = new FoodProperties.Builder()
+            .nutrition(3)
+            .saturationMod(0.5F)
+            .build();
+
+    public static final FoodProperties BURGER_BUN_BOTTOM = new FoodProperties.Builder()
+            .nutrition(1)
+            .saturationMod(0.5F)
+            .fast().build();
+
+    public static final FoodProperties BURGER_BUN_TOP = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationMod(0.5F)
+            .fast().build();
+
     public static final FoodProperties APPLE_SLICES = new FoodProperties.Builder()
             .nutrition(2)
             .saturationMod(0.3F)

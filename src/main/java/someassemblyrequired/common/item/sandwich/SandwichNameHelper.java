@@ -21,15 +21,23 @@ public class SandwichNameHelper {
         SandwichItemHandler sandwich = SandwichItemHandler.get(stack).orElse(null);
 
         // noinspection ConstantConditions
-        if (sandwich == null || !ForgeRegistries.ITEMS.tags().isKnownTagName(ModTags.SANDWICH_BREAD)) {
+        if (sandwich == null
+                || sandwich.getItemCount() == 0
+                || !ForgeRegistries.ITEMS.tags().isKnownTagName(ModTags.SANDWICH_BREAD)
+                || !ForgeRegistries.ITEMS.tags().isKnownTagName(ModTags.BURGER_BUNS)
+        ) {
             return translateItem("sandwich");
         }
+
+        String sandwichName = sandwich.top().is(ModTags.BURGER_BUNS)
+                && sandwich.bottom().is(ModTags.BURGER_BUNS)
+                ? "burger" : "sandwich";
 
         int amountOfBread = getAmountOfBread(sandwich);
 
         // full bread sandwich
         if (sandwich.getItemCount() == amountOfBread) {
-            return getBreadSandwichName(sandwich);
+            return getBreadSandwichName(sandwich, sandwichName);
         }
 
         List<ItemStack> uniqueIngredients = getUniqueIngredientsExcludingBread(sandwich);
@@ -38,7 +46,7 @@ public class SandwichNameHelper {
         if (uniqueIngredients.size() == 1 && uniqueIngredients.get(0).is(Items.POTION)) {
             Potion potion = PotionUtils.getPotion(uniqueIngredients.get(0));
             if (potion.getEffects().size() == 1) {
-                return translateItem("potion_sandwich", potion.getEffects().get(0).getEffect().getDisplayName());
+                return translateItem("potion_%s".formatted(sandwichName), potion.getEffects().get(0).getEffect().getDisplayName());
             }
         }
 
@@ -47,20 +55,20 @@ public class SandwichNameHelper {
         if (uniqueIngredients.size() > 0 && uniqueIngredients.size() <= 3) {
             Component ingredientList = listIngredients(uniqueIngredients);
             if (sandwich.isDoubleDeckerSandwich()) {
-                return translateItem("double_decker_ingredients_sandwich", ingredientList);
+                return translateItem("double_decker_ingredients_%s".formatted(sandwichName), ingredientList);
             } else if (isOpenFacedSandwich) {
                 return translateItem("open_faced_ingredients_sandwich", ingredientList);
             } else {
-                return translateItem("ingredients_sandwich", ingredientList);
+                return translateItem("ingredients_%s".formatted(sandwichName), ingredientList);
             }
         }
 
         if (sandwich.isDoubleDeckerSandwich()) {
-            return translateItem("double_decker_sandwich");
+            return translateItem("double_decker_%s".formatted(sandwichName));
         } else if (isOpenFacedSandwich) {
             return translateItem("open_faced_sandwich");
         } else {
-            return translateItem("sandwich");
+            return translateItem(sandwichName);
         }
     }
 
@@ -84,14 +92,14 @@ public class SandwichNameHelper {
         return result;
     }
 
-    private static Component getBreadSandwichName(SandwichItemHandler sandwich) {
+    private static Component getBreadSandwichName(SandwichItemHandler sandwich, String sandwichName) {
         if ((sandwich.getItemCount() == 3)
                 && sandwich.getStackInSlot(0).getItem() != ModItems.TOASTED_BREAD_SLICE.get()
                 && sandwich.getStackInSlot(1).getItem() == ModItems.TOASTED_BREAD_SLICE.get()
                 && sandwich.getStackInSlot(2).getItem() != ModItems.TOASTED_BREAD_SLICE.get()) {
-            return translateItem("ingredients_sandwich", Ingredients.getDisplayName(sandwich.getStackInSlot(1)));
+            return translateItem("ingredients_%s".formatted(sandwichName), Ingredients.getDisplayName(sandwich.getStackInSlot(1)));
         }
-        return translateItem("bread_sandwich");
+        return translateItem("bread_%s".formatted(sandwichName));
     }
 
     private static Component listIngredients(List<ItemStack> ingredients) {

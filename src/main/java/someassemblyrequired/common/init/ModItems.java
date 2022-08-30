@@ -35,6 +35,9 @@ public class ModItems {
     // foods
     public static final RegistryObject<Item> BREAD_SLICE = ITEMS.register("bread_slice", () -> createFoodItem(ModFoods.BREAD_SLICE));
     public static final RegistryObject<Item> TOASTED_BREAD_SLICE = ITEMS.register("toasted_bread_slice", () -> createFoodItem(ModFoods.TOASTED_BREAD_SLICE));
+    public static final RegistryObject<Item> BURGER_BUN = ITEMS.register("burger_bun", () -> createFoodItem(ModFoods.BURGER_BUN));
+    public static final RegistryObject<Item> BURGER_BUN_BOTTOM = ITEMS.register("burger_bun_bottom", () -> createFoodItem(ModFoods.BURGER_BUN_BOTTOM));
+    public static final RegistryObject<Item> BURGER_BUN_TOP = ITEMS.register("burger_bun_top", () -> createFoodItem(ModFoods.BURGER_BUN_TOP));
     public static final RegistryObject<Item> APPLE_SLICES = ITEMS.register("apple_slices", () -> createFoodItem(ModFoods.APPLE_SLICES));
     public static final RegistryObject<Item> GOLDEN_APPLE_SLICES = ITEMS.register("golden_apple_slices", () -> new Item(new Item.Properties().tab(CREATIVE_TAB).food(ModFoods.GOLDEN_APPLE_SLICES).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> ENCHANTED_GOLDEN_APPLE_SLICES = ITEMS.register("enchanted_golden_apple_slices", () -> new EnchantedGoldenAppleSlicesItem(new Item.Properties().tab(CREATIVE_TAB).food(ModFoods.ENCHANTED_GOLDEN_APPLE_SLICES).rarity(Rarity.EPIC)));
@@ -68,6 +71,9 @@ public class ModItems {
     public static void registerCompostables() {
         ComposterBlock.COMPOSTABLES.put(BREAD_SLICE.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TOASTED_BREAD_SLICE.get(), 0.3F);
+        ComposterBlock.COMPOSTABLES.put(BURGER_BUN.get(), 0.5F);
+        ComposterBlock.COMPOSTABLES.put(BURGER_BUN_BOTTOM.get(), 0.3F);
+        ComposterBlock.COMPOSTABLES.put(BURGER_BUN_TOP.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(APPLE_SLICES.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHOPPED_CARROT.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHOPPED_BEETROOT.get(), 0.3F);

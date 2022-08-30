@@ -84,7 +84,7 @@ public class SandwichBlock extends Block implements EntityBlock, SimpleWaterlogg
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         int size = SandwichItemHandler.get(context.getItemInHand())
-                .map(SandwichBlockEntity::getSizeFromSandwich)
+                .map(SandwichBlock::getSizeFromSandwich)
                 .orElse(1);
         boolean isWaterLogged = context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER;
 
@@ -92,6 +92,11 @@ public class SandwichBlock extends Block implements EntityBlock, SimpleWaterlogg
                 .setValue(BlockStateProperties.WATERLOGGED, isWaterLogged)
                 .setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection())
                 .setValue(SIZE, size);
+    }
+
+    public static int getSizeFromSandwich(SandwichItemHandler sandwich) {
+        int size = Math.min(32, Math.max(2, sandwich.getTotalHeight())) + 1;
+        return size / 2;
     }
 
     @Override

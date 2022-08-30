@@ -145,18 +145,13 @@ public class SandwichBlockEntity extends BlockEntity {
                     .ifPresent(sandwich -> {
                         BlockState state = level.getBlockState(getBlockPos());
                         if (state.is(ModBlocks.SANDWICH.get())) {
-                            BlockState newState = state.setValue(SandwichBlock.SIZE, getSizeFromSandwich(sandwich));
+                            BlockState newState = state.setValue(SandwichBlock.SIZE, SandwichBlock.getSizeFromSandwich(sandwich));
                             if (!newState.getValue(SandwichBlock.SIZE).equals(state.getValue(SandwichBlock.SIZE))) {
-                                level.setBlock(getBlockPos(), state.setValue(SandwichBlock.SIZE, getSizeFromSandwich(sandwich)), Block.UPDATE_ALL);
+                                level.setBlock(getBlockPos(), state.setValue(SandwichBlock.SIZE, SandwichBlock.getSizeFromSandwich(sandwich)), Block.UPDATE_ALL);
                             }
                         }
                     });
         }
-    }
-
-    static int getSizeFromSandwich(SandwichItemHandler sandwich) {
-        int size = Math.min(32, Math.max(2, sandwich.getTotalHeight())) + 1;
-        return size / 2;
     }
 
     @Override

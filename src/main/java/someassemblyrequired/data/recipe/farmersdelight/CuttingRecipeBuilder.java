@@ -53,6 +53,8 @@ public class CuttingRecipeBuilder {
         cut(Items.GOLDEN_APPLE, ModItems.GOLDEN_APPLE_SLICES.get(), 2);
         cut(ForgeTags.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2);
 
+        cut(ModItems.BURGER_BUN.get(), ModItems.BURGER_BUN_BOTTOM.get(), 1).addResult(ModItems.BURGER_BUN_TOP.get());
+
         for (CuttingRecipeBuilder recipe : new HashSet<>(RECIPES)) {
             recipe.build(consumer);
         }
@@ -96,9 +98,11 @@ public class CuttingRecipeBuilder {
     }
 
     public void build(Consumer<FinishedRecipe> consumer) {
-        ResourceLocation location = ForgeRegistries.ITEMS.getKey(results.get(0).getStack().getItem());
+        Item item = results.size() == 1 ?
+                results.get(0).getStack().getItem() : ingredient.getItems()[0].getItem();
+        ResourceLocation id = ForgeRegistries.ITEMS.getKey(item);
         // noinspection ConstantConditions
-        build(consumer, Util.id("cutting/%s/".formatted(ModCompat.FARMERSDELIGHT) + location.getPath()));
+        build(consumer, Util.id("cutting/%s/".formatted(ModCompat.FARMERSDELIGHT) + id.getPath()));
     }
 
     public void build(Consumer<FinishedRecipe> consumer, String save) {

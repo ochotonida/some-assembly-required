@@ -79,6 +79,10 @@ public class Ingredients {
         return IngredientPropertiesManager.getOrDefault(item).getHeight(item);
     }
 
+    public static boolean shouldRenderAsItem(ItemStack item) {
+        return IngredientPropertiesManager.getOrDefault(item).shouldRenderAsItem(item);
+    }
+
     public static void playApplySound(ItemStack item, Level level, @Nullable Player player, BlockPos pos) {
         IngredientPropertiesManager.getOrDefault(item).playSound(level, player, pos, 1);
     }

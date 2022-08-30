@@ -29,6 +29,9 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
 
     static {
         MODEL_OVERRIDES.addAll(List.of(
+                ModItems.BURGER_BUN.get(),
+                ModItems.BURGER_BUN_BOTTOM.get(),
+                ModItems.BURGER_BUN_TOP.get(),
                 ModItems.APPLE_SLICES.get(),
                 ModItems.GOLDEN_APPLE_SLICES.get(),
                 ModItems.CHOPPED_CARROT.get(),
@@ -36,7 +39,7 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
                 ModItems.CHOPPED_BEETROOT.get(),
                 ModItems.TOMATO_SLICES.get()
         ));
-        MODEL_OVERRIDES.addAll(FarmersDelightIngredients.itemsWithCustomModel);
+        MODEL_OVERRIDES.addAll(FarmersDelightIngredients.MODEL_OVERRIDES);
         MODEL_OVERRIDES.add(
                 Items.POTATO
         );
@@ -72,7 +75,11 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
 
         builder(Items.MILK_BUCKET).setCustomFullName().setBucketed().setSpread(0xEEFDFF);
 
-        builder(Items.POTATO).setHeight(5);
+        builder(Items.POTATO).setHeight(5).setRenderAsItem(false);
+        builder(ModItems.BURGER_BUN.get()).setHeight(6).setRenderAsItem(false);
+        String burgerBunHalf = "%s.ingredient.%s".formatted(SomeAssemblyRequired.MODID, "burger_bun_half");
+        builder(ModItems.BURGER_BUN_BOTTOM.get()).setHeight(2).setRenderAsItem(false).setFullName(burgerBunHalf);
+        builder(ModItems.BURGER_BUN_TOP.get()).setHeight(4).setRenderAsItem(false).setFullName(burgerBunHalf);
 
         Arrays.asList(
                 ModItems.TOASTED_BREAD_SLICE.get(),
@@ -113,7 +120,6 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
     }
 
     private static void saveIngredient(CachedOutput cache, JsonObject object, Path path) {
-        // TODO
         try {
             DataProvider.saveStable(cache, object, path);
         } catch (IOException exception) {

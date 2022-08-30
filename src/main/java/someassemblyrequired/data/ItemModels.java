@@ -89,15 +89,65 @@ public class ItemModels extends ItemModelProvider {
                 getBuilder(path)
                         .texture("potato", texture)
                         .element()
-                        .from(5, 4, 3.5F)
-                        .to(11, 12, 8.5F)
-                        .face(Direction.NORTH).uvs(0, 5, 8, 11).rotation(ModelBuilder.FaceRotation.COUNTERCLOCKWISE_90).end()
-                        .face(Direction.SOUTH).uvs(8, 5, 16, 11).rotation(ModelBuilder.FaceRotation.CLOCKWISE_90).end()
-                        .face(Direction.DOWN).uvs(0, 11, 6, 16).rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
-                        .face(Direction.UP).uvs(6, 11, 12, 16).end()
-                        .face(Direction.EAST).uvs(0, 0, 8, 5).rotation(ModelBuilder.FaceRotation.CLOCKWISE_90).end()
-                        .face(Direction.WEST).uvs(8, 0, 16, 5).rotation(ModelBuilder.FaceRotation.COUNTERCLOCKWISE_90).end()
+                        .from(5, 0, 4)
+                        .to(11, 5, 12)
+                        .face(Direction.NORTH).uvs(0, 11, 6, 16).end()
+                        .face(Direction.EAST).uvs(8, 0, 16, 5).end()
+                        .face(Direction.SOUTH).uvs(6, 11, 12, 16).end()
+                        .face(Direction.WEST).uvs(0, 0, 8, 5).end()
+                        .face(Direction.UP).uvs(0, 5, 8, 11).rotation(ModelBuilder.FaceRotation.COUNTERCLOCKWISE_90).end()
+                        .face(Direction.DOWN).uvs(8, 5, 16, 11).rotation(ModelBuilder.FaceRotation.CLOCKWISE_90).end()
                         .faces(((direction, builder) -> builder.texture("#potato")))
+                        .end()
+        );
+
+        path = getIngredientPath(ModItems.BURGER_BUN.get());
+        texture = prefixItem(path);
+        customModels.put(ModItems.BURGER_BUN.get(),
+                getBuilder(path)
+                        .texture("burger_bun", texture)
+                        .element()
+                        .from(2, 0, 2)
+                        .to(14, 6, 14)
+                        .face(Direction.NORTH).uvs(6, 12, 12, 15).end()
+                        .face(Direction.EAST).uvs(0, 12, 6, 15).end()
+                        .face(Direction.SOUTH).uvs(6, 6, 12, 9).end()
+                        .face(Direction.WEST).uvs(6, 9, 12, 12).end()
+                        .face(Direction.UP).uvs(0, 0, 6, 6).end()
+                        .face(Direction.DOWN).uvs(0, 6, 6, 12).end()
+                        .faces(((direction, builder) -> builder.texture("#burger_bun")))
+                        .end()
+        );
+        path = getIngredientPath(ModItems.BURGER_BUN_BOTTOM.get());
+        customModels.put(ModItems.BURGER_BUN_BOTTOM.get(),
+                getBuilder(path)
+                        .texture("burger_bun", texture)
+                        .element()
+                        .from(2, 0, 2)
+                        .to(14, 2, 14)
+                        .face(Direction.NORTH).uvs(6, 14, 12, 15).end()
+                        .face(Direction.EAST).uvs(0, 14, 6, 15).end()
+                        .face(Direction.SOUTH).uvs(6, 8, 12, 9).end()
+                        .face(Direction.WEST).uvs(6, 11, 12, 12).end()
+                        .face(Direction.UP).uvs(6, 0, 12, 6).end()
+                        .face(Direction.DOWN).uvs(0, 6, 6, 12).end()
+                        .faces(((direction, builder) -> builder.texture("#burger_bun")))
+                        .end()
+        );
+        path = getIngredientPath(ModItems.BURGER_BUN_TOP.get());
+        customModels.put(ModItems.BURGER_BUN_TOP.get(),
+                getBuilder(path)
+                        .texture("burger_bun", texture)
+                        .element()
+                        .from(2, 0, 2)
+                        .to(14, 4, 14)
+                        .face(Direction.NORTH).uvs(6, 12, 12, 14).end()
+                        .face(Direction.EAST).uvs(0, 12, 6, 14).end()
+                        .face(Direction.SOUTH).uvs(6, 6, 12, 8).end()
+                        .face(Direction.WEST).uvs(6, 9, 12, 11).end()
+                        .face(Direction.UP).uvs(0, 0, 6, 6).end()
+                        .face(Direction.DOWN).uvs(6, 0, 12, 6).end()
+                        .faces(((direction, builder) -> builder.texture("#burger_bun")))
                         .end()
         );
     }
