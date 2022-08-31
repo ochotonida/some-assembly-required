@@ -66,20 +66,22 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
         displayItem.getOrCreateTag().putBoolean("HasEffect", true);
         builder(ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get()).setDisplayItem(displayItem);
 
-        builder(Items.BEETROOT_SOUP).setBowled().setSpread(0x8C0023).setSpreadSound();
-        builder(Items.MUSHROOM_STEW).setBowled().setSpread(0xAD7451).setSpreadSound();
-        builder(Items.RABBIT_STEW).setBowled().setSpread(0xBF7234).setSpreadSound();
-        builder(Items.SUSPICIOUS_STEW).setBowled().setSpread(0x3f9E80).setSpreadSound();
+        builder(Items.BEETROOT_SOUP).setBowled().setSpread(0x8C0023).setMoistSound();
+        builder(Items.MUSHROOM_STEW).setBowled().setSpread(0xAD7451).setMoistSound();
+        builder(Items.RABBIT_STEW).setBowled().setSpread(0xBF7234).setWetSound();
+        builder(Items.SUSPICIOUS_STEW).setBowled().setSpread(0x3f9E80).setMoistSound();
 
-        builder(Items.HONEY_BOTTLE).setCustomFullName().setBottled().setSpread(0xf0a90e).setSpreadSound();
+        builder(Items.HONEY_BOTTLE).setCustomFullName().setBottled().setSpread(0xf0a90e).setMoistSound();
 
-        builder(Items.MILK_BUCKET).setCustomFullName().setBucketed().setSpread(0xEEFDFF);
+        builder(Items.MILK_BUCKET).setCustomFullName().setBucketed().setSpread(0xEEFDFF).setMoistSound();
 
         builder(Items.POTATO).setHeight(5).setRenderAsItem(false);
         builder(ModItems.BURGER_BUN.get()).setHeight(6).setRenderAsItem(false);
         String burgerBunHalf = "%s.ingredient.%s".formatted(SomeAssemblyRequired.MODID, "burger_bun_half");
         builder(ModItems.BURGER_BUN_BOTTOM.get()).setHeight(2).setRenderAsItem(false).setFullName(burgerBunHalf);
         builder(ModItems.BURGER_BUN_TOP.get()).setHeight(4).setRenderAsItem(false).setFullName(burgerBunHalf);
+
+        builder(ModItems.TOMATO_SLICES.get()).setWetSound();
 
         Arrays.asList(
                 ModItems.TOASTED_BREAD_SLICE.get(),

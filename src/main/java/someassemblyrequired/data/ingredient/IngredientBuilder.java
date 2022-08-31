@@ -90,12 +90,20 @@ public class IngredientBuilder {
         return setDisplayItem(spread);
     }
 
-    public IngredientBuilder setSpreadSound() {
-        return setSound(ModSoundEvents.ADD_SPREAD.get());
+    public IngredientBuilder setWetSound() {
+        return setSound(ModSoundEvents.ADD_ITEM_WET.get());
     }
 
-    public IngredientBuilder setLeavesSound() {
-        return setSound(ModSoundEvents.ADD_LEAVES.get());
+    public IngredientBuilder setMoistSound() {
+        return setSound(ModSoundEvents.ADD_ITEM_MOIST.get());
+    }
+
+    public IngredientBuilder setSlimySound() {
+        return setSound(ModSoundEvents.ADD_ITEM_SLIMY.get());
+    }
+
+    public IngredientBuilder setLeafySound() {
+        return setSound(ModSoundEvents.ADD_ITEM_LEAFY.get());
     }
 
     public IngredientBuilder setContainer(ItemStack container) {
