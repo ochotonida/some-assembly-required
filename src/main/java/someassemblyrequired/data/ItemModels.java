@@ -83,6 +83,8 @@ public class ItemModels extends ItemModelProvider {
     }
 
     private void addCustomIngredientModels(HashMap<Item, ItemModelBuilder> customModels) {
+        addFarmersDelightCustomIngredientModels(customModels);
+
         String path = getIngredientPath(Items.POTATO);
         ResourceLocation texture = prefixItem(path);
         customModels.put(Items.POTATO,
@@ -150,6 +152,31 @@ public class ItemModels extends ItemModelProvider {
                         .faces(((direction, builder) -> builder.texture("#burger_bun")))
                         .end()
         );
+    }
+
+    private void addFarmersDelightCustomIngredientModels(HashMap<Item, ItemModelBuilder> customModels) {
+        for (Item item : Arrays.asList(
+                vectorwing.farmersdelight.common.registry.ModItems.BEEF_PATTY.get(),
+                vectorwing.farmersdelight.common.registry.ModItems.MINCED_BEEF.get()
+        )) {
+            String path = getIngredientPath(item);
+            ResourceLocation texture = prefixItem(path);
+            customModels.put(item,
+                    getBuilder(path)
+                            .texture("beef_patty", texture)
+                            .element()
+                            .from(2, 0, 2)
+                            .to(14, 2, 14)
+                            .face(Direction.NORTH).uvs(2, 0, 14, 2).rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
+                            .face(Direction.EAST).uvs(14, 2, 16, 14).rotation(ModelBuilder.FaceRotation.CLOCKWISE_90).end()
+                            .face(Direction.SOUTH).uvs(2, 14, 14, 16).rotation(ModelBuilder.FaceRotation.ZERO).end()
+                            .face(Direction.WEST).uvs(0, 2, 2, 14).rotation(ModelBuilder.FaceRotation.COUNTERCLOCKWISE_90).end()
+                            .face(Direction.UP).uvs(2, 2, 14, 14).end()
+                            .face(Direction.DOWN).uvs(2, 2, 14, 14).end()
+                            .faces(((direction, builder) -> builder.texture("#beef_patty")))
+                            .end()
+            );
+        }
     }
 
     private String getIngredientPath(Item item) {
