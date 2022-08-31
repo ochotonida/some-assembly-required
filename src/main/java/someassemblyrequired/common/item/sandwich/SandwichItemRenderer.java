@@ -63,7 +63,7 @@ public class SandwichItemRenderer extends BlockEntityWithoutLevelRenderer {
             poseStack.pushPose();
             ItemStack stack = sandwich.getStackInSlot(slot);
             if (!stack.is(ModTags.SANDWICH_BREAD)) {
-                poseStack.mulPose(Vector3f.ZP.rotationDegrees(random.nextFloat() * 20 - 10));
+                poseStack.mulPose(Vector3f.ZP.rotationDegrees(random.nextFloat() * 40 - 20));
             }
             ItemStack displayStack = Ingredients.getDisplayItem(stack);
 
