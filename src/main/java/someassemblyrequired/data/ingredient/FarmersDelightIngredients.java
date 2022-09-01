@@ -80,7 +80,7 @@ public class FarmersDelightIngredients {
         ingredients.builder(ModItems.CHICKEN_SOUP.get()).setBowled().setMoistSound();
         ingredients.builder(ModItems.VEGETABLE_SOUP.get()).setBowled().setMoistSound();
         ingredients.builder(ModItems.FISH_STEW.get()).setBowled().setMoistSound();
-        ingredients.builder(ModItems.FRIED_RICE.get()).setBowled().setWetSound();
+        ingredients.builder(ModItems.FRIED_RICE.get()).setBowled();
         ingredients.builder(ModItems.PUMPKIN_SOUP.get()).setBowled().setMoistSound();
         ingredients.builder(ModItems.BAKED_COD_STEW.get()).setBowled().setSlimySound();
         ingredients.builder(ModItems.NOODLE_SOUP.get()).setBowled().setSlimySound();

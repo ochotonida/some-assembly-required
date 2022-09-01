@@ -81,8 +81,6 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
         builder(ModItems.BURGER_BUN_BOTTOM.get()).setHeight(2).setRenderAsItem(false).setFullName(burgerBunHalf);
         builder(ModItems.BURGER_BUN_TOP.get()).setHeight(4).setRenderAsItem(false).setFullName(burgerBunHalf);
 
-        builder(ModItems.TOMATO_SLICES.get()).setWetSound();
-
         Arrays.asList(
                 ModItems.TOASTED_BREAD_SLICE.get(),
                 ModItems.APPLE_SLICES.get(),

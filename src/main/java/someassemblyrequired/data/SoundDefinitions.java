@@ -21,10 +21,10 @@ public class SoundDefinitions extends SoundDefinitionsProvider {
                 .with(sound("dig/cloth4").pitch(1.5))
         );
         add(ModSoundEvents.ADD_ITEM_WET.get(), definition()
-                .with(sound("entity/fish/flop1").pitch(0.9))
-                .with(sound("entity/fish/flop2").pitch(0.9))
-                .with(sound("entity/fish/flop3").pitch(0.9))
-                .with(sound("entity/fish/flop4").pitch(0.9))
+                .with(sound("entity/fish/flop1").pitch(0.9).volume(0.6))
+                .with(sound("entity/fish/flop2").pitch(0.9).volume(0.6))
+                .with(sound("entity/fish/flop3").pitch(0.9).volume(0.6))
+                .with(sound("entity/fish/flop4").pitch(0.9).volume(0.6))
         );
         add(ModSoundEvents.ADD_ITEM_MOIST.get(), definition()
                 .with(sound("block/honeyblock/break1").pitch(1.5))
