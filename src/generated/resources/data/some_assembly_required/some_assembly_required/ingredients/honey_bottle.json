@@ -12,5 +12,5 @@
     "translate": "some_assembly_required.ingredient.honey_bottle"
   },
   "item": "minecraft:honey_bottle",
-  "soundEvent": "some_assembly_required:block.sandwich.add_spread"
+  "soundEvent": "some_assembly_required:block.sandwich.add_item.moist"
 }

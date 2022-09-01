@@ -9,5 +9,5 @@
     "item": "minecraft:bowl"
   },
   "item": "farmersdelight:honey_glazed_ham",
-  "soundEvent": "some_assembly_required:block.sandwich.add_spread"
+  "soundEvent": "some_assembly_required:block.sandwich.add_item.slimy"
 }

@@ -11,9 +11,9 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 27
+      "CustomModelData": 30
     }
   },
   "item": "farmersdelight:vegetable_soup",
-  "soundEvent": "some_assembly_required:block.sandwich.add_spread"
+  "soundEvent": "some_assembly_required:block.sandwich.add_item.moist"
 }

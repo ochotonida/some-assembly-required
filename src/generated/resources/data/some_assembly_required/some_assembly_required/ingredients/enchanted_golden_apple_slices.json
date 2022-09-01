@@ -2,7 +2,7 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 2,
+      "CustomModelData": 5,
       "HasEffect": 1
     }
   },

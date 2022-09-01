@@ -1,0 +1,75 @@
+{
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#burger_bun",
+          "uv": [
+            6.0,
+            0.0,
+            12.0,
+            6.0
+          ]
+        },
+        "east": {
+          "texture": "#burger_bun",
+          "uv": [
+            0.0,
+            12.0,
+            6.0,
+            14.0
+          ]
+        },
+        "north": {
+          "texture": "#burger_bun",
+          "uv": [
+            6.0,
+            12.0,
+            12.0,
+            14.0
+          ]
+        },
+        "south": {
+          "texture": "#burger_bun",
+          "uv": [
+            6.0,
+            6.0,
+            12.0,
+            8.0
+          ]
+        },
+        "up": {
+          "texture": "#burger_bun",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            6.0
+          ]
+        },
+        "west": {
+          "texture": "#burger_bun",
+          "uv": [
+            6.0,
+            9.0,
+            12.0,
+            11.0
+          ]
+        }
+      },
+      "from": [
+        2,
+        0,
+        2
+      ],
+      "to": [
+        14,
+        4,
+        14
+      ]
+    }
+  ],
+  "textures": {
+    "burger_bun": "some_assembly_required:item/ingredient/some_assembly_required/burger_bun"
+  }
+}

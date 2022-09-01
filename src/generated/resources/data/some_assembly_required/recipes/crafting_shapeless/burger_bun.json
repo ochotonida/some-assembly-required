@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:grain/wheat"
+    },
+    {
+      "tag": "forge:grain/wheat"
+    },
+    {
+      "tag": "forge:seeds"
+    }
+  ],
+  "result": {
+    "item": "some_assembly_required:burger_bun"
+  }
+}

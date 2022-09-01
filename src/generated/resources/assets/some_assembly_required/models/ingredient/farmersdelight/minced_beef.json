@@ -1,6 +1,60 @@
 {
-  "parent": "minecraft:item/generated",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#beef_patty"
+        },
+        "east": {
+          "rotation": 90,
+          "texture": "#beef_patty",
+          "uv": [
+            14.0,
+            2.0,
+            16.0,
+            14.0
+          ]
+        },
+        "north": {
+          "rotation": 180,
+          "texture": "#beef_patty",
+          "uv": [
+            2.0,
+            0.0,
+            14.0,
+            2.0
+          ]
+        },
+        "south": {
+          "texture": "#beef_patty"
+        },
+        "up": {
+          "texture": "#beef_patty"
+        },
+        "west": {
+          "rotation": 270,
+          "texture": "#beef_patty",
+          "uv": [
+            0.0,
+            2.0,
+            2.0,
+            14.0
+          ]
+        }
+      },
+      "from": [
+        2,
+        0,
+        2
+      ],
+      "to": [
+        14,
+        2,
+        14
+      ]
+    }
+  ],
   "textures": {
-    "layer0": "some_assembly_required:item/ingredient/farmersdelight/minced_beef"
+    "beef_patty": "some_assembly_required:item/ingredient/farmersdelight/minced_beef"
   }
 }

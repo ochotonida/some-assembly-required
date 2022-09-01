@@ -15,5 +15,5 @@
     }
   },
   "item": "farmersdelight:melon_juice",
-  "soundEvent": "some_assembly_required:block.sandwich.add_spread"
+  "soundEvent": "some_assembly_required:block.sandwich.add_item.moist"
 }

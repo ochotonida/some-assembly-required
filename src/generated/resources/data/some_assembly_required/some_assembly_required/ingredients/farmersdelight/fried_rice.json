@@ -11,9 +11,8 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 29
+      "CustomModelData": 32
     }
   },
-  "item": "farmersdelight:fried_rice",
-  "soundEvent": "some_assembly_required:block.sandwich.add_spread"
+  "item": "farmersdelight:fried_rice"
 }

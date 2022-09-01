@@ -8,12 +8,12 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 11
+      "CustomModelData": 14
     }
   },
   "displayName": {
     "translate": "some_assembly_required.ingredient.farmersdelight.chicken_cuts"
   },
   "item": "farmersdelight:chicken_cuts",
-  "soundEvent": "some_assembly_required:block.sandwich.add_spread"
+  "soundEvent": "some_assembly_required:block.sandwich.add_item.wet"
 }

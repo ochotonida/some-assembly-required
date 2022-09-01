@@ -1,15 +1,15 @@
 {
   "parent": "some_assembly_required:obtain_sandwich",
   "criteria": {
-    "add_potion_to_sandwich": {
+    "consume_potion_sandwich": {
       "conditions": {},
-      "trigger": "some_assembly_required:add_potion_to_sandwich"
+      "trigger": "some_assembly_required:consume_potion_sandwich"
     }
   },
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "some_assembly_required.advancement.add_potion_to_sandwich.description"
+      "translate": "some_assembly_required.advancement.consume_potion_sandwich.description"
     },
     "frame": "task",
     "hidden": true,
@@ -19,12 +19,12 @@
     },
     "show_toast": true,
     "title": {
-      "translate": "some_assembly_required.advancement.add_potion_to_sandwich.title"
+      "translate": "some_assembly_required.advancement.consume_potion_sandwich.title"
     }
   },
   "requirements": [
     [
-      "add_potion_to_sandwich"
+      "consume_potion_sandwich"
     ]
   ]
 }

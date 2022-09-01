@@ -18,5 +18,5 @@
     "translate": "some_assembly_required.ingredient.milk_bucket"
   },
   "item": "farmersdelight:milk_bottle",
-  "soundEvent": "some_assembly_required:block.sandwich.add_spread"
+  "soundEvent": "some_assembly_required:block.sandwich.add_item.moist"
 }

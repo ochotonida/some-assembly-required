@@ -8,12 +8,12 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 13
+      "CustomModelData": 16
     }
   },
   "displayName": {
     "translate": "some_assembly_required.ingredient.farmersdelight.mutton_chops"
   },
   "item": "farmersdelight:mutton_chops",
-  "soundEvent": "some_assembly_required:block.sandwich.add_spread"
+  "soundEvent": "some_assembly_required:block.sandwich.add_item.moist"
 }

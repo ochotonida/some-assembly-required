@@ -8,12 +8,12 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 7
+      "CustomModelData": 10
     }
   },
   "displayName": {
     "translate": "some_assembly_required.ingredient.farmersdelight.fried_egg"
   },
   "item": "farmersdelight:fried_egg",
-  "soundEvent": "some_assembly_required:block.sandwich.add_spread"
+  "soundEvent": "some_assembly_required:block.sandwich.add_item.slimy"
 }

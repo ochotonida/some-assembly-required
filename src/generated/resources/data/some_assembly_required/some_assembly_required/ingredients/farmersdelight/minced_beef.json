@@ -8,9 +8,11 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 9
+      "CustomModelData": 12
     }
   },
+  "height": 2,
   "item": "farmersdelight:minced_beef",
-  "soundEvent": "some_assembly_required:block.sandwich.add_spread"
+  "renderAsItem": false,
+  "soundEvent": "some_assembly_required:block.sandwich.add_item.slimy"
 }

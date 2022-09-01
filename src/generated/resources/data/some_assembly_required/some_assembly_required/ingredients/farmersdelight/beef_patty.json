@@ -8,11 +8,13 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 10
+      "CustomModelData": 13
     }
   },
   "displayName": {
     "translate": "some_assembly_required.ingredient.farmersdelight.beef_patty"
   },
-  "item": "farmersdelight:beef_patty"
+  "height": 2,
+  "item": "farmersdelight:beef_patty",
+  "renderAsItem": false
 }
