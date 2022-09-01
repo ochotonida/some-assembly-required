@@ -1,0 +1,95 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.05,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "entries": [
+                {
+                  "type": "minecraft:item",
+                  "name": "some_assembly_required:bread_slice"
+                },
+                {
+                  "type": "minecraft:item",
+                  "functions": [
+                    {
+                      "effects": [
+                        {
+                          "type": "minecraft:night_vision",
+                          "duration": {
+                            "type": "minecraft:uniform",
+                            "max": 10.0,
+                            "min": 7.0
+                          }
+                        },
+                        {
+                          "type": "minecraft:jump_boost",
+                          "duration": {
+                            "type": "minecraft:uniform",
+                            "max": 10.0,
+                            "min": 7.0
+                          }
+                        },
+                        {
+                          "type": "minecraft:weakness",
+                          "duration": {
+                            "type": "minecraft:uniform",
+                            "max": 8.0,
+                            "min": 6.0
+                          }
+                        },
+                        {
+                          "type": "minecraft:blindness",
+                          "duration": {
+                            "type": "minecraft:uniform",
+                            "max": 7.0,
+                            "min": 5.0
+                          }
+                        },
+                        {
+                          "type": "minecraft:poison",
+                          "duration": {
+                            "type": "minecraft:uniform",
+                            "max": 20.0,
+                            "min": 10.0
+                          }
+                        },
+                        {
+                          "type": "minecraft:saturation",
+                          "duration": {
+                            "type": "minecraft:uniform",
+                            "max": 10.0,
+                            "min": 7.0
+                          }
+                        }
+                      ],
+                      "function": "minecraft:set_stew_effect"
+                    }
+                  ],
+                  "name": "minecraft:suspicious_stew"
+                },
+                {
+                  "type": "minecraft:item",
+                  "name": "some_assembly_required:bread_slice"
+                }
+              ],
+              "function": "some_assembly_required:set_ingredients"
+            }
+          ],
+          "name": "some_assembly_required:sandwich"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

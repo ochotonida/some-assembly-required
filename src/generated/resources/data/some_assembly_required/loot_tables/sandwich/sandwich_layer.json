@@ -18,20 +18,18 @@
           "type": "minecraft:alternatives",
           "children": [
             {
-              "type": "minecraft:tag",
+              "type": "minecraft:loot_table",
               "conditions": [
                 {
-                  "chance": 0.15,
+                  "chance": 0.7,
                   "condition": "minecraft:random_chance"
                 }
               ],
-              "expand": true,
-              "name": "some_assembly_required:loot_ingredients/special"
+              "name": "some_assembly_required:sandwich/ingredients/protein"
             },
             {
-              "type": "minecraft:tag",
-              "expand": true,
-              "name": "some_assembly_required:loot_ingredients/other"
+              "type": "minecraft:loot_table",
+              "name": "some_assembly_required:sandwich/ingredients/vegetables"
             }
           ]
         }
@@ -42,8 +40,8 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "some_assembly_required:bread_slice"
+          "type": "minecraft:loot_table",
+          "name": "some_assembly_required:sandwich/ingredients/vegetables"
         }
       ],
       "rolls": 1.0

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "some_assembly_required:sandwich/village_generic_layer"
+          "name": "some_assembly_required:sandwich/sandwich_layer"
         }
       ],
       "rolls": 1.0
@@ -22,7 +22,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "some_assembly_required:sandwich/village_generic_layer"
+          "name": "some_assembly_required:sandwich/sandwich_layer"
         }
       ],
       "rolls": 1.0

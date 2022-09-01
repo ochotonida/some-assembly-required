@@ -1,0 +1,209 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:burger_bun_bottom"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:beef_patty",
+          "weight": 5,
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:cooked_bacon",
+          "weight": 2,
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:cooked_mutton_chops",
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:fried_egg",
+          "weight": 2,
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "minecraft:cooked_beef",
+          "when": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "farmersdelight"
+              }
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "minecraft:cooked_porkchop",
+          "when": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "farmersdelight"
+              }
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.2,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:cooked_bacon",
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:tomato_sauce",
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.5,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:cabbage_leaf",
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.5,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:tomato_slices"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.2,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sweet_berries"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:chopped_carrot",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:chopped_golden_carrot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:apple_slices",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:golden_apple_slices"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:chopped_beetroot",
+          "weight": 3
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:burger_bun_top"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

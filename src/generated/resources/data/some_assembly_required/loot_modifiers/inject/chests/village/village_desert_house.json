@@ -9,5 +9,5 @@
       "loot_table_id": "minecraft:chests/village/village_desert_house"
     }
   ],
-  "lootTable": "some_assembly_required:sandwich/village"
+  "lootTable": "some_assembly_required:inject/chests/village_house"
 }

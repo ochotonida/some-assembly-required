@@ -14,6 +14,15 @@
           "type": "minecraft:item",
           "functions": [
             {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 5.0,
+                "min": 2.0
+              },
+              "function": "minecraft:set_count"
+            },
+            {
               "entries": [
                 {
                   "type": "minecraft:alternatives",
@@ -22,11 +31,11 @@
                       "type": "minecraft:loot_table",
                       "conditions": [
                         {
-                          "chance": 0.2,
+                          "chance": 0.15,
                           "condition": "minecraft:random_chance"
                         }
                       ],
-                      "name": "some_assembly_required:sandwich/village_special"
+                      "name": "some_assembly_required:sandwich/special"
                     },
                     {
                       "type": "minecraft:loot_table",
@@ -42,25 +51,41 @@
                           "item": "some_assembly_required:bread_slice"
                         }
                       ],
-                      "name": "some_assembly_required:sandwich/village_generic"
+                      "name": "some_assembly_required:sandwich/sandwich"
                     },
                     {
                       "type": "minecraft:loot_table",
-                      "name": "some_assembly_required:sandwich/village_generic"
+                      "name": "some_assembly_required:sandwich/sandwich"
                     }
                   ]
                 }
               ],
               "function": "some_assembly_required:set_ingredients"
-            },
+            }
+          ],
+          "name": "some_assembly_required:sandwich",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
             {
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 8.0,
-                "min": 3.0
+                "max": 5.0,
+                "min": 2.0
               },
               "function": "minecraft:set_count"
+            },
+            {
+              "entries": [
+                {
+                  "type": "minecraft:loot_table",
+                  "name": "some_assembly_required:sandwich/burger"
+                }
+              ],
+              "function": "some_assembly_required:set_ingredients"
             }
           ],
           "name": "some_assembly_required:sandwich"

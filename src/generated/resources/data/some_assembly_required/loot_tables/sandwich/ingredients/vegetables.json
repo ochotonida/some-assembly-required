@@ -1,0 +1,54 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sweet_berries"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:chopped_carrot",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:chopped_golden_carrot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:apple_slices",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:golden_apple_slices"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:chopped_beetroot",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:tomato_slices",
+          "weight": 4
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:cabbage_leaf",
+          "weight": 4,
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

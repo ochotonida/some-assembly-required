@@ -1,9 +1,0 @@
-{
-  "values": [
-    "minecraft:honey_bottle",
-    {
-      "id": "farmersdelight:fried_egg",
-      "required": false
-    }
-  ]
-}

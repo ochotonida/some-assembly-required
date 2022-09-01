@@ -1,0 +1,127 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "minecraft:cooked_beef",
+          "when": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "farmersdelight"
+              }
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "minecraft:cooked_porkchop",
+          "when": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "farmersdelight"
+              }
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "minecraft:cooked_salmon",
+          "when": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "farmersdelight"
+              }
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "minecraft:cooked_cod",
+          "when": [
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:mod_loaded",
+                "modid": "farmersdelight"
+              }
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:cooked_bacon",
+          "weight": 3,
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:fried_egg",
+          "weight": 4,
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:cooked_chicken_cuts",
+          "weight": 3,
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:cooked_mutton_chops",
+          "weight": 2,
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:cooked_cod_slice",
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        },
+        {
+          "type": "some_assembly_required:optional_item",
+          "name": "farmersdelight:cooked_salmon_slice",
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "farmersdelight"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}
