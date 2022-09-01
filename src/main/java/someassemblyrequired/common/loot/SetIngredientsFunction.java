@@ -14,9 +14,8 @@ import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModLootFunctions;
-import someassemblyrequired.common.item.sandwich.SandwichItem;
+import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,16 +32,14 @@ public class SetIngredientsFunction extends LootItemConditionalFunction {
 
     @Override
     protected ItemStack run(ItemStack item, LootContext context) {
-        if (item.isEmpty() || !item.is(ModItems.SANDWICH.get())) {
-            return item;
-        }
-
         NonNullList<ItemStack> ingredients = NonNullList.create();
+
         entries.forEach(
                 entry -> entry.expand(context,
                         (lootPoolEntry) -> lootPoolEntry.createItemStack(splitStacks(ingredients::add), context)
                 )
         );
+
         for (ItemStack ingredient : ingredients) {
             if (ingredient.isEmpty() || ingredient.getCount() != 1) {
                 SomeAssemblyRequired.LOGGER.warn("Tried to generate sandwich with invalid ingredient '{}', " +
@@ -51,7 +48,9 @@ public class SetIngredientsFunction extends LootItemConditionalFunction {
             }
         }
 
-        return SandwichItem.of(ingredients);
+        SandwichItemHandler.get(item).ifPresent(sandwich -> sandwich.setItems(ingredients));
+
+        return item;
     }
 
     private Consumer<ItemStack> splitStacks(Consumer<ItemStack> consumer) {

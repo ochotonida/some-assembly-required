@@ -41,7 +41,8 @@ public class SomeAssemblyRequired {
                 ModRecipeTypes.RECIPE_SERIALIZERS,
                 ModLootModifiers.LOOT_MODIFIERS,
                 ModLootFunctions.LOOT_FUNCTION_TYPES,
-                ModLootConditions.LOOT_CONDITION_TYPES
+                ModLootConditions.LOOT_CONDITION_TYPES,
+                ModLootPoolEntries.LOOT_POOL_ENTRIES
         );
 
         modEventBus.addListener(this::onCommonSetup);

@@ -3,13 +3,19 @@ package someassemblyrequired.common.util;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JsonHelper {
 
@@ -50,5 +56,26 @@ public class JsonHelper {
             }
         }
         conditions.add(condition1);
+    }
+
+    public static List<ICondition> deserializeConditions(JsonObject object, String memberName) {
+        JsonArray conditions = GsonHelper.getAsJsonArray(object, memberName);
+        List<ICondition> result = new ArrayList<>();
+        for (JsonElement condition : conditions) {
+            if (!condition.isJsonObject()) {
+                throw new JsonSyntaxException("Conditions must be an array of JsonObjects");
+            }
+
+            result.add(CraftingHelper.getCondition(condition.getAsJsonObject()));
+        }
+        return result;
+    }
+
+    public static JsonElement serializeConditions(List<ICondition> conditions) {
+        JsonArray result = new JsonArray();
+        for (ICondition condition : conditions) {
+            result.add(CraftingHelper.serialize(condition));
+        }
+        return result;
     }
 }

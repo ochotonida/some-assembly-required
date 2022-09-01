@@ -2,6 +2,7 @@ package someassemblyrequired.data;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -9,10 +10,12 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.functions.SetStewEffectFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
 import net.minecraftforge.common.loot.LootTableIdCondition;
 import someassemblyrequired.SomeAssemblyRequired;
@@ -40,6 +43,16 @@ public class LootModifiers extends GlobalLootModifierProvider {
         addSandwich(BuiltInLootTables.SIMPLE_DUNGEON, ModItems.GOLDEN_APPLE_SLICES.get());
         addSandwich(BuiltInLootTables.NETHER_BRIDGE, Potions.FIRE_RESISTANCE);
         addSandwich(BuiltInLootTables.ANCIENT_CITY, Potions.REGENERATION);
+        builder(BuiltInLootTables.SHIPWRECK_SUPPLY, 0.05).getLootPool().add(LootTables.sandwich(
+                LootTables.item(Items.SUSPICIOUS_STEW).apply(SetStewEffectFunction.stewEffect()
+                        .withEffect(MobEffects.NIGHT_VISION, UniformGenerator.between(7, 10))
+                        .withEffect(MobEffects.JUMP, UniformGenerator.between(7, 10))
+                        .withEffect(MobEffects.WEAKNESS, UniformGenerator.between(6, 8))
+                        .withEffect(MobEffects.BLINDNESS, UniformGenerator.between(5, 7))
+                        .withEffect(MobEffects.POISON, UniformGenerator.between(10, 20))
+                        .withEffect(MobEffects.SATURATION, UniformGenerator.between(7, 10))
+                )
+        ));
         builder(BuiltInLootTables.SPAWN_BONUS_CHEST, 1).getLootPool().add(
                 LootTables.sandwich(Items.HONEY_BOTTLE).apply(LootTables.count(3, 8))
         );

@@ -128,6 +128,12 @@ public class SandwichItemHandler implements IItemHandler, IItemHandlerModifiable
         onContentsChanged();
     }
 
+    public void setItems(List<ItemStack> items) {
+        this.items.clear();
+        this.items.addAll(items);
+        onContentsChanged();
+    }
+
     public ItemStack bottom() {
         return items.get(0);
     }
