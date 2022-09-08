@@ -41,6 +41,8 @@ import someassemblyrequired.common.init.ModFoods;
 import someassemblyrequired.common.init.ModItems;
 import someassemblyrequired.common.init.ModTags;
 import someassemblyrequired.common.util.Util;
+import someassemblyrequired.integration.ModCompat;
+import someassemblyrequired.integration.farmersdelight.FarmersDelightCompat;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -125,10 +127,17 @@ public class SandwichItem extends BlockItem {
     @Override
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
         if (allowedIn(group)) {
-            items.add(SandwichItem.makeSandwich(
-                    Items.COOKED_BEEF,
-                    ModItems.TOMATO_SLICES.get()
-            ));
+            ItemStack item;
+            if (ModCompat.isFarmersDelightLoaded()) {
+                item = FarmersDelightCompat.createBLT();
+            } else {
+                item = SandwichItem.makeSandwich(
+                        Items.COOKED_BEEF,
+                        ModItems.TOMATO_SLICES.get()
+                );
+            }
+            item.getOrCreateTag().putBoolean("IsJEIExample", true);
+            items.add(item);
         }
     }
 

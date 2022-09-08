@@ -24,7 +24,7 @@ import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.common.network.IngredientSyncPacket;
 import someassemblyrequired.common.network.NetworkHandler;
 import someassemblyrequired.integration.ModCompat;
-import someassemblyrequired.integration.jei.SandwichingStationCategory;
+import someassemblyrequired.integration.jei.JEIUtil;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -93,7 +93,7 @@ public class IngredientPropertiesManager extends SimpleJsonResourceReloadListene
     public static void syncIngredientProperties(Map<Item, IngredientProperties> map) {
         properties = map;
         if (ModCompat.isJEILoaded()) {
-            SandwichingStationCategory.refreshSandwiches();
+            JEIUtil.refresh();
         }
     }
 
@@ -103,7 +103,7 @@ public class IngredientPropertiesManager extends SimpleJsonResourceReloadListene
 
     public static void onDataPackReload(OnDatapackSyncEvent event) {
         if (Environment.get().getDist().isClient()) {
-            SandwichingStationCategory.refreshSandwiches();
+            JEIUtil.refresh();
             return;
         }
         if (event.getPlayer() != null) {

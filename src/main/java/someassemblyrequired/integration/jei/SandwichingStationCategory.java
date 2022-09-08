@@ -16,10 +16,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.common.ingredient.Ingredients;
 import someassemblyrequired.common.init.ModBlocks;
 import someassemblyrequired.common.init.ModItems;
@@ -28,7 +25,6 @@ import someassemblyrequired.common.item.sandwich.SandwichItem;
 import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
 import someassemblyrequired.common.util.Util;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,36 +35,12 @@ public class SandwichingStationCategory implements IRecipeCategory<SandwichingSt
     private final IDrawable slot;
     private final IDrawable arrow;
 
-    private static final ItemStack BREAD_SLICE = new ItemStack(ModItems.BREAD_SLICE.get());
-    private static final List<ItemStack> SANDWICHES = new ArrayList<>();
-    private static final List<ItemStack> INGREDIENTS = new ArrayList<>();
-    private static final List<ItemStack> POTIONS = new ArrayList<>();
-
     public SandwichingStationCategory(IGuiHelper helper) {
         ResourceLocation texture = Util.id("textures/jei/sandwiching_station.png");
-        background = helper.createBlankDrawable(96, 64);
+        background = helper.createBlankDrawable(96, 120);
         icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.SANDWICHING_STATION.get()));
         slot = helper.createDrawable(texture, 0, 0, 18, 18);
         arrow = helper.createDrawable(texture, 18, 0, 24, 17);
-    }
-
-    public static void refreshSandwiches() {
-        INGREDIENTS.clear();
-        POTIONS.clear();
-        SANDWICHES.clear();
-
-        POTIONS.addAll(ForgeRegistries.POTIONS.getValues()
-                .stream()
-                .map(potion -> PotionUtils.setPotion(new ItemStack(Items.POTION), potion))
-                .toList());
-
-        INGREDIENTS.addAll(ForgeRegistries.ITEMS.getValues()
-                .stream()
-                .filter(Ingredients::hasCustomIngredientProperties)
-                .map(ItemStack::new)
-                .toList());
-
-        INGREDIENTS.stream().map(SandwichItem::makeSandwich).forEach(SANDWICHES::add);
     }
 
     @Override
@@ -93,25 +65,20 @@ public class SandwichingStationCategory implements IRecipeCategory<SandwichingSt
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, Recipe recipe, IFocusGroup focuses) {
-        IRecipeSlotBuilder breadInput1 = builder.addSlot(RecipeIngredientRole.INPUT, 8, 43).setBackground(slot, -1, -1);
-        IRecipeSlotBuilder breadInput2 = builder.addSlot(RecipeIngredientRole.INPUT, 8, 5).setBackground(slot, -1, -1);
-        IRecipeSlotBuilder ingredientInput = builder.addSlot(RecipeIngredientRole.INPUT, 8, 24).setBackground(slot, -1, -1);
-        IRecipeSlotBuilder output = builder.addSlot(RecipeIngredientRole.OUTPUT, 72, 24).setBackground(slot, -1, -1);
-
         Optional<SandwichItemHandler> sandwich = focuses.getItemStackFocuses(RecipeIngredientRole.OUTPUT)
                 .findFirst()
                 .map(IFocus::getTypedValue)
                 .flatMap(ITypedIngredient::getItemStack)
+                .filter(item -> item.getTag() == null || !item.getTag().getBoolean("IsJEIExample"))
                 .flatMap(SandwichItemHandler::get);
 
         if (sandwich.isEmpty()) {
             Optional<ItemStack> input = focuses.getItemStackFocuses(RecipeIngredientRole.INPUT)
                     .map(IFocus::getTypedValue)
                     .map(ITypedIngredient::getItemStack)
-                    .filter(Optional::isPresent)
-                    .map(Optional::get)
+                    .flatMap(Optional::stream)
                     .filter(Ingredients::canAddToSandwich)
-                    .filter(stack -> !stack.is(ModTags.SANDWICH_BREAD) || Ingredients.hasCustomIngredientProperties(stack.getItem()))
+                    .filter(stack -> !stack.is(ModTags.SANDWICH_BREAD))
                     .findFirst();
 
             if (input.isPresent()) {
@@ -121,26 +88,50 @@ public class SandwichingStationCategory implements IRecipeCategory<SandwichingSt
             }
         }
 
-        if (sandwich.isPresent() && sandwich.get().getItemCount() == 3 && sandwich.get().hasTopAndBottomBread()) {
-            breadInput1.addItemStack(sandwich.get().bottom());
-            breadInput2.addItemStack(sandwich.get().top());
-            ingredientInput.addItemStack(sandwich.get().getItems().get(1));
+        IRecipeSlotBuilder output = builder.addSlot(RecipeIngredientRole.OUTPUT, 72, 52).setBackground(slot, -1, -1);
+
+        if (sandwich.isPresent() && sandwich.get().getItemCount() <= 6) {
+
+            List<ItemStack> ingredients = sandwich.get().getItems();
+
+            for (int i = 0; i < ingredients.size(); i++) {
+                IRecipeSlotBuilder slotBuilder = builder.addSlot(RecipeIngredientRole.INPUT, 8, 62 - ingredients.size() * 10 + i * 20).setBackground(slot, -1, -1);
+                slotBuilder.addItemStack(ingredients.get(ingredients.size() - i - 1));
+            }
             output.addItemStack(sandwich.get().getAsItem());
         } else {
-            breadInput1.addItemStack(BREAD_SLICE);
-            breadInput2.addItemStack(BREAD_SLICE);
-            ingredientInput.addItemStacks(INGREDIENTS);
-            output.addItemStacks(SANDWICHES);
+            ItemStack bread = focuses.getItemStackFocuses(RecipeIngredientRole.INPUT)
+                    .map(IFocus::getTypedValue)
+                    .map(ITypedIngredient::getItemStack)
+                    .flatMap(Optional::stream)
+                    .filter(item -> item.is(ModTags.SANDWICH_BREAD))
+                    .findFirst().orElse(JEIUtil.BREAD_SLICE).copy();
+            bread.setCount(1);
+
+            IRecipeSlotBuilder bottomBread = builder.addSlot(RecipeIngredientRole.INPUT, 8, 72).setBackground(slot, -1, -1);
+            IRecipeSlotBuilder ingredientInput = builder.addSlot(RecipeIngredientRole.INPUT, 8, 52).setBackground(slot, -1, -1);
+            IRecipeSlotBuilder topBread = builder.addSlot(RecipeIngredientRole.INPUT, 8, 32).setBackground(slot, -1, -1);
+
+            if (bread.is(ModItems.BURGER_BUN_BOTTOM.get()) || bread.is(ModItems.BURGER_BUN_TOP.get())) {
+                bottomBread.addItemStack(JEIUtil.BURGER_BUN_BOTTOM);
+                topBread.addItemStack(JEIUtil.BURGER_BUN_TOP);
+            } else {
+                bottomBread.addItemStack(bread);
+                topBread.addItemStack(bread);
+            }
+
+            ingredientInput.addItemStacks(JEIUtil.INGREDIENTS);
+            output.addItemStacks(JEIUtil.getSandwichesForBread(bread));
 
             builder.addInvisibleIngredients(RecipeIngredientRole.INPUT)
                     .addIngredients(Ingredient.of(ModTags.SANDWICH_BREAD))
-                    .addItemStacks(POTIONS);
+                    .addItemStacks(JEIUtil.POTIONS);
         }
     }
 
     @Override
     public void draw(Recipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
-        arrow.draw(stack, 36, 23);
+        arrow.draw(stack, 36, 51);
     }
 
     public static class Recipe {
