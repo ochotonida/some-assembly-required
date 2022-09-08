@@ -1,7 +1,9 @@
 package someassemblyrequired.data.ingredient;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
-import someassemblyrequired.SomeAssemblyRequired;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import someassemblyrequired.data.Ingredients;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -45,12 +47,16 @@ public class FarmersDelightIngredients {
             ModItems.STEAK_AND_POTATOES.get(),
             ModItems.RATATOUILLE.get(),
             ModItems.SQUID_INK_PASTA.get(),
-            ModItems.GRILLED_SALMON.get()
+            ModItems.GRILLED_SALMON.get(),
+            ModItems.STUFFED_PUMPKIN.get(),
+            ModItems.SHEPHERDS_PIE.get(),
+            ModItems.HONEY_GLAZED_HAM.get(),
+            ModItems.ROAST_CHICKEN.get()
     );
 
     public static void addIngredients(Ingredients ingredients) {
         ingredients.builder(ModItems.TOMATO_SAUCE.get()).setBowled().setSpread(0xbe331f).setMoistSound();
-        ingredients.builder(ModItems.MILK_BOTTLE.get()).setFullName("%s.ingredient.milk_bucket".formatted(SomeAssemblyRequired.MODID)).setBottled().setSpread(0xEEFDFF).setMoistSound();
+        ingredients.builder(ModItems.MILK_BOTTLE.get()).setFullName(Items.MILK_BUCKET).setBottled().setSpread(0xEEFDFF).setMoistSound();
         ingredients.builder(ModItems.HOT_COCOA.get()).setBottled().setSpread(0x7b4835).setMoistSound();
         ingredients.builder(ModItems.APPLE_CIDER.get()).setBottled().setSpread(0xbd783d).setMoistSound();
         ingredients.builder(ModItems.MELON_JUICE.get()).setBottled().setSpread(0xc73225).setMoistSound();
@@ -93,9 +99,13 @@ public class FarmersDelightIngredients {
         ingredients.builder(ModItems.RATATOUILLE.get()).setBowled().setWetSound();
         ingredients.builder(ModItems.SQUID_INK_PASTA.get()).setBowled().setSlimySound();
         ingredients.builder(ModItems.GRILLED_SALMON.get()).setBowled().setWetSound();
-        ingredients.builder(ModItems.ROAST_CHICKEN.get()).setBowled().setWetSound();
-        ingredients.builder(ModItems.STUFFED_PUMPKIN.get()).setBowled().setSlimySound();
-        ingredients.builder(ModItems.HONEY_GLAZED_HAM.get()).setBowled().setSlimySound();
-        ingredients.builder(ModItems.SHEPHERDS_PIE.get()).setBowled().setMoistSound();
+        ingredients.builder(ModItems.ROAST_CHICKEN.get()).setBowled().setWetSound().setFullName(getTranslationKey(ModItems.ROAST_CHICKEN_BLOCK.get()));
+        ingredients.builder(ModItems.STUFFED_PUMPKIN.get()).setBowled().setSlimySound().setFullName(getTranslationKey(ModItems.STUFFED_PUMPKIN_BLOCK.get()));
+        ingredients.builder(ModItems.HONEY_GLAZED_HAM.get()).setBowled().setSlimySound().setFullName(getTranslationKey(ModItems.HONEY_GLAZED_HAM_BLOCK.get()));
+        ingredients.builder(ModItems.SHEPHERDS_PIE.get()).setBowled().setMoistSound().setFullName(getTranslationKey(ModItems.SHEPHERDS_PIE_BLOCK.get()));
+    }
+
+    private static Component getTranslationKey(Item item) {
+        return item.getName(new ItemStack(item));
     }
 }
