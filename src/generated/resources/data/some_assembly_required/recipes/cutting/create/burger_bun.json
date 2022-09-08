@@ -1,0 +1,23 @@
+{
+  "type": "create:cutting",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "some_assembly_required:burger_bun"
+    }
+  ],
+  "processingTime": 30,
+  "results": [
+    {
+      "item": "some_assembly_required:burger_bun_bottom"
+    },
+    {
+      "item": "some_assembly_required:burger_bun_top"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-02T00:34:01.3132118	LootTables
+// 1.19.2	2022-09-08T15:08:29.5970258	LootTables
 f0cdb9b55b9988c5424111f117fefbacd17e5b1f data/some_assembly_required/loot_tables/blocks/sandwiching_station.json
 0253807640c968280fc86a6e0df6c4da75aca5dd data/some_assembly_required/loot_tables/inject/chests/abandoned_mineshaft.json
 13e078e5f1b1d16d2d567f31ee511aa360a6d8e0 data/some_assembly_required/loot_tables/inject/chests/ancient_city.json
@@ -15,4 +15,4 @@ bd112284332383861b5218a8386b2dd86c9b4c8c data/some_assembly_required/loot_tables
 7a16c8528331eaa9a969797fa12543239d11e710 data/some_assembly_required/loot_tables/sandwich/ingredients/vegetables.json
 57b7c52deb4d08af8dbd5b050e424c155f4bc632 data/some_assembly_required/loot_tables/sandwich/sandwich.json
 6531f80301016ccc555ddadd84c23c15f50eab5f data/some_assembly_required/loot_tables/sandwich/sandwich_layer.json
-d2a510fa057cc0b65166d31dadad2c7fa5092bb0 data/some_assembly_required/loot_tables/sandwich/special.json
+dbd67fe8853b585a82b28bf73cc76100f9527f50 data/some_assembly_required/loot_tables/sandwich/special.json

@@ -1,0 +1,21 @@
+{
+  "type": "create:cutting",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "ingredients": [
+    {
+      "tag": "forge:crops/tomato"
+    }
+  ],
+  "processingTime": 30,
+  "results": [
+    {
+      "count": 2,
+      "item": "some_assembly_required:tomato_slices"
+    }
+  ]
+}

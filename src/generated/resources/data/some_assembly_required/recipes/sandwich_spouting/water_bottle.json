@@ -2,14 +2,14 @@
   "type": "some_assembly_required:sandwich_spouting",
   "conditions": [
     {
-      "modid": "create",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "create"
     }
   ],
   "fluid": {
+    "amount": 250,
     "fluid": "minecraft:water",
-    "nbt": {},
-    "amount": 250
+    "nbt": {}
   },
   "result": {
     "item": "minecraft:potion",

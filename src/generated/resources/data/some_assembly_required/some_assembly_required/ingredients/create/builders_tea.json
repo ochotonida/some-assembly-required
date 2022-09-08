@@ -1,0 +1,19 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "Color": 14648167
+    }
+  },
+  "item": "create:builders_tea",
+  "soundEvent": "some_assembly_required:block.sandwich.add_item.moist"
+}

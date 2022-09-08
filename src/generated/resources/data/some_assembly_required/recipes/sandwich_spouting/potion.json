@@ -2,8 +2,8 @@
   "type": "some_assembly_required:sandwich_potion_spouting",
   "conditions": [
     {
-      "modid": "create",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "create"
     }
   ]
 }

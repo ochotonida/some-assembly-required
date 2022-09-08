@@ -103,7 +103,7 @@
         },
         {
           "type": "some_assembly_required:optional_item",
-          "name": "create:chocolate_berries",
+          "name": "create:chocolate_glazed_berries",
           "when": [
             {
               "type": "forge:mod_loaded",
