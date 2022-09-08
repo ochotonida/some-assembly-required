@@ -112,6 +112,8 @@ dependencies {
 
     implementation fg.deobf("curse.maven:farmersdelight-398521:3916069")
 
+    runtimeOnly fg.deobf("curse.maven:itemzoom-261725:3903160")
+
     // runtimeOnly fg.deobf("curse.maven:diet-443570:3758891")
 }
 
