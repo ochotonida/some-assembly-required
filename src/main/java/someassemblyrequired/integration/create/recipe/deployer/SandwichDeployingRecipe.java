@@ -49,9 +49,10 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
             return false;
         }
 
-        return SandwichItemHandler.get(item)
-                .map(sandwich -> sandwich.getTotalHeight() + Ingredients.getHeight(ingredient) <= ModConfig.server.maximumSandwichHeight.get())
-                .orElse(false);
+        return ModConfig.server.maximumSandwichHeight.get() >= Ingredients.getHeight(ingredient)
+                + SandwichItemHandler.get(item)
+                        .map(SandwichItemHandler::getTotalHeight)
+                        .orElse(Ingredients.getHeight(item));
     }
 
     public static SandwichDeployingRecipe createRecipe(ItemStack sandwich, ItemStack ingredient) {
