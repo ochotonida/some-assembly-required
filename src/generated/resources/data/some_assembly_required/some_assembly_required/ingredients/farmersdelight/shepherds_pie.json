@@ -8,6 +8,15 @@
   "container": {
     "item": "minecraft:bowl"
   },
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 46
+    }
+  },
+  "fullName": {
+    "translate": "block.farmersdelight.shepherds_pie_block"
+  },
   "item": "farmersdelight:shepherds_pie",
   "soundEvent": "some_assembly_required:block.sandwich.add_item.moist"
 }

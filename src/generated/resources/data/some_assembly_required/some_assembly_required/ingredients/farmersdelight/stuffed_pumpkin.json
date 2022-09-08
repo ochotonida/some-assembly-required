@@ -8,6 +8,15 @@
   "container": {
     "item": "minecraft:bowl"
   },
+  "displayItem": {
+    "item": "some_assembly_required:spread",
+    "nbt": {
+      "CustomModelData": 45
+    }
+  },
+  "fullName": {
+    "translate": "block.farmersdelight.stuffed_pumpkin_block"
+  },
   "item": "farmersdelight:stuffed_pumpkin",
   "soundEvent": "some_assembly_required:block.sandwich.add_item.slimy"
 }

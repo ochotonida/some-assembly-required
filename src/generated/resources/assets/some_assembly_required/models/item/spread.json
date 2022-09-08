@@ -266,9 +266,33 @@
       }
     },
     {
-      "model": "some_assembly_required:ingredient/minecraft/potato",
+      "model": "some_assembly_required:ingredient/farmersdelight/stuffed_pumpkin",
       "predicate": {
         "minecraft:custom_model_data": 45.0
+      }
+    },
+    {
+      "model": "some_assembly_required:ingredient/farmersdelight/shepherds_pie",
+      "predicate": {
+        "minecraft:custom_model_data": 46.0
+      }
+    },
+    {
+      "model": "some_assembly_required:ingredient/farmersdelight/honey_glazed_ham",
+      "predicate": {
+        "minecraft:custom_model_data": 47.0
+      }
+    },
+    {
+      "model": "some_assembly_required:ingredient/farmersdelight/roast_chicken",
+      "predicate": {
+        "minecraft:custom_model_data": 48.0
+      }
+    },
+    {
+      "model": "some_assembly_required:ingredient/minecraft/potato",
+      "predicate": {
+        "minecraft:custom_model_data": 49.0
       }
     }
   ],
