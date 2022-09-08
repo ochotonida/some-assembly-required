@@ -27,7 +27,6 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), lootModifiers);
         generator.addProvider(event.includeServer(), new LootTables(generator, helper, lootModifiers));
         generator.addProvider(event.includeServer(), new Ingredients(generator));
-        // TODO add create back
         if (ModCompat.isCreateLoaded()) {
             ProcessingRecipeGenerator.registerAll(event.includeServer(), generator);
         }

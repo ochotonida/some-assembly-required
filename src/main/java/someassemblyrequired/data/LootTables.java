@@ -2,6 +2,7 @@ package someassemblyrequired.data;
 
 import com.google.common.base.Preconditions;
 import com.mojang.datafixers.util.Pair;
+import com.simibubi.create.AllItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -165,8 +166,8 @@ public class LootTables extends LootTableProvider {
                         .add(whenLoaded(ModItems.PASTA_WITH_MEATBALLS.get(), 1))
                         .add(whenLoaded(ModItems.RATATOUILLE.get(), 1))
 
-                        .add(OptionalLootItem.whenLoaded(new ResourceLocation(ModCompat.CREATE, "builders_tea")))
-                        .add(OptionalLootItem.whenLoaded(new ResourceLocation(ModCompat.CREATE, "chocolate_berries")))
+                        .add(whenLoaded(AllItems.BUILDERS_TEA.get(), 1))
+                        .add(whenLoaded(AllItems.CHOCOLATE_BERRIES.get(), 1))
                 ).withPool(LootPool.lootPool()
                         .add(item(BREAD_SLICE.get()))
                 ),
