@@ -7,8 +7,8 @@
   "some_assembly_required.advancement.obtain_toasted_bread_slice.description": "Turn a slice of bread into toast",
   "some_assembly_required.advancement.obtain_sandwich.title": "Beginner Breadsmithing",
   "some_assembly_required.advancement.obtain_sandwich.description": "Create your first sandwich",
-  "some_assembly_required.advancement.add_potion_to_sandwich.title": "Sorcerer's Snack",
-  "some_assembly_required.advancement.add_potion_to_sandwich.description": "Eat a sandwich with a potion in it",
+  "some_assembly_required.advancement.consume_potion_sandwich.title": "Sorcerer's Snack",
+  "some_assembly_required.advancement.consume_potion_sandwich.description": "Eat a sandwich with a potion in it",
   "some_assembly_required.advancement.consume_double_decker_sandwich.title": "Double Hungry",
   "some_assembly_required.advancement.consume_double_decker_sandwich.description": "Eat a double decker sandwich",
 

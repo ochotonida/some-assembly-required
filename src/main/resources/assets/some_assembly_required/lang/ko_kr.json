@@ -7,8 +7,8 @@
   "some_assembly_required.advancement.obtain_toasted_bread_slice.description": "자른 빵을 토스트로 만드세요",
   "some_assembly_required.advancement.obtain_sandwich.title": "초급 빵장이",
   "some_assembly_required.advancement.obtain_sandwich.description": "첫 샌드위치를 만드세요",
-  "some_assembly_required.advancement.add_potion_to_sandwich.title": "마법사의 간식",
-  "some_assembly_required.advancement.add_potion_to_sandwich.description": "물약이 든 샌드위치를 먹으세요",
+  "some_assembly_required.advancement.consume_potion_sandwich.title": "마법사의 간식",
+  "some_assembly_required.advancement.consume_potion_sandwich.description": "물약이 든 샌드위치를 먹으세요",
   "some_assembly_required.advancement.consume_double_decker_sandwich.title": "두 배로 배고플 때",
   "some_assembly_required.advancement.consume_double_decker_sandwich.description": "클럽 샌드위치를 먹으세요",
 

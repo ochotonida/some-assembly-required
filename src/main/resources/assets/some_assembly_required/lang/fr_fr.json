@@ -7,8 +7,8 @@
   "some_assembly_required.advancement.obtain_toasted_bread_slice.description": "Faites griller une tranche de pain",
   "some_assembly_required.advancement.obtain_sandwich.title": "Débutant Sandwichmancien",
   "some_assembly_required.advancement.obtain_sandwich.description": "Créez votre premier sandwich",
-  "some_assembly_required.advancement.add_potion_to_sandwich.title": "Le Snack du Sorcier",
-  "some_assembly_required.advancement.add_potion_to_sandwich.description": "Mangez un sandwich avec une potion dedans",
+  "some_assembly_required.advancement.consume_potion_sandwich.title": "Le Snack du Sorcier",
+  "some_assembly_required.advancement.consume_potion_sandwich.description": "Mangez un sandwich avec une potion dedans",
   "some_assembly_required.advancement.consume_double_decker_sandwich.title": "La Double Dalle",
   "some_assembly_required.advancement.consume_double_decker_sandwich.description": "Mangez un sandwich double-étage",
 
