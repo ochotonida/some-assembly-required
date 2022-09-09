@@ -91,19 +91,6 @@ public class CreateCompat {
                         .build()
                 ).forEach(recipes::add);
 
-        Stream.of(
-                ModItems.TOMATO_SLICES.get(),
-                ModItems.CHOPPED_BEETROOT.get(),
-                ModItems.CHOPPED_CARROT.get(),
-                ModItems.CHOPPED_GOLDEN_CARROT.get(),
-                ModItems.APPLE_SLICES.get(),
-                ModItems.GOLDEN_APPLE_SLICES.get(),
-                ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get()
-        )
-                .map(SandwichItem::makeSandwich)
-                .map(sandwich -> createSandwichRecipe(sandwich, "sandwich_deploying"))
-                .forEach(recipes::add);
-
         return recipes;
     }
 
