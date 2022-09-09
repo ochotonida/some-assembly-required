@@ -20,6 +20,8 @@ The following fields can be customized (All fields are optional except `item`):
     * `item`: (*required*) The item ID of the item to render instead.
     * `count`: The size of the item stack.
     * `nbt`: The NBT of the item stack, either as a JSON object or stringified NBT.
+* `renderAsItem`: (*default = true*) Set this to `false` when the display item has a custom model. Flat item models are rotated and translated by default.
+* `height`: (*default = 1*) The height of the model of this item, in pixels. (Determines the size of the gap between the previous item on the sandwich and the next) 
 * `container`: A json object describing an item stack (see `displayItem`). If an item has a container, 
   the container item will be returned to the player when the item is put on a sandwich. 
   When an item with a container is removed from a sandwich, the item is voided instead of returned.
