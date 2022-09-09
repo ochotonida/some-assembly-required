@@ -10,7 +10,7 @@ displayName = "Some Assembly Required"
 displayURL = "https://www.curseforge.com/minecraft/mc-mods/some-assembly-required"
 logoFile = "logo.png"
 authors = "ochotonida"
-credits = "Based on the fabric mod Sandwichable by FoundationGames"
+credits = "Loosely based on the fabric mod 'Sandwichable' by FoundationGames"
 description = '''Design your own sandwiches!'''
 
 [[dependencies.some_assembly_required]]
