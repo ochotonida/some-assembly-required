@@ -31,6 +31,15 @@
 
   "item.some_assembly_required.sandwich": "Bánh mì kẹp",
   "item.some_assembly_required.bread_sandwich": "Bánh mì kẹp... ?",
+  "item.some_assembly_required.bread_burger": "Bánh burger... ?",
+  "item.some_assembly_required.burger": "Bánh burger",
+  "item.some_assembly_required.burger_bun": "Bánh mì burger",
+  "item.some_assembly_required.burger_bun_bottom": "Bánh mì burger dưới",
+  "item.some_assembly_required.burger_bun_top": "Bánh mì burger trên",
+  "item.some_assembly_required.double_decker_burger": "Bánh burger hai tầng",
+  "item.some_assembly_required.double_decker_ingredients_burger": "Bánh burger %s hai tầng",
+  "item.some_assembly_required.ingredients_burger": "Bánh burger %s",
+  "item.some_assembly_required.potion_burger": "Bánh burger phết thuốc %s",
   "item.some_assembly_required.open_faced_sandwich": "Bánh mì kẹp một mặt",
   "item.some_assembly_required.double_decker_sandwich": "Bánh mì kẹp hai tầng",
   "item.some_assembly_required.ingredients_sandwich": "Bánh mì kẹp %s",
@@ -52,6 +61,7 @@
   "some_assembly_required.ingredient.chopped_golden_carrot": "Cà rốt vàng",
   "some_assembly_required.ingredient.chopped_beetroot": "Củ dền",
   "some_assembly_required.ingredient.tomato_slices": "Cà rốt",
+  "some_assembly_required.ingredient.burger_bun_half": "Bánh mì burger",
 
   "some_assembly_required.ingredient.water_bottle": "Nước",
   "some_assembly_required.ingredient.honey_bottle": "Mật ong",
