@@ -11,9 +11,9 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.block.SandwichBlock;
-import someassemblyrequired.common.init.ModBlocks;
-import someassemblyrequired.common.util.Util;
+import someassemblyrequired.block.SandwichBlock;
+import someassemblyrequired.init.ModBlocks;
+import someassemblyrequired.util.Util;
 
 import java.util.function.Function;
 

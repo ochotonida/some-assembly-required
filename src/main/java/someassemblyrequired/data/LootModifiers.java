@@ -19,10 +19,10 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
 import net.minecraftforge.common.loot.LootTableIdCondition;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.common.loot.RollLootTableModifier;
-import someassemblyrequired.common.loot.SandwichLootEnabledCondition;
-import someassemblyrequired.common.util.Util;
+import someassemblyrequired.init.ModItems;
+import someassemblyrequired.loot.RollLootTableModifier;
+import someassemblyrequired.loot.SandwichLootEnabledCondition;
+import someassemblyrequired.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;

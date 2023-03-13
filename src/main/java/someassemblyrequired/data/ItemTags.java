@@ -5,8 +5,8 @@ import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.common.init.ModTags;
+import someassemblyrequired.init.ModItems;
+import someassemblyrequired.init.ModTags;
 
 import javax.annotation.Nullable;
 

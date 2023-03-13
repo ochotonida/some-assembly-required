@@ -4,7 +4,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.SoundDefinitionsProvider;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.ModSoundEvents;
+import someassemblyrequired.init.ModSoundEvents;
 
 public class SoundDefinitions extends SoundDefinitionsProvider {
 

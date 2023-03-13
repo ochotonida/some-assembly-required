@@ -10,8 +10,8 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
-import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
+import someassemblyrequired.init.ModItems;
+import someassemblyrequired.item.sandwich.SandwichItemHandler;
 import someassemblyrequired.integration.ModCompat;
 
 import java.util.ArrayList;

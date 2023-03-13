@@ -8,14 +8,14 @@ import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import someassemblyrequired.common.config.ModConfig;
-import someassemblyrequired.common.ingredient.Ingredients;
-import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.common.init.ModRecipeTypes;
-import someassemblyrequired.common.init.ModTags;
-import someassemblyrequired.common.item.sandwich.SandwichItem;
-import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
-import someassemblyrequired.common.recipe.SandwichSpoutingRecipe;
+import someassemblyrequired.config.ModConfig;
+import someassemblyrequired.ingredient.Ingredients;
+import someassemblyrequired.init.ModItems;
+import someassemblyrequired.init.ModRecipeTypes;
+import someassemblyrequired.init.ModTags;
+import someassemblyrequired.item.sandwich.SandwichItem;
+import someassemblyrequired.item.sandwich.SandwichItemHandler;
+import someassemblyrequired.recipe.SandwichSpoutingRecipe;
 
 @Pseudo
 @Mixin(com.simibubi.create.content.contraptions.fluids.actors.FillingBySpout.class)

@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
-import someassemblyrequired.common.util.Util;
+import someassemblyrequired.util.Util;
 import someassemblyrequired.integration.ModCompat;
 
 import java.util.ArrayList;

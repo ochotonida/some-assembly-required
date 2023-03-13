@@ -4,8 +4,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.ModBlocks;
-import someassemblyrequired.common.init.ModTags;
+import someassemblyrequired.init.ModBlocks;
+import someassemblyrequired.init.ModTags;
 
 public class BlockTags extends BlockTagsProvider {
 

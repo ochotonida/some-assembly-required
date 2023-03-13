@@ -9,8 +9,8 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.ModBlocks;
-import someassemblyrequired.common.util.Util;
+import someassemblyrequired.init.ModBlocks;
+import someassemblyrequired.util.Util;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.integration.create.CreateJEICompat;
 

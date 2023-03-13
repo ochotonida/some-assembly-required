@@ -9,8 +9,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
-import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.common.util.Util;
+import someassemblyrequired.init.ModItems;
+import someassemblyrequired.util.Util;
 import someassemblyrequired.integration.ModCompat;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 

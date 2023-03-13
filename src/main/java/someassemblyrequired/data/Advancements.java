@@ -16,11 +16,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.ModAdvancementTriggers;
-import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.common.init.ModTags;
-import someassemblyrequired.common.item.sandwich.SandwichItem;
-import someassemblyrequired.common.util.Util;
+import someassemblyrequired.init.ModAdvancementTriggers;
+import someassemblyrequired.init.ModItems;
+import someassemblyrequired.init.ModTags;
+import someassemblyrequired.item.sandwich.SandwichItem;
+import someassemblyrequired.util.Util;
 
 import java.io.IOException;
 import java.nio.file.Path;

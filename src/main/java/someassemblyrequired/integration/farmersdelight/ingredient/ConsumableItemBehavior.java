@@ -2,7 +2,7 @@ package someassemblyrequired.integration.farmersdelight.ingredient;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import someassemblyrequired.common.ingredient.behavior.IngredientBehavior;
+import someassemblyrequired.ingredient.behavior.IngredientBehavior;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
 
 public record ConsumableItemBehavior(ConsumableItem item) implements IngredientBehavior {

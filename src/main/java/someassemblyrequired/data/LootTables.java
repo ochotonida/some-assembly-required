@@ -34,11 +34,11 @@ import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.ModBlocks;
-import someassemblyrequired.common.loot.OptionalLootItem;
-import someassemblyrequired.common.loot.SetIngredientsFunction;
-import someassemblyrequired.common.loot.SmeltMatchingItemFunction;
-import someassemblyrequired.common.util.Util;
+import someassemblyrequired.init.ModBlocks;
+import someassemblyrequired.loot.OptionalLootItem;
+import someassemblyrequired.loot.SetIngredientsFunction;
+import someassemblyrequired.loot.SmeltMatchingItemFunction;
+import someassemblyrequired.util.Util;
 import someassemblyrequired.integration.ModCompat;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -49,7 +49,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static someassemblyrequired.common.init.ModItems.*;
+import static someassemblyrequired.init.ModItems.*;
 
 @SuppressWarnings("SameParameterValue")
 public class LootTables extends LootTableProvider {

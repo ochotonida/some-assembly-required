@@ -5,10 +5,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.registries.ForgeRegistries;
-import someassemblyrequired.common.ingredient.Ingredients;
-import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.common.init.ModTags;
-import someassemblyrequired.common.item.sandwich.SandwichItem;
+import someassemblyrequired.ingredient.Ingredients;
+import someassemblyrequired.init.ModItems;
+import someassemblyrequired.init.ModTags;
+import someassemblyrequired.item.sandwich.SandwichItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -8,9 +8,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.ingredient.IngredientProperties;
-import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.common.init.ModSoundEvents;
+import someassemblyrequired.ingredient.IngredientProperties;
+import someassemblyrequired.init.ModItems;
+import someassemblyrequired.init.ModSoundEvents;
 
 import javax.annotation.Nullable;
 

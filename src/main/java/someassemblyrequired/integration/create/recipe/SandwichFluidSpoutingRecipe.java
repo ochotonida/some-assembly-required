@@ -10,8 +10,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fluids.FluidStack;
-import someassemblyrequired.common.init.ModRecipeTypes;
-import someassemblyrequired.common.recipe.SandwichSpoutingRecipe;
+import someassemblyrequired.init.ModRecipeTypes;
+import someassemblyrequired.recipe.SandwichSpoutingRecipe;
 
 import javax.annotation.Nullable;
 

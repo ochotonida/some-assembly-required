@@ -15,8 +15,8 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.common.util.Util;
+import someassemblyrequired.init.ModItems;
+import someassemblyrequired.util.Util;
 
 import java.util.Arrays;
 import java.util.Collection;

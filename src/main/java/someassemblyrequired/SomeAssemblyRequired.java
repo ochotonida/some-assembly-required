@@ -10,12 +10,12 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import someassemblyrequired.common.config.ModConfig;
-import someassemblyrequired.common.event.BlockEventHandler;
-import someassemblyrequired.common.ingredient.IngredientPropertiesManager;
-import someassemblyrequired.common.ingredient.Ingredients;
-import someassemblyrequired.common.init.*;
-import someassemblyrequired.common.network.NetworkHandler;
+import someassemblyrequired.config.ModConfig;
+import someassemblyrequired.event.BlockEventHandler;
+import someassemblyrequired.ingredient.IngredientPropertiesManager;
+import someassemblyrequired.ingredient.Ingredients;
+import someassemblyrequired.init.*;
+import someassemblyrequired.network.NetworkHandler;
 import someassemblyrequired.integration.ModCompat;
 
 @Mod(SomeAssemblyRequired.MODID)

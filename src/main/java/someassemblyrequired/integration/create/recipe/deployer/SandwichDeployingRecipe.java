@@ -11,13 +11,13 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
-import someassemblyrequired.common.config.ModConfig;
-import someassemblyrequired.common.ingredient.Ingredients;
-import someassemblyrequired.common.init.ModItems;
-import someassemblyrequired.common.init.ModTags;
-import someassemblyrequired.common.item.sandwich.SandwichItem;
-import someassemblyrequired.common.item.sandwich.SandwichItemHandler;
-import someassemblyrequired.common.util.Util;
+import someassemblyrequired.config.ModConfig;
+import someassemblyrequired.ingredient.Ingredients;
+import someassemblyrequired.init.ModItems;
+import someassemblyrequired.init.ModTags;
+import someassemblyrequired.item.sandwich.SandwichItem;
+import someassemblyrequired.item.sandwich.SandwichItemHandler;
+import someassemblyrequired.util.Util;
 
 import java.util.Optional;
 
