@@ -34,8 +34,11 @@ public class FillingBySpoutMixin {
             return;
         }
         SandwichSpoutingRecipe recipe = getMatchingRecipe(availableFluid, level);
-        // noinspection ConstantConditions
-        int resultHeight = SandwichItemHandler.get(stack).map(s -> s.getTotalHeight() + Ingredients.getHeight(recipe.getResultItem())).orElse(1);
+
+        int resultHeight = SandwichItemHandler.get(stack)
+                .filter(h -> recipe != null)
+                .map(s -> s.getTotalHeight() + Ingredients.getHeight(recipe.getResultItem()))
+                .orElse(1);
         if (recipe != null && resultHeight <= ModConfig.server.maximumSandwichHeight.get()) {
             cir.setReturnValue(recipe.getAmountRequired(availableFluid));
         }
