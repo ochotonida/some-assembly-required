@@ -2,13 +2,13 @@ package someassemblyrequired.network;
 
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
-import someassemblyrequired.util.Util;
+import someassemblyrequired.SomeAssemblyRequired;
 
 public class NetworkHandler {
 
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-            Util.id("main"),
+            SomeAssemblyRequired.id("main"),
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,
             PROTOCOL_VERSION::equals

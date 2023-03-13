@@ -12,12 +12,12 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.block.SandwichBlockEntity;
 import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModTags;
 import someassemblyrequired.item.sandwich.SandwichItem;
-import someassemblyrequired.util.Util;
 
 public class BlockEventHandler { // TODO do more testing on this
 
@@ -63,7 +63,7 @@ public class BlockEventHandler { // TODO do more testing on this
         if (!Ingredients.canAddToSandwich(heldItem)) {
             return InteractionResult.PASS;
         } else if (!heldItem.is(ModItems.SANDWICH.get()) && !heldItem.is(ModTags.SANDWICH_BREAD)) {
-            player.displayClientMessage(Util.translate("message.bottom_bread"), true);
+            player.displayClientMessage(SomeAssemblyRequired.translate("message.bottom_bread"), true);
             return InteractionResult.SUCCESS;
         }
 

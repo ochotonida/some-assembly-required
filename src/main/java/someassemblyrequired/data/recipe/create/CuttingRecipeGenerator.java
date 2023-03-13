@@ -9,8 +9,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.init.ModItems;
-import someassemblyrequired.util.Util;
 import someassemblyrequired.integration.ModCompat;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 
@@ -32,7 +32,7 @@ public class CuttingRecipeGenerator extends ProcessingRecipeGenerator {
 
     private void cut(ItemLike input, ItemLike... results) {
         // noinspection ConstantConditions
-        ResourceLocation id = Util.id(ModCompat.CREATE + "/" + ForgeRegistries.ITEMS.getKey(input.asItem()).getPath());
+        ResourceLocation id = SomeAssemblyRequired.id(ModCompat.CREATE + "/" + ForgeRegistries.ITEMS.getKey(input.asItem()).getPath());
         create(id, builder -> {
                     for (ItemLike item : results) {
                         builder.output(item);
@@ -52,7 +52,7 @@ public class CuttingRecipeGenerator extends ProcessingRecipeGenerator {
 
     private void cut(Ingredient input, ItemLike result, int count) {
         // noinspection ConstantConditions
-        create(Util.id(ModCompat.CREATE + "/" + ForgeRegistries.ITEMS.getKey(result.asItem()).getPath()), builder -> builder.duration(30).output(result, count).withItemIngredients(input));
+        create(SomeAssemblyRequired.id(ModCompat.CREATE + "/" + ForgeRegistries.ITEMS.getKey(result.asItem()).getPath()), builder -> builder.duration(30).output(result, count).withItemIngredients(input));
     }
 
     protected AllRecipeTypes getRecipeType() {

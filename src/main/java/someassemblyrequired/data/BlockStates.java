@@ -13,7 +13,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.block.SandwichBlock;
 import someassemblyrequired.init.ModBlocks;
-import someassemblyrequired.util.Util;
 
 import java.util.function.Function;
 
@@ -43,11 +42,11 @@ public class BlockStates extends BlockStateProvider {
     }
 
     private ResourceLocation prefixBlock(String path) {
-        return Util.id("block/" + path);
+        return SomeAssemblyRequired.id("block/" + path);
     }
 
     private ResourceLocation prefixItem(String path) {
-        return Util.id("item/" + path);
+        return SomeAssemblyRequired.id("item/" + path);
     }
 
     private void horizontalBlock(Block block, Function<BlockState, ModelFile> modelFunction, Property<?>... ignored) {

@@ -11,20 +11,20 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.config.ModConfig;
 import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModTags;
 import someassemblyrequired.item.sandwich.SandwichItem;
 import someassemblyrequired.item.sandwich.SandwichItemHandler;
-import someassemblyrequired.util.Util;
 
 import java.util.Optional;
 
 public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
 
     private static final IRecipeTypeInfo TYPE_INFO = new TypeInfo();
-    private static final ResourceLocation RECIPE_ID = Util.id("sandwich_deploying");
+    private static final ResourceLocation RECIPE_ID = SomeAssemblyRequired.id("sandwich_deploying");
 
     public SandwichDeployingRecipe(ProcessingRecipeBuilder.ProcessingRecipeParams params) {
         super(TYPE_INFO, params);

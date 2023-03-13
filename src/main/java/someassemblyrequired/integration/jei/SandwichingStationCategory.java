@@ -17,13 +17,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.init.ModBlocks;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModTags;
 import someassemblyrequired.item.sandwich.SandwichItem;
 import someassemblyrequired.item.sandwich.SandwichItemHandler;
-import someassemblyrequired.util.Util;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +36,7 @@ public class SandwichingStationCategory implements IRecipeCategory<SandwichingSt
     private final IDrawable arrow;
 
     public SandwichingStationCategory(IGuiHelper helper) {
-        ResourceLocation texture = Util.id("textures/jei/sandwiching_station.png");
+        ResourceLocation texture = SomeAssemblyRequired.id("textures/jei/sandwiching_station.png");
         background = helper.createBlankDrawable(96, 120);
         icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.SANDWICHING_STATION.get()));
         slot = helper.createDrawable(texture, 0, 0, 18, 18);

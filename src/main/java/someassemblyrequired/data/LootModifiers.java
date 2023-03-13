@@ -22,7 +22,6 @@ import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.loot.RollLootTableModifier;
 import someassemblyrequired.loot.SandwichLootEnabledCondition;
-import someassemblyrequired.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +114,7 @@ public class LootModifiers extends GlobalLootModifierProvider {
         }
 
         private RollLootTableModifier build() {
-            return new RollLootTableModifier(conditions.toArray(new LootItemCondition[]{}), Util.id(getName()));
+            return new RollLootTableModifier(conditions.toArray(new LootItemCondition[]{}), SomeAssemblyRequired.id(getName()));
         }
 
         protected LootTable.Builder createLootTable() {

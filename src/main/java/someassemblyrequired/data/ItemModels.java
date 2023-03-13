@@ -16,7 +16,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.init.ModItems;
-import someassemblyrequired.util.Util;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -225,11 +224,11 @@ public class ItemModels extends ItemModelProvider {
     }
 
     private ResourceLocation prefixBlock(String path) {
-        return Util.id("block/" + path);
+        return SomeAssemblyRequired.id("block/" + path);
     }
 
     private ResourceLocation prefixItem(String path) {
-        return Util.id("item/" + path);
+        return SomeAssemblyRequired.id("item/" + path);
     }
 
     private ItemModelBuilder addGeneratedModel(Item item) {

@@ -7,7 +7,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.versions.forge.ForgeVersion;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.util.Util;
 
 public class ModTags {
 
@@ -31,6 +30,6 @@ public class ModTags {
     }
 
     private static TagKey<Block> blockTag(String path) {
-        return TagKey.create(Registry.BLOCK_REGISTRY, Util.id(path));
+        return TagKey.create(Registry.BLOCK_REGISTRY, SomeAssemblyRequired.id(path));
     }
 }

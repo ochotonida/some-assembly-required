@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.init.ModBlocks;
-import someassemblyrequired.util.Util;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.integration.create.CreateJEICompat;
 
@@ -20,7 +19,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class JEICompat implements IModPlugin {
 
-    private static final ResourceLocation ID = Util.id("main");
+    private static final ResourceLocation ID = SomeAssemblyRequired.id("main");
 
     public static final RecipeType<SandwichingStationCategory.Recipe> SANDWICHING_STATION = RecipeType.create(SomeAssemblyRequired.MODID, "sandwiching_station", SandwichingStationCategory.Recipe.class);
 

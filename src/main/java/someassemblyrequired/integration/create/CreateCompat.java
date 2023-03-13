@@ -20,12 +20,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModRecipeTypes;
 import someassemblyrequired.item.sandwich.SandwichItem;
 import someassemblyrequired.item.sandwich.SandwichItemHandler;
-import someassemblyrequired.util.Util;
 import someassemblyrequired.integration.create.ingredient.BuildersTeaBehavior;
 import someassemblyrequired.integration.create.recipe.SandwichFluidSpoutingRecipe;
 import someassemblyrequired.integration.create.recipe.deployer.SandwichDeployingRecipe;
@@ -114,7 +114,7 @@ public class CreateCompat {
     }
 
     private static SequencedAssemblyRecipeBuilder builder(ItemStack sandwich, String name) {
-        return new SequencedAssemblyRecipeBuilder(Util.id("sequenced_assembly/%s".formatted(name)))
+        return new SequencedAssemblyRecipeBuilder(SomeAssemblyRequired.id("sequenced_assembly/%s".formatted(name)))
                 .require(Ingredient.of(SandwichItemHandler.get(sandwich).map(s -> s.getStackInSlot(0)).orElseThrow()))
                 .transitionTo(ModItems.SANDWICH.get())
                 .loops(1)

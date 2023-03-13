@@ -11,9 +11,9 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.init.ModBlocks;
 import someassemblyrequired.init.ModItems;
-import someassemblyrequired.util.Util;
 import someassemblyrequired.data.recipe.SandwichSpoutingRecipeBuilder;
 import someassemblyrequired.data.recipe.farmersdelight.CuttingRecipeBuilder;
 import someassemblyrequired.integration.ModCompat;
@@ -70,7 +70,7 @@ public class Recipes extends RecipeProvider {
 
     private ResourceLocation getRecipeLocation(ItemLike result, String location) {
         // noinspection ConstantConditions
-        return Util.id(location + "/" + ForgeRegistries.ITEMS.getKey(result.asItem()).getPath());
+        return SomeAssemblyRequired.id(location + "/" + ForgeRegistries.ITEMS.getKey(result.asItem()).getPath());
     }
 
     private InventoryChangeTrigger.TriggerInstance createItemCriterion(ItemLike itemProvider) {

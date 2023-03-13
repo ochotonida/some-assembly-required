@@ -1,5 +1,8 @@
 package someassemblyrequired;
 
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -67,5 +70,13 @@ public class SomeAssemblyRequired {
             NetworkHandler.register();
             ModItems.registerCompostables();
         });
+    }
+
+    public static ResourceLocation id(String path) {
+        return new ResourceLocation(MODID, path);
+    }
+
+    public static MutableComponent translate(String key, Object... args) {
+        return Component.translatable("%s.%s".formatted(MODID, key), args);
     }
 }

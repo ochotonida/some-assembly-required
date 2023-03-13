@@ -20,7 +20,6 @@ import someassemblyrequired.init.ModAdvancementTriggers;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModTags;
 import someassemblyrequired.item.sandwich.SandwichItem;
-import someassemblyrequired.util.Util;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -127,11 +126,11 @@ public class Advancements extends AdvancementProvider {
 
         private static Advancement addAdvancement(Consumer<Advancement> consumer, Advancement parent, ItemStack display, AbstractCriterionTriggerInstance criterion, String name, boolean hidden) {
             return Advancement.Builder.advancement().parent(parent).display(display,
-                    Util.translate("advancement.%s.title".formatted(name)),
-                    Util.translate("advancement.%s.description".formatted(name)),
+                    SomeAssemblyRequired.translate("advancement.%s.title".formatted(name)),
+                    SomeAssemblyRequired.translate("advancement.%s.description".formatted(name)),
                     null, FrameType.TASK, true, true, hidden)
                     .addCriterion(name, criterion)
-                    .save(consumer, Util.id(name).toString());
+                    .save(consumer, SomeAssemblyRequired.id(name).toString());
         }
     }
 }

@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
-import someassemblyrequired.util.Util;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.integration.ModCompat;
 
 import java.util.ArrayList;
@@ -88,7 +88,7 @@ public abstract class ProcessingRecipeGenerator extends ProcessingRecipeGen {
         return () -> {
             ResourceLocation registryName = ForgeRegistries.ITEMS.getKey(item.get().asItem());
             // noinspection ConstantConditions
-            return Util.id(registryName.getPath() + suffix);
+            return SomeAssemblyRequired.id(registryName.getPath() + suffix);
         };
     }
 

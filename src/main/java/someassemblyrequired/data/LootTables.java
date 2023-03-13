@@ -38,7 +38,6 @@ import someassemblyrequired.init.ModBlocks;
 import someassemblyrequired.loot.OptionalLootItem;
 import someassemblyrequired.loot.SetIngredientsFunction;
 import someassemblyrequired.loot.SmeltMatchingItemFunction;
-import someassemblyrequired.util.Util;
 import someassemblyrequired.integration.ModCompat;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -59,7 +58,7 @@ public class LootTables extends LootTableProvider {
     private final ExistingFileHelper existingFileHelper;
     private final LootModifiers lootModifiers;
 
-    protected static final ResourceLocation VILLAGE_SANDWICH = Util.id("inject/chests/village_house");
+    protected static final ResourceLocation VILLAGE_SANDWICH = SomeAssemblyRequired.id("inject/chests/village_house");
 
     public LootTables(DataGenerator dataGenerator, ExistingFileHelper existingFileHelper, LootModifiers lootModifiers) {
         super(dataGenerator);
@@ -82,13 +81,13 @@ public class LootTables extends LootTableProvider {
     }
 
     private void addSandwichLootTables() {
-        ResourceLocation sandwich = Util.id("sandwich/sandwich");
-        ResourceLocation sandwichLayer = Util.id("sandwich/sandwich_layer");
-        ResourceLocation special = Util.id("sandwich/special");
-        ResourceLocation burger = Util.id("sandwich/burger");
+        ResourceLocation sandwich = SomeAssemblyRequired.id("sandwich/sandwich");
+        ResourceLocation sandwichLayer = SomeAssemblyRequired.id("sandwich/sandwich_layer");
+        ResourceLocation special = SomeAssemblyRequired.id("sandwich/special");
+        ResourceLocation burger = SomeAssemblyRequired.id("sandwich/burger");
 
-        ResourceLocation protein = Util.id("sandwich/ingredients/protein");
-        ResourceLocation vegetables = Util.id("sandwich/ingredients/vegetables");
+        ResourceLocation protein = SomeAssemblyRequired.id("sandwich/ingredients/protein");
+        ResourceLocation vegetables = SomeAssemblyRequired.id("sandwich/ingredients/vegetables");
 
         addLootTable(protein.getPath(),
                 LootTable.lootTable().withPool(LootPool.lootPool()

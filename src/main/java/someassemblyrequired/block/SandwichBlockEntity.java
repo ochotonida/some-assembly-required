@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.config.ModConfig;
 import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.init.ModBlockEntityTypes;
@@ -25,7 +26,6 @@ import someassemblyrequired.init.ModBlocks;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModSoundEvents;
 import someassemblyrequired.item.sandwich.SandwichItemHandler;
-import someassemblyrequired.util.Util;
 
 import javax.annotation.Nullable;
 
@@ -82,7 +82,7 @@ public class SandwichBlockEntity extends BlockEntity {
         } else if (!Ingredients.canAddToSandwich(itemToAdd)) {
             return InteractionResult.PASS;
         } else if (sandwich.getTotalHeight() + Ingredients.getHeight(itemToAdd) > ModConfig.server.maximumSandwichHeight.get()) {
-            player.displayClientMessage(Util.translate("message.full_sandwich"), true);
+            player.displayClientMessage(SomeAssemblyRequired.translate("message.full_sandwich"), true);
             return InteractionResult.SUCCESS;
         } else {
             addSingleItem(player, hand, itemToAdd);
@@ -110,7 +110,7 @@ public class SandwichBlockEntity extends BlockEntity {
         }
         SandwichItemHandler.get(stack).ifPresent(handler -> {
             if (!sandwich.canAdd(handler)) {
-                player.displayClientMessage(Util.translate("message.full_sandwich"), true);
+                player.displayClientMessage(SomeAssemblyRequired.translate("message.full_sandwich"), true);
             } else {
                 sandwich.add(handler);
                 shrinkHeldItem(player, hand);

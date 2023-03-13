@@ -10,7 +10,6 @@ import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModTags;
-import someassemblyrequired.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +103,7 @@ public class SandwichNameHelper {
 
     private static Component listIngredients(List<ItemStack> ingredients) {
         List<Component> ingredientNames = ingredients.stream().map(Ingredients::getDisplayName).toList();
-        return Util.translate("tooltip.ingredient_list.%s".formatted(ingredientNames.size()), ingredientNames.toArray());
+        return SomeAssemblyRequired.translate("tooltip.ingredient_list.%s".formatted(ingredientNames.size()), ingredientNames.toArray());
     }
 
     private static Component translateItem(String name, Object... args) {

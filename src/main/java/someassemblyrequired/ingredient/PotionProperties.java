@@ -10,9 +10,9 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import org.jetbrains.annotations.Nullable;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModSoundEvents;
-import someassemblyrequired.util.Util;
 
 public class PotionProperties extends IngredientProperties {
 
@@ -49,7 +49,7 @@ public class PotionProperties extends IngredientProperties {
     public Component getDisplayName(ItemStack item) {
         Potion potion = PotionUtils.getPotion(item);
         if (!item.hasCustomHoverName() && potion == Potions.WATER) {
-            return Util.translate("ingredient.water_bottle");
+            return SomeAssemblyRequired.translate("ingredient.water_bottle");
         }
         return super.getDisplayName(item);
     }

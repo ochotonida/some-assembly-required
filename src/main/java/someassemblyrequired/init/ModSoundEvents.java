@@ -5,7 +5,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.util.Util;
 
 public class ModSoundEvents {
 
@@ -18,6 +17,6 @@ public class ModSoundEvents {
     public static final RegistryObject<SoundEvent> ADD_ITEM_LEAFY = register("block.sandwich.add_item.leafy");
 
     private static RegistryObject<SoundEvent> register(String id) {
-        return SOUND_EVENTS.register(id, () -> new SoundEvent(Util.id(id)));
+        return SOUND_EVENTS.register(id, () -> new SoundEvent(SomeAssemblyRequired.id(id)));
     }
 }

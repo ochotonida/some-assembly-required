@@ -34,13 +34,13 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.block.SandwichBlock;
 import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.init.ModAdvancementTriggers;
 import someassemblyrequired.init.ModFoods;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModTags;
-import someassemblyrequired.util.Util;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.integration.farmersdelight.FarmersDelightCompat;
 
@@ -116,7 +116,7 @@ public class SandwichItem extends BlockItem {
                 .forEach(
                         (item, count) -> {
                             if (count > 1) {
-                                tooltip.add(Util.translate("tooltip.ingredient_count", item, count).withStyle(ChatFormatting.GRAY));
+                                tooltip.add(SomeAssemblyRequired.translate("tooltip.ingredient_count", item, count).withStyle(ChatFormatting.GRAY));
                             } else {
                                 tooltip.add(item.withStyle(ChatFormatting.GRAY));
                             }

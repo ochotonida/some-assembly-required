@@ -11,9 +11,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.util.JsonHelper;
-import someassemblyrequired.util.Util;
 import someassemblyrequired.integration.ModCompat;
 import vectorwing.farmersdelight.common.crafting.ingredient.ChanceResult;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
@@ -102,7 +102,7 @@ public class CuttingRecipeBuilder {
                 results.get(0).getStack().getItem() : ingredient.getItems()[0].getItem();
         ResourceLocation id = ForgeRegistries.ITEMS.getKey(item);
         // noinspection ConstantConditions
-        build(consumer, Util.id("cutting/%s/".formatted(ModCompat.FARMERSDELIGHT) + id.getPath()));
+        build(consumer, SomeAssemblyRequired.id("cutting/%s/".formatted(ModCompat.FARMERSDELIGHT) + id.getPath()));
     }
 
     public void build(Consumer<FinishedRecipe> consumer, String save) {

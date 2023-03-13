@@ -19,9 +19,9 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.registries.ForgeRegistries;
+import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.init.ModRecipeTypes;
 import someassemblyrequired.util.JsonHelper;
-import someassemblyrequired.util.Util;
 import someassemblyrequired.integration.ModCompat;
 
 import javax.annotation.Nullable;
@@ -55,7 +55,7 @@ public class SandwichSpoutingRecipeBuilder {
     }
 
     private static ResourceLocation id(String id) {
-        return Util.id("sandwich_spouting/%s".formatted(id));
+        return SomeAssemblyRequired.id("sandwich_spouting/%s".formatted(id));
     }
 
     public static FinishedRecipe createPotionFillingRecipe(String id) {
