@@ -151,7 +151,8 @@ public class SandwichItem extends BlockItem {
     }
 
     public InteractionResult place(UseOnContext useOnContext, BlockPos pos, ItemStack sandwich) {
-        BlockPlaceContext placeContext = BlockPlaceContext.at(new BlockPlaceContext(useOnContext), pos, Direction.UP);
+        BlockPos clickedPos = pos.below();
+        BlockPlaceContext placeContext = BlockPlaceContext.at(new BlockPlaceContext(useOnContext), clickedPos, Direction.UP);
         if (!placeContext.canPlace()) {
             return InteractionResult.FAIL;
         }
