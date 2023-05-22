@@ -1,6 +1,6 @@
 package someassemblyrequired.integration.create;
 
-import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyRecipe;
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipe;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeRegistration;
 import someassemblyrequired.integration.ModCompat;

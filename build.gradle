@@ -75,11 +75,6 @@ sourceSets.main.resources {
 
 repositories {
     maven {
-        // JEI
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
         name 'tterrag maven'
         url 'https://maven.tterrag.com'
     }
@@ -100,16 +95,13 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
-    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
-    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    implementation fg.deobf("curse.maven:jei-238222:4494410")
 
     runtimeOnly fg.deobf("curse.maven:appleskin-248787:3872808")
 
-    implementation fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
-    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
+    implementation fg.deobf("curse.maven:create-328085:4547147")
     // https://maven.tterrag.com/com/tterrag/registrate/Registrate/
-    implementation fg.deobf("com.tterrag.registrate:Registrate:MC1.19-1.1.5")
+    compileOnly fg.deobf("com.tterrag.registrate:Registrate:MC1.19-1.1.5")
 
     implementation fg.deobf("curse.maven:farmersdelight-398521:3916069")
 

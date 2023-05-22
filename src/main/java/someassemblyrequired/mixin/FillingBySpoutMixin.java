@@ -18,17 +18,17 @@ import someassemblyrequired.item.sandwich.SandwichItemHandler;
 import someassemblyrequired.recipe.SandwichSpoutingRecipe;
 
 @Pseudo
-@Mixin(com.simibubi.create.content.contraptions.fluids.actors.FillingBySpout.class)
+@Mixin(com.simibubi.create.content.fluids.spout.FillingBySpout.class)
 public class FillingBySpoutMixin {
 
-    @Inject(method = "canItemBeFilled", remap = false, cancellable = true, at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/content/contraptions/fluids/actors/GenericItemFilling;canItemBeFilled(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)Z", remap = false))
+    @Inject(method = "canItemBeFilled", remap = false, cancellable = true, at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/content/fluids/transfer/GenericItemFilling;canItemBeFilled(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)Z", remap = false))
     private static void canSandwichBeFilled(Level level, ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         if (stack.is(ModTags.SANDWICH_BREAD) || stack.is(ModItems.SANDWICH.get())) {
             cir.setReturnValue(true);
         }
     }
 
-    @Inject(method = "getRequiredAmountForItem", remap = false, cancellable = true, at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/content/contraptions/fluids/actors/GenericItemFilling;getRequiredAmountForItem(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraftforge/fluids/FluidStack;)I", remap = false))
+    @Inject(method = "getRequiredAmountForItem", remap = false, cancellable = true, at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/content/fluids/transfer/GenericItemFilling;getRequiredAmountForItem(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraftforge/fluids/FluidStack;)I", remap = false))
     private static void getRequiredAmountForItem(Level level, ItemStack stack, FluidStack availableFluid, CallbackInfoReturnable<Integer> cir) {
         if (!stack.is(ModItems.SANDWICH.get()) && !stack.is(ModTags.SANDWICH_BREAD)) {
             return;
@@ -44,7 +44,7 @@ public class FillingBySpoutMixin {
         }
     }
 
-    @Inject(method = "fillItem", remap = false, cancellable = true, at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/content/contraptions/fluids/actors/GenericItemFilling;fillItem(Lnet/minecraft/world/level/Level;ILnet/minecraft/world/item/ItemStack;Lnet/minecraftforge/fluids/FluidStack;)Lnet/minecraft/world/item/ItemStack;", remap = false))
+    @Inject(method = "fillItem", remap = false, cancellable = true, at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lcom/simibubi/create/content/fluids/transfer/GenericItemFilling;fillItem(Lnet/minecraft/world/level/Level;ILnet/minecraft/world/item/ItemStack;Lnet/minecraftforge/fluids/FluidStack;)Lnet/minecraft/world/item/ItemStack;", remap = false))
     private static void fillSandwich(Level level, int requiredAmount, ItemStack stack, FluidStack availableFluid, CallbackInfoReturnable<ItemStack> cir) {
         if (!stack.is(ModItems.SANDWICH.get()) && !stack.is(ModTags.SANDWICH_BREAD)) {
             return;
