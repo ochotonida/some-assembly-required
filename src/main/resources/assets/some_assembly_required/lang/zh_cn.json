@@ -8,19 +8,22 @@
   "some_assembly_required.advancement.obtain_sandwich.title": "新手面包师",
   "some_assembly_required.advancement.obtain_sandwich.description": "制作您的第一个三明治",
   "some_assembly_required.advancement.consume_potion_sandwich.title": "巫师小吃",
-  "some_assembly_required.advancement.consume_potion_sandwich.description": "吃一个三明治再喝下一瓶药水",
+  "some_assembly_required.advancement.consume_potion_sandwich.description": "吃下夹有药水的三明治",
   "some_assembly_required.advancement.consume_double_decker_sandwich.title": "双倍饥饿",
   "some_assembly_required.advancement.consume_double_decker_sandwich.description": "吃一个双层三明治",
 
   "some_assembly_required.message.bottom_bread": "没有底部面包片！",
-  "some_assembly_required.message.full_sandwich": "你不能添加任何更多的物品！",
+  "some_assembly_required.message.full_sandwich": "制作的三明治过大！",
 
   "block.some_assembly_required.sandwiching_station": "三明治站",
   "block.some_assembly_required.sandwich": "三明治",
 
-  "item.some_assembly_required.spread": "Spread",
+  "item.some_assembly_required.spread": "酱",
   "item.some_assembly_required.bread_slice": "面包片",
   "item.some_assembly_required.toasted_bread_slice": "烤面包片",
+  "item.some_assembly_required.burger_bun": "汉堡面包",
+  "item.some_assembly_required.burger_bun_bottom": "汉堡面包底",
+  "item.some_assembly_required.burger_bun_top": "汉堡面包顶",
   "item.some_assembly_required.apple_slices": "苹果片",
   "item.some_assembly_required.golden_apple_slices": "金苹果片",
   "item.some_assembly_required.enchanted_golden_apple_slices": "附魔金苹果片",
@@ -30,13 +33,19 @@
   "item.some_assembly_required.tomato_slices": "番茄片",
 
   "item.some_assembly_required.sandwich": "三明治",
+  "item.some_assembly_required.burger": "汉堡",
   "item.some_assembly_required.bread_sandwich": "三明治…？",
+  "item.some_assembly_required.bread_burger": "汉堡…？",
   "item.some_assembly_required.open_faced_sandwich": "单片三明治",
   "item.some_assembly_required.double_decker_sandwich": "双层三明治",
+  "item.some_assembly_required.double_decker_burger": "双层汉堡",
   "item.some_assembly_required.ingredients_sandwich": "%s 三明治",
-  "item.some_assembly_required.open_faced_ingredients_sandwich": "单片 %s 三明治",
+  "item.some_assembly_required.ingredients_burger": "%s 汉堡",
+  "item.some_assembly_required.potion_sandwich": "%s 三明治",
+  "item.some_assembly_required.potion_burger": "%s 汉堡",
   "item.some_assembly_required.double_decker_ingredients_sandwich": "双层 %s 三明治",
-  "item.some_assembly_required.potion_sandwich": "Sandwich of %s",
+  "item.some_assembly_required.double_decker_ingredients_burger": "双层 %s 汉堡",
+  "item.some_assembly_required.open_faced_ingredients_sandwich": "开放式 %s 三明治",
 
   "some_assembly_required.tooltip.ingredient_list.1": "%s",
   "some_assembly_required.tooltip.ingredient_list.2": "%s & %s",
@@ -44,7 +53,8 @@
 
   "some_assembly_required.tooltip.ingredient_count": "%s (x%s)",
 
-  "some_assembly_required.ingredient.toasted_bread_slice": "烤面包",
+  "some_assembly_required.ingredient.toasted_bread_slice": "吐司",
+  "some_assembly_required.ingredient.burger_bun_half": "汉堡面包",
   "some_assembly_required.ingredient.apple_slices": "苹果",
   "some_assembly_required.ingredient.golden_apple_slices": "金苹果",
   "some_assembly_required.ingredient.enchanted_golden_apple_slices": "附魔金苹果",
@@ -67,5 +77,6 @@
   "some_assembly_required.ingredient.farmersdelight.mutton_chops": "羊肉",
   "some_assembly_required.ingredient.farmersdelight.cooked_rice": "大米",
 
-  "some_assembly_required.config.server.maximum_sandwich_height": "最大三明治高度"
+  "some_assembly_required.config.server.maximum_sandwich_height": "最大三明治高度",
+  "some_assembly_required.config.server.generate_chest_loot": "生成箱子内战利品"
 }
