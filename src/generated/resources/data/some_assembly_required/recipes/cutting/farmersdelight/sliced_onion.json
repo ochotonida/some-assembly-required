@@ -1,0 +1,23 @@
+{
+  "type": "farmersdelight:cutting",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "ingredients": [
+    {
+      "tag": "forge:crops/onion"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "some_assembly_required:sliced_onion"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/knives"
+  }
+}

@@ -82,4 +82,10 @@ public class ModFoods {
             .saturationMod(1F)
             .fast()
             .build();
+
+    public static final FoodProperties SLICED_ONION = new FoodProperties.Builder()
+            .nutrition(1)
+            .saturationMod(1F)
+            .fast()
+            .build();
 }

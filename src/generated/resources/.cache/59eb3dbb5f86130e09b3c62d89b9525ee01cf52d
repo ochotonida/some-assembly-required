@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-15T22:17:47.0492924	Loot Tables
+// 1.20.1	2023-07-15T23:29:42.2366197	Loot Tables
 415f0bed11b50cfbb820c165670437a22accaaff data/some_assembly_required/loot_tables/blocks/sandwiching_station.json
 4755d63e86999371da123342cf9b1923bde6d2d8 data/some_assembly_required/loot_tables/inject/chests/abandoned_mineshaft.json
 6122686800cde4aac0311079c6ddafa79dc695bd data/some_assembly_required/loot_tables/inject/chests/ancient_city.json
@@ -10,7 +10,7 @@ fe43367569d82f57b98400f5358e8b261f6280e3 data/some_assembly_required/loot_tables
 3771bcedef109bf6fd5f91fcd1db734f11c984a7 data/some_assembly_required/loot_tables/inject/chests/spawn_bonus_chest.json
 f3a3bdd1356522de906efe3559e7785d8dd257f9 data/some_assembly_required/loot_tables/inject/chests/underwater_ruin_big.json
 f1d7a82624fd72956de470f1a22e6796b413e210 data/some_assembly_required/loot_tables/inject/chests/village_house.json
-751fd7af830712fd28f48f69b67a5a6ea98eaa7c data/some_assembly_required/loot_tables/sandwich/burger.json
+4e6bd114606237a83a1bbe0ae7ecd12c29f6ebf8 data/some_assembly_required/loot_tables/sandwich/burger.json
 8ea716ad9639cb410941b5b19752532239f7241e data/some_assembly_required/loot_tables/sandwich/ingredients/protein.json
 13ac31603b6aa17b03f3f0ddf55cbb941739a182 data/some_assembly_required/loot_tables/sandwich/ingredients/vegetables.json
 30fad16ba3f0b8070fcc3d12491e861426d77cad data/some_assembly_required/loot_tables/sandwich/sandwich.json

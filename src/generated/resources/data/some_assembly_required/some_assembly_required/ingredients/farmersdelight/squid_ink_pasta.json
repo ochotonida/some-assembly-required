@@ -11,7 +11,7 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 43
+      "CustomModelData": 44
     }
   },
   "item": "farmersdelight:squid_ink_pasta",

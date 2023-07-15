@@ -31,6 +31,7 @@
   "item.some_assembly_required.chopped_golden_carrot": "Chopped Golden Carrot",
   "item.some_assembly_required.chopped_beetroot": "Chopped Beetroot",
   "item.some_assembly_required.tomato_slices": "Tomato Slices",
+  "item.some_assembly_required.sliced_onion": "Sliced Onion",
 
   "item.some_assembly_required.sandwich": "Sandwich",
   "item.some_assembly_required.burger": "Burger",
@@ -62,6 +63,7 @@
   "some_assembly_required.ingredient.chopped_golden_carrot": "Golden Carrot",
   "some_assembly_required.ingredient.chopped_beetroot": "Beetroot",
   "some_assembly_required.ingredient.tomato_slices": "Tomato",
+  "some_assembly_required.ingredient.sliced_onion": "Onion",
 
   "some_assembly_required.ingredient.water_bottle": "Water",
   "some_assembly_required.ingredient.honey_bottle": "Honey",

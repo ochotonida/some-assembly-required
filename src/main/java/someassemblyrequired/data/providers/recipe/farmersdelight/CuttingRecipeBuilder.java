@@ -52,6 +52,7 @@ public class CuttingRecipeBuilder {
         cut(Items.ENCHANTED_GOLDEN_APPLE, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(), 2);
         cut(Items.GOLDEN_APPLE, ModItems.GOLDEN_APPLE_SLICES.get(), 2);
         cut(ForgeTags.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2);
+        cut(ForgeTags.CROPS_ONION, ModItems.SLICED_ONION.get(), 2);
 
         cut(ModItems.BURGER_BUN.get(), ModItems.BURGER_BUN_BOTTOM.get(), 1).addResult(ModItems.BURGER_BUN_TOP.get());
 

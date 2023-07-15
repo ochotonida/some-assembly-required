@@ -160,6 +160,22 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
+          "chance": 0.6,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "some_assembly_required:sliced_onion"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
           "chance": 0.2,
           "condition": "minecraft:random_chance"
         }

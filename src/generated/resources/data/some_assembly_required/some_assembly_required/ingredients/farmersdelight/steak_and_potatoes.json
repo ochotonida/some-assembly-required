@@ -11,7 +11,7 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 41
+      "CustomModelData": 42
     }
   },
   "item": "farmersdelight:steak_and_potatoes",

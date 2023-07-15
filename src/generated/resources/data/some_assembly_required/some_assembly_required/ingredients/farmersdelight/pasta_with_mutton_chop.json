@@ -11,7 +11,7 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 38
+      "CustomModelData": 39
     }
   },
   "item": "farmersdelight:pasta_with_mutton_chop",

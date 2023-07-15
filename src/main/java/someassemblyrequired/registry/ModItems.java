@@ -79,6 +79,7 @@ public class ModItems {
     public static final RegistryObject<Item> CHOPPED_GOLDEN_CARROT = ITEMS.register("chopped_golden_carrot", () -> createFoodItem(ModFoods.CHOPPED_GOLDEN_CARROT));
     public static final RegistryObject<Item> CHOPPED_BEETROOT = ITEMS.register("chopped_beetroot", () -> createFoodItem(ModFoods.CHOPPED_BEETROOT));
     public static final RegistryObject<Item> TOMATO_SLICES = ITEMS.register("tomato_slices", () -> createFoodItem(ModFoods.TOMATO_SLICES));
+    public static final RegistryObject<Item> SLICED_ONION = ITEMS.register("sliced_onion", () -> createFoodItem(ModFoods.SLICED_ONION));
 
     // misc items
     public static final RegistryObject<SandwichItem> SANDWICH = ITEMS.register("sandwich", () -> new SandwichItem(ModBlocks.SANDWICH.get(), new Item.Properties().stacksTo(12).food(ModFoods.EMPTY)));
@@ -102,5 +103,6 @@ public class ModItems {
         ComposterBlock.COMPOSTABLES.put(CHOPPED_CARROT.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(CHOPPED_BEETROOT.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(TOMATO_SLICES.get(), 0.3F);
+        ComposterBlock.COMPOSTABLES.put(SLICED_ONION.get(), 0.3F);
     }
 }

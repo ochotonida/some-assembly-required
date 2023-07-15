@@ -11,7 +11,7 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 37
+      "CustomModelData": 38
     }
   },
   "item": "farmersdelight:pasta_with_meatballs",

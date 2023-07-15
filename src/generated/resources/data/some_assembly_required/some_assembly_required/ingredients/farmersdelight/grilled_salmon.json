@@ -11,7 +11,7 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 44
+      "CustomModelData": 45
     }
   },
   "item": "farmersdelight:grilled_salmon",

@@ -11,7 +11,7 @@
   "displayItem": {
     "item": "some_assembly_required:spread",
     "nbt": {
-      "CustomModelData": 24
+      "CustomModelData": 25
     }
   },
   "item": "farmersdelight:fruit_salad",

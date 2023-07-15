@@ -36,7 +36,8 @@ public record Ingredients(PackOutput packOutput) implements DataProvider {
                 ModItems.CHOPPED_CARROT.get(),
                 ModItems.CHOPPED_GOLDEN_CARROT.get(),
                 ModItems.CHOPPED_BEETROOT.get(),
-                ModItems.TOMATO_SLICES.get()
+                ModItems.TOMATO_SLICES.get(),
+                ModItems.SLICED_ONION.get()
         ));
         MODEL_OVERRIDES.addAll(FarmersDelightIngredients.MODEL_OVERRIDES);
         MODEL_OVERRIDES.add(
@@ -88,7 +89,8 @@ public record Ingredients(PackOutput packOutput) implements DataProvider {
                 ModItems.CHOPPED_CARROT.get(),
                 ModItems.CHOPPED_GOLDEN_CARROT.get(),
                 ModItems.CHOPPED_BEETROOT.get(),
-                ModItems.TOMATO_SLICES.get()
+                ModItems.TOMATO_SLICES.get(),
+                ModItems.SLICED_ONION.get()
         ).forEach(item -> builder(item).setCustomDisplayName());
     }
 
