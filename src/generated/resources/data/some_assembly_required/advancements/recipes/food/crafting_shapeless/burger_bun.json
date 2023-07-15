@@ -30,5 +30,6 @@
     "recipes": [
       "some_assembly_required:crafting_shapeless/burger_bun"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

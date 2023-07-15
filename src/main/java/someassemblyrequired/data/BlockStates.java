@@ -1,6 +1,6 @@
 package someassemblyrequired.data;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -18,8 +18,8 @@ import java.util.function.Function;
 
 public class BlockStates extends BlockStateProvider {
 
-    public BlockStates(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, SomeAssemblyRequired.MODID, existingFileHelper);
+    public BlockStates(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
+        super(packOutput, SomeAssemblyRequired.MODID, existingFileHelper);
     }
 
     @Override

@@ -15,7 +15,7 @@ public class ChorusFruitBehavior implements IngredientBehavior {
 
     @Override
     public void onEaten(ItemStack item, LivingEntity entity) {
-        if (entity.getLevel() instanceof ServerLevel level) {
+        if (entity.level() instanceof ServerLevel level) {
             double x1 = entity.getX();
             double y1 = entity.getY();
             double z1 = entity.getZ();

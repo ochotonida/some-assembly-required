@@ -30,5 +30,6 @@
     "recipes": [
       "some_assembly_required:smoking/toasted_bread_slice"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

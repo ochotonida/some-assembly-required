@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-01T19:12:55.2630936	Tags for minecraft:item
+// 1.20.1	2023-07-15T22:17:47.0492924	Tags for minecraft:item mod id some_assembly_required
 5bd999ec60d3fe44958aaae2bcb3571a0389b460 data/forge/tags/items/bread_slices.json
 7b625a0a7b98dea58bdf8a408de0de85619cf6c1 data/forge/tags/items/bread_slices/wheat.json
 3d43a4f301e99cd77e2d060316290aa2d1d0ed5c data/minecraft/tags/items/piglin_loved.json

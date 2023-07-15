@@ -10,7 +10,7 @@ public class BuildersTeaBehavior implements IngredientBehavior {
 
     @Override
     public void onEaten(ItemStack ingredient, LivingEntity entity) {
-        if (!entity.getLevel().isClientSide()) {
+        if (!entity.level().isClientSide()) {
             entity.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 3600, 0, false, false, false));
         }
     }

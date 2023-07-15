@@ -1,42 +1,42 @@
 modLoader = "javafml"
-loaderVersion = "[43,)"
+loaderVersion="${loader_version_range}"
 license = "MIT"
 issueTrackerURL = "https://github.com/ochotonida/some-assembly-required/issues"
 
 [[mods]]
-modId = "some_assembly_required"
-version = "${file.jarVersion}"
-displayName = "Some Assembly Required"
-displayURL = "https://www.curseforge.com/minecraft/mc-mods/some-assembly-required"
-logoFile = "logo.png"
-authors = "ochotonida"
-credits = "Loosely based on the fabric mod 'Sandwichable' by FoundationGames"
-description = '''Design your own sandwiches!'''
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/some-assembly-required"
+logoFile="logo.png"
+authors="${mod_authors}"
+credits="${mod_credits}"
+description='''${mod_description}'''
 
 [[dependencies.some_assembly_required]]
     modId = "forge"
     mandatory = true
-    versionRange = "[43.1.2,)"
+    versionRange="${forge_version_range}"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.some_assembly_required]]
     modId = "minecraft"
     mandatory = true
-    versionRange = "[1.19.2,1.20)"
+    versionRange = "${minecraft_version_range}"
     ordering = "NONE"
     side = "BOTH"
 
 [[dependencies.some_assembly_required]]
     modId = "create"
     mandatory = false
-    versionRange = "[0.5.1.a,)"
+    versionRange = "${create_version_range}"
     ordering = "AFTER"
     side = "BOTH"
 
 [[dependencies.some_assembly_required]]
     modId = "farmersdelight"
     mandatory = false
-    versionRange = "[1.19-1.1.2,)"
+    versionRange = "${farmersdelight_version_range}"
     ordering = "AFTER"
     side = "BOTH"

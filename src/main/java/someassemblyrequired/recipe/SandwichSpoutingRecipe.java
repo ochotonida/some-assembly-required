@@ -1,6 +1,7 @@
 package someassemblyrequired.recipe;
 
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
@@ -49,7 +50,7 @@ public abstract class SandwichSpoutingRecipe implements Recipe<Container> {
     }
 
     @Override
-    public final ItemStack assemble(Container container) {
+    public final ItemStack assemble(Container container, RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 
@@ -59,7 +60,7 @@ public abstract class SandwichSpoutingRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 

@@ -1,6 +1,6 @@
 package someassemblyrequired.data;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
@@ -30,8 +30,8 @@ public class LootModifiers extends GlobalLootModifierProvider {
 
     protected final List<Builder> lootBuilders = new ArrayList<>();
 
-    public LootModifiers(DataGenerator generator) {
-        super(generator, SomeAssemblyRequired.MODID);
+    public LootModifiers(PackOutput packOutput) {
+        super(packOutput, SomeAssemblyRequired.MODID);
     }
 
     private void addLoot() {

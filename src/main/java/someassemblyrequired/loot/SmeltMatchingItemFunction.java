@@ -3,6 +3,7 @@ package someassemblyrequired.loot;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.Item;
@@ -36,7 +37,7 @@ public class SmeltMatchingItemFunction extends LootItemConditionalFunction {
         if (!stack.isEmpty() && stack.getItem() == item) {
             Optional<SmeltingRecipe> optional = context.getLevel().getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SimpleContainer(stack), context.getLevel());
             if (optional.isPresent()) {
-                ItemStack smelted = optional.get().getResultItem();
+                ItemStack smelted = optional.get().getResultItem(RegistryAccess.EMPTY);
                 if (!smelted.isEmpty()) {
                     ItemStack result = smelted.copy();
                     result.setCount(stack.getCount() * smelted.getCount());

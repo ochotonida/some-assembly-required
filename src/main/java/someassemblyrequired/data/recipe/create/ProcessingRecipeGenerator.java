@@ -8,6 +8,7 @@ import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -17,6 +18,7 @@ import someassemblyrequired.integration.ModCompat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
@@ -25,27 +27,21 @@ public abstract class ProcessingRecipeGenerator extends ProcessingRecipeGen {
     private static final List<ProcessingRecipeGenerator> GENERATORS = new ArrayList<>();
 
     public static void registerAll(boolean runProviders, DataGenerator gen) {
-        GENERATORS.add(new CuttingRecipeGenerator(gen));
+        GENERATORS.add(new CuttingRecipeGenerator(gen.getPackOutput()));
 
         gen.addProvider(runProviders, new DataProvider() {
             public String getName() {
                 return "Processing Recipes";
             }
 
-            public void run(CachedOutput cache) {
-                GENERATORS.forEach((generator) -> {
-                    try {
-                        generator.run(cache);
-                    } catch (Exception exception) {
-                        exception.printStackTrace();
-                    }
-                });
+            public CompletableFuture<?> run(CachedOutput cachedOutput) {
+                return CompletableFuture.allOf(GENERATORS.stream().map((gen) -> gen.run(cachedOutput)).toArray(CompletableFuture[]::new));
             }
         });
     }
 
-    public ProcessingRecipeGenerator(DataGenerator generator) {
-        super(generator);
+    public ProcessingRecipeGenerator(PackOutput packOutput) {
+        super(packOutput);
     }
 
     protected <T extends ProcessingRecipe<?>> GeneratedRecipe create(String namespace, Supplier<ItemLike> singleIngredient, UnaryOperator<ProcessingRecipeBuilder<T>> transform) {
@@ -90,10 +86,5 @@ public abstract class ProcessingRecipeGenerator extends ProcessingRecipeGen {
             // noinspection ConstantConditions
             return SomeAssemblyRequired.id(registryName.getPath() + suffix);
         };
-    }
-
-    @Override
-    public String getName() {
-        return "Processing Recipes: " + getRecipeType().getId().getPath();
     }
 }

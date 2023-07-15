@@ -5,7 +5,6 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
@@ -15,7 +14,10 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
@@ -41,8 +43,6 @@ import someassemblyrequired.init.ModAdvancementTriggers;
 import someassemblyrequired.init.ModFoods;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModTags;
-import someassemblyrequired.integration.ModCompat;
-import someassemblyrequired.integration.farmersdelight.FarmersDelightCompat;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -122,23 +122,6 @@ public class SandwichItem extends BlockItem {
                             }
                         }
                 ));
-    }
-
-    @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if (allowedIn(group)) {
-            ItemStack item;
-            if (ModCompat.isFarmersDelightLoaded()) {
-                item = FarmersDelightCompat.createBLT();
-            } else {
-                item = SandwichItem.makeSandwich(
-                        Items.COOKED_BEEF,
-                        ModItems.TOMATO_SLICES.get()
-                );
-            }
-            item.getOrCreateTag().putBoolean("IsJEIExample", true);
-            items.add(item);
-        }
     }
 
     @Override

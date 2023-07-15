@@ -1,24 +1,27 @@
 package someassemblyrequired.data;
 
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModTags;
 
 import javax.annotation.Nullable;
+import java.util.concurrent.CompletableFuture;
 
 public class ItemTags extends ItemTagsProvider {
 
-    public ItemTags(DataGenerator dataGenerator, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, new BlockTagsProvider(dataGenerator, SomeAssemblyRequired.MODID, existingFileHelper), SomeAssemblyRequired.MODID, existingFileHelper);
+    public ItemTags(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> blockTags, @Nullable ExistingFileHelper existingFileHelper) {
+        super(packOutput, lookupProvider, blockTags, SomeAssemblyRequired.MODID, existingFileHelper);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         tag(net.minecraft.tags.ItemTags.PIGLIN_LOVED).add(
                 ModItems.GOLDEN_APPLE_SLICES.get(),
                 ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),

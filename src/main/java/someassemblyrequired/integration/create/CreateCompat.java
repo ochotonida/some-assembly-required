@@ -10,6 +10,7 @@ import com.simibubi.create.content.kinetics.deployer.DeployerRecipeSearchEvent;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipe;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
@@ -54,7 +55,7 @@ public class CreateCompat {
 
     public static List<SequencedAssemblyRecipe> createSandwichAssemblingRecipes() {
         NonNullList<ItemStack> sandwiches = NonNullList.create();
-        ModItems.SANDWICH.get().fillItemCategory(ModItems.CREATIVE_TAB, sandwiches);
+        ModItems.addSandwiches(sandwiches::add);
         List<SequencedAssemblyRecipe> recipes = new ArrayList<>();
 
         for (ItemStack sandwich : sandwiches) {
@@ -85,7 +86,7 @@ public class CreateCompat {
         CreateJEI.getTypedRecipesExcluding(ModRecipeTypes.SANDWICH_SPOUTING.get(), recipe -> recipe.getSerializer() != ModRecipeTypes.SANDWICH_FLUID_SPOUTING_SERIALIZER.get())
                 .stream()
                 .map(recipe -> (SandwichFluidSpoutingRecipe) recipe)
-                .map(recipe -> builder(SandwichItem.makeSandwich(recipe.getResultItem()), "sandwich_spouting")
+                .map(recipe -> builder(SandwichItem.makeSandwich(recipe.getResultItem(RegistryAccess.EMPTY)), "sandwich_spouting")
                         .addStep(FillingRecipe::new, r -> r.require(recipe.getIngredient()))
                         .addStep(DeployerApplicationRecipe::new, r -> r.require(ModItems.BREAD_SLICE.get()))
                         .build()

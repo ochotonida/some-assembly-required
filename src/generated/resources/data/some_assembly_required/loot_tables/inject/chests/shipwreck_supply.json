@@ -91,5 +91,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "some_assembly_required:inject/chests/shipwreck_supply"
 }

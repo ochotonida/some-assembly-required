@@ -26,5 +26,6 @@
     [
       "consume_potion_sandwich"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

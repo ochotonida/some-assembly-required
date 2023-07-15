@@ -1,36 +1,35 @@
 buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net/' }
-        maven { url = 'https://repo.spongepowered.org/maven' }
-        mavenCentral()
-    }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.spongepowered:mixingradle:0.7.+'
     }
 }
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
+
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
 apply plugin: 'org.spongepowered.mixin'
 
-version = "${minecraft_version}-${mod_version}"
-group = mod_name
-archivesBaseName = mod_name
+version = mod_version
+group = mod_group_id
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
-    mappings channel: 'official', version: "${minecraft_version}"
+    mappings channel: mapping_channel, version: mapping_version
+
+    copyIdeResources = true
+
     runs {
-        client {
+
+        configureEach {
             workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-
             mods {
                 "${mod_id}" {
                     source sourceSets.main
@@ -38,33 +37,17 @@ minecraft {
             }
         }
 
-        server {
-            workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
+        client {
 
-            mods {
-                "${mod_id}" {
-                    source sourceSets.main
-                }
-            }
+        }
+
+        server {
+            args '--nogui'
         }
 
         data {
             workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            args '--mod', 'some_assembly_required', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            mods {
-                "${mod_id}" {
-                    source sourceSets.main
-                }
-            }
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
 }
@@ -95,37 +78,47 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("curse.maven:jei-238222:4494410")
-
-    runtimeOnly fg.deobf("curse.maven:appleskin-248787:3872808")
-
-    implementation fg.deobf("curse.maven:create-328085:4547147")
+    implementation fg.deobf("curse.maven:jei-238222:4644453")
+    implementation fg.deobf("curse.maven:farmers-delight-398521:4638874")
+    implementation fg.deobf("curse.maven:create-328085:4626108")
+    implementation fg.deobf("curse.maven:appleskin-248787:4605078")
+    implementation fg.deobf("curse.maven:diet-443570:4634780")
     // https://maven.tterrag.com/com/tterrag/registrate/Registrate/
-    compileOnly fg.deobf("com.tterrag.registrate:Registrate:MC1.19-1.1.5")
-
-    implementation fg.deobf("curse.maven:farmersdelight-398521:3916069")
-
-    runtimeOnly fg.deobf("curse.maven:itemzoom-261725:3903160")
-
-    // runtimeOnly fg.deobf("curse.maven:diet-443570:3758891")
+    compileOnly fg.deobf("com.tterrag.registrate:Registrate:MC1.20-1.3.3")
 }
 
 mixin {
-    // MixinGradle Settings
     add sourceSets.main, 'mixins.some_assembly_required.refmap.json'
     config 'mixins.some_assembly_required.json'
 }
 
-jar {
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
+            forge_version: forge_version, forge_version_range: forge_version_range,
+            loader_version_range: loader_version_range,
+            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors: mod_authors, mod_description: mod_description, mod_credits: mod_credits,
+            farmersdelight_version_range: farmersdelight_version_range,
+            create_version_range: create_version_range
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
     manifest {
         attributes([
-                "Specification-Title"     : "some_assembly_required",
-                "Specification-Vendor"    : "ochotonida",
-                "Specification-Version"   : "1", // We are version 1 of ourselves
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "ochotonida",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                'Specification-Title'     : mod_id,
+                'Specification-Vendor'    : mod_authors,
+                'Specification-Version'   : '1', // We are version 1 of ourselves
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : mod_authors,
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
@@ -134,7 +127,7 @@ jar.finalizedBy('reobfJar')
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        register('mavenJava', MavenPublication) {
             artifact jar
         }
     }
@@ -143,4 +136,8 @@ publishing {
             url "file://${project.projectDir}/mcmodsrepo"
         }
     }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }

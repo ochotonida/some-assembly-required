@@ -8,7 +8,7 @@ public class HoneyBottleBehavior implements IngredientBehavior {
 
     @Override
     public void onEaten(ItemStack item, LivingEntity entity) {
-        if (!entity.getLevel().isClientSide) {
+        if (!entity.level().isClientSide) {
             entity.removeEffect(MobEffects.POISON);
         }
     }

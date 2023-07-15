@@ -1,9 +1,8 @@
 package someassemblyrequired.data;
 
 import com.google.common.base.Preconditions;
-import com.mojang.datafixers.util.Pair;
 import com.simibubi.create.AllItems;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
@@ -35,40 +34,38 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.init.ModBlocks;
+import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.loot.OptionalLootItem;
 import someassemblyrequired.loot.SetIngredientsFunction;
 import someassemblyrequired.loot.SmeltMatchingItemFunction;
-import someassemblyrequired.integration.ModCompat;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.util.Set;
 
 import static someassemblyrequired.init.ModItems.*;
 
 @SuppressWarnings("SameParameterValue")
 public class LootTables extends LootTableProvider {
 
-    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> tables = new ArrayList<>();
+    private final List<SubProviderEntry> lootTables = new ArrayList<>();
 
     private final ExistingFileHelper existingFileHelper;
     private final LootModifiers lootModifiers;
 
     protected static final ResourceLocation VILLAGE_SANDWICH = SomeAssemblyRequired.id("inject/chests/village_house");
 
-    public LootTables(DataGenerator dataGenerator, ExistingFileHelper existingFileHelper, LootModifiers lootModifiers) {
-        super(dataGenerator);
+    public LootTables(PackOutput packOutput, ExistingFileHelper existingFileHelper, LootModifiers lootModifiers) {
+        super(packOutput, Set.of(), List.of());
         this.existingFileHelper = existingFileHelper;
         this.lootModifiers = lootModifiers;
     }
 
     @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
-        tables.clear();
+    public List<SubProviderEntry> getTables() {
+        lootTables.clear();
 
         addStandardDropTable(ModBlocks.SANDWICHING_STATION.get());
         addSandwichLootTables();
@@ -77,7 +74,7 @@ public class LootTables extends LootTableProvider {
             addLootTable(lootBuilder.getName(), lootBuilder.createLootTable(), lootBuilder.getParameterSet());
         }
 
-        return tables;
+        return lootTables;
     }
 
     private void addSandwichLootTables() {
@@ -239,7 +236,7 @@ public class LootTables extends LootTableProvider {
     }
 
     private void addBlockLootTable(Block block, LootTable.Builder lootTable) {
-        tables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(block.getLootTable(), lootTable), LootContextParamSets.BLOCK));
+        lootTables.add(new SubProviderEntry(() -> lootBuilder -> lootBuilder.accept(block.getLootTable(), lootTable), LootContextParamSets.BLOCK));
     }
 
     private LootPool.Builder createStandardDrops(ItemLike itemProvider) {
@@ -305,15 +302,15 @@ public class LootTables extends LootTableProvider {
             String actualLocation = location.replace("inject/", "");
             Preconditions.checkArgument(existingFileHelper.exists(new ResourceLocation("loot_tables/" + actualLocation + ".json"), PackType.SERVER_DATA), "Loot table %s does not exist in any known data pack", actualLocation);
         }
-        tables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(new ResourceLocation(SomeAssemblyRequired.MODID, location), lootTable), lootParameterSet));
+        lootTables.add(new SubProviderEntry(() -> lootBuilder -> lootBuilder.accept(new ResourceLocation(SomeAssemblyRequired.MODID, location), lootTable), lootParameterSet));
     }
 
     private void addLootTableUnchecked(String location, LootTable.Builder lootTable, LootContextParamSet lootParameterSet) {
-        tables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(new ResourceLocation(SomeAssemblyRequired.MODID, location), lootTable), lootParameterSet));
+        lootTables.add(new SubProviderEntry(() -> lootBuilder -> lootBuilder.accept(new ResourceLocation(SomeAssemblyRequired.MODID, location), lootTable), lootParameterSet));
     }
 
     @Override
     protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationContext) {
-        map.forEach((location, lootTable) -> net.minecraft.world.level.storage.loot.LootTables.validate(validationContext, location, lootTable));
+        map.forEach((location, lootTable) -> lootTable.validate(validationContext));
     }
 }

@@ -1,6 +1,6 @@
 package someassemblyrequired.init;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -26,10 +26,10 @@ public class ModTags {
     }
 
     private static TagKey<Item> itemTag(String modId, String path) {
-        return TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(modId, path));
+        return TagKey.create(Registries.ITEM, new ResourceLocation(modId, path));
     }
 
     private static TagKey<Block> blockTag(String path) {
-        return TagKey.create(Registry.BLOCK_REGISTRY, SomeAssemblyRequired.id(path));
+        return TagKey.create(Registries.BLOCK, SomeAssemblyRequired.id(path));
     }
 }

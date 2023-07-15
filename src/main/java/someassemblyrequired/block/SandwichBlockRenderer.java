@@ -1,7 +1,7 @@
 package someassemblyrequired.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -25,7 +25,7 @@ public class SandwichBlockRenderer implements BlockEntityRenderer<BlockEntity> {
         if (blockEntity.getLevel() != null) {
             BlockState state = blockEntity.getLevel().getBlockState(blockEntity.getBlockPos());
             if (state.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
-                poseStack.mulPose(Vector3f.YP.rotationDegrees(180 - state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()));
+                poseStack.mulPose(Axis.YP.rotationDegrees(180 - state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()));
             }
         }
 

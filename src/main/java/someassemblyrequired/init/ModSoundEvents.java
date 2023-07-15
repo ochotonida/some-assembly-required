@@ -17,6 +17,6 @@ public class ModSoundEvents {
     public static final RegistryObject<SoundEvent> ADD_ITEM_LEAFY = register("block.sandwich.add_item.leafy");
 
     private static RegistryObject<SoundEvent> register(String id) {
-        return SOUND_EVENTS.register(id, () -> new SoundEvent(SomeAssemblyRequired.id(id)));
+        return SOUND_EVENTS.register(id, () -> SoundEvent.createVariableRangeEvent(SomeAssemblyRequired.id(id)));
     }
 }

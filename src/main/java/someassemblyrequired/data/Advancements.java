@@ -1,136 +1,90 @@
 package someassemblyrequired.data;
 
-import com.google.common.collect.Sets;
 import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.FrameType;
-import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.data.CachedOutput;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.DataProvider;
-import net.minecraft.data.advancements.AdvancementProvider;
-import net.minecraft.data.advancements.HusbandryAdvancements;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.common.data.ForgeAdvancementProvider;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.init.ModAdvancementTriggers;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModTags;
 import someassemblyrequired.item.sandwich.SandwichItem;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Set;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
-public class Advancements extends AdvancementProvider {
+public class Advancements extends ForgeAdvancementProvider {
 
-    private final DataGenerator.PathProvider pathProvider;
+    public Advancements(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, ExistingFileHelper existingFileHelper) {
+        super(output, registries, existingFileHelper, List.of(Advancements::generate));
+    }
+    private static void generate(HolderLookup.Provider registries, Consumer<Advancement> saver, ExistingFileHelper existingFileHelper) {
+        ResourceLocation plantSeed = new ResourceLocation("minecraft:husbandry/plant_seed");
 
-    public Advancements(DataGenerator generator, ExistingFileHelper helper) {
-        super(generator, helper);
-        this.pathProvider = generator.createPathProvider(DataGenerator.Target.DATA_PACK, "advancements");
+        ResourceLocation obtainBreadSliceId = SomeAssemblyRequired.id("obtain_bread_slice");
+        Advancement obtainBreadSlice = advancement(obtainBreadSliceId, new ItemStack(ModItems.BREAD_SLICE.get()), false)
+                .parent(plantSeed)
+                .addCriterion(obtainBreadSliceId.getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(
+                        ItemPredicate.Builder.item().of(ModTags.BREAD_SLICES).build()
+                )).save(saver, obtainBreadSliceId, existingFileHelper);
+
+        ResourceLocation obtainSandwichId = SomeAssemblyRequired.id("obtain_sandwich");
+        var obtainSandwich = advancement(obtainSandwichId, SandwichItem.makeSandwich(ModItems.TOMATO_SLICES.get(), ModItems.CHOPPED_CARROT.get()), false)
+                .parent(obtainBreadSlice)
+                .addCriterion(obtainSandwichId.getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(
+                        ModItems.SANDWICH.get()
+                )).save(saver, obtainSandwichId, existingFileHelper);
+
+        ResourceLocation obtainToastedBreadSliceId = SomeAssemblyRequired.id("obtain_toasted_bread_slice");
+        advancement(obtainToastedBreadSliceId, new ItemStack(ModItems.TOASTED_BREAD_SLICE.get()), false)
+                .parent(obtainBreadSlice)
+                .addCriterion(obtainToastedBreadSliceId.getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(
+                        ModItems.TOASTED_BREAD_SLICE.get()
+                )).save(saver, obtainToastedBreadSliceId, existingFileHelper);
+
+        ResourceLocation consumePotionSandwichId = SomeAssemblyRequired.id("consume_potion_sandwich");
+        advancement(consumePotionSandwichId, SandwichItem.makeSandwich(Potions.NIGHT_VISION), true)
+                .parent(obtainSandwich)
+                .addCriterion(consumePotionSandwichId.getPath(), ModAdvancementTriggers.CONSUME_POTION_SANDWICH.instance())
+                .save(saver, consumePotionSandwichId, existingFileHelper);
+
+        ResourceLocation consumeDoubleDeckerSandwichId = SomeAssemblyRequired.id("consume_double_decker_sandwich");
+        advancement(consumeDoubleDeckerSandwichId, SandwichItem.makeSandwich(
+                ModItems.TOMATO_SLICES.get(),
+                ModItems.CHOPPED_CARROT.get(),
+                ModItems.BREAD_SLICE.get(),
+                ModItems.TOMATO_SLICES.get(),
+                ModItems.CHOPPED_CARROT.get()
+        ), true)
+                .parent(obtainSandwich)
+                .addCriterion(consumeDoubleDeckerSandwichId.getPath(), ModAdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.instance())
+                .save(saver, consumeDoubleDeckerSandwichId, existingFileHelper);
     }
 
-    @Override
-    public void run(CachedOutput cache) {
-        Set<ResourceLocation> set = Sets.newHashSet();
-        Consumer<Advancement> consumer = (advancement) -> {
-            if (!set.add(advancement.getId())) {
-                throw new IllegalStateException("Duplicate advancement " + advancement.getId());
-            } else {
-                Path path = this.pathProvider.json(advancement.getId());
-
-                try {
-                    DataProvider.saveStable(cache, advancement.deconstruct().serializeToJson(), path);
-                } catch (IOException ioexception) {
-                    SomeAssemblyRequired.LOGGER.error("Couldn't save advancement {}", path, ioexception);
-                }
-            }
-        };
-
-        new SomeAssemblyRequiredAdvancements().accept(consumer);
+    private static Advancement.Builder advancement(ResourceLocation id, ItemStack icon, boolean hidden) {
+        return Advancement.Builder.advancement().display(display(id.getPath(), icon, hidden));
     }
 
-    public static class SomeAssemblyRequiredAdvancements implements Consumer<Consumer<Advancement>> {
-
-        private Advancement root;
-
-        public void setRoot(Advancement root) {
-            this.root = root;
-        }
-
-        @Override
-        @SuppressWarnings("unused")
-        public void accept(Consumer<Advancement> consumer) {
-            new HusbandryAdvancements().accept(advancement -> {
-                if (advancement.getId().equals(new ResourceLocation("minecraft:husbandry/plant_seed"))) {
-                    setRoot(advancement);
-                }
-            });
-
-            Advancement obtainBreadSlice = addAdvancement(
-                    consumer,
-                    root,
-                    new ItemStack(ModItems.BREAD_SLICE.get()),
-                    InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ModTags.BREAD_SLICES).build()),
-                    "obtain_bread_slice",
-                    false
-            );
-
-            Advancement obtainSandwich = addAdvancement(
-                    consumer,
-                    obtainBreadSlice,
-                    SandwichItem.makeSandwich(ModItems.TOMATO_SLICES.get(), ModItems.CHOPPED_CARROT.get()),
-                    InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SANDWICH.get()),
-                    "obtain_sandwich",
-                    false
-            );
-
-            addAdvancement(
-                    consumer,
-                    obtainBreadSlice,
-                    new ItemStack(ModItems.TOASTED_BREAD_SLICE.get()),
-                    InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.TOASTED_BREAD_SLICE.get()),
-                    "obtain_toasted_bread_slice",
-                    false
-            );
-
-            addAdvancement(
-                    consumer,
-                    obtainSandwich,
-                    SandwichItem.makeSandwich(Potions.NIGHT_VISION),
-                    ModAdvancementTriggers.CONSUME_POTION_SANDWICH.instance(),
-                    "consume_potion_sandwich",
-                    true
-            );
-
-            addAdvancement(
-                    consumer,
-                    obtainSandwich,
-                    SandwichItem.makeSandwich(
-                            ModItems.TOMATO_SLICES.get(),
-                            ModItems.CHOPPED_CARROT.get(),
-                            ModItems.BREAD_SLICE.get(),
-                            ModItems.TOMATO_SLICES.get(),
-                            ModItems.CHOPPED_CARROT.get()
-                    ),
-                    ModAdvancementTriggers.CONSUME_DOUBLE_DECKER_SANDWICH.instance(),
-                    "consume_double_decker_sandwich",
-                    true
-            );
-        }
-
-        private static Advancement addAdvancement(Consumer<Advancement> consumer, Advancement parent, ItemStack display, AbstractCriterionTriggerInstance criterion, String name, boolean hidden) {
-            return Advancement.Builder.advancement().parent(parent).display(display,
-                    SomeAssemblyRequired.translate("advancement.%s.title".formatted(name)),
-                    SomeAssemblyRequired.translate("advancement.%s.description".formatted(name)),
-                    null, FrameType.TASK, true, true, hidden)
-                    .addCriterion(name, criterion)
-                    .save(consumer, SomeAssemblyRequired.id(name).toString());
-        }
+    private static DisplayInfo display(String title, ItemStack icon, boolean hidden) {
+        return new DisplayInfo(
+                icon,
+                Component.translatable("%s.advancement.%s.title".formatted(SomeAssemblyRequired.MODID, title)),
+                Component.translatable("%s.advancement.%s.description".formatted(SomeAssemblyRequired.MODID, title)),
+                null,
+                FrameType.TASK,
+                true,
+                true,
+                hidden
+        );
     }
 }

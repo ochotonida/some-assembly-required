@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import someassemblyrequired.config.ModConfig;
-import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.init.ModItems;
 import someassemblyrequired.init.ModRecipeTypes;
 import someassemblyrequired.init.ModTags;
@@ -37,7 +36,7 @@ public class FillingBySpoutMixin {
 
         int resultHeight = SandwichItemHandler.get(stack)
                 .filter(h -> recipe != null)
-                .map(s -> s.getTotalHeight() + Ingredients.getHeight(recipe.getResultItem()))
+                .map(s -> s.getTotalHeight() + 1)
                 .orElse(1);
         if (recipe != null && resultHeight <= ModConfig.server.maximumSandwichHeight.get()) {
             cir.setReturnValue(recipe.getAmountRequired(availableFluid));

@@ -3,6 +3,7 @@ package someassemblyrequired.integration.create.recipe;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -47,7 +48,7 @@ public class SandwichFluidSpoutingRecipe extends SandwichSpoutingRecipe {
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess access) {
         return result;
     }
 

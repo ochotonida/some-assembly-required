@@ -1,27 +1,26 @@
 package someassemblyrequired.data;
 
-import com.google.gson.JsonObject;
 import net.minecraft.data.CachedOutput;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.ingredient.IngredientProperties;
-import someassemblyrequired.init.ModItems;
 import someassemblyrequired.data.ingredient.CreateIngredients;
 import someassemblyrequired.data.ingredient.FarmersDelightIngredients;
 import someassemblyrequired.data.ingredient.IngredientBuilder;
+import someassemblyrequired.ingredient.IngredientProperties;
+import someassemblyrequired.init.ModItems;
 import someassemblyrequired.integration.ModCompat;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
-public record Ingredients(DataGenerator generator) implements DataProvider {
+public record Ingredients(PackOutput packOutput) implements DataProvider {
 
     private static final Map<Item, IngredientBuilder> INGREDIENTS = new HashMap<>();
 
@@ -102,8 +101,10 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
         return builder;
     }
 
-    public void run(CachedOutput cache) {
-        Path outputFolder = this.generator.getOutputFolder();
+    public CompletableFuture<?> run(CachedOutput cache) {
+        Path outputFolder = packOutput().getOutputFolder();
+        List<CompletableFuture<?>> futures = new ArrayList<>();
+
         addIngredients();
         INGREDIENTS.forEach((item, builder) -> {
             IngredientProperties ingredient = builder.build();
@@ -115,16 +116,11 @@ public record Ingredients(DataGenerator generator) implements DataProvider {
             }
 
             Path path = outputFolder.resolve("data/%s/%s/ingredients/%s.json".formatted(SomeAssemblyRequired.MODID, SomeAssemblyRequired.MODID, name));
-            saveIngredient(cache, ingredient.toJson(item), path);
-        });
-    }
 
-    private static void saveIngredient(CachedOutput cache, JsonObject object, Path path) {
-        try {
-            DataProvider.saveStable(cache, object, path);
-        } catch (IOException exception) {
-            SomeAssemblyRequired.LOGGER.error("Couldn't save ingredient {}", path, exception);
-        }
+            futures.add(DataProvider.saveStable(cache, ingredient.toJson(item), path));
+        });
+
+        return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }
 
     @Override

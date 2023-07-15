@@ -31,5 +31,6 @@
     [
       "obtain_bread_slice"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

@@ -1,7 +1,7 @@
 package someassemblyrequired.data.recipe.create;
 
 import com.simibubi.create.AllRecipeTypes;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -16,8 +16,8 @@ import vectorwing.farmersdelight.common.tag.ForgeTags;
 
 public class CuttingRecipeGenerator extends ProcessingRecipeGenerator {
 
-    public CuttingRecipeGenerator(DataGenerator generator) {
-        super(generator);
+    public CuttingRecipeGenerator(PackOutput packOutput) {
+        super(packOutput);
 
         cut(Items.APPLE, ModItems.APPLE_SLICES.get(), 2);
         cut(Items.BREAD, ModItems.BREAD_SLICE.get(), 4);
@@ -27,7 +27,7 @@ public class CuttingRecipeGenerator extends ProcessingRecipeGenerator {
         cut(Items.ENCHANTED_GOLDEN_APPLE, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(), 2);
         cut(Items.GOLDEN_APPLE, ModItems.GOLDEN_APPLE_SLICES.get(), 2);
         cut(ForgeTags.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2);
-        cut(ModItems.BURGER_BUN.get(), ModItems.BURGER_BUN_BOTTOM.get(), ModItems.BURGER_BUN_TOP.get()); // TODO test this
+        cut(ModItems.BURGER_BUN.get(), ModItems.BURGER_BUN_BOTTOM.get(), ModItems.BURGER_BUN_TOP.get());
     }
 
     private void cut(ItemLike input, ItemLike... results) {

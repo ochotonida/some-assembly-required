@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "A": {
       "item": "minecraft:smooth_stone"
@@ -14,5 +15,6 @@
   ],
   "result": {
     "item": "some_assembly_required:sandwiching_station"
-  }
+  },
+  "show_notification": true
 }

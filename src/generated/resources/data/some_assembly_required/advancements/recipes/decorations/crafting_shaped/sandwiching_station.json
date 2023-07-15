@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bread": {
+    "has_smooth_stone": {
       "conditions": {
         "items": [
           {
             "items": [
-              "some_assembly_required:bread_slice"
+              "minecraft:smooth_stone"
             ]
           }
         ]
@@ -15,20 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "some_assembly_required:smelting/toasted_bread_slice"
+        "recipe": "some_assembly_required:crafting_shaped/sandwiching_station"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_bread",
+      "has_smooth_stone",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "some_assembly_required:smelting/toasted_bread_slice"
+      "some_assembly_required:crafting_shaped/sandwiching_station"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

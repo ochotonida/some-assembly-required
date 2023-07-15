@@ -9,8 +9,8 @@ public record ConsumableItemBehavior(ConsumableItem item) implements IngredientB
 
     @Override
     public void onEaten(ItemStack ingredient, LivingEntity entity) {
-        if (!entity.getLevel().isClientSide()) {
-            item.affectConsumer(ingredient, entity.getLevel(), entity);
+        if (!entity.level().isClientSide()) {
+            item.affectConsumer(ingredient, entity.level(), entity);
         }
     }
 }

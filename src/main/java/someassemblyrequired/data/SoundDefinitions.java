@@ -1,6 +1,6 @@
 package someassemblyrequired.data;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.SoundDefinitionsProvider;
 import someassemblyrequired.SomeAssemblyRequired;
@@ -8,8 +8,8 @@ import someassemblyrequired.init.ModSoundEvents;
 
 public class SoundDefinitions extends SoundDefinitionsProvider {
 
-    protected SoundDefinitions(DataGenerator generator, ExistingFileHelper helper) {
-        super(generator, SomeAssemblyRequired.MODID, helper);
+    protected SoundDefinitions(PackOutput packOutput, ExistingFileHelper helper) {
+        super(packOutput, SomeAssemblyRequired.MODID, helper);
     }
 
     @Override

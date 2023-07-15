@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-01T20:39:59.8804659	Global Loot Modifiers : some_assembly_required
+// 1.20.1	2023-07-15T22:17:47.0472921	Global Loot Modifiers : some_assembly_required
 377150644aee700b6b50e5542a715e8aed5986f9 data/forge/loot_modifiers/global_loot_modifiers.json
 d642b2040fec5385b94785beb04e2741652f6ea5 data/some_assembly_required/loot_modifiers/inject/chests/abandoned_mineshaft.json
 5b8f2d3078522817757841fdcc372cac9418bebd data/some_assembly_required/loot_modifiers/inject/chests/ancient_city.json

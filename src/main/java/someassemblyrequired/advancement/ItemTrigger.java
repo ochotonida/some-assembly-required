@@ -18,12 +18,13 @@ public class ItemTrigger extends SimpleCriterionTrigger<ItemTrigger.Instance> {
         return id;
     }
 
-    public Instance createInstance(JsonObject json, EntityPredicate.Composite entityPredicate, DeserializationContext conditionsParser) {
-        return new Instance(entityPredicate, ItemPredicate.fromJson(json.get("item")));
+    @Override
+    protected Instance createInstance(JsonObject object, ContextAwarePredicate predicate, DeserializationContext deserializationContext) {
+        return new Instance(predicate, ItemPredicate.fromJson(object.get("item")));
     }
 
     public Instance instance() {
-        return new Instance(EntityPredicate.Composite.ANY, ItemPredicate.ANY);
+        return new Instance(ContextAwarePredicate.ANY, ItemPredicate.ANY);
     }
 
     public void trigger(ServerPlayer player, ItemStack item) {
@@ -34,7 +35,7 @@ public class ItemTrigger extends SimpleCriterionTrigger<ItemTrigger.Instance> {
 
         private final ItemPredicate item;
 
-        public Instance(EntityPredicate.Composite player, ItemPredicate item) {
+        public Instance(ContextAwarePredicate player, ItemPredicate item) {
             super(id, player);
             this.item = item;
         }

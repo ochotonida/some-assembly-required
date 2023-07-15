@@ -1,11 +1,11 @@
 package someassemblyrequired.data;
 
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.Direction;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
@@ -27,8 +27,8 @@ import java.util.stream.Collectors;
 @SuppressWarnings("ConstantConditions")
 public class ItemModels extends ItemModelProvider {
 
-    public ItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, SomeAssemblyRequired.MODID, existingFileHelper);
+    public ItemModels(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
+        super(packOutput, SomeAssemblyRequired.MODID, existingFileHelper);
     }
 
     @Override
@@ -194,28 +194,28 @@ public class ItemModels extends ItemModelProvider {
         getBuilder(getItemName(ModItems.SANDWICH.get())).parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .texture("particle", prefixItem("bread_slice"))
                 .transforms()
-                .transform(ItemTransforms.TransformType.GUI)
+                .transform(ItemDisplayContext.GUI)
                 .rotation(30, 45, 0)
                 .scale(0.8F)
                 .end()
-                .transform(ItemTransforms.TransformType.GROUND)
+                .transform(ItemDisplayContext.GROUND)
                 .rotation(0, 180, 0)
                 .scale(0.5F)
                 .end()
-                .transform(ItemTransforms.TransformType.HEAD)
+                .transform(ItemDisplayContext.HEAD)
                 .rotation(0, 180, 0)
                 .translation(0, 0.5F, 0)
                 .end()
-                .transform(ItemTransforms.TransformType.FIXED)
+                .transform(ItemDisplayContext.FIXED)
                 .rotation(0, 180, 0)
                 .translation(0, -4, 0)
                 .end()
-                .transform(ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND)
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
                 .rotation(75, 315, 0)
                 .translation(0, 2.5F, 0)
                 .scale(0.55F)
                 .end()
-                .transform(ItemTransforms.TransformType.FIRST_PERSON_RIGHT_HAND)
+                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
                 .rotation(0, 315, 0)
                 .translation(0, 1, 0)
                 .scale(0.5F)

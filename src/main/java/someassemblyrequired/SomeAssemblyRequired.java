@@ -18,8 +18,8 @@ import someassemblyrequired.event.BlockEventHandler;
 import someassemblyrequired.ingredient.IngredientPropertiesManager;
 import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.init.*;
-import someassemblyrequired.network.NetworkHandler;
 import someassemblyrequired.integration.ModCompat;
+import someassemblyrequired.network.NetworkHandler;
 
 @Mod(SomeAssemblyRequired.MODID)
 public class SomeAssemblyRequired {
@@ -37,6 +37,7 @@ public class SomeAssemblyRequired {
 
         register(modEventBus,
                 ModItems.ITEMS,
+                ModItems.CREATIVE_MODE_TABS,
                 ModBlocks.BLOCKS,
                 ModBlockEntityTypes.ENTITY_TYPES,
                 ModSoundEvents.SOUND_EVENTS,
@@ -45,7 +46,7 @@ public class SomeAssemblyRequired {
                 ModLootModifiers.LOOT_MODIFIERS,
                 ModLootFunctions.LOOT_FUNCTION_TYPES,
                 ModLootConditions.LOOT_CONDITION_TYPES,
-                ModLootPoolEntries.LOOT_POOL_ENTRIES
+                ModLootPoolEntries.LOOT_POOL_ENTRY_TYPES
         );
 
         modEventBus.addListener(this::onCommonSetup);

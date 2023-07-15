@@ -7,7 +7,7 @@ public class MilkBucketBehavior implements IngredientBehavior {
 
     @Override
     public void onEaten(ItemStack item, LivingEntity entity) {
-        if (!entity.getLevel().isClientSide) {
+        if (!entity.level().isClientSide) {
             entity.curePotionEffects(item);
         }
     }

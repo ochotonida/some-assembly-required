@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "some_assembly_required:campfire_cooking/toasted_bread_slice"
+        "recipe": "some_assembly_required:smelting/toasted_bread_slice"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,8 @@
   ],
   "rewards": {
     "recipes": [
-      "some_assembly_required:campfire_cooking/toasted_bread_slice"
+      "some_assembly_required:smelting/toasted_bread_slice"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
