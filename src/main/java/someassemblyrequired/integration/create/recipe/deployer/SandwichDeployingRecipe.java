@@ -14,10 +14,10 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.config.ModConfig;
 import someassemblyrequired.ingredient.Ingredients;
-import someassemblyrequired.init.ModItems;
-import someassemblyrequired.init.ModTags;
 import someassemblyrequired.item.sandwich.SandwichItem;
 import someassemblyrequired.item.sandwich.SandwichItemHandler;
+import someassemblyrequired.registry.ModItems;
+import someassemblyrequired.registry.ModTags;
 
 import java.util.Optional;
 

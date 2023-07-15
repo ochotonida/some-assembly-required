@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import someassemblyrequired.ingredient.Ingredients;
-import someassemblyrequired.init.ModTags;
+import someassemblyrequired.registry.ModTags;
 
 import java.util.Random;
 

@@ -8,8 +8,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import someassemblyrequired.block.SandwichBlockRenderer;
-import someassemblyrequired.init.ModBlockEntityTypes;
-import someassemblyrequired.init.ModItems;
+import someassemblyrequired.registry.ModBlockEntityTypes;
+import someassemblyrequired.registry.ModItems;
 
 public class SomeAssemblyRequiredClient {
 

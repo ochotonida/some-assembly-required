@@ -16,7 +16,7 @@ import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.init.ModLootFunctions;
+import someassemblyrequired.registry.ModLootFunctions;
 
 import java.util.Optional;
 

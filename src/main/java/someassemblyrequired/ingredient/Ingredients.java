@@ -12,7 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.ingredient.behavior.*;
-import someassemblyrequired.init.ModFoods;
+import someassemblyrequired.registry.ModFoods;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;

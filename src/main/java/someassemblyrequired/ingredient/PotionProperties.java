@@ -11,8 +11,8 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import org.jetbrains.annotations.Nullable;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.init.ModItems;
-import someassemblyrequired.init.ModSoundEvents;
+import someassemblyrequired.registry.ModItems;
+import someassemblyrequired.registry.ModSoundEvents;
 
 public class PotionProperties extends IngredientProperties {
 

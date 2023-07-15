@@ -11,8 +11,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fluids.FluidStack;
-import someassemblyrequired.init.ModRecipeTypes;
 import someassemblyrequired.recipe.SandwichSpoutingRecipe;
+import someassemblyrequired.registry.ModRecipeTypes;
 
 import javax.annotation.Nullable;
 

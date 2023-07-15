@@ -13,10 +13,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import someassemblyrequired.config.ModConfig;
 import someassemblyrequired.ingredient.Ingredients;
-import someassemblyrequired.init.ModFoods;
-import someassemblyrequired.init.ModItems;
-import someassemblyrequired.init.ModTags;
 import someassemblyrequired.mixin.FoodPropertiesMixin;
+import someassemblyrequired.registry.ModFoods;
+import someassemblyrequired.registry.ModItems;
+import someassemblyrequired.registry.ModTags;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

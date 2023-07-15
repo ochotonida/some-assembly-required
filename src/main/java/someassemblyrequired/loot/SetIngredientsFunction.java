@@ -14,8 +14,8 @@ import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.init.ModLootFunctions;
 import someassemblyrequired.item.sandwich.SandwichItemHandler;
+import someassemblyrequired.registry.ModLootFunctions;
 
 import java.util.Arrays;
 import java.util.List;

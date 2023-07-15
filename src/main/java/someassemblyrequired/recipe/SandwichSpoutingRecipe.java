@@ -11,7 +11,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
-import someassemblyrequired.init.ModRecipeTypes;
+import someassemblyrequired.registry.ModRecipeTypes;
 
 import javax.annotation.Nullable;
 

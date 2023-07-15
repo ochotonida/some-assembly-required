@@ -19,7 +19,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.init.ModSoundEvents;
+import someassemblyrequired.registry.ModSoundEvents;
 import someassemblyrequired.util.JsonHelper;
 
 import javax.annotation.Nullable;
@@ -121,7 +121,7 @@ public class IngredientProperties {
 
         // noinspection ConstantConditions
         String modid = ForgeRegistries.ITEMS.getKey(item).getNamespace();
-        if (!modid.equals("minecraft") && !modid.equals(SomeAssemblyRequired.MODID)) {
+        if (!modid.equals("minecraft") && !modid.equals(SomeAssemblyRequired.MOD_ID)) {
             JsonHelper.addModLoadedCondition(result, modid);
         }
 

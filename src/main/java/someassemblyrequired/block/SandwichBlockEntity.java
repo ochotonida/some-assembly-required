@@ -21,11 +21,11 @@ import net.minecraftforge.common.util.LazyOptional;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.config.ModConfig;
 import someassemblyrequired.ingredient.Ingredients;
-import someassemblyrequired.init.ModBlockEntityTypes;
-import someassemblyrequired.init.ModBlocks;
-import someassemblyrequired.init.ModItems;
-import someassemblyrequired.init.ModSoundEvents;
 import someassemblyrequired.item.sandwich.SandwichItemHandler;
+import someassemblyrequired.registry.ModBlockEntityTypes;
+import someassemblyrequired.registry.ModBlocks;
+import someassemblyrequired.registry.ModItems;
+import someassemblyrequired.registry.ModSoundEvents;
 
 import javax.annotation.Nullable;
 

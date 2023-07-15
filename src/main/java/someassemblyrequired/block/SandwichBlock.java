@@ -25,10 +25,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import someassemblyrequired.init.ModBlockEntityTypes;
-import someassemblyrequired.init.ModItems;
-import someassemblyrequired.init.ModTags;
 import someassemblyrequired.item.sandwich.SandwichItemHandler;
+import someassemblyrequired.registry.ModBlockEntityTypes;
+import someassemblyrequired.registry.ModItems;
+import someassemblyrequired.registry.ModTags;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

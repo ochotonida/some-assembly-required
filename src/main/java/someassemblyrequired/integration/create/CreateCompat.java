@@ -23,13 +23,13 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.ingredient.Ingredients;
-import someassemblyrequired.init.ModItems;
-import someassemblyrequired.init.ModRecipeTypes;
 import someassemblyrequired.integration.create.ingredient.BuildersTeaBehavior;
 import someassemblyrequired.integration.create.recipe.SandwichFluidSpoutingRecipe;
 import someassemblyrequired.integration.create.recipe.deployer.SandwichDeployingRecipe;
 import someassemblyrequired.item.sandwich.SandwichItem;
 import someassemblyrequired.item.sandwich.SandwichItemHandler;
+import someassemblyrequired.registry.ModItems;
+import someassemblyrequired.registry.ModRecipeTypes;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -19,11 +19,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.ingredient.Ingredients;
-import someassemblyrequired.init.ModBlocks;
-import someassemblyrequired.init.ModItems;
-import someassemblyrequired.init.ModTags;
 import someassemblyrequired.item.sandwich.SandwichItem;
 import someassemblyrequired.item.sandwich.SandwichItemHandler;
+import someassemblyrequired.registry.ModBlocks;
+import someassemblyrequired.registry.ModItems;
+import someassemblyrequired.registry.ModTags;
 
 import java.util.List;
 import java.util.Optional;

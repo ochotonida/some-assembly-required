@@ -17,14 +17,14 @@ import someassemblyrequired.config.ModConfig;
 import someassemblyrequired.event.BlockEventHandler;
 import someassemblyrequired.ingredient.IngredientPropertiesManager;
 import someassemblyrequired.ingredient.Ingredients;
-import someassemblyrequired.init.*;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.network.NetworkHandler;
+import someassemblyrequired.registry.*;
 
-@Mod(SomeAssemblyRequired.MODID)
+@Mod(SomeAssemblyRequired.MOD_ID)
 public class SomeAssemblyRequired {
 
-    public static final String MODID = "some_assembly_required";
+    public static final String MOD_ID = "some_assembly_required";
 
     public static final Logger LOGGER = LogManager.getLogger();
 
@@ -74,10 +74,10 @@ public class SomeAssemblyRequired {
     }
 
     public static ResourceLocation id(String path) {
-        return new ResourceLocation(MODID, path);
+        return new ResourceLocation(MOD_ID, path);
     }
 
     public static MutableComponent translate(String key, Object... args) {
-        return Component.translatable("%s.%s".formatted(MODID, key), args);
+        return Component.translatable("%s.%s".formatted(MOD_ID, key), args);
     }
 }

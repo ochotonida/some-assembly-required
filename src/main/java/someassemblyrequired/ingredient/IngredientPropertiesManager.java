@@ -21,10 +21,10 @@ import net.minecraftforge.forgespi.Environment;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.network.IngredientSyncPacket;
-import someassemblyrequired.network.NetworkHandler;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.integration.jei.JEIUtil;
+import someassemblyrequired.network.IngredientSyncPacket;
+import someassemblyrequired.network.NetworkHandler;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -38,7 +38,7 @@ public class IngredientPropertiesManager extends SimpleJsonResourceReloadListene
     private static Map<Item, IngredientProperties> properties = new HashMap<>();
 
     private IngredientPropertiesManager() {
-        super(new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create(), SomeAssemblyRequired.MODID + "/ingredients");
+        super(new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create(), SomeAssemblyRequired.MOD_ID + "/ingredients");
     }
 
     @Override

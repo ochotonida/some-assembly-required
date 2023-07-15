@@ -9,12 +9,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import someassemblyrequired.config.ModConfig;
-import someassemblyrequired.init.ModItems;
-import someassemblyrequired.init.ModRecipeTypes;
-import someassemblyrequired.init.ModTags;
 import someassemblyrequired.item.sandwich.SandwichItem;
 import someassemblyrequired.item.sandwich.SandwichItemHandler;
 import someassemblyrequired.recipe.SandwichSpoutingRecipe;
+import someassemblyrequired.registry.ModItems;
+import someassemblyrequired.registry.ModRecipeTypes;
+import someassemblyrequired.registry.ModTags;
 
 @Pseudo
 @Mixin(com.simibubi.create.content.fluids.spout.FillingBySpout.class)

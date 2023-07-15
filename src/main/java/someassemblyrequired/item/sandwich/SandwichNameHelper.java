@@ -8,8 +8,8 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.ingredient.Ingredients;
-import someassemblyrequired.init.ModItems;
-import someassemblyrequired.init.ModTags;
+import someassemblyrequired.registry.ModItems;
+import someassemblyrequired.registry.ModTags;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +107,6 @@ public class SandwichNameHelper {
     }
 
     private static Component translateItem(String name, Object... args) {
-        return Component.translatable("item.%s.%s".formatted(SomeAssemblyRequired.MODID, name), args);
+        return Component.translatable("item.%s.%s".formatted(SomeAssemblyRequired.MOD_ID, name), args);
     }
 }

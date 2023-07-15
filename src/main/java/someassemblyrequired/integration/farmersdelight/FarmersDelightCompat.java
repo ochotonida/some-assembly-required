@@ -6,8 +6,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.ingredient.Ingredients;
-import someassemblyrequired.item.sandwich.SandwichItem;
 import someassemblyrequired.integration.farmersdelight.ingredient.ConsumableItemBehavior;
+import someassemblyrequired.item.sandwich.SandwichItem;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -21,7 +21,7 @@ public class FarmersDelightCompat {
 
     public static ItemStack createBLT() {
         return SandwichItem.makeSandwich(
-                someassemblyrequired.init.ModItems.TOMATO_SLICES.get(),
+                someassemblyrequired.registry.ModItems.TOMATO_SLICES.get(),
                 ModItems.CABBAGE_LEAF.get(),
                 ModItems.COOKED_BACON.get()
         );

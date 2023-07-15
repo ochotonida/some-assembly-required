@@ -39,10 +39,10 @@ import net.minecraftforge.common.util.LazyOptional;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.block.SandwichBlock;
 import someassemblyrequired.ingredient.Ingredients;
-import someassemblyrequired.init.ModAdvancementTriggers;
-import someassemblyrequired.init.ModFoods;
-import someassemblyrequired.init.ModItems;
-import someassemblyrequired.init.ModTags;
+import someassemblyrequired.registry.ModAdvancementTriggers;
+import someassemblyrequired.registry.ModFoods;
+import someassemblyrequired.registry.ModItems;
+import someassemblyrequired.registry.ModTags;
 
 import javax.annotation.Nullable;
 import java.util.*;

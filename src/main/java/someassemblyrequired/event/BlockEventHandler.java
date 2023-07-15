@@ -15,9 +15,9 @@ import net.minecraftforge.eventbus.api.Event;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.block.SandwichBlockEntity;
 import someassemblyrequired.ingredient.Ingredients;
-import someassemblyrequired.init.ModItems;
-import someassemblyrequired.init.ModTags;
 import someassemblyrequired.item.sandwich.SandwichItem;
+import someassemblyrequired.registry.ModItems;
+import someassemblyrequired.registry.ModTags;
 
 public class BlockEventHandler { // TODO do more testing on this
 

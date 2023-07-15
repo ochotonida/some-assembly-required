@@ -9,9 +9,9 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.init.ModBlocks;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.integration.create.CreateJEICompat;
+import someassemblyrequired.registry.ModBlocks;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class JEICompat implements IModPlugin {
 
     private static final ResourceLocation ID = SomeAssemblyRequired.id("main");
 
-    public static final RecipeType<SandwichingStationCategory.Recipe> SANDWICHING_STATION = RecipeType.create(SomeAssemblyRequired.MODID, "sandwiching_station", SandwichingStationCategory.Recipe.class);
+    public static final RecipeType<SandwichingStationCategory.Recipe> SANDWICHING_STATION = RecipeType.create(SomeAssemblyRequired.MOD_ID, "sandwiching_station", SandwichingStationCategory.Recipe.class);
 
     @Override
     public ResourceLocation getPluginUid() {

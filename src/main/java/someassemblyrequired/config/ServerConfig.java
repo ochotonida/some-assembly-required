@@ -12,12 +12,12 @@ public class ServerConfig {
     ServerConfig(ForgeConfigSpec.Builder builder) {
         maximumSandwichHeight = builder
                 .comment("The maximum amount of items a sandwich can contain")
-                .translation(SomeAssemblyRequired.MODID + ".config.server.maximum_sandwich_height")
+                .translation(SomeAssemblyRequired.MOD_ID + ".config.server.maximum_sandwich_height")
                 .defineInRange("maximum_sandwich_height", 32, 2, Integer.MAX_VALUE);
 
         generateChestLoot = builder
                 .comment("Whether randomly generated sandwiches should be added to chests in villages and some other locations")
-                .translation(SomeAssemblyRequired.MODID + ".config.server.generate_chest_loot")
+                .translation(SomeAssemblyRequired.MOD_ID + ".config.server.generate_chest_loot")
                 .define("generate_chest_loot", true);
     }
 }

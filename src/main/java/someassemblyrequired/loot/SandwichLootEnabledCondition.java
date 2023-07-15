@@ -8,7 +8,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import org.jetbrains.annotations.NotNull;
 import someassemblyrequired.config.ModConfig;
-import someassemblyrequired.init.ModLootConditions;
+import someassemblyrequired.registry.ModLootConditions;
 
 public class SandwichLootEnabledCondition implements LootItemCondition {
 

@@ -17,7 +17,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.registries.ForgeRegistries;
-import someassemblyrequired.init.ModLootPoolEntries;
+import someassemblyrequired.registry.ModLootPoolEntries;
 import someassemblyrequired.util.JsonHelper;
 
 import java.util.Arrays;
