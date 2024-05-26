@@ -86,7 +86,7 @@ public class SandwichItem extends BlockItem {
         }
 
         for (ItemStack ingredient : ingredients) {
-            ItemStack finishStack = ingredient.getItem().onItemUseFinish(ingredient, world, entity);
+            ItemStack finishStack = ingredient.getItem().onItemUseFinish(ingredient.copy(), world, entity);
             if (entity instanceof PlayerEntity) {
                 PlayerEntity player = (PlayerEntity) entity;
                 if (player.getCooldownTracker().hasCooldown(ingredient.getItem())) {
