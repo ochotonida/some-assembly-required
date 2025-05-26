@@ -8,6 +8,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -87,9 +88,10 @@ public final class SandwichContents extends AbstractList<ItemStack> {
     }
 
     public boolean isBurger() {
-        return !isEmpty()
-                && getFirst().is(ModTags.BURGER_BUNS)
-                && getLast().is(ModTags.BURGER_BUNS);
+        int bunCount = countItems(ModTags.BURGER_BUNS);
+        int breadCount = countItems(ModTags.SANDWICH_BREAD) - bunCount;
+
+        return bunCount > breadCount;
     }
 
     public boolean hasTopAndBottomBread() {
@@ -169,6 +171,16 @@ public final class SandwichContents extends AbstractList<ItemStack> {
             result.set(ModDataComponents.SANDWICH_CONTENTS.get(), this);
             return result;
         }
+    }
+
+    public int countItems(TagKey<Item> tagKey) {
+        int result = 0;
+        for (ItemStack ingredient : this) {
+            if (ingredient.is(tagKey)) {
+                result++;
+            }
+        }
+        return result;
     }
 
     @Override
