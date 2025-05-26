@@ -49,7 +49,7 @@ public class ModCompat {
 
     public static void setup(IEventBus modEventBus) {
         if (isFarmersDelightLoaded()) FarmersDelightCompat.setup(modEventBus);
-        if (isCreateLoaded()) CreateCompat.setup();
+        if (isCreateLoaded()) CreateCompat.setup(modEventBus);
     }
 
     public static boolean isFarmersDelightLoaded() {

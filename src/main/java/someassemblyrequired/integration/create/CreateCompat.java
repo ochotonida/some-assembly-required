@@ -5,8 +5,10 @@ import com.simibubi.create.compat.jei.CreateJEI;
 import com.simibubi.create.content.kinetics.deployer.DeployerRecipeSearchEvent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.fluids.FluidStack;
+import someassemblyrequired.integration.create.itemattribute.ModItemAttributeTypes;
 import someassemblyrequired.integration.create.recipe.SandwichFluidSpoutingRecipe;
 import someassemblyrequired.integration.create.recipe.deployer.SandwichDeployingRecipe;
 import someassemblyrequired.item.sandwich.SandwichItem;
@@ -17,7 +19,8 @@ import java.util.function.Consumer;
 
 public class CreateCompat {
 
-    public static void setup() {
+    public static void setup(IEventBus modEventBus) {
+        ModItemAttributeTypes.ITEM_ATTRIBUTE_TYPES.register(modEventBus);
         NeoForge.EVENT_BUS.addListener(CreateCompat::onDeployerRecipeSearch);
     }
 

@@ -128,6 +128,13 @@
 
   "recipe_category.someassemblyrequired.sandwich_building": "Sandwich Building",
 
+  "create.item_attributes.someassemblyrequired.open_faced": "is open-faced",
+  "create.item_attributes.someassemblyrequired.open_faced.inverted": "is not open-faced",
+  "create.item_attributes.someassemblyrequired.burger": "is burger",
+  "create.item_attributes.someassemblyrequired.burger.inverted": "is not burger",
+  "create.item_attributes.someassemblyrequired.double_decker": "is double decker",
+  "create.item_attributes.someassemblyrequired.double_decker.inverted": "is not double decker",
+
   "tag.item.c.bread_slices": "Bread Slices",
   "tag.item.someassemblyrequired.burger_buns": "Burger Buns",
   "tag.item.someassemblyrequired.sandwich_bread": "Sandwich Bread",
