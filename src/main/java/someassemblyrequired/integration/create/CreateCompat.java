@@ -25,7 +25,7 @@ public class CreateCompat {
     }
 
     public static void onDeployerRecipeSearch(DeployerRecipeSearchEvent event) {
-        event.addRecipe(() -> SandwichDeployingRecipe.createRecipe(event.getInventory()), 150);
+        event.addRecipe(() -> SandwichDeployingRecipe.createRecipe(event.getInventory()), 10);
     }
 
     public static void populateJEI(Consumer<ItemStack> items) {
