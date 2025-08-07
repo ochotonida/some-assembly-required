@@ -6,7 +6,6 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import someassemblyrequired.data.providers.*;
-import someassemblyrequired.data.providers.recipe.create.ProcessingRecipeGenerator;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -28,8 +27,10 @@ public class SomeAssemblyRequiredData {
         generator.addProvider(event.includeServer(), new LootTables(packOutput, helper, lootModifiers, registries));
         generator.addProvider(event.includeServer(), new Ingredients(packOutput));
         generator.addProvider(event.includeServer(), new DataMaps(packOutput, registries));
-        ProcessingRecipeGenerator.registerAll(event.includeServer(), generator, registries);
 
+        if (event.includeServer()) {
+            Recipes.registerAllProcessing(generator, packOutput, registries);
+        }
 
         BlockStates blockStates = new BlockStates(packOutput, helper);
         generator.addProvider(event.includeClient(), blockStates);

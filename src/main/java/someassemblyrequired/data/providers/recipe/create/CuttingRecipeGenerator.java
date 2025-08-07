@@ -1,6 +1,8 @@
 package someassemblyrequired.data.providers.recipe.create;
 
-import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.api.data.recipe.CuttingRecipeGen;
+import com.simibubi.create.content.kinetics.saw.CuttingRecipe;
+import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -20,12 +22,14 @@ import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-public class CuttingRecipeGenerator extends ProcessingRecipeGenerator {
+public class CuttingRecipeGenerator extends CuttingRecipeGen {
 
     public CuttingRecipeGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
-        super(packOutput, registries);
+        super(packOutput, registries, SomeAssemblyRequired.MOD_ID);
 
         cut(Items.APPLE, ModItems.APPLE_SLICES.get(), 2);
         cut(Items.BREAD, ModItems.BREAD_SLICE.get(), 4);
@@ -126,7 +130,13 @@ public class CuttingRecipeGenerator extends ProcessingRecipeGenerator {
         });
     }
 
-    protected AllRecipeTypes getRecipeType() {
-        return AllRecipeTypes.CUTTING;
+    @Override
+    protected GeneratedRecipe createWithDeferredId(Supplier<ResourceLocation> name, UnaryOperator<StandardProcessingRecipe.Builder<CuttingRecipe>> transform) {
+        GeneratedRecipe generatedRecipe =
+                c -> transform.apply(getBuilder(name.get()))
+                        .whenModLoaded(ModCompat.CREATE)
+                        .build(c);
+        all.add(generatedRecipe);
+        return generatedRecipe;
     }
 }

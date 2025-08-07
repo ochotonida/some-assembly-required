@@ -1,7 +1,8 @@
 package someassemblyrequired.data.providers.recipe.create;
 
-import com.simibubi.create.AllRecipeTypes;
-import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
+import com.simibubi.create.api.data.recipe.PressingRecipeGen;
+import com.simibubi.create.content.kinetics.press.PressingRecipe;
+import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -18,11 +19,13 @@ import someassemblyrequired.registry.ModDataComponents;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
-public class PressingRecipeGenerator extends ProcessingRecipeGenerator {
+public class PressingRecipeGenerator extends PressingRecipeGen {
 
     public PressingRecipeGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
-        super(packOutput, registries);
+        super(packOutput, registries, SomeAssemblyRequired.MOD_ID);
 
         stompSandwich(ModItems.HAMBURGER.get(), FarmersDelightCompat.createBurger());
         stompSandwich(ModItems.BACON_SANDWICH.get(), FarmersDelightCompat.createBLT());
@@ -45,7 +48,12 @@ public class PressingRecipeGenerator extends ProcessingRecipeGenerator {
     }
 
     @Override
-    protected IRecipeTypeInfo getRecipeType() {
-        return AllRecipeTypes.PRESSING;
+    protected GeneratedRecipe createWithDeferredId(Supplier<ResourceLocation> name, UnaryOperator<StandardProcessingRecipe.Builder<PressingRecipe>> transform) {
+        GeneratedRecipe generatedRecipe =
+                c -> transform.apply(getBuilder(name.get()))
+                        .whenModLoaded(ModCompat.CREATE)
+                        .build(c);
+        all.add(generatedRecipe);
+        return generatedRecipe;
     }
 }
