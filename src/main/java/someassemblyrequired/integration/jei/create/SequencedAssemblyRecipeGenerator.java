@@ -1,10 +1,10 @@
 package someassemblyrequired.integration.jei.create;
 
+import com.simibubi.create.Create;
 import com.simibubi.create.compat.jei.CreateJEI;
 import com.simibubi.create.content.fluids.potion.PotionFluidHandler;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
-import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipe;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import com.simibubi.create.foundation.fluid.FluidHelper;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.neoforge.fluids.FluidStack;
 import someassemblyrequired.SomeAssemblyRequired;
@@ -31,9 +32,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class SequencedAssemblyRecipeGenerator extends SandwichRecipeGenerator<SequencedAssemblyRecipe> {
+public class SequencedAssemblyRecipeGenerator extends SandwichRecipeGenerator<RecipeHolder<Recipe<?>>> {
 
-    private static final RecipeType<SequencedAssemblyRecipe> SEQUENCED_ASSEMBLY = RecipeType.create(ModCompat.CREATE, "sequenced_assembly", SequencedAssemblyRecipe.class);
+    private static final RecipeType<RecipeHolder<Recipe<?>>> SEQUENCED_ASSEMBLY = RecipeType.createRecipeHolderType(Create.asResource("sequenced_assembly"));
 
     public static void register(IAdvancedRegistration registration) {
         registration.addTypedRecipeManagerPlugin(SEQUENCED_ASSEMBLY, new SequencedAssemblyRecipeGenerator());
@@ -45,7 +46,7 @@ public class SequencedAssemblyRecipeGenerator extends SandwichRecipeGenerator<Se
     }
 
     @Override
-    protected SequencedAssemblyRecipe getRecipeForSandwich(ItemStack prefix, List<ItemStack> toppings, ItemStack result) {
+    protected RecipeHolder<Recipe<?>> getRecipeForSandwich(ItemStack prefix, List<ItemStack> toppings, ItemStack result) {
         SequencedAssemblyRecipeBuilder recipe = new SequencedAssemblyRecipeBuilder(
                 SomeAssemblyRequired.id("dynamic/sequenced_assembly"))
                 .transitionTo(ModItems.SANDWICH.get())
@@ -63,12 +64,13 @@ public class SequencedAssemblyRecipeGenerator extends SandwichRecipeGenerator<Se
             }
         }
 
-        return recipe.build().value();
+        var r = recipe.build();
+        return new RecipeHolder<>(r.id(), r.value());
     }
 
     @Override
-    protected List<SequencedAssemblyRecipe> getRecipesForBread(ItemStack bottomBread, ItemStack topBread) {
-        List<SequencedAssemblyRecipe> recipes = super.getRecipesForBread(bottomBread, topBread);
+    protected List<RecipeHolder<Recipe<?>>> getRecipesForBread(ItemStack bottomBread, ItemStack topBread) {
+        List<RecipeHolder<Recipe<?>>> recipes = super.getRecipesForBread(bottomBread, topBread);
         getSpoutingRecipes()
                 .map(recipe -> recipe.assemble(FluidStack.EMPTY))
                 .filter(item -> !item.is(Items.HONEY_BOTTLE)) // already included by super
