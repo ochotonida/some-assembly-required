@@ -11,6 +11,13 @@
   "someassemblyrequired.advancement.consume_potion_sandwich.description": "吃下夹有药水的三明治",
   "someassemblyrequired.advancement.consume_double_decker_sandwich.title": "双倍饥饿",
   "someassemblyrequired.advancement.consume_double_decker_sandwich.description": "吃一个双层三明治",
+  "someassemblyrequired.advancement.consume_1000_sandwiches.title": "三明治山姆",
+  "someassemblyrequired.advancement.consume_1000_sandwiches.description": "吃下1000个三明治",
+  "someassemblyrequired.advancement.consume_1000_burgers.title": "汉堡王子",
+  "someassemblyrequired.advancement.consume_1000_burgers.description": "吃下1000个汉堡",
+
+  "stat.someassemblyrequired.sandwiches_eaten": "吃掉的三明治数",
+  "stat.someassemblyrequired.burgers_eaten": "吃掉的汉堡数",
 
   "someassemblyrequired.message.bottom_bread": "没有底部面包片！",
   "someassemblyrequired.message.full_sandwich": "制作的三明治过大！",
@@ -21,6 +28,7 @@
   "item.someassemblyrequired.spread": "酱",
   "item.someassemblyrequired.bread_slice": "面包片",
   "item.someassemblyrequired.toasted_bread_slice": "烤面包片",
+  "item.someassemblyrequired.raw_burger_bun": "生汉堡面包",
   "item.someassemblyrequired.burger_bun": "汉堡面包",
   "item.someassemblyrequired.burger_bun_bottom": "汉堡面包底",
   "item.someassemblyrequired.burger_bun_top": "汉堡面包顶",
@@ -35,18 +43,38 @@
 
   "item.someassemblyrequired.sandwich.base.sandwich": "三明治",
   "item.someassemblyrequired.sandwich.base.burger": "汉堡",
-  "item.someassemblyrequired.sandwich.only_bread.sandwich": "三明治…？",
-  "item.someassemblyrequired.sandwich.only_bread.burger": "汉堡…？",
-  "item.someassemblyrequired.sandwich.open_faced.sandwich": "单片三明治",
-  "item.someassemblyrequired.sandwich.double_decker.sandwich": "双层三明治",
-  "item.someassemblyrequired.sandwich.double_decker.burger": "双层汉堡",
   "item.someassemblyrequired.sandwich.base.with_ingredients.sandwich": "%s 三明治",
   "item.someassemblyrequired.sandwich.base.with_ingredients.burger": "%s 汉堡",
-  "item.someassemblyrequired.sandwich.potion.pattern.1.sandwich": "%s 三明治",
-  "item.someassemblyrequired.sandwich.potion.pattern.1.burger": "%s 汉堡",
+
+  "item.someassemblyrequired.sandwich.only_bread.sandwich": "三明治…？",
+  "item.someassemblyrequired.sandwich.only_bread.burger": "汉堡…？",
+
+  "item.someassemblyrequired.sandwich.open_faced.sandwich": "开放式三明治",
+  "item.someassemblyrequired.sandwich.open_faced.burger": "开放式汉堡",
+  "item.someassemblyrequired.sandwich.open_faced.with_ingredients.sandwich": "开放式 %s 三明治",
+  "item.someassemblyrequired.sandwich.open_faced.with_ingredients.burger": "开放式 %s 汉堡",
+
+  "item.someassemblyrequired.sandwich.double_decker.sandwich": "双层三明治",
+  "item.someassemblyrequired.sandwich.double_decker.burger": "双层汉堡",
   "item.someassemblyrequired.sandwich.double_decker.with_ingredients.sandwich": "双层 %s 三明治",
   "item.someassemblyrequired.sandwich.double_decker.with_ingredients.burger": "双层 %s 汉堡",
-  "item.someassemblyrequired.sandwich.open_faced.with_ingredients.sandwich": "开放式 %s 三明治",
+
+  "note.to.translators.1": "The names of sandwiches with potions are determined automatically using RegEx patterns.",
+  "note.to.translators.2": "The pattern (translation key without .sandwich/.burger) should use the same structure of potion names.",
+  "note.to.translators.3": "You can use '(.*)' in your pattern to capture a group of characters, which you can then reference in the translation using $<number>.",
+  "note.to.translators.4": "If the first pattern does not match a potion's name, the next pattern is used.",
+  "note.to.translators.5": "Two patterns are defined here, but you can define more if needed.",
+  "note.to.translators.6": "If a potion's name does not follow a pattern, you can explicitly define the name of sandwiches with that potion.",
+  "note.to.translators.7": "Use the key 'potion.with_id.<mod_id>.<potion_id>.water.sandwich' for this. See the example for water bottles below.",
+  "note.to.translators.8": "(Note that long and strong variants of potions have separate id's, you will need to define all variants)",
+  "item.someassemblyrequired.sandwich.potion.pattern.1": "(.*)药水",
+  "item.someassemblyrequired.sandwich.potion.pattern.1.sandwich": "$1 三明治",
+  "item.someassemblyrequired.sandwich.potion.pattern.1.burger": "$1 汉堡",
+  "item.someassemblyrequired.sandwich.potion.pattern.2": "(.*)药水",
+  "item.someassemblyrequired.sandwich.potion.pattern.2.sandwich": "$1 三明治",
+  "item.someassemblyrequired.sandwich.potion.pattern.2.burger": "$1 汉堡",
+  "item.someassemblyrequired.sandwich.potion.with_id.minecraft.water.sandwich": "湿漉漉的三明治",
+  "item.someassemblyrequired.sandwich.potion.with_id.minecraft.water.burger": "湿漉漉的汉堡",
 
   "someassemblyrequired.tooltip.ingredient_list.1": "%s",
   "someassemblyrequired.tooltip.ingredient_list.2": "%s & %s",
@@ -63,10 +91,13 @@
   "someassemblyrequired.ingredient.chopped_golden_carrot": "金胡萝卜",
   "someassemblyrequired.ingredient.chopped_beetroot": "甜菜根",
   "someassemblyrequired.ingredient.tomato_slices": "番茄",
+  "someassemblyrequired.ingredient.sliced_onion": "洋葱",
 
   "someassemblyrequired.ingredient.water_bottle": "水",
   "someassemblyrequired.ingredient.honey_bottle": "蜂蜜",
   "someassemblyrequired.ingredient.milk_bucket": "奶",
+
+  "someassemblyrequired.ingredient.create.chocolate_bucket": "巧克力",
 
   "someassemblyrequired.ingredient.farmersdelight.cabbage_leaf": "卷心菜",
   "someassemblyrequired.ingredient.farmersdelight.fried_egg": "鸡蛋",
@@ -78,6 +109,26 @@
   "someassemblyrequired.ingredient.farmersdelight.mutton_chops": "羊肉",
   "someassemblyrequired.ingredient.farmersdelight.cooked_rice": "大米",
 
+  "someassemblyrequired.sandwiching_station.info.creating_sandwiches.1": "用于制作三明治的创作站。要制作三明治：",
+  "someassemblyrequired.sandwiching_station.info.creating_sandwiches.2": "1．手持面包片或汉堡面包片右键点击三明治站。",
+  "someassemblyrequired.sandwiching_station.info.creating_sandwiches.3": "2．手持其他食材继续右键点击三明治站来搭建你的三明治。任何可以食用的物品（包括药水）均能添加至其中。若需移除食材，空手右键点击三明治站。",
+  "someassemblyrequired.sandwiching_station.info.creating_sandwiches.4": "3．当制作完成后，破坏三明治方块即可获得该物品。",
+  "someassemblyrequired.sandwiching_station.info.bonus_effects.1": "三明治和汉堡均可触发状态效果，持续时间取决于独特食材的数量。",
+  "someassemblyrequired.sandwiching_station.info.bonus_effects.2": "当三明治内包含至少%s种独特食材时将触发%s效果，当汉堡内包含至少%s种独特食材时将触发%s效果。",
+  "someassemblyrequired.sandwiching_station.info.bonus_effects.3": "面包以及触发药水效果的物品不计入独特食材的数量。",
+
+  "someassemblyrequired.config.client.list_ingredients_in_tooltip": "在工具提示中列出食材",
   "someassemblyrequired.config.server.maximum_sandwich_height": "最大三明治高度",
-  "someassemblyrequired.config.server.generate_chest_loot": "生成箱子内战利品"
+  "someassemblyrequired.config.server.generate_chest_loot": "生成箱子内战利品",
+  "someassemblyrequired.config.server.sandwich_bonus_effect": "三明治奖励效果",
+  "someassemblyrequired.config.server.burger_bonus_effect": "汉堡奖励效果",
+  "someassemblyrequired.config.server.sandwich_bonus_effect_durations": "三明治奖励效果持续时间",
+  "someassemblyrequired.config.server.burger_bonus_effect_durations": "汉堡奖励效果持续时间",
+
+  "recipe_category.someassemblyrequired.sandwich_building": "三明治搭建",
+
+  "tag.item.c.bread_slices": "面包片",
+  "tag.item.someassemblyrequired.burger_buns": "汉堡面包",
+  "tag.item.someassemblyrequired.sandwich_bread": "三明治面包",
+  "tag.block.someassemblyrequired.sandwiching_stations": "三明治站"
 }
