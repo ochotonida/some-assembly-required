@@ -29,7 +29,7 @@ public final class SandwichContents extends AbstractList<ItemStack> {
 
     public static final SandwichContents EMPTY = new SandwichContents(List.of());
 
-    public static final Codec<SandwichContents> CODEC = ItemStack.CODEC.listOf(0, 32).xmap(SandwichContents::new, Function.identity());
+    public static final Codec<SandwichContents> CODEC = ItemStack.CODEC.listOf(0, 256).xmap(SandwichContents::new, Function.identity());
     public static final StreamCodec<RegistryFriendlyByteBuf, SandwichContents> STREAM_CODEC = ItemStack.STREAM_CODEC.apply(ByteBufCodecs.list()).map(SandwichContents::new, Function.identity());
     private final List<ItemStack> items;
 
