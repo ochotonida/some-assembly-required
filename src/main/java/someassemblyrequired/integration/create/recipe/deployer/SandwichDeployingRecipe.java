@@ -1,15 +1,10 @@
 package someassemblyrequired.integration.create.recipe.deployer;
 
-import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
-import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.config.ModConfig;
@@ -21,16 +16,11 @@ import someassemblyrequired.registry.ModTags;
 
 import java.util.Optional;
 
-public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
+public class SandwichDeployingRecipe {
 
-    private static final IRecipeTypeInfo TYPE_INFO = new TypeInfo();
     private static final ResourceLocation RECIPE_ID = SomeAssemblyRequired.id("sandwich_deploying");
 
-    public SandwichDeployingRecipe(ProcessingRecipeBuilder.ProcessingRecipeParams params) {
-        super(TYPE_INFO, params);
-    }
-
-    public static Optional<SandwichDeployingRecipe> createRecipe(RecipeWrapper inventory) {
+    public static Optional<DeployerApplicationRecipe> createRecipe(RecipeWrapper inventory) {
         if (!matches(inventory)) {
             return Optional.empty();
         }
@@ -55,7 +45,7 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
                         .orElse(Ingredients.getHeight(item));
     }
 
-    public static SandwichDeployingRecipe createRecipe(ItemStack sandwich, ItemStack ingredient) {
+    public static DeployerApplicationRecipe createRecipe(ItemStack sandwich, ItemStack ingredient) {
         sandwich = sandwich.copy();
         sandwich.setCount(1);
         ingredient = ingredient.copy();
@@ -64,43 +54,10 @@ public class SandwichDeployingRecipe extends ProcessingRecipe<RecipeWrapper> {
         ItemStack container = Ingredients.getContainer(ingredient);
         ItemStack result = SandwichItem.of(sandwich, ingredient);
 
-        return new ProcessingRecipeBuilder<>(SandwichDeployingRecipe::new, RECIPE_ID)
+        return new ProcessingRecipeBuilder<>(DeployerApplicationRecipe::new, RECIPE_ID)
                 .withItemOutputs(
                         new ProcessingOutput(result, 1),
                         container.isEmpty() ? ProcessingOutput.EMPTY : new ProcessingOutput(container, 1)
                 ).build();
-    }
-
-    @Override
-    public boolean matches(RecipeWrapper inventory, Level level) {
-        return false;
-    }
-
-    @Override
-    protected int getMaxInputCount() {
-        return 2;
-    }
-
-    @Override
-    protected int getMaxOutputCount() {
-        return 2;
-    }
-
-    private static class TypeInfo implements IRecipeTypeInfo {
-
-        @Override
-        public ResourceLocation getId() {
-            return null;
-        }
-
-        @Override
-        public <T extends RecipeSerializer<?>> T getSerializer() {
-            return null;
-        }
-
-        @Override
-        public <T extends RecipeType<?>> T getType() {
-            return AllRecipeTypes.DEPLOYING.getType();
-        }
     }
 }

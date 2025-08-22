@@ -9,8 +9,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.data.providers.*;
-import someassemblyrequired.data.providers.recipe.create.ProcessingRecipeGenerator;
-import someassemblyrequired.integration.ModCompat;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -34,8 +32,9 @@ public class SomeAssemblyRequiredData {
         generator.addProvider(event.includeServer(), lootModifiers);
         generator.addProvider(event.includeServer(), new LootTables(packOutput, helper, lootModifiers));
         generator.addProvider(event.includeServer(), new Ingredients(packOutput));
-        if (ModCompat.isCreateLoaded()) {
-            ProcessingRecipeGenerator.registerAll(event.includeServer(), generator);
+
+        if (event.includeServer()) {
+            Recipes.registerAllProcessing(generator, packOutput);
         }
 
         BlockStates blockStates = new BlockStates(packOutput, helper);

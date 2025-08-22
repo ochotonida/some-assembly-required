@@ -1,6 +1,10 @@
 package someassemblyrequired.data.providers.recipe.create;
 
-import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
+import com.simibubi.create.api.data.recipe.CuttingRecipeGen;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -14,10 +18,13 @@ import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 
-public class CuttingRecipeGenerator extends ProcessingRecipeGenerator {
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
+
+public class CuttingRecipeGenerator extends CuttingRecipeGen {
 
     public CuttingRecipeGenerator(PackOutput packOutput) {
-        super(packOutput);
+        super(packOutput, SomeAssemblyRequired.MOD_ID);
 
         cut(Items.APPLE, ModItems.APPLE_SLICES.get(), 2);
         cut(Items.BREAD, ModItems.BREAD_SLICE.get(), 4);
@@ -58,7 +65,15 @@ public class CuttingRecipeGenerator extends ProcessingRecipeGenerator {
         create(SomeAssemblyRequired.id(ModCompat.CREATE + "/" + ForgeRegistries.ITEMS.getKey(result.asItem()).getPath()), builder -> builder.whenModMissing(ModCompat.SLICE_AND_DICE).duration(30).output(result, count).withItemIngredients(input));
     }
 
-    protected AllRecipeTypes getRecipeType() {
-        return AllRecipeTypes.CUTTING;
+    @Override
+    protected <T extends ProcessingRecipe<?>> BaseRecipeProvider.GeneratedRecipe createWithDeferredId(Supplier<ResourceLocation> name, UnaryOperator<ProcessingRecipeBuilder<T>> transform) {
+        ProcessingRecipeSerializer<T> serializer = this.getSerializer();
+        BaseRecipeProvider.GeneratedRecipe generatedRecipe = (c) -> {
+            transform.apply(new ProcessingRecipeBuilder<>(serializer.getFactory(), name.get()))
+                    .whenModLoaded(ModCompat.CREATE)
+                    .build(c);
+        };
+        all.add(generatedRecipe);
+        return generatedRecipe;
     }
 }

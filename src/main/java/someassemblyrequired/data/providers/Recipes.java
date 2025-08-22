@@ -1,6 +1,10 @@
 package someassemblyrequired.data.providers;
 
+import com.simibubi.create.api.data.recipe.ProcessingRecipeGen;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.data.CachedOutput;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -13,15 +17,21 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.data.providers.recipe.SandwichSpoutingRecipeBuilder;
+import someassemblyrequired.data.providers.recipe.create.CuttingRecipeGenerator;
 import someassemblyrequired.data.providers.recipe.farmersdelight.CuttingRecipeBuilder;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.registry.ModBlocks;
 import someassemblyrequired.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class Recipes extends RecipeProvider {
+
+    static final List<ProcessingRecipeGen> GENERATORS = new ArrayList<>();
 
     public Recipes(PackOutput packOutput) {
         super(packOutput);
@@ -37,6 +47,25 @@ public class Recipes extends RecipeProvider {
         if (ModCompat.isCreateLoaded()) {
             SandwichSpoutingRecipeBuilder.addFillingRecipes(consumer);
         }
+    }
+
+    public static void registerAllProcessing(DataGenerator gen, PackOutput output) {
+        GENERATORS.add(new CuttingRecipeGenerator(output));
+
+        gen.addProvider(true, new DataProvider() {
+
+            @Override
+            public String getName() {
+                return "Processing Recipes";
+            }
+
+            @Override
+            public CompletableFuture<?> run(CachedOutput dc) {
+                return CompletableFuture.allOf(GENERATORS.stream()
+                        .map(gen -> gen.run(dc))
+                        .toArray(CompletableFuture[]::new));
+            }
+        });
     }
 
     private void addCraftingRecipes(Consumer<FinishedRecipe> consumer) {
