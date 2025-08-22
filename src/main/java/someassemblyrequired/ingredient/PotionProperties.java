@@ -63,7 +63,7 @@ public class PotionProperties implements IngredientPropertiesBase {
     @Override
     public Component getFullName(ItemStack item) {
         PotionContents contents = item.get(DataComponents.POTION_CONTENTS);
-        if (contents != null && contents.is(Potions.WATER)) {
+        if (contents != null && !item.has(DataComponents.CUSTOM_NAME) && contents.is(Potions.WATER)) {
             return getDisplayName(item);
         }
         return IngredientPropertiesBase.super.getFullName(item);
