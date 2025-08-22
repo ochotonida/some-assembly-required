@@ -56,7 +56,7 @@ public class PotionProperties extends IngredientProperties {
 
     @Override
     public Component getFullName(ItemStack item) {
-        if (PotionUtils.getPotion(item) == Potions.WATER) {
+        if (!item.hasCustomHoverName() && PotionUtils.getPotion(item) == Potions.WATER) {
             return getDisplayName(item);
         }
         return super.getFullName(item);
