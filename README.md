@@ -24,3 +24,17 @@ The following fields can be customized (all fields are optional except `item`):
 * `sound`: A sound event id. Changes the sound this item makes when added or removed from a sandwich.
 
 For some example ingredients, see the [default data pack](https://github.com/ochotonida/some-assembly-required/tree/1.21.1/src/generated/resources/data/some_assembly_required/some_assembly_required/ingredients).
+
+
+## Custom Spouting Recipes
+
+To allow fluids to be spouted onto sandwiches by Create's spouts, the `someassemblyrequired:sandwich_spouting` recipe type can be used. Recipes of this type have the following parameters:
+
+* `fluid`: The fluid to be spouted
+    * `type`: The type of fluid ingredient. Should be set to `"fluid_stack"` to match a fluid based on its ID.
+    * `amount`: The amount of fluid that should be consumed, in millibuckets.
+    * `fluid`: The ID of the fluid that should be spouted.
+* `result`: The result of the recipe
+    * `id` The ID of the item that should be deposited on the sandwich. The item will need to have an ingredient JSON associated with it in order for it to be rendered as a spread.
+
+For some examples, see the [default data pack](https://github.com/ochotonida/some-assembly-required/tree/1.21.1/src/generated/resources/data/someassemblyrequired/recipe/sandwich_spouting).
