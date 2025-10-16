@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
+import net.neoforged.fml.loading.FMLEnvironment;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.registry.ModItems;
@@ -47,6 +48,9 @@ public class SandwichNameHelper {
         List<ItemStack> potions = uniqueIngredients.stream().filter(item -> item.is(Items.POTION)).toList();
         // potion sandwich
         if (potions.size() == 1) {
+            if (FMLEnvironment.dist.isDedicatedServer()) {
+                return translate("base", "sandwich");
+            }
             return getPotionSandwichName(potions.getFirst(), sandwichType);
         }
 
