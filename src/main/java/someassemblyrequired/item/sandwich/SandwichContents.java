@@ -125,24 +125,28 @@ public final class SandwichContents extends AbstractList<ItemStack> {
                 .saturationModifier(saturationModifier);
 
         Set<Item> uniqueIngredients = new HashSet<>();
+        Map<MobEffectInstance, Float> effects = new LinkedHashMap<>();
         for (ItemStack stack : this) {
             FoodProperties food = Ingredients.getFood(stack, entity);
             if (food.nutrition() > 0 && food.effects().isEmpty() && !stack.is(ModTags.SANDWICH_BREAD)) {
                 uniqueIngredients.add(stack.getItem());
-            } else {
-                for (FoodProperties.PossibleEffect effect : food.effects()) {
-                    builder.effect(effect::effect, effect.probability());
-                }
             }
         }
-
         if (ModConfig.serverSpec.isLoaded()) {
-            addBonusEffect(builder, uniqueIngredients.size());
+            addBonusEffect(effects, uniqueIngredients.size());
         }
+        for (ItemStack stack : this) {
+            for (FoodProperties.PossibleEffect effect : Ingredients.getFood(stack, entity).effects()) {
+                effects.computeIfPresent(effect.effect(), (i, f) -> 1 - (1 - f) * (1 - effect.probability()));
+                effects.putIfAbsent(effect.effect(), effect.probability());
+            }
+        }
+        effects.forEach((instance, p) -> builder.effect(() -> new MobEffectInstance(instance), p));
+
         return builder.build();
     }
 
-    private void addBonusEffect(FoodProperties.Builder builder, int uniqueIngredientCount) {
+    private void addBonusEffect(Map<MobEffectInstance, Float> effects, int uniqueIngredientCount) {
         String effectName = isBurger() ? ModConfig.server.burgerBonusEffect.get() : ModConfig.server.sandwichBonusEffect.get();
         List<Integer> durations = isBurger() ? ModConfig.server.burgerEffectDurations.get() : ModConfig.server.sandwichEffectDurations.get();
         uniqueIngredientCount = Math.min(durations.size() - 1, uniqueIngredientCount);
@@ -156,7 +160,7 @@ public final class SandwichContents extends AbstractList<ItemStack> {
         if (effect.isPresent() && !durations.isEmpty()) {
             int duration = durations.get(uniqueIngredientCount);
             if (duration > 0) {
-                builder.effect(() -> new MobEffectInstance(effect.get(), duration * 20, 0), 1F);
+                effects.put(new MobEffectInstance(effect.get(), duration * 20, 0), 1F);
             }
         }
     }
