@@ -67,6 +67,7 @@ public interface IngredientPropertiesBase {
     Holder<SoundEvent> sound();
 
     default void playSound(Level level, Player player, BlockPos pos, float pitch) {
+        // TODO allow custom resource pack sounds
         level.playSound(player, pos, sound().value(), SoundSource.BLOCKS, 1, pitch);
     }
 }
