@@ -13,6 +13,19 @@ The following fields can be customized (all fields are optional except `item`):
 
 * `item`: (*required*) The corresponding item id for this ingredient. (The file name does not need to correspond to the item name. However, if there are multiple ingredient JSONs for a single item, only one will be loaded)
 * `food`: A json object, replaces the item's food stats when it is on a sandwich. The format for this is the same as the [`food` data component](https://minecraft.wiki/w/Data_component_format#food).
+  * `nutrition`: (*required*) The number of food points restored by this item when eaten as part of a sandwich.
+  * `saturation`: (*required*) The amount of saturation restored by this item when eaten as part of a sandwich.
+  * `using_converts_to`: The item returned to the player when this food is added onto a sandwich, typically a bowl, bottle or bucket.
+    Items with this property are voided rather than returned when removed from a sandwich on a sandwiching station.
+  * `effects`: A list of possible effects that this food can apply when eaten as part of a sandwich. Each entry uses the following format:
+    * `probability`: (*default = 1*) The probability that the effect is applied when this food is eaten.
+    * `effect`: (*required*) A single custom effect. The format here is the same as for effects in other data components.
+      * `id`: The ID of the effect.
+      * `amplifier`: (*default = 0*) The amplifier of the effect, with level I having value 0.
+      * `duration`: (*default = 1*) The duration of the effect in ticks.
+      * `ambient`: (*default = false*) Whether this is an effect provided by a beacon or conduit and therefore should be less intrusive on the screen.
+      * `show_particles`: (*default = true*) Whether this effect produces particles.
+      * `show_icon`: (*default = true*) Whether an icon should be shown for this effect.
 * `display_name`: The name of the item as it should appear in the name of the sandwich. This is a text component, information on how to format these can be found [here](https://minecraft.wiki/w/Text_component_format). (You can also use a string)
 * `full_name`: The name of the item as it should appear in the tooltip of the sandwich. (If the display name is omitted, and the full name is set, the full name is also used as the display name)
 * `display_item`: A json object describing an item stack, overrides which item is rendered when this item is on a sandwich
@@ -38,3 +51,5 @@ To allow fluids to be spouted onto sandwiches by Create's spouts, the `someassem
     * `id` The ID of the item that should be deposited on the sandwich. The item will need to have an ingredient JSON associated with it in order for it to be rendered as a spread.
 
 For some examples, see the [default data pack](https://github.com/ochotonida/some-assembly-required/tree/1.21.1/src/generated/resources/data/someassemblyrequired/recipe/sandwich_spouting).
+
+<!-- TODO: Explain how to add custom models in more detail -->
