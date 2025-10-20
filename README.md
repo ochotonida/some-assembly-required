@@ -3,7 +3,8 @@ Some Assembly Required is a Farmer's Delight and Create addon that allows player
 More information can be found on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/some-assembly-required) or [Modrinth](https://modrinth.com/mod/some-assembly-required).
 
 ## Customizing Items on Sandwiches
-The behavior and appearance of items on sandwiches can be customized through data packs. Note that the data pack format for this can change between versions,
+The behavior and appearance of items on sandwiches can be customized through data packs.
+⚠️ Note that the data pack format for this can change between versions,
 so make sure you are viewing this README on the GitHub branch for your Minecraft version.
 
 
@@ -36,12 +37,77 @@ The following fields can be customized (all fields are optional except `item`):
 * `height`: (*default = 1*) The height of the model of this item, in pixels. (Determines the size of the gap between the previous item on the sandwich and the next)
 * `sound`: A sound event id. Changes the sound this item makes when added or removed from a sandwich.
 
-For some example ingredients, see the [default data pack](https://github.com/ochotonida/some-assembly-required/tree/1.21.1/src/generated/resources/data/some_assembly_required/some_assembly_required/ingredients).
+Examples: (Comments should be removed in your own data files)
+```json5
+{
+  "item": "create:chocolate_bucket",
+  // Chocolate buckets aren't drinkable by default, so we need to define its food stats.
+  // We also set the 'using_converts_to' property. For edible items, this usually isn't needed.
+  "food": {
+    "nutrition": 6,
+    "saturation": 3.6,
+    "using_converts_to": {
+      "id": "minecraft:bucket"
+    }
+  },
+  "display_item": {
+    // We want chocolate buckets to display as a liquid instead of a bucket,
+    // so we set the display item to Some Assembly Required's 'spread' item.
+    // The color of this item can be changed using the 'spread_color' item component.
+    "id": "someassemblyrequired:spread",
+    "components": {
+      // Accepts an RRGGBB hexadecimal color value.
+      // AARRGGBB is also allowed for translucent spreads.
+      "someassemblyrequired:spread_color": "#AD513C"
+    },
+    "count": 1
+  },
+  // We don't want it to be called a 'Chocolate Bucket' in the tooltip of sandwiches,
+  // so we set the 'full_name' property to 'Chocolate'
+  // The 'display_name' can be used if you want to keep the full item name in the tooltip
+  "full_name": {
+    // Translates to 'Chocolate'
+    "translate": "someassemblyrequired.ingredient.create.chocolate_bucket"
+  },
+  // Use the 'moist' application sound.
+  // Other sounds used by SAR are 'wet', 'slimy' and 'leafy'.
+  "sound": "someassemblyrequired:block.sandwich.add_item.moist"
+}
+```
+```json5
+{
+  // An example of an item with a custom model
+  "item": "farmersdelight:beef_patty",
+  "display_item": {
+    // Some Assembly Required adds all of its custom models to the spread item's model
+    // as custom model data. You can either use custom model data yourself, or use kubeJS
+    // to add a new item with your 3D model.
+    "id": "someassemblyrequired:spread",
+    "components": {
+      "minecraft:custom_model_data": 14
+    },
+    "count": 1
+  },
+  "display_name": {
+    // Translates to 'Beef'
+    "translate": "someassemblyrequired.ingredient.farmersdelight.beef_patty"
+  },
+  // The beef patty is twice as tall as a regular item
+  "height": 2,
+  // We use a custom model that doesn't need to be rotated or translated.
+  "render_as_item": false
+}
+```
+The spread item model can be found [here](https://github.com/ochotonida/some-assembly-required/blob/1.21.1/src/generated/resources/assets/someassemblyrequired/models/item/spread.json),
+the beef patty 3D model can be found [here](https://github.com/ochotonida/some-assembly-required/blob/1.21.1/src/generated/resources/assets/someassemblyrequired/models/ingredient/farmersdelight/beef_patty.json).
+
+For more example ingredients, see the [default data pack](https://github.com/ochotonida/some-assembly-required/tree/1.21.1/src/generated/resources/data/someassemblyrequired/someassemblyrequired/ingredients).
 
 
 ## Custom Spouting Recipes
 
-To allow fluids to be spouted onto sandwiches by Create's spouts, the `someassemblyrequired:sandwich_spouting` recipe type can be used. Recipes of this type have the following parameters:
+To allow fluids to be spouted onto sandwiches by Create's spouts, the `someassemblyrequired:sandwich_spouting` recipe type can be used.
+Recipes of this type have the following properties:
 
 * `fluid`: The fluid to be spouted
     * `type`: The type of fluid ingredient. Should be set to `"fluid_stack"` to match a fluid based on its ID.
@@ -50,6 +116,22 @@ To allow fluids to be spouted onto sandwiches by Create's spouts, the `someassem
 * `result`: The result of the recipe
     * `id` The ID of the item that should be deposited on the sandwich. The item will need to have an ingredient JSON associated with it in order for it to be rendered as a spread.
 
-For some examples, see the [default data pack](https://github.com/ochotonida/some-assembly-required/tree/1.21.1/src/generated/resources/data/someassemblyrequired/recipe/sandwich_spouting).
+Example:
+```json5
+{
+  "type": "someassemblyrequired:sandwich_spouting",
+  "fluid": {
+    "type": "fluid_stack",
+    "amount": 250,
+    "fluid": "create:chocolate"
+  },
+  "result": {
+    // This will use the chocolate bucket ingredient we defined earlier
+    "id": "create:chocolate_bucket"
+  }
+}
+```
 
-<!-- TODO: Explain how to add custom models in more detail -->
+
+
+For more examples, see the [default data pack](https://github.com/ochotonida/some-assembly-required/tree/1.21.1/src/generated/resources/data/someassemblyrequired/recipe/sandwich_spouting).
