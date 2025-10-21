@@ -15,8 +15,8 @@ public class SandwichingStationRecipeGenerator extends SandwichRecipeGenerator<S
     }
 
     @Override
-    protected ItemStack getFillingFromFluid(FluidStack fluid) {
-        return ItemStack.EMPTY;
+    protected Optional<ItemStack> getFillingFromFluid(FluidStack fluid) {
+        return Optional.empty();
     }
 
     @Override
