@@ -18,14 +18,15 @@ public class SomeAssemblyRequiredData {
         CompletableFuture<HolderLookup.Provider> registries = event.getLookupProvider();
 
         BlockTags blockTagsProvider = new BlockTags(packOutput, registries, helper);
+        Ingredients ingredients = new Ingredients(packOutput);
         generator.addProvider(event.includeServer(), blockTagsProvider);
-        generator.addProvider(event.includeServer(), new ItemTags(packOutput, registries, blockTagsProvider.contentsGetter(), helper));
+        generator.addProvider(event.includeServer(), new ItemTags(packOutput, registries, blockTagsProvider.contentsGetter(), helper, ingredients));
         generator.addProvider(event.includeServer(), new Recipes(packOutput, registries));
         generator.addProvider(event.includeServer(), new Advancements(packOutput, registries, helper));
         LootModifiers lootModifiers = new LootModifiers(packOutput, registries);
         generator.addProvider(event.includeServer(), lootModifiers);
         generator.addProvider(event.includeServer(), new LootTables(packOutput, helper, lootModifiers, registries));
-        generator.addProvider(event.includeServer(), new Ingredients(packOutput));
+        generator.addProvider(event.includeServer(), ingredients);
         generator.addProvider(event.includeServer(), new DataMaps(packOutput, registries));
 
         if (event.includeServer()) {

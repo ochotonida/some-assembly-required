@@ -19,6 +19,7 @@ import net.neoforged.neoforge.common.conditions.ConditionalOps;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.WithConditions;
+import net.neoforged.neoforge.common.extensions.IHolderExtension;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.data.providers.ingredient.CreateIngredients;
 import someassemblyrequired.data.providers.ingredient.FarmersDelightIngredients;
@@ -146,6 +147,19 @@ public record Ingredients(PackOutput packOutput) implements DataProvider {
         });
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
+    }
+
+    public List<ResourceKey<Item>> collectSpecialFillings() {
+        addIngredients();
+        return INGREDIENTS.keySet().stream()
+                .filter(key -> {
+                    IngredientProperties ingredient = INGREDIENTS.get(key).build();
+                    return !ingredient.hidden() && !ingredient.displayItem().isEmpty();
+                })
+                .map(IHolderExtension::getKey)
+                .peek(Objects::requireNonNull)
+                .sorted(Comparator.comparing(key -> key.location().toString()))
+                .toList();
     }
 
     public static Holder.Reference<Item> reference(String modId, String path) {
