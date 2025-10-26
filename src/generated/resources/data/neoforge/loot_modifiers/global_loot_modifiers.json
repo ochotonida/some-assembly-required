@@ -1,20 +1,20 @@
 {
   "entries": [
-    "someassemblyrequired:inject/chests/ancient_city",
-    "someassemblyrequired:inject/chests/village/village_snowy_house",
+    "someassemblyrequired:inject/chests/underwater_ruin_big",
+    "someassemblyrequired:inject/chests/underwater_ruin_small",
     "someassemblyrequired:inject/chests/buried_treasure",
-    "someassemblyrequired:inject/chests/village/village_savanna_house",
+    "someassemblyrequired:inject/chests/end_city_treasure",
+    "someassemblyrequired:inject/chests/abandoned_mineshaft",
     "someassemblyrequired:inject/chests/simple_dungeon",
+    "someassemblyrequired:inject/chests/nether_bridge",
+    "someassemblyrequired:inject/chests/ancient_city",
+    "someassemblyrequired:inject/chests/shipwreck_supply",
+    "someassemblyrequired:inject/chests/spawn_bonus_chest",
     "someassemblyrequired:inject/chests/village/village_desert_house",
+    "someassemblyrequired:inject/chests/village/village_savanna_house",
     "someassemblyrequired:inject/chests/village/village_plains_house",
     "someassemblyrequired:inject/chests/village/village_taiga_house",
-    "someassemblyrequired:inject/chests/shipwreck_supply",
-    "someassemblyrequired:inject/chests/abandoned_mineshaft",
-    "someassemblyrequired:inject/chests/nether_bridge",
-    "someassemblyrequired:inject/chests/underwater_ruin_big",
-    "someassemblyrequired:inject/chests/end_city_treasure",
-    "someassemblyrequired:inject/chests/spawn_bonus_chest",
-    "someassemblyrequired:inject/chests/underwater_ruin_small"
+    "someassemblyrequired:inject/chests/village/village_snowy_house"
   ],
   "replace": false
 }

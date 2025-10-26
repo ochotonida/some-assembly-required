@@ -2,7 +2,6 @@ package someassemblyrequired.data.providers.recipe;
 
 import com.simibubi.create.AllFluids;
 import com.simibubi.create.AllItems;
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +14,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.integration.create.recipe.SandwichFluidSpoutingRecipe;
@@ -23,7 +23,7 @@ import someassemblyrequired.integration.create.recipe.SandwichPotionSpoutingReci
 public class SandwichSpoutingRecipeBuilder {
 
     public static void addFillingRecipes(RecipeOutput output) {
-        create(output, "water_bottle", PotionContents.createItemStack(Items.POTION, Potions.WATER), FluidIngredient.fromFluid(Fluids.WATER, 250));
+        create(output, "water_bottle", PotionContents.createItemStack(Items.POTION, Potions.WATER), SizedFluidIngredient.of(Fluids.WATER, 250));
         create(output, Items.HONEY_BOTTLE, AllFluids.HONEY.get());
         create(output, AllItems.BUILDERS_TEA.get(), AllFluids.TEA.get());
         create(output, Items.MILK_BUCKET, NeoForgeMod.MILK.get());
@@ -40,10 +40,10 @@ public class SandwichSpoutingRecipeBuilder {
     }
 
     public static void create(RecipeOutput output, ItemStack result, Fluid fluid, int amountRequired) {
-        create(output, BuiltInRegistries.ITEM.getKey(result.getItem()).getPath(), result, FluidIngredient.fromFluid(fluid, amountRequired));
+        create(output, BuiltInRegistries.ITEM.getKey(result.getItem()).getPath(), result, SizedFluidIngredient.of(fluid, amountRequired));
     }
 
-    public static void create(RecipeOutput output, String name, ItemStack result, FluidIngredient ingredient) {
+    public static void create(RecipeOutput output, String name, ItemStack result, SizedFluidIngredient ingredient) {
         output.accept(id(name), new SandwichFluidSpoutingRecipe(ingredient, result), null, new ModLoadedCondition(ModCompat.CREATE));
     }
 

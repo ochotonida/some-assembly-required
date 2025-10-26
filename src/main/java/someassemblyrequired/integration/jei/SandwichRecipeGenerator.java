@@ -1,6 +1,5 @@
 package someassemblyrequired.integration.jei;
 
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.ingredients.ITypedIngredient;
 import mezz.jei.api.neoforge.NeoForgeTypes;
@@ -11,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.item.sandwich.SandwichContents;
@@ -112,7 +112,7 @@ public abstract class SandwichRecipeGenerator<RECIPE> implements ISimpleRecipeMa
 
     protected abstract Optional<ItemStack> getFillingFromFluid(FluidStack fluid);
 
-    protected abstract Optional<FluidIngredient> getFluidFromFilling(ItemStack filling);
+    protected abstract Optional<SizedFluidIngredient> getFluidFromFilling(ItemStack filling);
 
     protected RECIPE createRecipe(ItemStack bottomBread, ItemStack filling, ItemStack topBread) {
         if (filling.getCount() != 1) {

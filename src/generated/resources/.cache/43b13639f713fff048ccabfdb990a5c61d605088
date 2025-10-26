@@ -1,5 +1,5 @@
-// 1.21.1	2025-04-07T16:56:50.0937657	Global Loot Modifiers : someassemblyrequired
-7303896d467a042e566e16c6db0de3d12c3ae8e2 data/neoforge/loot_modifiers/global_loot_modifiers.json
+// 1.21.1	2025-10-26T22:32:05.2382591	Global Loot Modifiers : someassemblyrequired
+6c3a0668e80d933ed474b4d45008fe7a52d832c0 data/neoforge/loot_modifiers/global_loot_modifiers.json
 ed8f0b93c0de6f3efd9a4dfb6d13ede8e305fe87 data/someassemblyrequired/loot_modifiers/inject/chests/abandoned_mineshaft.json
 39545082f8a4bdf1313031fa53b0ee600a222a2b data/someassemblyrequired/loot_modifiers/inject/chests/ancient_city.json
 2cdae783c52af66c5a0e2c3091e0848464f1d445 data/someassemblyrequired/loot_modifiers/inject/chests/buried_treasure.json

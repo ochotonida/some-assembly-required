@@ -2,27 +2,27 @@ package someassemblyrequired.integration.create.recipe;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import someassemblyrequired.recipe.SandwichSpoutingRecipe;
 import someassemblyrequired.registry.ModRecipeTypes;
 
 public class SandwichFluidSpoutingRecipe extends SandwichSpoutingRecipe {
 
-    private final FluidIngredient ingredient;
+    private final SizedFluidIngredient ingredient;
     private final ItemStack result;
 
-    public SandwichFluidSpoutingRecipe(FluidIngredient ingredient, ItemStack result) {
+    public SandwichFluidSpoutingRecipe(SizedFluidIngredient ingredient, ItemStack result) {
         this.ingredient = ingredient;
         this.result = result;
     }
 
-    public FluidIngredient ingredient() {
+    public SizedFluidIngredient ingredient() {
         return ingredient;
     }
 
@@ -32,7 +32,7 @@ public class SandwichFluidSpoutingRecipe extends SandwichSpoutingRecipe {
 
     @Override
     public int getAmountRequired(FluidStack fluid) {
-        return ingredient.getRequiredAmount();
+        return ingredient.amount();
     }
 
     @Override
@@ -58,12 +58,12 @@ public class SandwichFluidSpoutingRecipe extends SandwichSpoutingRecipe {
     public static class Serializer implements RecipeSerializer<SandwichFluidSpoutingRecipe> {
 
         private static final MapCodec<SandwichFluidSpoutingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                FluidIngredient.CODEC.fieldOf("fluid").forGetter(SandwichFluidSpoutingRecipe::ingredient),
+                SizedFluidIngredient.FLAT_CODEC.fieldOf("fluid").forGetter(SandwichFluidSpoutingRecipe::ingredient),
                 ItemStack.SINGLE_ITEM_CODEC.fieldOf("result").forGetter(SandwichFluidSpoutingRecipe::result)
         ).apply(instance, SandwichFluidSpoutingRecipe::new));
 
         private static final StreamCodec<RegistryFriendlyByteBuf, SandwichFluidSpoutingRecipe> STREAM_CODEC = StreamCodec.composite(
-                FluidIngredient.STREAM_CODEC,
+                SizedFluidIngredient.STREAM_CODEC,
                 SandwichFluidSpoutingRecipe::ingredient,
                 ItemStack.STREAM_CODEC,
                 SandwichFluidSpoutingRecipe::result,

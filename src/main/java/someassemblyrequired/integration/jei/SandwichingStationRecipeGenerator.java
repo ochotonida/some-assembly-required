@@ -1,8 +1,8 @@
 package someassemblyrequired.integration.jei;
 
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +20,7 @@ public class SandwichingStationRecipeGenerator extends SandwichRecipeGenerator<S
     }
 
     @Override
-    protected Optional<FluidIngredient> getFluidFromFilling(ItemStack filling) {
+    protected Optional<SizedFluidIngredient> getFluidFromFilling(ItemStack filling) {
         return Optional.empty();
     }
 

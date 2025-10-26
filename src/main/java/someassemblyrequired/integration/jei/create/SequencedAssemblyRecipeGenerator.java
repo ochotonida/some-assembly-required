@@ -7,7 +7,6 @@ import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
 import com.simibubi.create.foundation.fluid.FluidHelper;
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IAdvancedRegistration;
 import net.minecraft.core.RegistryAccess;
@@ -18,6 +17,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.integration.create.recipe.SandwichFluidSpoutingRecipe;
@@ -55,7 +55,7 @@ public class SequencedAssemblyRecipeGenerator extends SandwichRecipeGenerator<Re
                 .require(Ingredient.of(prefix));
 
         for (ItemStack input : toppings) {
-            Optional<FluidIngredient> fluidIngredient = getFluidFromFilling(input);
+            Optional<SizedFluidIngredient> fluidIngredient = getFluidFromFilling(input);
 
             if (fluidIngredient.isPresent()) {
                 recipe.addStep(FillingRecipe::new, builder -> builder.require(fluidIngredient.get()));
@@ -99,10 +99,10 @@ public class SequencedAssemblyRecipeGenerator extends SandwichRecipeGenerator<Re
     }
 
     @Override
-    protected Optional<FluidIngredient> getFluidFromFilling(ItemStack filling) {
+    protected Optional<SizedFluidIngredient> getFluidFromFilling(ItemStack filling) {
         if (filling.is(Items.POTION)) {
             int requiredAmount = PotionFluidHandler.getRequiredAmountForFilledBottle(null, null);
-            return Optional.of(FluidIngredient.fromFluidStack(FluidHelper.copyStackWithAmount(PotionFluidHandler
+            return Optional.of(SizedFluidIngredient.of(FluidHelper.copyStackWithAmount(PotionFluidHandler
                     .getFluidFromPotionItem(filling), requiredAmount)));
         }
         return getSpoutingRecipes()
