@@ -110,7 +110,7 @@ To allow fluids to be spouted onto sandwiches by Create's spouts, the `someassem
 Recipes of this type have the following properties:
 
 * `fluid`: The fluid to be spouted
-    * `type`: The type of fluid ingredient. Should be set to `"fluid_stack"` to match a fluid based on its ID.
+    * `type`: The type of fluid ingredient. Should be set to `"fluid_stack"` to match a fluid based on its ID. Can be omitted starting from version 5.2.5.
     * `amount`: The amount of fluid that should be consumed, in millibuckets.
     * `fluid`: The ID of the fluid that should be spouted.
 * `result`: The result of the recipe
