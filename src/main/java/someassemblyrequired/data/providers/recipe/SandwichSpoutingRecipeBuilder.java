@@ -24,10 +24,10 @@ public class SandwichSpoutingRecipeBuilder {
 
     public static void addFillingRecipes(RecipeOutput output) {
         create(output, "water_bottle", PotionContents.createItemStack(Items.POTION, Potions.WATER), SizedFluidIngredient.of(Fluids.WATER, 250));
-        create(output, Items.HONEY_BOTTLE, AllFluids.HONEY.get());
-        create(output, AllItems.BUILDERS_TEA.get(), AllFluids.TEA.get());
+        create(output, Items.HONEY_BOTTLE, AllFluids.HONEY.get().getSource());
+        create(output, AllItems.BUILDERS_TEA.get(), AllFluids.TEA.get().getSource());
         create(output, Items.MILK_BUCKET, NeoForgeMod.MILK.get());
-        create(output, AllFluids.CHOCOLATE.get().getBucket(), AllFluids.CHOCOLATE.get());
+        create(output, AllFluids.CHOCOLATE.get().getBucket(), AllFluids.CHOCOLATE.get().getSource());
         output.accept(SomeAssemblyRequired.id("sandwich_spouting/potion"), new SandwichPotionSpoutingRecipe(), null, new ModLoadedCondition(ModCompat.CREATE));
     }
 

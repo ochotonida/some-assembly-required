@@ -8,7 +8,7 @@
   "type": "someassemblyrequired:sandwich_spouting",
   "fluid": {
     "amount": 250,
-    "fluid": "create:flowing_chocolate"
+    "fluid": "create:chocolate"
   },
   "result": {
     "id": "create:chocolate_bucket"
