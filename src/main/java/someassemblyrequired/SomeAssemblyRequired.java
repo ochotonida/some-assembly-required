@@ -13,6 +13,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.RegistryBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import someassemblyrequired.config.ModConfig;
@@ -22,6 +23,8 @@ import someassemblyrequired.ingredient.IngredientProperties;
 import someassemblyrequired.ingredient.Ingredients;
 import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.registry.*;
+
+import java.util.function.Consumer;
 
 @Mod(SomeAssemblyRequired.MOD_ID)
 public class SomeAssemblyRequired {
@@ -67,7 +70,9 @@ public class SomeAssemblyRequired {
     }
 
     private void registerDataPackRegistries(DataPackRegistryEvent.NewRegistry event) {
-        event.dataPackRegistry(ModIngredients.INGREDIENTS, IngredientProperties.CODEC, IngredientProperties.CODEC);
+        Consumer<RegistryBuilder<IngredientProperties>> callback = builder -> builder
+                .onBake(registry -> ModIngredients.refresh(registry.asLookup()));
+        event.dataPackRegistry(ModIngredients.INGREDIENTS, IngredientProperties.CODEC, IngredientProperties.CODEC, callback);
     }
 
     private static void register(IEventBus modEventBus, DeferredRegister<?>... registers) {
