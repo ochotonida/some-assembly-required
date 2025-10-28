@@ -46,7 +46,7 @@ public abstract class SandwichRecipeGenerator<RECIPE> implements ISimpleRecipeMa
     }
 
     protected boolean isHandledFilling(FluidStack fluid) {
-        return !getFillingFromFluid(fluid).isEmpty();
+        return getFillingFromFluid(fluid).isPresent();
     }
 
     @Override
@@ -61,14 +61,15 @@ public abstract class SandwichRecipeGenerator<RECIPE> implements ISimpleRecipeMa
     @Override
     public List<RECIPE> getRecipesForInput(ITypedIngredient<?> input) {
         if (input.getType() == ForgeTypes.FLUID_STACK) {
-            ItemStack filling = getFillingFromFluid(input.getIngredient(ForgeTypes.FLUID_STACK).orElseThrow());
-            return getRecipesForFilling(filling);
+            Optional<ItemStack> filling = getFillingFromFluid(input.getIngredient(ForgeTypes.FLUID_STACK).orElseThrow());
+            if (filling.isEmpty()) {
+                return List.of();
+            }
+            return getRecipesForFilling(filling.get());
         }
 
-        ItemStack stack = input.getItemStack().orElse(ItemStack.EMPTY);
-        if (stack.getCount() != 0) {
-            stack = stack.copyWithCount(1);
-        }
+        ItemStack stack = input.getItemStack().orElseThrow();
+        stack = stack.copyWithCount(1);
 
         if (stack.is(ModTags.SANDWICH_BREAD)) {
             ItemStack bottomBread = stack.is(ModItems.BURGER_BUN_TOP.get()) ? new ItemStack(ModItems.BURGER_BUN_BOTTOM.get()) : stack;
@@ -110,7 +111,7 @@ public abstract class SandwichRecipeGenerator<RECIPE> implements ISimpleRecipeMa
         return recipes;
     }
 
-    protected abstract ItemStack getFillingFromFluid(FluidStack fluid);
+    protected abstract Optional<ItemStack> getFillingFromFluid(FluidStack fluid);
 
     protected abstract Optional<FluidIngredient> getFluidFromFilling(ItemStack filling);
 

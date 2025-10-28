@@ -84,13 +84,16 @@ public class SequencedAssemblyRecipeGenerator extends SandwichRecipeGenerator<Se
     }
 
     @Override
-    protected ItemStack getFillingFromFluid(FluidStack fluid) {
+    protected Optional<ItemStack> getFillingFromFluid(FluidStack fluid) {
         for (Recipe<?> recipe : CreateJEI.getTypedRecipes(ModRecipeTypes.SANDWICH_SPOUTING.get())) {
             if (((SandwichSpoutingRecipe) recipe).matches(fluid)) {
-                return ((SandwichSpoutingRecipe) recipe).assemble(fluid);
+                ItemStack result = ((SandwichSpoutingRecipe) recipe).assemble(fluid);
+                if (!result.isEmpty()) {
+                    return Optional.of(result);
+                }
             }
         }
-        throw new IllegalArgumentException("Unsupported fluid: [%s]".formatted(fluid.toString()));
+        return Optional.empty();
     }
 
     @Override
