@@ -132,6 +132,19 @@ public record Ingredients(PackOutput packOutput) implements DataProvider {
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }
 
+    public List<ResourceLocation> collectSpecialFillings() {
+        addIngredients();
+        return INGREDIENTS.keySet().stream()
+                .filter(key -> {
+                    IngredientProperties ingredient = INGREDIENTS.get(key).build();
+                    return !ingredient.getDisplayItem(ItemStack.EMPTY).isEmpty();
+                })
+                .map(ForgeRegistries.ITEMS::getKey)
+                .peek(Objects::requireNonNull)
+                .sorted(Comparator.comparing(Object::toString))
+                .toList();
+    }
+
     @Override
     public String getName() {
         return "Ingredients";

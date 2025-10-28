@@ -17,6 +17,7 @@ public class ModTags {
     // mod item tags
     public static final TagKey<Item> SANDWICH_BREAD = itemTag("sandwich_bread");
     public static final TagKey<Item> BURGER_BUNS = itemTag("burger_buns");
+    public static final TagKey<Item> SPECIAL_SANDWICH_FILLINGS = itemTag("special_sandwich_fillings");
 
     // mod block tags
     public static final TagKey<Block> SANDWICHING_STATIONS = blockTag("sandwiching_stations");
