@@ -52,7 +52,9 @@ public class SandwichDeployingRecipe {
         ingredient = ingredient.copy();
         ingredient.setCount(1);
 
-        ItemStack container = Ingredients.getFood(ingredient, null).usingConvertsTo().orElse(ItemStack.EMPTY);
+        ItemStack container = ingredient.hasCraftingRemainingItem()
+                ? ItemStack.EMPTY // Crafting remainder is already handled by create
+                : Ingredients.getFood(ingredient, null).usingConvertsTo().orElse(ItemStack.EMPTY);
         ItemStack result = SandwichItem.of(sandwich, ingredient);
 
         DeployerApplicationRecipe recipe = new ItemApplicationRecipe.Builder<>(DeployerApplicationRecipe::new, RECIPE_ID)
