@@ -4,8 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "someassemblyrequired.refmap.json",
   "mixins": [
-    "FillingBySpoutMixin",
-    "ProcessingOutputMixin"
+    "FillingBySpoutMixin"
   ],
   "injectors": {
     "defaultRequire": 1
