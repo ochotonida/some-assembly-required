@@ -21,6 +21,7 @@ public class ModCompat {
     public static final String CREATE = "create";
     public static final String MINERSDELIGHT = "minersdelight";
     public static final String SLICE_AND_DICE = "sliceanddice";
+    public static final String CREATE_FOOD = "createfood";
 
     public static final List<Holder<Potion>> EXAMPLE_POTIONS = List.of(
             Potions.MUNDANE,

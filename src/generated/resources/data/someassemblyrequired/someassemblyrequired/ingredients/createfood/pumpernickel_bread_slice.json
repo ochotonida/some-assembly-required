@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createfood"
+    }
+  ],
+  "display_item": {
+    "components": {
+      "minecraft:custom_model_data": 53
+    },
+    "count": 1,
+    "id": "someassemblyrequired:spread"
+  },
+  "item": "createfood:pumpernickel_bread_slice"
+}

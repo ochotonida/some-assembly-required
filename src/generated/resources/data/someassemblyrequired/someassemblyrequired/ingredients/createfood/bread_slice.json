@@ -1,0 +1,13 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "createfood"
+    }
+  ],
+  "display_item": {
+    "count": 1,
+    "id": "someassemblyrequired:bread_slice"
+  },
+  "item": "createfood:bread_slice"
+}

@@ -21,10 +21,7 @@ import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.WithConditions;
 import net.neoforged.neoforge.common.extensions.IHolderExtension;
 import someassemblyrequired.SomeAssemblyRequired;
-import someassemblyrequired.data.providers.ingredient.CreateIngredients;
-import someassemblyrequired.data.providers.ingredient.FarmersDelightIngredients;
-import someassemblyrequired.data.providers.ingredient.IngredientBuilder;
-import someassemblyrequired.data.providers.ingredient.MinersDelightIngredients;
+import someassemblyrequired.data.providers.ingredient.*;
 import someassemblyrequired.ingredient.IngredientProperties;
 import someassemblyrequired.registry.ModItems;
 
@@ -56,6 +53,7 @@ public record Ingredients(PackOutput packOutput) implements DataProvider {
             MODEL_OVERRIDES.add(BuiltInRegistries.ITEM.wrapAsHolder(override));
         }
         MODEL_OVERRIDES.addAll(MinersDelightIngredients.MODEL_OVERRIDES);
+        MODEL_OVERRIDES.addAll(CreateFoodIngredients.MODEL_OVERRIDES);
         MODEL_OVERRIDES.add(BuiltInRegistries.ITEM.wrapAsHolder(Items.POTATO));
     }
 
@@ -72,6 +70,7 @@ public record Ingredients(PackOutput packOutput) implements DataProvider {
         CreateIngredients.addIngredients(this);
         FarmersDelightIngredients.addIngredients(this);
         MinersDelightIngredients.addIngredients(this);
+        CreateFoodIngredients.addIngredients(this);
 
         ItemStack displayItem = INGREDIENTS.get(ModItems.GOLDEN_APPLE_SLICES).getDisplayItem().copy();
         displayItem.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true);

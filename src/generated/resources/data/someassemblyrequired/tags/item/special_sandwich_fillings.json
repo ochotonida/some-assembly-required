@@ -9,6 +9,18 @@
       "required": false
     },
     {
+      "id": "createfood:bread_slice",
+      "required": false
+    },
+    {
+      "id": "createfood:pumpernickel_bread_slice",
+      "required": false
+    },
+    {
+      "id": "createfood:toast_slice",
+      "required": false
+    },
+    {
       "id": "farmersdelight:apple_cider",
       "required": false
     },

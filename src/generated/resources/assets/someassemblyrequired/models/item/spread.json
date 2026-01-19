@@ -314,9 +314,15 @@
       }
     },
     {
-      "model": "someassemblyrequired:ingredient/minecraft/potato",
+      "model": "someassemblyrequired:ingredient/createfood/pumpernickel_bread_slice",
       "predicate": {
         "minecraft:custom_model_data": 53.0
+      }
+    },
+    {
+      "model": "someassemblyrequired:ingredient/minecraft/potato",
+      "predicate": {
+        "minecraft:custom_model_data": 54.0
       }
     }
   ],

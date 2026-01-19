@@ -1,6 +1,18 @@
 {
   "values": [
     "someassemblyrequired:bread_slice",
-    "someassemblyrequired:toasted_bread_slice"
+    "someassemblyrequired:toasted_bread_slice",
+    {
+      "id": "createfood:bread_slice",
+      "required": false
+    },
+    {
+      "id": "createfood:toast_slice",
+      "required": false
+    },
+    {
+      "id": "createfood:pumpernickel_bread_slice",
+      "required": false
+    }
   ]
 }

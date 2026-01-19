@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
+import someassemblyrequired.integration.ModCompat;
 import someassemblyrequired.registry.ModItems;
 import someassemblyrequired.registry.ModTags;
 
@@ -47,7 +48,10 @@ public class ItemTags extends ItemTagsProvider {
         tag(ModTags.BREAD_SLICES).add(
                 ModItems.BREAD_SLICE.get(),
                 ModItems.TOASTED_BREAD_SLICE.get()
-        );
+        )
+                .addOptional(createFoodItem("bread_slice"))
+                .addOptional(createFoodItem("toast_slice"))
+                .addOptional(createFoodItem("pumpernickel_bread_slice"));
 
         var tagBuilder = tag(ModTags.SPECIAL_SANDWICH_FILLINGS);
         for (ResourceKey<Item> item : ingredients.collectSpecialFillings()) {
@@ -62,5 +66,9 @@ public class ItemTags extends ItemTagsProvider {
     private boolean isLoadedByDefault(ResourceKey<Item> key) {
         return key.location().getNamespace().equals(ResourceLocation.DEFAULT_NAMESPACE)
                 || key.location().getNamespace().equals(SomeAssemblyRequired.MOD_ID);
+    }
+
+    private ResourceLocation createFoodItem(String path) {
+        return ResourceLocation.fromNamespaceAndPath(ModCompat.CREATE_FOOD, path);
     }
 }

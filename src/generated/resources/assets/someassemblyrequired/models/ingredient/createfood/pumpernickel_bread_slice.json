@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "someassemblyrequired:item/ingredient/createfood/pumpernickel_bread_slice"
+  }
+}
