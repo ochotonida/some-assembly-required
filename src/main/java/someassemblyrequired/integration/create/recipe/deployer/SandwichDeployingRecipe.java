@@ -52,6 +52,9 @@ public class SandwichDeployingRecipe {
         ingredient = ingredient.copy();
         ingredient.setCount(1);
 
+        // FIXME: inconsistent behavior:
+        //  Create leaves crafting remainder in deployer,
+        //  items without a crafting remainder are ejected instead
         ItemStack container = ingredient.hasCraftingRemainingItem()
                 ? ItemStack.EMPTY // Crafting remainder is already handled by create
                 : Ingredients.getFood(ingredient, null).usingConvertsTo().orElse(ItemStack.EMPTY);
