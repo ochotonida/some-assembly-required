@@ -104,7 +104,6 @@ public class IngredientPropertiesManager extends SimpleJsonResourceReloadListene
     public static void onDataPackReload(OnDatapackSyncEvent event) {
         if (Environment.get().getDist().isClient()) {
             JEIUtil.refresh();
-            return;
         }
         if (event.getPlayer() != null) {
             sync(event.getPlayer());
