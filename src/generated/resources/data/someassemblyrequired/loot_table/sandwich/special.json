@@ -21,11 +21,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "create:chocolate_bucket",
-          "weight": 15
-        },
-        {
-          "type": "minecraft:item",
           "name": "someassemblyrequired:toasted_bread_slice"
         },
         {
@@ -95,6 +90,17 @@
               "modid": "farmersdelight"
             }
           ]
+        },
+        {
+          "type": "someassemblyrequired:optional_item",
+          "item": "create:chocolate_bucket",
+          "loading_conditions": [
+            {
+              "type": "neoforge:mod_loaded",
+              "modid": "create"
+            }
+          ],
+          "weight": 15
         },
         {
           "type": "someassemblyrequired:optional_item",

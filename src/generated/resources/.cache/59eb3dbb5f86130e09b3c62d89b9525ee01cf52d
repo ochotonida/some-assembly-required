@@ -1,4 +1,4 @@
-// 1.21.1	2025-04-07T17:00:43.8735592	Loot Tables
+// 1.21.1	2026-03-02T18:34:48.8005788	Loot Tables
 0a74e8064a4d2368847ddfa91331485c2ab47844 data/someassemblyrequired/loot_table/blocks/sandwiching_station.json
 76c59e0acb55d324c6370cc0ca5178ea57437d76 data/someassemblyrequired/loot_table/inject/chests/abandoned_mineshaft.json
 221c0d2b3eb69a52745ca7ffc1284558a4c86165 data/someassemblyrequired/loot_table/inject/chests/ancient_city.json
@@ -16,4 +16,4 @@ e197c4a85bc8ca848ce3f89713316f4e2a93f579 data/someassemblyrequired/loot_table/in
 583b4ea7506259504cb5e72affb0e34077d21f54 data/someassemblyrequired/loot_table/sandwich/ingredients/vegetables.json
 714b13e025aa7726eaa549b67a215e9201b816b3 data/someassemblyrequired/loot_table/sandwich/sandwich.json
 0cf3caf385935059179e22ab18b3844c48066015 data/someassemblyrequired/loot_table/sandwich/sandwich_layer.json
-b84c6b63e58a384503fbafe17987e5b58ed145a9 data/someassemblyrequired/loot_table/sandwich/special.json
+4f5d7862e6094bb39e5bd6331045283f0fa9f684 data/someassemblyrequired/loot_table/sandwich/special.json

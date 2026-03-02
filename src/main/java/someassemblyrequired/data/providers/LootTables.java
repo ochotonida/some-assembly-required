@@ -51,6 +51,7 @@ import java.util.concurrent.CompletableFuture;
 
 import static someassemblyrequired.registry.ModItems.*;
 
+// TODO sandwich loot tables can probably be simplified a bit by using inline nested loot tables
 @SuppressWarnings("SameParameterValue")
 public class LootTables extends LootTableProvider {
 
@@ -155,7 +156,6 @@ public class LootTables extends LootTableProvider {
                         .add(item(BREAD_SLICE.get()))
                 ).withPool(LootPool.lootPool()
                         .add(item(Items.HONEY_BOTTLE, 15))
-                        .add(item(AllFluids.CHOCOLATE.get().getBucket(), 15))
                         .add(item(TOASTED_BREAD_SLICE.get(), 1))
                         .add(item(Items.MILK_BUCKET, 1))
                         .add(item(Items.POTATO, 1))
@@ -167,6 +167,7 @@ public class LootTables extends LootTableProvider {
                         .add(whenLoaded(ModItems.PASTA_WITH_MEATBALLS.get(), 1))
                         .add(whenLoaded(ModItems.RATATOUILLE.get(), 1))
 
+                        .add(whenLoaded(AllFluids.CHOCOLATE.get().getBucket(), 15))
                         .add(whenLoaded(AllItems.BUILDERS_TEA.get(), 1))
                         .add(whenLoaded(AllItems.CHOCOLATE_BERRIES.get(), 1))
                 ).withPool(LootPool.lootPool()
