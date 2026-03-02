@@ -86,7 +86,7 @@ repositories {
 }
 
 dependencies {
-    implementation "curse.maven:farmers-delight-398521:6154807"
+    implementation "curse.maven:farmers-delight-398521:7596366" // 1.2.10
     implementation "curse.maven:appleskin-248787:5586600"
     runtimeOnly "curse.maven:create-food-959439:7355485"
 
