@@ -113,6 +113,7 @@
   "someassemblyrequired.sandwiching_station.info.creating_sandwiches.2": "1．手持面包片或汉堡面包片右键点击三明治站。",
   "someassemblyrequired.sandwiching_station.info.creating_sandwiches.3": "2．手持其他食材继续右键点击三明治站来搭建你的三明治。任何可以食用的物品（包括药水）均能添加至其中。若需移除食材，空手右键点击三明治站。",
   "someassemblyrequired.sandwiching_station.info.creating_sandwiches.4": "3．当制作完成后，破坏三明治方块即可获得该物品。",
+
   "someassemblyrequired.sandwiching_station.info.bonus_effects.1": "三明治和汉堡均可触发状态效果，持续时间取决于独特食材的数量。",
   "someassemblyrequired.sandwiching_station.info.bonus_effects.2": "当三明治内包含至少%s种独特食材时将触发%s效果，当汉堡内包含至少%s种独特食材时将触发%s效果。",
   "someassemblyrequired.sandwiching_station.info.bonus_effects.3": "面包以及触发药水效果的物品不计入独特食材的数量。",
@@ -127,8 +128,16 @@
 
   "recipe_category.someassemblyrequired.sandwich_building": "三明治搭建",
 
+  "create.item_attributes.someassemblyrequired.open_faced": "是开放式",
+  "create.item_attributes.someassemblyrequired.open_faced.inverted": "不是开放式",
+  "create.item_attributes.someassemblyrequired.burger": "是汉堡",
+  "create.item_attributes.someassemblyrequired.burger.inverted": "不是汉堡",
+  "create.item_attributes.someassemblyrequired.double_decker": "是双层",
+  "create.item_attributes.someassemblyrequired.double_decker.inverted": "不是双层",
+
   "tag.item.c.bread_slices": "面包片",
   "tag.item.someassemblyrequired.burger_buns": "汉堡面包",
   "tag.item.someassemblyrequired.sandwich_bread": "三明治面包",
+  "tag.item.someassemblyrequired.special_sandwich_fillings": "三明治特殊填馅",
   "tag.block.someassemblyrequired.sandwiching_stations": "三明治站"
 }
