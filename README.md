@@ -8,7 +8,7 @@ The behavior and appearance of items on sandwiches can be customized through dat
 so make sure you are viewing this README on the GitHub branch for your Minecraft version.
 
 
-Ingredient JSONs are placed in the `data/<namespace>/some_assembly_required/ingredients` folder.
+Ingredient JSONs are placed in the `data/<namespace>/someassemblyrequired/ingredients` folder.
 Each JSON file corresponds to a single item. Items with a corresponding ingredient JSON can be added onto a sandwich even if the item is normally inedible.
 The following fields can be customized (all fields are optional except `item`):
 
