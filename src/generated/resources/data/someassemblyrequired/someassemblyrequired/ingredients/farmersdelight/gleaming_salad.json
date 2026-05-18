@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "display_item": {
+    "components": {
+      "minecraft:custom_model_data": 52
+    },
+    "count": 1,
+    "id": "someassemblyrequired:spread"
+  },
+  "full_name": {
+    "translate": "block.farmersdelight.gleaming_salad_block"
+  },
+  "item": "farmersdelight:gleaming_salad",
+  "sound": "someassemblyrequired:block.sandwich.add_item.leafy"
+}

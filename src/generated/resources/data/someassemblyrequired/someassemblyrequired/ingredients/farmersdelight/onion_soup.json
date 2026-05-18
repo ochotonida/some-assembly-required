@@ -2,15 +2,16 @@
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
-      "modid": "createfood"
+      "modid": "farmersdelight"
     }
   ],
   "display_item": {
     "components": {
-      "minecraft:custom_model_data": 54
+      "someassemblyrequired:spread_color": "#B87345"
     },
     "count": 1,
     "id": "someassemblyrequired:spread"
   },
-  "item": "createfood:pumpernickel_bread_slice"
+  "item": "farmersdelight:onion_soup",
+  "sound": "someassemblyrequired:block.sandwich.add_item.moist"
 }

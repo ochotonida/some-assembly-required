@@ -1,7 +1,7 @@
 {
   "display_item": {
     "components": {
-      "minecraft:custom_model_data": 54
+      "minecraft:custom_model_data": 55
     },
     "count": 1,
     "id": "someassemblyrequired:spread"

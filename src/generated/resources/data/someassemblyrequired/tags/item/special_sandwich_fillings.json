@@ -101,6 +101,10 @@
       "required": false
     },
     {
+      "id": "farmersdelight:gleaming_salad",
+      "required": false
+    },
+    {
       "id": "farmersdelight:glow_berry_custard",
       "required": false
     },
@@ -146,6 +150,10 @@
     },
     {
       "id": "farmersdelight:noodle_soup",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:onion_soup",
       "required": false
     },
     {
