@@ -1,5 +1,11 @@
-// 1.21.1	2026-05-18T17:30:18.9165538	Tags for minecraft:item mod id someassemblyrequired
+// 1.21.1	2026-05-18T18:24:46.9845277	Tags for minecraft:item mod id someassemblyrequired
+91c902db835c538a96c2e9d3d1b3742531166c0d data/c/tags/item/foods.json
 5da05fe4956ed3b070bacf804e5ecea58b0a2854 data/c/tags/item/foods/bread_slice.json
+d599cb23f37cfc82a87db53e26f1adb4f4cf585d data/c/tags/item/foods/food_poisoning.json
+e0e4253b5be4f2b1bc606fc2d59d28fbe0014f9d data/c/tags/item/foods/fruit.json
+c0a64ae693d4acd47f75b29d1ae5ab9ba881c15a data/c/tags/item/foods/golden.json
+de1f719abeea694ff069e725a55c34488f11ad3f data/c/tags/item/foods/vegetable.json
+4b6aac9efbae055dea17982b1be256ab30b3eb31 data/c/tags/item/hidden_from_recipe_viewers.json
 bc6cb387d3155d51889e2be62263af32a718db34 data/minecraft/tags/item/piglin_loved.json
 e9a21496429ae0c8eb7be7aea9c9ac0fbe0b5394 data/someassemblyrequired/tags/item/burger_buns.json
 c1fdadb29730cee5616c3f534d171cae966e5fe9 data/someassemblyrequired/tags/item/sandwich_bread.json

@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import someassemblyrequired.SomeAssemblyRequired;
 import someassemblyrequired.integration.ModCompat;
@@ -29,6 +30,44 @@ public class ItemTags extends ItemTagsProvider {
     @Override
     @SuppressWarnings("unchecked")
     protected void addTags(HolderLookup.Provider provider) {
+        tag(Tags.Items.FOODS).add(
+                ModItems.SANDWICH.get(),
+                ModItems.BURGER_BUN.get(),
+                ModItems.BURGER_BUN_BOTTOM.get(),
+                ModItems.BURGER_BUN_TOP.get(),
+                ModItems.RAW_BURGER_BUN.get()
+        ).addTags(
+                ModTags.BREAD_SLICES
+        );
+
+        tag(Tags.Items.FOODS_FOOD_POISONING).add(
+                ModItems.RAW_BURGER_BUN.get()
+        );
+
+        tag(Tags.Items.FOODS_FRUIT).add(
+                ModItems.APPLE_SLICES.get(),
+                ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
+                ModItems.GOLDEN_APPLE_SLICES.get()
+        );
+
+        tag(Tags.Items.FOODS_GOLDEN).add(
+                ModItems.CHOPPED_GOLDEN_CARROT.get(),
+                ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),
+                ModItems.GOLDEN_APPLE_SLICES.get()
+        );
+
+        tag(Tags.Items.FOODS_VEGETABLE).add(
+                ModItems.CHOPPED_BEETROOT.get(),
+                ModItems.CHOPPED_CARROT.get(),
+                ModItems.CHOPPED_GOLDEN_CARROT.get(),
+                ModItems.SLICED_ONION.get(),
+                ModItems.TOMATO_SLICES.get()
+        );
+
+        tag(Tags.Items.HIDDEN_FROM_RECIPE_VIEWERS).add(
+                ModItems.SPREAD.get()
+        );
+
         tag(net.minecraft.tags.ItemTags.PIGLIN_LOVED).add(
                 ModItems.GOLDEN_APPLE_SLICES.get(),
                 ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(),

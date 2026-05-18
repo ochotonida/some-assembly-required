@@ -1,0 +1,10 @@
+{
+  "values": [
+    "someassemblyrequired:sandwich",
+    "someassemblyrequired:burger_bun",
+    "someassemblyrequired:burger_bun_bottom",
+    "someassemblyrequired:burger_bun_top",
+    "someassemblyrequired:raw_burger_bun",
+    "#c:foods/bread_slice"
+  ]
+}
