@@ -39,7 +39,7 @@ public class ServerConfig {
         sandwichBonusEffect = builder
                 .comment("The effect applied by sandwiches, depending on the number of unique ingredients")
                 .translation(translate("sandwich_bonus_effect"))
-                .define("sandwich_effect", ResourceLocation.fromNamespaceAndPath(ModCompat.FARMERSDELIGHT, "comfort").toString());
+                .define("sandwich_effect", ResourceLocation.fromNamespaceAndPath(ModCompat.FARMERSDELIGHT, "nourishment").toString());
         burgerBonusEffect = builder
                 .comment("The effect applied by burgers, depending on the number of unique ingredients")
                 .translation(translate("burger_bonus_effect"))
