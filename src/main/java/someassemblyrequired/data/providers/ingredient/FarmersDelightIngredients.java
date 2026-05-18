@@ -55,7 +55,8 @@ public class FarmersDelightIngredients {
             ModItems.HONEY_GLAZED_HAM.get(),
             ModItems.ROAST_CHICKEN.get(),
             ModItems.HAMBURGER.get(),
-            ModItems.GLOW_BERRY_CUSTARD.get()
+            ModItems.GLOW_BERRY_CUSTARD.get(),
+            ModItems.GLEAMING_SALAD.get()
     );
 
     @SuppressWarnings("unchecked")
@@ -65,6 +66,7 @@ public class FarmersDelightIngredients {
         ingredients.builder(ModItems.HOT_COCOA.get()).setSpread(0x7b4835).setMoistSound();
         ingredients.builder(ModItems.APPLE_CIDER.get()).setSpread(0xbd783d, 0.8).setMoistSound();
         ingredients.builder(ModItems.MELON_JUICE.get()).setSpread(0xc73225, 0.8).setMoistSound();
+        ingredients.builder(ModItems.ONION_SOUP.get()).setSpread(0xb87345).setMoistSound();
 
         ingredients.builder(ModItems.MINCED_BEEF.get()).setSlimySound().customModel().setHeight(2);
         ingredients.builder(ModItems.CHICKEN_CUTS.get()).setCustomDisplayName().setWetSound();
@@ -110,6 +112,7 @@ public class FarmersDelightIngredients {
         ingredients.builder(ModItems.STUFFED_PUMPKIN.get()).setSlimySound().setFullName(getTranslationKey(ModItems.STUFFED_PUMPKIN_BLOCK.get()));
         ingredients.builder(ModItems.HONEY_GLAZED_HAM.get()).setSlimySound().setFullName(getTranslationKey(ModItems.HONEY_GLAZED_HAM_BLOCK.get()));
         ingredients.builder(ModItems.SHEPHERDS_PIE.get()).setMoistSound().setFullName(getTranslationKey(ModItems.SHEPHERDS_PIE_BLOCK.get()));
+        ingredients.builder(ModItems.GLEAMING_SALAD.get()).setLeafySound().setFullName(getTranslationKey(ModItems.GLEAMING_SALAD_BLOCK.get()));
     }
 
     private static Component getTranslationKey(Item item) {

@@ -40,9 +40,9 @@ public class CuttingRecipes {
         }
 
         cut(CommonTags.Items.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2)
-                .save(output, SomeAssemblyRequired.id("%s/tomato".formatted(ModCompat.FARMERSDELIGHT)));
+                .save(output, SomeAssemblyRequired.id("%s/%s/tomato".formatted("cutting", ModCompat.FARMERSDELIGHT)));
         cut(CommonTags.Items.CROPS_ONION, ModItems.SLICED_ONION.get(), 2)
-                .save(output, SomeAssemblyRequired.id("%s/onion".formatted(ModCompat.FARMERSDELIGHT)));
+                .save(output, SomeAssemblyRequired.id("%s/%s/onion".formatted("cutting", ModCompat.FARMERSDELIGHT)));
     }
 
     public static CuttingBoardRecipeBuilder cut(ItemLike ingredient, ItemLike mainResult, int count) {
@@ -61,6 +61,6 @@ public class CuttingRecipes {
 
     public static void save(RecipeOutput recipeOutput, CuttingBoardRecipeBuilder builder) {
         ResourceLocation id = BuiltInRegistries.ITEM.getKey(builder.getResult());
-        builder.build(recipeOutput, SomeAssemblyRequired.id("%s/%s".formatted(ModCompat.FARMERSDELIGHT, id.getPath())));
+        builder.build(recipeOutput, SomeAssemblyRequired.id("%s/%s/%s".formatted("cutting", ModCompat.FARMERSDELIGHT, id.getPath())));
     }
 }
