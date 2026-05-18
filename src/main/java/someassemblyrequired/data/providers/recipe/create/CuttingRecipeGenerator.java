@@ -38,8 +38,8 @@ public class CuttingRecipeGenerator extends CuttingRecipeGen {
         cut(Items.GOLDEN_CARROT, ModItems.CHOPPED_GOLDEN_CARROT.get(), 2);
         cut(Items.ENCHANTED_GOLDEN_APPLE, ModItems.ENCHANTED_GOLDEN_APPLE_SLICES.get(), 2);
         cut(Items.GOLDEN_APPLE, ModItems.GOLDEN_APPLE_SLICES.get(), 2);
-        cut(CommonTags.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2);
-        cut(CommonTags.CROPS_ONION, ModItems.SLICED_ONION.get(), 2);
+        cut(CommonTags.Items.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2);
+        cut(CommonTags.Items.CROPS_ONION, ModItems.SLICED_ONION.get(), 2);
         cut(ModItems.BURGER_BUN.get(), ModItems.BURGER_BUN_BOTTOM.get(), 1, ModItems.BURGER_BUN_TOP.get());
 
         farmersDelightCutting();
@@ -67,10 +67,10 @@ public class CuttingRecipeGenerator extends CuttingRecipeGen {
     }
 
     private static void cuttingVegetables() {
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.MELON), Ingredient.of(CommonTags.TOOLS_KNIFE), Items.MELON_SLICE, 9);
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.PUMPKIN), Ingredient.of(CommonTags.TOOLS_KNIFE), vectorwing.farmersdelight.common.registry.ModItems.PUMPKIN_SLICE.get(), 4);
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(vectorwing.farmersdelight.common.registry.ModItems.BROWN_MUSHROOM_COLONY.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), Items.BROWN_MUSHROOM, 5);
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(vectorwing.farmersdelight.common.registry.ModItems.RED_MUSHROOM_COLONY.get()), Ingredient.of(CommonTags.TOOLS_KNIFE), Items.RED_MUSHROOM, 5);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.MELON), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), Items.MELON_SLICE, 9);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.PUMPKIN), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), vectorwing.farmersdelight.common.registry.ModItems.PUMPKIN_SLICE.get(), 4);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(vectorwing.farmersdelight.common.registry.ModItems.BROWN_MUSHROOM_COLONY.get()), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), Items.BROWN_MUSHROOM, 5);
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(vectorwing.farmersdelight.common.registry.ModItems.RED_MUSHROOM_COLONY.get()), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), Items.RED_MUSHROOM, 5);
     }
 
     private void cuttingFoods() {

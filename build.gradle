@@ -86,9 +86,9 @@ repositories {
 }
 
 dependencies {
-    implementation "curse.maven:farmers-delight-398521:7596366" // 1.2.10
+    implementation "maven.modrinth:farmers-delight:${farmers_delight_version}"
     implementation "curse.maven:appleskin-248787:5586600"
-    runtimeOnly "curse.maven:create-food-959439:7355485"
+    runtimeOnly "maven.modrinth:create-food:9kslwM0m"
 
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")

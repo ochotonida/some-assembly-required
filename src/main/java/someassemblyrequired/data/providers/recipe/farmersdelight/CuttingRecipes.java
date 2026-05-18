@@ -39,9 +39,9 @@ public class CuttingRecipes {
             save(output, recipe);
         }
 
-        cut(CommonTags.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2)
+        cut(CommonTags.Items.CROPS_TOMATO, ModItems.TOMATO_SLICES.get(), 2)
                 .save(output, SomeAssemblyRequired.id("%s/tomato".formatted(ModCompat.FARMERSDELIGHT)));
-        cut(CommonTags.CROPS_ONION, ModItems.SLICED_ONION.get(), 2)
+        cut(CommonTags.Items.CROPS_ONION, ModItems.SLICED_ONION.get(), 2)
                 .save(output, SomeAssemblyRequired.id("%s/onion".formatted(ModCompat.FARMERSDELIGHT)));
     }
 
@@ -54,7 +54,7 @@ public class CuttingRecipes {
     }
 
     public static CuttingBoardRecipeBuilder cut(Ingredient ingredient, ItemLike mainResult, int count) {
-        CuttingBoardRecipeBuilder builder = CuttingBoardRecipeBuilder.cuttingRecipe(ingredient, Ingredient.of(CommonTags.TOOLS_KNIFE), mainResult, count);
+        CuttingBoardRecipeBuilder builder = CuttingBoardRecipeBuilder.cuttingRecipe(ingredient, Ingredient.of(CommonTags.Items.TOOLS_KNIFE), mainResult, count);
         RECIPES.add(builder);
         return builder;
     }
