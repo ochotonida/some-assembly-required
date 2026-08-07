@@ -1,5 +1,6 @@
 {
   "someassemblyrequired.creative_tab": "Some Assembly Required",
+
   "someassemblyrequired.advancement.obtain_bread_slice.title": "Питання батона та хліба",
   "someassemblyrequired.advancement.obtain_bread_slice.description": "Наріжте хлібину на скибки",
   "someassemblyrequired.advancement.obtain_toasted_bread_slice.title": "Найкраща річ відтоді, як...",
@@ -10,13 +11,24 @@
   "someassemblyrequired.advancement.consume_potion_sandwich.description": "З'їжте накладанець із зіллям у ньому",
   "someassemblyrequired.advancement.consume_double_decker_sandwich.title": "На два шлунки",
   "someassemblyrequired.advancement.consume_double_decker_sandwich.description": "З'їжте двоповерховий накладанець",
+  "someassemblyrequired.advancement.consume_1000_sandwiches.title": "Сем Накладанець",
+  "someassemblyrequired.advancement.consume_1000_sandwiches.description": "З'їжте 1000 накладанців",
+  "someassemblyrequired.advancement.consume_1000_burgers.title": "Принц бургерів",
+  "someassemblyrequired.advancement.consume_1000_burgers.description": "З'їжте 1000 бургерів",
+
+  "stat.someassemblyrequired.sandwiches_eaten": "З'їдено накладанців",
+  "stat.someassemblyrequired.burgers_eaten": "З'їдено бургерів",
+
   "someassemblyrequired.message.bottom_bread": "Відсутня нижня скибка хліба!",
   "someassemblyrequired.message.full_sandwich": "Накладанець вийшов надто великим!",
+
   "block.someassemblyrequired.sandwiching_station": "Стійка накладання",
   "block.someassemblyrequired.sandwich": "Накладанець",
-  "item.someassemblyrequired.spread": "Поширення",
+
+  "item.someassemblyrequired.spread": "Намазка",
   "item.someassemblyrequired.bread_slice": "Скибка хліба",
   "item.someassemblyrequired.toasted_bread_slice": "Хрустка скибка хліба",
+  "item.someassemblyrequired.raw_burger_bun": "Сира булка для бургера",
   "item.someassemblyrequired.burger_bun": "Булка для бургера",
   "item.someassemblyrequired.burger_bun_bottom": "Низ булки для бургера",
   "item.someassemblyrequired.burger_bun_top": "Верх булки для бургера",
@@ -28,24 +40,48 @@
   "item.someassemblyrequired.chopped_beetroot": "Нарізаний буряк",
   "item.someassemblyrequired.tomato_slices": "Скибочки помідора",
   "item.someassemblyrequired.sliced_onion": "Нарізана цибуля",
+
   "item.someassemblyrequired.sandwich.base.sandwich": "Накладанець",
   "item.someassemblyrequired.sandwich.base.burger": "Бургер",
-  "item.someassemblyrequired.sandwich.only_bread.sandwich": "Накладанець... ?",
-  "item.someassemblyrequired.sandwich.only_bread.burger": "Бургер... ?",
-  "item.someassemblyrequired.sandwich.open_faced.sandwich": "Відкритий накладанець",
-  "item.someassemblyrequired.sandwich.double_decker.sandwich": "Двоповерховий накладанець",
-  "item.someassemblyrequired.sandwich.double_decker.burger": "Двоповерховий бургер",
   "item.someassemblyrequired.sandwich.base.with_ingredients.sandwich": "Накладанець з %s",
   "item.someassemblyrequired.sandwich.base.with_ingredients.burger": "Бургер з %s",
-  "item.someassemblyrequired.sandwich.potion.pattern.1.sandwich": "Накладанець з %s",
-  "item.someassemblyrequired.sandwich.potion.pattern.1.burger": "Бургер з %s",
+
+  "item.someassemblyrequired.sandwich.only_bread.sandwich": "Накладанець... ?",
+  "item.someassemblyrequired.sandwich.only_bread.burger": "Бургер... ?",
+
+  "item.someassemblyrequired.sandwich.open_faced.sandwich": "Відкритий накладанець",
+  "item.someassemblyrequired.sandwich.open_faced.burger": "Відкритий бургер",
+  "item.someassemblyrequired.sandwich.open_faced.with_ingredients.sandwich": "Відкритий накладанець з %s",
+  "item.someassemblyrequired.sandwich.open_faced.with_ingredients.burger": "Відкритий бургер з %s",
+
+  "item.someassemblyrequired.sandwich.double_decker.sandwich": "Двоповерховий накладанець",
+  "item.someassemblyrequired.sandwich.double_decker.burger": "Двоповерховий бургер",
   "item.someassemblyrequired.sandwich.double_decker.with_ingredients.sandwich": "Двоповерховий накладанець з %s",
   "item.someassemblyrequired.sandwich.double_decker.with_ingredients.burger": "Двоповерховий бургер з %s",
-  "item.someassemblyrequired.sandwich.open_faced.with_ingredients.sandwich": "Відкритий накладанець з %s",
-  "someassemblyrequired.tooltip.ingredient_list.1": "«%s»",
-  "someassemblyrequired.tooltip.ingredient_list.2": "«%s» і «%s»",
-  "someassemblyrequired.tooltip.ingredient_list.3": "«%s», «%s» і «%s»",
+
+  "note.to.translators.1": "Назви накладанців із зіллям визначаються автоматично за допомогою регулярних виразів (RegEx).",
+  "note.to.translators.2": "Патерн (ключ перекладу без .sandwich/.burger) повинен використовувати ту ж структуру, що й назви зілля.",
+  "note.to.translators.3": "Ви можете використовувати '(.*)' у своєму патерні, щоб захопити групу символів, на які потім можна посилатися в перекладі за допомогою $<номер>.",
+  "note.to.translators.4": "Якщо перший патерн не збігається з назвою зілля, використовується наступний.",
+  "note.to.translators.5": "Тут визначено два патерни, але ви можете додати більше, якщо потрібно.",
+  "note.to.translators.6": "Якщо назва зілля не відповідає патерну, ви можете явно визначити назву накладанців із цим зіллям.",
+  "note.to.translators.7": "Використовуйте для цього ключ 'potion.with_id.<mod_id>.<potion_id>.water.sandwich'. Дивіться приклад з пляшкою води нижче.",
+  "note.to.translators.8": "(Зауважте, що тривалі та сильні варіанти зілля мають окремі ID, вам доведеться визначити всі варіанти)",
+  "item.someassemblyrequired.sandwich.potion.pattern.1": "Зілля (.*)",
+  "item.someassemblyrequired.sandwich.potion.pattern.1.sandwich": "Накладанець із $1",
+  "item.someassemblyrequired.sandwich.potion.pattern.1.burger": "Бургер із $1",
+  "item.someassemblyrequired.sandwich.potion.pattern.2": "(.*) зілля",
+  "item.someassemblyrequired.sandwich.potion.pattern.2.sandwich": "$1 накладанець",
+  "item.someassemblyrequired.sandwich.potion.pattern.2.burger": "$1 бургер",
+  "item.someassemblyrequired.sandwich.potion.with_id.minecraft.water.sandwich": "Розмоклий накладанець",
+  "item.someassemblyrequired.sandwich.potion.with_id.minecraft.water.burger": "Розмоклий бургер",
+
+  "someassemblyrequired.tooltip.ingredient_list.1": "%s",
+  "someassemblyrequired.tooltip.ingredient_list.2": "%s та %s",
+  "someassemblyrequired.tooltip.ingredient_list.3": "%s, %s та %s",
+
   "someassemblyrequired.tooltip.ingredient_count": "%s (x%s)",
+
   "someassemblyrequired.ingredient.toasted_bread_slice": "Хрустка скибка",
   "someassemblyrequired.ingredient.burger_bun_half": "Булка для бургера",
   "someassemblyrequired.ingredient.apple_slices": "Яблуко",
@@ -56,9 +92,13 @@
   "someassemblyrequired.ingredient.chopped_beetroot": "Буряк",
   "someassemblyrequired.ingredient.tomato_slices": "Помідор",
   "someassemblyrequired.ingredient.sliced_onion": "Цибуля",
+
   "someassemblyrequired.ingredient.water_bottle": "Вода",
   "someassemblyrequired.ingredient.honey_bottle": "Мед",
   "someassemblyrequired.ingredient.milk_bucket": "Молоко",
+
+  "someassemblyrequired.ingredient.create.chocolate_bucket": "Шоколад",
+
   "someassemblyrequired.ingredient.farmersdelight.cabbage_leaf": "Капуста",
   "someassemblyrequired.ingredient.farmersdelight.fried_egg": "Яйце",
   "someassemblyrequired.ingredient.farmersdelight.beef_patty": "Яловичина",
@@ -68,6 +108,36 @@
   "someassemblyrequired.ingredient.farmersdelight.salmon_slice": "Лосось",
   "someassemblyrequired.ingredient.farmersdelight.mutton_chops": "Баранина",
   "someassemblyrequired.ingredient.farmersdelight.cooked_rice": "Рис",
+
+  "someassemblyrequired.sandwiching_station.info.creating_sandwiches.1": "Використовується для створення накладанців. Щоб створити накладанець:",
+  "someassemblyrequired.sandwiching_station.info.creating_sandwiches.2": "1. Почніть свій накладанець, натиснувши ПКМ по Стійці накладання Скибкою хліба або Низом булки для бургера.",
+  "someassemblyrequired.sandwiching_station.info.creating_sandwiches.3": "2. Натисніть ПКМ по Стійці накладання з додатковими інгредієнтами, щоб зібрати свій накладанець. Можна додати будь-який їстівний предмет, включаючи зілля. Інгредієнти можна прибрати, натиснувши ПКМ по Стійці накладання порожньою рукою.",
+  "someassemblyrequired.sandwiching_station.info.creating_sandwiches.4": "3. Коли закінчите, зламайте блок накладанця, щоб отримати його як предмет.",
+
+  "someassemblyrequired.sandwiching_station.info.bonus_effects.1": "Накладанці та бургери можуть накладати ефект статусу, тривалість якого залежить від кількості унікальних інгредієнтів.",
+  "someassemblyrequired.sandwiching_station.info.bonus_effects.2": "Накладанці з щонайменше %s унікальними інгредієнтами накладають ефект %s, натомість бургери з щонайменше %s унікальними інгредієнтами накладають ефект %s.",
+  "someassemblyrequired.sandwiching_station.info.bonus_effects.3": "Хліб та предмети, що накладають ефекти зілля, не враховуються до кількості унікальних інгредієнтів.",
+
+  "someassemblyrequired.config.client.list_ingredients_in_tooltip": "Показувати список інгредієнтів у підказці",
   "someassemblyrequired.config.server.maximum_sandwich_height": "Максимальна висота накладанця",
-  "someassemblyrequired.config.server.generate_chest_loot": "Генерувати у здобичі скринь"
+  "someassemblyrequired.config.server.generate_chest_loot": "Генерувати у здобичі скринь",
+  "someassemblyrequired.config.server.sandwich_bonus_effect": "Бонусний ефект накладанця",
+  "someassemblyrequired.config.server.burger_bonus_effect": "Бонусний ефект бургера",
+  "someassemblyrequired.config.server.sandwich_bonus_effect_durations": "Тривалість бонусного ефекту накладанця",
+  "someassemblyrequired.config.server.burger_bonus_effect_durations": "Тривалість бонусного ефекту бургера",
+
+  "recipe_category.someassemblyrequired.sandwich_building": "Складання накладанців",
+
+  "create.item_attributes.someassemblyrequired.open_faced": "є відкритим",
+  "create.item_attributes.someassemblyrequired.open_faced.inverted": "не є відкритим",
+  "create.item_attributes.someassemblyrequired.burger": "є бургером",
+  "create.item_attributes.someassemblyrequired.burger.inverted": "не є бургером",
+  "create.item_attributes.someassemblyrequired.double_decker": "є двоповерховим",
+  "create.item_attributes.someassemblyrequired.double_decker.inverted": "не є двоповерховим",
+
+  "tag.item.c.bread_slices": "Скибки хліба",
+  "tag.item.someassemblyrequired.burger_buns": "Булки для бургера",
+  "tag.item.someassemblyrequired.sandwich_bread": "Хліб для накладанця",
+  "tag.item.someassemblyrequired.special_sandwich_fillings": "Особливі начинки для накладанця",
+  "tag.block.someassemblyrequired.sandwiching_stations": "Стійки накладання"
 }
